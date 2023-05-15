@@ -140,11 +140,11 @@ function animate() {
     var rightEdge = halfWidth * camera.aspect;
 	var elapsedTime = clock.getElapsedTime();
     
-    if (elapsedTime > 120 && mountain == false) {
+    if (elapsedTime > 60 && mountain == false) {
         mountain = true;
 
         var Mloader = new OBJLoader();
-        var Mpath = 'models/checkpoint_mountain_fill.obj';
+        var Mpath = 'models/mountain.obj';
         Mloader.load(Mpath, async (obj) => {
             var Mgeometry = await obj.children[0].geometry;
             
@@ -156,9 +156,9 @@ function animate() {
             mesh.velocity = new THREE.Vector3(-0.01, 0, 0);
             mesh.mountain = true;
             var x = rightEdge * 3;
-            var y = -3;
+            var y = -4;
             mesh.position.set(x, y, 0);
-            mesh.scale.set(7, 7, 7);
+            mesh.scale.set(0.013, 0.013, 0.013);
             scene.add(mesh);
             objects.push(mesh);
 
