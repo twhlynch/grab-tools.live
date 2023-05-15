@@ -140,7 +140,7 @@ function animate() {
     var rightEdge = halfWidth * camera.aspect;
 	var elapsedTime = clock.getElapsedTime();
     
-    if (elapsedTime > 60 && mountain == false) {
+    if (elapsedTime % 60 < 5 && elapsedTime > 5 && mountain == false) {
         mountain = true;
 
         var Mloader = new OBJLoader();
@@ -161,12 +161,12 @@ function animate() {
             mesh.scale.set(0.013, 0.013, 0.013);
             scene.add(mesh);
             objects.push(mesh);
-
-
-
         });
 
+    } else {
+        mountain = false;
     }
+
 	objects.forEach((object) => {
         if (object.mountain) {
             object.rotation.y = elapsedTime * 2;
