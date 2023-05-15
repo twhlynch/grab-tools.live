@@ -34,6 +34,7 @@
         </script>
         <script src="background.js" type="module" defer></script>
         <script src="main.js" defer></script>
+        <script src="stats.js" defer></script>
     </head>
     <body>
         <nav>
@@ -51,9 +52,95 @@
                 <h1>s</h1>
             </div>
             <p>A collection of Grab related Stats and leaderboards</p>
+            <div id="tabs">
+                <button id="UnbeatenMaps">Unbeaten Maps</button>
+                <button id="HardestMaps">Hardest Maps</button>
+                <button id="MostVerifiedMaps">Most Verified Maps</button>
+                <button id="LevelSearch">Level Search</button>
+            </div>
+            <div class="LeaderboardOutput" id="UnbeatenMaps-out">
+                <div class="leaderboard-item">
+                    <a href="">title</a>
+                    by <span>user</span>
+                    <span>date</span>
+                    <span>count plays</span>
+                </div>
+                <div class="leaderboard-item">
+                    <a href="">title</a>
+                    by <span>user</span>
+                    <span>date</span>
+                    <span>count plays</span>
+                </div>
+                <div class="leaderboard-item">
+                    <a href="">title</a>
+                    by <span>user</span>
+                    <span>date</span>
+                    <span>count plays</span>
+                </div>
+                <div class="leaderboard-item">
+                    <a href="">title</a>
+                    by <span>user</span>
+                    <span>date</span>
+                    <span>count plays</span>
+                </div>
+            </div>
+            <div class="LeaderboardOutput" id="HardestMaps-out">
+                <div class="leaderboard-item">
+                    <a href="">title</a>
+                    by <span>user</span>
+                    <span>date</span>
+                    <span>Diff | Score</span>
+                </div>
+                <div class="leaderboard-item">
+                    <a href="">title</a>
+                    by <span>user</span>
+                    <span>date</span>
+                    <span>Diff | Score</span>
+                </div>
+                <div class="leaderboard-item">
+                    <a href="">title</a>
+                    by <span>user</span>
+                    <span>date</span>
+                    <span>Diff | Score</span>
+                </div>
+            </div>
+            <div class="LeaderboardOutput" id="MostVerifiedMaps-out">
+                <div class="leaderboard-item">
+                    <a href="">user</a>
+                    <span>count maps</span>
+                </div>
+                <div class="leaderboard-item">
+                    <a href="">user</a>
+                    <span>count maps</span>
+                </div>
+                <div class="leaderboard-item">
+                    <a href="">user</a>
+                    <span>count maps</span>
+                </div>
+            </div>
+            <div class="LeaderboardOutput" id="LevelSearch-out">
+                <div class="leaderboard-item">
+                    <a href="">title</a>
+                    by <span>user</span>
+                    <span>date</span>
+                    <span>count plays</span>
+                </div>
+                <div class="leaderboard-item">
+                    <a href="">title</a>
+                    by <span>user</span>
+                    <span>date</span>
+                    <span>count plays</span>
+                </div>
+                <div class="leaderboard-item">
+                    <a href="">title</a>
+                    by <span>user</span>
+                    <span>date</span>
+                    <span>count plays</span>
+                </div>
+            </div>
         </main>
-        <svg class="grid" xmlns="http://www.w3.org/2000/svg" viewBox="0 -50 50 50">
+        <!-- <svg class="grid" xmlns="http://www.w3.org/2000/svg" viewBox="0 -50 50 50">
             <path d="M 0 0 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 m 1 50 l 0 -50 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0 m 50 1 l -50 0" stroke="#5f8bc2" stroke-width=".1" fill="none"/>
-        </svg>
+        </svg> -->
     </body>
 </html>

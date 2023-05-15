@@ -9,6 +9,14 @@ html {
     background-image: linear-gradient(#5f8bc2, #cfe0ea, #5f8bc2);
     font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+body {
+    background-image: linear-gradient(#5f8bc220 1px, transparent 1px),
+    linear-gradient(90deg, #5f8bc220 1px, transparent 1px),
+    linear-gradient(#5f8bc220 1px, transparent 1px),
+    linear-gradient(90deg, #5f8bc220 1px, transparent 1px);
+    background-size:75px 75px, 75px 75px, 15px 15px, 15px 15px;
+    background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px
+}
 main {
     display: flex;
     flex-direction: column;
@@ -17,7 +25,7 @@ main {
     margin-inline: auto;
     width: 80%;
     padding: 10px;
-    max-width: 500px;
+    max-width: 800px;
     height: 100%;
 }
 button {
@@ -30,6 +38,7 @@ button {
     color: #cfe0ea;
     padding: 10px;
     border: dashed 2px #cfe0ea22;
+    font-weight: 600;
 }
 nav {
     display: flex;
@@ -41,21 +50,23 @@ nav {
 }
 h1, h3, p {
     text-align: center;
-    color: #5f8bc2;
+    color: #4683ce;
 }
 p {
     padding: 10px;
     border: dashed 2px #cfe0ea22;
+    font-weight: 600;
+    max-width: 500px;
 }
 p:hover {
-    border: dashed 2px #5f8bc222;
+    border: dashed 2px #4683ce22;
 
 }
 h1 {
     color: #cfe0ea;
 }
 .heading h1:nth-child(n+8):not(:nth-last-child(-n+4)), .heading h1:nth-child(1) {
-    color: #5f8bc2
+    color: #4683ce
 }
 .heading::after {
     content: url('edit.svg');
@@ -65,13 +76,14 @@ h1 {
 }
 #editor {
     background-color: #5f8bc220;
-    color: #5f8bc2;
+    color: #4683ce;
     border: dashed 2px #cfe0ea70;
     vertical-align: middle;
+    font-weight: 600;
 }
 button:hover, #editor:hover {
     background-color: #5f8cc235;
-    border: dashed 2px #5f8bc270;
+    border: dashed 2px #4683ce70;
 }
 canvas {
     position: fixed;
@@ -81,7 +93,7 @@ canvas {
     pointer-events: none;
     opacity: 0.3;
 }
-svg.grid {
+/* svg.grid {
     position: fixed;
     z-index: -2;
     top: 0;
@@ -91,7 +103,7 @@ svg.grid {
     min-height: 100vh;
     min-width: 100vw;
     opacity: 0.1;
-}
+} */
 .heading, .alt-heading {
     display: flex;
 }
@@ -102,11 +114,61 @@ svg.grid {
     margin-bottom: 0;
 }
 .heading h1:hover, .alt-heading h1:hover {
-    color: #5f8bc2;
+    color: #4683ce;
 }
 #editor svg {
     width: 20px;
     height: 100%;
     transform: translateY(3px);
     padding-left: 5px;
+}
+#tabs button {
+    color: #4e88cf;
+}
+.LeaderboardOutput {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 90%;
+    padding: 10px;
+}
+.leaderboard-item {
+    color: #cfe0ea;
+    width: 100%;
+    background: #2e5d9740;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.leaderboard-item span:nth-last-child(1) {
+    margin-left: auto;
+}
+.leaderboard-item span:nth-last-child(2) {
+    font-weight: 400;
+    color: #5e5e5e;
+}
+
+.LeaderboardOutput > div:nth-child(1) {
+    background-color: #d4982955;
+    font-weight: 600;
+}
+.LeaderboardOutput > div:nth-child(2) {
+    background-color: #81818155;
+    font-weight: 600;
+}
+.LeaderboardOutput > div:nth-child(3) {
+    background-color: #dd710d55;
+    font-weight: 600;
+}
+
+.leaderboard-item span {
+    color: #4e88cf;
+    font-weight: 600;
+}
+.leaderboard-item a {
+    color: #2976d4;
+    font-weight: 600;
+    text-decoration: none;
 }
