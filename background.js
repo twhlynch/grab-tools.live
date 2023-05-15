@@ -60,7 +60,7 @@ var objPaths = [
     // "models/cowboyhat_basic.sgm.obj",
     "models/cowboyhat_basic_dev.sgm.obj",
     "models/crown_royal.sgm.obj",
-    // "models/fedora_easter_2023.sgm.obj",
+    "models/fedora_easter_2023.sgm.obj",
     // "models/headband_basic.sgm.obj",
     // "models/ninjahat_basic.sgm.obj",
     // "models/sunhat_basic.sgm.obj",
