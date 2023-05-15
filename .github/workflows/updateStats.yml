@@ -1,0 +1,34 @@
+# name: Update Stats
+
+# on:
+#   schedule:
+#     - cron: '0 0 * * *' # run every day at midnight UTC
+#   workflow_dispatch:
+  
+# jobs:
+#   update-diff:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+      
+#       - name: Set up Python
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: '3.x'
+
+#       # - name: Install dependencies
+#       #   run: pip install -r requirements.txt
+
+#       - name: Run script
+#         run: python getStats.py
+        
+#       - name: Commit changes
+#         run: |
+#           git config --global user.email "twhlynch@gmail.com"
+#           git config --global user.name "twhlynch"
+#           git add diff.json
+#           git add stats-data.json
+#           git commit -m "Update Stats"
+#           git push
