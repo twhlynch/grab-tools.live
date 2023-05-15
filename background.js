@@ -89,7 +89,7 @@ function createObjectsWithGeometries() {
     var halfFov = THREE.MathUtils.degToRad(camera.fov / 2);
     var halfWidth = Math.tan(halfFov) * camera.position.z;
     var rightEdge = halfWidth * camera.aspect;
-    var speed = 10;
+    var speed = 1000;
 	setInterval( () => {
 		var geometry = geometries[Math.floor(Math.random() * geometries.length)];
 		// var color = new THREE.Color(Math.random(), Math.random(), Math.random());
@@ -131,7 +131,7 @@ function loadGeometries(callback) {
 
 loadGeometries(createObjectsWithGeometries);
 var clock = new THREE.Clock();
-
+var mountain = false;
 function animate() {
 	requestAnimationFrame(animate);
     var halfFov = THREE.MathUtils.degToRad(camera.fov / 2);
@@ -139,11 +139,40 @@ function animate() {
     var leftEdge = -halfWidth * camera.aspect;
     var rightEdge = halfWidth * camera.aspect;
 	var elapsedTime = clock.getElapsedTime();
-    if (elapsedTime > 120) {
-        
+    
+    if (elapsedTime > 120 && mountain == false) {
+        mountain = true;
+
+        var Mloader = new OBJLoader();
+        var Mpath = 'models/checkpoint_mountain_fill.obj';
+        Mloader.load(Mpath, async (obj) => {
+            var Mgeometry = await obj.children[0].geometry;
+            
+            var brightness = Math.random() * .4;
+            var material = new THREE.MeshBasicMaterial({  
+                color: 0x5f8bc2
+            });
+            var mesh = new THREE.Mesh(Mgeometry, material);
+            mesh.velocity = new THREE.Vector3(-0.01, 0, 0);
+            mesh.mountain = true;
+            var x = rightEdge * 3;
+            var y = -3;
+            mesh.position.set(x, y, 0);
+            mesh.scale.set(7, 7, 7);
+            scene.add(mesh);
+            objects.push(mesh);
+
+
+
+        });
+
     }
 	objects.forEach((object) => {
-		object.rotation.z = elapsedTime * 2;
+        if (object.mountain) {
+            object.rotation.y = elapsedTime * 2;
+        } else {
+		    object.rotation.z = elapsedTime * 2;
+        }
 		object.position.add(object.velocity);
 
 		if (object.position.x < leftEdge * 3) {
