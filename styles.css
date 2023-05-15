@@ -2,7 +2,6 @@ html, body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    user-select: none;;
 }
 html {
     width: 100%;
