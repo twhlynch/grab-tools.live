@@ -89,7 +89,7 @@ function createObjectsWithGeometries() {
     var halfFov = THREE.MathUtils.degToRad(camera.fov / 2);
     var halfWidth = Math.tan(halfFov) * camera.position.z;
     var rightEdge = halfWidth * camera.aspect;
-    var speed = 1000;
+    var speed = 50;
 	setInterval( () => {
 		var geometry = geometries[Math.floor(Math.random() * geometries.length)];
 		// var color = new THREE.Color(Math.random(), Math.random(), Math.random());
