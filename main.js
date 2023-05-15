@@ -10,6 +10,8 @@ document.getElementById('Stats').addEventListener('click', () => {
 document.getElementById('Other-Tools').addEventListener('click', () => {
     window.location.href = 'tools.html';
 });
-document.getElementById('editor').addEventListener('click', () => {
-    window.location.href = 'editor.html';
-});
+if (window.location.href.includes('index.html')) {
+    document.getElementById('editor').addEventListener('click', () => {
+        window.location.href = 'editor.html';
+    });
+}
