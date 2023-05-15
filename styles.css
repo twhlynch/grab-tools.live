@@ -9,6 +9,9 @@ html {
     background-image: linear-gradient(#5f8bc2, #cfe0ea, #5f8bc2);
     font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+::-webkit-scrollbar {
+    display: none;
+}
 body {
     background-image: linear-gradient(#5f8bc220 1px, transparent 1px),
     linear-gradient(90deg, #5f8bc220 1px, transparent 1px),
@@ -131,16 +134,20 @@ canvas {
     gap: 5px;
     width: 90%;
     padding: 10px;
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 .leaderboard-item {
     color: #cfe0ea;
-    width: 100%;
+    width: 90%;
     background: #2e5d9740;
     padding: 5px 10px;
     border-radius: 5px;
     display: flex;
     flex-direction: row;
     gap: 5px;
+    margin-inline: auto;
 }
 .leaderboard-item span:nth-last-child(1) {
     margin-left: auto;
@@ -171,4 +178,20 @@ canvas {
     color: #2976d4;
     font-weight: 600;
     text-decoration: none;
+}
+.tab-active {
+    background-color: #5f8cc235;
+    border: dashed 2px #4683ce70;
+}
+#UnbeatenMaps-out {
+    display: flex;
+}
+#HardestMaps-out {
+    display: none;
+}
+#MostVerifiedMaps-out {
+    display: none;
+}
+#LevelSearch-out {
+    display: none;
 }
