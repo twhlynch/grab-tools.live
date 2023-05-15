@@ -87,11 +87,11 @@ var objPaths = [
 ];
 
 function createObjectsWithGeometries() {
-    var halfFov = THREE.MathUtils.degToRad(camera.fov / 2);
-    var halfWidth = Math.tan(halfFov) * camera.position.z;
-    var rightEdge = halfWidth * camera.aspect;
     var speed = 50;
 	setInterval( () => {
+        var halfFov = THREE.MathUtils.degToRad(camera.fov / 2);
+        var halfWidth = Math.tan(halfFov) * camera.position.z;
+        var rightEdge = halfWidth * camera.aspect;
 		var geometry = geometries[Math.floor(Math.random() * geometries.length)];
 		// var color = new THREE.Color(Math.random(), Math.random(), Math.random());
 		// var material = new THREE.MeshBasicMaterial({ color });
@@ -131,6 +131,10 @@ function loadGeometries(callback) {
 }
 
 setInterval( () => {
+    var halfFov = THREE.MathUtils.degToRad(camera.fov / 2);
+    var halfWidth = Math.tan(halfFov) * camera.position.z;
+    var leftEdge = -halfWidth * camera.aspect;
+    var rightEdge = halfWidth * camera.aspect;
     var Mloader = new OBJLoader();
     var Mpath = 'models/mountain.obj';
     Mloader.load(Mpath, async (obj) => {
