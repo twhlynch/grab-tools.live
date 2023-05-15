@@ -154,7 +154,7 @@ setInterval( () => {
         scene.add(mesh);
         objects.push(mesh);
     });
-}, 60000);
+}, 120000);
 
 loadGeometries(createObjectsWithGeometries);
 var clock = new THREE.Clock();
