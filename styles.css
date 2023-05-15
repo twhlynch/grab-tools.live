@@ -92,15 +92,16 @@ svg.grid {
     min-width: 100vw;
     opacity: 0.1;
 }
-.heading {
+.heading, .alt-heading {
     display: flex;
 }
-.heading h1 {
+.heading h1, .alt-heading h1 {
     padding: 1px;
     transition: all 0.3s;
     cursor: default;
+    margin-bottom: 0;
 }
-.heading h1:hover {
+.heading h1:hover, .alt-heading h1:hover {
     color: #5f8bc2;
 }
 #editor svg {
