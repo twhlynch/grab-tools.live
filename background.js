@@ -83,6 +83,7 @@ var objPaths = [
     // "models/pyramid.sgm.obj",
     // "models/sign.sgm.obj",
     // "models/sphere.sgm.obj",
+    'models/index.obj',
 ];
 
 function createObjectsWithGeometries() {
@@ -129,6 +130,28 @@ function loadGeometries(callback) {
 	}
 }
 
+setInterval( () => {
+    var Mloader = new OBJLoader();
+    var Mpath = 'models/mountain.obj';
+    Mloader.load(Mpath, async (obj) => {
+        var Mgeometry = await obj.children[0].geometry;
+        
+        var brightness = Math.random() * .4;
+        var material = new THREE.MeshBasicMaterial({  
+            color: 0x5f8bc2
+        });
+        var mesh = new THREE.Mesh(Mgeometry, material);
+        mesh.velocity = new THREE.Vector3(-0.01, 0, 0);
+        mesh.mountain = true;
+        var x = rightEdge * 3;
+        var y = -4;
+        mesh.position.set(x, y, 0);
+        mesh.scale.set(0.013, 0.013, 0.013);
+        scene.add(mesh);
+        objects.push(mesh);
+    });
+}, 60000);
+
 loadGeometries(createObjectsWithGeometries);
 var clock = new THREE.Clock();
 var mountain = false;
@@ -139,33 +162,6 @@ function animate() {
     var leftEdge = -halfWidth * camera.aspect;
     var rightEdge = halfWidth * camera.aspect;
 	var elapsedTime = clock.getElapsedTime();
-    
-    if (elapsedTime % 60 < 5 && elapsedTime > 5 && mountain == false) {
-        mountain = true;
-
-        var Mloader = new OBJLoader();
-        var Mpath = 'models/mountain.obj';
-        Mloader.load(Mpath, async (obj) => {
-            var Mgeometry = await obj.children[0].geometry;
-            
-            var brightness = Math.random() * .4;
-            var material = new THREE.MeshBasicMaterial({  
-                color: 0x5f8bc2
-            });
-            var mesh = new THREE.Mesh(Mgeometry, material);
-            mesh.velocity = new THREE.Vector3(-0.01, 0, 0);
-            mesh.mountain = true;
-            var x = rightEdge * 3;
-            var y = -4;
-            mesh.position.set(x, y, 0);
-            mesh.scale.set(0.013, 0.013, 0.013);
-            scene.add(mesh);
-            objects.push(mesh);
-        });
-
-    } else {
-        mountain = false;
-    }
 
 	objects.forEach((object) => {
         if (object.mountain) {
