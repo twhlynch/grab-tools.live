@@ -40,7 +40,7 @@ document.getElementById('LevelSearch').addEventListener('click', () => {
 });
 
 function getHardestLevels() {
-    fetch('stats-data.json')
+    fetch('stats_data/all_verified.json')
     .then((response) => response.json())
     .then(data => {
         
@@ -120,7 +120,7 @@ function getHardestLevels() {
         i = 0;
         data.forEach(level => {
             if (i < 100) {
-                document.getElementById("HardestMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels/viewer/?level=${level.identifier}">${level.title}</a>by <span>${level.creators}</span><span>date</span><span>${(1 - (Math.round(level.statistics.difficulty * 10000) / 10000))*100}% | ${(Math.round((level.score*level.percentage) * 10000) / 10000)}</span></div>`;
+                document.getElementById("HardestMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels/viewer/?level=${level.identifier}">${level.title}</a>by <span>${level.creators}</span><span>${new Date(level.creation_timestamp).toDateString()}</span><span>${(1 - (Math.round(level.statistics.difficulty * 10000) / 10000))*100}% | ${(Math.round((level.score*level.percentage) * 10000) / 10000)}</span></div>`;
                 i++;
             }
         });
@@ -146,33 +146,23 @@ function getHardestLevels() {
 }
 
 function getUnbeatenLevels() {
-    fetch('diff.json')
+    fetch('stats_data/unbeaten_levels.json')
     .then((response) => response.json())
     .then(data => {
-        data.reverse().forEach(item => {
-            document.getElementById('UnbeatenMaps-out').innerHTML += `<div class="leaderboard-item"><a href="${item["link"]}">${item["title"]}</a>by <span>user</span><span>${item["age"]}</span><span>${item["plays"]} plays</span></div>`;
+        data.forEach(item => {
+            document.getElementById('UnbeatenMaps-out').innerHTML += `<div class="leaderboard-item"><a href="${item["link"]}">${item["title"]}</a>by <span>${item["creators"]}</span><span>${parseInt(item["age"].split(" ")[0])} ${item["age"].split(" ")[1]}</span><span>${item["plays"]} plays</span></div>`;
         });
     });
 }
 
 async function getTopPlayers(limit = 10) {
-    fetch('stats-data.json')
+    fetch('stats_data/most_verified.json')
     .then(res => res.json())
     .then(json_data => {
-        console.log(json_data);
-        var playersArr = {};
-        json_data.forEach(json => {
-            user_id = json.identifier.split(":")[0];
-            if (playersArr[user_id]) {
-                playersArr[user_id] += 1;
-            } else {
-                playersArr[user_id] = 1;
-            }
-        });
-        const topPlayers = Object.keys(playersArr).sort(function(a,b){return playersArr[b]-playersArr[a]}).slice(0, limit);
-        topPlayers.forEach(player => {
-            document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${player}">${player}</a><span>${playersArr[player]} maps</span></div>`;
-        });
+        for (const id in json_data) {
+            const value = json_data[id];
+            document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>${value["count"]} verified of ${value["levels"]} maps</span></div>`;
+        }
     });
 }
 
