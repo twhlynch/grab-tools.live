@@ -156,6 +156,32 @@ setInterval( () => {
     });
 }, 120000);
 
+document.body.addEventListener('click', onClick, false);
+function onClick(event) {
+    const canvas = renderer.domElement;
+    const rect = canvas.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera({x,y}, camera);
+
+    const intersects = raycaster.intersectObjects(scene.children, true);
+
+    if (intersects.length > 0) {
+        const clickedObject = intersects[0].object;
+        var scale = Math.random() - 0.5;
+        clickedObject.scale.y += scale;
+        clickedObject.scale.x += scale;
+        clickedObject.scale.z += scale;
+        var obj2 = clickedObject.clone();
+        obj2.velocity = new THREE.Vector3(-(Math.random() * 0.1 - 0.05), Math.random() * 0.1 - 0.05, 0);
+        scene.add(obj2);
+        objects.push(obj2);
+    }
+}
+
+
 loadGeometries(createObjectsWithGeometries);
 var clock = new THREE.Clock();
 var mountain = false;
