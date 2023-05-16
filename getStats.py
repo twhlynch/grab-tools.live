@@ -50,7 +50,7 @@ def get_unbeaten(data):
                     "creators": level["creators"]
                 }
                 unbeaten.append(new_data)
-    return unbeaten.reverse()
+    return unbeaten[::-1]
 
 def get_most_verified(data):
     most_verified = {}
@@ -104,7 +104,7 @@ def get_level_data():
     write_json_file('stats_data/all_verified.json', all_verified)
     most_played_maps = get_most_played_maps(all_verified)
     write_json_file('stats_data/most_played_maps.json', most_played_maps)
-    id_players = False
+    did_players = False
     did_unbeaten = False
     if not log_data["unbeaten_levels"]:
         unbeaten_levels = get_unbeaten(all_verified)
