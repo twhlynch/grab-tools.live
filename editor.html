@@ -1,0 +1,479 @@
+<!DOCTYPE html prefix="og: http://ogp.me/ns#">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <title>Advanced Level Editor ( Alpha ) | Grab Tools | .index | twhlynch</title>
+        <meta name="description" content="Complex .level editor for Grab. Edit levels in JSON, 3D, or run functions to modify it for you. Access unobtainable object types and more.">
+        <meta name="author" content="twhlynch">
+        <meta property="og:title" content="Advanced Level Editor ( Alpha ) | .index | Grab Tools | twhlynch">
+        <meta property="og:description" content="Complex .level editor for Grab. Edit levels in JSON, 3D, or run functions to modify it for you. Access unobtainable object types and more.">
+        <meta property="og:site_name" content=".index Advanced Level Editor ( Alpha )">
+        <meta property="og:locale" content="en_us">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="http://grab-tools.live/editor.html">
+        <meta property="og:image" content="http://grab-tools.live/favicon.gif">
+        <link rel="icon" href="favicon.gif" type="image/gif">
+        <link rel="stylesheet" href="editor-styles.css">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BDS57RBQ3Q"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BDS57RBQ3Q');
+        </script>
+        <script src="//cdn.jsdelivr.net/npm/protobufjs@7.X.X/dist/protobuf.js"></script>
+        <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://unpkg.com/three@0.145.0/build/three.module.js"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <nav class="menu">
+            <ul class="menu-list">
+                <li>
+                    <button class="menu-btn">File</button>
+                    <ul class="menu-dropdown">
+                        <li>
+                            <button class="menu-btn">New</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="empty-btn">Empty</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r" id="template-btn">Template</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Open</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="pc-btn">From PC</button>
+                                    <input type="file" id="pc-btn-input" style="display:none">
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="pcjson-btn">JSON From PC</button>
+                                    <input type="file" id="pcjson-btn-input" style="display:none">
+                                </li>
+                                <li>
+                                    <button class="menu-btn r" id="quest-btn">From Quest</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r" id="account-btn">From Account</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Save</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="topc-btn">To PC</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r" id="toquest-btn">To Quest</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r" id="prefab-btn">To Prefab</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Export</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn r" id="gltf-btn">glTF</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="json-btn">JSON</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r" id="png-btn">PNG</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r" id="grab2d-btn">Grab 2D</button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <button class="menu-btn">Insert</button>
+                    <ul class="menu-dropdown">
+                        <li>
+                            <button class="menu-btn">Level</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="insertpc-btn">From PC</button>
+                                    <input type="file" id="insertpc-btn-input" style="display:none">
+                                </li>
+                                <li>
+                                    <button class="menu-btn r">From Quest</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r">From Account</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Prefab</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn r" id="prefabs-btn">Prefabs Menu</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r">Parallelograms</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r">Break Times</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r">Free Start/Finish</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r">Textured Signs</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r">Special Stones</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r">No Hitbox</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r">Inverted</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Media</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn r" id="image-btn">Image</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r" id="video-btn">Video</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Node</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="nodeStatic-btn">Static</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="nodeColored-btn">Colored</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="nodeCrumbling-btn">Crumbling</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="nodeSign-btn">Sign</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="nodeStart-btn">Start</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="nodeFinish-btn">Finish</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn r" id="text-btn">Bulk Text</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn r" id="model-btn">3D Model</button>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <button class="menu-btn">Settings</button>
+                    <ul class="menu-dropdown">
+                        <li>
+                            <button class="menu-btn r" id="login-btn">Login</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn r" id="controls-btn">Controls</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn" id="protobuf-btn">Edit Protobuf</button>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <button class="menu-btn">Edit</button>
+                    <ul class="menu-dropdown">
+                        <li>
+                            <button class="menu-btn r">Undo</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn r">Redo</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Functions</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn r" id="myFunctions-button">My Functions</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r" id="randomize-btn">Randomize</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r" id="explode-btn">Explode</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="duplicate-btn">Duplicate</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn r" id="convert-btn">Convert</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Ambience</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn r">Set Custom</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="maxambience-btn">Max</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="minambience-btn">Min</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="randomambience-btn">Random illegal</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="defaultambience-btn">Default</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="fireambience-btn">Fire - Milo</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="clearambience-btn">Clear</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn" id="group-btn">Group</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Details</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="title-btn">Title</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="description-btn">Description</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="creators-btn">Creators</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="checkpoints-btn">Checkpoints</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="cleardetails-btn">Clear</button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <button class="menu-btn">View</button>
+                    <ul class="menu-dropdown">
+                        <li>
+                            <button class="menu-btn" id="hide-btn">Toggle Editor</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn" id="highlight-btn">Toggle Highlighting</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn" id="performance-btn">Toggle Fast mode</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn r">Goto Start</button>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <button class="menu-btn">Help</button>
+                    <ul class="menu-dropdown">
+                        <li>
+                            <button class="menu-btn r" id="search-btn">Search Menus</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn" id="docs-btn">Docs</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn r" id="help-btn">Show Help Menu</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Contact Me</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="discord-btn">.index#9919</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="email-btn">twhlynch@gmail.com</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="server-btn">twhlynch.me/discord</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="slindev-btn">discord.slin.dev</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Credit & Thx</button>
+                            <ul class="menu-dropdown" id="credit-menu">
+                                <li>
+                                    <button class="menu-btn" id="slin-btn">Slin</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="ebspark-btn">EBSpark</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">MiloJenSopha</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">D2Whiplash</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="rad-btn">xxlilRadxx</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="joshi-btn">22Joshi22</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">Anton.exe</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">Person</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">etxnight</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">MerelyMiserable</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">Noosh</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">FamGuyBri</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">Luhmao</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">BLUDUK</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">Levi__athan</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">FROSTY_CROSS</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn">Peechyy</button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="content">
+            <div id="render-container">
+                <div id="complexity">Complexity: 0</div>
+            </div>
+            <div id="edit-resize">&nbsp;</div>
+            <div id="editing-container">
+                <div id="editor">
+                    <div id="warning">formatVersion is not 6. Some features may not work.</div>
+                    <div name="edit-input" id="edit-input" spellcheck="false" contenteditable="true">{
+    "formatVersion": 6,
+    "title": "New Level",
+    "creators": ".index-editor",
+    "description": ".index - Level modding",
+    "maxCheckpointCount": 10,
+    "levelNodes": [],
+    "ambienceSettings": {
+        "skyZenithColor": {
+            "r": 0.28,
+            "g": 0.476,
+            "b": 0.73,
+            "a": 1
+        },
+        "skyHorizonColor": {
+            "r": 0.916,
+            "g": 0.9574,
+            "b": 0.9574,
+            "a": 1
+        },
+        "sunAltitude": 45,
+        "sunAzimuth": 315,
+        "sunSize": 1,
+        "fogDDensity": 0
+    }
+}</div>
+                </div>
+                <div id="terminal-resize">&nbsp;</div>
+                <div id="terminal">
+                    <textarea name="terminal-input" id="terminal-input" cols="30" rows="10" spellcheck="false" contenteditable="true"></textarea>
+                    <script>
+                        document.getElementById("terminal-input").placeholder = "[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})";
+                    </script>
+                </div>
+            </div>
+        </div>
+        <!-- Prompts -->
+        <div id="prompts">
+            <div class="prompt-simple" id="prompt-title">
+                <textarea name="title" id="title-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false" placeholder="Title"></textarea>
+                <div class="prompt-buttons">
+                    <button class="prompt-cancel">Cancel</button>
+                    <button class="prompt-submit">Sumbit</button>
+                </div>
+            </div>
+            <div class="prompt-simple" id="prompt-description">
+                <textarea name="description" id="description-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false" placeholder="Description"></textarea>
+                <div class="prompt-buttons">
+                    <button class="prompt-cancel">Cancel</button>
+                    <button class="prompt-submit">Sumbit</button>
+                </div>
+            </div>
+            <div class="prompt-simple" id="prompt-creators">
+                <textarea name="creators" id="creators-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false" placeholder="Creators"></textarea>
+                <div class="prompt-buttons">
+                    <button class="prompt-cancel">Cancel</button>
+                    <button class="prompt-submit">Sumbit</button>
+                </div>
+            </div>
+            <div class="prompt-simple" id="prompt-checkpoints">
+                <textarea name="checkpoints" id="checkpoints-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false" placeholder="Checkpoints"></textarea>
+                <div class="prompt-buttons">
+                    <button class="prompt-cancel">Cancel</button>
+                    <button class="prompt-submit">Sumbit</button>
+                </div>
+            </div>
+            <div class="prompt-simple" id="prompt-protobuf">
+                <textarea name="protobuf" id="protobuf-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false"></textarea>
+                <div class="prompt-buttons">
+                    <button class="prompt-cancel">Cancel</button>
+                    <button class="prompt-submit">Sumbit</button>
+                </div>
+            </div>
+        </div>
+        <script src="editor-resize.js"></script>
+        <script type="module" src="editor-main.js"></script>
+    </body>
+</html>
