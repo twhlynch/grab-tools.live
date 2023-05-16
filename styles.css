@@ -46,6 +46,10 @@ button {
     border: dashed 2px #cfe0ea22;
     font-weight: 600;
 }
+button:not(nav button) {
+    background-color: #5f8bc220;
+    border: dashed 2px #cfe0ea82;
+}
 nav {
     display: flex;
     flex-direction: row;
@@ -204,4 +208,10 @@ canvas {
 }
 #MostPlays-out {
     display: none;
+}
+input {
+    padding: 5px;
+    border: dashed 2px #4683ce70;
+    outline: none;
+    background-color: #5f8cc235;
 }
