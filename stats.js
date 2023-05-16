@@ -120,7 +120,7 @@ function getHardestLevels() {
         i = 0;
         data.forEach(level => {
             if (i < 100) {
-                document.getElementById("HardestMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels/viewer/?level=${level.identifier}">${level.title}</a>by <span title="${level.creators}">${level.creator}</span><span>${new Date(level.creation_timestamp).toDateString()}</span><span>${(( 1 - level.statistics.difficulty ) * 100).toString().slice(0, 5)}% | ${(Math.round((level.score*level.percentage) * 1000) / 1000)}</span></div>`;
+                document.getElementById("HardestMaps-out").innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${level.identifier}">${level.title}</a><br>by <span title="${level.creators}">${level.creator}</span></div><span>${new Date(level.creation_timestamp).toDateString().substring(4)}</span><span>${(( 1 - level.statistics.difficulty ) * 100).toString().slice(0, 5)}% | ${(Math.round((level.score*level.percentage) * 1000) / 1000)}</span></div>`;
                 i++;
             }
         });
@@ -150,7 +150,7 @@ function getUnbeatenLevels() {
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
-            document.getElementById('UnbeatenMaps-out').innerHTML += `<div class="leaderboard-item"><a href="${item["link"]}">${item["title"]}</a>by <span>${item["creators"]}</span><span>${parseInt(item["age"].split(" ")[0])} ${item["age"].split(" ")[1]}</span><span>${item["plays"]} plays</span></div>`;
+            document.getElementById('UnbeatenMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="${item["link"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creators"][0]}</span></div><span>${parseInt(item["age"].split(" ")[0])} ${item["age"].split(" ")[1]}</span><span>${item["plays"]} plays</span></div>`;
         });
     });
 }
