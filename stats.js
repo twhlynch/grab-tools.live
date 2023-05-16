@@ -1,42 +1,41 @@
+function toggleTabs() {
+    document.querySelectorAll('.LeaderboardOutput').forEach(e => {
+        e.style.display = 'none';
+    });
+    document.querySelectorAll('.tab-active').forEach(e => {
+        e.classList.remove('tab-active');
+    });
+}
+
 document.getElementById('UnbeatenMaps').addEventListener('click', () => {
+    toggleTabs();
     document.getElementById('UnbeatenMaps-out').style.display = "flex";
-    document.getElementById('HardestMaps-out').style.display = "none";
-    document.getElementById('MostVerifiedMaps-out').style.display = "none";
-    document.getElementById('LevelSearch-out').style.display = "none";
     document.getElementById('UnbeatenMaps').classList.add('tab-active');
-    document.getElementById('HardestMaps').classList.remove('tab-active');
-    document.getElementById('MostVerifiedMaps').classList.remove('tab-active');
-    document.getElementById('LevelSearch').classList.remove('tab-active');
 });
 document.getElementById('HardestMaps').addEventListener('click', () => {
-    document.getElementById('UnbeatenMaps-out').style.display = "none";
+    toggleTabs();
     document.getElementById('HardestMaps-out').style.display = "flex";
-    document.getElementById('MostVerifiedMaps-out').style.display = "none";
-    document.getElementById('LevelSearch-out').style.display = "none";
-    document.getElementById('UnbeatenMaps').classList.remove('tab-active');
     document.getElementById('HardestMaps').classList.add('tab-active');
-    document.getElementById('MostVerifiedMaps').classList.remove('tab-active');
-    document.getElementById('LevelSearch').classList.remove('tab-active');
 });
 document.getElementById('MostVerifiedMaps').addEventListener('click', () => {
-    document.getElementById('UnbeatenMaps-out').style.display = "none";
-    document.getElementById('HardestMaps-out').style.display = "none";
+    toggleTabs();
     document.getElementById('MostVerifiedMaps-out').style.display = "flex";
-    document.getElementById('LevelSearch-out').style.display = "none";
-    document.getElementById('UnbeatenMaps').classList.remove('tab-active');
-    document.getElementById('HardestMaps').classList.remove('tab-active');
     document.getElementById('MostVerifiedMaps').classList.add('tab-active');
-    document.getElementById('LevelSearch').classList.remove('tab-active');
 });
 document.getElementById('LevelSearch').addEventListener('click', () => {
-    document.getElementById('UnbeatenMaps-out').style.display = "none";
-    document.getElementById('HardestMaps-out').style.display = "none";
-    document.getElementById('MostVerifiedMaps-out').style.display = "none";
+    toggleTabs();
     document.getElementById('LevelSearch-out').style.display = "flex";
-    document.getElementById('UnbeatenMaps').classList.remove('tab-active');
-    document.getElementById('HardestMaps').classList.remove('tab-active');
-    document.getElementById('MostVerifiedMaps').classList.remove('tab-active');
     document.getElementById('LevelSearch').classList.add('tab-active');
+});
+document.getElementById('MostPlays').addEventListener('click', () => {
+    toggleTabs();
+    document.getElementById('MostPlays-out').style.display = "flex";
+    document.getElementById('MostPlays').classList.add('tab-active');
+});
+document.getElementById('MostPlayedMaps').addEventListener('click', () => {
+    toggleTabs();
+    document.getElementById('MostPlayedMaps-out').style.display = "flex";
+    document.getElementById('MostPlayedMaps').classList.add('tab-active');
 });
 
 function getHardestLevels() {
@@ -166,6 +165,29 @@ async function getTopPlayers(limit = 10) {
     });
 }
 
+function getPlayedLevels() {
+    fetch('stats_data/most_played_maps.json')
+    .then((response) => response.json())
+    .then(data => {
+        data.forEach(item => {
+            document.getElementById('MostPlayedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${item["statistics"]["total_played"]} plays</span></div>`;
+        });
+    });
+}
+
+function getPlaysLevels() {
+    fetch('stats_data/most_plays.json')
+    .then((response) => response.json())
+    .then(json_data => {
+        for (const id in json_data) {
+            const value = json_data[id];
+            document.getElementById('MostPlays-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>${value["plays"]} from ${value["count"]} / ${value["levels"]} maps</span></div>`;
+        }
+    });
+}
+
 getTopPlayers(10);
 getUnbeatenLevels();
-getHardestLevels()
+getHardestLevels();
+getPlayedLevels();
+getPlaysLevels();
