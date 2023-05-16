@@ -170,7 +170,7 @@ function onClick(event) {
 
     if (intersects.length > 0) {
         const clickedObject = intersects[0].object;
-        var scale = Math.random() - 0.5;
+        var scale = 0.1;
         clickedObject.scale.y += scale;
         clickedObject.scale.x += scale;
         clickedObject.scale.z += scale;
