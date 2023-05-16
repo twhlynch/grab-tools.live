@@ -120,7 +120,7 @@ function getHardestLevels() {
         i = 0;
         data.forEach(level => {
             if (i < 100) {
-                document.getElementById("HardestMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels/viewer/?level=${level.identifier}">${level.title}</a>by <span>${level.creators}</span><span>${new Date(level.creation_timestamp).toDateString()}</span><span>${(1 - (Math.round(level.statistics.difficulty * 10000) / 10000))*100}% | ${(Math.round((level.score*level.percentage) * 10000) / 10000)}</span></div>`;
+                document.getElementById("HardestMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels/viewer/?level=${level.identifier}">${level.title}</a>by <span title="${level.creators}">${level.creator}</span><span>${new Date(level.creation_timestamp).toDateString()}</span><span>${(( 1 - level.statistics.difficulty ) * 100).toString().slice(0, 5)}% | ${(Math.round((level.score*level.percentage) * 1000) / 1000)}</span></div>`;
                 i++;
             }
         });

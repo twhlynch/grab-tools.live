@@ -25,6 +25,9 @@ def get_all_verified(stamp=''):
     while True:
         url = f"https://api.slin.dev/grab/v1/list?max_format_version=100&type=ok&page_timestamp={stamp}"
         data = requests.get(url).json()
+        for level in data:
+            if "creators" in level:
+                level["creator"] = level["creators"][0]
         print("Sending request")
         verified.extend(data)
         if data[-1].get("page_timestamp"):
