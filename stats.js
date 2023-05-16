@@ -186,6 +186,97 @@ function getPlaysLevels() {
     });
 }
 
+const submitBtn = document.getElementById("submit-btn");
+addEventListener("click", async (e) => {
+    if (e.target.id == submitBtn.id) {
+        const idInput = document.getElementById("user-input");
+        const keyInput = document.getElementById("key-input");
+        const output = document.getElementById("LevelSearch-out");
+        var user = idInput.value;
+
+        var id = user;
+        if (user) {
+            try {
+                const userDataResponse = await fetch(
+                    `https://api.slin.dev/grab/v1/list?type=user_name&search_term=${user}`
+                );
+                const userData = await userDataResponse.json();
+                id = userData[0]
+                    .user_id
+                    .toLowerCase();
+            } catch  {
+                var rand = Math.floor(Math.random() * 11);
+                id = '29sgp24f1uorbc6vq8d2k';
+            }
+        }
+        const keys = keyInput
+            .value
+            .toLowerCase()
+            .split("|");
+
+        const promises2 = [fetch('stats_data/all_verified.json')];
+        var promise1 = [
+            []
+        ];
+        if (user == '' || user == null) {
+            var promises1 = [
+                []
+            ];
+        } else {
+            var promises1 = [fetch(`https://api.slin.dev/grab/v1/list?max_format_version=7&user_id=${id}`)];
+        }
+
+        const responses2 = await Promise.all(promises2);
+        const json_data2 = await Promise.all(responses2.map(res => res.json()));
+        const array2 = json_data2.flat();
+        var array1 = [];
+        if (user == '' || user == null) {
+            var array1 = [];
+        } else {
+            const responses1 = await Promise.all(promises1);
+            const json_data1 = await Promise.all(responses1.map(res => res.json()));
+
+            var array1 = json_data1
+                .flat()
+                .filter(level => !level.tags || level.tags.ok);
+
+        }
+        var array = array1.concat(array2);
+
+        var levels = array.filter(level => {
+            for (var key of keys) {
+                if (level["title"].toLowerCase().includes(key)) {
+                    if (level["identifier"].split(":")[0].toLowerCase().includes(id)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        });
+
+        levels.sort((a, b) => b.statistics.total_played - a.statistics.total_played);
+
+        let total = 0;
+        output
+            .querySelectorAll('.leaderboard-item')
+            .forEach(e => {
+                e.remove();
+            });
+        levels.forEach(item => {
+            total += item["statistics"]["total_played"];
+            output.innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(
+                item.creation_timestamp
+            )
+                .toDateString()
+                .substring(4)}</span><span>${item["statistics"]["total_played"]} plays</span></div>`;
+        });
+
+        document.getElementById('counter').innerHTML =  `<b>Total plays: ${total}</b>`;
+    }
+});
+
+
+
 getTopPlayers(10);
 getUnbeatenLevels();
 getHardestLevels();
