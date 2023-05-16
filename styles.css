@@ -8,6 +8,7 @@ html {
     height: 100%;
     background-image: linear-gradient(#5f8bc2, #cfe0ea, #5f8bc2);
     font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-y: hidden;
 }
 ::-webkit-scrollbar {
     display: none;
@@ -18,7 +19,9 @@ body {
     linear-gradient(#5f8bc220 1px, transparent 1px),
     linear-gradient(90deg, #5f8bc220 1px, transparent 1px);
     background-size:75px 75px, 75px 75px, 15px 15px, 15px 15px;
-    background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px
+    background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    max-height: 100vh;
+    overflow-y: scroll;
 }
 main {
     display: flex;
