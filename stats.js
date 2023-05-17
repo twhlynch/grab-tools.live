@@ -37,6 +37,11 @@ document.getElementById('MostPlayedMaps').addEventListener('click', () => {
     document.getElementById('MostPlayedMaps-out').style.display = "flex";
     document.getElementById('MostPlayedMaps').classList.add('tab-active');
 });
+document.getElementById('DailyMap').addEventListener('click', () => {
+    toggleTabs();
+    document.getElementById('DailyMap-out').style.display = "flex";
+    document.getElementById('DailyMap').classList.add('tab-active');
+});
 
 function getHardestLevels() {
     fetch('stats_data/all_verified.json')
@@ -275,10 +280,25 @@ addEventListener("click", async (e) => {
     }
 });
 
-
+function getDailyMap() {
+    fetch('stats_data/daily_map.json')
+    .then((response) => response.json())
+    .then(item => {
+        document.getElementById('DailyMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></h1>`;
+        fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item['identifier'].replace(':', '/')}`)
+        .then((response2) => response2.json())
+        .then(leaderboard => {
+            leaderboard.forEach( lItem => {
+                console.log(lItem);
+                document.getElementById('DailyMap-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${lItem["user_id"]}">${lItem["user_name"]}</a><span>${lItem["best_time"]}s</span></div>`;
+            });
+        });
+    });
+}
 
 getTopPlayers(10);
 getUnbeatenLevels();
 getHardestLevels();
 getPlayedLevels();
 getPlaysLevels();
+getDailyMap();
