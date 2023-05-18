@@ -42,6 +42,21 @@ document.getElementById('DailyMap').addEventListener('click', () => {
     document.getElementById('DailyMap-out').style.display = "flex";
     document.getElementById('DailyMap').classList.add('tab-active');
 });
+document.getElementById('WeeklyMap').addEventListener('click', () => {
+    toggleTabs();
+    document.getElementById('WeeklyMap-out').style.display = "flex";
+    document.getElementById('WeeklyMap').classList.add('tab-active');
+});
+document.getElementById('UnbeatenMap').addEventListener('click', () => {
+    toggleTabs();
+    document.getElementById('UnbeatenMap-out').style.display = "flex";
+    document.getElementById('UnbeatenMap').classList.add('tab-active');
+});
+document.getElementById('MapChallenges').addEventListener('click', () => {
+    toggleTabs();
+    document.getElementById('MapChallenges-out').style.display = "flex";
+    document.getElementById('MapChallenges').classList.add('tab-active');
+});
 
 function getHardestLevels() {
     fetch('stats_data/all_verified.json')
@@ -296,9 +311,44 @@ function getDailyMap() {
     });
 }
 
+function getWeeklyMap() {
+    fetch('stats_data/weekly_map.json')
+    .then((response) => response.json())
+    .then(item => {
+        document.getElementById('WeeklyMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></h1>`;
+        fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item['identifier'].replace(':', '/')}`)
+        .then((response2) => response2.json())
+        .then(leaderboard => {
+            leaderboard.forEach( lItem => {
+                console.log(lItem);
+                document.getElementById('WeeklyMap-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${lItem["user_id"]}">${lItem["user_name"]}</a><span>${lItem["best_time"]}s</span></div>`;
+            });
+        });
+    });
+}
+
+function getUnbeatenMap() {
+    fetch('stats_data/unbeaten_map.json')
+    .then((response) => response.json())
+    .then(item => {
+        document.getElementById('UnbeatenMap-out').innerHTML += `<h1><a href="${item["link"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creators"]}</span></h1>`;
+        fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item['identifier'].replace(':', '/')}`)
+        .then((response2) => response2.json())
+        .then(leaderboard => {
+            leaderboard.forEach( lItem => {
+                console.log(lItem);
+                document.getElementById('UnbeatenMap-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${lItem["user_id"]}">${lItem["user_name"]}</a><span>${lItem["best_time"]}s</span></div>`;
+            });
+        });
+    });
+}
+
 getTopPlayers(10);
 getUnbeatenLevels();
 getHardestLevels();
 getPlayedLevels();
 getPlaysLevels();
 getDailyMap();
+getWeeklyMap();
+getUnbeatenMap();
+// getChallengeScores();

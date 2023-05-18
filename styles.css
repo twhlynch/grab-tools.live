@@ -165,19 +165,19 @@ canvas {
     font-size: 14px;
 }
 
-.LeaderboardOutput:not(#DailyMap-out) > .leaderboard-item:nth-child(1) {
+.LeaderboardOutput:not(#DailyMap-out):not(#WeeklyMap-out):not(#UnbeatenMap-out) > .leaderboard-item:nth-child(1) {
     background-color: #d4982955;
     font-weight: 600;
 }
-.LeaderboardOutput:not(#DailyMap-out) > .leaderboard-item:nth-child(2) {
+.LeaderboardOutput:not(#DailyMap-out):not(#WeeklyMap-out):not(#UnbeatenMap-out) > .leaderboard-item:nth-child(2) {
     background-color: #81818155;
     font-weight: 600;
 }
-.LeaderboardOutput:not(#DailyMap-out) > .leaderboard-item:nth-child(3) {
+.LeaderboardOutput:not(#DailyMap-out):not(#WeeklyMap-out):not(#UnbeatenMap-out) > .leaderboard-item:nth-child(3) {
     background-color: #dd710d55;
     font-weight: 600;
 }
-#DailyMap-out > .leaderboard-item:nth-child(2) {
+#DailyMap-out > .leaderboard-item:nth-child(2), #WeeklyMap-out > .leaderboard-item:nth-child(2), #UnbeatenMap-out > .leaderboard-item:nth-child(2) {
     background-color: #d4982955;
 }
 .leaderboard-item span {
@@ -217,15 +217,15 @@ input {
     outline: none;
     background-color: #5f8cc235;
 }
-#DailyMap-out {
+#DailyMap-out, #WeeklyMap-out, #UnbeatenMap-out {
     display: none;
 }
-#DailyMap-out h1 a {
+#DailyMap-out h1 a, #WeeklyMap-out h1 a, #UnbeatenMap-out h1 a{
     color: #2976d4;
     font-weight: 600;
     text-decoration: none;
     font-size: 30px;
-}#DailyMap-out h1 {
+}#DailyMap-out h1, #WeeklyMap-out h1, #UnbeatenMap-out h1 {
     font-size: 18px;
     margin-top: 30px;
 }
