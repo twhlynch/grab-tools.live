@@ -1,5 +1,4 @@
-import json
-import requests
+import json, random, requests
 from datetime import datetime
 
 def write_json_file(filename, data):
@@ -99,6 +98,23 @@ def get_most_played_maps(data):
     most_played_maps = most_played_maps[:100]
     return most_played_maps
 
+def get_daily_winner():
+    with open("daily_winners.json", 'r') as winners, open("daily_map.json", "r") as map:
+        winner = requests.get(f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{map['identifier']}").json()[""]
+        winners_json = json.loads(winners)
+        winners_json.append([winner, map["identifier"]])
+    with open('daily_winners.json', 'w') as file:
+        json.dump(winners_json, file)
+
+
+def get_daily_map(data):
+    maps = data.copy().sort(key=lambda x: x["update_timestamp"], reverse=True)
+    weights = []
+    for i in len(maps):
+        weights.append(maps[i]["update_timestamp"]/i)
+    level_data = random.choice(maps, weights)
+    return level_data
+
 
 def get_level_data():
     with open("stats_data/log_data.json", 'r') as file:
@@ -107,6 +123,9 @@ def get_level_data():
     write_json_file('stats_data/all_verified.json', all_verified)
     most_played_maps = get_most_played_maps(all_verified)
     write_json_file('stats_data/most_played_maps.json', most_played_maps)
+    get_daily_winner()
+    daily_level = get_daily_map(all_verified)
+    write_json_file('stats_data/daily_map.json', daily_level)
     did_players = False
     did_unbeaten = False
     if not log_data["unbeaten_levels"]:
