@@ -105,7 +105,7 @@ def get_daily_winner():
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
         winner = requests.get(url).json()[0]
         winners_json = json.loads(winners.read())
-        winners_json.append([winner, id])
+        winners_json.append([winner, map_json])
     write_json_file('stats_data/daily_winners.json', winners_json)
 
 
