@@ -1,4 +1,4 @@
-import json, random, requests
+import json, random, requests, time
 from datetime import datetime
 
 def write_json_file(filename, data):
@@ -105,7 +105,7 @@ def get_daily_winner():
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
         winner = requests.get(url).json()[0]
         winners_json = json.loads(winners.read())
-        winners_json.append([winner, map_json])
+        winners_json.append([winner, map_json, int(time.time())])
     write_json_file('stats_data/daily_winners.json', winners_json)
 
 
