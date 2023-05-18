@@ -99,12 +99,14 @@ def get_most_played_maps(data):
     return most_played_maps
 
 def get_daily_winner():
-    with open("daily_winners.json", 'r') as winners, open("daily_map.json", "r") as map:
-        winner = requests.get(f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{map['identifier']}").json()[""]
+    with open("stats_data/daily_winners.json", 'r') as winners, open("stats_data/daily_map.json", "r") as map:
+        map_json = json.load(map)
+        id = map_json["identifier"]
+        url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id}"
+        winner = requests.get(url).json()[0]
         winners_json = json.loads(winners)
-        winners_json.append([winner, map["identifier"]])
-    with open('daily_winners.json', 'w') as file:
-        json.dump(winners_json, file)
+        winners_json.append([winner, id])
+    write_json_file('stats_data/daily_winners.json', winners_json)
 
 
 def get_daily_map(data):
