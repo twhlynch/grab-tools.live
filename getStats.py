@@ -102,20 +102,20 @@ def get_daily_winner():
     with open("stats_data/daily_winners.json", 'r') as winners, open("stats_data/daily_map.json", "r") as map:
         map_json = json.load(map)
         id = map_json["identifier"]
-        url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id}"
+        url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
         winner = requests.get(url).json()[0]
-        winners_json = json.loads(winners)
+        winners_json = json.loads(winners.read())
         winners_json.append([winner, id])
     write_json_file('stats_data/daily_winners.json', winners_json)
 
 
 def get_daily_map(data):
-    maps = data.copy().sort(key=lambda x: x["update_timestamp"], reverse=True)
+    maps = sorted(data, key=lambda x: x["update_timestamp"], reverse=True)
     weights = []
-    for i in len(maps):
-        weights.append(maps[i]["update_timestamp"]/i)
-    level_data = random.choice(maps, weights)
-    return level_data
+    for i in range(len(maps)):
+        weights.append(maps[i]["update_timestamp"]/(i+1))
+    level_data = random.choices(maps, weights, k=1)
+    return level_data[0]
 
 
 def get_level_data():
