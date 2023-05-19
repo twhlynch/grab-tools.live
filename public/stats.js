@@ -351,8 +351,12 @@ function getChallengeScores() {
             }
             if (item[3] === "daily_map") {
                 leaderboard[item[0]["user_id"]][1] += 1;
-            } else if (item[3] === "weekly_map" || item[3] === "unbeaten_map") {
+            } else if (item[3] === "weekly_map") {
                 leaderboard[item[0]["user_id"]][1] += 2;
+            } else if (item[3] === "unbeaten_map") {
+                leaderboard[item[0]["user_id"]][1] += 2;
+                let age = ((item[2] * 1000) - item[1]["update_timestamp"]) / 1000 / 60 / 60 / 24;
+                leaderboard[item[0]["user_id"]][1] += Math.floor(age / 50);
             }
         });
         leaderboard = Object.fromEntries(Object.entries(leaderboard).sort((a, b) => a[1][1] - b[1][1]));
