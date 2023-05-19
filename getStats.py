@@ -132,6 +132,10 @@ def get_unbeaten_winner():
     write_json_file('public/stats_data/map_winners.json', winners_json)
 
 def get_daily_map(data):
+    with open("public/stats_data/next_up.json") as data_file:
+        data = json.load(data_file)
+        if data["daily"] != False:
+            return data["daily"]
     maps = sorted(data, key=lambda x: x["update_timestamp"], reverse=True)
     weights = []
     for i in range(len(maps)):
@@ -140,6 +144,10 @@ def get_daily_map(data):
     return level_data[0]
 
 def get_weekly_map(data):
+    with open("public/stats_data/next_up.json") as data_file:
+        data = json.load(data_file)
+        if data["weekly"] != False:
+            return data["weekly"]
     maps = sorted(data, key=lambda x: x["statistics"]["difficulty"])
     weights = []
     for i in range(len(maps)):
