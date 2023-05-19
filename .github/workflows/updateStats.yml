@@ -4,7 +4,9 @@ on:
   schedule:
     - cron: '0 0 * * *' # run every day at midnight UTC
   workflow_dispatch:
-  
+
+permissions: read-all|write-all
+
 jobs:
   update-diff:
     runs-on: ubuntu-latest
