@@ -99,21 +99,33 @@ def get_most_played_maps(data):
     return most_played_maps
 
 def get_daily_winner():
-    with open("public/stats_data/map_winners.json", 'r') as winners, open("public/stats_data/daily_map.json", "r") as map:
+    with open("public/stats_data/map_winners.json", 'r') as winners, open("public/stats_data/daily_map.json", "r") as map, open("public/stats_data/user_blacklist.json", "r") as blacklist:
         map_json = json.load(map)
         id = map_json["identifier"]
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
-        winner = requests.get(url).json()[0]
+        winner_list = requests.get(url).json()
+        for i in range(len(winner_list)):
+            if winner_list[i] in json.loads(blacklist.read()):
+                winner_list.pop(i)
+        if len(winner_list) == 0:
+            return
+        winner = winner_list[0]
         winners_json = json.loads(winners.read())
         winners_json.append([winner, map_json, int(time.time()), "daily_map"])
     write_json_file('public/stats_data/map_winners.json', winners_json)
 
 def get_weekly_winner():
-    with open("public/stats_data/map_winners.json", 'r') as winners, open("public/stats_data/weekly_map.json", "r") as map:
+    with open("public/stats_data/map_winners.json", 'r') as winners, open("public/stats_data/weekly_map.json", "r") as map, open("public/stats_data/user_blacklist.json", "r") as blacklist:
         map_json = json.load(map)
         id = map_json["identifier"]
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
-        winner = requests.get(url).json()[0]
+        winner_list = requests.get(url).json()
+        for i in range(len(winner_list)):
+            if winner_list[i] in json.loads(blacklist.read()):
+                winner_list.pop(i)
+        if len(winner_list) == 0:
+            return
+        winner = winner_list[0]
         winners_json = json.loads(winners.read())
         winners_json.append([winner, map_json, int(time.time()), "weekly_map"])
     write_json_file('public/stats_data/map_winners.json', winners_json)
