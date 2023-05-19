@@ -99,27 +99,27 @@ def get_most_played_maps(data):
     return most_played_maps
 
 def get_daily_winner():
-    with open("stats_data/map_winners.json", 'r') as winners, open("stats_data/daily_map.json", "r") as map:
+    with open("public/stats_data/map_winners.json", 'r') as winners, open("public/stats_data/daily_map.json", "r") as map:
         map_json = json.load(map)
         id = map_json["identifier"]
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
         winner = requests.get(url).json()[0]
         winners_json = json.loads(winners.read())
         winners_json.append([winner, map_json, int(time.time()), "daily_map"])
-    write_json_file('stats_data/map_winners.json', winners_json)
+    write_json_file('public/stats_data/map_winners.json', winners_json)
 
 def get_weekly_winner():
-    with open("stats_data/map_winners.json", 'r') as winners, open("stats_data/weekly_map.json", "r") as map:
+    with open("public/stats_data/map_winners.json", 'r') as winners, open("public/stats_data/weekly_map.json", "r") as map:
         map_json = json.load(map)
         id = map_json["identifier"]
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
         winner = requests.get(url).json()[0]
         winners_json = json.loads(winners.read())
         winners_json.append([winner, map_json, int(time.time()), "weekly_map"])
-    write_json_file('stats_data/map_winners.json', winners_json)
+    write_json_file('public/stats_data/map_winners.json', winners_json)
 
 def get_unbeaten_winner():
-    with open("stats_data/map_winners.json", 'r') as winners, open("stats_data/unbeaten_map.json", "r") as map:
+    with open("public/stats_data/map_winners.json", 'r') as winners, open("public/stats_data/unbeaten_map.json", "r") as map:
         map_json = json.load(map)
         id = map_json["link"].split('=')[1]
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
@@ -129,7 +129,7 @@ def get_unbeaten_winner():
         winner = winnerList[0]
         winners_json = json.loads(winners.read())
         winners_json.append([winner, map_json, int(time.time()), "unbeaten_map"])
-    write_json_file('stats_data/map_winners.json', winners_json)
+    write_json_file('public/stats_data/map_winners.json', winners_json)
 
 def get_daily_map(data):
     maps = sorted(data, key=lambda x: x["update_timestamp"], reverse=True)
@@ -148,41 +148,41 @@ def get_weekly_map(data):
     return level_data[0]
 
 def get_unbeaten_map():
-    with open("stats_data/unbeaten_levels.json") as data_file:
+    with open("public/stats_data/unbeaten_levels.json") as data_file:
         data = json.load(data_file)
     level_data = random.choice(data)
     return level_data
 
 def get_level_data():
-    with open("stats_data/log_data.json", 'r') as file:
+    with open("public/stats_data/log_data.json", 'r') as file:
         log_data = json.load(file)
     all_verified = get_all_verified()
-    write_json_file('stats_data/all_verified.json', all_verified)
+    write_json_file('public/stats_data/all_verified.json', all_verified)
     most_played_maps = get_most_played_maps(all_verified)
-    write_json_file('stats_data/most_played_maps.json', most_played_maps)
+    write_json_file('public/stats_data/most_played_maps.json', most_played_maps)
     get_daily_winner()
     daily_level = get_daily_map(all_verified)
-    write_json_file('stats_data/daily_map.json', daily_level)
+    write_json_file('public/stats_data/daily_map.json', daily_level)
     get_unbeaten_winner()
     unbeaten_level = get_unbeaten_map()
-    write_json_file('stats_data/unbeaten_map.json', unbeaten_level)
+    write_json_file('public/stats_data/unbeaten_map.json', unbeaten_level)
     weekly = log_data["weekly"] + 1
     if weekly == 7:
         get_weekly_winner()
         weekly_level = get_weekly_map(all_verified)
-        write_json_file('stats_data/weekly_map.json', weekly_level)
+        write_json_file('public/stats_data/weekly_map.json', weekly_level)
         weekly = 0
     did_players = False
     did_unbeaten = False
     if not log_data["unbeaten_levels"]:
         unbeaten_levels = get_unbeaten(all_verified)
-        write_json_file('stats_data/unbeaten_levels.json', unbeaten_levels)
+        write_json_file('public/stats_data/unbeaten_levels.json', unbeaten_levels)
         did_unbeaten = True
         if not log_data["players"]:
             most_verified = get_most_verified(all_verified)
-            write_json_file('stats_data/most_verified.json', most_verified)
+            write_json_file('public/stats_data/most_verified.json', most_verified)
             most_plays = get_most_plays(all_verified)
-            write_json_file('stats_data/most_plays.json', most_plays)
+            write_json_file('public/stats_data/most_plays.json', most_plays)
             did_players = True
 
     log(did_players, did_unbeaten, weekly)
@@ -194,7 +194,7 @@ def log(players, unbeaten_levels, weekly):
         "players": players,
         "unbeaten_levels": unbeaten_levels
     }
-    write_json_file('stats_data/log_data.json', log_data)
+    write_json_file('public/stats_data/log_data.json', log_data)
 
 get_level_data()
 
