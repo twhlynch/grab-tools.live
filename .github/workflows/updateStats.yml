@@ -28,11 +28,6 @@ jobs:
         run: |
           git config --global user.email "twhlynch@gmail.com"
           git config --global user.name "twhlynch"
-          git add stats_data/all_verified.json
-          git add stats_data/log_data.json
-          git add stats_data/most_played_maps.json
-          git add stats_data/most_plays.json
-          git add stats_data/most_verified.json
-          git add stats_data/unbeaten_levels.json
+          git add .
           git commit -m "Update Stats"
           git push
