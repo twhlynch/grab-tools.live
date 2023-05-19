@@ -166,7 +166,7 @@ def get_level_data():
     get_unbeaten_winner()
     unbeaten_level = get_unbeaten_map()
     write_json_file('public/stats_data/unbeaten_map.json', unbeaten_level)
-    weekly = log_data["weekly"] + 1
+    weekly = log_data["days_since_weekly"] + 1
     if weekly == 7:
         get_weekly_winner()
         weekly_level = get_weekly_map(all_verified)
