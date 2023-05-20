@@ -105,7 +105,7 @@ def get_daily_winner():
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
         winner_list = requests.get(url).json()
         for i in range(len(winner_list)):
-            if winner_list[i] in json.loads(blacklist.read()):
+            if winner_list[i] in json.load(blacklist):
                 winner_list.pop(i)
         if len(winner_list) == 0:
             return
@@ -121,7 +121,7 @@ def get_weekly_winner():
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
         winner_list = requests.get(url).json()
         for i in range(len(winner_list)):
-            if winner_list[i] in json.loads(blacklist.read()):
+            if winner_list[i] in json.load(blacklist):
                 winner_list.pop(i)
         if len(winner_list) == 0:
             return
