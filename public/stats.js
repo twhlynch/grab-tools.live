@@ -359,7 +359,7 @@ function getChallengeScores() {
                 leaderboard[item[0]["user_id"]][1] += Math.floor(age / 50);
             }
         });
-        leaderboard = Object.fromEntries(Object.entries(leaderboard).sort((a, b) => a[1][1] - b[1][1]));
+        leaderboard = Object.fromEntries(Object.entries(leaderboard).sort((a, b) => b[1][1] - a[1][1]));
         for (const value of Object.values(leaderboard)) {
             document.getElementById('MapChallenges-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${value[2]}">${value[0]}</a><span>${value[1]} Pt</span></div>`;
         }
