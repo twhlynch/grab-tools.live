@@ -145,7 +145,7 @@ def get_unbeaten_winner():
         winners_json.append([winner, map_json, int(time.time()), "unbeaten_map"])
     write_json_file('public/stats_data/map_winners.json', winners_json)
 
-def get_daily_map(data):
+def get_daily_map(all_data):
     with open("public/stats_data/next_up.json") as data_file:
         data = json.load(data_file)
     if data["daily"] != False:
@@ -154,14 +154,14 @@ def get_daily_map(data):
             new_data["daily"] = False
             json.dump(new_data, data_file)
         return data["daily"]
-    maps = sorted(data, key=lambda x: int(x["update_timestamp"]), reverse=True)
+    maps = sorted(all_data, key=lambda x: x["update_timestamp"], reverse=True)
     weights = []
     for i in range(len(maps)):
         weights.append(maps[i]["update_timestamp"]/(i+1))
     level_data = random.choices(maps, weights, k=1)
     return level_data[0]
 
-def get_weekly_map(data):
+def get_weekly_map(all_data):
     with open("public/stats_data/next_up.json") as data_file:
         data = json.load(data_file)
     if data["weekly"] != False:
@@ -170,7 +170,7 @@ def get_weekly_map(data):
             new_data["weekly"] = False
             json.dump(new_data, data_file)
         return data["weekly"]
-    maps = sorted(data, key=lambda x: int(x["statistics"]["difficulty"]))
+    maps = sorted(all_data, key=lambda x: x["statistics"]["difficulty"])
     weights = []
     for i in range(len(maps)):
         weights.append((1 - maps[i]["statistics"]["difficulty"])/(i+1))
