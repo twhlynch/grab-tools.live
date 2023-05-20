@@ -356,6 +356,7 @@ function getChallengeScores() {
             } else if (item[3] === "unbeaten_map") {
                 leaderboard[item[0]["user_id"]][1] += 2;
                 let age = ((item[2] * 1000) - item[1]["update_timestamp"]) / 1000 / 60 / 60 / 24;
+                console.log(age);
                 leaderboard[item[0]["user_id"]][1] += Math.floor(age / 50);
             }
         });
