@@ -352,7 +352,7 @@ function getChallengeScores() {
             if (item[3] === "daily_map") {
                 leaderboard[item[0]["user_id"]][1] += 1;
             } else if (item[3] === "weekly_map") {
-                leaderboard[item[0]["user_id"]][1] += 2;
+                leaderboard[item[0]["user_id"]][1] += 5;
             } else if (item[3] === "unbeaten_map") {
                 leaderboard[item[0]["user_id"]][1] += 2;
                 let age = parseInt(item[1]["age"].split(" ")[0]);
