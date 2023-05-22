@@ -229,3 +229,8 @@ input {
     font-size: 18px;
     margin-top: 30px;
 }
+#secret {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
