@@ -180,6 +180,89 @@ canvas {
 #DailyMap-out > .leaderboard-item:nth-child(2), #WeeklyMap-out > .leaderboard-item:nth-child(2), #UnbeatenMap-out > .leaderboard-item:nth-child(2) {
     background-color: #d4982955;
 }
+#DailyMap-out > .leaderboard-item:nth-child(3), #WeeklyMap-out > .leaderboard-item:nth-child(3), #UnbeatenMap-out > .leaderboard-item:nth-child(3) {
+    background-color: #81818155;
+}
+#DailyMap-out > .leaderboard-item:nth-child(4), #WeeklyMap-out > .leaderboard-item:nth-child(4), #UnbeatenMap-out > .leaderboard-item:nth-child(4) {
+    background-color: #dd710d55;
+}
+
+#DailyMap-out > .leaderboard-item:nth-child(2) > :nth-child(1)::after {
+    content: "+3";
+    position: relative;
+    width: 0;
+    height: 0;
+    left: max(5%, 10px);
+    font-weight: 300
+} 
+#WeeklyMap-out > .leaderboard-item:nth-child(2) > :nth-child(1)::after {
+    content: "+10";
+    position: relative;
+    width: 0;
+    height: 0;
+    left: max(5%, 10px);
+    font-weight: 300
+} 
+#UnbeatenMap-out > .leaderboard-item:nth-child(2) > :nth-child(1)::after {
+    content: "+2";
+    position: relative;
+    width: 0;
+    height: 0;
+    left: max(5%, 10px);
+    font-weight: 300
+}
+#DailyMap-out > .leaderboard-item:nth-child(3) > :nth-child(1)::after {
+    content: "+2";
+    position: relative;
+    width: 0;
+    height: 0;
+    left: max(5%, 10px);
+    font-weight: 300
+} 
+#WeeklyMap-out > .leaderboard-item:nth-child(3) > :nth-child(1)::after {
+    content: "+7";
+    position: relative;
+    width: 0;
+    height: 0;
+    left: max(5%, 10px);
+    font-weight: 300
+} 
+#UnbeatenMap-out > .leaderboard-item:nth-child(3) > :nth-child(1)::after {
+    content: "+1";
+    position: relative;
+    width: 0;
+    height: 0;
+    left: max(5%, 10px);
+    font-weight: 300
+}
+#DailyMap-out > .leaderboard-item:nth-child(4) > :nth-child(1)::after {
+    content: "+1";
+    position: relative;
+    width: 0;
+    height: 0;
+    left: max(5%, 10px);
+    font-weight: 300
+} 
+#WeeklyMap-out > .leaderboard-item:nth-child(4) > :nth-child(1)::after {
+    content: "+3";
+    position: relative;
+    width: 0;
+    height: 0;
+    left: max(5%, 10px);
+    font-weight: 300
+} 
+#UnbeatenMap-out > .leaderboard-item:nth-child(4) > :nth-child(1)::after {
+    content: "+1";
+    position: relative;
+    width: 0;
+    height: 0;
+    left: max(5%, 10px);
+    font-weight: 300
+}
+
+
+
+
 .leaderboard-item span {
     color: #4e88cf;
     font-weight: 600;
