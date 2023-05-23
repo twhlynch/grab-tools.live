@@ -1,4 +1,4 @@
-import json, random, requests, time
+import json, random, requests, time, sys
 from datetime import datetime
 
 def write_json_file(filename, data):
@@ -200,6 +200,7 @@ def get_unbeaten_map():
     return level_data
 
 def get_level_data():
+    message_result = "https://grab-tools.live\n"
     with open("public/stats_data/log_data.json", 'r') as file:
         log_data = json.load(file)
     all_verified = get_all_verified()
@@ -208,14 +209,17 @@ def get_level_data():
     write_json_file('public/stats_data/most_played_maps.json', most_played_maps)
     get_daily_winner()
     daily_level = get_daily_map(all_verified)
+    message_result += "Daily level: " + daily_level["title"] + "\n"
     write_json_file('public/stats_data/daily_map.json', daily_level)
     get_unbeaten_winner()
     unbeaten_level = get_unbeaten_map()
+    message_result += "Unbeaten level: " + unbeaten_level["title"] + "\n"
     write_json_file('public/stats_data/unbeaten_map.json', unbeaten_level)
     weekly = log_data["days_since_weekly"] + 1
     if weekly == 7:
         get_weekly_winner()
         weekly_level = get_weekly_map(all_verified)
+        message_result += "Weekly level: " + weekly_level["title"] + "\n"
         write_json_file('public/stats_data/weekly_map.json', weekly_level)
         weekly = 0
     did_players = False
@@ -232,6 +236,7 @@ def get_level_data():
             did_players = True
 
     log(did_players, did_unbeaten, weekly)
+    run_bot(message_result)
 
 def log(players, unbeaten_levels, weekly):
     log_data = {
@@ -245,4 +250,21 @@ def log(players, unbeaten_levels, weekly):
 get_level_data()
 
 
+def run_bot(message):
+    import discord
+    from discord.ext import commands
+
+    bot = commands.Bot(command_prefix='.')
+
+    @bot.event
+    async def on_ready():
+
+        print(f'Bot connected as {bot.user.name}')
+        channel_id = 1110428732180672572
+        channel = bot.get_channel(channel_id)
+        await channel.send(message)
+
+        await bot.logout()
+
+    bot.run(sys.argv[2])
 
