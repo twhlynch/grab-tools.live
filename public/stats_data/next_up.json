@@ -1,5 +1,27 @@
 {
-    "daily": false,
+    "daily": {
+      "identifier": "29rhk9gdy7iiza0k3tttk:1675217087",
+      "title": "left in the dark",
+      "complexity": 2998,
+      "format_version": 6,
+      "update_timestamp": 1681723867853,
+      "creation_timestamp": 1681723867853,
+      "data_key": "level_data:29rhk9gdy7iiza0k3tttk:1675217087:1",
+      "description": "You went out camping with some friends but late at night you wake up to find out that one of your friends has gone missing.",
+      "creators": [
+        "Trap11190"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 5700,
+        "difficulty": 0.06105683836589698,
+        "liked": 0.7942583732057417,
+        "time": 340.5915345454546
+      },
+      "creator": "Trap11190"
+    },
     "weekly": {
         "identifier": "2a7dx97v4xiepfpmj8gi4:1673121178",
         "title": "Grab Elimination V3 Museum",
