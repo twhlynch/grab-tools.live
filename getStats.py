@@ -254,17 +254,18 @@ def run_bot(message):
     import discord
     from discord.ext import commands
 
-    bot = commands.Bot(command_prefix='.')
+    intents = discord.Intents.default()
+    bot = commands.Bot(command_prefix='!', intents=intents)
 
     @bot.event
     async def on_ready():
 
         print(f'Bot connected as {bot.user.name}')
-        channel_id = 1110428732180672572
+        channel_id = 1110435431750828132
         channel = bot.get_channel(channel_id)
         await channel.send(message)
 
-        await bot.logout()
+        await bot.close()
 
     bot.run(sys.argv[2])
 
