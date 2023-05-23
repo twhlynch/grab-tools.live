@@ -361,7 +361,8 @@ function getChallengeScores() {
                     leaderboard[item[0][0]["user_id"]][1] += Math.floor(age / 50);
                 }
 
-            } else if (item[0].length > 1) {
+            }
+            if (item[0].length > 1) {
 
                 if (!leaderboard[item[0][1]["user_id"]]) {
                     leaderboard[item[0][1]["user_id"]] = [item[0][1]["user_name"], 0, item[0][1]["user_id"]];
@@ -376,7 +377,8 @@ function getChallengeScores() {
                     leaderboard[item[0][1]["user_id"]][1] += Math.floor(age / 100);
                 }
             
-            } else if (item[0].length > 2) {
+            }
+            if (item[0].length > 2) {
 
                 if (!leaderboard[item[0][2]["user_id"]]) {
                     leaderboard[item[0][2]["user_id"]] = [item[0][2]["user_name"], 0, item[0][2]["user_id"]];
