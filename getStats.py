@@ -110,7 +110,12 @@ def get_daily_winner():
                 winner_list.pop(i)
         if len(winner_list) == 0:
             return
-        winner = winner_list[0]
+        if len(winner_list) == 1:
+            winner = [winner_list[0]]
+        if len(winner_list) == 2:
+            winner = [winner_list[0], winner_list[1]]
+        if len(winner_list) == 3:    
+            winner = [winner_list[0], winner_list[1], winner_list[2]]
         winners_json = json.loads(winners.read())
         winners_json.append([winner, map_json, int(time.time()), "daily_map"])
     write_json_file('public/stats_data/map_winners.json', winners_json)
@@ -127,7 +132,12 @@ def get_weekly_winner():
                 winner_list.pop(i)
         if len(winner_list) == 0:
             return
-        winner = winner_list[0]
+        if len(winner_list) == 1:
+            winner = [winner_list[0]]
+        if len(winner_list) == 2:
+            winner = [winner_list[0], winner_list[1]]
+        if len(winner_list) == 3:    
+            winner = [winner_list[0], winner_list[1], winner_list[2]]
         winners_json = json.loads(winners.read())
         winners_json.append([winner, map_json, int(time.time()), "weekly_map"])
     write_json_file('public/stats_data/map_winners.json', winners_json)
@@ -140,7 +150,12 @@ def get_unbeaten_winner():
         winnerList = requests.get(url).json()
         if len(winnerList) == 0:
             return
-        winner = winnerList[0]
+        if len(winnerList) == 1:
+            winner = [winnerList[0]]
+        if len(winnerList) == 2:
+            winner = [winnerList[0], winnerList[1]]
+        if len(winnerList) == 3:    
+            winner = [winnerList[0], winnerList[1], winnerList[2]]
         winners_json = json.loads(winners.read())
         winners_json.append([winner, map_json, int(time.time()), "unbeaten_map"])
     write_json_file('public/stats_data/map_winners.json', winners_json)

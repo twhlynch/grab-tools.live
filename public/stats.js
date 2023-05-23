@@ -346,17 +346,49 @@ function getChallengeScores() {
     .then(items => {
         leaderboard = {};
         items.forEach( item => {
-            if (!leaderboard[item[0]["user_id"]]) {
-                leaderboard[item[0]["user_id"]] = [item[0]["user_name"], 0, item[0]["user_id"]];
-            }
-            if (item[3] === "daily_map") {
-                leaderboard[item[0]["user_id"]][1] += 1;
-            } else if (item[3] === "weekly_map") {
-                leaderboard[item[0]["user_id"]][1] += 5;
-            } else if (item[3] === "unbeaten_map") {
-                leaderboard[item[0]["user_id"]][1] += 2;
-                let age = parseInt(item[1]["age"].split(" ")[0]);
-                leaderboard[item[0]["user_id"]][1] += Math.floor(age / 50);
+            if (item[0].length > 0) {
+
+                if (!leaderboard[item[0][0]["user_id"]]) {
+                    leaderboard[item[0][0]["user_id"]] = [item[0][0]["user_name"], 0, item[0][0]["user_id"]];
+                }
+                if (item[3] === "daily_map") {
+                    leaderboard[item[0][0]["user_id"]][1] += 3;
+                } else if (item[3] === "weekly_map") {
+                    leaderboard[item[0][0]["user_id"]][1] += 7;
+                } else if (item[3] === "unbeaten_map") {
+                    leaderboard[item[0][0]["user_id"]][1] += 2;
+                    let age = parseInt(item[1]["age"].split(" ")[0]);
+                    leaderboard[item[0][0]["user_id"]][1] += Math.floor(age / 50);
+                }
+
+            } else if (item[0].length > 1) {
+
+                if (!leaderboard[item[0][1]["user_id"]]) {
+                    leaderboard[item[0][1]["user_id"]] = [item[0][1]["user_name"], 0, item[0][1]["user_id"]];
+                }
+                if (item[3] === "daily_map") {
+                    leaderboard[item[0][1]["user_id"]][1] += 2;
+                } else if (item[3] === "weekly_map") {
+                    leaderboard[item[0][1]["user_id"]][1] += 5;
+                } else if (item[3] === "unbeaten_map") {
+                    leaderboard[item[0][1]["user_id"]][1] += 1;
+                    let age = parseInt(item[1]["age"].split(" ")[0]);
+                    leaderboard[item[0][1]["user_id"]][1] += Math.floor(age / 100);
+                }
+            
+            } else if (item[0].length > 2) {
+
+                if (!leaderboard[item[0][2]["user_id"]]) {
+                    leaderboard[item[0][2]["user_id"]] = [item[0][2]["user_name"], 0, item[0][2]["user_id"]];
+                }
+                if (item[3] === "daily_map") {
+                    leaderboard[item[0][2]["user_id"]][1] += 1;
+                } else if (item[3] === "weekly_map") {
+                    leaderboard[item[0][2]["user_id"]][1] += 3;
+                } else if (item[3] === "unbeaten_map") {
+                    leaderboard[item[0][2]["user_id"]][1] += 1;
+                }
+
             }
         });
         leaderboard = Object.fromEntries(Object.entries(leaderboard).sort((a, b) => b[1][1] - a[1][1]));
