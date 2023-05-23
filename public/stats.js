@@ -354,7 +354,7 @@ function getChallengeScores() {
                 if (item[3] === "daily_map") {
                     leaderboard[item[0][0]["user_id"]][1] += 3;
                 } else if (item[3] === "weekly_map") {
-                    leaderboard[item[0][0]["user_id"]][1] += 7;
+                    leaderboard[item[0][0]["user_id"]][1] += 10;
                 } else if (item[3] === "unbeaten_map") {
                     leaderboard[item[0][0]["user_id"]][1] += 2;
                     let age = parseInt(item[1]["age"].split(" ")[0]);
@@ -369,7 +369,7 @@ function getChallengeScores() {
                 if (item[3] === "daily_map") {
                     leaderboard[item[0][1]["user_id"]][1] += 2;
                 } else if (item[3] === "weekly_map") {
-                    leaderboard[item[0][1]["user_id"]][1] += 5;
+                    leaderboard[item[0][1]["user_id"]][1] += 7;
                 } else if (item[3] === "unbeaten_map") {
                     leaderboard[item[0][1]["user_id"]][1] += 1;
                     let age = parseInt(item[1]["age"].split(" ")[0]);
