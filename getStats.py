@@ -180,7 +180,10 @@ def get_weekly_map(all_data):
 def get_unbeaten_map():
     with open("public/stats_data/unbeaten_levels.json") as data_file:
         data = json.load(data_file)
-    data = data.filter((e) => parseInt(e["age"].split(" ")[0]) >= 50);
+    data = data.filter((e) => {
+        const age = parseFloat(e["age"].split(" ")[0]);
+        return age > 50;
+    });
     level_data = random.choice(data)
     return level_data
 
