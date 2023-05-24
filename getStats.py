@@ -248,9 +248,6 @@ def log(players, unbeaten_levels, weekly):
     }
     write_json_file('public/stats_data/log_data.json', log_data)
 
-get_level_data()
-
-
 def run_bot(message):
     import discord
     from discord.ext import commands
@@ -277,3 +274,4 @@ def run_bot(message):
 
     bot.run(sys.argv[2])
 
+get_level_data()
