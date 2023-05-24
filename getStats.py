@@ -263,7 +263,7 @@ def run_bot(message):
         channel_id = 1110435431750828132
         channel = bot.get_channel(channel_id)
 
-        embed = Embed(title="Daily/Weekly Maps Update", description="https://grab-tools.live/stats.html", color=discord.Color.green())
+        embed = Embed(title="Daily/Weekly Maps Update", url="https://grab-tools.live/stats.html", description=discord.utils.get(ctx.guild.roles, name='Daily challenge').mention, color=0x00ffff)
         if message[0]:
             embed.add_field(name="Daily", value=f"[{message[0][0]}]({message[0][1]})")
         if message[1]:
