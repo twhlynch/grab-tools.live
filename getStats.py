@@ -264,9 +264,12 @@ def run_bot(message):
         channel = bot.get_channel(channel_id)
 
         embed = Embed(title="Daily/Weekly Maps Update", description="https://grab-tools.live/stats.html", color=discord.Color.green())
-        embed.add_field(name="Daily", value=f"[{message[0][0]}]({message[0][1]})")
-        embed.add_field(name="Weekly", value=f"[{message[1][0]}]({message[1][1]})")
-        embed.add_field(name="Unbeaten", value=f"[{message[2][0]}]({message[2][1]})")
+        if message[0]:
+            embed.add_field(name="Daily", value=f"[{message[0][0]}]({message[0][1]})")
+        if message[1]:
+            embed.add_field(name="Weekly", value=f"[{message[1][0]}]({message[1][1]})")
+        if message[2]:
+            embed.add_field(name="Unbeaten", value=f"[{message[2][0]}]({message[2][1]})")
 
         await channel.send(embed=embed)
 
