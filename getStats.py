@@ -272,6 +272,6 @@ def run_bot(message):
 
         await bot.close()
 
-    bot.run(sys.argv[2])
+    bot.run(sys.argv[1])
 
 get_level_data()
