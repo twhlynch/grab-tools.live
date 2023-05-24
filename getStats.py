@@ -1,5 +1,8 @@
 import json, random, requests, time, sys
-from datetime import datetime
+from datetime import datetime, date
+import discord
+from discord.ext import commands
+from discord import Embed
 
 def write_json_file(filename, data):
     with open(filename, 'w') as file:
@@ -248,10 +251,73 @@ def log(players, unbeaten_levels, weekly):
     }
     write_json_file('public/stats_data/log_data.json', log_data)
 
+async def get_challenge_scores():
+    with open('public/stats_data/map_winners.json') as file_data:
+        items = json.load(file_data)
+
+    leaderboard = {}
+
+    for item in items:
+        if len(item[0]) > 0:
+            user_id = item[0][0]['user_id']
+            user_name = item[0][0]['user_name']
+
+            if user_id not in leaderboard:
+                leaderboard[user_id] = [user_name, 0, user_id]
+
+            if item[3] == 'daily_map':
+                leaderboard[user_id][1] += 3
+            elif item[3] == 'weekly_map':
+                leaderboard[user_id][1] += 10
+            elif item[3] == 'unbeaten_map':
+                leaderboard[user_id][1] += 2
+                age = int(item[1]['age'].split(' ')[0])
+                leaderboard[user_id][1] += age // 50
+
+        if len(item[0]) > 1:
+            user_id = item[0][1]['user_id']
+            user_name = item[0][1]['user_name']
+
+            if user_id not in leaderboard:
+                leaderboard[user_id] = [user_name, 0, user_id]
+
+            if item[3] == 'daily_map':
+                leaderboard[user_id][1] += 2
+            elif item[3] == 'weekly_map':
+                leaderboard[user_id][1] += 7
+            elif item[3] == 'unbeaten_map':
+                leaderboard[user_id][1] += 1
+                age = int(item[1]['age'].split(' ')[0])
+                leaderboard[user_id][1] += age // 100
+
+        if len(item[0]) > 2:
+            user_id = item[0][2]['user_id']
+            user_name = item[0][2]['user_name']
+
+            if user_id not in leaderboard:
+                leaderboard[user_id] = [user_name, 0, user_id]
+
+            if item[3] == 'daily_map':
+                leaderboard[user_id][1] += 1
+            elif item[3] == 'weekly_map':
+                leaderboard[user_id][1] += 3
+            elif item[3] == 'unbeaten_map':
+                leaderboard[user_id][1] += 1
+
+    leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][1], reverse=True))
+
+    embed = discord.Embed(title='Map Challenges Leaderboard', url="https://grab-tools.live/stats.html", description=str(date.today()), color=0x00ffff)
+    count = 0
+    for value in leaderboard.values():
+        if count >= 25:
+            break
+        embed.add_field(name=value[0], value=f'{value[1]} Pt', inline=False)
+        count += 1
+
+    return embed
+
+
 def run_bot(message):
-    import discord
-    from discord.ext import commands
-    from discord import Embed
 
     intents = discord.Intents.default()
     bot = commands.Bot(command_prefix='!', intents=intents)
@@ -260,10 +326,11 @@ def run_bot(message):
     async def on_ready():
 
         print(f'Bot connected as {bot.user.name}')
-        channel_id = 1110435431750828132
-        channel = bot.get_channel(channel_id)
+        channel = bot.get_channel(1110435431750828132)
+        guild = bot.get_guild(1048213818775437394)
+        role = guild.get_role(1110735575083929622)
 
-        embed = Embed(title="Daily/Weekly Maps Update", url="https://grab-tools.live/stats.html", description=discord.utils.get(ctx.guild.roles, name='Daily challenge').mention, color=0x00ffff)
+        embed = Embed(title="Daily/Weekly Maps Update", url="https://grab-tools.live/stats.html", description=role.mention, color=0x00ffff)
         if message[0]:
             embed.add_field(name="Daily", value=f"[{message[0][0]}]({message[0][1]})")
         if message[1]:
@@ -272,6 +339,7 @@ def run_bot(message):
             embed.add_field(name="Unbeaten", value=f"[{message[2][0]}]({message[2][1]})")
 
         await channel.send(embed=embed)
+        await channel.send(embed=get_challenge_scores())
 
         await bot.close()
 
