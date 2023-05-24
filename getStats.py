@@ -271,7 +271,7 @@ async def get_challenge_scores():
                 leaderboard[user_id][1] += 10
             elif item[3] == 'unbeaten_map':
                 leaderboard[user_id][1] += 2
-                age = int(item[1]['age'].split(' ')[0])
+                age = float(item[1]['age'].split(' ')[0])
                 leaderboard[user_id][1] += age // 50
 
         if len(item[0]) > 1:
@@ -287,7 +287,7 @@ async def get_challenge_scores():
                 leaderboard[user_id][1] += 7
             elif item[3] == 'unbeaten_map':
                 leaderboard[user_id][1] += 1
-                age = int(item[1]['age'].split(' ')[0])
+                age = float(item[1]['age'].split(' ')[0])
                 leaderboard[user_id][1] += age // 100
 
         if len(item[0]) > 2:
@@ -311,7 +311,7 @@ async def get_challenge_scores():
     for value in leaderboard.values():
         if count >= 25:
             break
-        embed.add_field(name=value[0], value=f'{value[1]} Pt', inline=False)
+        embed.add_field(name=f'{value[0]} - {value[1]} Pt', value='\u200B', inline=False)
         count += 1
 
     return embed
@@ -339,7 +339,8 @@ def run_bot(message):
             embed.add_field(name="Unbeaten", value=f"[{message[2][0]}]({message[2][1]})")
 
         await channel.send(embed=embed)
-        await channel.send(embed=get_challenge_scores())
+        scores_embed = await get_challenge_scores()
+        await channel.send(embed=scores_embed)
 
         await bot.close()
 
