@@ -165,7 +165,7 @@ def get_daily_map(all_data):
         data = json.load(data_file)
     if data["daily"] != False:
         with open("public/stats_data/next_up.json", "w") as data_file:
-            new_data = data
+            new_data = data.copy()
             new_data["daily"] = False
             json.dump(new_data, data_file)
         return data["daily"]
@@ -182,7 +182,7 @@ def get_weekly_map(all_data):
         data = json.load(data_file)
     if data["weekly"] != False:
         with open("public/stats_data/next_up.json", "w") as data_file:
-            new_data = data
+            new_data = data.copy()
             new_data["weekly"] = False
             json.dump(new_data, data_file)
         return data["weekly"]
