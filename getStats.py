@@ -97,7 +97,7 @@ def get_most_plays(data):
     return most_plays
 
 def get_most_played_maps(data):
-    most_played_maps = sorted(data, key=lambda x: x["statistics"]["total_played"], reverse=True)
+    most_played_maps = sorted(data[25:], key=lambda x: x["statistics"]["total_played"], reverse=True)
     most_played_maps = most_played_maps[:100]
     return most_played_maps
 
