@@ -207,40 +207,41 @@ def get_level_data():
     message_result = [False, False, False]
     with open("public/stats_data/log_data.json", 'r') as file:
         log_data = json.load(file)
-    all_verified = get_all_verified()
-    write_json_file('public/stats_data/all_verified.json', all_verified)
-    most_played_maps = get_most_played_maps(all_verified)
-    write_json_file('public/stats_data/most_played_maps.json', most_played_maps)
-    get_daily_winner()
-    daily_level = get_daily_map(all_verified)
-    message_result[0] = [daily_level["title"], "https://grabvr.quest/levels/viewer?level=" + daily_level["identifier"]]
-    write_json_file('public/stats_data/daily_map.json', daily_level)
-    get_unbeaten_winner()
-    unbeaten_level = get_unbeaten_map()
-    message_result[2] = [unbeaten_level["title"], unbeaten_level["link"]]
-    write_json_file('public/stats_data/unbeaten_map.json', unbeaten_level)
-    weekly = log_data["days_since_weekly"] + 1
-    if weekly == 7:
-        get_weekly_winner()
-        weekly_level = get_weekly_map(all_verified)
-        message_result[1] = [weekly_level["title"], "https://grabvr.quest/levels/viewer?level=" + weekly_level["identifier"]]
-        write_json_file('public/stats_data/weekly_map.json', weekly_level)
-        weekly = 0
-    did_players = False
-    did_unbeaten = False
-    if not log_data["unbeaten_levels"]:
-        unbeaten_levels = get_unbeaten(all_verified)
-        write_json_file('public/stats_data/unbeaten_levels.json', unbeaten_levels)
-        did_unbeaten = True
-        if not log_data["players"]:
-            most_verified = get_most_verified(all_verified)
-            write_json_file('public/stats_data/most_verified.json', most_verified)
-            most_plays = get_most_plays(all_verified)
-            write_json_file('public/stats_data/most_plays.json', most_plays)
-            did_players = True
+    if datetime.now().timestamp() - log_data["last_ran"] > 72000:
+        all_verified = get_all_verified()
+        write_json_file('public/stats_data/all_verified.json', all_verified)
+        most_played_maps = get_most_played_maps(all_verified)
+        write_json_file('public/stats_data/most_played_maps.json', most_played_maps)
+        get_daily_winner()
+        daily_level = get_daily_map(all_verified)
+        message_result[0] = [daily_level["title"], "https://grabvr.quest/levels/viewer?level=" + daily_level["identifier"]]
+        write_json_file('public/stats_data/daily_map.json', daily_level)
+        get_unbeaten_winner()
+        unbeaten_level = get_unbeaten_map()
+        message_result[2] = [unbeaten_level["title"], unbeaten_level["link"]]
+        write_json_file('public/stats_data/unbeaten_map.json', unbeaten_level)
+        weekly = log_data["days_since_weekly"] + 1
+        if weekly == 7:
+            get_weekly_winner()
+            weekly_level = get_weekly_map(all_verified)
+            message_result[1] = [weekly_level["title"], "https://grabvr.quest/levels/viewer?level=" + weekly_level["identifier"]]
+            write_json_file('public/stats_data/weekly_map.json', weekly_level)
+            weekly = 0
+        did_players = False
+        did_unbeaten = False
+        if not log_data["unbeaten_levels"]:
+            unbeaten_levels = get_unbeaten(all_verified)
+            write_json_file('public/stats_data/unbeaten_levels.json', unbeaten_levels)
+            did_unbeaten = True
+            if not log_data["players"]:
+                most_verified = get_most_verified(all_verified)
+                write_json_file('public/stats_data/most_verified.json', most_verified)
+                most_plays = get_most_plays(all_verified)
+                write_json_file('public/stats_data/most_plays.json', most_plays)
+                did_players = True
 
-    log(did_players, did_unbeaten, weekly)
-    run_bot(message_result)
+        log(did_players, did_unbeaten, weekly)
+        run_bot(message_result)
 
 def log(players, unbeaten_levels, weekly):
     log_data = {
