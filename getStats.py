@@ -348,7 +348,7 @@ def run_bot(message):
         guild = bot.get_guild(1048213818775437394)
         role = guild.get_role(1110735575083929622)
 
-        embed = Embed(title="Daily/Weekly Maps Update", url="https://grab-tools.live/stats.html", description=role.mention, color=0x00ffff)
+        embed = Embed(title="Daily/Weekly Maps Update", url="https://grab-tools.live/stats.html", description="Daily Update", color=0x00ffff)
         if message[0]:
             embed.add_field(name="Daily", value=f"[{message[0][0]}]({message[0][1]})")
         if message[1]:
@@ -356,6 +356,7 @@ def run_bot(message):
         if message[2]:
             embed.add_field(name="Unbeaten", value=f"[{message[2][0]}]({message[2][1]})")
 
+        await channel.send(f"||{role.mention}||")
         await channel.send(embed=embed)
         scores_embed = await get_challenge_scores()
         await channel.send(embed=scores_embed)
