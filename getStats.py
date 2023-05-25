@@ -126,7 +126,7 @@ def get_daily_winner():
         winner_list = requests.get(url).json()
         blacklist_data = json.loads(blacklist.read())
         for i in range(len(winner_list)):
-            if winner_list[i] in blacklist_data:
+            if winner_list[i]["user_name"] in blacklist_data:
                 winner_list.pop(i)
         if len(winner_list) == 0:
             return
@@ -148,7 +148,7 @@ def get_weekly_winner():
         winner_list = requests.get(url).json()
         blacklist_data = json.loads(blacklist.read())
         for i in range(len(winner_list)):
-            if winner_list[i] in blacklist_data:
+            if winner_list[i]["user_name"] in blacklist_data:
                 winner_list.pop(i)
         if len(winner_list) == 0:
             return
