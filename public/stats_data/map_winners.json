@@ -358,5 +358,124 @@
     },
     1684890141,
     "unbeaten_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 62.533,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      },
+      {
+        "position": 1,
+        "best_time": 67.366,
+        "user_id": "2ak0ysv35egakgfilswpy",
+        "user_name": "EBSpark"
+      },
+      {
+        "position": 2,
+        "best_time": 70.354,
+        "user_id": "29rhk9gdy7iiza0k3tttk",
+        "user_name": "Trap11190"
+      }
+    ],
+    {
+      "identifier": "29rhk9gdy7iiza0k3tttk:1675217087",
+      "title": "left in the dark",
+      "complexity": 2998,
+      "format_version": 6,
+      "update_timestamp": 1681723867853,
+      "creation_timestamp": 1681723867853,
+      "data_key": "level_data:29rhk9gdy7iiza0k3tttk:1675217087:1",
+      "description": "You went out camping with some friends but late at night you wake up to find out that one of your friends has gone missing.",
+      "creators": [
+        "Trap11190"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 5700,
+        "difficulty": 0.06105683836589698,
+        "liked": 0.7942583732057417,
+        "time": 340.5915345454546
+      },
+      "creator": "Trap11190"
+    },
+    1684975192,
+    "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 3297.82,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      }
+    ],
+    {
+      "plays": "3047",
+      "link": "https://grabvr.quest/levels/viewer?level=29l50ea34l4s54rtclzus:1666128502",
+      "title": "HYPER TOWER 2",
+      "age": "182.04246527777778 days",
+      "creators": [
+        "cjbeast006",
+        "olivcalle",
+        "d2whiplash"
+      ]
+    },
+    1684975192,
+    "unbeaten_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 48.213,
+        "user_id": "2bd9lnig608kx2tfp322b",
+        "user_name": "Royalbadass"
+      },
+      {
+        "position": 1,
+        "best_time": 150.911,
+        "user_id": "29qv44zsn1bl7muilse95",
+        "user_name": "Ryzx"
+      },
+      {
+        "position": 2,
+        "best_time": 208.788,
+        "user_id": "2aspfzbh6lawv3sjkqe1y",
+        "user_name": "willowplays"
+      }
+    ],
+    {
+      "identifier": "2aq1hyb2tfiuuqvr9wln1:1673243589",
+      "title": "Fling Difficulty Chart",
+      "complexity": 2668,
+      "format_version": 6,
+      "update_timestamp": 1674697321985,
+      "creation_timestamp": 1673260620161,
+      "data_key": "level_data:2aq1hyb2tfiuuqvr9wln1:1673243589:2",
+      "description": "The stages get harder and harder as you progress.",
+      "creators": [
+        "CraftedFlames",
+        "PumpkinMan2k",
+        "KillTheSith"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 14600,
+        "difficulty": 0.0036338859868271633,
+        "liked": 0.8095238095238095,
+        "time": 181.57544062500003
+      },
+      "creator": "CraftedFlames"
+    },
+    1684975193,
+    "weekly_map"
   ]
 ]
