@@ -6,17 +6,16 @@ with open("public/stats_data/all_verified.json") as file:
 leaderboard = {}
 i = 1
 for level in data:
-    if i < 20:
-        id = level["identifier"].replace(":", "/")
-        url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id}"
-        res_data = requests.get(url).json()
-        if len(res_data) != 0:
-            if res_data[0]["user_name"] not in leaderboard:
-                leaderboard[res_data[0]["user_name"]] = [0, []]
-            leaderboard[res_data[0]["user_name"]][0] += 1
-            leaderboard[res_data[0]["user_name"]][1].append([level["title"]])
-        print(i)
-        i += 1
+    id = level["identifier"].replace(":", "/")
+    url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id}"
+    res_data = requests.get(url).json()
+    if len(res_data) != 0:
+        if res_data[0]["user_name"] not in leaderboard:
+            leaderboard[res_data[0]["user_name"]] = [0, []]
+        leaderboard[res_data[0]["user_name"]][0] += 1
+        leaderboard[res_data[0]["user_name"]][1].append([level["title"]])
+    print(i)
+    i += 1
 
 sorted_leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][0], reverse=True))
 
