@@ -30,6 +30,23 @@ def get_all_verified(stamp=''):
         for level in data:
             if "creators" in level:
                 level["creator"] = level["creators"][0]
+            if "statistics" not in obj:
+                obj["statistics"] = {
+                    "total_played": 0,
+                    "difficulty": 1,
+                    "liked": 0,
+                    "time": 100
+                }
+            else:
+                statistics = obj["statistics"]
+                if "total_played" not in statistics:
+                    statistics["total_played"] = 0
+                if "difficulty" not in statistics:
+                    statistics["difficulty"] = 1
+                if "liked" not in statistics:
+                    statistics["liked"] = 0
+                if "time" not in statistics:
+                    statistics["time"] = 100
         print("Sending request")
         verified.extend(data)
         if data[-1].get("page_timestamp"):
