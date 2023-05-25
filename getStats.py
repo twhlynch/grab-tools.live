@@ -30,15 +30,15 @@ def get_all_verified(stamp=''):
         for level in data:
             if "creators" in level:
                 level["creator"] = level["creators"][0]
-            if "statistics" not in obj:
-                obj["statistics"] = {
+            if "statistics" not in level:
+                level["statistics"] = {
                     "total_played": 0,
                     "difficulty": 1,
                     "liked": 0,
                     "time": 100
                 }
             else:
-                statistics = obj["statistics"]
+                statistics = level["statistics"]
                 if "total_played" not in statistics:
                     statistics["total_played"] = 0
                 if "difficulty" not in statistics:
