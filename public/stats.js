@@ -57,6 +57,16 @@ document.getElementById('MapChallenges').addEventListener('click', () => {
     document.getElementById('MapChallenges-out').style.display = "flex";
     document.getElementById('MapChallenges').classList.add('tab-active');
 });
+document.getElementById('MostTimeMaps').addEventListener('click', () => {
+    toggleTabs();
+    document.getElementById('MostTimeMaps-out').style.display = "flex";
+    document.getElementById('MostTimeMaps').classList.add('tab-active');
+});
+document.getElementById('MostLikedMaps').addEventListener('click', () => {
+    toggleTabs();
+    document.getElementById('MostLikedMaps-out').style.display = "flex";
+    document.getElementById('MostLikedMaps').classList.add('tab-active');
+});
 
 function getHardestLevels() {
     fetch('stats_data/all_verified.json')
@@ -191,6 +201,26 @@ function getPlayedLevels() {
     .then(data => {
         data.forEach(item => {
             document.getElementById('MostPlayedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${item["statistics"]["total_played"]} plays</span></div>`;
+        });
+    });
+}
+
+function getTopLikes() {
+    fetch('stats_data/most_liked.json')
+    .then((response) => response.json())
+    .then(data => {
+        data.forEach(item => {
+            document.getElementById('MostLikedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${100 * item["statistics"]["liked"]}%</span></div>`;
+        });
+    });
+}
+
+function getTopTimes() {
+    fetch('stats_data/longest_times.json')
+    .then((response) => response.json())
+    .then(data => {
+        data.forEach(item => {
+            document.getElementById('MostTimeMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${item["statistics"]["time"]}s</span></div>`;
         });
     });
 }
@@ -406,6 +436,8 @@ getUnbeatenLevels();
 getHardestLevels();
 getPlayedLevels();
 getPlaysLevels();
+getTopTimes();
+getTopLikes();
 getDailyMap();
 getWeeklyMap();
 getUnbeatenMap();

@@ -294,13 +294,19 @@ canvas {
 #MostPlays-out {
     display: none;
 }
+#MostLikedMaps-out {
+    display: none;
+}
+#MostTimeMaps-out {
+    display: none;
+}
 input {
     padding: 5px;
     border: dashed 2px #4683ce70;
     outline: none;
     background-color: #5f8cc235;
 }
-#DailyMap-out, #WeeklyMap-out, #UnbeatenMap-out {
+#DailyMap-out, #WeeklyMap-out, #UnbeatenMap-out, #MapChallenges-out {
     display: none;
 }
 #DailyMap-out h1 a, #WeeklyMap-out h1 a, #UnbeatenMap-out h1 a{
