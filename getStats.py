@@ -118,6 +118,16 @@ def get_most_played_maps(data):
     most_played_maps = most_played_maps[:100]
     return most_played_maps
 
+def get_longest_times(data):
+    longest_times = sorted(data[25:], key=lambda x: x["statistics"]["time"], reverse=True)
+    longest_times = longest_times[:100]
+    return longest_times
+
+def get_most_liked(data):
+    most_liked = sorted(data[100:], key=lambda x: (x["statistics"]["liked"], -x["creation_timestamp"]), reverse=True)
+    most_liked = most_liked[:100]
+    return most_liked
+
 def get_daily_winner():
     with open("public/stats_data/map_winners.json", 'r') as winners, open("public/stats_data/daily_map.json", "r") as map, open("public/stats_data/user_blacklist.json", "r") as blacklist:
         map_json = json.load(map)
@@ -229,6 +239,10 @@ def get_level_data():
         write_json_file('public/stats_data/all_verified.json', all_verified)
         most_played_maps = get_most_played_maps(all_verified)
         write_json_file('public/stats_data/most_played_maps.json', most_played_maps)
+        most_liked = get_most_liked(all_verified)
+        write_json_file('public/stats_data/most_liked.json', most_liked)
+        longest_times = get_longest_times(all_verified)
+        write_json_file('public/stats_data/longest_times.json', longest_times)
         get_daily_winner()
         daily_level = get_daily_map(all_verified)
         message_result[0] = [daily_level["title"], "https://grabvr.quest/levels/viewer?level=" + daily_level["identifier"]]
