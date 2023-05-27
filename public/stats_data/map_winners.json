@@ -525,5 +525,52 @@
     },
     1685061339,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 4.93131,
+        "user_id": "2ak0ysv35egakgfilswpy",
+        "user_name": "EBSpark"
+      },
+      {
+        "position": 1,
+        "best_time": 4.95999,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      },
+      {
+        "position": 2,
+        "best_time": 5.05798,
+        "user_id": "29st9jdcbxxotp0t9d8en",
+        "user_name": "Mystery8281"
+      }
+    ],
+    {
+      "identifier": "2bjpnbdr1zax8xqvdmxo4:1684860469",
+      "title": "The corruption part 1: the eyestalks",
+      "complexity": 2987,
+      "format_version": 6,
+      "update_timestamp": 1685021569068,
+      "creation_timestamp": 1685020978913,
+      "data_key": "level_data:2bjpnbdr1zax8xqvdmxo4:1684860469:4",
+      "creators": [
+        "lovinme",
+        "lowkeyvrpro"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 200,
+        "difficulty": 0.41899441340782123,
+        "liked": 0.7627118644067796,
+        "time": 57.52527040000001
+      },
+      "creator": "lovinme"
+    },
+    1685164230,
+    "daily_map"
   ]
 ]
