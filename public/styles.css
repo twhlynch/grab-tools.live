@@ -333,6 +333,17 @@ input {
     color: #2976d4;
     margin-bottom: 0;
 }
-#compiler-tool input {
+#compiler-tool input, #pixel-tool input {
     width: 100%;
+}
+div#pixelate-out {
+    border: dashed 2px #4e88cf;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#pixel-canvas, #pixel-canvas2 {
+    width:100px; height:100px;
+    position: static;
 }

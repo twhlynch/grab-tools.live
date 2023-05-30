@@ -60,9 +60,18 @@
             <p>No tools yet :3</p>
             <div id="tools">
                 <h2>Pixel Art</h2>
-                <p></p>
+                <p>Specify the quality, and convert an image to a grab level.</p>
                 <div id="pixel-tool">
-
+                    <input type="text" id="pixel-title" name="title" placeholder="Title">
+                    <input type="text" id="pixel-desc" name="description" placeholder="Description">
+                    <input type="text" id="pixel-creators" name="creators" placeholder="Creators">
+                    <input type="number" name="num" id="pixel-num" placeholder="Quality (default: 50, recommended: 30)" min="1">
+                    <input type="file" name="file" id="pixel-file" accept="image/*">
+                    <button id="pixelate-btn">Pixelate</button>
+                    <div id="pixelate-out">
+                        <canvas id="pixel-canvas"></canvas>
+                        <canvas id="pixel-canvas2"></canvas>
+                    </div>
                 </div>
                 <h2>Text To Signs</h2>
                 <p></p>
