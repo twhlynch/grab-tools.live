@@ -10,7 +10,7 @@ document.getElementById('Stats').addEventListener('click', () => {
 document.getElementById('Other-Tools').addEventListener('click', () => {
     window.location.href = 'tools.html';
 });
-if (window.location.href.includes('index.html')) {
+if (window.location.href.includes('index.html') || document.title == 'Grab Tools | .index | twhlynch') {
     document.getElementById('editor').addEventListener('click', () => {
         window.location.href = 'editor.html';
     });
