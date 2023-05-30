@@ -323,8 +323,16 @@ input {
     flex-direction: column;
     align-items: center;
 }
-#tools {
+#tools, #tools div, #secret div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 5px;
+}
+#tools h2, #secret h2 {
+    color: #2976d4;
+    margin-bottom: 0;
+}
+#compiler-tool input {
+    width: 100%;
 }
