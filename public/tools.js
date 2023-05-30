@@ -51,6 +51,119 @@ document.getElementById('smorg-btn').addEventListener('click', () => {
 
 
 
+function readArrayBuffer(file) {
+  return new Promise(function(resolve, reject) {
+      let reader = new FileReader();
+      reader.onload = function() {
+          let data = reader.result;
+          protobuf.load("proto/level.proto", function(err, root) {
+              if(err) throw err;
+              let message = root.lookupType("COD.Level.Level");
+              let decoded = message.decode(new Uint8Array(data));
+              let object = message.toObject(decoded);
+              let group = {
+                  "levelNodeGroup": {
+                      "position": {
+                          "y": 0, 
+                          "x": 0, 
+                          "z": 0
+                      }, 
+                      "rotation": {
+                          "w": 1.0
+                      }, 
+                      "childNodes": object.levelNodes, 
+                      "scale": {
+                          "y": 1.0, 
+                          "x": 1.0, 
+                          "z": 1.0
+                      }
+                  }
+              }
+              resolve(group);
+          });
+      }
+      reader.onerror = function() {
+          reject(reader);
+      }
+      reader.readAsArrayBuffer(file);
+  });
+}
+
+function compile(level) {
+  let files = level;
+  let readers = [];
+
+  if (!files.length) return;
+
+  for (let i = 0; i < files.length; i++) {
+      readers.push(readArrayBuffer(files[i]));
+  }
+
+  Promise.all(readers).then((values) => {
+      var finalNodes = [];
+      for (let i = 0; i < values.length; i++) {
+          finalNodes = finalNodes.concat(values[i]);
+      }
+      let creators = document.getElementById('compile-creators').value;
+      let desc = document.getElementById('compile-desc').value;
+      let title = document.getElementById('compile-title').value;
+      let name = (Date.now()).toString().slice(0, -3);
+      if (title == '') {
+          title = 'Untitled';
+      }
+      let json = `
+      {
+          "ambienceSettings": {
+              "skyHorizonColor": {
+                  "a": 1.0,
+                  "b": 0.9574,
+                  "g": 0.9574,
+                  "r": 0.916
+              },
+              "skyZenithColor": {
+                  "a": 1.0,
+                  "b": 0.73,
+                  "g": 0.476,
+                  "r": 0.28
+              },
+              "sunAltitude": 45.0,
+              "sunAzimuth": 315.0,
+              "sunSize": 1.0
+          },
+          "complexity": 0,
+          "creators": "`+creators+`",
+          "description": "`+desc+`",
+          "formatVersion": 6,
+          "levelNodes": `+JSON.stringify(finalNodes)+`,
+          "maxCheckpointCount": 10,
+          "title": "`+title+`"
+      }
+      `
+      var obj = JSON.parse(json);
+      //document.getElementById('out').innerText = json;
+      //console.log(obj);
+      
+      protobuf.load("proto/level.proto", function(err, root) {
+          if(err) throw err;
+
+          let message = root.lookupType("COD.Level.Level");
+          let errMsg = message.verify(obj);
+          if(errMsg) throw Error(errMsg);
+          let buffer = message.encode(message.fromObject(obj)).finish();
+          
+          let blob = new Blob([buffer], {type: "application/octet-stream"});
+          
+          let link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = name+".level";
+          link.click();
+      });
+  });
+}
+
+document.getElementById("compile-btn").addEventListener("click", (e) => {
+  compile(document.getElementById("compile-file").files);
+});
 
 /*
 javascript:(function() {
