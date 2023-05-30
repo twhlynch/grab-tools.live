@@ -165,6 +165,143 @@ document.getElementById("compile-btn").addEventListener("click", (e) => {
   compile(document.getElementById("compile-file").files);
 });
 
+document.getElementById('pixelate-btn').addEventListener("click", function () {
+  let nodes = [];
+  let q = document.getElementById('pixel-num').value;
+  if (q == "" || q == null || q < 1) {
+      q = 50;
+  }
+  let file = document.getElementById('pixel-file').files[0];
+  let canvas = document.getElementById('pixel-canvas');
+  let ctx = canvas.getContext('2d');
+  let reader = new FileReader();
+  reader.onload = function() {
+      let data = reader.result;
+      let img = new Image();
+      img.onload = function() {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+          let canvas2 = document.getElementById('pixel-canvas2');
+          let ctx2 = canvas2.getContext('2d');
+          canvas2.width = q;
+          canvas2.height = q;
+          let rgbArray = [];
+          for (let x = 0; x < q; x++) {
+              for (let y = 0; y < q; y++) {
+                  let pixel = ctx.getImageData(x*(img.width/q), y*(img.height/q), 1, 1);
+                  ctx2.putImageData(pixel, x, y);
+                  let rgb = pixel.data;
+                  rgbArray.push([rgb[0], rgb[1], rgb[2], x, y*-1]);
+              }
+          }
+
+
+
+          let imageData = ctx.getImageData(0, 0, img.width, img.height);
+          //document.body.appendChild(img);
+          var pixels = rgbArray;
+          var pixelNodes = [];
+          for (var i = 0; i < pixels.length; i++) {
+              if (pixels[i][0] == 0) {
+                  pixels[i][0] == 1;
+              }
+              if (pixels[i][1] == 0) {
+                  pixels[i][1] == 1;
+              }
+              if (pixels[i][2] == 0) {
+                  pixels[i][2] == 1;
+              }
+              pixelNodes.push({
+                  "levelNodeStatic": {
+                      "material": "DEFAULT_COLORED",
+                      "position": {
+                          "x": pixels[i][3],
+                          "y": pixels[i][4],
+                          "z": 10.0
+                      },
+                      "color": {
+                          "r": pixels[i][0] / 255,
+                          "g": pixels[i][1] / 255,
+                          "b": pixels[i][2] / 255,
+                          "a": 1.0
+                      },
+                      "rotation": {
+                          "w": 1
+                      },
+                      "scale": {
+                          "x": 1.0,
+                          "y": 1.0,
+                          "z": 1.0
+                      },
+                      "shape": "CUBE"
+                  }
+              });
+          }
+          let creators = document.getElementById('pixel-creators').value;
+          let desc = document.getElementById('pixel-desc').value+' pixel art credit - .index ';
+          let title = document.getElementById('pixel-title').value;
+          let name = (Date.now()).toString().slice(0, -3);
+          if (title == '') {
+              title = 'Untitled';
+          }
+          let json = `
+          {
+              "ambienceSettings": {
+                  "skyHorizonColor": {
+                      "a": 1.0,
+                      "b": 0.9574,
+                      "g": 0.9574,
+                      "r": 0.916
+                  },
+                  "skyZenithColor": {
+                      "a": 1.0,
+                      "b": 0.73,
+                      "g": 0.476,
+                      "r": 0.28
+                  },
+                  "sunAltitude": 45.0,
+                  "sunAzimuth": 315.0,
+                  "sunSize": 1.0
+              },
+              "complexity": `+q**2+`,
+              "creators": "`+creators+`",
+              "description": "`+desc+`",
+              "formatVersion": 6,
+              "levelNodes": `+JSON.stringify(pixelNodes)+`,
+              "maxCheckpointCount": 10,
+              "title": "`+title+`"
+          }
+          `
+          var obj = JSON.parse(json);
+          //document.getElementById("out").innerText = json;
+          
+          protobuf.load("proto/level.proto", function(err, root) {
+              if(err) throw err;
+
+              let message = root.lookupType("COD.Level.Level");
+              let errMsg = message.verify(obj);
+              //if(errMsg) throw Error(errMsg);
+              let buffer = message.encode(message.fromObject(obj)).finish();
+              
+              let blob = new Blob([buffer], {type: "application/octet-stream"});
+              
+              let link = document.createElement("a");
+              link.href = window.URL.createObjectURL(blob);
+              link.download = name+".level";
+              link.click();
+          });
+      }
+      img.src = data;
+  }
+  reader.readAsDataURL(file);
+}, false);
+
+
+
+
+
+
 /*
 javascript:(function() {
     var popupContainer = document.createElement('div');
