@@ -12,19 +12,32 @@ body {
     background: #d5d5d5;
     color: #353c41;
 }
-#sheet table {
+table {
     border-spacing: 0;
 }
-#sheet td {
+.sheet {
+    border-bottom: #353c41 1px solid;
+    border-right: #353c41 1px solid;
+}
+.sheet td {
     padding: 5px;
-    border: #353c41 1px solid;
+    border-top: #353c41 1px solid;
+    border-left: #353c41 1px solid;
 }
 
-#sheet td:nth-child(1), #sheet tr:nth-child(1) td {
+.sheet td:nth-child(1), .sheet tr:nth-child(1) td {
     background: #c4c4c4;
     color: #242729;
 }
-
+.sheet tr:nth-child(1) td:nth-child(1) {
+    font-weight: 700;
+    color: #141414;
+}
 .c {
-    background-color: rgb(111, 255, 147);
+    background-color: #CCFFCC;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
