@@ -11,6 +11,9 @@ var objects = [];
 var materials = [];
 var shapes = [];
 
+document.getElementById("self-credit").addEventListener("click", (e) => {
+    e.target.style.display = 'none';
+});
 
 // Terminal 
 var lastRan = '';

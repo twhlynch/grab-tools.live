@@ -350,3 +350,23 @@ div#pixelate-out {
 .signs-direction-wrapper p {
     margin: 0;
 }
+footer {
+    font-size: 14px;
+    position: absolute;
+    bottom: 10px;
+    width: 100vw;
+}
+footer p {
+    margin: 0;
+    padding: 0;
+    color: #cfe0ea;
+    border: none;
+    max-width: 100vw;
+}
+footer a {
+    text-decoration: none;
+    color: #2976d4;
+}
+footer p:hover {
+    border: none;
+}

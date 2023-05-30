@@ -309,3 +309,16 @@
             #prompt-protobuf textarea {
                 height: 100%
             }
+            #self-credit {
+                position: fixed;
+                top: 5px;
+                right: 5px;
+                margin: 0;
+                padding: 0;
+                color: #a3a3a3;
+                font-family:'Courier New', Courier, monospace; 
+            }
+            #self-credit a {
+                text-decoration: none;
+                color: #e3e3e3
+            }
