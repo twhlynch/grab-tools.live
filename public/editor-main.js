@@ -441,6 +441,9 @@ function openProto(link) {
         })
 }
 openProto('lobbies/lobby.level');
+document.getElementById('the-index-btn').addEventListener('click', () => {
+    openProto('levels/the-index.level');
+});
 
 function openLevelFile(level) {
     let files = level;
