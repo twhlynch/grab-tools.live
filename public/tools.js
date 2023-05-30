@@ -43,6 +43,7 @@ async function smorgasbord(links) {
 
 document.getElementById('smorg-btn').addEventListener('click', () => {
     let links = document.getElementById('smorg-urls').value;
+    links = links.split(',');
     smorgasbord(links);
 });
 
