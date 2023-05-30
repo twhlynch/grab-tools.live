@@ -323,3 +323,8 @@ input {
     flex-direction: column;
     align-items: center;
 }
+#tools {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

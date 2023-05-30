@@ -15,6 +15,41 @@ window.addEventListener('keydown', konami(event => {
     document.getElementById('secret').style.display = 'flex';
 }));
 
+if (window.location.href.includes('?secret=true')) {
+    document.getElementById('secret').style.display = 'flex';
+}
+
+async function download(link) {
+  let SERVER_URL = 'https://api.slin.dev/grab/v1/';
+  let id = link.split('=')[1];
+  let response = await fetch(SERVER_URL + 'details/' + id.replace(':', '/'));
+  let details = await response.json();
+  let iteration = await details.iteration;
+  link = SERVER_URL + 'download/' + id.replace(':', '/') + '/' + iteration;
+
+  let fileResponse = await fetch(link);
+  let fileBlob = await fileResponse.blob();
+  let url = window.URL.createObjectURL(fileBlob);
+  let a = document.createElement('a');
+  a.href = url;
+  a.download = iteration + '.level';
+  a.click();
+}
+
+async function smorgasbord(links) {
+  let promises = links.map(link => download(link));
+  await Promise.all(promises);
+}
+
+document.getElementById('smorg-btn').addEventListener('click', () => {
+    let links = document.getElementById('smorg-urls').value;
+    smorgasbord(links);
+});
+
+
+
+
+
 /*
 javascript:(function() {
     var popupContainer = document.createElement('div');
