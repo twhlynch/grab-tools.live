@@ -57,7 +57,6 @@
                 <h1>l</h1>
                 <h1>s</h1>
             </div>
-            <p>No tools yet :3</p>
             <div id="tools">
                 <h2>Pixel Art</h2>
                 <p>Specify the quality, and convert an image to a grab level.</p>
@@ -74,9 +73,22 @@
                     </div>
                 </div>
                 <h2>Text To Signs</h2>
-                <p></p>
+                <p>Convert text into a line of signs horizontally or vertically.</p>
                 <div id="sign-tool">
-
+                    <input type="text" id="signs-title" name="title" placeholder="Title">
+                    <input type="text" id="signs-desc" name="description" placeholder="Description">
+                    <input type="text" id="signs-creators" name="creators" placeholder="Creators">
+                    <input type="text" id="signs-text" name="text" placeholder="Text">
+                    <div class="signs-direction-wrapper">
+                        <label for="signs-direction"><p>Direction:</p></label>
+                        <select name="signs-direction" id="signs-direction">
+                            <option value="horizontal">Horizontal</option>
+                            <option value="vertical">Vertical</option>
+                        </select>
+                        <label for="signs-words"><p>Words per sign:</p></label>
+                        <input type="number" name="signs-words" id="signs-words" value="16">
+                    </div>
+                    <button id="signs-download">Download</button>
                 </div>
                 <h2>Level Compiler</h2>
                 <p>Select multiple level files and combine them into one file. (autogroups levels)</p>
