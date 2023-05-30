@@ -45,10 +45,7 @@ document.getElementById('smorg-btn').addEventListener('click', () => {
     let links = document.getElementById('smorg-urls').value;
     links = links.split(',');
     console.log(links);
-    links.forEach(link => {
-      setTimeout(() => {smorgasbord([link])}, 1000);
-    });
-    // smorgasbord(links);
+    smorgasbord(links);
 });
 
 

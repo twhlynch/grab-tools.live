@@ -483,7 +483,9 @@ function appendLevelFile(level) {
 
     Promise.all(readers).then((values) => {
         var obj = getLevel();
-        obj.levelNodes = obj.levelNodes.concat(values[0].levelNodes);
+        for (let i = 0; i < values.length; i++) {
+            obj.levelNodes = obj.levelNodes.concat(values[i].levelNodes);
+        }
         setLevel(obj);
     });
 }
