@@ -1,0 +1,30 @@
+#self-credit {
+    color: #a3a3a3;
+    
+}
+#self-credit a {
+    text-decoration: none;
+    color: #353c41
+}
+
+body {
+    font-family:'Courier New', Courier, monospace; 
+    background: #d5d5d5;
+    color: #353c41;
+}
+#sheet table {
+    border-spacing: 0;
+}
+#sheet td {
+    padding: 5px;
+    border: #353c41 1px solid;
+}
+
+#sheet td:nth-child(1), #sheet tr:nth-child(1) td {
+    background: #c4c4c4;
+    color: #242729;
+}
+
+.c {
+    background-color: rgb(111, 255, 147);
+}
