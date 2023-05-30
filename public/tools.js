@@ -298,7 +298,83 @@ document.getElementById('pixelate-btn').addEventListener("click", function () {
 }, false);
 
 
+document.getElementById('signs-download').addEventListener("click", function () {
+  let creators = document.getElementById('signs-creators').value;
+  let desc = document.getElementById('signs-desc').value;
+  let title = document.getElementById('signs-title').value;
+  let wordsper = parseInt(document.getElementById('signs-words').value);
+  let name = (Date.now()).toString().slice(0, -3);
+  if (title == '') {
+      title = 'Untitled';
+  }
+  let text = document.getElementById('signs-text').value;
+  let direction = document.getElementById('signs-direction').value;
 
+  let words = text.split(' ');
+  console.log(words.length % 12);
+
+  let splitStrings = [];
+  for (let i = 0; i < words.length; i += wordsper) {
+      let chunk = words.slice(i, i + wordsper);
+      splitStrings.push(chunk.join(' '));
+  }
+  let signs = [];
+  splitStrings.forEach((str, i) => {
+      let sign = {levelNodeSign: {position: {x: 0,y: 0,z: 0},rotation: {w: 1.0},text:str}};
+      if (direction == 'horizontal') {
+          sign.levelNodeSign.position.x = i;
+      } else {
+          sign.levelNodeSign.position.y = -i;
+      }
+      signs.push(sign);
+  });
+
+  let json = `
+  {
+      "ambienceSettings": {
+          "skyHorizonColor": {
+              "a": 1.0,
+              "b": 0.9574,
+              "g": 0.9574,
+              "r": 0.916
+          },
+          "skyZenithColor": {
+              "a": 1.0,
+              "b": 0.73,
+              "g": 0.476,
+              "r": 0.28
+          },
+          "sunAltitude": 45.0,
+          "sunAzimuth": 315.0,
+          "sunSize": 1.0
+      },
+      "complexity": 0,
+      "creators": "`+creators+`",
+      "description": "`+desc+`",
+      "formatVersion": 6,
+      "levelNodes": `+JSON.stringify(signs)+`,
+      "maxCheckpointCount": 10,
+      "title": "`+title+`"
+  }
+  `
+  var obj = JSON.parse(json);
+  
+  protobuf.load("proto/level.proto", function(err, root) {
+      if(err) throw err;
+
+      let message = root.lookupType("COD.Level.Level");
+      let errMsg = message.verify(obj);
+      if(errMsg) throw Error(errMsg);
+      let buffer = message.encode(message.fromObject(obj)).finish();
+      
+      let blob = new Blob([buffer], {type: "application/octet-stream"});
+      
+      let link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = name+".level";
+      link.click();
+  });
+}, false);
 
 
 

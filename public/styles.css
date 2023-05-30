@@ -300,7 +300,7 @@ canvas {
 #MostTimeMaps-out {
     display: none;
 }
-input {
+input, #smorg-urls {
     padding: 5px;
     border: dashed 2px #4683ce70;
     outline: none;
@@ -333,7 +333,7 @@ input {
     color: #2976d4;
     margin-bottom: 0;
 }
-#compiler-tool input, #pixel-tool input {
+#compiler-tool input, #pixel-tool input, #sign-tool input {
     width: 100%;
 }
 div#pixelate-out {
@@ -346,4 +346,7 @@ div#pixelate-out {
 #pixel-canvas, #pixel-canvas2 {
     width:100px; height:100px;
     position: static;
+}
+.signs-direction-wrapper p {
+    margin: 0;
 }
