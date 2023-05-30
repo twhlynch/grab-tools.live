@@ -593,6 +593,12 @@ document.getElementById('pcjson-btn-input').addEventListener('change', (e) => {
     openJSONFile(e.target.files[0]);
 });
 
+
+document.getElementById('cheat-btn').addEventListener('click', () => {
+    window.open("cheat-sheet.html", "_blank");
+});
+
+
 //
 document.getElementById('title-btn').addEventListener('click', () => {
     document.getElementById('prompts').style.display = 'grid';
