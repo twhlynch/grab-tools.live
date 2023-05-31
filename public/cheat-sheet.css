@@ -41,3 +41,7 @@ table {
     align-items: center;
     justify-content: center;
 }
+* {
+    word-wrap: none;
+    white-space: nowrap;
+}
