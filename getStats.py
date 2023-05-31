@@ -134,6 +134,7 @@ def get_daily_winner():
         id = map_json["identifier"]
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
         winner_list = requests.get(url).json()
+        print(winner_list)
         blacklist_data = json.loads(blacklist.read())
         for i in range(len(winner_list)):
             if winner_list[i]["user_name"] in blacklist_data:
