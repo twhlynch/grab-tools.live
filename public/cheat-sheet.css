@@ -33,9 +33,9 @@ table {
     font-weight: 700;
     color: #141414;
 }
-.c {
+/* .c {
     background-color: #CCFFCC;
-}
+} */
 .header {
     display: flex;
     align-items: center;
@@ -46,71 +46,75 @@ table {
     white-space: nowrap;
 }
 
+.side b {
+    text-orientation: mixed;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}
 
 
 
-
-.TEX-DEFAULT {
+.T-DEFAULT {
     background-image: url(textures/default.png);
     background-size: cover;
     background-position: center;
     font-weight: 700;
 }
-.TEX-WOOD {
+.T-WOOD {
     background-image: url(textures/wood.png);
     background-size: cover;
     background-position: center;
     font-weight: 700;
 }
-.TEX-LAVA {
+.T-LAVA {
     background-image: url(textures/lava.png);
     background-size: cover;
     background-position: center;
     font-weight: 700;
 }
-.TEX-ICE {
+.T-ICE {
     background-image: url(textures/ice.png);
     background-size: cover;
     background-position: center;
     font-weight: 700;
 }
-.TEX-GRABBABLE {
+.T-GRABBABLE {
     background-image: url(textures/grabbable.png);
     background-size: cover;
     background-position: center;
     font-weight: 700;
 }
-.TEX-GRAPPLABLE {
+.T-GRAPPLABLE {
     background-image: url(textures/grapplable.png);
     background-size: cover;
     background-position: center;
     font-weight: 700;
 }
-.TEX-GRAPPLABLE_LAVA {
+.T-GRAPPLABLE_LAVA {
     background-image: url(textures/grapplable_lava.png);
     background-size: cover;
     background-position: center;
     font-weight: 700;
 }
-.TEX-BOUNCING {
+.T-BOUNCING {
     background-image: url(textures/bouncing.png);
     background-size: cover;
     background-position: center;
     font-weight: 700;
 }
-.TEX-GRABBABLE_CRUMBLING {
+.T-GRABBABLE_CRUMBLING {
     background-image: url(textures/grabbable_crumbling.png);
     background-size: cover;
     background-position: center;
     font-weight: 700;
 }
-.TEX-DEFAULT_COLORED {
+.T-DEFAULT_COLORED {
     background-image: url(textures/default_colored.png);
     background-size: cover;
     background-position: center;
     font-weight: 700;
 }
-.TEX-TRANSPARENT {
+.T-TRANSPARENT {
     background-image: url(textures/transparent.png);
     background-size: cover;
     background-position: center;
