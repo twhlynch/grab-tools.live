@@ -23,7 +23,7 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
             let cell = document.createElement("td")
             let obj = data.results[j + (i * cols)];
             cell.className = `t-${obj.attributes.texture} m-${obj.attributes.model} h-${obj.attributes.hitbox} i-${obj.attributes.interaction_hitbox}`;
-            cell.innerHTML = `${`${obj.attributes.effects}`.split(',').join("<br>")}`;
+            cell.innerHTML = `${`${obj.attributes.effects}`.split(',').join("<br>")}<br>${obj.attributes.texture}<br>${obj.attributes.model}<br>${obj.attributes.hitbox}<br>${obj.attributes.interaction_hitbox}`;
             row.appendChild(cell);
         }
         table.appendChild(row);
