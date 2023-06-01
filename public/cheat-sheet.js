@@ -99,11 +99,16 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
             // console.log(list);
         });
     });
-    let params = location.href.split('=')[1];
-    // console.log(params)
-    params.split('-').forEach((value) => {
-        document.getElementById(value).click();
-    });
+    let params = location.href.split('=');
+    if (params.length > 1) {
+        params = params[1]
+        // console.log(params)
+        if (params.length > 0) {
+            params.split('-').forEach((value) => {
+                document.getElementById(value).click();
+            });
+        }
+    }
     document.getElementById('copy').addEventListener('click', () => {
         let url = `${location.href.split('?')[0]}?data=${list.join('-')}`;
         navigator.clipboard.writeText(url);
