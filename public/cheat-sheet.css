@@ -77,12 +77,13 @@ h3 {
     font-weight: 900;
     font-size: 20px;
     border: none;
-}
-#buttons {
     position: fixed;
     top: 1rem;
     right: 1rem;
     gap: 1rem;
+}
+#copy {
+    top: 5rem;
 }
 #save:active, #copy:active {
     background-color: #aaeeaa;
