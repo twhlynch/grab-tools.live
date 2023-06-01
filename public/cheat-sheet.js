@@ -24,6 +24,7 @@ levelJson = {
         "fogDDensity": 0
     }
 };
+list = [];
 fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
     var table = document.getElementById("data-table");
     let cols = data.shapes.length;
@@ -83,12 +84,44 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
         el.addEventListener('click', () => {
             if (el.style.backgroundColor == 'rgb(204, 255, 204)') {
                 el.style.backgroundColor = '#D5D5D5';
+                list = list.filter(e => e !== el.id);
             }
             else {
                 el.style.backgroundColor = 'rgb(204, 255, 204)';
-                console.log(el.id);
+                list.push(el.id);
             }
+            console.log(list);
         });
+    });
+
+    document.getElementById('save').addEventListener('click', () => {
+        for (let i = 0; i < list.length; i++) {
+            msArr = list[i].split('_');
+            node = {
+                "levelNodeStatic": {
+                    "position": {
+                        "x": i
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "material": msArr[0],
+                    "shapes": msArr[1],
+                    "color": {
+                        "r": 0.5,
+                        "g": 0.5,
+                        "b": 0.5,
+                        "a": 1
+                    }
+                }
+            }
+            levelJson.levelNodes.push(node);
+        }
     });
 });
 
