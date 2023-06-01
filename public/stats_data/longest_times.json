@@ -15,8 +15,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7400,
-      "difficulty": 0.00017126220243192326,
+      "total_played": 7500,
+      "difficulty": 0.00016937669376693767,
       "liked": 1,
       "time": 15388.4
     },
@@ -62,12 +62,36 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 35500,
-      "difficulty": 0.00030954960532425323,
+      "total_played": 35600,
+      "difficulty": 0.0003087690407575134,
       "liked": 0.8333333333333334,
       "time": 6035.223333333334
     },
     "creator": "BLUDUK"
+  },
+  {
+    "identifier": "29ngj2xcdlinnuqz0vrw5:1667965708",
+    "title": "Dont Rage 2",
+    "complexity": 2905,
+    "format_version": 6,
+    "update_timestamp": 1669094153413,
+    "creation_timestamp": 1669094153413,
+    "data_key": "level_data:29ngj2xcdlinnuqz0vrw5:1667965708:1",
+    "description": "Go through 10 levels of mild pain. And also please try not to rage.",
+    "creators": [
+      "CursedPhantom(RMB)",
+      "Geybooi"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 7300,
+      "difficulty": 0.00017670966601873123,
+      "liked": 0,
+      "time": 5176.929
+    },
+    "creator": "CursedPhantom(RMB)"
   },
   {
     "identifier": "29rkswgx13q8mej7mxdg6:1680365149",
@@ -230,8 +254,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 15002,
-      "difficulty": 0.0011926058437686344,
+      "total_played": 15102,
+      "difficulty": 0.001185737274498179,
       "liked": 0.9,
       "time": 2671.40425
     },
@@ -253,8 +277,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 6523,
-      "difficulty": 0.00019751135690302193,
+      "total_played": 6623,
+      "difficulty": 0.00019428793471925395,
       "liked": 0.6666666666666666,
       "time": 2666.12
     },
@@ -416,8 +440,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 95300,
-      "difficulty": 0.0003130053732589076,
+      "total_played": 95400,
+      "difficulty": 0.000312670991948722,
       "liked": 0.7619047619047619,
       "time": 2360.124666666667
     },
@@ -1688,8 +1712,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16595,
-      "difficulty": 0.0009450307134981887,
+      "total_played": 16695,
+      "difficulty": 0.0009391876027236441,
       "liked": 0.8461538461538461,
       "time": 1428.1718363636364
     },
@@ -2102,8 +2126,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 87188,
-      "difficulty": 0.0006565815736947158,
+      "total_played": 87288,
+      "difficulty": 0.0006559269559741827,
       "liked": 0.7419354838709677,
       "time": 1325.5311999999997
     },
@@ -2342,28 +2366,5 @@
       "time": 1279.505
     },
     "creator": "Mystery8281"
-  },
-  {
-    "identifier": "29m95bww7flz5o41dhg74:1660592295",
-    "title": "the 9th layer of hell",
-    "complexity": 967,
-    "format_version": 6,
-    "update_timestamp": 1671592646132,
-    "creation_timestamp": 1671592646132,
-    "data_key": "level_data:29m95bww7flz5o41dhg74:1660592295:1",
-    "description": "i spent a while making this hell themed level a living hell for players anyways gl on your journey",
-    "creators": [
-      "lvjamesw"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 1200,
-      "difficulty": 0.004659832246039142,
-      "liked": 1,
-      "time": 1278.9261999999999
-    },
-    "creator": "lvjamesw"
   }
 ]
