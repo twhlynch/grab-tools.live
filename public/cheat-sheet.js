@@ -22,15 +22,14 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
             let cell = document.createElement("td")
             let div = document.createElement("div");
             let obj = data.results[j + (i * cols)];
-            cell.className = `m-${obj.attributes.model} h-${obj.attributes.hitbox} i-${obj.attributes.interaction_hitbox}`;
             let shape = document.createElement('img');
-            shape.src = `shapes/${obj.attributes.model}.svg`;
+            shape.src = `shapes/${obj.attributes.model}.svg`.toLowerCase();
             let hitbox = document.createElement('img');
-            hitbox.src = `shapes/${obj.attributes.hitbox}-r.svg`;
+            hitbox.src = `shapes/${obj.attributes.hitbox}-r.svg`.toLowerCase();
             let interact = document.createElement('img');
-            interact.src = `shapes/${obj.attributes.interaction_hitbox}-g.svg`;
+            interact.src = `shapes/${obj.attributes.interaction_hitbox}-g.svg`.toLowerCase();
             let texture = document.createElement('img');
-            texture.src = `textures/${obj.attributes.texture.split("/")[0]}.png`;
+            texture.src = `textures/${obj.attributes.texture.split("/")[0]}.png`.toLowerCase();
             div.appendChild(shape);
             div.appendChild(hitbox);
             div.appendChild(interact);
@@ -39,7 +38,7 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
             let div2 = document.createElement('div');
             obj.attributes.effects.forEach((effect) => {
                 let icon = document.createElement('img');
-                icon.src = `effects/${effect}.svg`;
+                icon.src = `effects/${effect}.svg`.toLowerCase();
                 div2.appendChild(icon);
             });
             cell.append(div2);
