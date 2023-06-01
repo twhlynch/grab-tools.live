@@ -9,11 +9,11 @@ def find_sgm_files(directory):
     return sgm_files
 
 # Example usage
-directory = "sgms"
+directory = "sgms/angel-devil-pack"
 sgm_files = find_sgm_files(directory)
 for file in sgm_files:
     file = file.replace("\\", "/")
     filename = file.split("/")[-1]
-    os.system("python C:/Users/twhly/Documents/files/Rayne-SGM-to-OBJ/sgm2obj.py " + file + " models/" + filename + ".obj")
+    os.system("python \"C:/Users/tom.lynch/3D Objects/p/Rayne-SGM-to-OBJ/sgm2obj.py\" " + file + " public/models/" + filename + ".obj")
     print(filename+'.obj')
     
