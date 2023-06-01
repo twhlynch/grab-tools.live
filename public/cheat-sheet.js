@@ -32,6 +32,13 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
 
     let row1 = document.createElement("tr");
     let col1 = document.createElement("td");
+    col1.innerText = "*";
+    col1.id = "all";
+    col1.addEventListener("click", () => {
+        document.querySelectorAll('.sheet td:not(.sheet td:nth-child(1)):not(.sheet > tr:nth-child(1) > td)').forEach(el => {
+            el.click()
+        });
+    });
     row1.appendChild(col1);
     for (var i = 0; i < cols; i++) {
         let col = document.createElement("td");
@@ -90,17 +97,29 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
                 el.style.backgroundColor = 'rgb(204, 255, 204)';
                 list.push(el.id);
             }
-            console.log(list);
+            // console.log(list);
         });
     });
 
     document.getElementById('save').addEventListener('click', () => {
         for (let i = 0; i < list.length; i++) {
             msArr = list[i].split('_');
+            if (msArr[0] == "null") {
+                msArr[0] = null;
+            } else {
+                msArr[0] = parseInt(msArr[0])
+            }
+            if (msArr[1] == "null") {
+                msArr[1] = null;
+            } else {
+                msArr[1] = parseInt(msArr[1])
+            }
+            // console.log(msArr);
             node = {
                 "levelNodeStatic": {
                     "position": {
-                        "x": i
+                        "x": i,
+                        "z": Math.floor(i/14)
                     },
                     "rotation": {
                         "w": 1
@@ -122,6 +141,19 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
             }
             levelJson.levelNodes.push(node);
         }
+        protobuf.load("proto/hacked.proto", function(err, root) {
+            // console.log(levelJson);
+            if(err) throw err;
+            let message = root.lookupType("COD.Level.Level");
+            let errMsg = message.verify(levelJson);
+            if(errMsg) throw Error(errMsg);
+            let buffer = message.encode(message.fromObject(levelJson)).finish();
+            let blob = new Blob([buffer], {type: "application/octet-stream"});
+            let link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = (Date.now()).toString().slice(0, -3)+".level";
+            link.click();
+        });
     });
 });
 

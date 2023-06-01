@@ -65,7 +65,7 @@ h3 {
     font-weight: 700;
     font-size: 18px;
 }
-.sheet td:not(.sheet td:nth-child(1)):not(.sheet > tr:nth-child(1) > td) {
+.sheet td:not(.sheet td:nth-child(1)):not(.sheet > tr:nth-child(1) > td), #all {
     cursor: pointer;
 }
 #save {
