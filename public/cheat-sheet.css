@@ -68,7 +68,7 @@ h3 {
 .sheet td:not(.sheet td:nth-child(1)):not(.sheet > tr:nth-child(1) > td), #all {
     cursor: pointer;
 }
-#save {
+#save, #copy {
     padding: 1rem;
     background-color: #CCFFCC;
     width: fit-content;
@@ -79,4 +79,7 @@ h3 {
     position: fixed;
     top: 1rem;
     right: 1rem;
+}
+#copy {
+    top: 5rem;
 }

@@ -86,7 +86,6 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
         }
         table.appendChild(row);
     }
-
     document.querySelectorAll('.sheet td:not(.sheet td:nth-child(1)):not(.sheet > tr:nth-child(1) > td)').forEach(el => {
         el.addEventListener('click', () => {
             if (el.style.backgroundColor == 'rgb(204, 255, 204)') {
@@ -100,8 +99,18 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
             // console.log(list);
         });
     });
-
+    let params = location.href.split('=')[1];
+    // console.log(params)
+    params.split('-').forEach((value) => {
+        document.getElementById(value).click();
+    });
+    document.getElementById('copy').addEventListener('click', () => {
+        let url = `${location.href.split('?')[0]}?data=${list.join('-')}`;
+        navigator.clipboard.writeText(url);
+    });
     document.getElementById('save').addEventListener('click', () => {
+        let url = `${location.href.split('?')[0]}?data=${list.join('-')}`;
+        navigator.clipboard.writeText(url);
         for (let i = 0; i < list.length; i++) {
             msArr = list[i].split('_');
             if (msArr[0] == "null") {
