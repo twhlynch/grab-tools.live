@@ -84,14 +84,14 @@ h1 {
     height: 25px;
     color: #cfe0ea;
 }
-#editor {
+#editor, #cheat {
     background-color: #5f8bc220;
     color: #4683ce;
     border: dashed 2px #cfe0ea70;
     vertical-align: middle;
     font-weight: 600;
 }
-button:hover, #editor:hover {
+button:hover, #editor:hover, #cheat:hover {
     background-color: #5f8cc235;
     border: dashed 2px #4683ce70;
 }
@@ -126,7 +126,7 @@ canvas {
 .heading h1:hover, .alt-heading h1:hover {
     color: #4683ce;
 }
-#editor svg {
+#editor svg, #cheat svg {
     width: 20px;
     height: 100%;
     transform: translateY(3px);

@@ -14,4 +14,7 @@ if (window.location.href.includes('index.html') || document.title == 'Grab Tools
     document.getElementById('editor').addEventListener('click', () => {
         window.location.href = 'editor.html';
     });
+    document.getElementById('cheat').addEventListener('click', () => {
+        window.location.href = 'cheat-sheet.html';
+    });
 }
