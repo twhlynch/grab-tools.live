@@ -151,14 +151,80 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
                     "material": msArr[0],
                     "shapes": msArr[1],
                     "color": {
-                        "r": 0.5,
-                        "g": 0.5,
-                        "b": 0.5,
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
                         "a": 1
                     }
                 }
             }
             levelJson.levelNodes.push(node);
+            group = {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0, 
+                        "x": 0, 
+                        "z": 0
+                    }, 
+                    "rotation": {
+                        "w": 1
+                    }, 
+                    "childNodes": [{
+                        "levelNodeStatic": {
+                            "position": {
+                                "x": i,
+                                "z": Math.floor(i/14) + 16
+                            },
+                            "rotation": {
+                                "w": 1
+                            },
+                            "scale": {
+                                "x": 1,
+                                "y": 1,
+                                "z": 1
+                            },
+                            "material": msArr[0],
+                            "shapes": msArr[1],
+                            "color": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1
+                            }
+                        }
+                    },{
+                        "levelNodeStatic": {
+                            "position": {
+                                "y": 1,
+                                "x": i,
+                                "z": Math.floor(i/14) + 16
+                            },
+                            "rotation": {
+                                "w": 1
+                            },
+                            "scale": {
+                                "x": 0.1,
+                                "y": 0.1,
+                                "z": 0.1
+                            },
+                            "material": 8,
+                            "shapes": 3,
+                            "color": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1
+                            }
+                        }
+                    }], 
+                    "scale": {
+                        "y": 1, 
+                        "x": 1, 
+                        "z": 1
+                    }
+                }
+            }
+            levelJson.levelNodes.push(group);
         }
         protobuf.load("proto/hacked.proto", function(err, root) {
             // console.log(levelJson);
