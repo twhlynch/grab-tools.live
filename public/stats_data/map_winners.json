@@ -858,5 +858,40 @@
     },
     1685596287,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 148.531,
+        "user_id": "2a16lrhk70q0s94hkbdwz",
+        "user_name": "BWLBuck"
+      }
+    ],
+    {
+      "identifier": "2a4lsr3j8bypkewcx9s90:1677782776",
+      "title": "Milo's fling difficulty chart",
+      "complexity": 2171,
+      "format_version": 6,
+      "update_timestamp": 1685580629665,
+      "creation_timestamp": 1685580629665,
+      "data_key": "level_data:2a4lsr3j8bypkewcx9s90:1677782776:1",
+      "description": "(long description)",
+      "creators": [
+        "milo"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 100,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "creator": "milo"
+    },
+    1685682679,
+    "daily_map"
   ]
 ]
