@@ -55,6 +55,11 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
         for (let j = 0; j < cols; j++) {
             let cell = document.createElement("td")
             cell.id = `${data.materials[i]}_${data.shapes[j]}`;
+            if (data.materials[i] < 0) {
+                // cell.style.outline = '#f00 solid 1px';
+                cell.classList.add('unknown');
+                // cell.style.background = '#FFCCCC';
+            }
             let div = document.createElement("div");
             let obj = data.results[j + (i * cols)];
             let shape = document.createElement('img');
@@ -104,17 +109,17 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
         params = params[1]
         // console.log(params)
         if (params.length > 0) {
-            params.split('-').forEach((value) => {
+            params.split('+').forEach((value) => {
                 document.getElementById(value).click();
             });
         }
     }
     document.getElementById('copy').addEventListener('click', () => {
-        let url = `${location.href.split('?')[0]}?data=${list.join('-')}`;
+        let url = `${location.href.split('?')[0]}?data=${list.join('+')}`;
         navigator.clipboard.writeText(url);
     });
     document.getElementById('save').addEventListener('click', () => {
-        let url = `${location.href.split('?')[0]}?data=${list.join('-')}`;
+        let url = `${location.href.split('?')[0]}?data=${list.join('+')}`;
         navigator.clipboard.writeText(url);
         for (let i = 0; i < list.length; i++) {
             msArr = list[i].split('_');

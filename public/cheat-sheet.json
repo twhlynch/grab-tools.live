@@ -17,6 +17,7 @@
     ],
     "materials": [
         null,
+        -1, -2, -3, -4, -5, -6, -7, -8, -9, -10,
         0,
         1,
         2,
@@ -40,13 +41,13 @@
         }, {"shape": 3,"material": null,
             "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 4,"material": null,
-            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 5,"material": null,
-            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 6,"material": null,
-            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 7,"material": null,
-            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1000,"material": null,
             "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1001,"material": null,
@@ -57,7 +58,353 @@
             "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1004,"material": null,
             "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": null,"material": 0,
+        }, {"shape": null,"material": null,
+            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 0,"material": null,
+            "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1,"material": null,
+            "attributes": {"texture": "TRANSPARENT","model": "FINISH","hitbox": "FINISH","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 2,"material": null,
+            "attributes": {"texture": "WOOD","model": "SIGN","hitbox": "SIGN","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 3,"material": null,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 4,"material": null,
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 5,"material": null,
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 6,"material": null,
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 7,"material": null,
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1000,"material": null,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1001,"material": null,
+            "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1002,"material": null,
+            "attributes": {"texture": "DEFAULT","model": "CYLINDER","hitbox": "CYLINDER","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1003,"material": null,
+            "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1004,"material": null,
+            "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        },
+
+
+
+        
+        {"shape": null,"material": -10,
+            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 0,"material": -10,
+            "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1,"material": -10,
+            "attributes": {"texture": "TRANSPARENT","model": "FINISH","hitbox": "FINISH","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 2,"material": -10,
+            "attributes": {"texture": "WOOD","model": "SIGN","hitbox": "SIGN","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 3,"material": -10,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 4,"material": -10,
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 5,"material": -10,
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 6,"material": -10,
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 7,"material": -10,
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1000,"material": -10,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1001,"material": -10,
+            "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1002,"material": -10,
+            "attributes": {"texture": "DEFAULT","model": "CYLINDER","hitbox": "CYLINDER","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1003,"material": -10,
+            "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1004,"material": -10,
+            "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        },
+
+        
+        {"shape": null,"material": -9,
+            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 0,"material": -9,
+            "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1,"material": -9,
+            "attributes": {"texture": "TRANSPARENT","model": "FINISH","hitbox": "FINISH","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 2,"material": -9,
+            "attributes": {"texture": "WOOD","model": "SIGN","hitbox": "SIGN","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 3,"material": -9,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 4,"material": -9,
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 5,"material": -9,
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 6,"material": -9,
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 7,"material": -9,
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1000,"material": -9,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1001,"material": -9,
+            "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1002,"material": -9,
+            "attributes": {"texture": "DEFAULT","model": "CYLINDER","hitbox": "CYLINDER","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1003,"material": -9,
+            "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1004,"material": -9,
+            "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        },
+        
+        
+        {"shape": null,"material": -8,
+            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 0,"material": -8,
+            "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1,"material": -8,
+            "attributes": {"texture": "TRANSPARENT","model": "FINISH","hitbox": "FINISH","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 2,"material": -8,
+            "attributes": {"texture": "WOOD","model": "SIGN","hitbox": "SIGN","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 3,"material": -8,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 4,"material": -8,
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 5,"material": -8,
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 6,"material": -8,
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 7,"material": -8,
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1000,"material": -8,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1001,"material": -8,
+            "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1002,"material": -8,
+            "attributes": {"texture": "DEFAULT","model": "CYLINDER","hitbox": "CYLINDER","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1003,"material": -8,
+            "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1004,"material": -8,
+            "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        },
+        
+        
+        {"shape": null,"material": -7,
+            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 0,"material": -7,
+            "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1,"material": -7,
+            "attributes": {"texture": "TRANSPARENT","model": "FINISH","hitbox": "FINISH","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 2,"material": -7,
+            "attributes": {"texture": "WOOD","model": "SIGN","hitbox": "SIGN","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 3,"material": -7,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 4,"material": -7,
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 5,"material": -7,
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 6,"material": -7,
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 7,"material": -7,
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1000,"material": -7,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1001,"material": -7,
+            "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1002,"material": -7,
+            "attributes": {"texture": "DEFAULT","model": "CYLINDER","hitbox": "CYLINDER","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1003,"material": -7,
+            "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1004,"material": -7,
+            "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        },
+        
+        
+        {"shape": null,"material": -6,
+            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 0,"material": -6,
+            "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1,"material": -6,
+            "attributes": {"texture": "TRANSPARENT","model": "FINISH","hitbox": "FINISH","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 2,"material": -6,
+            "attributes": {"texture": "WOOD","model": "SIGN","hitbox": "SIGN","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 3,"material": -6,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 4,"material": -6,
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 5,"material": -6,
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 6,"material": -6,
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 7,"material": -6,
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1000,"material": -6,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1001,"material": -6,
+            "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1002,"material": -6,
+            "attributes": {"texture": "DEFAULT","model": "CYLINDER","hitbox": "CYLINDER","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1003,"material": -6,
+            "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1004,"material": -6,
+            "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        },
+        
+        
+        {"shape": null,"material": -5,
+            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 0,"material": -5,
+            "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1,"material": -5,
+            "attributes": {"texture": "TRANSPARENT","model": "FINISH","hitbox": "FINISH","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 2,"material": -5,
+            "attributes": {"texture": "WOOD","model": "SIGN","hitbox": "SIGN","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 3,"material": -5,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 4,"material": -5,
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 5,"material": -5,
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 6,"material": -5,
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 7,"material": -5,
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1000,"material": -5,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1001,"material": -5,
+            "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1002,"material": -5,
+            "attributes": {"texture": "DEFAULT","model": "CYLINDER","hitbox": "CYLINDER","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1003,"material": -5,
+            "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1004,"material": -5,
+            "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        },
+        
+        
+        {"shape": null,"material": -4,
+            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 0,"material": -4,
+            "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1,"material": -4,
+            "attributes": {"texture": "TRANSPARENT","model": "FINISH","hitbox": "FINISH","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 2,"material": -4,
+            "attributes": {"texture": "WOOD","model": "SIGN","hitbox": "SIGN","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 3,"material": -4,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 4,"material": -4,
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 5,"material": -4,
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 6,"material": -4,
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 7,"material": -4,
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1000,"material": -4,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1001,"material": -4,
+            "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1002,"material": -4,
+            "attributes": {"texture": "DEFAULT","model": "CYLINDER","hitbox": "CYLINDER","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1003,"material": -4,
+            "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1004,"material": -4,
+            "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        },
+        
+        
+        {"shape": null,"material": -3,
+            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 0,"material": -3,
+            "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1,"material": -3,
+            "attributes": {"texture": "TRANSPARENT","model": "FINISH","hitbox": "FINISH","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 2,"material": -3,
+            "attributes": {"texture": "WOOD","model": "SIGN","hitbox": "SIGN","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 3,"material": -3,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 4,"material": -3,
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 5,"material": -3,
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 6,"material": -3,
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 7,"material": -3,
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1000,"material": -3,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1001,"material": -3,
+            "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1002,"material": -3,
+            "attributes": {"texture": "DEFAULT","model": "CYLINDER","hitbox": "CYLINDER","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1003,"material": -3,
+            "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1004,"material": -3,
+            "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        },
+        
+        
+        
+        {"shape": null,"material": -2,
+            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 0,"material": -2,
+            "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1,"material": -2,
+            "attributes": {"texture": "TRANSPARENT","model": "FINISH","hitbox": "FINISH","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 2,"material": -2,
+            "attributes": {"texture": "WOOD","model": "SIGN","hitbox": "SIGN","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 3,"material": -2,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 4,"material": -2,
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 5,"material": -2,
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 6,"material": -2,
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 7,"material": -2,
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1000,"material": -2,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1001,"material": -2,
+            "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1002,"material": -2,
+            "attributes": {"texture": "DEFAULT","model": "CYLINDER","hitbox": "CYLINDER","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1003,"material": -2,
+            "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1004,"material": -2,
+            "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        },
+        
+        
+        {"shape": null,"material": -1,
+            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 0,"material": -1,
+            "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1,"material": -1,
+            "attributes": {"texture": "TRANSPARENT","model": "FINISH","hitbox": "FINISH","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 2,"material": -1,
+            "attributes": {"texture": "WOOD","model": "SIGN","hitbox": "SIGN","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 3,"material": -1,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 4,"material": -1,
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 5,"material": -1,
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 6,"material": -1,
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 7,"material": -1,
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1000,"material": -1,
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1001,"material": -1,
+            "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1002,"material": -1,
+            "attributes": {"texture": "DEFAULT","model": "CYLINDER","hitbox": "CYLINDER","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1003,"material": -1,
+            "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        }, {"shape": 1004,"material": -1,
+            "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+        },
+        
+        
+        
+        
+        {"shape": null,"material": 0,
             "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 0,"material": 0,
             "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
@@ -68,13 +415,13 @@
         }, {"shape": 3,"material": 0,
             "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 4,"material": 0,
-            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 5,"material": 0,
-            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 6,"material": 0,
-            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 7,"material": 0,
-            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1000,"material": 0,
             "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1001,"material": 0,
@@ -96,13 +443,13 @@
         }, {"shape": 3,"material": 1,
             "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 4,"material": 1,
-            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 5,"material": 1,
-            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 6,"material": 1,
-            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 7,"material": 1,
-            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 1000,"material": 1,
             "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 1001,"material": 1,
@@ -124,13 +471,13 @@
         }, {"shape": 3,"material": 2,
             "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "SLIDE"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 4,"material": 2,
-            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "SLIDE"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "SLIDE"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 5,"material": 2,
-            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "SLIDE"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "SLIDE"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 6,"material": 2,
-            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "SLIDE"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "SLIDE"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 7,"material": 2,
-            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "SLIDE"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "SLIDE"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1000,"material": 2,
             "attributes": {"texture": "ICE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "SLIDE"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1001,"material": 2,
@@ -152,13 +499,13 @@
         }, {"shape": 3,"material": 3,
             "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["DEATH"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 4,"material": 3,
-            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "CUBE","effects": ["DEATH"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["DEATH"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 5,"material": 3,
-            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "CUBE","effects": ["DEATH"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["DEATH"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 6,"material": 3,
-            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "CUBE","effects": ["DEATH"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["DEATH"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 7,"material": 3,
-            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "CUBE","effects": ["DEATH"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["DEATH"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1000,"material": 3,
             "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "CUBE","effects": ["DEATH"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1001,"material": 3,
@@ -180,13 +527,13 @@
         }, {"shape": 3,"material": 4,
             "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 4,"material": 4,
-            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 5,"material": 4,
-            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 6,"material": 4,
-            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 7,"material": 4,
-            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 1000,"material": 4,
             "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 1001,"material": 4,
@@ -208,13 +555,13 @@
         }, {"shape": 3,"material": 5,
             "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRAPPLABLE", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 4,"material": 5,
-            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRAPPLABLE", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRAPPLABLE", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 5,"material": 5,
-            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRAPPLABLE", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRAPPLABLE", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 6,"material": 5,
-            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRAPPLABLE", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRAPPLABLE", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 7,"material": 5,
-            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRAPPLABLE", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRAPPLABLE", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 1000,"material": 5,
             "attributes": {"texture": "GRAPPLABLE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRAPPLABLE", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 1001,"material": 5,
@@ -236,13 +583,13 @@
         }, {"shape": 3,"material": 6,
             "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GRAPPLABLE", "DEATH"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 4,"material": 6,
-            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "CUBE","effects": ["GRAPPLABLE", "DEATH"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GRAPPLABLE", "DEATH"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 5,"material": 6,
-            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "CUBE","effects": ["GRAPPLABLE", "DEATH"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GRAPPLABLE", "DEATH"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 6,"material": 6,
-            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "CUBE","effects": ["GRAPPLABLE", "DEATH"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GRAPPLABLE", "DEATH"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 7,"material": 6,
-            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "CUBE","effects": ["GRAPPLABLE", "DEATH"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GRAPPLABLE", "DEATH"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 1000,"material": 6,
             "attributes": {"texture": "GRAPPLABLE_LAVA","model": "CUBE","hitbox": "CUBE","effects": ["GRAPPLABLE", "DEATH"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 1001,"material": 6,
@@ -264,13 +611,13 @@
         }, {"shape": 3,"material": 7,
             "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 4,"material": 7,
-            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 5,"material": 7,
-            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 6,"material": 7,
-            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 7,"material": 7,
-            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 1000,"material": 7,
             "attributes": {"texture": "GRABBABLE_CRUMBLING","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "GRABBABLE"],"interaction_hitbox": "CUBE","anti_fog": false}
         }, {"shape": 1001,"material": 7,
@@ -292,13 +639,13 @@
         }, {"shape": 3,"material": 8,
             "attributes": {"texture": "COLOR/DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": "COLOR"}
         }, {"shape": 4,"material": 8,
-            "attributes": {"texture": "COLOR/GRABBABLE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": "COLOR"}
+            "attributes": {"texture": "COLOR/GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": "COLOR"}
         }, {"shape": 5,"material": 8,
-            "attributes": {"texture": "COLOR/ICE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": "COLOR"}
+            "attributes": {"texture": "COLOR/ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": "COLOR"}
         }, {"shape": 6,"material": 8,
-            "attributes": {"texture": "COLOR/LAVA","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": "COLOR"}
+            "attributes": {"texture": "COLOR/LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": "COLOR"}
         }, {"shape": 7,"material": 8,
-            "attributes": {"texture": "COLOR/WOOD","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": "COLOR"}
+            "attributes": {"texture": "COLOR/WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": "COLOR"}
         }, {"shape": 1000,"material": 8,
             "attributes": {"texture": "DEFAULT_COLORED","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1001,"material": 8,
@@ -320,13 +667,13 @@
         }, {"shape": 3,"material": 9,
             "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "BOUNCING"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 4,"material": 9,
-            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "BOUNCING"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "BOUNCING"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 5,"material": 9,
-            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "BOUNCING"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "BOUNCING"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 6,"material": 9,
-            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "BOUNCING"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "BOUNCING"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 7,"material": 9,
-            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "BOUNCING"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND", "BOUNCING"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1000,"material": 9,
             "attributes": {"texture": "BOUNCING","model": "CUBE","hitbox": "CUBE","effects": ["GROUND", "BOUNCING"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1001,"material": 9,
