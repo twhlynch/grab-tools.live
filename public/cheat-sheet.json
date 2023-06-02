@@ -17,7 +17,7 @@
     ],
     "materials": [
         null,
-        -1, -2, -3, -4, -5, -6, -7, -8, -9, -10,
+        -10, -9, -8, -7, -6, -5, -4, -3, -2, -1,
         0,
         1,
         2,
@@ -31,34 +31,6 @@
     ],
     "results": [
         {"shape": null,"material": null,
-            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 0,"material": null,
-            "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 1,"material": null,
-            "attributes": {"texture": "TRANSPARENT","model": "FINISH","hitbox": "FINISH","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 2,"material": null,
-            "attributes": {"texture": "WOOD","model": "SIGN","hitbox": "SIGN","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 3,"material": null,
-            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 4,"material": null,
-            "attributes": {"texture": "GRABBABLE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 5,"material": null,
-            "attributes": {"texture": "ICE","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 6,"material": null,
-            "attributes": {"texture": "LAVA","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 7,"material": null,
-            "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 1000,"material": null,
-            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 1001,"material": null,
-            "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 1002,"material": null,
-            "attributes": {"texture": "DEFAULT","model": "CYLINDER","hitbox": "CYLINDER","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 1003,"material": null,
-            "attributes": {"texture": "DEFAULT","model": "PYRAMID","hitbox": "PYRAMID","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": 1004,"material": null,
-            "attributes": {"texture": "DEFAULT","model": "PRISM","hitbox": "PRISM","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
-        }, {"shape": null,"material": null,
             "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 0,"material": null,
             "attributes": {"texture": "TRANSPARENT","model": "START","hitbox": "START","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
