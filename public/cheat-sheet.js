@@ -1,4 +1,4 @@
-levelJson = {
+var levelJson = {
     "formatVersion": 6,
     "title": "New Level",
     "creators": ".index-cheat-sheet",
@@ -24,7 +24,7 @@ levelJson = {
         "fogDDensity": 0
     }
 };
-list = [];
+var list = [];
 fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
     var table = document.getElementById("data-table");
     let cols = data.shapes.length;
@@ -136,24 +136,25 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
             // console.log(msArr);
             node = {
                 "levelNodeStatic": {
+                    "material": msArr[0],
+                    "shapes": msArr[1],
                     "position": {
                         "x": i,
+                        "y": 0,
                         "z": Math.floor(i/14)
-                    },
-                    "rotation": {
-                        "w": 1
                     },
                     "scale": {
                         "x": 1,
                         "y": 1,
                         "z": 1
                     },
-                    "material": msArr[0],
-                    "shapes": msArr[1],
+                    "rotation": {
+                        "w": 1
+                    },
                     "color": {
-                        "r": 0,
-                        "g": 0,
-                        "b": 0,
+                        "r": 0.00001,
+                        "g": 0.00001,
+                        "b": 0.00001,
                         "a": 1
                     }
                 }
@@ -162,72 +163,73 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
             group = {
                 "levelNodeGroup": {
                     "position": {
-                        "y": 0, 
                         "x": 0, 
+                        "y": 0, 
                         "z": 0
                     }, 
+                    "scale": {
+                        "x": 1, 
+                        "y": 1, 
+                        "z": 1
+                    },
                     "rotation": {
                         "w": 1
                     }, 
                     "childNodes": [{
                         "levelNodeStatic": {
+                            "material": msArr[0],
+                            "shapes": msArr[1],
                             "position": {
                                 "x": i,
+                                "y": 0,
                                 "z": Math.floor(i/14) + 16
-                            },
-                            "rotation": {
-                                "w": 1
                             },
                             "scale": {
                                 "x": 1,
                                 "y": 1,
                                 "z": 1
                             },
-                            "material": msArr[0],
-                            "shapes": msArr[1],
+                            "rotation": {
+                                "w": 1
+                            },
                             "color": {
-                                "r": 0,
-                                "g": 0,
-                                "b": 0,
+                                "r": 0.00001,
+                                "g": 0.00001,
+                                "b": 0.00001,
                                 "a": 1
                             }
                         }
                     },{
                         "levelNodeStatic": {
+                            "material": 8,
+                            "shapes": 3,
                             "position": {
-                                "y": 1,
                                 "x": i,
+                                "y": 1,
                                 "z": Math.floor(i/14) + 16
-                            },
-                            "rotation": {
-                                "w": 1
                             },
                             "scale": {
                                 "x": 0.1,
                                 "y": 0.1,
                                 "z": 0.1
                             },
-                            "material": 8,
-                            "shapes": 3,
+                            "rotation": {
+                                "w": 1
+                            },
                             "color": {
-                                "r": 0,
-                                "g": 0,
-                                "b": 0,
+                                "r": 0.00001,
+                                "g": 0.00001,
+                                "b": 0.00001,
                                 "a": 1
                             }
                         }
-                    }], 
-                    "scale": {
-                        "y": 1, 
-                        "x": 1, 
-                        "z": 1
-                    }
+                    }]
                 }
             }
             levelJson.levelNodes.push(group);
         }
         protobuf.load("proto/hacked.proto", function(err, root) {
-            // console.log(levelJson);
+            console.log(levelJson);
             if(err) throw err;
             let message = root.lookupType("COD.Level.Level");
             let errMsg = message.verify(levelJson);
