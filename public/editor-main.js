@@ -1070,6 +1070,18 @@ document.getElementById('start-btn').addEventListener('click', () => {
         camera.position.z = start.position.z;
     }
 });
+document.getElementById('randomize-btn').addEventListener('click', () => {
+    let obj = getLevel();
+    obj.levelNodes.forEach((node) => {
+        Object.values(node)[0].position.x *= Math.random() + 0.5;
+        Object.values(node)[0].position.y *= Math.random() + 0.5;
+        Object.values(node)[0].position.z *= Math.random() + 0.5;
+        Object.values(node)[0].scale.x *= Math.random() + 0.5;
+        Object.values(node)[0].scale.y *= Math.random() + 0.5;
+        Object.values(node)[0].scale.z *= Math.random() + 0.5;
+    });
+    setLevel(obj);
+});
 
 document.getElementById('minambience-btn').addEventListener('click', () => {
     var ambience = {
