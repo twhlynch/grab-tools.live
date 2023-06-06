@@ -1044,6 +1044,33 @@ export function exportLevelAsGLTF()
 
 document.getElementById('gltf-btn').addEventListener('click', exportLevelAsGLTF);
 
+function findStart(obj) {
+    
+    if (obj.hasOwnProperty("levelNodeStart")) {
+      return obj.levelNodeStart;
+    }
+  
+    for (let key in obj) {
+      if (typeof obj[key] === "object" && obj[key] !== null) {
+        const result = findStart(obj[key]);
+        if (result !== undefined) {
+          return result;
+        }
+      }
+    }
+  
+    return false;
+  }
+document.getElementById('start-btn').addEventListener('click', () => {
+    let obj = getLevel();
+    let start = findStart(obj);
+    if (start) {
+        camera.position.x = start.position.x;
+        camera.position.y = start.position.y;
+        camera.position.z = start.position.z;
+    }
+});
+
 document.getElementById('minambience-btn').addEventListener('click', () => {
     var ambience = {
         "skyZenithColor": {
