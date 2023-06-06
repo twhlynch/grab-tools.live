@@ -5,6 +5,7 @@ import { TrackballControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/
 import { OrbitControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm/loaders/GLTFLoader.js';
 import { FlyControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/controls/FlyControls.js';
+import { GLTFExporter } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm//exporters/GLTFExporter.js';
 
 var camera, scene, renderer, light, controls, fly, transforms, trackball, loader, sun;
 var objects = [];
@@ -440,7 +441,7 @@ function openProto(link) {
             });
         })
 }
-openProto('lobbies/lobby.level');
+openProto('https://api.slin.dev/grab/v1/download/29ffxg2ijqxyrgxyy2vjj/1642284195/1');
 document.getElementById('the-index-btn').addEventListener('click', () => {
     openProto('levels/the-index.level');
 });
@@ -1003,6 +1004,45 @@ document.getElementById('maxambience-btn').addEventListener('click', () => {
     levelData.ambienceSettings = ambience;
     setLevel(levelData);
 });
+
+function saveDataAsFile(filename, data) {
+    const blob = new Blob([data], {type: 'text/json'});
+    if(window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveBlob(blob, filename);
+    }
+    else{
+        const elem = window.document.createElement('a');
+        elem.href = window.URL.createObjectURL(blob);
+        elem.download = filename;        
+        document.body.appendChild(elem);
+        elem.click();        
+        document.body.removeChild(elem);
+    }
+}
+
+export function exportLevelAsGLTF()
+{
+	const exporter = new GLTFExporter();
+	exporter.parse(
+	    scene,
+	    function ( gltf ) {
+
+	        console.log( gltf );
+            let data = getLevel();
+            let title = data.title.replace(/([^a-z0-9]+)/gi, '-');
+	        saveDataAsFile( `${title}.gltf`, JSON.stringify(gltf) );
+
+	    },
+	    function ( error ) {
+
+	        console.log( 'An error happened' );
+
+	    },
+	    {}
+	);
+}
+
+document.getElementById('gltf-btn').addEventListener('click', exportLevelAsGLTF);
 
 document.getElementById('minambience-btn').addEventListener('click', () => {
     var ambience = {
