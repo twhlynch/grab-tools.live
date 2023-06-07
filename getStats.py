@@ -83,6 +83,8 @@ def get_most_verified(data):
         else:
             most_verified[id] = {"count": 1}
     most_verified = sorted(most_verified.items(), key=lambda x: x[1]["count"], reverse=True)
+    sub10 = most_verified[10:]
+    sub10 = {t[0]: t[1] for t in sub10}
     most_verified = most_verified[:10]
     most_verified = {t[0]: t[1] for t in most_verified}
     for i, (id, data) in enumerate(most_verified.items()):
@@ -91,7 +93,12 @@ def get_most_verified(data):
         print("Sending request")
         most_verified[id]["user_name"] = user_data["user_name"]
         most_verified[id]["levels"] = user_data["user_level_count"]
-    return most_verified
+    for i, (id, data2) in enumerate(sub10.items()):
+        for level in data:
+            if level.identifier.contains(id):
+                sub10[id]["user_name"] = level.creator + "?"
+        sub10[id]["levels"] = sub10[id]["count"]
+    return most_verified.update(sub10)
 
 def get_most_plays(data):
     most_plays = {}
