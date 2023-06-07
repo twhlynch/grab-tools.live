@@ -1079,5 +1079,69 @@
     },
     1686028300,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 393.775,
+        "user_id": "2a16lrhk70q0s94hkbdwz",
+        "user_name": "BWLBuck"
+      },
+      {
+        "position": 1,
+        "best_time": 604.869,
+        "user_id": "290oi9frh8eihrh1r5z0q",
+        "user_name": "Slin"
+      }
+    ],
+    {
+      "identifier": "29v9vd6n9z45d16mi2o2n:1685670402",
+      "title": "KRAZY KAVE",
+      "complexity": 2344,
+      "format_version": 6,
+      "update_timestamp": 1686004098759,
+      "creation_timestamp": 1686004098759,
+      "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1685670402:1",
+      "creators": [
+        "jeffbob",
+        "convrist",
+        "pnut",
+        "daring"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 200,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "creator": "jeffbob"
+    },
+    1686114660,
+    "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 962.993,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      }
+    ],
+    {
+      "plays": "596",
+      "link": "https://grabvr.quest/levels/viewer?level=2a7dx97v4xiepfpmj8gi4:1676069507",
+      "title": "Frantic Flying",
+      "age": "59.44275462962963 days",
+      "creators": [
+        "Levi__athan"
+      ]
+    },
+    1686114660,
+    "unbeaten_map"
   ]
 ]
