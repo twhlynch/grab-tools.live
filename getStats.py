@@ -201,7 +201,7 @@ def get_daily_map(all_data):
             json.dump(new_data, data_file)
         return data["daily"]
     maps = sorted(all_data, key=lambda x: x["update_timestamp"], reverse=True)
-    filtered_maps = [e for e in maps if e["statistics"]["time"] <= 100]
+    filtered_maps = [e for e in maps if (e["statistics"]["time"] <= 100 and e["statistics"]["time"] >= 3)]
     weights = []
     for i in range(len(filtered_maps)):
         weights.append(filtered_maps[i]["update_timestamp"]/(i+1))
