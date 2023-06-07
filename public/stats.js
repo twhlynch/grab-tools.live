@@ -190,7 +190,11 @@ async function getTopPlayers(limit = 10) {
     .then(json_data => {
         for (const id in json_data) {
             const value = json_data[id];
-            document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>${value["count"]} verified of ${value["levels"]} maps</span></div>`;
+            if (value["count"] != value["levels"]) {
+                document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>${value["count"]} verified of ${value["levels"]} maps</span></div>`;
+            } else {
+                document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>${value["count"]} verified</span></div>`;
+            }
         }
     });
 }

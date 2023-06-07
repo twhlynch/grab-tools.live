@@ -83,22 +83,27 @@ def get_most_verified(data):
         else:
             most_verified[id] = {"count": 1}
     most_verified = sorted(most_verified.items(), key=lambda x: x[1]["count"], reverse=True)
-    sub10 = most_verified[10:]
+    sub10 = most_verified[10:][:100]
     sub10 = {t[0]: t[1] for t in sub10}
     most_verified = most_verified[:10]
     most_verified = {t[0]: t[1] for t in most_verified}
-    for i, (id, data) in enumerate(most_verified.items()):
+    for i, (id, data2) in enumerate(most_verified.items()):
         url = f"https://api.slin.dev/grab/v1/get_user_info?user_id={id}"
         user_data = requests.get(url).json()
         print("Sending request")
         most_verified[id]["user_name"] = user_data["user_name"]
         most_verified[id]["levels"] = user_data["user_level_count"]
-    for i, (id, data2) in enumerate(sub10.items()):
+    for i, (id, data3) in enumerate(sub10.items()):
         for level in data:
-            if level.identifier.contains(id):
-                sub10[id]["user_name"] = level.creator + "?"
+            if id == level["identifier"].split(":")[0]:
+                if "creator" in level:
+                    sub10[id]["user_name"] = level["creator"] + "?"
+                else:
+                    sub10[id]["user_name"] = "?"
+                break
         sub10[id]["levels"] = sub10[id]["count"]
-    return most_verified.update(sub10)
+    most_verified.update(sub10)
+    return most_verified
 
 def get_most_plays(data):
     most_plays = {}
@@ -143,9 +148,11 @@ def get_daily_winner():
         winner_list = requests.get(url).json()
         print(winner_list)
         blacklist_data = json.loads(blacklist.read())
+        offset = 0
         for i in range(min(len(winner_list), 3)):
-            if winner_list[i]["user_name"] in blacklist_data:
-                winner_list.pop(i)
+            if winner_list[i - offset]["user_name"] in blacklist_data:
+                winner_list.pop(i - offset)
+                offset += 1
         if len(winner_list) == 0:
             return
         if len(winner_list) == 1:
@@ -165,9 +172,12 @@ def get_weekly_winner():
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
         winner_list = requests.get(url).json()
         blacklist_data = json.loads(blacklist.read())
+        offset = 0
         for i in range(len(winner_list)):
-            if winner_list[i]["user_name"] in blacklist_data:
-                winner_list.pop(i)
+            print(i)
+            if winner_list[i - offset]["user_name"] in blacklist_data:
+                winner_list.pop(i - offset)
+                offset += 1
         if len(winner_list) == 0:
             return
         if len(winner_list) == 1:
@@ -181,11 +191,18 @@ def get_weekly_winner():
     write_json_file('public/stats_data/map_winners.json', winners_json)
 
 def get_unbeaten_winner():
-    with open("public/stats_data/map_winners.json", 'r') as winners, open("public/stats_data/unbeaten_map.json", "r") as map:
+    with open("public/stats_data/map_winners.json", 'r') as winners, open("public/stats_data/unbeaten_map.json", "r") as map, open("public/stats_data/user_blacklist.json", "r") as blacklist:
         map_json = json.load(map)
         id = map_json["link"].split('=')[1]
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
         winnerList = requests.get(url).json()
+        blacklist_data = json.loads(blacklist.read())
+        offset = 0
+        for i in range(len(winnerList)):
+            print(i)
+            if winnerList[i - offset]["user_name"] in blacklist_data:
+                winnerList.pop(i - offset)
+                i += 1
         if len(winnerList) == 0:
             return
         if len(winnerList) == 1:
