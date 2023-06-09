@@ -1236,5 +1236,50 @@
     },
     1686201077,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 21.6,
+        "user_id": "29qv44zsn1bl7muilse95",
+        "user_name": "Ryzx"
+      },
+      {
+        "position": 1,
+        "best_time": 22.576,
+        "user_id": "2am015n3aa6sebl0p6923",
+        "user_name": "rougueRunner"
+      }
+    ],
+    {
+      "identifier": "29v9vd6n9z45d16mi2o2n:1686103304",
+      "title": "INVERSION",
+      "complexity": 3000,
+      "format_version": 6,
+      "update_timestamp": 1686187642830,
+      "creation_timestamp": 1686108042888,
+      "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1686103304:2",
+      "description": "INPIRED BY AFT_DARINGS TERRAIN FROM SCORCHED",
+      "creators": [
+        "JEFFBOB",
+        "fruitbythefist",
+        "rougerunner",
+        "ryzx",
+        "aft_daring"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 300,
+        "difficulty": 0.007220216606498195,
+        "liked": 1,
+        "time": 22.088
+      },
+      "creator": "JEFFBOB"
+    },
+    1686287479,
+    "daily_map"
   ]
 ]
