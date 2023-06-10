@@ -1,5 +1,544 @@
 [
   {
+    "identifier": "29t798uon2urbra1f8w2q:1684797189",
+    "title": "Peaks-Canyon Climb",
+    "complexity": 2986,
+    "format_version": 6,
+    "update_timestamp": 1686357014861,
+    "creation_timestamp": 1686357014861,
+    "data_key": "level_data:29t798uon2urbra1f8w2q:1684797189:1",
+    "description": "simple endurence climbing ",
+    "creators": [
+      "BlackCat508",
+      "Battlesquid112"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 200,
+      "difficulty": 0.005988023952095809,
+      "liked": 1,
+      "time": 557.892
+    },
+    "creator": "BlackCat508"
+  },
+  {
+    "identifier": "29uyvcxcuqnm4ekq7z5u0:1686249785",
+    "title": "Pirates Hideout",
+    "complexity": 3000,
+    "format_version": 6,
+    "update_timestamp": 1686276441810,
+    "creation_timestamp": 1686276441810,
+    "data_key": "level_data:29uyvcxcuqnm4ekq7z5u0:1686249785:1",
+    "description": "This map is for average players",
+    "creators": [
+      "Triplecyber57",
+      "Sock-sucks",
+      "and 3zb"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 100,
+      "difficulty": 0.02040816326530612,
+      "liked": 1,
+      "time": 99.1165
+    },
+    "creator": "Triplecyber57"
+  },
+  {
+    "identifier": "29v9vd6n9z45d16mi2o2n:1686252192",
+    "title": "OASIS",
+    "complexity": 2997,
+    "format_version": 6,
+    "update_timestamp": 1686256224512,
+    "creation_timestamp": 1686256224512,
+    "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1686252192:1",
+    "creators": [
+      "Jeffbob",
+      "socks-SUCKS",
+      "cydigi3",
+      "dimondstrike",
+      "GMAN2GOANT."
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 200,
+      "difficulty": 0.1366120218579235,
+      "liked": 0.6666666666666666,
+      "time": 77.19072
+    },
+    "creator": "Jeffbob"
+  },
+  {
+    "identifier": "29v9vd6n9z45d16mi2o2n:1686256254",
+    "title": "ACTUAL PAKOR",
+    "complexity": 879,
+    "format_version": 6,
+    "update_timestamp": 1686272451385,
+    "creation_timestamp": 1686272451385,
+    "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1686256254:1",
+    "creators": [
+      "JEFFBOB",
+      "gman2giant",
+      "pnut",
+      "alper",
+      "daring"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 300,
+      "difficulty": 0.0036363636363636364,
+      "time": 98.033,
+      "liked": 0
+    },
+    "creator": "JEFFBOB"
+  },
+  {
+    "identifier": "2b61qc7c8ie27k73j563h:1686245900",
+    "title": "The HoneyLands.",
+    "complexity": 2984,
+    "format_version": 6,
+    "update_timestamp": 1686251867228,
+    "creation_timestamp": 1686251867228,
+    "data_key": "level_data:2b61qc7c8ie27k73j563h:1686245900:1",
+    "description": "How did i get in here..?",
+    "creators": [
+      "Monkebanan."
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 100,
+      "difficulty": 0.07777777777777778,
+      "liked": 1,
+      "time": 67.84398571428571
+    },
+    "creator": "Monkebanan."
+  },
+  {
+    "identifier": "29px3pmrktk2sms8qmvqb:1686267233",
+    "title": "Galactic Under World",
+    "complexity": 2510,
+    "format_version": 6,
+    "update_timestamp": 1686282671834,
+    "creation_timestamp": 1686282671834,
+    "data_key": "level_data:29px3pmrktk2sms8qmvqb:1686267233:1",
+    "description": "all purper:). kinda trippy tbh",
+    "creators": [
+      "CokeDeee"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 100,
+      "difficulty": 0.03125,
+      "liked": 1,
+      "time": 405.3776666666667
+    },
+    "creator": "CokeDeee"
+  },
+  {
+    "identifier": "29rkswgx13q8mej7mxdg6:1686004555",
+    "title": "Up Up And Away",
+    "complexity": 2880,
+    "format_version": 6,
+    "update_timestamp": 1686182757854,
+    "creation_timestamp": 1686182757854,
+    "data_key": "level_data:29rkswgx13q8mej7mxdg6:1686004555:1",
+    "description": "Go up and away for verrry long. Thanks to KooKooKrazy For the idea.",
+    "creators": [
+      "AFT_Daring",
+      "EBSpark"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 200,
+      "difficulty": 0,
+      "liked": 0,
+      "time": 100
+    },
+    "creator": "AFT_Daring"
+  },
+  {
+    "identifier": "2bmpewuihhr2fvfi5w1ah:1686244244",
+    "title": "void lurkers: Central (CHAPTER 4)",
+    "complexity": 1519,
+    "format_version": 6,
+    "update_timestamp": 1686274602580,
+    "creation_timestamp": 1686274602580,
+    "data_key": "level_data:2bmpewuihhr2fvfi5w1ah:1686244244:1",
+    "description": "after being captured by the watchers you have to escape your confines (I GOT 3000 PART LIMIT! MORE DETAIL INCOMING!)",
+    "creators": [
+      "Isaac533"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 100,
+      "difficulty": 0.06451612903225806,
+      "liked": 0.6,
+      "time": 168.59836666666666
+    },
+    "creator": "Isaac533"
+  },
+  {
+    "identifier": "2abebn7t4lq4ydl89oxje:1686176506",
+    "title": "Many Mushrooms",
+    "complexity": 1486,
+    "format_version": 6,
+    "update_timestamp": 1686248855333,
+    "creation_timestamp": 1686248855333,
+    "data_key": "level_data:2abebn7t4lq4ydl89oxje:1686176506:1",
+    "description": "The world has many mushrooms... kinda showcase.",
+    "creators": [
+      "FruitByTheFist",
+      "LowkeyVrPro",
+      "3zb",
+      "JC025"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 100,
+      "difficulty": 0.20652173913043478,
+      "liked": 0.45454545454545453,
+      "time": 85.47026842105264
+    },
+    "creator": "FruitByTheFist"
+  },
+  {
+    "identifier": "29srqtwaq08zzhp3kng3u:1686073905",
+    "title": "lava run",
+    "complexity": 480,
+    "format_version": 6,
+    "update_timestamp": 1686236270089,
+    "creation_timestamp": 1686236270089,
+    "data_key": "level_data:29srqtwaq08zzhp3kng3u:1686073905:1",
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 100,
+      "difficulty": 0,
+      "liked": 0,
+      "time": 100
+    }
+  },
+  {
+    "identifier": "2b4gnr7hbhzocxffnsjvm:1686333719",
+    "title": "defeat the grab",
+    "complexity": 654,
+    "format_version": 6,
+    "update_timestamp": 1686337794416,
+    "creation_timestamp": 1686337794416,
+    "data_key": "level_data:2b4gnr7hbhzocxffnsjvm:1686333719:1",
+    "creators": [
+      "sharkjrvr"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 100,
+      "difficulty": 0.08163265306122448,
+      "liked": 0.6666666666666666,
+      "time": 313.38375
+    },
+    "creator": "sharkjrvr"
+  },
+  {
+    "identifier": "29px3pmrktk2sms8qmvqb:1686283058",
+    "title": "MIXED Parkour",
+    "complexity": 1968,
+    "format_version": 6,
+    "update_timestamp": 1686286152717,
+    "creation_timestamp": 1686286152717,
+    "data_key": "level_data:29px3pmrktk2sms8qmvqb:1686283058:1",
+    "description": "Yesh",
+    "creators": [
+      "CokeDeee"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 100,
+      "difficulty": 0.03333333333333333,
+      "liked": 1,
+      "time": 701.5996666666666
+    },
+    "creator": "CokeDeee"
+  },
+  {
+    "identifier": "29px3pmrktk2sms8qmvqb:1686241661",
+    "title": "Over Grown Oasis",
+    "complexity": 2983,
+    "format_version": 6,
+    "update_timestamp": 1686281767241,
+    "creation_timestamp": 1686281767241,
+    "data_key": "level_data:29px3pmrktk2sms8qmvqb:1686241661:1",
+    "description": "what a beautiful over grown climb",
+    "creators": [
+      "CokeDeee"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 50,
+      "difficulty": 0.13043478260869565,
+      "liked": 0.6,
+      "time": 313.52683333333334
+    },
+    "creator": "CokeDeee"
+  },
+  {
+    "identifier": "2b4gnr7hbhzocxffnsjvm:1686321192",
+    "title": "rob the BANK",
+    "complexity": 1499,
+    "format_version": 6,
+    "update_timestamp": 1686327155743,
+    "creation_timestamp": 1686326391006,
+    "data_key": "level_data:2b4gnr7hbhzocxffnsjvm:1686321192:2",
+    "description": "i love it it is a fun map ",
+    "creators": [
+      "sharkjrvr",
+      "gage_rod"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 100,
+      "difficulty": 0.06315789473684211,
+      "liked": 0.5,
+      "time": 380.59683333333334
+    },
+    "creator": "sharkjrvr"
+  },
+  {
+    "identifier": "2a0ecfjge10z15wqk6em0:1684336884",
+    "title": "slowly ENDING",
+    "complexity": 1015,
+    "format_version": 6,
+    "update_timestamp": 1684344591253,
+    "creation_timestamp": 1684344050987,
+    "data_key": "level_data:2a0ecfjge10z15wqk6em0:1684336884:2",
+    "description": "THE END",
+    "creators": [
+      "phoendog"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 75,
+      "difficulty": 0.25757575757575757,
+      "liked": 0.6666666666666666,
+      "time": 71.09174705882353
+    },
+    "creator": "phoendog"
+  },
+  {
+    "identifier": "2bhybvldp23b2s9db65wk:1685361121",
+    "title": "prison escape 6(REMAKE)",
+    "complexity": 1040,
+    "format_version": 6,
+    "update_timestamp": 1685990558428,
+    "creation_timestamp": 1685990558428,
+    "data_key": "level_data:2bhybvldp23b2s9db65wk:1685361121:1",
+    "creators": [
+      "paul1978.2022"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 75,
+      "difficulty": 0.25675675675675674,
+      "liked": 0.6666666666666666,
+      "time": 107.44091052631579
+    },
+    "creator": "paul1978.2022"
+  },
+  {
+    "identifier": "2bjpnbdr1zax8xqvdmxo4:1686239004",
+    "title": "The corruption part 2: The forest",
+    "complexity": 2691,
+    "format_version": 6,
+    "update_timestamp": 1686328361404,
+    "creation_timestamp": 1686328361404,
+    "data_key": "level_data:2bjpnbdr1zax8xqvdmxo4:1686239004:1",
+    "description": "After leaving the factory you head to a forest looking for shelter... but who knows whats lurking out there.",
+    "creators": [
+      "lovinme"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 75,
+      "difficulty": 0.13432835820895522,
+      "liked": 0.8333333333333334,
+      "time": 163.85031111111115
+    },
+    "creator": "lovinme"
+  },
+  {
+    "identifier": "29l5545g062rp81w2y8d8:1668996888",
+    "title": "the rise of the blood moon (under the surfise",
+    "complexity": 2560,
+    "format_version": 6,
+    "update_timestamp": 1669072071511,
+    "creation_timestamp": 1669072071511,
+    "data_key": "level_data:29l5545g062rp81w2y8d8:1668996888:1",
+    "creators": [
+      "nexus0"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 100,
+      "difficulty": 0.0425531914893617,
+      "liked": 0.75,
+      "time": 336.0525
+    },
+    "creator": "nexus0"
+  },
+  {
+    "identifier": "29vwpoz1ta63oys21bvfv:1685538244",
+    "title": "monochromic",
+    "complexity": 1420,
+    "format_version": 6,
+    "update_timestamp": 1686150017863,
+    "creation_timestamp": 1686150017863,
+    "data_key": "level_data:29vwpoz1ta63oys21bvfv:1685538244:1",
+    "description": ".index - Level modding",
+    "creators": [
+      "dandestroys",
+      "otterboy",
+      "xanderiscooler",
+      "lunifocc"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 75,
+      "difficulty": 0.03125,
+      "liked": 1,
+      "time": 80.25715
+    },
+    "creator": "dandestroys"
+  },
+  {
+    "identifier": "2b61qc7c8ie27k73j563h:1686326427",
+    "title": "The Island Parkour.",
+    "complexity": 2764,
+    "format_version": 6,
+    "update_timestamp": 1686334949261,
+    "creation_timestamp": 1686334949261,
+    "data_key": "level_data:2b61qc7c8ie27k73j563h:1686326427:1",
+    "description": "This is beautuful.",
+    "creators": [
+      "Monkebanan."
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 50,
+      "difficulty": 0.14285714285714285,
+      "liked": 0.3333333333333333,
+      "time": 195.3358142857143
+    },
+    "creator": "Monkebanan."
+  },
+  {
+    "identifier": "29l5545g062rp81w2y8d8:1686087724",
+    "title": "waiting for good pro's for help",
+    "complexity": 2998,
+    "format_version": 6,
+    "update_timestamp": 1686180193072,
+    "creation_timestamp": 1686180193072,
+    "data_key": "level_data:29l5545g062rp81w2y8d8:1686087724:1",
+    "creators": [
+      "nexus0"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 75,
+      "difficulty": 0.015873015873015872,
+      "time": 259.005,
+      "liked": 0
+    },
+    "creator": "nexus0"
+  },
+  {
+    "identifier": "2ajh3ta3oul1bb2sw66r5:1685931579",
+    "title": "freezee rating system",
+    "complexity": 1523,
+    "format_version": 6,
+    "update_timestamp": 1686188474519,
+    "creation_timestamp": 1686188474519,
+    "data_key": "level_data:2ajh3ta3oul1bb2sw66r5:1685931579:1",
+    "creators": [
+      "freezeeduck",
+      "gman2giant",
+      "Socks-sucks"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 50,
+      "difficulty": 0.7,
+      "liked": 0.6666666666666666,
+      "time": 3.103954321428571
+    },
+    "creator": "freezeeduck"
+  },
+  {
+    "identifier": "29px3pmrktk2sms8qmvqb:1686339283",
+    "title": "Cosmos Clamber",
+    "complexity": 2557,
+    "format_version": 6,
+    "update_timestamp": 1686343310257,
+    "creation_timestamp": 1686343088855,
+    "data_key": "level_data:29px3pmrktk2sms8qmvqb:1686339283:2",
+    "description": "one of my rather shorter maps",
+    "creators": [
+      "CokeDeee",
+      "CoblerB1"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 25,
+      "difficulty": 0,
+      "liked": 0,
+      "time": 100
+    },
+    "creator": "CokeDeee"
+  },
+  {
     "identifier": "29v9vd6n9z45d16mi2o2n:1686183960",
     "title": "ARBORNE S2 lvl3 THE JUNKYARD",
     "complexity": 2343,
@@ -17,10 +556,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 200,
-      "difficulty": 0.04864864864864865,
+      "total_played": 500,
+      "difficulty": 0.05,
       "liked": 1,
-      "time": 80.23685555555555
+      "time": 139.07017727272725
     },
     "creator": "JEFFBOB"
   },
@@ -39,8 +578,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 400,
-      "difficulty": 0.0028653295128939827,
+      "total_played": 700,
+      "difficulty": 0.001694915254237288,
       "liked": 1,
       "time": 325.421
     },
@@ -63,10 +602,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 200,
-      "difficulty": 0.03910614525139665,
-      "liked": 0.5,
-      "time": 293.2557142857143
+      "total_played": 400,
+      "difficulty": 0.03651685393258427,
+      "liked": 0.6666666666666666,
+      "time": 340.6478461538461
     },
     "creator": "jeffbobdude"
   },
@@ -86,10 +625,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 200,
-      "difficulty": 0.016129032258064516,
+      "total_played": 500,
+      "difficulty": 0.013422818791946308,
       "liked": 1,
-      "time": 492.228
+      "time": 361.6888333333333
     },
     "creator": "CokeDeee"
   },
@@ -110,10 +649,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 100,
-      "difficulty": 0.1134020618556701,
-      "liked": 0.75,
-      "time": 127.36506363636363
+      "total_played": 300,
+      "difficulty": 0.17562724014336917,
+      "liked": 0.7777777777777778,
+      "time": 105.50152448979594
     },
     "creator": "gage_rod"
   },
@@ -138,10 +677,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 100,
-      "difficulty": 0.05263157894736842,
-      "liked": 0.8,
-      "time": 335.4006
+      "total_played": 200,
+      "difficulty": 0.03825136612021858,
+      "liked": 0.7142857142857143,
+      "time": 258.78285714285715
     },
     "creator": "Azazelgames51"
   },
@@ -185,10 +724,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 300,
-      "difficulty": 0.021897810218978103,
-      "liked": 0.75,
-      "time": 29.897316666666672
+      "total_played": 400,
+      "difficulty": 0.03038674033149171,
+      "liked": 0.5,
+      "time": 70.47067272727273
     },
     "creator": "AFT_Daring"
   },
@@ -208,10 +747,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 300,
-      "difficulty": 0.10954063604240283,
-      "liked": 0.75,
-      "time": 451.9567419354839
+      "total_played": 500,
+      "difficulty": 0.09740259740259741,
+      "liked": 0.7777777777777778,
+      "time": 504.01931111111116
     },
     "creator": "gage_rod"
   },
@@ -231,10 +770,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 400,
-      "difficulty": 0.062162162162162166,
-      "liked": 1,
-      "time": 128.3372
+      "total_played": 500,
+      "difficulty": 0.08314606741573034,
+      "liked": 0.9583333333333334,
+      "time": 132.94065405405408
     },
     "creator": "CokeDeee"
   },
@@ -254,8 +793,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 400,
-      "difficulty": 0.0027624309392265192,
+      "total_played": 500,
+      "difficulty": 0.002242152466367713,
       "liked": 1,
       "time": 1197.01
     },
@@ -279,10 +818,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 200,
-      "difficulty": 0.0427807486631016,
+      "total_played": 300,
+      "difficulty": 0.03260869565217391,
       "liked": 1,
-      "time": 147.9776125
+      "time": 139.05287777777778
     },
     "creator": "Isaac533"
   },
@@ -303,10 +842,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 200,
-      "difficulty": 0.19047619047619047,
-      "liked": 0.8518518518518519,
-      "time": 148.0348527777778
+      "total_played": 300,
+      "difficulty": 0.18772563176895307,
+      "liked": 0.85,
+      "time": 158.9379403846154
     },
     "creator": "JC025"
   },
@@ -327,10 +866,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 200,
-      "difficulty": 0.016304347826086956,
+      "total_played": 300,
+      "difficulty": 0.022641509433962263,
       "liked": 1,
-      "time": 54.28763333333333
+      "time": 37.89508333333333
     },
     "creator": "3zb"
   },
@@ -350,21 +889,21 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 400,
-      "difficulty": 0.06303724928366762,
-      "liked": 0.7333333333333333,
-      "time": 309.64286818181824
+      "total_played": 600,
+      "difficulty": 0.0611439842209073,
+      "liked": 0.8333333333333334,
+      "time": 334.7508258064517
     },
     "creator": "Convrist"
   },
   {
     "identifier": "2a3z4abfe72jix3igkiwm:1685834179",
     "title": "Fallout: Vault Grab Part 4",
-    "complexity": 2993,
+    "complexity": 2991,
     "format_version": 6,
-    "update_timestamp": 1686098024185,
+    "update_timestamp": 1686337186341,
     "creation_timestamp": 1686098024185,
-    "data_key": "level_data:2a3z4abfe72jix3igkiwm:1685834179:1",
+    "data_key": "level_data:2a3z4abfe72jix3igkiwm:1685834179:2",
     "description": "WARNING: Blood                                                             ''Fallout: Vault Grab'' Is an open-world series in Grab inspired by Bethesda's Fallout series.           Remember to take notes on what items and caps you have for future chapters.",
     "creators": [
       "Plushgaming",
@@ -374,10 +913,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 500,
-      "difficulty": 0.033936651583710405,
-      "liked": 0.8333333333333334,
-      "time": 337.96546666666666
+      "total_played": 600,
+      "difficulty": 0.044061302681992334,
+      "liked": 0.7894736842105263,
+      "time": 280.24206086956525
     },
     "creator": "Plushgaming"
   },
@@ -397,10 +936,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 300,
-      "difficulty": 0.48507462686567165,
-      "liked": 0.7,
-      "time": 25.51432699999997
+      "total_played": 400,
+      "difficulty": 0.48450704225352115,
+      "liked": 0.6884057971014492,
+      "time": 24.37830494186044
     },
     "creator": "Plushgaming"
   },
@@ -424,8 +963,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 300,
-      "difficulty": 0.007220216606498195,
+      "total_played": 400,
+      "difficulty": 0.005434782608695652,
       "liked": 1,
       "time": 22.088
     },
@@ -448,10 +987,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 500,
-      "difficulty": 0.23234624145785876,
-      "liked": 0.759493670886076,
-      "time": 51.05899019607842
+      "total_played": 600,
+      "difficulty": 0.23076923076923078,
+      "liked": 0.7340425531914894,
+      "time": 50.97975916666667
     },
     "creator": "soy705"
   },
@@ -715,10 +1254,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 100,
-      "difficulty": 0.05319148936170213,
+      "total_played": 200,
+      "difficulty": 0.0481283422459893,
       "liked": 1,
-      "time": 60.16376
+      "time": 59.683677777777774
     },
     "creator": "CoblerB1"
   },
@@ -856,10 +1395,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 100,
-      "difficulty": 0.22340425531914893,
-      "liked": 0.9230769230769231,
-      "time": 293.20433333333335
+      "total_played": 200,
+      "difficulty": 0.16129032258064516,
+      "liked": 0.85,
+      "time": 375.8163
     },
     "creator": "CokeDeee DamondStrke"
   },
@@ -904,10 +1443,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 600,
-      "difficulty": 0.03353057199211045,
-      "liked": 0.75,
-      "time": 190.3499823529412
+      "total_played": 700,
+      "difficulty": 0.03367003367003367,
+      "liked": 0.7142857142857143,
+      "time": 189.60228500000002
     },
     "creator": "SOY705"
   },
@@ -1149,10 +1688,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 300,
-      "difficulty": 0.07971014492753623,
-      "liked": 0.7,
-      "time": 398.96586363636374
+      "total_played": 400,
+      "difficulty": 0.08683473389355742,
+      "liked": 0.7407407407407407,
+      "time": 375.8471290322581
     }
   },
   {
@@ -1518,10 +2057,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 200,
-      "difficulty": 0.7595628415300546,
-      "liked": 0.7913043478260869,
-      "time": 32.539604388489195
+      "total_played": 300,
+      "difficulty": 0.7664233576642335,
+      "liked": 0.7687861271676301,
+      "time": 32.10467528571428
     },
     "creator": "CoblerB1"
   },
@@ -1725,10 +2264,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 400,
-      "difficulty": 0.7551020408163265,
-      "liked": 0.7534883720930232,
-      "time": 71.80253629343629
+      "total_played": 500,
+      "difficulty": 0.7517899761336515,
+      "liked": 0.7713178294573644,
+      "time": 71.82567777777774
     },
     "creator": "Plushgaming"
   },
@@ -1759,11 +2298,11 @@
   {
     "identifier": "2a3z4abfe72jix3igkiwm:1685492283",
     "title": "Fallout: Vault Grab Part 3",
-    "complexity": 2994,
+    "complexity": 2991,
     "format_version": 6,
-    "update_timestamp": 1685819652499,
+    "update_timestamp": 1686335594161,
     "creation_timestamp": 1685819360093,
-    "data_key": "level_data:2a3z4abfe72jix3igkiwm:1685492283:3",
+    "data_key": "level_data:2a3z4abfe72jix3igkiwm:1685492283:4",
     "description": "Warning: Mild Language, Blood                                        Write down how many caps and items you have, they'll be more useful in later parts.                                 Fallout: Vault Grab is an open-world grab series inspired by Bethesda's Fallout franchize.",
     "creators": [
       "Plushgaming",
@@ -2571,10 +3110,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 600,
-      "difficulty": 0.07722007722007722,
-      "liked": 0.8846153846153846,
-      "time": 56.00140249999997
+      "total_played": 700,
+      "difficulty": 0.0723905723905724,
+      "liked": 0.8888888888888888,
+      "time": 54.11422325581393
     },
     "creator": "bonzi45"
   },
@@ -2687,10 +3226,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 400,
-      "difficulty": 0,
-      "liked": 0,
-      "time": 100
+      "total_played": 500,
+      "difficulty": 0.004608294930875576,
+      "liked": 1,
+      "time": 548.5070000000001
     },
     "creator": ".index / NSKC7"
   },
@@ -2709,8 +3248,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 400,
-      "difficulty": 0.008403361344537815,
+      "total_played": 500,
+      "difficulty": 0.0069767441860465115,
       "liked": 1,
       "time": 2367.6266666666666
     },
@@ -2804,10 +3343,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 900,
-      "difficulty": 0.004405286343612335,
-      "time": 177.649,
-      "liked": 0
+      "total_played": 1000,
+      "difficulty": 0.005298013245033113,
+      "liked": 1,
+      "time": 180.94625
     },
     "creator": "milo"
   },
@@ -3102,10 +3641,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 700,
-      "difficulty": 0.5104166666666666,
-      "liked": 0.7887931034482759,
-      "time": 46.00371360544214
+      "total_played": 800,
+      "difficulty": 0.4984848484848485,
+      "liked": 0.78125,
+      "time": 46.711548632218786
     },
     "creator": "Cool_guy28"
   },
@@ -3125,10 +3664,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 300,
-      "difficulty": 0,
-      "liked": 0,
-      "time": 100
+      "total_played": 400,
+      "difficulty": 0.0121580547112462,
+      "time": 1934.0275000000001,
+      "liked": 0
     },
     "creator": ".index"
   },
@@ -4036,10 +4575,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 600,
-      "difficulty": 0.00196078431372549,
+      "total_played": 700,
+      "difficulty": 0.0067226890756302525,
       "liked": 1,
-      "time": 309.479
+      "time": 512.39975
     },
     "creator": "jeffbobdude"
   },
@@ -5053,7 +5592,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 200,
+      "total_played": 300,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -5098,10 +5637,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 400,
-      "difficulty": 0.21613832853025935,
-      "liked": 0.746031746031746,
-      "time": 116.15975733333335
+      "total_played": 500,
+      "difficulty": 0.23317307692307693,
+      "liked": 0.75,
+      "time": 120.59924793814434
     },
     "creator": "pnut"
   },
@@ -5472,10 +6011,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 600,
-      "difficulty": 0.4343065693430657,
-      "liked": 0.8032786885245902,
-      "time": 84.08247626050414
+      "total_played": 700,
+      "difficulty": 0.42356687898089174,
+      "liked": 0.7971014492753623,
+      "time": 84.63005620300746
     },
     "creator": "lejoalejo"
   },
@@ -5979,10 +6518,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 400,
-      "difficulty": 0.03783783783783784,
-      "liked": 0.8333333333333334,
-      "time": 451.79685714285705
+      "total_played": 500,
+      "difficulty": 0.043668122270742356,
+      "liked": 0.8125,
+      "time": 419.90598
     },
     "creator": "Bitmoon69 Ans Seasonedtuna"
   },
@@ -6593,8 +7132,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1100,
-      "difficulty": 0.0034522439585730723,
+      "total_played": 1200,
+      "difficulty": 0.0031479538300104933,
       "liked": 1,
       "time": 3095.3566666666666
     },
@@ -7048,10 +7587,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1700,
-      "difficulty": 0.4090554254488681,
-      "liked": 0.8076923076923077,
-      "time": 86.50312137404573
+      "total_played": 1800,
+      "difficulty": 0.40089086859688194,
+      "liked": 0.8037383177570093,
+      "time": 86.40107296296291
     },
     "creator": "milo"
   },
@@ -7826,10 +8365,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 700,
-      "difficulty": 0.029874213836477988,
-      "liked": 0.7692307692307693,
-      "time": 182.7404210526316
+      "total_played": 800,
+      "difficulty": 0.028965517241379312,
+      "liked": 0.7333333333333333,
+      "time": 208.0038095238095
     },
     "creator": "jeffbobdude"
   },
@@ -8286,10 +8825,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 200,
-      "difficulty": 0.25748502994011974,
-      "liked": 0.9285714285714286,
-      "time": 276.0536976744186
+      "total_played": 300,
+      "difficulty": 0.265625,
+      "liked": 0.8695652173913043,
+      "time": 284.2592647058823
     },
     "creator": "taco190876"
   },
@@ -8428,10 +8967,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2400,
-      "difficulty": 0.1187374749498998,
-      "liked": 0.8920454545454546,
-      "time": 272.9505333333334
+      "total_played": 2500,
+      "difficulty": 0.11773185968284479,
+      "liked": 0.8784530386740331,
+      "time": 280.8905448979592
     },
     "creator": "jeffbobdude"
   },
@@ -9793,8 +10332,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 900,
-      "difficulty": 0.002621231979030144,
+      "total_played": 1000,
+      "difficulty": 0.0024009603841536613,
       "liked": 1,
       "time": 284.35450000000003
     },
@@ -9886,10 +10425,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 900,
-      "difficulty": 0.258777633289987,
-      "liked": 0.8571428571428571,
-      "time": 129.12370502512556
+      "total_played": 1000,
+      "difficulty": 0.2646370023419204,
+      "liked": 0.852760736196319,
+      "time": 125.32773849557518
     },
     "creator": "CactoAesis5"
   },
@@ -10347,10 +10886,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 500,
-      "difficulty": 0.05855855855855856,
-      "liked": 0.7894736842105263,
-      "time": 132.93877692307694
+      "total_played": 600,
+      "difficulty": 0.06513409961685823,
+      "liked": 0.7916666666666666,
+      "time": 117.62500000000004
     },
     "creator": "wpbrotherly"
   },
@@ -10878,10 +11417,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 200,
-      "difficulty": 0.05699481865284974,
-      "liked": 0.8,
-      "time": 35.09321818181818
+      "total_played": 300,
+      "difficulty": 0.05985915492957746,
+      "liked": 0.6666666666666666,
+      "time": 59.95567058823529
     },
     "creator": "katie.danels.505"
   },
@@ -10951,10 +11490,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 800,
-      "difficulty": 0.021961932650073207,
+      "total_played": 900,
+      "difficulty": 0.020942408376963352,
       "liked": 1,
-      "time": 110.81900666666667
+      "time": 110.21519375
     },
     "creator": "KPW120"
   },
@@ -11161,10 +11700,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 100,
-      "difficulty": 0.010101010101010102,
-      "time": 36.426,
-      "liked": 0
+      "total_played": 200,
+      "difficulty": 0.021164021164021163,
+      "liked": 1,
+      "time": 81.435225
     },
     "creator": "katie.danels.505 and Candyy kidzz"
   },
@@ -14466,10 +15005,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 600,
-      "difficulty": 0.033210332103321034,
-      "liked": 0.8181818181818182,
-      "time": 289.07494444444444
+      "total_played": 700,
+      "difficulty": 0.030303030303030304,
+      "liked": 0.8333333333333334,
+      "time": 285.5577894736842
     },
     "creator": "Jeffbobdude"
   },
@@ -15076,8 +15615,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 400,
-      "difficulty": 0.0028169014084507044,
+      "total_played": 500,
+      "difficulty": 0.0023148148148148147,
       "liked": 1,
       "time": 39.778
     },
@@ -15189,8 +15728,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1100,
-      "difficulty": 0.005393743257820928,
+      "total_played": 1200,
+      "difficulty": 0.004921259842519685,
       "liked": 1,
       "time": 34.5117
     },
@@ -15327,8 +15866,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 500,
-      "difficulty": 0.010940919037199124,
+      "total_played": 600,
+      "difficulty": 0.009157509157509158,
       "liked": 0.6666666666666666,
       "time": 373.30160000000006
     },
@@ -15693,10 +16232,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 600,
-      "difficulty": 0.027932960893854747,
-      "liked": 0.7777777777777778,
-      "time": 716.8045333333333
+      "total_played": 700,
+      "difficulty": 0.030303030303030304,
+      "liked": 0.8333333333333334,
+      "time": 711.808
     },
     "creator": "ocgrb"
   },
@@ -17235,8 +17774,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 700,
-      "difficulty": 0.015463917525773196,
+      "total_played": 800,
+      "difficulty": 0.01355421686746988,
       "liked": 1,
       "time": 373.3475555555556
     },
@@ -17641,10 +18180,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1600,
-      "difficulty": 0.27751196172248804,
-      "liked": 0.8482758620689655,
-      "time": 155.5910916666667
+      "total_played": 1700,
+      "difficulty": 0.2750759878419453,
+      "liked": 0.847682119205298,
+      "time": 154.71313149171272
     },
     "creator": "stirto77"
   },
@@ -17942,8 +18481,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 600,
-      "difficulty": 0.001763668430335097,
+      "total_played": 700,
+      "difficulty": 0.0015037593984962407,
       "time": 143.638,
       "liked": 0
     },
@@ -18336,10 +18875,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 11200,
-      "difficulty": 0.12120026092628833,
-      "liked": 0.8121693121693122,
-      "time": 178.34697998923576
+      "total_played": 11400,
+      "difficulty": 0.12240184757505773,
+      "liked": 0.8105670103092784,
+      "time": 178.22465766247385
     },
     "creator": "gray"
   },
@@ -18703,10 +19242,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1700,
-      "difficulty": 0.025658338960162053,
-      "liked": 0.92,
-      "time": 222.91165789473683
+      "total_played": 1800,
+      "difficulty": 0.030031948881789138,
+      "liked": 0.8709677419354839,
+      "time": 215.69733404255314
     },
     "creator": "cat.on.gtag cyclops_22"
   },
@@ -19026,10 +19565,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 300,
-      "difficulty": 0.014336917562724014,
-      "liked": 0.5,
-      "time": 92.42425
+      "total_played": 400,
+      "difficulty": 0.013623978201634877,
+      "liked": 0.6666666666666666,
+      "time": 81.9208
     },
     "creator": "JC025"
   },
@@ -21000,10 +21539,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 12300,
-      "difficulty": 0.19483996592430328,
-      "liked": 0.8414918414918415,
-      "time": 343.01663560274795
+      "total_played": 12400,
+      "difficulty": 0.1948773710281503,
+      "liked": 0.8419429452582884,
+      "time": 342.2017412275259
     },
     "creator": "milo"
   },
@@ -21139,10 +21678,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1500,
-      "difficulty": 0.044298605414273995,
-      "liked": 0.8235294117647058,
-      "time": 242.6369774074075
+      "total_played": 1600,
+      "difficulty": 0.04404945904173107,
+      "liked": 0.8333333333333334,
+      "time": 240.66611807017551
     },
     "creator": "FROSTY_CROSS"
   },
@@ -22556,6 +23095,7 @@
       "liked": 0.6785714285714286,
       "time": 87.3330258064516
     },
+    "page_timestamp": "AAAAAD03nYeON7Khr1xUhihThyiNGGWnzUcJ-947YsKtCmlzsWGq1_7WSOv07KmV6y_T_OeXQpOMJMLVQJyCJGaoLnzfpgOqkerAMDD3pXsS25_L-2LBdYzBAJBR0Gy0itBMOCWylrWIHE3ipdW76jp84l4BGdt-DXICi-kDiYa9NiWncjN0G77DLOV6dqL85xYrvZqenGYOwn0lzb6TCtseP3XnC4O2kCwaHcYEHc1y9T6woAu2cEwPKNxMCfQK76QTX4HgIroBNfw4eDx1pe0VTgseYt-by-eX5D5swUKALOn3kc0Eo8AHrk1Oso2_bj5hRoVA5ql0dD6axg9aixPSzud9FUAPbfLR7IzVQjBXUHHFSxbT_k4aDbxB5WCDs9Iuvi7N8bNAg73Nlk8yTop050DZ4yM",
     "creator": "taco190876"
   },
   {
@@ -22851,10 +23391,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 800,
-      "difficulty": 0.04011461318051576,
+      "total_played": 900,
+      "difficulty": 0.03787878787878788,
       "liked": 0.7368421052631579,
-      "time": 168.25484999999995
+      "time": 164.59906333333328
     },
     "creator": "brook"
   },
@@ -23083,7 +23623,6 @@
       "liked": 1,
       "time": 287.88019999999995
     },
-    "page_timestamp": "AAAAAJDVF4vSE868ZJfOkjNkozZmTUla4LJq6yVWyY1fco1tVPIQFnHPflDnBNIABVAuMXzQ0XnM2Af-YXfsbZNlUmpLFBMDb0libi5GrKV2punxa2ytelhUsSKAEamO9wR-h8JGIYI2ijCwJXsdp3jCYBAb_UNRdLCz43n2lvgWtr2jyeP98MvBOy2gdUHI9401wbOi7pKVNs3HON9S3_d4eCqRBtRb6F2XaDCWGcQCXvvrIn3VfxJ9NzI1utqZrLFdjp775xXzXHA7xY6ljS_EgW2BSSIUUWb2Q49Wb3wL2MWRj3x_lZ1CW_v0x3j3GmvYUh-rdWTZ_5CRUOTgmJhhrCBL3pG4gc7ASRbOQQSwUjPhkoqCMMErciW1SX600UmXx39kgntGM20DASI6-x9TmFWTn_k",
     "creator": "oreo xyml09"
   },
   {
@@ -25092,7 +25631,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 4100,
+      "total_played": 4300,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -25796,10 +26335,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1300,
-      "difficulty": 0.11672473867595819,
-      "liked": 0.7623762376237624,
-      "time": 245.81274552238804
+      "total_played": 1400,
+      "difficulty": 0.11209677419354838,
+      "liked": 0.7692307692307693,
+      "time": 241.2034165467626
     }
   },
   {
@@ -26448,10 +26987,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 800,
-      "difficulty": 0.016689847009735744,
-      "liked": 0.75,
-      "time": 443.01441666666665
+      "total_played": 900,
+      "difficulty": 0.01726263871763255,
+      "liked": 0.8,
+      "time": 398.7205714285714
     },
     "creator": "XYLM09"
   },
@@ -28207,10 +28746,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 4400,
-      "difficulty": 0.0022123893805309734,
-      "liked": 0.8571428571428571,
-      "time": 109.31114285714287
+      "total_played": 4600,
+      "difficulty": 0.002433830240340736,
+      "liked": 0.875,
+      "time": 101.73998750000001
     },
     "creator": ".index (NSKC7)"
   },
@@ -28695,7 +29234,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3800,
+      "total_played": 3900,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -29691,10 +30230,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 600,
-      "difficulty": 0.011406844106463879,
-      "liked": 1,
-      "time": 317.182
+      "total_played": 700,
+      "difficulty": 0.012965964343598054,
+      "liked": 0.8,
+      "time": 339.782125
     },
     "creator": "lachlann"
   },
@@ -33254,10 +33793,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 900,
-      "difficulty": 0.3244949494949495,
-      "liked": 0.7169811320754716,
-      "time": 207.26132334630353
+      "total_played": 1000,
+      "difficulty": 0.33031674208144796,
+      "liked": 0.7291666666666666,
+      "time": 195.8782585616438
     },
     "creator": "AFT studios"
   },
@@ -33389,10 +33928,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 700,
-      "difficulty": 0.0374414976599064,
-      "liked": 0.9473684210526315,
-      "time": 384.1990874999999
+      "total_played": 800,
+      "difficulty": 0.04264099037138927,
+      "liked": 0.9230769230769231,
+      "time": 347.0000677419354
     },
     "creator": "Sturdy_like_B_Arthur"
   },
@@ -33734,10 +34273,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1100,
-      "difficulty": 0.14570230607966456,
-      "liked": 0.8217821782178217,
-      "time": 57.134812230215836
+      "total_played": 1200,
+      "difficulty": 0.142721217887726,
+      "liked": 0.8090909090909091,
+      "time": 56.88370466666668
     },
     "creator": "jeffbobdude"
   },
@@ -33800,10 +34339,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 800,
-      "difficulty": 0.047895500725689405,
-      "liked": 0.8461538461538461,
-      "time": 50.53918787878787
+      "total_played": 900,
+      "difficulty": 0.04974489795918367,
+      "liked": 0.8709677419354839,
+      "time": 54.51464615384615
     },
     "creator": "jeffbobdude"
   },
@@ -34520,8 +35059,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 600,
-      "difficulty": 0.007104795737122558,
+      "total_played": 700,
+      "difficulty": 0.0060882800608828,
       "liked": 0.6666666666666666,
       "time": 289.18275
     },
@@ -35132,10 +35671,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1300,
-      "difficulty": 0.05108225108225108,
+      "total_played": 1400,
+      "difficulty": 0.04830917874396135,
       "liked": 0.9459459459459459,
-      "time": 325.53345258796594
+      "time": 321.61077671149985
     },
     "creator": "cokedee"
   },
@@ -35384,10 +35923,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2400,
-      "difficulty": 0.22321899736147757,
-      "liked": 0.768595041322314,
-      "time": 209.12377706855818
+      "total_played": 2500,
+      "difficulty": 0.2228398180899444,
+      "liked": 0.7654986522911051,
+      "time": 206.8968632653064
     },
     "creator": "otterboy06 & dandesroys"
   },
@@ -36143,10 +36682,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8089,
-      "difficulty": 0.5363138060979787,
-      "liked": 0.7816,
-      "time": 57.279377407175005
+      "total_played": 8189,
+      "difficulty": 0.5380443992543636,
+      "liked": 0.7815457413249212,
+      "time": 57.23980060477995
     },
     "creator": "milo"
   },
@@ -36167,10 +36706,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 11800,
-      "difficulty": 0.16940317956737033,
-      "liked": 0.8252427184466019,
-      "time": 265.0422167692307
+      "total_played": 11900,
+      "difficulty": 0.1698137609932747,
+      "liked": 0.8261802575107297,
+      "time": 264.87406230007605
     },
     "creator": "milo"
   },
@@ -36407,8 +36946,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1700,
-      "difficulty": 0.0028208744710860366,
+      "total_played": 1800,
+      "difficulty": 0.002664890073284477,
       "liked": 1,
       "time": 842.6117499999999
     },
@@ -37560,10 +38099,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 500,
-      "difficulty": 0.08388520971302428,
-      "liked": 0.9259259259259259,
-      "time": 111.86771315789474
+      "total_played": 600,
+      "difficulty": 0.07272727272727272,
+      "liked": 0.896551724137931,
+      "time": 109.47720250000002
     },
     "creator": "HBOMB0906"
   },
@@ -38086,10 +38625,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 700,
-      "difficulty": 0.029780564263322883,
+      "total_played": 800,
+      "difficulty": 0.028846153846153848,
       "liked": 0.7857142857142857,
-      "time": 249.86900000000003
+      "time": 256.42461904761905
     },
     "creator": "cyclops_22 CursedPhantom"
   },
@@ -38976,10 +39515,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 10500,
-      "difficulty": 0.02811048643363481,
-      "liked": 0.8427672955974843,
-      "time": 1351.719056956523
+      "total_played": 10600,
+      "difficulty": 0.028117803902557265,
+      "liked": 0.84375,
+      "time": 1650.8704831896564
     },
     "creator": "boohoo77"
   },
@@ -39638,10 +40177,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1700,
-      "difficulty": 0.061686086360520906,
-      "liked": 0.8260869565217391,
-      "time": 281.80878888888867
+      "total_played": 1800,
+      "difficulty": 0.06334841628959276,
+      "liked": 0.8441558441558441,
+      "time": 280.1978367346937
     },
     "creator": "Glitchkiller"
   },
@@ -40709,8 +41248,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 29700,
-      "difficulty": 0.00922096413316157,
+      "total_played": 30000,
+      "difficulty": 0.009151470291366665,
       "liked": 0.7476635514018691,
       "time": 100.47220948529413
     },
@@ -41860,10 +42399,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1600,
-      "difficulty": 0.10151187904967603,
-      "liked": 0.7314814814814815,
-      "time": 410.3852985815603
+      "total_played": 1700,
+      "difficulty": 0.10114632501685772,
+      "liked": 0.7478260869565218,
+      "time": 409.4600206666667
     },
     "creator": "cyclops_22"
   },
@@ -44124,8 +44663,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 15800,
-      "difficulty": 0.0034857927537762755,
+      "total_played": 16000,
+      "difficulty": 0.0034450360162856246,
       "liked": 0.8181818181818182,
       "time": 180.03518484848487
     },
@@ -44405,8 +44944,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8000,
-      "difficulty": 0.00016005121638924455,
+      "total_played": 8100,
+      "difficulty": 0.00015837820715869496,
       "liked": 1,
       "time": 15388.4
     },
@@ -45581,6 +46120,7 @@
       "time": 18.411,
       "liked": 0
     },
+    "page_timestamp": "AAAAAD_PmnlckcbAmGb0Qm_tfbmmU6hwO14Rt8UEU-7Ofulf9YhjHthWI2niusru3U0FGxX67m-ka2fDXsUwRhjQa2ESXJsTYJzf9-ErcubrbY5f8KBpcOU6k-ug7Myw1ZozBaEi7hEDctifIbOm0zSHTmIOedOxUaT1Lm-lgAvkYjb7eF04Ru-PVc6oKrNqCH--god10rU2KJkxRO1CDA4pTCoXpiVK8s0uLTXZfjWcmqlHUJtTqsSDH07_3gdboN-yzkh8LRpxN9A2faJtPcBtk7eyD3wxSNMVwY_FdidV93PaQYKBFYxhZOHgVYe-KGVqAY3p2ykSbnkyJnhA8T5GGlWWank6rFKZTl78ONif_qdJl-7AG_4Ojqk6AEcna_cxebo1WGI2rOpJWKYrgQ848-S8-C4",
     "creator": "CoblerB1"
   },
   {
@@ -46114,7 +46654,6 @@
       "liked": 0.7610619469026548,
       "time": 344.720237086093
     },
-    "page_timestamp": "AAAAAGK4sySETSn-hY3F7EAjiXKqOV36sIjDCBcZ2IProv4C0BWZVj5Pej_miJEFHcpKogyzLuG4FEOAwimzcYMGVmcf-awn8qZ-O_Nb0kjyZ3v_ZQQXi0MHgFSQLYVN0vB77azKaGJU6cqmu9LCq-N4Ss5krt1lkSr5R0x_K4bYdbU3S5Ae8Q88WZcEpRZ7dbQWPscFczq-vKRvlIpobsT0LUrsdunzKVRvzMtLYMxtmEnIasX--Bzt4quVVoINEAGISX-gdTxcy9HnbUodQvo8dGgDN-dPlhT9Uq8aQMRH0knQOYZpIWcCHcbpOTG7Z7QnklFAvUcpDL5aQWNAY8pt0tJZXp0cncwFEYY4Wz5Jyy_GmwbNqoZlzvkOhpPDKswPaU2rJGm1Buy6ot0LX-6gT0c-ntw",
     "creator": "ImagineButter"
   },
   {
@@ -46671,10 +47210,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3500,
-      "difficulty": 0.08019028202514442,
-      "liked": 0.8313953488372093,
-      "time": 278.909997482966
+      "total_played": 3600,
+      "difficulty": 0.08272907053394858,
+      "liked": 0.819672131147541,
+      "time": 272.23063348996004
     },
     "creator": "levi8020"
   },
@@ -47445,8 +47984,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1300,
-      "difficulty": 0.0008849557522123894,
+      "total_played": 1400,
+      "difficulty": 0.0008203445447087777,
       "time": 462.33,
       "liked": 0
     },
@@ -48713,10 +49252,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2100,
-      "difficulty": 0.22409909909909909,
-      "liked": 0.7222222222222222,
-      "time": 77.25507889447233
+      "total_played": 2200,
+      "difficulty": 0.21918542336548769,
+      "liked": 0.7207207207207207,
+      "time": 76.91804914425424
     },
     "creator": "chunky monke1212"
   },
@@ -49721,8 +50260,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 36500,
-      "difficulty": 0.00030237363301920074,
+      "total_played": 36600,
+      "difficulty": 0.00030152268958239106,
       "liked": 0.8333333333333334,
       "time": 6035.223333333334
     },
@@ -54302,8 +54841,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7600,
-      "difficulty": 0.00016986580601324953,
+      "total_played": 7700,
+      "difficulty": 0.0001678133915086424,
       "liked": 0,
       "time": 5176.929
     },
@@ -54771,10 +55310,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1900,
-      "difficulty": 0.0076832151300236405,
-      "liked": 0.7142857142857143,
-      "time": 309.2763076923077
+      "total_played": 2000,
+      "difficulty": 0.007851934941110488,
+      "liked": 0.75,
+      "time": 303.957
     },
     "creator": "gman2giant"
   },
@@ -55652,10 +56191,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3700,
-      "difficulty": 0.07689735874289536,
-      "liked": 0.7853107344632768,
-      "time": 410.5472934782609
+      "total_played": 3800,
+      "difficulty": 0.07809957696062479,
+      "liked": 0.7868852459016393,
+      "time": 407.9457770833333
     },
     "creator": "diego2lego"
   },
@@ -56401,10 +56940,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1400,
-      "difficulty": 0.1764240506329114,
-      "liked": 0.7717391304347826,
-      "time": 102.17212331838563
+      "total_played": 1500,
+      "difficulty": 0.181549815498155,
+      "liked": 0.7871287128712872,
+      "time": 100.32534065040649
     },
     "creator": "SteijeAwesome"
   },
@@ -57054,10 +57593,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 22800,
-      "difficulty": 0.38456322748333144,
-      "liked": 0.7803908006225143,
-      "time": 170.3695972345142
+      "total_played": 22900,
+      "difficulty": 0.3846370287000563,
+      "liked": 0.7806473829201102,
+      "time": 170.284176163585
     },
     "creator": "Sismond (Toothless Fish)"
   },
@@ -57125,10 +57664,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3400,
-      "difficulty": 0.29156626506024097,
-      "liked": 0.7861356932153393,
-      "time": 135.3249383931996
+      "total_played": 3500,
+      "difficulty": 0.29332886356017435,
+      "liked": 0.7868383404864091,
+      "time": 134.6135061931886
     },
     "creator": "Shadowmaker99"
   },
@@ -58502,10 +59041,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 4100,
-      "difficulty": 0.5288235294117647,
-      "liked": 0.7532736044107512,
-      "time": 67.78361646273638
+      "total_played": 4200,
+      "difficulty": 0.5278096330275229,
+      "liked": 0.7547169811320755,
+      "time": 67.61427121129819
     },
     "creator": "kookookrazy"
   },
@@ -58707,8 +59246,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 92400,
-      "difficulty": 0.0018260478705472525,
+      "total_played": 92500,
+      "difficulty": 0.001824049389645012,
       "liked": 0.8444444444444444,
       "time": 2404.1222153846143
     },
@@ -60198,10 +60737,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1700,
-      "difficulty": 0.11545988258317025,
-      "liked": 0.8275862068965517,
-      "time": 249.69036214689274
+      "total_played": 1800,
+      "difficulty": 0.12039312039312039,
+      "liked": 0.8269230769230769,
+      "time": 242.42304846938782
     },
     "creator": "Triplecyber57"
   },
@@ -61287,10 +61826,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 14200,
-      "difficulty": 0.4083943470117487,
-      "liked": 0.8055413032324269,
-      "time": 65.49496089222457
+      "total_played": 14300,
+      "difficulty": 0.40944482058226134,
+      "liked": 0.8048346055979644,
+      "time": 65.36339472922727
     },
     "creator": "kookookrazy"
   },
@@ -61544,10 +62083,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2200,
-      "difficulty": 0.059326294620412265,
-      "liked": 0.8620689655172413,
-      "time": 198.29811864406778
+      "total_played": 2300,
+      "difficulty": 0.05808929428708593,
+      "liked": 0.8666666666666667,
+      "time": 195.6345140495868
     },
     "creator": "BeanBoiVR"
   },
@@ -61659,10 +62198,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 47200,
-      "difficulty": 0.4938317016580839,
-      "liked": 0.7679743028977584,
-      "time": 77.73254237437686
+      "total_played": 47300,
+      "difficulty": 0.49382785797011386,
+      "liked": 0.7679923596425404,
+      "time": 77.72280281375126
     },
     "creator": "kookookrazy"
   },
@@ -61703,10 +62242,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 20800,
-      "difficulty": 0.6944742809404464,
-      "liked": 0.7310870265049898,
-      "time": 28.774551378243714
+      "total_played": 20900,
+      "difficulty": 0.6943651925820257,
+      "liked": 0.7308103485140047,
+      "time": 28.782863417223094
     },
     "creator": "kookookrazy"
   },
@@ -62571,10 +63110,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 41992,
-      "difficulty": 0.3103167627046912,
-      "liked": 0.802567006417516,
-      "time": 248.54167572885154
+      "total_played": 42092,
+      "difficulty": 0.31030673251884583,
+      "liked": 0.8027885943976887,
+      "time": 248.39445256859472
     },
     "creator": "KingBrody1"
   },
@@ -62917,7 +63456,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 6437,
+      "total_played": 6537,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -63273,8 +63812,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 96500,
-      "difficulty": 0.00030938200943615127,
+      "total_played": 96700,
+      "difficulty": 0.0003087928771776331,
       "liked": 0.7619047619047619,
       "time": 2360.124666666667
     },
@@ -64406,8 +64945,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 28300,
-      "difficulty": 0.00354961632823511,
+      "total_played": 28400,
+      "difficulty": 0.003537981269510926,
       "liked": 0.8133333333333334,
       "time": 90.48093735294115
     },
@@ -65027,10 +65566,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 42700,
-      "difficulty": 0.09392456755403167,
+      "total_played": 42800,
+      "difficulty": 0.09372236958443855,
       "liked": 0.8396135265700483,
-      "time": 44.12975290906066
+      "time": 44.128245320873624
     },
     "creator": "TheOfficialRoomba"
   },
@@ -65327,10 +65866,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1800,
-      "difficulty": 0.20768753874767515,
-      "liked": 0.8346456692913385,
-      "time": 136.41181014925382
+      "total_played": 1900,
+      "difficulty": 0.20539906103286384,
+      "liked": 0.8295454545454546,
+      "time": 133.95857600000008
     },
     "creator": "WASDToWalk"
   },
@@ -65505,8 +66044,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7300,
-      "difficulty": 0.00016471750947125678,
+      "total_played": 7500,
+      "difficulty": 0.00016079755587715066,
       "liked": 0.75,
       "time": 4.287
     },
@@ -65991,10 +66530,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 9635,
-      "difficulty": 0.4930078217587106,
-      "liked": 0.8114400689853406,
-      "time": 60.725763608176514
+      "total_played": 9735,
+      "difficulty": 0.4934256867809345,
+      "liked": 0.8105952720022785,
+      "time": 60.62017983277628
     },
     "creator": "KingBrody1"
   },
@@ -66083,10 +66622,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 26276,
-      "difficulty": 0.3557943653790299,
-      "liked": 0.8071057754704737,
-      "time": 109.53356705291115
+      "total_played": 26376,
+      "difficulty": 0.35575067541489774,
+      "liked": 0.8074373484236055,
+      "time": 109.47246656184812
     },
     "creator": "KingBrody1"
   },
@@ -66617,8 +67156,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 88488,
-      "difficulty": 0.0006473832767951938,
+      "total_played": 88588,
+      "difficulty": 0.0006466966733923121,
       "liked": 0.7419354838709677,
       "time": 1325.5311999999997
     },
@@ -66921,10 +67460,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 44451,
-      "difficulty": 0.2338561960901855,
-      "liked": 0.7808893414799728,
-      "time": 187.73428390424903
+      "total_played": 44551,
+      "difficulty": 0.23403901758117585,
+      "liked": 0.7799391069012178,
+      "time": 187.56315004584994
     },
     "creator": "levi8020"
   },
@@ -67299,8 +67838,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 4917,
-      "difficulty": 0.0005005005005005005,
+      "total_played": 5017,
+      "difficulty": 0.0004911591355599214,
       "liked": 0.5,
       "time": 155.18599500000002
     },
@@ -68478,8 +69017,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2148,
-      "difficulty": 0.012926577042399173,
+      "total_played": 2248,
+      "difficulty": 0.0123334977799704,
       "liked": 0.9333333333333333,
       "time": 1304.5988399999999
     },
@@ -68622,6 +69161,7 @@
       "liked": 0.8163934426229508,
       "time": 95.53485452316079
     },
+    "page_timestamp": "AAAAAFNLhBi6qkOZD4DinbYGLTPpHCs2Kq1DrHk1HnTXUADk2ZNqqmuN4ePx2MyiML597rwYnMVtCnuciArQUPcgtvZyuI596g84eUg2DtOoAFd1INAZqe0GZ5gJT_m2kd-E79e2PnXlJftD-3QE4vZ82_YLKRdHf3Ts1SB5FodC5kyM30hYKs-mDu49iPRycJnEzYKZ1Fo8yqtSknme9JkmtrrxXy1v-6TQu50n2nWPvRSP7T9sd7WjWELlj2j-NqgghQYfX06RFPJ9GtjfHZyl4ZYCty975YVEJqy7Xy2EgdrFnIQLvs3pfM3LIbd6bxYoXO7imEjW64KyuNIOvvhO8urHMjAfaEO7-JbDxL2jNqeaZ9gOzjK6TtU8RV1kpXT3opOy9exEIFUM90tRBfN1MVIAxPs",
     "creator": "martin"
   },
   {
@@ -69148,7 +69688,6 @@
       "liked": 0.7912772585669782,
       "time": 78.7651882951654
     },
-    "page_timestamp": "AAAAAEfubi3WcOuh-yMEhn-Pcse33whyUGQ0RrKmUcptZdBRyjYOkJRdS5xnUOi4JP6f8R2m2v18DvKTUGn2AAegHxdxkhY33U59-w-6_pHefn0HrhZmvGLA4vpSndAgUC_fuPGqrothtXME7vllom-iPq9bHIfKIKSWSpRgLOMgF0m20UT5LD-9Uc3y2so-RWsPw6NCuKRNjZfFHSusZ3kmH6VOpppYSRLVaHLfHIZqsvWd2MxMd0IfXL1NCdCmbt2E5cwNEc3t4kUCc1T7dxzpNfUGkkM5AeTna7h-c7uPcA4FBqE11Uy6qUCPyaoQETc9fkIu16LIB5a_djAbt4Yde3YlCjILbp5VJsDtQA4XwMz1IutAJHQFIUp4JitTu_BwdjcQTXY57apCl0KQ5rygXp9NxBQ",
     "creator": "ADM"
   },
   {
@@ -69284,10 +69823,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 87373,
-      "difficulty": 0.00497335701598579,
+      "total_played": 87573,
+      "difficulty": 0.0049646647584791915,
       "liked": 0.7304347826086957,
-      "time": 761.5152475862066
+      "time": 760.8548806896548
     },
     "creator": "bluduk bduk"
   },
@@ -70246,10 +70785,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 94828,
-      "difficulty": 0.0640037265634098,
-      "liked": 0.7661623108665749,
-      "time": 616.3962042179918
+      "total_played": 95028,
+      "difficulty": 0.0640638080178588,
+      "liked": 0.7663465935070873,
+      "time": 615.2986080789278
     },
     "creator": "bluduk"
   },
@@ -70338,10 +70877,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 99080,
-      "difficulty": 0.09526818003572829,
-      "liked": 0.7768328445747801,
-      "time": 517.1002823275663
+      "total_played": 99280,
+      "difficulty": 0.09522566612289288,
+      "liked": 0.7768667642752562,
+      "time": 517.1025869176142
     },
     "creator": "bduk"
   },
@@ -71494,10 +72033,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3186,
-      "difficulty": 0.04366654637315049,
-      "liked": 0.7717391304347826,
-      "time": 633.631099090909
+      "total_played": 3286,
+      "difficulty": 0.04537521815008726,
+      "liked": 0.7878787878787878,
+      "time": 657.7423521008401
     }
   },
   {
@@ -72325,8 +72864,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 13406,
-      "difficulty": 0.0033871289101414623,
+      "total_played": 13506,
+      "difficulty": 0.0033650039588281866,
       "liked": 0.72,
       "time": 146.22231620689652
     },
@@ -72520,10 +73059,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 32640,
-      "difficulty": 0.6198064553514516,
-      "liked": 0.7396799784859487,
-      "time": 115.86179627965923
+      "total_played": 32740,
+      "difficulty": 0.6188138823121788,
+      "liked": 0.7400697799248523,
+      "time": 115.8268085037924
     },
     "creator": "hyper d2whiplash"
   },
@@ -73199,8 +73738,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 9521,
-      "difficulty": 0.0010412599245086555,
+      "total_played": 9621,
+      "difficulty": 0.0010311936065996391,
       "liked": 0.6666666666666666,
       "time": 364.4245
     },
@@ -75048,10 +75587,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 5425,
-      "difficulty": 0.514578232806588,
-      "liked": 0.8012618296529969,
-      "time": 189.48045107985936
+      "total_played": 5525,
+      "difficulty": 0.5139676996944565,
+      "liked": 0.7995049504950495,
+      "time": 188.47455206489678
     },
     "creator": "PeanutHead473"
   },
@@ -75841,10 +76380,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 6675,
-      "difficulty": 0.014299153339604891,
+      "total_played": 6775,
+      "difficulty": 0.014235533370308745,
       "liked": 0.86,
-      "time": 1352.8928986666665
+      "time": 1345.053992105263
     },
     "creator": "Nameless2008"
   },
@@ -76645,10 +77184,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 5185,
-      "difficulty": 0.21070615034168566,
-      "liked": 0.7815126050420168,
-      "time": 155.06275871345028
+      "total_played": 5285,
+      "difficulty": 0.2111260053619303,
+      "liked": 0.7793103448275862,
+      "time": 154.0545852571428
     },
     "creator": "slothve6"
   },
@@ -79463,8 +80002,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8683,
-      "difficulty": 0.000850099178237461,
+      "total_played": 8783,
+      "difficulty": 0.0008409250175192712,
       "liked": 0.6,
       "time": 1680.1938333333335
     },
@@ -80198,10 +80737,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3069,
-      "difficulty": 0.303083391730904,
-      "liked": 0.7593123209169055,
-      "time": 122.53079108433722
+      "total_played": 3169,
+      "difficulty": 0.301765105227427,
+      "liked": 0.7632311977715878,
+      "time": 122.20687857142842
     },
     "creator": "theopojk"
   },
@@ -80244,10 +80783,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 9170,
-      "difficulty": 0.0029577464788732395,
+      "total_played": 9270,
+      "difficulty": 0.002926421404682274,
       "liked": 0.9285714285714286,
-      "time": 163.48424675333337
+      "time": 163.07071342000003
     },
     "creator": "FROSTY_CROSS"
   },
@@ -81903,8 +82442,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8387,
-      "difficulty": 0.020836347851251626,
+      "total_played": 8487,
+      "difficulty": 0.020562616021704984,
       "liked": 0.773109243697479,
       "time": 685.7542645652175
     },
@@ -83069,8 +83608,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7524,
-      "difficulty": 0.0030278884462151393,
+      "total_played": 7624,
+      "difficulty": 0.0029846057178762172,
       "liked": 0.6842105263157895,
       "time": 2198.948010526316
     },
@@ -83207,8 +83746,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 25902,
-      "difficulty": 0.0032598065848093013,
+      "total_played": 26002,
+      "difficulty": 0.003249918752031199,
       "liked": 0.8837209302325582,
       "time": 2042.7905830188674
     },
@@ -87346,10 +87885,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16495,
-      "difficulty": 0.10499840306611306,
-      "liked": 0.8041543026706232,
-      "time": 166.73400600673946
+      "total_played": 16595,
+      "difficulty": 0.10493729163359264,
+      "liked": 0.8029556650246306,
+      "time": 166.04525630653248
     },
     "creator": "adriker2020"
   },
@@ -88147,10 +88686,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8571,
-      "difficulty": 0.153636239596125,
-      "liked": 0.8070588235294117,
-      "time": 372.89593665849094
+      "total_played": 8671,
+      "difficulty": 0.15369046012683849,
+      "liked": 0.8067520372526193,
+      "time": 371.2616700142117
     },
     "creator": "Ginger3J"
   },
@@ -89170,10 +89709,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8344,
-      "difficulty": 0.03357787810383747,
+      "total_played": 8444,
+      "difficulty": 0.033426183844011144,
       "liked": 0.7789473684210526,
-      "time": 598.054031277533
+      "time": 595.9297253275108
     },
     "creator": "shadowmaker99"
   },
@@ -91191,10 +91730,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 5962,
-      "difficulty": 0.3572096502711801,
-      "liked": 0.7849686847599165,
-      "time": 159.3297518814139
+      "total_played": 6062,
+      "difficulty": 0.3556169429097606,
+      "liked": 0.7855670103092783,
+      "time": 159.1815431549296
     },
     "creator": "Dankdoggo102"
   },
@@ -91519,6 +92058,7 @@
       "liked": 0.7840909090909091,
       "time": 327.3750253772292
     },
+    "page_timestamp": "AAAAAMsVb837tMl7ErY1VQ3x2gRG5h8z7xCHYFXmBMrPs18WS-nKPuZL-e_s51bOmgy5Odl8r167x2Z0qNiIl69M0zvnEJy73jwcH7tMtqrzemCD3K-biBom-nfjnaONeIi4ktOP1UxlVCVcWQxvV4jBb-eQrnkkORiuvXdvT2cwNdsU9akCSWkG63qBi9uNRxMB9bZ2dlwmmzKTH0LF7r86NFf2iySwN8_oxIz8xB8WzTBMtgxJ_pl1PenvAO9O3xV-NeTHl_DH4kOTlS4MkQ3Gu_H-oT0yjmr5ltzECEyEF-xWn7ok3vlV9cpRvbodTKj7SKeplCEpTIPQNn7dA0wXP8K2cw5g7trsegz3Tz1lIH88Y7qE_F_RzILQcYpd0vrrfs9WpDQIqqgu8MbSX0rzshpf8XM",
     "creator": "cjbeast"
   },
   {
@@ -92043,7 +92583,6 @@
       "liked": 0.7777777777777778,
       "time": 444.653495069725
     },
-    "page_timestamp": "AAAAAJA-mFzTxpXavZZH8JvGTwPu_9Wk4Ao2_tzZBzArbnDfqVlNV6QIfT12dYfyVPZ16bjDmhqCdeLTCK9hu_uqlLxI22OW7lUy-KQpxN0OorfTcrPFkuEczQcvw65aee3mBOd9rvH52PZZSDiJtq7VpfPgxiSNvvjGU7NH5MJv66bNztLFeg8cEQXWkOWw1qsoi9tp3QggapfR1wRlqUgFChXDPJXMWZLdGv-c_NflDKj7_SQXv3t9Sb85b37i0qN_IC0cEZ6FQ-wJspPGpKUD2nthtjq1H1sCKnWMIFLiNf0iANuWP7Q9RvJVLcRfsNSYCLLrL6cpMPv-Ty6xoeNXRJZMkUPws0DDN_iei_Wr8lN8vpydvpcgssocg7ZDucmA5v4h1H6DWcXWVKe_i_qoEhi6jlI",
     "creator": "cjbeast006"
   },
   {
@@ -92268,10 +92807,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3608,
-      "difficulty": 0.22116271916333435,
-      "liked": 0.794921875,
-      "time": 344.3583533018866
+      "total_played": 3708,
+      "difficulty": 0.21906754333532577,
+      "liked": 0.7969348659003831,
+      "time": 346.95679184615364
     },
     "creator": "rizl08gozl"
   },
@@ -97892,10 +98431,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 48300,
-      "difficulty": 0.12286087524493795,
-      "liked": 0.7957418496340652,
-      "time": 635.1566663433122
+      "total_played": 48400,
+      "difficulty": 0.12283562135194183,
+      "liked": 0.7956810631229236,
+      "time": 634.9753703877011
     },
     "creator": "SUWANDABOMB"
   },
