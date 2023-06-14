@@ -1443,5 +1443,52 @@
     },
     1686633063,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 42.787,
+        "user_id": "2a1yjn54xs8gzcj6jchzm",
+        "user_name": "thebest169"
+      },
+      {
+        "position": 1,
+        "best_time": 52.059,
+        "user_id": "29gv67saqe362zsorjlu4",
+        "user_name": "Andolren"
+      },
+      {
+        "position": 2,
+        "best_time": 55.252,
+        "user_id": "29tu9fwdb4ym74j3skycq",
+        "user_name": "Antiiiqx"
+      }
+    ],
+    {
+      "identifier": "29gv67saqe362zsorjlu4:1675806234",
+      "title": "the Hotel 2",
+      "complexity": 2819,
+      "format_version": 6,
+      "update_timestamp": 1675837295768,
+      "creation_timestamp": 1675837295768,
+      "data_key": "level_data:29gv67saqe362zsorjlu4:1675806234:1",
+      "description": "why did you come back",
+      "creators": [
+        "STILL ANDOLREN"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 700,
+        "difficulty": 0.2643312101910828,
+        "liked": 0.8285714285714286,
+        "time": 92.37345060240965
+      },
+      "creator": "STILL ANDOLREN"
+    },
+    1686719497,
+    "daily_map"
   ]
 ]
