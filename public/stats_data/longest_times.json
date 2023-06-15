@@ -15,8 +15,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8400,
-      "difficulty": 0.00015306903413439462,
+      "total_played": 8500,
+      "difficulty": 0.00015142337976983646,
       "liked": 1,
       "time": 15388.4
     },
@@ -117,6 +117,29 @@
     "creator": "OreO"
   },
   {
+    "identifier": "2a16lrhk70q0s94hkbdwz:1677802184",
+    "title": "MOUNT EVERAST",
+    "complexity": 3000,
+    "format_version": 6,
+    "update_timestamp": 1677951114595,
+    "creation_timestamp": 1677951114595,
+    "data_key": "level_data:2a16lrhk70q0s94hkbdwz:1677802184:1",
+    "description": "--------------------------------!WARNING!---------------------------------- Boring walking parts every once in a while. ",
+    "creators": [
+      "EBSpark and San8102"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 2300,
+      "difficulty": 0.000500751126690035,
+      "liked": 1,
+      "time": 3656.09
+    },
+    "creator": "EBSpark and San8102"
+  },
+  {
     "identifier": "29l50ea34l4s54rtclzus:1666128502",
     "title": "HYPER TOWER 2",
     "complexity": 3000,
@@ -134,8 +157,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3600,
-      "difficulty": 0.0003270111183780249,
+      "total_played": 3700,
+      "difficulty": 0.0003180661577608143,
       "liked": 1,
       "time": 3297.82
     },
@@ -392,8 +415,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 92900,
-      "difficulty": 0.0018159975414187132,
+      "total_played": 93000,
+      "difficulty": 0.001813970362515,
       "liked": 0.8444444444444444,
       "time": 2404.1222153846143
     },
@@ -485,8 +508,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 97200,
-      "difficulty": 0.0003073298161143267,
+      "total_played": 97300,
+      "difficulty": 0.0003069838833461243,
       "liked": 0.7619047619047619,
       "time": 2360.124666666667
     },
@@ -743,8 +766,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 26102,
-      "difficulty": 0.0032924920386463,
+      "total_played": 26202,
+      "difficulty": 0.003279393580990269,
       "liked": 0.8837209302325582,
       "time": 2034.2439055555553
     },
@@ -1299,10 +1322,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 10700,
-      "difficulty": 0.02791145332050048,
-      "liked": 0.84375,
-      "time": 1650.8704831896564
+      "total_played": 10800,
+      "difficulty": 0.027946972411322105,
+      "liked": 0.845679012345679,
+      "time": 1643.4274192307705
     },
     "creator": "boohoo77"
   },
@@ -1731,8 +1754,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 6367,
-      "difficulty": 0.00019334880123743234,
+      "total_played": 6467,
+      "difficulty": 0.00019029495718363463,
       "liked": 0.75,
       "time": 1461.88
     },
@@ -2350,28 +2373,5 @@
       "time": 1298.1639782608697
     },
     "creator": "BLUDUK"
-  },
-  {
-    "identifier": "29ffxg2ijqxyrgxyy2vjj:1647572623",
-    "title": "FROSTYs lava temporal run dif 5.6",
-    "complexity": 2222,
-    "format_version": 4,
-    "update_timestamp": 1649287984664,
-    "creation_timestamp": 1649287984664,
-    "data_key": "level_data:29ffxg2ijqxyrgxyy2vjj:1647572623:1",
-    "description": "pt1 of planets",
-    "creators": [
-      "FROSTY_CROSS"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 8745,
-      "difficulty": 0.004693539480949751,
-      "liked": 0.7727272727272727,
-      "time": 1297.9473714285716
-    },
-    "creator": "FROSTY_CROSS"
   }
 ]

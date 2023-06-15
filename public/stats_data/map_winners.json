@@ -1490,5 +1490,102 @@
     },
     1686719497,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 11.656,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      },
+      {
+        "position": 1,
+        "best_time": 13.0923,
+        "user_id": "29r46v7djliny6t4rzvq7",
+        "user_name": "22Joshi22"
+      },
+      {
+        "position": 2,
+        "best_time": 13.125,
+        "user_id": "2aov1sx3zs20px13i5weq",
+        "user_name": "Jason.Justice"
+      }
+    ],
+    {
+      "identifier": "2bcw05auge92xtehn42vj:1684081014",
+      "title": "DEVILS ICE VIII",
+      "complexity": 1172,
+      "format_version": 6,
+      "update_timestamp": 1684408689374,
+      "creation_timestamp": 1684408689374,
+      "data_key": "level_data:2bcw05auge92xtehn42vj:1684081014:1",
+      "creators": [
+        "POPTN47VR",
+        "THEPNUT73",
+        "FREEZEEDUCK",
+        "CYDIGI3",
+        "PUPKIN.GT.2009"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 200,
+        "difficulty": 0.026595744680851064,
+        "liked": 0.6,
+        "time": 93.08006
+      },
+      "creator": "POPTN47VR"
+    },
+    1686805880,
+    "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 439.798,
+        "user_id": "2ac71i844axecymsnmq4m",
+        "user_name": "alsogamerking_14"
+      },
+      {
+        "position": 1,
+        "best_time": 480.235,
+        "user_id": "29srqtwaq08zzhp3kng3u",
+        "user_name": "CoblerB1"
+      },
+      {
+        "position": 2,
+        "best_time": 685.076,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      }
+    ],
+    {
+      "identifier": "29rkswgx13q8mej7mxdg6:1680365149",
+      "title": "GRAB kaizo- BOOHOO's kingdom",
+      "complexity": 2998,
+      "format_version": 6,
+      "update_timestamp": 1681061247169,
+      "creation_timestamp": 1681061247169,
+      "data_key": "level_data:29rkswgx13q8mej7mxdg6:1680365149:1",
+      "description": "travel throgh king BOOHOO's castle and defeate him once and for all. difficulty-Medium Hard",
+      "creators": [
+        "AFT Studios and EBSpark"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 7300,
+        "difficulty": 0.0011217049915872126,
+        "liked": 1,
+        "time": 2689.155
+      },
+      "creator": "AFT Studios and EBSpark"
+    },
+    1686805881,
+    "weekly_map"
   ]
 ]
