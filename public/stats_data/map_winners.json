@@ -1587,5 +1587,52 @@
     },
     1686805881,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 8.331,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      },
+      {
+        "position": 1,
+        "best_time": 8.44702,
+        "user_id": "2am015n3aa6sebl0p6923",
+        "user_name": "rougueRunner"
+      },
+      {
+        "position": 2,
+        "best_time": 10.625,
+        "user_id": "29rhk9gdy7iiza0k3tttk",
+        "user_name": "Trap11190"
+      }
+    ],
+    {
+      "identifier": "29h43fvdvlaiyoc8ddu07:1673493374",
+      "title": "(CODE RED)",
+      "complexity": 2891,
+      "format_version": 6,
+      "update_timestamp": 1673831642146,
+      "creation_timestamp": 1673831036039,
+      "data_key": "level_data:29h43fvdvlaiyoc8ddu07:1673493374:2",
+      "description": "(CODE RED) FIND IT!",
+      "creators": [
+        "StarKiIIer"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 800,
+        "difficulty": 0.2797297297297297,
+        "liked": 0.7530864197530864,
+        "time": 64.02462753623188
+      },
+      "creator": "StarKiIIer"
+    },
+    1686892282,
+    "daily_map"
   ]
 ]
