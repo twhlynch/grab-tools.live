@@ -1634,5 +1634,52 @@
     },
     1686892282,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 7.746,
+        "user_id": "29rhk9gdy7iiza0k3tttk",
+        "user_name": "Trap11190"
+      },
+      {
+        "position": 1,
+        "best_time": 8.41309,
+        "user_id": "29udv6q207r9ehlyn3zp1",
+        "user_name": "Sherbear79"
+      },
+      {
+        "position": 2,
+        "best_time": 8.94099,
+        "user_id": "29srqtwaq08zzhp3kng3u",
+        "user_name": "CoblerB1"
+      }
+    ],
+    {
+      "identifier": "2acbdwj2bo9r9zkt79p72:1670030773",
+      "title": "HalfGrab:Alyx Pt.2",
+      "complexity": 2999,
+      "format_version": 6,
+      "update_timestamp": 1670188663788,
+      "creation_timestamp": 1670188663788,
+      "data_key": "level_data:2acbdwj2bo9r9zkt79p72:1670030773:1",
+      "description": "A recreation of Half Life: Alyx.",
+      "creators": [
+        "kookookrazy"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 2300,
+        "difficulty": 0.5749073583906829,
+        "liked": 0.7445589919816724,
+        "time": 40.94378983425417
+      },
+      "creator": "kookookrazy"
+    },
+    1686978660,
+    "daily_map"
   ]
 ]
