@@ -1960,5 +1960,40 @@
     },
     1687497181,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 56.2016,
+        "user_id": "29ffxg2ijqxyrgxyy2vjj",
+        "user_name": "FROSTY_CROSS"
+      }
+    ],
+    {
+      "identifier": "2bs81bjlrd2r7djbeta0k:1687019357",
+      "title": "Crystal Climb",
+      "complexity": 1276,
+      "format_version": 6,
+      "update_timestamp": 1687100667733,
+      "creation_timestamp": 1687100667733,
+      "data_key": "level_data:2bs81bjlrd2r7djbeta0k:1687019357:1",
+      "description": "Wallclimb with gorilla tag physics",
+      "creators": [
+        "WCrackerr69"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 300,
+        "difficulty": 0.0034602076124567475,
+        "liked": 1,
+        "time": 56.2016
+      },
+      "creator": "WCrackerr69"
+    },
+    1687583547,
+    "daily_map"
   ]
 ]
