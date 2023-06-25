@@ -137,7 +137,7 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
             node = {
                 "levelNodeStatic": {
                     "material": msArr[0],
-                    "shapes": msArr[1],
+                    "shape": msArr[1],
                     "position": {
                         "x": i,
                         "y": 0,
@@ -178,7 +178,7 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
                     "childNodes": [{
                         "levelNodeStatic": {
                             "material": msArr[0],
-                            "shapes": msArr[1],
+                            "shape": msArr[1],
                             "position": {
                                 "x": i,
                                 "y": 0,
@@ -202,7 +202,7 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
                     },{
                         "levelNodeStatic": {
                             "material": 8,
-                            "shapes": 3,
+                            "shape": 3,
                             "position": {
                                 "x": i,
                                 "y": 1,
