@@ -18,7 +18,7 @@ for level in data:
         leaderboard[res_data[0]["user_name"]][0] += 1
         leaderboard[res_data[0]["user_name"]][1].append([level["title"]])
         for k in res_data:
-            if res_data[k]["user_name"] == "NSKC7":
+            if k["user_name"] == "NSKC7":
                 leaderboard[res_data[0]["user_name"]][2] += 1
     print(i)
     i += 1
