@@ -28,3 +28,6 @@ sorted_leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][0], rev
 
 with open("public/stats_data/sorted_leaderboard_records.json", "w") as file:
     json.dump(sorted_leaderboard, file, indent=4)
+
+with open("public/stats_data/leaderboard_levels.json", "w") as file:
+    json.dump(data, file, indent=4)
