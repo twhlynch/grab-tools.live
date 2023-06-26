@@ -16,7 +16,7 @@ for level in data:
         if res_data[0]["user_name"] not in leaderboard:
             leaderboard[res_data[0]["user_name"]] = [0, [], 0]
         leaderboard[res_data[0]["user_name"]][0] += 1
-        leaderboard[res_data[0]["user_name"]][1].append([level["title"]])
+        leaderboard[res_data[0]["user_name"]][1].append([level["title"] + "|" + level["identifier"]])
         for k in res_data:
             if k["user_name"] == "NSKC7":
                 leaderboard[res_data[0]["user_name"]][2] += 1
