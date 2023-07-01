@@ -2329,5 +2329,52 @@
     },
     1688015590,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 1,
+        "best_time": 2.426,
+        "user_id": "29r5udbz73c18do3qi1x7",
+        "user_name": "Beeplton"
+      },
+      {
+        "position": 2,
+        "best_time": 2.89099,
+        "user_id": "2a1dfl49eozjs5yd0a9bn",
+        "user_name": "XGamedare"
+      },
+      {
+        "position": 3,
+        "best_time": 2.923,
+        "user_id": "29ngj2xcdlinnuqz0vrw5",
+        "user_name": "CursedPhantom"
+      }
+    ],
+    {
+      "identifier": "2a4lsr3j8bypkewcx9s90:1673740136",
+      "title": "hell of the mind    ",
+      "complexity": 2999,
+      "format_version": 6,
+      "update_timestamp": 1688080542571,
+      "creation_timestamp": 1673757713935,
+      "data_key": "level_data:2a4lsr3j8bypkewcx9s90:1673740136:35",
+      "description": "how did I make this!?!?                                                      ",
+      "creators": [
+        "milo"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 4800,
+        "difficulty": 0.18907103825136612,
+        "liked": 0.736936936936937,
+        "time": 80.61630952312142
+      },
+      "creator": "milo"
+    },
+    1688188324,
+    "daily_map"
   ]
 ]
