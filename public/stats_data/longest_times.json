@@ -15,8 +15,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 10600,
-      "difficulty": 0.00012481278082875687,
+      "total_played": 10700,
+      "difficulty": 0.00012363996043521266,
       "liked": 1,
       "time": 15388.4
     },
@@ -62,8 +62,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 39700,
-      "difficulty": 0.00028021670091537453,
+      "total_played": 39900,
+      "difficulty": 0.00027874564459930314,
       "liked": 0.8333333333333334,
       "time": 6035.223333333334
     },
@@ -276,8 +276,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7023,
-      "difficulty": 0.000364963503649635,
+      "total_played": 7123,
+      "difficulty": 0.0003594536304816679,
       "liked": 0.6666666666666666,
       "time": 3016.54
     },
@@ -323,8 +323,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16502,
-      "difficulty": 0.00109204368174727,
+      "total_played": 16602,
+      "difficulty": 0.0010864504112990843,
       "liked": 0.9,
       "time": 2671.40425
     },
@@ -346,8 +346,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 10452,
-      "difficulty": 0.0017751479289940828,
+      "total_played": 10552,
+      "difficulty": 0.0017607700434323277,
       "liked": 0.75,
       "time": 2651.069666666666
     },
@@ -393,10 +393,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 98300,
-      "difficulty": 0.0019045603639826474,
-      "liked": 0.84,
-      "time": 2564.9397638888877
+      "total_played": 98800,
+      "difficulty": 0.0019226210856224816,
+      "liked": 0.8431372549019608,
+      "time": 2558.7116849315057
     },
     "creator": "BLUDUK"
   },
@@ -530,8 +530,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 101200,
-      "difficulty": 0.00036944902834905546,
+      "total_played": 101500,
+      "difficulty": 0.0003682517860211622,
       "liked": 0.7727272727272727,
       "time": 2291.399066666667
     },
@@ -742,8 +742,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 27102,
-      "difficulty": 0.003237428854890084,
+      "total_played": 27202,
+      "difficulty": 0.0032278217409412746,
       "liked": 0.8636363636363636,
       "time": 2027.351834545454
     },
@@ -834,8 +834,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 500,
-      "difficulty": 0.009592326139088728,
+      "total_played": 600,
+      "difficulty": 0.008016032064128256,
       "time": 1934.0275000000001,
       "liked": 0
     },
@@ -973,8 +973,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 32654,
-      "difficulty": 0.023412115547247075,
+      "total_played": 32754,
+      "difficulty": 0.023343540584919897,
       "liked": 0.8616187989556136,
       "time": 1864.1679312346873
     },
@@ -1025,31 +1025,6 @@
       "time": 1832.625
     },
     "creator": "jckarp"
-  },
-  {
-    "identifier": "29ffxg2ijqxyrgxyy2vjj:1642132060",
-    "title": "FROSTYs cave explorer dif 14.6",
-    "complexity": 3000,
-    "format_version": 3,
-    "update_timestamp": 1642202796869,
-    "creation_timestamp": 1642202796869,
-    "data_key": "level_data:29ffxg2ijqxyrgxyy2vjj:1642132060:1",
-    "description": "this is the ultimate challenge of awsomeness. you will not win, difficulty 14.6, neck pain 9.8, you and your 7 freinds fall into a hole on mt. farrenheit and must escape before the monsters find you and your crew. climb your way out and escape the serpent cave or your crew will be stuck here forever",
-    "creators": [
-      "FROSTYCROSS",
-      "theduck29",
-      "Coleman909"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 12126,
-      "difficulty": 0.017187823565955683,
-      "liked": 0.8301886792452831,
-      "time": 1816.6373202898544
-    },
-    "creator": "FROSTYCROSS"
   },
   {
     "identifier": "29wgmbz8kb7lf7omolq47:1660457933",
@@ -1141,6 +1116,31 @@
       "difficulty": 0.007939960844028714,
       "liked": 0.8,
       "time": 1789.6339591836734
+    },
+    "creator": "FROSTYCROSS"
+  },
+  {
+    "identifier": "29ffxg2ijqxyrgxyy2vjj:1642132060",
+    "title": "FROSTYs cave explorer dif 14.6",
+    "complexity": 3000,
+    "format_version": 3,
+    "update_timestamp": 1642202796869,
+    "creation_timestamp": 1642202796869,
+    "data_key": "level_data:29ffxg2ijqxyrgxyy2vjj:1642132060:1",
+    "description": "this is the ultimate challenge of awsomeness. you will not win, difficulty 14.6, neck pain 9.8, you and your 7 freinds fall into a hole on mt. farrenheit and must escape before the monsters find you and your crew. climb your way out and escape the serpent cave or your crew will be stuck here forever",
+    "creators": [
+      "FROSTYCROSS",
+      "theduck29",
+      "Coleman909"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 12226,
+      "difficulty": 0.017275064267352185,
+      "liked": 0.839622641509434,
+      "time": 1787.1139371428562
     },
     "creator": "FROSTYCROSS"
   },
@@ -1376,28 +1376,6 @@
     "creator": "S0UP0S"
   },
   {
-    "identifier": "2ak5u4cyuivrwrfb682hs:1674825261",
-    "title": "dracula's castle",
-    "complexity": 2997,
-    "format_version": 6,
-    "update_timestamp": 1674851363966,
-    "creation_timestamp": 1674851363966,
-    "data_key": "level_data:2ak5u4cyuivrwrfb682hs:1674825261:1",
-    "creators": [
-      "boohoo77"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 11500,
-      "difficulty": 0.028918645212107574,
-      "liked": 0.847457627118644,
-      "time": 1639.2705840466936
-    },
-    "creator": "boohoo77"
-  },
-  {
     "identifier": "29l50ea34l4s54rtclzus:1664637802",
     "title": "robloc obby",
     "complexity": 2843,
@@ -1424,6 +1402,28 @@
     "creator": "cjbeast006"
   },
   {
+    "identifier": "2ak5u4cyuivrwrfb682hs:1674825261",
+    "title": "dracula's castle",
+    "complexity": 2997,
+    "format_version": 6,
+    "update_timestamp": 1674851363966,
+    "creation_timestamp": 1674851363966,
+    "data_key": "level_data:2ak5u4cyuivrwrfb682hs:1674825261:1",
+    "creators": [
+      "boohoo77"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 11600,
+      "difficulty": 0.028775373633727414,
+      "liked": 0.848314606741573,
+      "time": 1637.4577135658922
+    },
+    "creator": "boohoo77"
+  },
+  {
     "identifier": "29ffxg2ijqxyrgxyy2vjj:1653135637",
     "title": "FROSTYs quick thinker",
     "complexity": 3000,
@@ -1439,8 +1439,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 10483,
-      "difficulty": 0.0007140307033202428,
+      "total_played": 10583,
+      "difficulty": 0.000707630616818021,
       "liked": 0.6,
       "time": 1630.5276666666668
     },
@@ -1808,29 +1808,6 @@
     "creator": "kudcom"
   },
   {
-    "identifier": "29go992y0nneasny23jeg:1654471747",
-    "title": "11 LEVEL GRAPPLE CHALLENGE!",
-    "complexity": 2586,
-    "format_version": 4,
-    "update_timestamp": 1654485468737,
-    "creation_timestamp": 1654485468737,
-    "data_key": "level_data:29go992y0nneasny23jeg:1654471747:1",
-    "description": "This levels will challenge your grappling hook skills. Good Luck!",
-    "creators": [
-      "Fizzn"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 14409,
-      "difficulty": 0.021110555277638818,
-      "liked": 0.8376068376068376,
-      "time": 1459.5779585798805
-    },
-    "creator": "Fizzn"
-  },
-  {
     "identifier": "2a16lrhk70q0s94hkbdwz:1656895914",
     "title": "The great canyon climb",
     "complexity": 2999,
@@ -1877,6 +1854,29 @@
       "time": 1454.08
     },
     "creator": "KillTheSith"
+  },
+  {
+    "identifier": "29go992y0nneasny23jeg:1654471747",
+    "title": "11 LEVEL GRAPPLE CHALLENGE!",
+    "complexity": 2586,
+    "format_version": 4,
+    "update_timestamp": 1654485468737,
+    "creation_timestamp": 1654485468737,
+    "data_key": "level_data:29go992y0nneasny23jeg:1654471747:1",
+    "description": "This levels will challenge your grappling hook skills. Good Luck!",
+    "creators": [
+      "Fizzn"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 14509,
+      "difficulty": 0.021255462852602304,
+      "liked": 0.8305084745762712,
+      "time": 1447.6434534883713
+    },
+    "creator": "Fizzn"
   },
   {
     "identifier": "29l50ea34l4s54rtclzus:1656078020",
@@ -1949,30 +1949,6 @@
       "time": 1421.915
     },
     "creator": "Jeffbobdude"
-  },
-  {
-    "identifier": "29r0m9fnboxpvz4dnkwnq:1666220933",
-    "title": "Grapple Pro",
-    "complexity": 1000,
-    "format_version": 6,
-    "update_timestamp": 1666393214610,
-    "creation_timestamp": 1666313756533,
-    "data_key": "level_data:29r0m9fnboxpvz4dnkwnq:1666220933:2",
-    "description": "Try to beat it, you better have protection on your controllers lol. good luck",
-    "creators": [
-      "TylerVB",
-      "iamaverag8"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 1700,
-      "difficulty": 0.022284122562674095,
-      "liked": 0.8571428571428571,
-      "time": 1411.1743124999996
-    },
-    "creator": "TylerVB"
   },
   {
     "identifier": "29zu6o31ckahmycg57zfc:1669688004",
@@ -2067,6 +2043,30 @@
     "creator": "FROSTY_CROSS"
   },
   {
+    "identifier": "29r0m9fnboxpvz4dnkwnq:1666220933",
+    "title": "Grapple Pro",
+    "complexity": 1000,
+    "format_version": 6,
+    "update_timestamp": 1666393214610,
+    "creation_timestamp": 1666313756533,
+    "data_key": "level_data:29r0m9fnboxpvz4dnkwnq:1666220933:2",
+    "description": "Try to beat it, you better have protection on your controllers lol. good luck",
+    "creators": [
+      "TylerVB",
+      "iamaverag8"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 1800,
+      "difficulty": 0.021596858638743454,
+      "liked": 0.8636363636363636,
+      "time": 1389.1701818181814
+    },
+    "creator": "TylerVB"
+  },
+  {
     "identifier": "2am015n3aa6sebl0p6923:1677958275",
     "title": "Ocean Mountains",
     "complexity": 3000,
@@ -2140,8 +2140,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 10800,
-      "difficulty": 0.009135896459840122,
+      "total_played": 10900,
+      "difficulty": 0.00905546472141869,
       "liked": 0.76,
       "time": 1375.359969444445
     },
@@ -2233,8 +2233,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 92088,
-      "difficulty": 0.0006738039979037209,
+      "total_played": 92388,
+      "difficulty": 0.0006714246636659786,
       "liked": 0.7272727272727273,
       "time": 1360.3040740740737
     },
