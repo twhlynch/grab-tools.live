@@ -136,11 +136,12 @@ def get_longest_times(data):
     return longest_times
 
 def get_most_liked(data):
+    best = []
     most_liked = sorted(data, key=lambda x: (x["statistics"]["liked"], -x["creation_timestamp"]), reverse=True)
     for map in most_liked:
-        if map["statistics"]["total_played"] < 10000:
-            most_liked.remove(map)
-    return most_liked
+        if map["statistics"]["total_played"] > 5000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10:
+            best.append(map)
+    return best
 
 def get_daily_winner():
     with open("public/stats_data/map_winners.json", 'r') as winners, open("public/stats_data/daily_map.json", "r") as map, open("public/stats_data/user_blacklist.json", "r") as blacklist:
