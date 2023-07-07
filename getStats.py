@@ -136,8 +136,10 @@ def get_longest_times(data):
     return longest_times
 
 def get_most_liked(data):
-    most_liked = sorted(data[100:], key=lambda x: (x["statistics"]["liked"], -x["creation_timestamp"]), reverse=True)
-    most_liked = most_liked[:100]
+    most_liked = sorted(data, key=lambda x: (x["statistics"]["liked"], -x["creation_timestamp"]), reverse=True)
+    for map in most_liked:
+        if map["statistics"]["total_played"] < 10000:
+            most_liked.remove(map)
     return most_liked
 
 def get_daily_winner():
