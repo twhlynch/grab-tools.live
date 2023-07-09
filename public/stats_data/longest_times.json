@@ -15,8 +15,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 11100,
-      "difficulty": 0.00011931750387781887,
+      "total_played": 11200,
+      "difficulty": 0.00011824524062906468,
       "liked": 1,
       "time": 15388.4
     },
@@ -62,8 +62,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 40500,
-      "difficulty": 0.0002748763056624519,
+      "total_played": 40700,
+      "difficulty": 0.00027379757232819205,
       "liked": 0.8333333333333334,
       "time": 6035.223333333334
     },
@@ -108,8 +108,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 500,
-      "difficulty": 0.0045351473922902496,
+      "total_played": 600,
+      "difficulty": 0.00375234521575985,
       "time": 4853.52,
       "liked": 0
     },
@@ -132,8 +132,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 9400,
-      "difficulty": 0.000277623542476402,
+      "total_played": 9500,
+      "difficulty": 0.00027514100976750583,
       "liked": 0.5,
       "time": 4041.6845000000003
     },
@@ -180,8 +180,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 4500,
-      "difficulty": 0.0002633658151171978,
+      "total_played": 4600,
+      "difficulty": 0.0002576655501159495,
       "liked": 1,
       "time": 3297.82
     },
@@ -393,8 +393,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 100400,
-      "difficulty": 0.0019486593223861982,
+      "total_played": 100800,
+      "difficulty": 0.0019413957341064402,
       "liked": 0.8490566037735849,
       "time": 2561.9240933333326
     },
@@ -507,8 +507,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 102800,
-      "difficulty": 0.0003640158225544204,
+      "total_played": 103000,
+      "difficulty": 0.00036348656311338356,
       "liked": 0.7727272727272727,
       "time": 2291.399066666667
     },
@@ -742,8 +742,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 27402,
-      "difficulty": 0.003207117732257397,
+      "total_played": 27502,
+      "difficulty": 0.003196370572768985,
       "liked": 0.8636363636363636,
       "time": 2027.351834545454
     },
@@ -1440,8 +1440,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 10883,
-      "difficulty": 0.000687757909215956,
+      "total_played": 10983,
+      "difficulty": 0.0006818181818181819,
       "liked": 0.6,
       "time": 1630.5276666666668
     },
@@ -1541,8 +1541,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 20100,
-      "difficulty": 0.00341245165693486,
+      "total_played": 20200,
+      "difficulty": 0.0033957138545125266,
       "liked": 0.9142857142857143,
       "time": 1586.2098888888888
     },
@@ -2138,40 +2138,6 @@
     "creator": "TylerVB"
   },
   {
-    "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbord-3",
-    "title": "SMORGASBORD 3",
-    "complexity": 2999,
-    "format_version": 6,
-    "update_timestamp": 1667991610809,
-    "creation_timestamp": 1667991610809,
-    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:smorgasbord-3:1",
-    "description": "SMORGASBORD IS A GROUP OF VERIFIED CREATORS THAT MAKE BI-WEEKLY MAPS FOR THE GRAB COMMUNITY. HOSTED BY BLUDUK & .INDEX (NSKC7). VERSION 3 CREATORS: ETXNIGHT, KINGBRODY1, CAZIYGGY, MR.MADLORD, AURANART, KIRBO, NASH_HUMAN, THEABYSS, JBK777JBK, GRAYTHEGAMER820",
-    "creators": [
-      "BLUDUK",
-      "INDEX",
-      "ETXNIGHT",
-      "KINGBRODY",
-      "CAZIYGGY",
-      "MADLORD",
-      "AURAN",
-      "KIRBO",
-      "NASH",
-      "ABYSS",
-      "JBK",
-      "GRAY"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 10900,
-      "difficulty": 0.00905546472141869,
-      "liked": 0.76,
-      "time": 1375.359969444445
-    },
-    "creator": "BLUDUK"
-  },
-  {
     "identifier": "29rnnd0ymyemrickwtpx3:1671569184",
     "title": "the biggest slide ever",
     "complexity": 499,
@@ -2257,10 +2223,44 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 93188,
-      "difficulty": 0.0006666172876083253,
+      "total_played": 93388,
+      "difficulty": 0.0006655656075134962,
       "liked": 0.7272727272727273,
       "time": 1360.3040740740737
+    },
+    "creator": "BLUDUK"
+  },
+  {
+    "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbord-3",
+    "title": "SMORGASBORD 3",
+    "complexity": 2999,
+    "format_version": 6,
+    "update_timestamp": 1667991610809,
+    "creation_timestamp": 1667991610809,
+    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:smorgasbord-3:1",
+    "description": "SMORGASBORD IS A GROUP OF VERIFIED CREATORS THAT MAKE BI-WEEKLY MAPS FOR THE GRAB COMMUNITY. HOSTED BY BLUDUK & .INDEX (NSKC7). VERSION 3 CREATORS: ETXNIGHT, KINGBRODY1, CAZIYGGY, MR.MADLORD, AURANART, KIRBO, NASH_HUMAN, THEABYSS, JBK777JBK, GRAYTHEGAMER820",
+    "creators": [
+      "BLUDUK",
+      "INDEX",
+      "ETXNIGHT",
+      "KINGBRODY",
+      "CAZIYGGY",
+      "MADLORD",
+      "AURAN",
+      "KIRBO",
+      "NASH",
+      "ABYSS",
+      "JBK",
+      "GRAY"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 11000,
+      "difficulty": 0.009218886258876293,
+      "liked": 0.76,
+      "time": 1357.8958486486492
     },
     "creator": "BLUDUK"
   },
