@@ -2873,5 +2873,53 @@
     },
     1689052348,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 32.1268,
+        "user_id": "2apqgju0ttomc3mztt3p6",
+        "user_name": "iSkype"
+      },
+      {
+        "position": 1,
+        "best_time": 34.6579,
+        "user_id": "2bk85ldahz7jin4nsua6e",
+        "user_name": "RGS09"
+      },
+      {
+        "position": 2,
+        "best_time": 37.217,
+        "user_id": "2a0w9quccv6e58k25hn2a",
+        "user_name": "dudebrovski"
+      }
+    ],
+    {
+      "identifier": "2adml3e2sd335m6mzj0c9:1685779640",
+      "title": "a normal hotel",
+      "complexity": 2076,
+      "format_version": 6,
+      "update_timestamp": 1688969955002,
+      "creation_timestamp": 1688969955002,
+      "data_key": "level_data:2adml3e2sd335m6mzj0c9:1685779640:1",
+      "description": "nothing wrong here :)",
+      "creators": [
+        "TommyWeirdo67",
+        "JaxAxe2015"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 200,
+        "difficulty": 0.34594594594594597,
+        "liked": 0.74,
+        "time": 82.26490468749999
+      },
+      "creator": "TommyWeirdo67"
+    },
+    1689138766,
+    "daily_map"
   ]
 ]
