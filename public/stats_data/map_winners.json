@@ -2997,5 +2997,52 @@
     },
     1689225161,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 8.15186,
+        "user_id": "29ffxg2ijqxyrgxyy2vjj",
+        "user_name": "FROSTY_CROSS"
+      },
+      {
+        "position": 1,
+        "best_time": 10.167,
+        "user_id": "2bbvmmsr3e7kidhqvesvt",
+        "user_name": "LuffyArdo2"
+      },
+      {
+        "position": 2,
+        "best_time": 64.171,
+        "user_id": "29id5ta7mb54j28tz6wfe",
+        "user_name": "Convrist"
+      }
+    ],
+    {
+      "identifier": "2b98oapjfx05t5nq33xpp:1685043163",
+      "title": "stranded climb",
+      "complexity": 1495,
+      "format_version": 6,
+      "update_timestamp": 1685047182720,
+      "creation_timestamp": 1685047182720,
+      "data_key": "level_data:2b98oapjfx05t5nq33xpp:1685043163:1",
+      "description": "climb on this huge mountain and try to get to the top",
+      "creators": [
+        "crazysherman2"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 400,
+        "difficulty": 0.029585798816568046,
+        "liked": 1,
+        "time": 86.314186
+      },
+      "creator": "crazysherman2"
+    },
+    1689311564,
+    "daily_map"
   ]
 ]
