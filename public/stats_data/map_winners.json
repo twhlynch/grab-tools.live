@@ -3252,5 +3252,51 @@
     },
     1689657112,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 14.5171,
+        "user_id": "2afv94m0hxm4aqqez93vq",
+        "user_name": "toaster56781011"
+      },
+      {
+        "position": 1,
+        "best_time": 14.748,
+        "user_id": "2bdgvs9mq43grmiabk1bk",
+        "user_name": "Oliver-M"
+      },
+      {
+        "position": 2,
+        "best_time": 15.527,
+        "user_id": "29rf0j9ksurlx1zybi2gm",
+        "user_name": "Doge786"
+      }
+    ],
+    {
+      "identifier": "2ba036f303ulw0lj4vbe4:1679429203",
+      "title": "icy slide",
+      "complexity": 96,
+      "format_version": 6,
+      "update_timestamp": 1679430569486,
+      "creation_timestamp": 1679430569486,
+      "data_key": "level_data:2ba036f303ulw0lj4vbe4:1679429203:1",
+      "creators": [
+        "uklas"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 1100,
+        "difficulty": 0.5561555075593952,
+        "liked": 0.738255033557047,
+        "time": 19.594904834951464
+      },
+      "creator": "uklas"
+    },
+    1689743500,
+    "daily_map"
   ]
 ]
