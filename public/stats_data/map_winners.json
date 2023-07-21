@@ -3379,5 +3379,52 @@
     },
     1689829899,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 1,
+        "best_time": 19.2229,
+        "user_id": "2adovour26vo00yaxq9qy",
+        "user_name": "JaxsonFish"
+      },
+      {
+        "position": 2,
+        "best_time": 21.1189,
+        "user_id": "2b9p6es2bmelfsuonwta0",
+        "user_name": "BreadJeans87"
+      },
+      {
+        "position": 3,
+        "best_time": 32.1708,
+        "user_id": "2a7eiiu271l22opc7uhvq",
+        "user_name": "Rootwads"
+      }
+    ],
+    {
+      "identifier": "2b9p6es2bmelfsuonwta0:1677373375",
+      "title": "Cave explorer 3: sight seeing cave",
+      "complexity": 2501,
+      "format_version": 6,
+      "update_timestamp": 1688695360112,
+      "creation_timestamp": 1688658393417,
+      "data_key": "level_data:2b9p6es2bmelfsuonwta0:1677373375:2",
+      "description": "this possibly is the least claustrophobic of the bunch with not much climbing required and giant chambers",
+      "creators": [
+        "BreadJeans87"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 600,
+        "difficulty": 0.039473684210526314,
+        "liked": 0.75,
+        "time": 79.03123333333333
+      },
+      "creator": "BreadJeans87"
+    },
+    1689916273,
+    "daily_map"
   ]
 ]

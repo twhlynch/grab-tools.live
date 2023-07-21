@@ -111,8 +111,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 5742,
-      "difficulty": 0.0020665901262916187,
+      "total_played": 5842,
+      "difficulty": 0.002027027027027027,
       "liked": 1,
       "time": 1254.6025555555557
     },
@@ -450,8 +450,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 20600,
-      "difficulty": 0.0033274179236912156,
+      "total_played": 20700,
+      "difficulty": 0.0033102839488009417,
       "liked": 0.9142857142857143,
       "time": 1586.2098888888888
     },
@@ -1232,8 +1232,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 36900,
-      "difficulty": 0.0033190318141342184,
+      "total_played": 38800,
+      "difficulty": 0.0032016242386381385,
       "liked": 0.8666666666666667,
       "time": 164.47095365853656
     },
@@ -1303,8 +1303,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 27902,
-      "difficulty": 0.00315698355313407,
+      "total_played": 28002,
+      "difficulty": 0.003146090221748617,
       "liked": 0.8636363636363636,
       "time": 1981.616016363636
     },
@@ -1491,6 +1491,29 @@
       "time": 1400.123818181818
     },
     "creator": "itsatrap11190"
+  },
+  {
+    "identifier": "2ap647di3dc1k42jf4o2o:1689506663",
+    "title": "Yoohoos difficuity chart V2",
+    "complexity": 2923,
+    "format_version": 6,
+    "update_timestamp": 1689789782017,
+    "creation_timestamp": 1689527203862,
+    "data_key": "level_data:2ap647di3dc1k42jf4o2o:1689506663:10",
+    "description": "yoohoos difficuity chart V2 this took a while to make.I hope you enjoy and have fun.and there is 4 new levs so ya.thats all i hope you like it:\\",
+    "creators": [
+      "yO0hooVr"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 11300,
+      "difficulty": 0.0022104332449160036,
+      "liked": 0.8571428571428571,
+      "time": 181.80124
+    },
+    "creator": "yO0hooVr"
   },
   {
     "identifier": "29marqugz6lw65zs5bxqd:1647116476",
@@ -2224,10 +2247,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 105200,
-      "difficulty": 0.0019419409450779266,
+      "total_played": 105400,
+      "difficulty": 0.0019389961965843837,
       "liked": 0.8392857142857143,
-      "time": 2549.0276794871784
+      "time": 2536.717666666666
     },
     "creator": "BLUDUK"
   },
@@ -2300,37 +2323,5 @@
       "time": 919.0909607142858
     },
     "creator": "Cjbeast006"
-  },
-  {
-    "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbord2Result",
-    "title": "SMORGASBORD 2",
-    "complexity": 2996,
-    "format_version": 6,
-    "update_timestamp": 1665571506786,
-    "creation_timestamp": 1665571506786,
-    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:smorgasbord2Result:1",
-    "description": "SMORGASBORD IS A GROUP OF VERIFIED CREATORS THAT MAKE BI-WEEKLY MAPS FOR THE GRAB COMMUNITY. HOSTED BY BLUDUK & NSKC7(.INDEX). VERSION 2 CREATORS IN LEVEL ORDER: TURTLEDUDE1274, BLUDUK, PEECHYY, NSKC7(.INDEX), ZAZIPOGCHAMP, BWLBUCK, LUNIFOCC, LUHMAO, LEVI8020, THEWHITECRESCENT",
-    "creators": [
-      "BLUDUK",
-      "NSKC7",
-      "BWLBUCK",
-      "LUHMAO",
-      "LUNIFOCC",
-      "LEVI",
-      "PEECHYY",
-      "WHITECRESCENT",
-      "TURTLEDUDE",
-      "ZAZI"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 14200,
-      "difficulty": 0.011838583487749639,
-      "liked": 0.8375,
-      "time": 1060.4037130434783
-    },
-    "creator": "BLUDUK"
   }
 ]
