@@ -543,8 +543,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7145,
-      "difficulty": 0.0015228426395939086,
+      "total_played": 7245,
+      "difficulty": 0.0014992503748125937,
       "liked": 0.9,
       "time": 1079.95
     },
@@ -912,10 +912,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 5716,
-      "difficulty": 0.09153175591531756,
-      "liked": 0.8768328445747801,
-      "time": 555.9590969267135
+      "total_played": 5816,
+      "difficulty": 0.09200081416649705,
+      "liked": 0.8757225433526011,
+      "time": 550.2970940092162
     },
     "creator": "gazelle27"
   },
@@ -1232,8 +1232,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 40500,
-      "difficulty": 0.003105119660708876,
+      "total_played": 42200,
+      "difficulty": 0.0030218160377358493,
       "liked": 0.8666666666666667,
       "time": 164.47095365853656
     },
@@ -1303,8 +1303,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 28002,
-      "difficulty": 0.003146090221748617,
+      "total_played": 28102,
+      "difficulty": 0.0031360647445624686,
       "liked": 0.8636363636363636,
       "time": 1981.616016363636
     },
@@ -1485,8 +1485,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8482,
-      "difficulty": 0.0015341701534170153,
+      "total_played": 8582,
+      "difficulty": 0.0015164047422111938,
       "liked": 0.8571428571428571,
       "time": 1400.123818181818
     },
@@ -1508,8 +1508,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 13100,
-      "difficulty": 0.0019801980198019802,
+      "total_played": 14500,
+      "difficulty": 0.0018335166850018336,
       "liked": 0.8571428571428571,
       "time": 181.80124
     },
@@ -1678,6 +1678,28 @@
     "creator": "convrist"
   },
   {
+    "identifier": "2ak5u4cyuivrwrfb682hs:1674825261",
+    "title": "dracula's castle",
+    "complexity": 2997,
+    "format_version": 6,
+    "update_timestamp": 1674851363966,
+    "creation_timestamp": 1674851363966,
+    "data_key": "level_data:2ak5u4cyuivrwrfb682hs:1674825261:1",
+    "creators": [
+      "boohoo77"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 12200,
+      "difficulty": 0.02838915470494418,
+      "liked": 0.850828729281768,
+      "time": 1617.79237116105
+    },
+    "creator": "boohoo77"
+  },
+  {
     "identifier": "29gx2im6aa2ylnelnzaki:1640181875",
     "title": "the great parkour map",
     "complexity": 749,
@@ -1819,6 +1841,29 @@
     "creator": "AFT_Dating"
   },
   {
+    "identifier": "29rkswgx13q8mej7mxdg6:1673192588",
+    "title": "BEFOREDEATH",
+    "complexity": 2999,
+    "format_version": 6,
+    "update_timestamp": 1674083674466,
+    "creation_timestamp": 1673816032304,
+    "data_key": "level_data:29rkswgx13q8mej7mxdg6:1673192588:2",
+    "description": "the prequel to AFTERLIFE (leads up to the first game)",
+    "creators": [
+      "AFT studios"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 6300,
+      "difficulty": 0.026622296173044926,
+      "liked": 0.8484848484848485,
+      "time": 222.1913159722222
+    },
+    "creator": "AFT studios"
+  },
+  {
     "identifier": "29ffxg2ijqxyrgxyy2vjj:1642228246",
     "title": "FROSTYs lava explorer dif 6.7",
     "complexity": 3000,
@@ -1840,29 +1885,6 @@
       "time": 753.5611057416269
     },
     "creator": "FROSTYCROSS"
-  },
-  {
-    "identifier": "29rkswgx13q8mej7mxdg6:1673192588",
-    "title": "BEFOREDEATH",
-    "complexity": 2999,
-    "format_version": 6,
-    "update_timestamp": 1674083674466,
-    "creation_timestamp": 1673816032304,
-    "data_key": "level_data:29rkswgx13q8mej7mxdg6:1673192588:2",
-    "description": "the prequel to AFTERLIFE (leads up to the first game)",
-    "creators": [
-      "AFT studios"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 6200,
-      "difficulty": 0.026859504132231406,
-      "liked": 0.8469387755102041,
-      "time": 222.23364685314684
-    },
-    "creator": "AFT studios"
   },
   {
     "identifier": "29k763epg4asdivyctend:1648411753",
@@ -1979,28 +2001,6 @@
       "time": 444.04512916666687
     },
     "creator": "boop"
-  },
-  {
-    "identifier": "2ak5u4cyuivrwrfb682hs:1674825261",
-    "title": "dracula's castle",
-    "complexity": 2997,
-    "format_version": 6,
-    "update_timestamp": 1674851363966,
-    "creation_timestamp": 1674851363966,
-    "data_key": "level_data:2ak5u4cyuivrwrfb682hs:1674825261:1",
-    "creators": [
-      "boohoo77"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 12100,
-      "difficulty": 0.028271578496466054,
-      "liked": 0.8444444444444444,
-      "time": 1618.8899890151527
-    },
-    "creator": "boohoo77"
   },
   {
     "identifier": "29gwwj3rpcbxe7q9maao7:1662910491",
@@ -2133,10 +2133,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 105800,
-      "difficulty": 0.0019566078858727957,
+      "total_played": 106100,
+      "difficulty": 0.0019508581306334116,
       "liked": 0.8421052631578947,
-      "time": 2546.8222405063284
+      "time": 2528.5880632911385
     },
     "creator": "BLUDUK"
   },
