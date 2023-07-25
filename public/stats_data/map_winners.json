@@ -3513,5 +3513,52 @@
     },
     1690089039,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 12.024,
+        "user_id": "29gcoxll2ry9g4iikxff2",
+        "user_name": "BirdLover483"
+      },
+      {
+        "position": 1,
+        "best_time": 12.769,
+        "user_id": "2bt1j9owykx3qrnr8ilbv",
+        "user_name": "1235311PNUT"
+      },
+      {
+        "position": 2,
+        "best_time": 15.034,
+        "user_id": "2ap647di3dc1k42jf4o2o",
+        "user_name": "yO0hooVr"
+      }
+    ],
+    {
+      "identifier": "2aejscunjtm5ktmn0lh0w:1689631756",
+      "title": "Mini Golf",
+      "complexity": 1585,
+      "format_version": 6,
+      "update_timestamp": 1689656392606,
+      "creation_timestamp": 1689642563917,
+      "data_key": "level_data:2aejscunjtm5ktmn0lh0w:1689631756:2",
+      "description": "inspired by PNUT",
+      "creators": [
+        "LowkeyVrPro"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 1300,
+        "difficulty": 0.44547996272134205,
+        "liked": 0.8269720101781171,
+        "time": 48.31364769874473
+      },
+      "creator": "LowkeyVrPro"
+    },
+    1690245609,
+    "daily_map"
   ]
 ]
