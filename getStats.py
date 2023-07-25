@@ -64,6 +64,8 @@ def get_unbeaten(data):
             stats = requests.get(url).json()
             print("Sending request")
             if stats["finished_count"] == 0:
+                if "creators" not in level:
+                    level["creators"] = ""
                 new_data = {
                     "plays": str(stats["total_played_count"]),
                     "link": f"https://grabvr.quest/levels/viewer?level={level['identifier']}",
