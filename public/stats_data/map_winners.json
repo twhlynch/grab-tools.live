@@ -3607,5 +3607,53 @@
     },
     1690348261,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 16.056,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      },
+      {
+        "position": 1,
+        "best_time": 17.2139,
+        "user_id": "2bdgvs9mq43grmiabk1bk",
+        "user_name": "Oliver-M"
+      },
+      {
+        "position": 2,
+        "best_time": 21.5199,
+        "user_id": "29qv44zsn1bl7muilse95",
+        "user_name": "Ryzx"
+      }
+    ],
+    {
+      "identifier": "2bw7n93ucctpgodil5kab:1689941399",
+      "title": "The Glitchers. Part 1.",
+      "complexity": 2999,
+      "format_version": 6,
+      "update_timestamp": 1690224176291,
+      "creation_timestamp": 1690224176291,
+      "data_key": "level_data:2bw7n93ucctpgodil5kab:1689941399:1",
+      "description": "Im stuck..",
+      "creators": [
+        "Monkebanan",
+        "Aqzxy."
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 300,
+        "difficulty": 0.26881720430107525,
+        "liked": 0.7021276595744681,
+        "time": 98.43175200000003
+      },
+      "creator": "Monkebanan"
+    },
+    1690434660,
+    "daily_map"
   ]
 ]
