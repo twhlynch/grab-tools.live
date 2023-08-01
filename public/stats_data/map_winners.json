@@ -3844,5 +3844,52 @@
     },
     1690780293,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 1,
+        "best_time": 2.315,
+        "user_id": "29rf0j9ksurlx1zybi2gm",
+        "user_name": "Doge786"
+      },
+      {
+        "position": 2,
+        "best_time": 2.361,
+        "user_id": "29mu59yo9pbgwqloqhthe",
+        "user_name": "littlebeastM8"
+      },
+      {
+        "position": 3,
+        "best_time": 2.605,
+        "user_id": "29qv44zsn1bl7muilse95",
+        "user_name": "Ryzx"
+      }
+    ],
+    {
+      "identifier": "2bw7n93ucctpgodil5kab:1690465475",
+      "title": "Moss but in grab.",
+      "complexity": 1507,
+      "format_version": 6,
+      "update_timestamp": 1690485504447,
+      "creation_timestamp": 1690485504447,
+      "data_key": "level_data:2bw7n93ucctpgodil5kab:1690465475:1",
+      "description": "I like the level a lot i hope you guys do too!",
+      "creators": [
+        "Monkebanan."
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 400,
+        "difficulty": 0.3179347826086957,
+        "liked": 0.7386363636363636,
+        "time": 55.34101008547008
+      },
+      "creator": "Monkebanan."
+    },
+    1690866684,
+    "daily_map"
   ]
 ]
