@@ -15,8 +15,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 14100,
-      "difficulty": 9.550186228631458e-05,
+      "total_played": 14200,
+      "difficulty": 9.48856627763545e-05,
       "liked": 1,
       "time": 15388.4
     },
@@ -85,8 +85,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 45200,
-      "difficulty": 0.00033293104165799657,
+      "total_played": 45400,
+      "difficulty": 0.0003315375051802735,
       "liked": 0.8571428571428571,
       "time": 5287.034250000001
     },
@@ -108,8 +108,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 900,
-      "difficulty": 0.002512562814070352,
+      "total_played": 1000,
+      "difficulty": 0.002257336343115124,
       "time": 4853.52,
       "liked": 0
     },
@@ -132,8 +132,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 11200,
-      "difficulty": 0.00023512814483893723,
+      "total_played": 11300,
+      "difficulty": 0.00023315458148752622,
       "liked": 0.5,
       "time": 4041.6845000000003
     },
@@ -226,8 +226,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 18202,
-      "difficulty": 0.0012105675425478886,
+      "total_played": 18302,
+      "difficulty": 0.0012046485260770975,
       "liked": 0.9090909090909091,
       "time": 3170.572066666667
     },
@@ -371,8 +371,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 108300,
-      "difficulty": 0.0003693955764879716,
+      "total_played": 108500,
+      "difficulty": 0.0003686635944700461,
       "liked": 0.7916666666666666,
       "time": 2638.5316250000005
     },
@@ -508,8 +508,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 108500,
-      "difficulty": 0.0019083047490216919,
+      "total_played": 108800,
+      "difficulty": 0.0019022851501360495,
       "liked": 0.8620689655172413,
       "time": 2359.390734177214
     },
@@ -824,30 +824,6 @@
     "creator": "FROSTY_CROSS"
   },
   {
-    "identifier": "29t798uon2urbra1f8w2q:1650499561",
-    "title": "Peeks-Dessert climb",
-    "complexity": 2986,
-    "format_version": 4,
-    "update_timestamp": 1651107153020,
-    "creation_timestamp": 1651107153020,
-    "data_key": "level_data:29t798uon2urbra1f8w2q:1650499561:1",
-    "description": "a more simple climbing level, the first of a series? ",
-    "creators": [
-      "blackcat508",
-      "battlesquid112"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 28502,
-      "difficulty": 0.00309319497106366,
-      "liked": 0.8636363636363636,
-      "time": 1981.616016363636
-    },
-    "creator": "blackcat508"
-  },
-  {
     "identifier": "29l50ea34l4s54rtclzus:1661535416",
     "title": "lava tower island parcore",
     "complexity": 2995,
@@ -869,6 +845,30 @@
       "time": 1974.17
     },
     "creator": "cjbeast006"
+  },
+  {
+    "identifier": "29t798uon2urbra1f8w2q:1650499561",
+    "title": "Peeks-Dessert climb",
+    "complexity": 2986,
+    "format_version": 4,
+    "update_timestamp": 1651107153020,
+    "creation_timestamp": 1651107153020,
+    "data_key": "level_data:29t798uon2urbra1f8w2q:1650499561:1",
+    "description": "a more simple climbing level, the first of a series? ",
+    "creators": [
+      "blackcat508",
+      "battlesquid112"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 28602,
+      "difficulty": 0.003133393017009848,
+      "liked": 0.8636363636363636,
+      "time": 1961.4101946428566
+    },
+    "creator": "blackcat508"
   },
   {
     "identifier": "29sgp24f1uorbc6vq8d2k:1683285632",
@@ -979,8 +979,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 31278,
-      "difficulty": 0.001851324409000285,
+      "total_played": 31478,
+      "difficulty": 0.0018408382894364204,
       "liked": 0.8,
       "time": 1884.2136334285717
     },
@@ -1124,30 +1124,6 @@
     "creator": "jckarp"
   },
   {
-    "identifier": "2ag78daeo0xaz2bca9eq3:1690256050",
-    "title": "SKILLS ONLY 8",
-    "complexity": 2896,
-    "format_version": 6,
-    "update_timestamp": 1690624409946,
-    "creation_timestamp": 1690624409946,
-    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:1690256050:1",
-    "description": "WERE BACK AFTER A LONG EXTENTED HIBERNATION!!!!   20 LEVELS + HIDDEN IDOL TREASURES ++++++ GOOD LUCK HAVE FUN ",
-    "creators": [
-      "BLUDUK",
-      ".index - NSKC7"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 9000,
-      "difficulty": 0.006669535283993115,
-      "liked": 0.8888888888888888,
-      "time": 1806.571258064516
-    },
-    "creator": "BLUDUK"
-  },
-  {
     "identifier": "29v9vd6n9z45d16mi2o2n:1664504388",
     "title": "JUMP 2 DESTRUCTON",
     "complexity": 1920,
@@ -1218,6 +1194,30 @@
       "time": 1787.1139371428562
     },
     "creator": "FROSTYCROSS"
+  },
+  {
+    "identifier": "2ag78daeo0xaz2bca9eq3:1690256050",
+    "title": "SKILLS ONLY 8",
+    "complexity": 2896,
+    "format_version": 6,
+    "update_timestamp": 1690624409946,
+    "creation_timestamp": 1690624409946,
+    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:1690256050:1",
+    "description": "WERE BACK AFTER A LONG EXTENTED HIBERNATION!!!!   20 LEVELS + HIDDEN IDOL TREASURES ++++++ GOOD LUCK HAVE FUN ",
+    "creators": [
+      "BLUDUK",
+      ".index - NSKC7"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 10700,
+      "difficulty": 0.0060502930610701455,
+      "liked": 0.9473684210526315,
+      "time": 1784.60203125
+    },
+    "creator": "BLUDUK"
   },
   {
     "identifier": "29id5ta7mb54j28tz6wfe:1643503748",
@@ -1451,6 +1451,29 @@
     "creator": "BlackCat508"
   },
   {
+    "identifier": "29gwwj3rpcbxe7q9maao7:1670769331",
+    "title": "Dantes Inferno Ring 2",
+    "complexity": 776,
+    "format_version": 6,
+    "update_timestamp": 1677404467948,
+    "creation_timestamp": 1677404467948,
+    "data_key": "level_data:29gwwj3rpcbxe7q9maao7:1670769331:1",
+    "description": "Hope you haven't forgotten",
+    "creators": [
+      "TheWhiteCrescent"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 1500,
+      "difficulty": 0.0014936519790888724,
+      "time": 1660.3595,
+      "liked": 0
+    },
+    "creator": "TheWhiteCrescent"
+  },
+  {
     "identifier": "2ajuvtey60upkb3n3xly3:1667615639",
     "title": "Only in Ohio 2: Back in Ohio",
     "complexity": 892,
@@ -1515,8 +1538,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 12883,
-      "difficulty": 0.0005863956215793589,
+      "total_played": 12983,
+      "difficulty": 0.0005817335660267597,
       "liked": 0.6,
       "time": 1630.5276666666668
     },
@@ -1850,8 +1873,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 98088,
-      "difficulty": 0.0006828349423122204,
+      "total_played": 98288,
+      "difficulty": 0.000681326942956489,
       "liked": 0.7352941176470589,
       "time": 1483.9538965517238
     },
@@ -1991,8 +2014,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7167,
-      "difficulty": 0.00017105713308244953,
+      "total_played": 7267,
+      "difficulty": 0.00016863406408094435,
       "liked": 0.75,
       "time": 1461.88
     },
@@ -2109,8 +2132,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2300,
-      "difficulty": 0.0010070493454179255,
+      "total_played": 2400,
+      "difficulty": 0.000964785335262904,
       "time": 1431.24,
       "liked": 0
     },
@@ -2335,27 +2358,5 @@
       "time": 1381.3402857142858
     },
     "creator": "TylerVB"
-  },
-  {
-    "identifier": "29rnnd0ymyemrickwtpx3:1671569184",
-    "title": "the biggest slide ever",
-    "complexity": 499,
-    "format_version": 6,
-    "update_timestamp": 1671655913671,
-    "creation_timestamp": 1671655913671,
-    "data_key": "level_data:29rnnd0ymyemrickwtpx3:1671569184:1",
-    "creators": [
-      "rivler"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 3100,
-      "difficulty": 0.0031201248049922,
-      "liked": 0.6666666666666666,
-      "time": 1370.8745
-    },
-    "creator": "rivler"
   }
 ]
