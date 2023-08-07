@@ -4078,5 +4078,52 @@
     },
     1691298621,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 13.344,
+        "user_id": "29rf0j9ksurlx1zybi2gm",
+        "user_name": "Doge786"
+      },
+      {
+        "position": 1,
+        "best_time": 17.4039,
+        "user_id": "29qv44zsn1bl7muilse95",
+        "user_name": "Ryzx"
+      },
+      {
+        "position": 2,
+        "best_time": 17.7051,
+        "user_id": "29udv6q207r9ehlyn3zp1",
+        "user_name": "Sherbear79"
+      }
+    ],
+    {
+      "identifier": "2acbdwj2bo9r9zkt79p72:1676128989",
+      "title": "GrabWorks",
+      "complexity": 1821,
+      "format_version": 6,
+      "update_timestamp": 1676157515802,
+      "creation_timestamp": 1676157515802,
+      "data_key": "level_data:2acbdwj2bo9r9zkt79p72:1676128989:1",
+      "description": "A short example of an entertaining tutorial for Slin. Nothing special. (Might get updated for later use)",
+      "creators": [
+        "kookookrazy"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 1600,
+        "difficulty": 0.7367272727272727,
+        "liked": 0.7555938037865749,
+        "time": 67.79109052319836
+      },
+      "creator": "kookookrazy"
+    },
+    1691385062,
+    "daily_map"
   ]
 ]
