@@ -4220,5 +4220,40 @@
     },
     1691557871,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 414.894,
+        "user_id": "29rf0j9ksurlx1zybi2gm",
+        "user_name": "Doge786"
+      }
+    ],
+    {
+      "identifier": "29ukgk02zfhv27m7ukx6h:1687021310",
+      "title": "HELL (OBBY)",
+      "complexity": 1488,
+      "format_version": 6,
+      "update_timestamp": 1689580544342,
+      "creation_timestamp": 1689580544342,
+      "data_key": "level_data:29ukgk02zfhv27m7ukx6h:1687021310:1",
+      "description": "Climb Your Way To The Very Top With Difficulty Levels Ranging From Easiest To Hardest!",
+      "creators": [
+        "PurplyOculus"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 500,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "creator": "PurplyOculus"
+    },
+    1691644288,
+    "daily_map"
   ]
 ]
