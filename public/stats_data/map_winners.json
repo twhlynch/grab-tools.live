@@ -4255,5 +4255,99 @@
     },
     1691644288,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 5.26701,
+        "user_id": "29iz7lwjt8f9l20uvr28b",
+        "user_name": "D2whiplash"
+      },
+      {
+        "position": 1,
+        "best_time": 5.54202,
+        "user_id": "29rf0j9ksurlx1zybi2gm",
+        "user_name": "Doge786"
+      },
+      {
+        "position": 2,
+        "best_time": 5.69802,
+        "user_id": "2bdgvs9mq43grmiabk1bk",
+        "user_name": "Oliver-M"
+      }
+    ],
+    {
+      "identifier": "2a73z9w96pj5xd7f9buly:1689306690",
+      "title": "Red Leaf River",
+      "complexity": 1500,
+      "format_version": 6,
+      "update_timestamp": 1689380652433,
+      "creation_timestamp": 1689380652433,
+      "data_key": "level_data:2a73z9w96pj5xd7f9buly:1689306690:1",
+      "description": "Welcome to the Red Leaf River! This is a small map where you jump from tree to tree over a weird river. This is also my first published level! Hope you enjoy!",
+      "creators": [
+        "ImMrJay"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 800,
+        "difficulty": 0.3094890510948905,
+        "liked": 0.7873563218390804,
+        "time": 22.44388787735848
+      },
+      "creator": "ImMrJay"
+    },
+    1691730654,
+    "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 33.6377,
+        "user_id": "29rf0j9ksurlx1zybi2gm",
+        "user_name": "Doge786"
+      },
+      {
+        "position": 1,
+        "best_time": 78.9292,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      },
+      {
+        "position": 2,
+        "best_time": 111.888,
+        "user_id": "29feerg2ecrx9pn03x00c",
+        "user_name": "Player36"
+      }
+    ],
+    {
+      "identifier": "2a0e95evz02c2czphcyng:1690740634",
+      "title": "Shatter verse part 1",
+      "complexity": 600,
+      "format_version": 6,
+      "update_timestamp": 1690744809473,
+      "creation_timestamp": 1690744809473,
+      "data_key": "level_data:2a0e95evz02c2czphcyng:1690740634:1",
+      "description": "hello",
+      "creators": [
+        "LegendF"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 75,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "creator": "LegendF"
+    },
+    1691730655,
+    "weekly_map"
   ]
 ]
