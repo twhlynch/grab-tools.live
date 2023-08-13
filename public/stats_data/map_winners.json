@@ -4398,5 +4398,52 @@
     },
     1691817005,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 5.62002,
+        "user_id": "2bgclonc5yshu0f1dr3rk",
+        "user_name": "LilHype0115"
+      },
+      {
+        "position": 1,
+        "best_time": 5.64202,
+        "user_id": "29rf0j9ksurlx1zybi2gm",
+        "user_name": "Doge786"
+      },
+      {
+        "position": 2,
+        "best_time": 5.87702,
+        "user_id": "29udv6q207r9ehlyn3zp1",
+        "user_name": "Sherbear79"
+      }
+    ],
+    {
+      "identifier": "2blljxijbqbsxt1uf1ozz:1691687179",
+      "title": "Scopophobia",
+      "complexity": 2538,
+      "format_version": 6,
+      "update_timestamp": 1691806476930,
+      "creation_timestamp": 1691688531747,
+      "data_key": "level_data:2blljxijbqbsxt1uf1ozz:1691687179:6",
+      "description": "They dont blink.",
+      "creators": [
+        "CoffeePerson"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 600,
+        "difficulty": 0.4931506849315068,
+        "liked": 0.7863636363636364,
+        "time": 18.869813769841283
+      },
+      "creator": "CoffeePerson"
+    },
+    1691903402,
+    "daily_map"
   ]
 ]
