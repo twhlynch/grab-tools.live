@@ -4606,5 +4606,98 @@
     },
     1692249052,
     "unbeaten_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 9.08004,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      },
+      {
+        "position": 1,
+        "best_time": 10.221,
+        "user_id": "2bdv1449ycdl3vhfoeibb",
+        "user_name": "Treecko101"
+      },
+      {
+        "position": 2,
+        "best_time": 10.333,
+        "user_id": "2atmggb72y45qsxf13tp9",
+        "user_name": "Kyskyhi"
+      }
+    ],
+    {
+      "identifier": "29rmrj79lecww60tq8d60:1691613519",
+      "title": "Crawlspace Creature",
+      "complexity": 1498,
+      "format_version": 6,
+      "update_timestamp": 1691736505203,
+      "creation_timestamp": 1691736505203,
+      "data_key": "level_data:29rmrj79lecww60tq8d60:1691613519:1",
+      "description": "horror map",
+      "creators": [
+        "pikevr"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 900,
+        "difficulty": 0.5377833753148614,
+        "liked": 0.7956403269754768,
+        "time": 59.12784613583138
+      },
+      "creator": "pikevr"
+    },
+    1692335450,
+    "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 33.4868,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      },
+      {
+        "position": 1,
+        "best_time": 39.6841,
+        "user_id": "29rf0j9ksurlx1zybi2gm",
+        "user_name": "Doge786"
+      },
+      {
+        "position": 2,
+        "best_time": 54.9122,
+        "user_id": "2aw06b0if6j71h3ukt2ir",
+        "user_name": "Masterpay"
+      }
+    ],
+    {
+      "identifier": "2am015n3aa6sebl0p6923:1663529734",
+      "title": "snowy hights",
+      "complexity": 2450,
+      "format_version": 6,
+      "update_timestamp": 1679524316206,
+      "creation_timestamp": 1663626370387,
+      "data_key": "level_data:2am015n3aa6sebl0p6923:1663529734:2",
+      "creators": [
+        "rougueRunner"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 1200,
+        "difficulty": 0.10234741784037558,
+        "liked": 0.7866666666666666,
+        "time": 214.2614495412845
+      },
+      "creator": "rougueRunner"
+    },
+    1692335450,
+    "weekly_map"
   ]
 ]
