@@ -370,3 +370,15 @@ footer a {
 footer p:hover {
     border: none;
 }
+
+#search {
+    padding-block: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+#search-bar {
+    width: 100%;
+    font-size: 16px;
+}
