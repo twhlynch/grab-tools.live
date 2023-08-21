@@ -19,4 +19,7 @@ def write_json_file(filename, data):
 
 if __name__ == "__main__":
     data = getLevels()
+    # split array into 2 variables seperated each 200000 elements
+    data1 = data[:len(data)//2]
+    data2 = data[len(data)//2:]
     write_json_file("public/stats_data/all_levels.json", data)
