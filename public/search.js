@@ -13,17 +13,17 @@ submit.addEventListener("click", function (event) {
         .then(data => {
             data.forEach(item => {
                 if (title.value == 'on') {
-                    if (item.title.contains(search)) {
+                    if (item.title.includes(search)) {
                         output.innerHTML += `<div class="search-item"><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a></div>`
                     }
                 }
                 if (description.value == 'on') {
-                    if (item.description.contains(search)) {
+                    if (item.description.includes(search)) {
                         output.innerHTML += `<div class="search-item"><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a></div>`
                     }
                 }
                 if (creators.value == 'on') {
-                    if (item.creators.join().contains(search)) {
+                    if (item.creators.join().includes(search)) {
                         output.innerHTML += `<div class="search-item"><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a></div>`
                     }
                 }
@@ -34,17 +34,17 @@ submit.addEventListener("click", function (event) {
         .then(data => {
             data.forEach(item => {
                 if (title.value == 'on') {
-                    if (item.title.contains(search)) {
+                    if (item.title.includes(search)) {
                         output.innerHTML += `<div class="search-item"><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a></div>`
                     }
                 }
                 if (description.value == 'on') {
-                    if (item.description.contains(search)) {
+                    if (item.description.includes(search)) {
                         output.innerHTML += `<div class="search-item"><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a></div>`
                     }
                 }
                 if (creators.value == 'on') {
-                    if (item.creators.join().contains(search)) {
+                    if (item.creators.join().includes(search)) {
                         output.innerHTML += `<div class="search-item"><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a></div>`
                     }
                 }
