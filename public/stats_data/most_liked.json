@@ -135,8 +135,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 31200,
-      "difficulty": 0.003164324085657517,
+      "total_played": 31900,
+      "difficulty": 0.0031004398298363255,
       "liked": 0.9642857142857143,
       "time": 1899.3842093023266
     },
@@ -464,8 +464,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 19602,
-      "difficulty": 0.00112463614712887,
+      "total_played": 19702,
+      "difficulty": 0.0011188627089640647,
       "liked": 0.9090909090909091,
       "time": 3170.572066666667
     },
@@ -1305,8 +1305,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 113400,
-      "difficulty": 0.001881165404909383,
+      "total_played": 113500,
+      "difficulty": 0.0018794838295629055,
       "liked": 0.8620689655172413,
       "time": 2381.4554634146334
     },
@@ -1554,8 +1554,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8782,
-      "difficulty": 0.0014798869904480022,
+      "total_played": 8882,
+      "difficulty": 0.0014621826399042934,
       "liked": 0.8571428571428571,
       "time": 1400.123818181818
     },
@@ -1578,8 +1578,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 48800,
-      "difficulty": 0.0003080952014172379,
+      "total_played": 49000,
+      "difficulty": 0.0003068543592497411,
       "liked": 0.8571428571428571,
       "time": 4768.393
     },
@@ -1601,35 +1601,12 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 25700,
-      "difficulty": 0.0016108463655278879,
+      "total_played": 26000,
+      "difficulty": 0.001591617481265336,
       "liked": 0.8571428571428571,
       "time": 332.97764166666667
     },
     "creator": ".index (NSKC7)"
-  },
-  {
-    "identifier": "2ap647di3dc1k42jf4o2o:1682810607",
-    "title": "yoohoos difficuity chart",
-    "complexity": 3000,
-    "format_version": 6,
-    "update_timestamp": 1682839616621,
-    "creation_timestamp": 1682839616621,
-    "data_key": "level_data:2ap647di3dc1k42jf4o2o:1682810607:1",
-    "description": "test your skill or die and there is 0 checkpoints",
-    "creators": [
-      "yoohoo vr"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 95900,
-      "difficulty": 0.0028781225785026385,
-      "liked": 0.8571428571428571,
-      "time": 248.48030769230763
-    },
-    "creator": "yoohoo vr"
   },
   {
     "identifier": "29marqugz6lw65zs5bxqd:1647116476",
@@ -1653,6 +1630,32 @@
       "time": 576.091914772728
     },
     "creator": "SanderDenSeje"
+  },
+  {
+    "identifier": "29v9vd6n9z45d16mi2o2n:1684027025",
+    "title": "AIRBORNE... Lvl 1: the willows",
+    "complexity": 2944,
+    "format_version": 6,
+    "update_timestamp": 1684074281306,
+    "creation_timestamp": 1684032888577,
+    "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1684027025:3",
+    "creators": [
+      "jeffbobdude",
+      "rougeRunner",
+      "Sock-Sucks",
+      "triple",
+      "Kpw120"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 7200,
+      "difficulty": 0.11804861804861805,
+      "liked": 0.8552631578947368,
+      "time": 317.1283825105779
+    },
+    "creator": "jeffbobdude"
   },
   {
     "identifier": "29ukw5lo3w9rqjfg2w7xf:1657048273",
@@ -1679,32 +1682,6 @@
     "creator": "JustSimpl1fy"
   },
   {
-    "identifier": "29v9vd6n9z45d16mi2o2n:1684027025",
-    "title": "AIRBORNE... Lvl 1: the willows",
-    "complexity": 2944,
-    "format_version": 6,
-    "update_timestamp": 1684074281306,
-    "creation_timestamp": 1684032888577,
-    "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1684027025:3",
-    "creators": [
-      "jeffbobdude",
-      "rougeRunner",
-      "Sock-Sucks",
-      "triple",
-      "Kpw120"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 7100,
-      "difficulty": 0.11910795742524075,
-      "liked": 0.8544423440453687,
-      "time": 317.21932368794296
-    },
-    "creator": "jeffbobdude"
-  },
-  {
     "identifier": "29i1vararozh6jevm06av:1643123373",
     "title": "tower of big extended",
     "complexity": 513,
@@ -1720,8 +1697,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8138,
-      "difficulty": 0.008403361344537815,
+      "total_played": 8238,
+      "difficulty": 0.008292340126493323,
       "liked": 0.8541666666666666,
       "time": 1138.1618909090907
     },
@@ -2099,6 +2076,29 @@
     "creator": "Fizzn"
   },
   {
+    "identifier": "2ap647di3dc1k42jf4o2o:1682810607",
+    "title": "yoohoos difficuity chart",
+    "complexity": 3000,
+    "format_version": 6,
+    "update_timestamp": 1682839616621,
+    "creation_timestamp": 1682839616621,
+    "data_key": "level_data:2ap647di3dc1k42jf4o2o:1682810607:1",
+    "description": "test your skill or die and there is 0 checkpoints",
+    "creators": [
+      "yoohoo vr"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 97100,
+      "difficulty": 0.0029196014743987446,
+      "liked": 0.8448275862068966,
+      "time": 243.50772999999995
+    },
+    "creator": "yoohoo vr"
+  },
+  {
     "identifier": "29gwwj3rpcbxe7q9maao7:1662910491",
     "title": "Crescents Rollercoaster",
     "complexity": 2877,
@@ -2250,10 +2250,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 27700,
-      "difficulty": 0.37269542243409337,
-      "liked": 0.841100505334082,
-      "time": 209.0081639697943
+      "total_played": 28000,
+      "difficulty": 0.37247424440776367,
+      "liked": 0.8416852264291017,
+      "time": 209.20620155867908
     },
     "creator": "Mystery8281"
   },
@@ -2284,6 +2284,29 @@
     "creator": "NinjaFDW0915"
   },
   {
+    "identifier": "29tt9h06ove2r7tgqxk8u:1689188625",
+    "title": "Buddys And Syphons Escape Room",
+    "complexity": 1993,
+    "format_version": 6,
+    "update_timestamp": 1690217316044,
+    "creation_timestamp": 1689718825964,
+    "data_key": "level_data:29tt9h06ove2r7tgqxk8u:1689188625:3",
+    "description": "The BEST Escape Room- Index (it is a joke but it is literally the Best Escape Room) THERE'S A NEW UPDATE",
+    "creators": [
+      "Syphon"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 7900,
+      "difficulty": 0.2956302521008403,
+      "liked": 0.8406084656084656,
+      "time": 270.26851256395645
+    },
+    "creator": "Syphon"
+  },
+  {
     "identifier": "29uo4gb383zks2eb02oja:1675467442",
     "title": "SPEED COURSE",
     "complexity": 1635,
@@ -2305,23 +2328,5 @@
       "time": 180.95040800000004
     },
     "creator": "cyclops_22"
-  },
-  {
-    "identifier": "29jwlcaorxucwqlq34vk3:1641776916",
-    "title": "volcano escaped4",
-    "complexity": 2976,
-    "format_version": 6,
-    "update_timestamp": 1674348641091,
-    "creation_timestamp": 1642469395173,
-    "data_key": "level_data:29jwlcaorxucwqlq34vk3:1641776916:2",
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 10291,
-      "difficulty": 0.0030911901081916537,
-      "liked": 0.84,
-      "time": 641.83785
-    }
   }
 ]
