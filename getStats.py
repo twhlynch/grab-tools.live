@@ -302,7 +302,10 @@ def get_level_data():
                 did_players = True
 
         log(did_players, did_unbeaten, weekly)
-        run_bot(message_result)
+        if did_unbeaten:
+            run_bot(message_result, unbeaten_levels)
+        else:
+            run_bot(message_result)
 
 def log(players, unbeaten_levels, weekly):
     log_data = {
@@ -379,14 +382,14 @@ async def get_challenge_scores():
     return embed
 
 
-def run_bot(message):
+def run_bot(message, unbeaten_levels=[]):
 
     intents = discord.Intents.default()
     bot = commands.Bot(command_prefix='!', intents=intents)
 
     @bot.event
     async def on_ready():
-
+        # Challenges
         print(f'Bot connected as {bot.user.name}')
         channel = bot.get_channel(1110435431750828132)
         guild = bot.get_guild(1048213818775437394)
@@ -404,6 +407,28 @@ def run_bot(message):
         await channel.send(embed=embed)
         scores_embed = await get_challenge_scores()
         await channel.send(embed=scores_embed)
+
+        # Unbeaten
+        if len(unbeaten_levels) > 0:
+            channel = bot.get_channel(1144060608937996359)
+            role = guild.get_role(1077411286696087664)
+
+            embed = Embed(title="Unbeaten Levels Update", url="https://grab-tools.live/stats.html", description="Unbeaten Update", color=0x00ffff)
+            embed.add_field(name="Count", value=str(len(unbeaten_levels)))
+            
+            over_100 = []
+
+            for level in unbeaten_levels:
+                if int(level["age"].split(" ")[0]) >= 100 and level["age"].split(" ")[1] == "days":
+                    over_100.append(level)
+                
+            if len(over_100) > 0:
+                embed.add_field(name="Over 100 Days", value="\n".join([f"[{level['title']}]({level['link']})" for level in over_100]), inline=False)
+
+            embed.add_field(name="Newest", value=unbeaten_levels[-1]["title"], inline=False)
+
+            await channel.send(f"||{role.mention}||")
+            await channel.send(embed=embed)
 
         await bot.close()
 
