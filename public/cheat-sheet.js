@@ -139,7 +139,7 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
                     "material": msArr[0],
                     "shape": msArr[1],
                     "position": {
-                        "x": i,
+                        "x": i - Math.floor(i/14) * 14,
                         "y": 0,
                         "z": Math.floor(i/14)
                     },
@@ -180,9 +180,9 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
                             "material": msArr[0],
                             "shape": msArr[1],
                             "position": {
-                                "x": i,
+                                "x": 16 + i - Math.floor(i/14) * 14,
                                 "y": 0,
-                                "z": Math.floor(i/14) + 16
+                                "z": Math.floor(i/14)
                             },
                             "scale": {
                                 "x": 1,
@@ -204,9 +204,9 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
                             "material": 8,
                             "shape": 3,
                             "position": {
-                                "x": i,
-                                "y": 1,
-                                "z": Math.floor(i/14) + 16
+                                "x": 16 + i - Math.floor(i/14) * 14,
+                                "y": 0.65,
+                                "z": Math.floor(i/14)
                             },
                             "scale": {
                                 "x": 0.1,
