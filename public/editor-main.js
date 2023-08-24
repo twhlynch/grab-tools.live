@@ -175,33 +175,45 @@ addEventListener('resize', () => {
 });
 
 
-function initAttributes() {
-    const attribPromises = [];
-    let texture;
-    [
-    'textures/default.png',
-    'textures/grabbable.png',
-    'textures/ice.png',
-    'textures/lava.png',
-    'textures/wood.png',
-    'textures/grapplable.png',
-    'textures/grapplable_lava.png',
-    'textures/grabbable_crumbling.png',
-    'textures/default_colored.png',
-    'textures/bouncing.png'
-    ].forEach(path => {
-        const attribPromise = new Promise((resolve) => {
-            texture = new THREE.TextureLoader().load(path, function( texture ) {
-                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-                texture.repeat.set( 2, 2 );
-            });
+function loadTexture(path) {
+    return new Promise((resolve) => {
+        const texture = new THREE.TextureLoader().load(path, function (texture) {
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(2, 2);
+            resolve(texture);
+        });
+    });
+}
+
+function loadModel(path) {
+    return new Promise((resolve) => {
+        loader.load(path, function (gltf) {
+            const glftScene = gltf.scene;
+            resolve(glftScene.children[0]);
+        });
+    });
+}
+
+async function initAttributes() {
+
+    for (const path of [
+        'textures/default.png',
+        'textures/grabbable.png',
+        'textures/ice.png',
+        'textures/lava.png',
+        'textures/wood.png',
+        'textures/grapplable.png',
+        'textures/grapplable_lava.png',
+        'textures/grabbable_crumbling.png',
+        'textures/default_colored.png',
+        'textures/bouncing.png'
+        ]) {
+            const texture = await loadTexture(path);
             let material = new THREE.MeshBasicMaterial({ map: texture });
             materials.push(material);
-            resolve();
-        });
-        attribPromises.push(attribPromise);
-    });
-    [
+        }
+
+    for (const path of [
         'models/editor/cube.glb',
         'models/editor/sphere.glb',
         'models/editor/cylinder.glb',
@@ -209,19 +221,12 @@ function initAttributes() {
         'models/editor/prism.glb',
         'models/editor/sign.glb',
         'models/editor/start_end.glb'
-    ].forEach(path => {
-        const attribPromise = new Promise((resolve) => {
-            loader.load(path, function( gltf ) {
-                let glftScene = gltf.scene;
-                shapes.push(glftScene.children[0]);
-                resolve();
-            });
-        });
-        attribPromises.push(attribPromise);
-    });
-    Promise.all(attribPromises).then(() => {
-        console.log('Ready');
-    });
+    ]) {
+        const model = await loadModel(path);
+        shapes.push(model);
+    }
+    console.log('Ready', materials, shapes);
+
 }
 
 
@@ -247,9 +252,18 @@ function loadLevelNode(node, parent) {
         return groupComplexity;
     } else if (node.levelNodeStatic) { 
         node = node.levelNodeStatic;
-        var cube = shapes[node.shape-1000].clone();
+        try {console.log(node.material, node.shape, materials, shapes)} catch {}
+        if (node.shape-1000 >= 0 && node.shape-1000 < shapes.length) {
+            var cube = shapes[node.shape-1000].clone();
+        } else {
+            var cube = shapes[0].clone();
+        }
         let material;
-        node.material ? material = materials[node.material].clone() : material = materials[0].clone();
+        if (node.material >= 0 && node.material < materials.length) {
+            node.material ? material = materials[node.material].clone() : material = materials[0].clone();    
+        } else {
+            material = materials[0].clone();
+        }
         if (node.material == 8) {
             // let colorMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(node.color.r, node.color.g, node.color.b) });
             // material.transparent = true;
@@ -277,8 +291,17 @@ function loadLevelNode(node, parent) {
         return 2;
     } else if (node.levelNodeCrumbling) {
         node = node.levelNodeCrumbling;
-        var cube = shapes[node.shape-1000].clone();
-        node.material ? cube.material = materials[node.material] : cube.material = materials[0];
+        try {console.log(node.material, node.shape, materials, shapes)} catch {}
+        if (node.shape-1000 >= 0 && node.shape-1000 < shapes.length) {
+            var cube = shapes[node.shape-1000].clone();
+        } else {
+            var cube = shapes[0].clone();
+        }
+        if (node.material >= 0 && node.material < materials.length) {
+            node.material ? cube.material = materials[node.material] : cube.material = materials[0];
+        } else {
+            cube.material = materials[0];
+        }
         // var cube = new THREE.Mesh(shapes[node.shape-1000], materials[node.material]);
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
@@ -441,7 +464,7 @@ function openProto(link) {
             });
         })
 }
-openProto('https://api.slin.dev/grab/v1/download/29ffxg2ijqxyrgxyy2vjj/1642284195/1');
+// openProto('https://api.slin.dev/grab/v1/download/29ffxg2ijqxyrgxyy2vjj/1642284195/1');
 document.getElementById('the-index-btn').addEventListener('click', () => {
     openProto('levels/the-index.level');
 });
