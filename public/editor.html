@@ -157,7 +157,8 @@
                             <button class="menu-btn">Media</button>
                             <ul class="menu-dropdown">
                                 <li>
-                                    <button class="menu-btn r" id="image-btn">Image</button>
+                                    <button class="menu-btn" id="image-btn">Image</button>
+                                    <input type="file" id="image-btn-input" style="display:none" multiple>
                                 </li>
                                 <li>
                                     <button class="menu-btn r" id="video-btn">Video</button>
@@ -215,12 +216,12 @@
                 <li>
                     <button class="menu-btn">Edit</button>
                     <ul class="menu-dropdown">
-                        <li>
+                        <!-- <li>
                             <button class="menu-btn r">Undo</button>
                         </li>
                         <li>
                             <button class="menu-btn r">Redo</button>
-                        </li>
+                        </li> -->
                         <li>
                             <button class="menu-btn">Functions</button>
                             <ul class="menu-dropdown">
@@ -481,6 +482,15 @@
                     <button class="prompt-cancel">Cancel</button>
                     <button class="prompt-submit">Sumbit</button>
                     <button id="range-btn">range+</button>
+                </div>
+            </div>
+            <div class="prompt-simple" id="prompt-pixel">
+                <textarea name="pixel" id="pixel-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false" placeholder="Quality, Default: 50"></textarea>
+                <canvas id="pixel-canvas" style="display: none;"></canvas>
+                <canvas id="pixel-canvas2" style="display: none;"></canvas>
+                <div class="prompt-buttons">
+                    <button class="prompt-cancel">Cancel</button>
+                    <button class="prompt-submit">Sumbit</button>
                 </div>
             </div>
         </div>

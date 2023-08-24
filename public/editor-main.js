@@ -252,7 +252,7 @@ function loadLevelNode(node, parent) {
         return groupComplexity;
     } else if (node.levelNodeStatic) { 
         node = node.levelNodeStatic;
-        try {console.log(node.material, node.shape, materials, shapes)} catch {}
+        // try {console.log(node.material, node.shape, materials, shapes)} catch {}
         if (node.shape-1000 >= 0 && node.shape-1000 < shapes.length) {
             var cube = shapes[node.shape-1000].clone();
         } else {
@@ -291,7 +291,7 @@ function loadLevelNode(node, parent) {
         return 2;
     } else if (node.levelNodeCrumbling) {
         node = node.levelNodeCrumbling;
-        try {console.log(node.material, node.shape, materials, shapes)} catch {}
+        // try {console.log(node.material, node.shape, materials, shapes)} catch {}
         if (node.shape-1000 >= 0 && node.shape-1000 < shapes.length) {
             var cube = shapes[node.shape-1000].clone();
         } else {
@@ -755,6 +755,119 @@ document.getElementById('insertpc-btn').addEventListener('click', () => {
 });
 document.getElementById('insertpc-btn-input').addEventListener('change', (e) => {
     appendLevelFile(e.target.files);
+});
+
+document.getElementById('image-btn').addEventListener('click', () => {
+    document.getElementById('image-btn-input').click();
+});
+
+document.querySelector('#prompt-pixel .prompt-cancel').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-pixel').style.display = 'none';
+    document.getElementById('pixel-prompt').value = '';
+});
+
+document.querySelector('#prompt-pixel .prompt-submit').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-pixel').style.display = 'none';
+    var quality = document.getElementById('pixel-prompt').value;
+    document.getElementById('pixel-prompt').value = '';
+    
+    if (quality == "" || quality == null || quality < 1) {
+        quality = 50;
+    }
+    let file = document.getElementById('image-btn-input').files[0];
+    let canvas = document.getElementById('pixel-canvas');
+    let ctx = canvas.getContext('2d');
+    let reader = new FileReader();
+    reader.onload = function() {
+        let data = reader.result;
+        let img = new Image();
+        img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+            let canvas2 = document.getElementById('pixel-canvas2');
+            let ctx2 = canvas2.getContext('2d');
+            canvas2.width = quality;
+            canvas2.height = quality;
+            let rgbArray = [];
+            for (let x = 0; x < quality; x++) {
+                for (let y = 0; y < quality; y++) {
+                    let pixel = ctx.getImageData(x*(img.width/quality), y*(img.height/quality), 1, 1);
+                    ctx2.putImageData(pixel, x, y);
+                    let rgb = pixel.data;
+                    rgbArray.push([rgb[0], rgb[1], rgb[2], x, y*-1]);
+                }
+            }
+            let pixelGroup = {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0, 
+                        "x": 0, 
+                        "z": 0
+                    }, 
+                    "rotation": {
+                        "w": 1.0
+                    }, 
+                    "childNodes": [], 
+                    "scale": {
+                        "y": 1.0, 
+                        "x": 1.0, 
+                        "z": 1.0
+                    }
+                }
+            }
+            var pixels = rgbArray;
+            for (var i = 0; i < pixels.length; i++) {
+                if (pixels[i][0] == 0) {
+                    pixels[i][0] == 1;
+                }
+                if (pixels[i][1] == 0) {
+                    pixels[i][1] == 1;
+                }
+                if (pixels[i][2] == 0) {
+                    pixels[i][2] == 1;
+                }
+                pixelGroup.levelNodeGroup.childNodes.push({
+                    "levelNodeStatic": {
+                        "material": 8,
+                        "position": {
+                            "x": pixels[i][3],
+                            "y": pixels[i][4],
+                            "z": 10.0
+                        },
+                        "color": {
+                            "r": pixels[i][0] / 255,
+                            "g": pixels[i][1] / 255,
+                            "b": pixels[i][2] / 255,
+                            "a": 1.0
+                        },
+                        "rotation": {
+                            "w": 1
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "shape": 1000
+                    }
+                });
+            }
+            let mainLevel = getLevel();
+            mainLevel.levelNodes.push(pixelGroup);
+            setLevel(mainLevel);
+        }
+        img.src = data;
+    }
+    reader.readAsDataURL(file);
+        
+});
+
+document.getElementById('image-btn-input').addEventListener('change', (e) => {
+    document.getElementById('prompts').style.display = 'grid';
+    document.getElementById('prompt-pixel').style.display = 'flex';
 });
 
 document.getElementById('hide-btn').addEventListener('click', () => {
