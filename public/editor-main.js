@@ -164,7 +164,7 @@ scene = new THREE.Scene();
 camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
 renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 renderer.setSize( window.innerWidth , window.innerHeight );
-renderer.outputEncoding = THREE.sRGBEncoding;
+// renderer.outputEncoding = THREE.sRGBEncoding;
 document.getElementById('render-container').appendChild( renderer.domElement );
 light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
@@ -208,25 +208,26 @@ varying vec3 vNormal;
 uniform vec3 colors;
 uniform float opacity;
 uniform sampler2D colorTexture;
+uniform float tileFactor;
 
 void main()
 {
     vec4 color = vec4(colors, opacity);
     vec3 blendNormals = abs(vNormal);
     vec3 texSample;
-    vec4 adjustment = vec4(0.7, 0.7, 0.7, 1.0);
+    vec4 adjustment = vec4(1.0, 1.0, 1.0, 1.0);
 
     if(blendNormals.x > blendNormals.y && blendNormals.x > blendNormals.z)
     {
-        texSample = texture2D(colorTexture, vWorldPosition.zy).rgb;
+        texSample = texture2D(colorTexture, vWorldPosition.zy * tileFactor).rgb;
     }
     else if(blendNormals.y > blendNormals.z)
     {
-        texSample = texture2D(colorTexture, vWorldPosition.xz).rgb;
+        texSample = texture2D(colorTexture, vWorldPosition.xz * tileFactor).rgb;
     }
     else
     {
-        texSample = texture2D(colorTexture, vWorldPosition.xy).rgb;
+        texSample = texture2D(colorTexture, vWorldPosition.xy * tileFactor).rgb;
     }
 
     color.rgb *= texSample * adjustment.rgb;
@@ -292,7 +293,7 @@ async function initAttributes() {
                 // flatShading: true,
                 uniforms: {
                     "colorTexture": { value: texture },
-                    "tileFactor": { value: 1.0 },
+                    "tileFactor": { value: 1.1 },
                     "worldNormalMatrix": { value: new THREE.Matrix3() },
                     "colors": { value: new THREE.Vector3(1.0, 1.0, 1.0) },
                     "opacity": { value: 1.0 },
