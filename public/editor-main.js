@@ -11,6 +11,14 @@ var camera, scene, renderer, light, controls, fly, transforms, trackball, loader
 var objects = [];
 var materials = [];
 var shapes = [];
+var exportMaterials = [];
+
+var altTextures = false;
+
+document.getElementById('altTextures-btn').addEventListener('click', () => {
+    altTextures = !altTextures;
+    refreshScene();
+});
 
 document.getElementById("self-credit").addEventListener("click", (e) => {
     e.target.style.display = 'none';
@@ -156,6 +164,7 @@ scene = new THREE.Scene();
 camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
 renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 renderer.setSize( window.innerWidth , window.innerHeight );
+renderer.outputEncoding = THREE.sRGBEncoding;
 document.getElementById('render-container').appendChild( renderer.domElement );
 light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
@@ -174,12 +183,61 @@ addEventListener('resize', () => {
     renderer.setSize( window.innerWidth, window.innerHeight );
 });
 
+const vertexShader = /*glsl*/`
+
+varying vec3 vWorldPosition;
+varying vec3 vNormal;
+
+uniform mat3 worldNormalMatrix;
+
+void main()
+{
+    vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+    vWorldPosition = worldPosition.xyz;
+
+    vNormal = worldNormalMatrix * normal;
+
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}`;
+
+const fragmentShader = /*glsl*/`
+
+varying vec3 vWorldPosition;
+varying vec3 vNormal;
+
+uniform vec3 colors;
+uniform float opacity;
+uniform sampler2D colorTexture;
+
+void main()
+{
+    vec4 color = vec4(colors, opacity);
+    vec3 blendNormals = abs(vNormal);
+    vec3 texSample;
+    vec4 adjustment = vec4(0.7, 0.7, 0.7, 1.0);
+
+    if(blendNormals.x > blendNormals.y && blendNormals.x > blendNormals.z)
+    {
+        texSample = texture2D(colorTexture, vWorldPosition.zy).rgb;
+    }
+    else if(blendNormals.y > blendNormals.z)
+    {
+        texSample = texture2D(colorTexture, vWorldPosition.xz).rgb;
+    }
+    else
+    {
+        texSample = texture2D(colorTexture, vWorldPosition.xy).rgb;
+    }
+
+    color.rgb *= texSample * adjustment.rgb;
+    gl_FragColor = LinearTosRGB(color);
+}`;
 
 function loadTexture(path) {
     return new Promise((resolve) => {
         const texture = new THREE.TextureLoader().load(path, function (texture) {
             texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-            texture.repeat.set(2, 2);
+            // texture.repeat.set(2, 2);
             resolve(texture);
         });
     });
@@ -210,6 +268,37 @@ async function initAttributes() {
         ]) {
             const texture = await loadTexture(path);
             let material = new THREE.MeshBasicMaterial({ map: texture });
+            
+            exportMaterials.push(material);
+        }
+
+    for (const path of [
+        'textures/default.png',
+        'textures/grabbable.png',
+        'textures/ice.png',
+        'textures/lava.png',
+        'textures/wood.png',
+        'textures/grapplable.png',
+        'textures/grapplable_lava.png',
+        'textures/grabbable_crumbling.png',
+        'textures/default_colored.png',
+        'textures/bouncing.png'
+        ]) {
+            const texture = await loadTexture(path);
+            // let material = new THREE.MeshBasicMaterial({ map: texture });
+            let material = new THREE.ShaderMaterial({
+                vertexShader: vertexShader,
+                fragmentShader: fragmentShader,
+                // flatShading: true,
+                uniforms: {
+                    "colorTexture": { value: texture },
+                    "tileFactor": { value: 1.0 },
+                    "worldNormalMatrix": { value: new THREE.Matrix3() },
+                    "colors": { value: new THREE.Vector3(1.0, 1.0, 1.0) },
+                    "opacity": { value: 1.0 },
+                }
+            });
+
             materials.push(material);
         }
 
@@ -260,9 +349,17 @@ function loadLevelNode(node, parent) {
         }
         let material;
         if (node.material >= 0 && node.material < materials.length) {
-            node.material ? material = materials[node.material].clone() : material = materials[0].clone();    
+            if (altTextures) {
+                node.material ? material = exportMaterials[node.material].clone() : material = exportMaterials[0].clone();    
+            } else {
+                node.material ? material = materials[node.material].clone() : material = materials[0].clone();    
+            }
         } else {
-            material = materials[0].clone();
+            if (altTextures) {
+                material = materials[0].clone();
+            } else {
+                material = exportMaterials[0].clone();
+            }
         }
         if (node.material == 8) {
             // let colorMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(node.color.r, node.color.g, node.color.b) });
@@ -272,7 +369,11 @@ function loadLevelNode(node, parent) {
             node.color.r ? null : node.color.r = 0;
             node.color.g ? null : node.color.g = 0;
             node.color.b ? null : node.color.b = 0;
-            material.color = new THREE.Color(node.color.r, node.color.g, node.color.b);
+            if (altTextures) {
+                material.color = new THREE.Color(node.color.r, node.color.g, node.color.b);
+            } else {
+                material.uniforms.colors.value = new THREE.Vector3(node.color.r, node.color.g, node.color.b);
+            }
         }
         cube.material = material;
         // var cube = new THREE.Mesh(shapes[node.shape-1000], materials[node.material]);
@@ -298,9 +399,17 @@ function loadLevelNode(node, parent) {
             var cube = shapes[0].clone();
         }
         if (node.material >= 0 && node.material < materials.length) {
-            node.material ? cube.material = materials[node.material] : cube.material = materials[0];
+            if (altTextures) {
+                node.material ? cube.material = exportMaterials[node.material] : cube.material = exportMaterials[0];
+            } else {
+                node.material ? cube.material = materials[node.material] : cube.material = materials[0];
+            }
         } else {
-            cube.material = materials[0];
+            if (altTextures) {
+                cube.material = exportMterials[0];
+            } else {
+                cube.material = materials[0];
+            }
         }
         // var cube = new THREE.Mesh(shapes[node.shape-1000], materials[node.material]);
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
@@ -319,7 +428,11 @@ function loadLevelNode(node, parent) {
     } else if (node.levelNodeSign) {
         node = node.levelNodeSign;
         var cube = shapes[5].clone();
-        cube.material = materials[4];
+        if (altTextures) {
+            cube.material = exportMaterials[4];
+        } else {
+            cube.material = materials[4];
+        }
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
         node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
