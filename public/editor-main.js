@@ -210,6 +210,8 @@ uniform float opacity;
 uniform sampler2D colorTexture;
 uniform float tileFactor;
 
+const float gamma = 0.5;
+
 void main()
 {
     vec4 color = vec4(colors, opacity);
@@ -229,6 +231,8 @@ void main()
     {
         texSample = texture2D(colorTexture, vWorldPosition.xy * tileFactor).rgb;
     }
+
+    texSample = pow(texSample, vec3(1.0 / gamma));
 
     color.rgb *= texSample * adjustment.rgb;
     gl_FragColor = LinearTosRGB(color);
