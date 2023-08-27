@@ -5004,5 +5004,46 @@
     },
     1692940248,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 193.13,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      },
+      {
+        "position": 1,
+        "best_time": 400.941,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      }
+    ],
+    {
+      "identifier": "2bojjyjkmhegoqt73au7m:1685469879",
+      "title": "Pit of Fit, Percice Ice",
+      "complexity": 1030,
+      "format_version": 6,
+      "update_timestamp": 1691367748893,
+      "creation_timestamp": 1689720416614,
+      "data_key": "level_data:2bojjyjkmhegoqt73au7m:1685469879:7",
+      "description": "This is my first level.  My time to beat is 30 minutes, 40 seconds.  Yes, the level is possible",
+      "creators": [
+        "FitArtist334071"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 600,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "creator": "FitArtist334071"
+    },
+    1693113011,
+    "daily_map"
   ]
 ]
