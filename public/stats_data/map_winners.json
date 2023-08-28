@@ -5045,5 +5045,61 @@
     },
     1693113011,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 473.164,
+        "user_id": "2b6xz7gf4az5gx4nxfyk0",
+        "user_name": "Frevr"
+      }
+    ],
+    {
+      "identifier": "2b6xz7gf4az5gx4nxfyk0:1685662875",
+      "title": "YOUR DOOM",
+      "complexity": 1311,
+      "format_version": 6,
+      "update_timestamp": 1685742224487,
+      "creation_timestamp": 1685742224487,
+      "data_key": "level_data:2b6xz7gf4az5gx4nxfyk0:1685662875:1",
+      "creators": [
+        "FREVR",
+        "LOWKEYPRO"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 400,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "creator": "FREVR"
+    },
+    1693199474,
+    "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 943.664,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      }
+    ],
+    {
+      "plays": "413",
+      "link": "https://grabvr.quest/levels/viewer?level=29px3pmrktk2sms8qmvqb:1684619245",
+      "title": "4our",
+      "age": "96.48408564814815 days",
+      "creators": [
+        "CokeDeee"
+      ]
+    },
+    1693199474,
+    "unbeaten_map"
   ]
 ]
