@@ -693,7 +693,7 @@ document.getElementById('slindev-btn').addEventListener('click', () => {
 });
 
 document.getElementById('email-btn').addEventListener('click', () => {
-    location.href = "mailto:twhlynch@gmail.com";
+    location.href = "mailto:twhlynch.index@gmail.com";
 });
 
 document.getElementById('discord-btn').addEventListener('click', () => {
