@@ -5148,5 +5148,52 @@
     },
     1693285863,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 10.465,
+        "user_id": "29mo8es458607q0r7uy2z",
+        "user_name": "PeeRooo"
+      },
+      {
+        "position": 1,
+        "best_time": 13.914,
+        "user_id": "29px3pmrktk2sms8qmvqb",
+        "user_name": "CokeDeee"
+      },
+      {
+        "position": 2,
+        "best_time": 15.444,
+        "user_id": "2am015n3aa6sebl0p6923",
+        "user_name": "rougueRunner"
+      }
+    ],
+    {
+      "identifier": "29px3pmrktk2sms8qmvqb:1690860328",
+      "title": "Wintry Cove",
+      "complexity": 2982,
+      "format_version": 6,
+      "update_timestamp": 1690863719783,
+      "creation_timestamp": 1690863502273,
+      "data_key": "level_data:29px3pmrktk2sms8qmvqb:1690860328:2",
+      "creators": [
+        "CokeDeee",
+        "JeffBobDude"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 600,
+        "difficulty": 0.04553734061930783,
+        "liked": 0.9285714285714286,
+        "time": 97.57700400000003
+      },
+      "creator": "CokeDeee"
+    },
+    1693372265,
+    "daily_map"
   ]
 ]
