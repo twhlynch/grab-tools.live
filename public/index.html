@@ -72,6 +72,36 @@
                 </svg>                  
             </button>
             <p>Selectable table of all possible objects that can be easily exported into grab.</p>
+            <h3>Level Browser Bookmarklets</h3>
+            <div id="bookmarklets">
+                <a class="bookmarklet" href="javascript:(function() {
+                    var url = window.location.href;
+                    var idRegex = /level=([^&]+)/;
+                    var match = url.match(idRegex);
+                    
+                    if (match && match[1]) {
+                        var id = match[1];
+                        var newUrl = 'http://twhlynch.me/GrabHistoricStats?id=' + id;
+                        window.location.href = newUrl;
+                    } else {
+                        alert('Could not find level ID in the URL.');
+                    }
+                })();">Get Historical Stats</a>
+                <a class="bookmarklet" href="javascript:(function() {
+                    var url = window.location.href;
+                    var idRegex = /level=([^&]+)/;
+                    var match = url.match(idRegex);
+                    
+                    if (match && match[1]) {
+                        var id = match[1];
+                        var newUrl = 'http://grab-tools.live/editor.html?id=' + id;
+                        window.location.href = newUrl;
+                    } else {
+                        alert('Could not find level ID in the URL.');
+                    }
+                })();">Open In Editor</a>
+                <a href="javascript:(()=>{document.getElementById('download-button').click()})();" class="bookmarklet">Download As glTF</a>
+            </div>
         </main>
         <br><br>
         <footer>
