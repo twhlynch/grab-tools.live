@@ -583,6 +583,22 @@ function openProto(link) {
         })
 }
 // openProto('https://api.slin.dev/grab/v1/download/29ffxg2ijqxyrgxyy2vjj/1642284195/1');
+function downloadAndOpenLevel(id) {
+    fetch(`https://api.slin.dev/grab/v1/details/${id.replace(":", "/")}`)
+        .then(response => response.json())
+        .then(data => {
+            openProto(`https://api.slin.dev/grab/v1/download/${data.data_key.replaceAll(":", "/").replace("level_data/", "")}`);
+        });
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+const paramId = urlParams.get('id');
+
+if (paramId) {
+    downloadAndOpenLevel(paramId);
+}
+
+
 document.getElementById('the-index-btn').addEventListener('click', () => {
     openProto('levels/the-index.level');
 });

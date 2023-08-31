@@ -382,3 +382,19 @@ footer p:hover {
     width: 100%;
     font-size: 16px;
 }
+#bookmarklets {
+    display: flex;
+    flex-direction: column;
+}
+.bookmarklet {
+    background-color: transparent;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    color: #4683ce;
+    padding: 10px;
+    border: dashed 2px #cfe0ea7e;
+    font-weight: 600;
+}
