@@ -18,7 +18,7 @@
                     return;
                 }
                 try {
-                    if (level.complexity > 500 && level.description.length > 100) {
+                    if (level.complexity > 500 && level.description.length > 20 && creators.length > 3 && title.length > 5) {
                         levels.push(level);
                         try {
                             if (level.tags.includes('ok')) {
