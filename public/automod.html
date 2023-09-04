@@ -8,6 +8,7 @@
 <body>
     <input id="token" type="text" placeholder="access_token">
     <script>
+        let verified;
         let levels = [];
 
         function computeData(data) {
@@ -52,6 +53,11 @@
         function outputData() {
             levels.forEach(level => {
                 let color = "#aaa";
+                verified.forEach(v => {
+                    if (v.identifier == level.identifier) {
+                        color = "#aca";
+                    }
+                    });
                 if (level.hasOwnProperty('tags')) {
                     if (level.tags.includes('ok')) {
                         color = "#afa";
@@ -64,19 +70,26 @@
                 `;
             });
         }
-
-        fetch('stats_data/all_levels1.json')
+        fetch('stats_data/all_verified.json')
             .then((response) => response.json())
             .then(data => {
-                computeData(data);
-                fetch('stats_data/all_levels2.json')
-                .then((response) => response.json())
-                .then(data => {
-                    computeData(data);
-                    sortData();
-                    outputData();
+
+                verified = data;
+                fetch('stats_data/all_levels1.json')
+                    .then((response) => response.json())
+                    .then(data2 => {
+
+                        computeData(data2);
+                        fetch('stats_data/all_levels2.json')
+                        .then((response) => response.json())
+                        .then(data3 => {
+
+                            computeData(data3);
+                            sortData();
+                            outputData();
+                        });
+                    });
                 });
-            });
     </script>
 </body>
 </html>
