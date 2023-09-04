@@ -5453,5 +5453,53 @@
     },
     1693717835,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 0.077,
+        "user_id": "29udv6q207r9ehlyn3zp1",
+        "user_name": "Sherbear79"
+      },
+      {
+        "position": 1,
+        "best_time": 0.119,
+        "user_id": "29px3pmrktk2sms8qmvqb",
+        "user_name": "CokeDeee"
+      },
+      {
+        "position": 2,
+        "best_time": 0.129,
+        "user_id": "2apqgju0ttomc3mztt3p6",
+        "user_name": "iSkype"
+      }
+    ],
+    {
+      "identifier": "2a3z4abfe72jix3igkiwm:1686941035",
+      "title": "Fallout: Vault Grab: Sweet Suite Casino",
+      "complexity": 2752,
+      "format_version": 6,
+      "update_timestamp": 1687808819289,
+      "creation_timestamp": 1687808682988,
+      "data_key": "level_data:2a3z4abfe72jix3igkiwm:1686941035:3",
+      "description": "WARNING: Blood, Mild Language",
+      "creators": [
+        "Plushgaming",
+        "kookookrazy"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 1400,
+        "difficulty": 0.46308724832214765,
+        "liked": 0.6803874092009685,
+        "time": 19.013784065217408
+      },
+      "creator": "Plushgaming"
+    },
+    1693804278,
+    "daily_map"
   ]
 ]
