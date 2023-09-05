@@ -320,6 +320,13 @@ async function initAttributes() {
         shapes.push(model);
     }
     console.log('Ready', materials, shapes);
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramId = urlParams.get('level');
+
+    if (paramId) {
+        downloadAndOpenLevel(paramId);
+    }
 
 }
 
@@ -591,12 +598,6 @@ function downloadAndOpenLevel(id) {
         });
 }
 
-const urlParams = new URLSearchParams(window.location.search);
-const paramId = urlParams.get('id');
-
-if (paramId) {
-    downloadAndOpenLevel(paramId);
-}
 
 
 document.getElementById('the-index-btn').addEventListener('click', () => {
