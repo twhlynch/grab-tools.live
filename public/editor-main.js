@@ -6,6 +6,7 @@ import { OrbitControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/cont
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm/loaders/GLTFLoader.js';
 import { FlyControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/controls/FlyControls.js';
 import { GLTFExporter } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm//exporters/GLTFExporter.js';
+// import { CubemapToEquirectangular } from './CubemapToEquirectangular.js';
 
 var camera, scene, renderer, light, controls, fly, transforms, trackball, loader, sun;
 var objects = [];
@@ -183,6 +184,8 @@ addEventListener('resize', () => {
     renderer.setSize( window.innerWidth, window.innerHeight );
 });
 
+// var equiManaged = new CubemapToEquirectangular( renderer, true );
+// setTimeout(()=>{equiManaged.update( camera, scene );}, 10000);
 const vertexShader = /*glsl*/`
 
 varying vec3 vWorldPosition;
