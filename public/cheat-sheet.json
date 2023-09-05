@@ -49,7 +49,7 @@
         }, {"shape": 7,"material": null,
             "attributes": {"texture": "WOOD","model": "CUBE","hitbox": "PYRAMID_MAYBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1000,"material": null,
-            "attributes": {"texture": "TRANSPARENT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
+            "attributes": {"texture": "DEFAULT","model": "CUBE","hitbox": "CUBE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1001,"material": null,
             "attributes": {"texture": "DEFAULT","model": "SPHERE","hitbox": "SPHERE","effects": ["GROUND"],"interaction_hitbox": false,"anti_fog": false}
         }, {"shape": 1002,"material": null,
