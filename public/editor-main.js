@@ -167,7 +167,6 @@ scene = new THREE.Scene();
 camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
 renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 renderer.setSize( window.innerWidth , window.innerHeight );
-// renderer.outputEncoding = THREE.sRGBEncoding;
 document.getElementById('render-container').appendChild( renderer.domElement );
 light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
@@ -595,8 +594,6 @@ function openProto(link) {
         })
 }
 
-
-
 async function saveToQuest() {
     let obj = getLevel();
     var root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
@@ -616,7 +613,6 @@ async function saveToQuest() {
     alert("Success!");
 }
 
-// openProto('https://api.slin.dev/grab/v1/download/29ffxg2ijqxyrgxyy2vjj/1642284195/1');
 function downloadAndOpenLevel(id) {
     fetch(`https://api.slin.dev/grab/v1/details/${id.replace(":", "/")}`)
         .then(response => response.json())
@@ -624,8 +620,6 @@ function downloadAndOpenLevel(id) {
             openProto(`https://api.slin.dev/grab/v1/download/${data.data_key.replaceAll(":", "/").replace("level_data/", "")}`);
         });
 }
-
-
 
 document.getElementById('the-index-btn').addEventListener('click', () => {
     openProto('levels/the-index.level');
@@ -1144,58 +1138,30 @@ document.getElementById('topc-btn').addEventListener('click', () => {
 
 document.getElementById('nodeStatic-btn').addEventListener('click', () => {
     appendJSON("json_files/static-node.json");
-    // var staticNode = ;
-    // var levelData = getLevel();
-    // levelData.levelNodes.push(staticNode);
-    // setLevel(levelData);
 });
 
 document.getElementById('nodeCrumbling-btn').addEventListener('click', () => {
     appendJSON("json_files/crumbling-node.json");
-    // var crumblingNode = ;
-    // var levelData = getLevel();
-    // levelData.levelNodes.push(crumblingNode);
-    // setLevel(levelData);
 });
 
 document.getElementById('nodeColored-btn').addEventListener('click', () => {
     appendJSON("json_files/colored-node.json");
-    // var coloredNode = ;
-    // var levelData = getLevel();
-    // levelData.levelNodes.push(coloredNode);
-    // setLevel(levelData);
 });
 
 document.getElementById('nodeSign-btn').addEventListener('click', () => {
     appendJSON("json_files/sign-node.json");
-    // var signNode = ;
-    // var levelData = getLevel();
-    // levelData.levelNodes.push(signNode);
-    // setLevel(levelData);
 });
 
 document.getElementById('nodeStart-btn').addEventListener('click', () => {
     appendJSON("json_files/start-node.json");
-    // var startNode = ;
-    // var levelData = getLevel();
-    // levelData.levelNodes.push(startNode);
-    // setLevel(levelData);
 });
 
 document.getElementById('nodeFinish-btn').addEventListener('click', () => {
     appendJSON("json_files/finish-node.json");
-    // var finishNode = ;
-    // var levelData = getLevel();
-    // levelData.levelNodes.push(finishNode);
-    // setLevel(levelData);
 });
 
 document.getElementById('nodeInvisible-btn').addEventListener('click', () => {
     appendJSON("json_files/invisible-node.json");
-    // var finishNode = ;
-    // var levelData = getLevel();
-    // levelData.levelNodes.push(finishNode);
-    // setLevel(levelData);
 });
 
 document.getElementById('clearambience-btn').addEventListener('click', () => {
@@ -1426,52 +1392,25 @@ document.querySelector('#prompt-protobuf .prompt-submit').addEventListener('clic
 // prefabs
 
 document.getElementById('Parallelograms-btn').addEventListener('click', () => {
-    // var levelData = getLevel();
     appendJSON("json_files/parallelograms.json");
-    // levelData.levelNodes.push(prefab);
-    // setLevel(levelData); 
 });
 document.getElementById('BreakTimes-btn').addEventListener('click', () => {
     appendJSON("json_files/break-times.json");
-    // var levelData = getLevel();
-    // var prefab = ;
-    // levelData.levelNodes.push(prefab);
-    // setLevel(levelData); 
 });
 document.getElementById('FreeStartFinish-btn').addEventListener('click', () => {
     appendJSON("json_files/free-start-finish.json");
-    // var levelData = getLevel();
-    // var prefab = ;
-    // levelData.levelNodes.push(prefab);
-    // setLevel(levelData); 
 });
 document.getElementById('TexturedSigns-btn').addEventListener('click', () => {
     appendJSON("json_files/textured-signs.json");
-    // var levelData = getLevel();
-    // var prefab = ;
-    // levelData.levelNodes.push(prefab);
-    // setLevel(levelData); 
 });
 document.getElementById('SpecialStones-btn').addEventListener('click', () => {
     appendJSON("json_files/special-stones.json");
-    // var levelData = getLevel();
-    // var prefab = ;
-    // levelData.levelNodes.push(prefab);
-    // setLevel(levelData); 
 });
 document.getElementById('NoHitbox-btn').addEventListener('click', () => {
     appendJSON("json_files/no-hitbox.json");
-    // var levelData = getLevel();
-    // var prefab = ;
-    // levelData.levelNodes.push(prefab);
-    // setLevel(levelData); 
 });
 document.getElementById('Inverted-btn').addEventListener('click', () => {
     appendJSON("json_files/inverted.json");
-    // var levelData = getLevel();
-    // var prefab = ;
-    // levelData.levelNodes.push(prefab);
-    // setLevel(levelData); 
 });
 
 // Main
