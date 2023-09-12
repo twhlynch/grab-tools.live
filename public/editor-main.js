@@ -12,6 +12,7 @@ let webusb = null;
 let adb = null;
 let shell = null;
 let sync = null;
+let decoder = new TextDecoder();
 
 var camera, scene, renderer, light, controls, fly, transforms, trackball, loader, sun;
 var objects = [];
@@ -825,13 +826,56 @@ async function connectUsb() {
         adb = await webusb.connectAdb("host::");
     } catch (e) { console.log(e); }
     if (adb != null) {
-        alert("Success!");
+        alert("Success! (If headset sleeps, it worked.)");
+        shell = await adb.shell(`input keyevent KEYCODE_SLEEP`);
     }
+}
+
+async function listQuestLevels() {
+    shell = await adb.shell(`ls /sdcard/Android/data/com.slindev.grab_demo/files/levels/user/`);
+    // shell = await adb.shell(`ls /sdcard/Download/`);
+    
+    let r = await shell.receive();
+    console.log(decoder.decode(r.data));
+
+    let container = document.getElementById('levels-container');
+    container.innerHTML = '';
+    let levels = decoder.decode(r.data).split(' ');
+    levels.forEach(level => {
+        if (level != '') {
+            let levelElement = document.createElement('div');
+            levelElement.classList.add('level');
+            levelElement.innerText = level;
+            levelElement.addEventListener('click', () => {
+                openQuestLevel(level);
+            });
+            container.appendChild(levelElement);
+        }
+    });
+}
+
+async function openQuestLevel(level) {
+    sync = await adb.sync();
+    let content = await sync.pull(`/sdcard/Android/data/com.slindev.grab_demo/files/levels/user/${level}`);
+    console.log(level);
+    // let content = await sync.pull(`/sdcard/Download/${level}`);
+    await sync.quit();
+    sync = null;
+    let blob = new Blob([content], {type: "application/octet-stream"});
+    let file = new File([blob], level);
+    openLevelFile([file]);
 }
 
 document.getElementById('connect-adb-btn').addEventListener('click', () => {
     connectUsb();
 });
+
+document.getElementById('quest-btn').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'grid';
+    document.getElementById('prompt-levels').style.display = 'flex';
+    listQuestLevels();
+});
+
 document.getElementById('performance-btn').addEventListener('click', () => {
     renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 );
 });
