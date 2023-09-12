@@ -1,0 +1,537 @@
+{
+    "levelNodeGroup": {
+        "position": {
+            "y": 0,
+            "x": 0,
+            "z": 0
+        },
+        "rotation": {
+            "w": 1
+        },
+        "childNodes": [
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeStatic": {
+                                "shape": 1000,
+                                "material": 0,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "scale": {
+                                    "x": 1,
+                                    "y": 1,
+                                    "z": 1
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            },
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeStatic": {
+                                "shape": 1000,
+                                "material": 1,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "scale": {
+                                    "x": 1,
+                                    "y": 1,
+                                    "z": 1
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            },
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeStatic": {
+                                "shape": 1000,
+                                "material": 2,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "scale": {
+                                    "x": 1,
+                                    "y": 1,
+                                    "z": 1
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            },
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeStatic": {
+                                "shape": 1000,
+                                "material": 3,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "scale": {
+                                    "x": 1,
+                                    "y": 1,
+                                    "z": 1
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            },
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeStatic": {
+                                "shape": 1000,
+                                "material": 4,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "scale": {
+                                    "x": 1,
+                                    "y": 1,
+                                    "z": 1
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            },
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeStatic": {
+                                "shape": 1000,
+                                "material": 5,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "scale": {
+                                    "x": 1,
+                                    "y": 1,
+                                    "z": 1
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            },
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeStatic": {
+                                "shape": 1000,
+                                "material": 6,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "scale": {
+                                    "x": 1,
+                                    "y": 1,
+                                    "z": 1
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            },
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeStatic": {
+                                "shape": 1000,
+                                "material": 9,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "scale": {
+                                    "x": 1,
+                                    "y": 1,
+                                    "z": 1
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            },
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeStatic": {
+                                "shape": 1000,
+                                "material": 8,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "scale": {
+                                    "x": 1,
+                                    "y": 1,
+                                    "z": 1
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "color": {
+                                    "r": 1,
+                                    "g": 1,
+                                    "b": 1,
+                                    "a": 1
+                                },
+                                "isNeon": false
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            },
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeCrumbling": {
+                                "shape": 1000,
+                                "material": 7,
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "scale": {
+                                    "x": 1,
+                                    "y": 1,
+                                    "z": 1
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "stableTime": 0.5,
+                                "respawnTime": 0.5
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            },
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeSign": {
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "text": "Sample text"
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            },
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeStart": {
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "radius": 1
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            },
+            {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0,
+                        "x": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "childNodes": [
+                        {
+                            "levelNodeFinish": {
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "radius": 1
+                            }
+                        }
+                    ],
+                    "scale": {
+                        "y": 1,
+                        "x": -1,
+                        "z": -1
+                    }
+                }
+            }
+        ],
+        "scale": {
+            "y": 1,
+            "x": 1,
+            "z": 1
+        }
+    }
+}
