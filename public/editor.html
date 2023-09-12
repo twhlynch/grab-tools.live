@@ -64,10 +64,7 @@
                                     <input type="file" id="pcjson-btn-input" style="display:none">
                                 </li>
                                 <li>
-                                    <button class="menu-btn r" id="quest-btn">From Quest</button>
-                                </li>
-                                <li>
-                                    <button class="menu-btn r" id="account-btn">From Account</button>
+                                    <button class="menu-btn" id="quest-btn">From Quest</button>
                                 </li>
                                 <li>
                                     <button class="menu-btn" id="the-index-btn">The INDEX</button>
@@ -119,9 +116,6 @@
                                 </li>
                                 <li>
                                     <button class="menu-btn r">From Quest</button>
-                                </li>
-                                <li>
-                                    <button class="menu-btn r">From Account</button>
                                 </li>
                             </ul>
                         </li>
@@ -495,6 +489,13 @@
                 <textarea name="pixel" id="pixel-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false" placeholder="Quality, Default: 50"></textarea>
                 <canvas id="pixel-canvas" style="display: none;"></canvas>
                 <canvas id="pixel-canvas2" style="display: none;"></canvas>
+                <div class="prompt-buttons">
+                    <button class="prompt-cancel">Cancel</button>
+                    <button class="prompt-submit">Sumbit</button>
+                </div>
+            </div>
+            <div class="prompt-simple" id="prompt-levels">
+                <div id="levels-container"></div>
                 <div class="prompt-buttons">
                     <button class="prompt-cancel">Cancel</button>
                     <button class="prompt-submit">Sumbit</button>
