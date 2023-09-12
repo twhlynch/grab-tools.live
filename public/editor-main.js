@@ -836,19 +836,20 @@ async function listQuestLevels() {
     // shell = await adb.shell(`ls /sdcard/Download/`);
     
     let r = await shell.receive();
-    console.log(decoder.decode(r.data));
+    let directoryListing = decoder.decode(r.data);
 
     let container = document.getElementById('levels-container');
     container.innerHTML = '';
-    let levels = decoder.decode(r.data).split(' ');
+    let levels = directoryListing.replaceAll(" ", "").replaceAll("\n", "").split('.level');
     levels.forEach(level => {
         if (level != '') {
             let levelElement = document.createElement('div');
             levelElement.classList.add('level');
-            levelElement.innerText = level;
+            levelElement.innerText = level+".level";
             levelElement.addEventListener('click', () => {
-                openQuestLevel(level);
+                openQuestLevel(level+".level");
             });
+            console.log(level+".level");
             container.appendChild(levelElement);
         }
     });
@@ -857,7 +858,7 @@ async function listQuestLevels() {
 async function openQuestLevel(level) {
     sync = await adb.sync();
     let content = await sync.pull(`/sdcard/Android/data/com.slindev.grab_demo/files/levels/user/${level}`);
-    console.log(level);
+    console.log(`/sdcard/Android/data/com.slindev.grab_demo/files/levels/user/${level}`);
     // let content = await sync.pull(`/sdcard/Download/${level}`);
     await sync.quit();
     sync = null;
@@ -874,6 +875,11 @@ document.getElementById('quest-btn').addEventListener('click', () => {
     document.getElementById('prompts').style.display = 'grid';
     document.getElementById('prompt-levels').style.display = 'flex';
     listQuestLevels();
+});
+
+document.querySelector('#prompt-levels .prompt-cancel').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-levels').style.display = 'none';
 });
 
 document.getElementById('performance-btn').addEventListener('click', () => {
