@@ -1,0 +1,747 @@
+{
+    "levelNodeGroup": {
+        "position": {
+            "y": 0,
+            "x": 0,
+            "z": 0
+        },
+        "rotation": {
+            "w": 1
+        },
+        "childNodes": [
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1000,
+                    "material": 7,
+                    "position": {
+                        "x": -5,
+                        "y": 5,
+                        "z": -4
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.1,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1000,
+                    "material": 7,
+                    "position": {
+                        "x": -4,
+                        "y": 5,
+                        "z": -4
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.2,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1000,
+                    "material": 7,
+                    "position": {
+                        "x": -3,
+                        "y": 5,
+                        "z": -4
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.3,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1001,
+                    "material": 7,
+                    "position": {
+                        "x": -5,
+                        "y": 5,
+                        "z": -3
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.1,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1001,
+                    "material": 7,
+                    "position": {
+                        "x": -4,
+                        "y": 5,
+                        "z": -3
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.2,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1001,
+                    "material": 7,
+                    "position": {
+                        "x": -3,
+                        "y": 5,
+                        "z": -3
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.3,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1002,
+                    "material": 7,
+                    "position": {
+                        "x": -5,
+                        "y": 5,
+                        "z": -2
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.1,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1002,
+                    "material": 7,
+                    "position": {
+                        "x": -4,
+                        "y": 5,
+                        "z": -2
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.2,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1002,
+                    "material": 7,
+                    "position": {
+                        "x": -3,
+                        "y": 5,
+                        "z": -2
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.3,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1003,
+                    "material": 7,
+                    "position": {
+                        "x": -5,
+                        "y": 5,
+                        "z": -1
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.1,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1003,
+                    "material": 7,
+                    "position": {
+                        "x": -4,
+                        "y": 5,
+                        "z": -1
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.2,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1003,
+                    "material": 7,
+                    "position": {
+                        "x": -3,
+                        "y": 5,
+                        "z": -1
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.3,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1004,
+                    "material": 7,
+                    "position": {
+                        "x": -5,
+                        "y": 5
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.1,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1004,
+                    "material": 7,
+                    "position": {
+                        "x": -4,
+                        "y": 5
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.2,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1004,
+                    "material": 7,
+                    "position": {
+                        "x": -3,
+                        "y": 5
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.3,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1004,
+                    "material": 7,
+                    "position": {
+                        "x": -2,
+                        "y": 5
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.4,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1003,
+                    "material": 7,
+                    "position": {
+                        "x": -2,
+                        "y": 5,
+                        "z": -1
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.4,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1002,
+                    "material": 7,
+                    "position": {
+                        "x": -2,
+                        "y": 5,
+                        "z": -2
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.4,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1001,
+                    "material": 7,
+                    "position": {
+                        "x": -2,
+                        "y": 5,
+                        "z": -3
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.4,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1000,
+                    "material": 7,
+                    "position": {
+                        "x": -2,
+                        "y": 5,
+                        "z": -4
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.4,
+                    "respawnTime": 8
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1000,
+                    "material": 7,
+                    "position": {
+                        "x": -1,
+                        "y": 5,
+                        "z": -4
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 1000,
+                    "respawnTime": 1000
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1001,
+                    "material": 7,
+                    "position": {
+                        "x": -1,
+                        "y": 5,
+                        "z": -3
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 1000,
+                    "respawnTime": 1000
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1002,
+                    "material": 7,
+                    "position": {
+                        "x": -1,
+                        "y": 5,
+                        "z": -2
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 1000,
+                    "respawnTime": 1000
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1003,
+                    "material": 7,
+                    "position": {
+                        "x": -1,
+                        "y": 5,
+                        "z": -1
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 1000,
+                    "respawnTime": 1000
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1004,
+                    "material": 7,
+                    "position": {
+                        "x": -1,
+                        "y": 5
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 1000,
+                    "respawnTime": 1000
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1000,
+                    "material": 7,
+                    "position": {
+                        "x": 0,
+                        "y": 5,
+                        "z": -4
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 100000,
+                    "respawnTime": 100000
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1001,
+                    "material": 7,
+                    "position": {
+                        "x": 0,
+                        "y": 5,
+                        "z": -3
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 100000,
+                    "respawnTime": 100000
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1002,
+                    "material": 7,
+                    "position": {
+                        "x": 0,
+                        "y": 5,
+                        "z": -2
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 100000,
+                    "respawnTime": 100000
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1003,
+                    "material": 7,
+                    "position": {
+                        "x": 0,
+                        "y": 5,
+                        "z": -1
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 100000,
+                    "respawnTime": 100000
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1004,
+                    "material": 7,
+                    "position": {
+                        "x": 0,
+                        "y": 5
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 100000,
+                    "respawnTime": 100000
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1000,
+                    "material": 7,
+                    "position": {
+                        "x": 1,
+                        "y": 5,
+                        "z": -4
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.001,
+                    "respawnTime": 0.001
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1001,
+                    "material": 7,
+                    "position": {
+                        "x": 1,
+                        "y": 5,
+                        "z": -3
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.001,
+                    "respawnTime": 0.001
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1002,
+                    "material": 7,
+                    "position": {
+                        "x": 1,
+                        "y": 5,
+                        "z": -2
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.001,
+                    "respawnTime": 0.001
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1003,
+                    "material": 7,
+                    "position": {
+                        "x": 1,
+                        "y": 5,
+                        "z": -1
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.001,
+                    "respawnTime": 0.001
+                }
+            },
+            {
+                "levelNodeCrumbling": {
+                    "shape": 1004,
+                    "material": 7,
+                    "position": {
+                        "x": 1,
+                        "y": 5
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1
+                    },
+                    "stableTime": 0.001,
+                    "respawnTime": 0.001
+                }
+            }     
+        ],
+        "scale": {
+            "y": 1,
+            "x": 1,
+            "z": 1
+        }
+    }
+}
