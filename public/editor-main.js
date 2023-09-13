@@ -669,24 +669,6 @@ function openProto(link) {
             });
         })
 }
-async function saveToQuest() {
-    let obj = getLevel();
-    var root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
-    let message = root.lookupType("COD.Level.Level");
-    let errMsg = message.verify(obj);
-    if(errMsg) throw Error(errMsg);
-    let buffer = message.encode(message.fromObject(obj)).finish();
-    
-    let blob = new Blob([buffer], {type: "application/octet-stream"});
-    let file = new File([blob], (Date.now()).toString().slice(0, -3)+".level");
-    
-    sync = await adb.sync();
-    let push_dest = `/sdcard/Android/data/com.slindev.grab_demo/files/levels/user/${file.name}`;
-    await sync.push(file, push_dest, "0644");
-    await sync.quit();
-    sync = null;
-    alert("Success!");
-}
 function downloadAndOpenLevel(id) {
     fetch(`https://api.slin.dev/grab/v1/details/${id.replace(":", "/")}`)
         .then(response => response.json())
@@ -759,37 +741,6 @@ function downloadProto(obj) {
     link.download = (Date.now()).toString().slice(0, -3)+".level";
     link.click();
 }
-async function listQuestLevels() {
-    shell = await adb.shell(`ls /sdcard/Android/data/com.slindev.grab_demo/files/levels/user/`);
-    let r = await shell.receive();
-    let directoryListing = decoder.decode(r.data);
-
-    let container = document.getElementById('levels-container');
-    container.innerHTML = '';
-    let levels = directoryListing.replaceAll(" ", "").replaceAll("\n", "").split('.level');
-    levels.forEach(level => {
-        if (level != '') {
-            let levelElement = document.createElement('div');
-            levelElement.classList.add('level');
-            levelElement.innerText = level+".level";
-            levelElement.addEventListener('click', () => {
-                openQuestLevel(level+".level");
-            });
-            console.log(level+".level");
-            container.appendChild(levelElement);
-        }
-    });
-}
-async function openQuestLevel(level) {
-    sync = await adb.sync();
-    let content = await sync.pull(`/sdcard/Android/data/com.slindev.grab_demo/files/levels/user/${level}`);
-    console.log(`/sdcard/Android/data/com.slindev.grab_demo/files/levels/user/${level}`);
-    await sync.quit();
-    sync = null;
-    let blob = new Blob([content], {type: "application/octet-stream"});
-    let file = new File([blob], level);
-    openLevelFile([file]);
-}
 function saveDataAsFile(filename, data) {
     const blob = new Blob([data], {type: 'text/json'});
     if(window.navigator.msSaveOrOpenBlob) {
@@ -845,6 +796,7 @@ function toggleTextures() {
     altTextures = !altTextures;
     refreshScene();
 }
+
 async function connectUsb() {
     try {
         webusb = await Adb.open("WebUSB");
@@ -854,6 +806,55 @@ async function connectUsb() {
         alert("Success! (If headset sleeps, it worked.)");
         shell = await adb.shell(`input keyevent KEYCODE_SLEEP`);
     }
+}
+async function listQuestLevels() {
+    shell = await adb.shell(`ls /sdcard/Android/data/com.slindev.grab_demo/files/levels/user/`);
+    let r = await shell.receive();
+    let directoryListing = decoder.decode(r.data);
+
+    let container = document.getElementById('levels-container');
+    container.innerHTML = '';
+    let levels = directoryListing.replaceAll(" ", "").replaceAll("\n", "").split('.level');
+    levels.forEach(level => {
+        if (level != '') {
+            let levelElement = document.createElement('div');
+            levelElement.classList.add('level');
+            levelElement.innerText = level+".level";
+            levelElement.addEventListener('click', () => {
+                openQuestLevel(level+".level");
+            });
+            console.log(level+".level");
+            container.appendChild(levelElement);
+        }
+    });
+}
+async function openQuestLevel(level) {
+    sync = await adb.sync();
+    let content = await sync.pull(`/sdcard/Android/data/com.slindev.grab_demo/files/levels/user/${level}`);
+    console.log(`/sdcard/Android/data/com.slindev.grab_demo/files/levels/user/${level}`);
+    await sync.quit();
+    sync = null;
+    let blob = new Blob([content], {type: "application/octet-stream"});
+    let file = new File([blob], level);
+    openLevelFile([file]);
+}
+async function saveToQuest() {
+    let obj = getLevel();
+    var root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
+    let message = root.lookupType("COD.Level.Level");
+    let errMsg = message.verify(obj);
+    if(errMsg) throw Error(errMsg);
+    let buffer = message.encode(message.fromObject(obj)).finish();
+    
+    let blob = new Blob([buffer], {type: "application/octet-stream"});
+    let file = new File([blob], (Date.now()).toString().slice(0, -3)+".level");
+    
+    sync = await adb.sync();
+    let push_dest = `/sdcard/Android/data/com.slindev.grab_demo/files/levels/user/${file.name}`;
+    await sync.push(file, push_dest, "0644");
+    await sync.quit();
+    sync = null;
+    alert("Success!");
 }
 
 loader = new GLTFLoader();
@@ -927,9 +928,9 @@ document.getElementById('terminal-input').addEventListener('keydown', (e) => {
     }
 });
 
-document.getElementById('altTextures-btn').addEventListener('click', () => {toggleTextures()});
+document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
 document.getElementById("self-credit").addEventListener("click", (e) => {e.target.style.display = 'none'});
-document.getElementById('edit-input').addEventListener('blur', () => {highlightTextEditor()});
+document.getElementById('edit-input').addEventListener('blur', highlightTextEditor);
 document.getElementById('edit-input').addEventListener('keydown', (e) => {
     if (e.which === 9) { // tab
         e.preventDefault();
@@ -969,21 +970,11 @@ document.getElementById('empty-btn').addEventListener( 'click', () => {
         }
     });
 });
-document.getElementById('slindev-btn').addEventListener('click', () => {
-    window.open("https://discord.slin.dev", "_blank");
-});
-document.getElementById('email-btn').addEventListener('click', () => {
-    location.href = "mailto:twhlynch.index@gmail.com";
-});
-document.getElementById('discord-btn').addEventListener('click', () => {
-    window.open("https://discordapp.com/users/649165311257608192", "_blank");
-});
-document.getElementById('server-btn').addEventListener('click', () => {
-    window.open("https://twhlynch.me/discord", "_blank");
-});
-document.getElementById('docs-btn').addEventListener('click', () => {
-    window.open("docs.html", "_blank");
-});
+document.getElementById('slindev-btn').addEventListener('click', () => {window.open("https://discord.slin.dev", "_blank")});
+document.getElementById('email-btn').addEventListener('click', () => {location.href = "mailto:twhlynch.index@gmail.com"});
+document.getElementById('discord-btn').addEventListener('click', () => {window.open("https://discordapp.com/users/649165311257608192", "_blank")});
+document.getElementById('server-btn').addEventListener('click', () => {window.open("https://twhlynch.me/discord", "_blank")});
+document.getElementById('docs-btn').addEventListener('click', () => {window.open("docs.html", "_blank")});
 document.getElementById('json-btn').addEventListener('click', () => {
     const json = JSON.stringify(getLevel());
     const blob = new Blob([json], { type: 'application/json' });
@@ -995,19 +986,11 @@ document.getElementById('json-btn').addEventListener('click', () => {
     link.click();
     URL.revokeObjectURL(url);
 });
-document.getElementById('pc-btn').addEventListener('click', () => {
-    document.getElementById('pc-btn-input').click();
-});
+document.getElementById('pc-btn').addEventListener('click', () => {document.getElementById('pc-btn-input').click()});
 document.getElementById('pc-btn-input').addEventListener('change', (e) => {openLevelFile(e.target.files)});
-document.getElementById('pcjson-btn').addEventListener('click', () => {
-    document.getElementById('pcjson-btn-input').click();
-});
-document.getElementById('pcjson-btn-input').addEventListener('change', (e) => {
-    openJSONFile(e.target.files[0]);
-});
-document.getElementById('cheat-btn').addEventListener('click', () => {
-    window.open("cheat-sheet.html", "_blank");
-});
+document.getElementById('pcjson-btn').addEventListener('click', () => {document.getElementById('pcjson-btn-input').click()});
+document.getElementById('pcjson-btn-input').addEventListener('change', (e) => {openJSONFile(e.target.files[0])});
+document.getElementById('cheat-btn').addEventListener('click', () => {window.open("cheat-sheet.html", "_blank")});
 document.getElementById('title-btn').addEventListener('click', () => {
     document.getElementById('prompts').style.display = 'grid';
     document.getElementById('prompt-title').style.display = 'flex';
@@ -1030,8 +1013,8 @@ document.getElementById('description-btn').addEventListener('click', () => {
     document.getElementById('prompts').style.display = 'grid';
     document.getElementById('prompt-description').style.display = 'flex';
 });
-document.getElementById('toquest-btn').addEventListener('click', () => {saveToQuest()});
-document.getElementById('connect-adb-btn').addEventListener('click', () => {connectUsb()});
+document.getElementById('toquest-btn').addEventListener('click', saveToQuest);
+document.getElementById('connect-adb-btn').addEventListener('click', connectUsb);
 document.getElementById('quest-btn').addEventListener('click', () => {
     document.getElementById('prompts').style.display = 'grid';
     document.getElementById('prompt-levels').style.display = 'flex';
@@ -1129,15 +1112,9 @@ document.getElementById('duplicate-btn').addEventListener('click', () => {
     levelData.levelNodes = levelData.levelNodes.concat(levelData.levelNodes);
     setLevel(levelData);
 });
-document.getElementById('insertpc-btn').addEventListener('click', () => {
-    document.getElementById('insertpc-btn-input').click();
-});
-document.getElementById('insertpc-btn-input').addEventListener('change', (e) => {
-    appendLevelFile(e.target.files);
-});
-document.getElementById('image-btn').addEventListener('click', () => {
-    document.getElementById('image-btn-input').click();
-});
+document.getElementById('insertpc-btn').addEventListener('click', () => {document.getElementById('insertpc-btn-input').click()});
+document.getElementById('insertpc-btn-input').addEventListener('change', (e) => {appendLevelFile(e.target.files)});
+document.getElementById('image-btn').addEventListener('click', () => {document.getElementById('image-btn-input').click()});
 document.querySelector('#prompt-pixel .prompt-cancel').addEventListener('click', () => {
     document.getElementById('prompts').style.display = 'none';
     document.getElementById('prompt-pixel').style.display = 'none';
@@ -1275,27 +1252,13 @@ document.querySelector('#prompt-protobuf .prompt-cancel').addEventListener('clic
     document.getElementById('protobuf-prompt').value = PROTOBUF_DATA;
 });
 document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
-document.getElementById('nodeStatic-btn').addEventListener('click', () => {
-    appendJSON("json_files/static-node.json");
-});
-document.getElementById('nodeCrumbling-btn').addEventListener('click', () => {
-    appendJSON("json_files/crumbling-node.json");
-});
-document.getElementById('nodeColored-btn').addEventListener('click', () => {
-    appendJSON("json_files/colored-node.json");
-});
-document.getElementById('nodeSign-btn').addEventListener('click', () => {
-    appendJSON("json_files/sign-node.json");
-});
-document.getElementById('nodeStart-btn').addEventListener('click', () => {
-    appendJSON("json_files/start-node.json");
-});
-document.getElementById('nodeFinish-btn').addEventListener('click', () => {
-    appendJSON("json_files/finish-node.json");
-});
-document.getElementById('nodeInvisible-btn').addEventListener('click', () => {
-    appendJSON("json_files/invisible-node.json");
-});
+document.getElementById('nodeStatic-btn').addEventListener('click', () => {appendJSON("json_files/static-node.json")});
+document.getElementById('nodeCrumbling-btn').addEventListener('click', () => {appendJSON("json_files/crumbling-node.json")});
+document.getElementById('nodeColored-btn').addEventListener('click', () => {appendJSON("json_files/colored-node.json")});
+document.getElementById('nodeSign-btn').addEventListener('click', () => {appendJSON("json_files/sign-node.json")});
+document.getElementById('nodeStart-btn').addEventListener('click', () => {appendJSON("json_files/start-node.json")});
+document.getElementById('nodeFinish-btn').addEventListener('click', () => {appendJSON("json_files/finish-node.json")});
+document.getElementById('nodeInvisible-btn').addEventListener('click', () => {appendJSON("json_files/invisible-node.json")});
 document.getElementById('clearambience-btn').addEventListener('click', () => {
     var ambience = {
         "skyZenithColor": {
@@ -1459,27 +1422,13 @@ document.querySelector('#prompt-protobuf .prompt-submit').addEventListener('clic
     var input = document.getElementById('protobuf-prompt').value;
     PROTOBUF_DATA = input;
 });
-document.getElementById('Parallelograms-btn').addEventListener('click', () => {
-    appendJSON("json_files/parallelograms.json");
-});
-document.getElementById('BreakTimes-btn').addEventListener('click', () => {
-    appendJSON("json_files/break-times.json");
-});
-document.getElementById('FreeStartFinish-btn').addEventListener('click', () => {
-    appendJSON("json_files/free-start-finish.json");
-});
-document.getElementById('TexturedSigns-btn').addEventListener('click', () => {
-    appendJSON("json_files/textured-signs.json");
-});
-document.getElementById('SpecialStones-btn').addEventListener('click', () => {
-    appendJSON("json_files/special-stones.json");
-});
-document.getElementById('NoHitbox-btn').addEventListener('click', () => {
-    appendJSON("json_files/no-hitbox.json");
-});
-document.getElementById('Inverted-btn').addEventListener('click', () => {
-    appendJSON("json_files/inverted.json");
-});
+document.getElementById('Parallelograms-btn').addEventListener('click', () => {appendJSON("json_files/parallelograms.json")});
+document.getElementById('BreakTimes-btn').addEventListener('click', () => {appendJSON("json_files/break-times.json")});
+document.getElementById('FreeStartFinish-btn').addEventListener('click', () => {appendJSON("json_files/free-start-finish.json")});
+document.getElementById('TexturedSigns-btn').addEventListener('click', () => {appendJSON("json_files/textured-signs.json")});
+document.getElementById('SpecialStones-btn').addEventListener('click', () => {appendJSON("json_files/special-stones.json")});
+document.getElementById('NoHitbox-btn').addEventListener('click', () => {appendJSON("json_files/no-hitbox.json")});
+document.getElementById('Inverted-btn').addEventListener('click', () => {appendJSON("json_files/inverted.json")});
 document.getElementById('range-btn').addEventListener('click', () => {
     fetch('proto/hacked.proto')
     .then(response => response.text())
