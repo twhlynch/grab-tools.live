@@ -276,15 +276,14 @@ function setLevel(level) {
 }
 function highlightTextEditor() {
     if (!HIDE_TEXT) {
-        var textEditor = document.getElementById('edit-input');
+        let textEditor = document.getElementById('edit-input');
         
         const editText = JSON.stringify(JSON.parse(textEditor.innerText), null, 4);
         if (HIGHLIGHT_TEXT) {
 
-            var highlightedText = editText.replace(/"color":\s*{\s*("r":\s*(\d+(?:\.\d+)?),)?\s*("g":\s*(\d+(?:\.\d+)?),)?\s*("b":\s*(\d+(?:\.\d+)?),)?\s*("a":\s*\d+(?:\.\d+)?)?\s*}/, (match) => {
-                var jsonData = JSON.parse(`{${match}}`);
-                var color = `rgba(${(jsonData.color.r || 0) * 255}, ${(jsonData.color.g || 0) * 255}, ${(jsonData.color.b || 0) * 255}, 0.3)`;
-                // return `<span style='background-color: ${color};'>"color"</span>${match.replace('"color"', "")}`
+            let highlightedText = editText.replace(/"color":\s*{\s*("r":\s*(\d+(?:\.\d+)?),)?\s*("g":\s*(\d+(?:\.\d+)?),)?\s*("b":\s*(\d+(?:\.\d+)?),)?\s*("a":\s*\d+(?:\.\d+)?)?\s*}/, (match) => {
+                let jsonData = JSON.parse(`{${match}}`);
+                let color = `rgba(${(jsonData.color.r || 0) * 255}, ${(jsonData.color.g || 0) * 255}, ${(jsonData.color.b || 0) * 255}, 0.3)`;
                 return `<span style='text-shadow: 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color};'>${match}</span>`
             });
 
@@ -340,7 +339,6 @@ function loadTexture(path) {
     return new Promise((resolve) => {
         const texture = new THREE.TextureLoader().load(path, function (texture) {
             texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-            // texture.repeat.set(2, 2);
             resolve(texture);
         });
     });
@@ -386,11 +384,9 @@ async function initAttributes() {
         'textures/bouncing.png'
         ]) {
             const texture = await loadTexture(path);
-            // let material = new THREE.MeshBasicMaterial({ map: texture });
             let material = new THREE.ShaderMaterial({
                 vertexShader: vertexShader,
                 fragmentShader: fragmentShader,
-                // flatShading: true,
                 uniforms: {
                     "colorTexture": { value: texture },
                     "tileFactor": { value: 1.1 },
@@ -426,7 +422,7 @@ async function initAttributes() {
 
 }
 function refreshScene() {
-    var levelData = getLevel();
+    let levelData = getLevel();
     let levelNodes = levelData["levelNodes"];
     
     let complexity = 0;
@@ -437,12 +433,11 @@ function refreshScene() {
         complexity += loadLevelNode(node, scene);
     });
     
-    // console.log(complexity);
     document.getElementById('complexity').innerText = `Complexity: ${complexity}`;
     
     
-    var ambience = levelData.ambienceSettings;
-    var sky = [
+    let ambience = levelData.ambienceSettings;
+    let sky = [
         [
             0, 0, 0
         ],
@@ -489,11 +484,11 @@ function loadLevelNode(node, parent) {
         return groupComplexity;
     } else if (node.levelNodeStatic) { 
         node = node.levelNodeStatic;
-        // try {console.log(node.material, node.shape, materials, shapes)} catch {}
+        let cube;
         if (node.shape-1000 >= 0 && node.shape-1000 < shapes.length) {
-            var cube = shapes[node.shape-1000].clone();
+            cube = shapes[node.shape-1000].clone();
         } else {
-            var cube = shapes[0].clone();
+            cube = shapes[0].clone();
         }
         let material;
         if (node.material >= 0 && node.material < materials.length) {
@@ -510,10 +505,6 @@ function loadLevelNode(node, parent) {
             }
         }
         if (node.material == 8) {
-            // let colorMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(node.color.r, node.color.g, node.color.b) });
-            // material.transparent = true;
-            // material.opacity = 0.5;
-            // material = [ colorMaterial, material ];
             node.color.r ? null : node.color.r = 0;
             node.color.g ? null : node.color.g = 0;
             node.color.b ? null : node.color.b = 0;
@@ -524,7 +515,6 @@ function loadLevelNode(node, parent) {
             }
         }
         cube.material = material;
-        // var cube = new THREE.Mesh(shapes[node.shape-1000], materials[node.material]);
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
         node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
@@ -540,11 +530,11 @@ function loadLevelNode(node, parent) {
         return 2;
     } else if (node.levelNodeCrumbling) {
         node = node.levelNodeCrumbling;
-        // try {console.log(node.material, node.shape, materials, shapes)} catch {}
+        let cube;
         if (node.shape-1000 >= 0 && node.shape-1000 < shapes.length) {
-            var cube = shapes[node.shape-1000].clone();
+            cube = shapes[node.shape-1000].clone();
         } else {
-            var cube = shapes[0].clone();
+            cube = shapes[0].clone();
         }
         if (node.material >= 0 && node.material < materials.length) {
             if (altTextures) {
@@ -554,12 +544,11 @@ function loadLevelNode(node, parent) {
             }
         } else {
             if (altTextures) {
-                cube.material = exportMterials[0];
+                cube.material = exportMaterials[0];
             } else {
                 cube.material = materials[0];
             }
         }
-        // var cube = new THREE.Mesh(shapes[node.shape-1000], materials[node.material]);
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
         node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
@@ -575,7 +564,7 @@ function loadLevelNode(node, parent) {
         return 3;
     } else if (node.levelNodeSign) {
         node = node.levelNodeSign;
-        var cube = shapes[5].clone();
+        let cube = shapes[5].clone();
         if (altTextures) {
             cube.material = exportMaterials[4];
         } else {
@@ -593,7 +582,7 @@ function loadLevelNode(node, parent) {
         return 5;
     } else if (node.levelNodeStart) {
         node = node.levelNodeStart;
-        var cube = shapes[6].clone();
+        let cube = shapes[6].clone();
         cube.material = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0.5 });
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
@@ -609,7 +598,7 @@ function loadLevelNode(node, parent) {
         return 0;
     } else if (node.levelNodeFinish) {
         node = node.levelNodeFinish;
-        var cube = shapes[6].clone();
+        let cube = shapes[6].clone();
         cube.material = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
@@ -632,15 +621,12 @@ function readArrayBuffer(file) {
         let reader = new FileReader();
         reader.onload = function() {
             let data = reader.result;
-            var root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
-            // protobuf.load("proto/level.proto", function(err, root) {
-                // if(err) throw err;
-                console.log(root);
-                let message = root.lookupType("COD.Level.Level");
-                let decoded = message.decode(new Uint8Array(data));
-                let object = message.toObject(decoded);
-                resolve(object);
-            // });
+            let root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
+            console.log(root);
+            let message = root.lookupType("COD.Level.Level");
+            let decoded = message.decode(new Uint8Array(data));
+            let object = message.toObject(decoded);
+            resolve(object);
         }
         reader.onerror = function() {
             reject(reader);
@@ -696,15 +682,15 @@ function appendJSON(link) {
         .then(data => {
             let nodes = data;
             data.levelNodes ? nodes = data.levelNodes : null;
-            var levelData = getLevel();
+            let levelData = getLevel();
             levelData.levelNodes = levelData.levelNodes.concat(nodes);
             setLevel(levelData);
         })
 }
 function openJSONFile(file) {
-    var reader = new FileReader();
+    let reader = new FileReader();
     reader.onload = (event) => {
-        var obj = JSON.parse(event.target.result);
+        let obj = JSON.parse(event.target.result);
         setLevel(obj);
     };
     reader.readAsText(file)
@@ -720,7 +706,7 @@ function appendLevelFile(level) {
     }
 
     Promise.all(readers).then((values) => {
-        var obj = getLevel();
+        let obj = getLevel();
         for (let i = 0; i < values.length; i++) {
             obj.levelNodes = obj.levelNodes.concat(values[i].levelNodes);
         }
@@ -728,7 +714,7 @@ function appendLevelFile(level) {
     });
 }
 function downloadProto(obj) {
-    var root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
+    let root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
     let message = root.lookupType("COD.Level.Level");
     let errMsg = message.verify(obj);
     if(errMsg) throw Error(errMsg);
@@ -840,7 +826,7 @@ async function openQuestLevel(level) {
 }
 async function saveToQuest() {
     let obj = getLevel();
-    var root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
+    let root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
     let message = root.lookupType("COD.Level.Level");
     let errMsg = message.verify(obj);
     if(errMsg) throw Error(errMsg);
@@ -879,7 +865,7 @@ addEventListener('resize', () => {
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight );
 });
-// var equiManaged = new CubemapToEquirectangular( renderer, true );
+// let equiManaged = new CubemapToEquirectangular( renderer, true );
 // setTimeout(()=>{equiManaged.update( camera, scene );}, 10000);
 camera.position.set(0, 10, 10);
 initAttributes();
@@ -1171,8 +1157,8 @@ document.querySelector('#prompt-pixel .prompt-submit').addEventListener('click',
                     }
                 }
             }
-            var pixels = rgbArray;
-            for (var i = 0; i < pixels.length; i++) {
+            let pixels = rgbArray;
+            for (let i = 0; i < pixels.length; i++) {
                 if (pixels[i][0] == 0) {
                     pixels[i][0] == 1;
                 }
@@ -1260,7 +1246,8 @@ document.getElementById('nodeStart-btn').addEventListener('click', () => {append
 document.getElementById('nodeFinish-btn').addEventListener('click', () => {appendJSON("json_files/finish-node.json")});
 document.getElementById('nodeInvisible-btn').addEventListener('click', () => {appendJSON("json_files/invisible-node.json")});
 document.getElementById('clearambience-btn').addEventListener('click', () => {
-    var ambience = {
+    let levelData = getLevel();
+    levelData.ambienceSettings = {
         "skyZenithColor": {
             "r": 0,
             "g": 0,
@@ -1278,12 +1265,11 @@ document.getElementById('clearambience-btn').addEventListener('click', () => {
         "sunSize": 1,
         "fogDDensity": 0
     };
-    var levelData = getLevel();
-    levelData.ambienceSettings = ambience;
     setLevel(levelData);
 });
 document.getElementById('maxambience-btn').addEventListener('click', () => {
-    var ambience = {
+    let levelData = getLevel();
+    levelData.ambienceSettings = {
         "skyZenithColor": {
             "r": 32000,
             "g": 32000,
@@ -1301,8 +1287,6 @@ document.getElementById('maxambience-btn').addEventListener('click', () => {
         "sunSize": 32000,
         "fogDDensity": 32000
     };
-    var levelData = getLevel();
-    levelData.ambienceSettings = ambience;
     setLevel(levelData);
 });
 document.getElementById('gltf-btn').addEventListener('click', exportLevelAsGLTF);
@@ -1328,7 +1312,8 @@ document.getElementById('randomize-btn').addEventListener('click', () => {
     setLevel(obj);
 });
 document.getElementById('minambience-btn').addEventListener('click', () => {
-    var ambience = {
+    let levelData = getLevel();
+    levelData.ambienceSettings = {
         "skyZenithColor": {
             "r": -32000,
             "g": -32000,
@@ -1346,8 +1331,6 @@ document.getElementById('minambience-btn').addEventListener('click', () => {
         "sunSize": -32000,
         "fogDDensity": -32000
     };
-    var levelData = getLevel();
-    levelData.ambienceSettings = ambience;
     setLevel(levelData);
 });
 document.getElementById('fireambience-btn').addEventListener('click', () => {
@@ -1371,7 +1354,8 @@ document.getElementById('fireambience-btn').addEventListener('click', () => {
     setLevel(levelData);
 });
 document.getElementById('defaultambience-btn').addEventListener('click', () => {
-    var ambience = {
+    let levelData = getLevel();
+    levelData.ambienceSettings = {
         "skyZenithColor": {
             "r": 0.28,
             "g": 0.476,
@@ -1389,12 +1373,11 @@ document.getElementById('defaultambience-btn').addEventListener('click', () => {
         "sunSize": 1,
         "fogDDensity": 0
     };
-    var levelData = getLevel();
-    levelData.ambienceSettings = ambience;
     setLevel(levelData);
 });
 document.getElementById('randomambience-btn').addEventListener('click', () => {
-    var ambience = {
+    let levelData = getLevel();
+    levelData.ambienceSettings = {
         "skyZenithColor": {
             "r": Math.floor(Math.random() * 19999999999) - 9999999999,
             "g": Math.floor(Math.random() * 19999999999) - 9999999999,
@@ -1412,15 +1395,12 @@ document.getElementById('randomambience-btn').addEventListener('click', () => {
         "sunSize": Math.floor(Math.random() * 19999999999) - 9999999999,
         "fogDDensity": Math.floor(Math.random() * 19999999999) - 9999999999
     };
-    var levelData = getLevel();
-    levelData.ambienceSettings = ambience;
     setLevel(levelData);
 });
 document.querySelector('#prompt-protobuf .prompt-submit').addEventListener('click', () => {
     document.getElementById('prompts').style.display = 'none';
     document.getElementById('prompt-protobuf').style.display = 'none';
-    var input = document.getElementById('protobuf-prompt').value;
-    PROTOBUF_DATA = input;
+    PROTOBUF_DATA = document.getElementById('protobuf-prompt').value;
 });
 document.getElementById('Parallelograms-btn').addEventListener('click', () => {appendJSON("json_files/parallelograms.json")});
 document.getElementById('BreakTimes-btn').addEventListener('click', () => {appendJSON("json_files/break-times.json")});
