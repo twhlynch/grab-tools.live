@@ -157,10 +157,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 5600,
-      "difficulty": 0.0037462537462537465,
+      "total_played": 5900,
+      "difficulty": 0.0038086169959533444,
       "liked": 1,
-      "time": 580.0804666666668
+      "time": 560.5937500000001
     },
     "creator": "milo"
   },
@@ -423,8 +423,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 44700,
-      "difficulty": 0.0024340112505408912,
+      "total_played": 45100,
+      "difficulty": 0.0024183147033533963,
       "liked": 0.9333333333333333,
       "time": 1843.8361111111117
     },
@@ -538,8 +538,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 20402,
-      "difficulty": 0.0010835617311492128,
+      "total_played": 20502,
+      "difficulty": 0.0010782013065262891,
       "liked": 0.9090909090909091,
       "time": 3170.572066666667
     },
@@ -561,8 +561,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 12626,
-      "difficulty": 0.0016558004760426368,
+      "total_played": 12726,
+      "difficulty": 0.0016415307274033036,
       "liked": 0.9090909090909091,
       "time": 716.617787997143
     },
@@ -734,10 +734,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 22200,
-      "difficulty": 0.0033621517771373678,
+      "total_played": 22300,
+      "difficulty": 0.003350656455142232,
       "liked": 0.8947368421052632,
-      "time": 1544.523693877551
+      "time": 1527.964918367347
     },
     "creator": "BLUDUK"
   },
@@ -1628,12 +1628,35 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 51300,
-      "difficulty": 0.00029386915475884364,
+      "total_played": 51400,
+      "difficulty": 0.0002933734277017859,
       "liked": 0.8571428571428571,
       "time": 4768.393
     },
     "creator": "BLUDUK"
+  },
+  {
+    "identifier": "2ap647di3dc1k42jf4o2o:1682810607",
+    "title": "yoohoos difficuity chart",
+    "complexity": 3000,
+    "format_version": 6,
+    "update_timestamp": 1682839616621,
+    "creation_timestamp": 1682839616621,
+    "data_key": "level_data:2ap647di3dc1k42jf4o2o:1682810607:1",
+    "description": "test your skill or die and there is 0 checkpoints",
+    "creators": [
+      "yoohoo vr"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 126600,
+      "difficulty": 0.003128445013854542,
+      "liked": 0.8571428571428571,
+      "time": 223.27268380952384
+    },
+    "creator": "yoohoo vr"
   },
   {
     "identifier": "29v9vd6n9z45d16mi2o2n:1684027025",
@@ -1755,27 +1778,28 @@
     "creator": "cjbeast006"
   },
   {
-    "identifier": "2ap647di3dc1k42jf4o2o:1682810607",
-    "title": "yoohoos difficuity chart",
-    "complexity": 3000,
+    "identifier": "2a3z4abfe72jix3igkiwm:1685391045",
+    "title": "Fallout: Vault Grab Part 2",
+    "complexity": 2985,
     "format_version": 6,
-    "update_timestamp": 1682839616621,
-    "creation_timestamp": 1682839616621,
-    "data_key": "level_data:2ap647di3dc1k42jf4o2o:1682810607:1",
-    "description": "test your skill or die and there is 0 checkpoints",
+    "update_timestamp": 1685819227673,
+    "creation_timestamp": 1685819227673,
+    "data_key": "level_data:2a3z4abfe72jix3igkiwm:1685391045:1",
+    "description": "WARNING: Mild Language, Blood                                     ''Fallout: Vault Grab'' Is a series in grab inspired by Bethesda's Fallout.",
     "creators": [
-      "yoohoo vr"
+      "Plushgaming",
+      "kookookrazy"
     ],
     "tags": [
       "ok"
     ],
     "statistics": {
-      "total_played": 125700,
-      "difficulty": 0.0030838323353293414,
-      "liked": 0.8533333333333334,
-      "time": 226.85592038834952
+      "total_played": 5700,
+      "difficulty": 0.5229180116204003,
+      "liked": 0.8538899430740038,
+      "time": 158.15371913580276
     },
-    "creator": "yoohoo vr"
+    "creator": "Plushgaming"
   },
   {
     "identifier": "29ffxg2ijqxyrgxyy2vjj:1643234994",
@@ -1822,30 +1846,6 @@
       "time": 965.0491
     },
     "creator": "cjbeast006"
-  },
-  {
-    "identifier": "2a3z4abfe72jix3igkiwm:1685391045",
-    "title": "Fallout: Vault Grab Part 2",
-    "complexity": 2985,
-    "format_version": 6,
-    "update_timestamp": 1685819227673,
-    "creation_timestamp": 1685819227673,
-    "data_key": "level_data:2a3z4abfe72jix3igkiwm:1685391045:1",
-    "description": "WARNING: Mild Language, Blood                                     ''Fallout: Vault Grab'' Is a series in grab inspired by Bethesda's Fallout.",
-    "creators": [
-      "Plushgaming",
-      "kookookrazy"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 5600,
-      "difficulty": 0.5219576141577452,
-      "liked": 0.8518339768339769,
-      "time": 157.94573084972825
-    },
-    "creator": "Plushgaming"
   },
   {
     "identifier": "2a5jvldcjef545628j06h:1653856292",
@@ -2006,8 +2006,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 13500,
-      "difficulty": 0.005981511691136488,
+      "total_played": 13600,
+      "difficulty": 0.005933757686913367,
       "liked": 0.8484848484848485,
       "time": 176.6071218181818
     },
@@ -2075,8 +2075,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 116600,
-      "difficulty": 0.0018451004801707273,
+      "total_played": 116800,
+      "difficulty": 0.0018414980475683351,
       "liked": 0.847457627118644,
       "time": 2348.8133614457824
     },
@@ -2167,8 +2167,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 5334,
-      "difficulty": 0.006000461573967228,
+      "total_played": 5434,
+      "difficulty": 0.005886348200135839,
       "liked": 0.8461538461538461,
       "time": 569.3970402800002
     },
@@ -2311,26 +2311,26 @@
     "creator": "22Joshi22"
   },
   {
-    "identifier": "29st9jdcbxxotp0t9d8en:1674601646",
-    "title": "Icy Slippin Slide (2 0k )",
-    "complexity": 838,
+    "identifier": "2azxayu0s7e9r7w7xjy3o:1690992902",
+    "title": "only up 0.0",
+    "complexity": 961,
     "format_version": 6,
-    "update_timestamp": 1691601276163,
-    "creation_timestamp": 1674682665319,
-    "data_key": "level_data:29st9jdcbxxotp0t9d8en:1674601646:5",
-    "description": "Slippin(Fixed a hole) Thanks for 20k plays More when we get more plays.",
+    "update_timestamp": 1691032012594,
+    "creation_timestamp": 1691032012594,
+    "data_key": "level_data:2azxayu0s7e9r7w7xjy3o:1690992902:1",
+    "description": "the tower isint hard and theres only up",
     "creators": [
-      "Mystery8281"
+      "freeguy251"
     ],
     "tags": [
       "ok"
     ],
     "statistics": {
-      "total_played": 33000,
-      "difficulty": 0.3699156929448306,
-      "liked": 0.8414437640992588,
-      "time": 211.15233782486922
+      "total_played": 5600,
+      "difficulty": 0.027166882276843468,
+      "liked": 0.8421052631578947,
+      "time": 131.5323460317461
     },
-    "creator": "Mystery8281"
+    "creator": "freeguy251"
   }
 ]
