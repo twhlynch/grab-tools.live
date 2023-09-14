@@ -5959,5 +5959,52 @@
     },
     1694581856,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 8.88805,
+        "user_id": "29gxhef7axgh48yvgm0tw",
+        "user_name": "ShadowHunter54"
+      },
+      {
+        "position": 1,
+        "best_time": 9.66403,
+        "user_id": "2b2blw9h5ie7l6qe19wcd",
+        "user_name": "Notsuns"
+      },
+      {
+        "position": 2,
+        "best_time": 11.056,
+        "user_id": "2aksdjseg8s0j84bc5ef3",
+        "user_name": "RickyG12"
+      }
+    ],
+    {
+      "identifier": "29xhxcqgnvljv5uihgcrk:1652459648",
+      "title": "Escape Hell",
+      "complexity": 998,
+      "format_version": 4,
+      "update_timestamp": 1652461199650,
+      "creation_timestamp": 1652461199650,
+      "data_key": "level_data:29xhxcqgnvljv5uihgcrk:1652459648:1",
+      "description": "E S C A P E",
+      "creators": [
+        "BPWBlue"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 12696,
+        "difficulty": 0.6483647390080138,
+        "liked": 0.72480181200453,
+        "time": 59.14546385982648
+      },
+      "creator": "BPWBlue"
+    },
+    1694668259,
+    "daily_map"
   ]
 ]
