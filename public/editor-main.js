@@ -1045,7 +1045,7 @@ async function openQuestLevel(level) {
     let file = new File([blob], level);
     openLevelFile([file]);
 }
-async function saveToQuest() {
+async function saveToQuest(name=(Date.now()).toString().slice(0, -3)) {
     let obj = getLevel();
     let root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
     let message = root.lookupType("COD.Level.Level");
@@ -1054,7 +1054,7 @@ async function saveToQuest() {
     let buffer = message.encode(message.fromObject(obj)).finish();
     
     let blob = new Blob([buffer], {type: "application/octet-stream"});
-    let file = new File([blob], (Date.now()).toString().slice(0, -3)+".level");
+    let file = new File([blob], name+".level");
     
     sync = await adb.sync();
     let push_dest = `/sdcard/Android/data/com.slindev.grab_demo/files/levels/user/${file.name}`;
