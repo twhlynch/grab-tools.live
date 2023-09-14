@@ -1,0 +1,26 @@
+{
+    "formatVersion": 6,
+    "title": "New Level",
+    "creators": ".index-editor",
+    "description": ".index - Level modding",
+    "maxCheckpointCount": 10,
+    "ambienceSettings": {
+        "skyZenithColor": {
+            "r": 0.28,
+            "g": 0.476,
+            "b": 0.73,
+            "a": 1
+        },
+        "skyHorizonColor": {
+            "r": 0.916,
+            "g": 0.9574,
+            "b": 0.9574,
+            "a": 1
+        },
+        "sunAltitude": 45,
+        "sunAzimuth": 315,
+        "sunSize": 1,
+        "fogDDensity": 0
+    },
+    "levelNodes": []
+}

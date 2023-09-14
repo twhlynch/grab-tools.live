@@ -842,128 +842,21 @@ async function saveToQuest() {
     sync = null;
     alert("Success!");
 }
-
-loader = new GLTFLoader();
-scene = new THREE.Scene();
-camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
-renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-renderer.setSize( window.innerWidth , window.innerHeight );
-document.getElementById('render-container').appendChild( renderer.domElement );
-light = new THREE.AmbientLight(0xffffff);
-scene.add(light);
-sun = new THREE.DirectionalLight( 0xffffff, 0.5 );
-scene.add( sun );
-controls = new OrbitControls( camera, renderer.domElement );
-controls.mouseButtons = {LEFT: 2, MIDDLE: 1, RIGHT: 0}
-fly = new FlyControls( camera, renderer.domElement );
-fly.pointerdown = fly.pointerup = fly.pointermove = () => {};
-fly.dragToLook = false;
-fly.rollSpeed = 0;
-fly.movementSpeed = 0.2;
-addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-});
-// let equiManaged = new CubemapToEquirectangular( renderer, true );
-// setTimeout(()=>{equiManaged.update( camera, scene );}, 10000);
-camera.position.set(0, 10, 10);
-initAttributes();
-animate();
-highlightTextEditor();
-
-// Terminal 
-document.getElementById('terminal-input').addEventListener('keydown', (e) => {
-    if (e.which === 13 && e.shiftKey === false && e.altKey === false) {
-        e.preventDefault();
-        let input = document.getElementById('terminal-input').value;
-        let level = getLevel();
-        let success = 0;
-        let fail = 0;
-        level.levelNodes.forEach(node => {
-            try {
-                eval(input);
-                success++;
-            } catch (e) {
-                console.error(e)
-                fail++;
-            }
-        });
-        document.getElementById("terminal-input").placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\n${success} success | ${fail} error${fail != 0 ? "\n[ctrl]+[shift]+[i] for details" : ""}`;
-        setLevel(level);
-        lastRan = input
-        document.getElementById('terminal-input').value = '';
-    } else if (e.which === 13 && e.altKey === true && e.shiftKey === false) {
-        e.preventDefault();
-        let input = document.getElementById('terminal-input').value;
-        let level = getLevel();
-        try {
-            eval(input);
-            document.getElementById("terminal-input").placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\nsuccess`;
-        } catch (e) {
-            console.error(e);
-            document.getElementById("terminal-input").placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\nerror | [ctrl]+[shift]+[i] for details`;
-        }
-        
-        setLevel(level);
-        lastRan = input
-        document.getElementById('terminal-input').value = '';
-    } else if (e.which === 38 && e.altKey === true) {
-        e.preventDefault();
-        document.getElementById('terminal-input').value = lastRan;
-    }
-});
-
-document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
-document.getElementById("self-credit").addEventListener("click", (e) => {e.target.style.display = 'none'});
-document.getElementById('edit-input').addEventListener('blur', highlightTextEditor);
-document.getElementById('edit-input').addEventListener('keydown', (e) => {
-    if (e.which === 9) { // tab
-        e.preventDefault();
-        let selection = window.getSelection();
-        selection.collapseToStart();
-        let range = selection.getRangeAt(0);
-        range.insertNode(document.createTextNode("    "));
-        selection.collapseToEnd();
-    }
-});
-document.getElementById('the-index-btn').addEventListener('click', () => {openProto('levels/the-index.level')});
-document.getElementById('empty-btn').addEventListener( 'click', () => {
-    setLevel({
-        "formatVersion": 6,
-        "title": "New Level",
-        "creators": ".index-editor",
-        "description": ".index - Level modding",
-        "levelNodes": [],
-        "maxCheckpointCount": 10,
-        "ambienceSettings": {
-            "skyZenithColor": {
-                "r": 0.28,
-                "g": 0.476,
-                "b": 0.73,
-                "a": 1
-            },
-            "skyHorizonColor": {
-                "r": 0.916,
-                "g": 0.9574,
-                "b": 0.9574,
-                "a": 1
-            },
-            "sunAltitude": 45,
-            "sunAzimuth": 315,
-            "sunSize": 1,
-            "fogDDensity": 0
-        }
-    });
-});
-document.getElementById('slindev-btn').addEventListener('click', () => {window.open("https://discord.slin.dev", "_blank")});
-document.getElementById('email-btn').addEventListener('click', () => {location.href = "mailto:twhlynch.index@gmail.com"});
-document.getElementById('discord-btn').addEventListener('click', () => {window.open("https://discordapp.com/users/649165311257608192", "_blank")});
-document.getElementById('server-btn').addEventListener('click', () => {window.open("https://twhlynch.me/discord", "_blank")});
-document.getElementById('docs-btn').addEventListener('click', () => {window.open("docs.html", "_blank")});
-document.getElementById('json-btn').addEventListener('click', () => {
-    const json = JSON.stringify(getLevel());
-    const blob = new Blob([json], { type: 'application/json' });
+function setAmbience(
+    skyZenithColor = {"r": 0.28,"g": 0.476,"b": 0.73,"a": 1}, 
+    skyHorizonColor = {"r": 0.916,"g": 0.9574,"b": 0.9574,"a": 1}, 
+    sunAltitude = 45, sunAzimuth = 315, sunSize = 1, fogDDensity = 0) {
+    let levelData = getLevel();
+    levelData.ambienceSettings.skyZenithColor = skyZenithColor;
+    levelData.ambienceSettings.skyHorizonColor = skyHorizonColor;
+    levelData.ambienceSettings.sunAltitude = sunAltitude;
+    levelData.ambienceSettings.sunAzimuth = sunAzimuth;
+    levelData.ambienceSettings.sunSize = sunSize;
+    levelData.ambienceSettings.fogDDensity = fogDDensity;
+    setLevel(levelData);
+}
+function downloadAsJSON() {
+    const blob = new Blob([JSON.stringify(getLevel())], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
@@ -971,144 +864,27 @@ document.getElementById('json-btn').addEventListener('click', () => {
     document.body.appendChild(link);
     link.click();
     URL.revokeObjectURL(url);
-});
-document.getElementById('pc-btn').addEventListener('click', () => {document.getElementById('pc-btn-input').click()});
-document.getElementById('pc-btn-input').addEventListener('change', (e) => {openLevelFile(e.target.files)});
-document.getElementById('pcjson-btn').addEventListener('click', () => {document.getElementById('pcjson-btn-input').click()});
-document.getElementById('pcjson-btn-input').addEventListener('change', (e) => {openJSONFile(e.target.files[0])});
-document.getElementById('cheat-btn').addEventListener('click', () => {window.open("cheat-sheet.html", "_blank")});
-document.getElementById('title-btn').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'grid';
-    document.getElementById('prompt-title').style.display = 'flex';
-});
-document.querySelector('#prompt-title .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
-    document.getElementById('prompt-title').style.display = 'none';
-    document.getElementById('title-prompt').value = '';
-});
-document.querySelector('#prompt-title .prompt-submit').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
-    document.getElementById('prompt-title').style.display = 'none';
-    let input = document.getElementById('title-prompt').value;
-    let levelData = getLevel();
-    levelData.title = input;
-    setLevel(levelData);
-    document.getElementById('title-prompt').value = '';
-});
-document.getElementById('description-btn').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'grid';
-    document.getElementById('prompt-description').style.display = 'flex';
-});
-document.getElementById('toquest-btn').addEventListener('click', saveToQuest);
-document.getElementById('connect-adb-btn').addEventListener('click', connectUsb);
-document.getElementById('quest-btn').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'grid';
-    document.getElementById('prompt-levels').style.display = 'flex';
-    listQuestLevels();
-});
-document.querySelector('#prompt-levels .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
-    document.getElementById('prompt-levels').style.display = 'none';
-});
-document.getElementById('performance-btn').addEventListener('click', () => {
-    renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 );
-});
-document.querySelector('#prompt-description .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
-    document.getElementById('prompt-description').style.display = 'none';
-    document.getElementById('description-prompt').value = '';
-});
-document.querySelector('#prompt-description .prompt-submit').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
-    document.getElementById('prompt-description').style.display = 'none';
-    let input = document.getElementById('description-prompt').value;
-    let levelData = getLevel();
-    levelData.description = input;
-    setLevel(levelData);
-    document.getElementById('description-prompt').value = '';
-});
-document.getElementById('creators-btn').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'grid';
-    document.getElementById('prompt-creators').style.display = 'flex';
-});
-document.querySelector('#prompt-creators .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
-    document.getElementById('prompt-creators').style.display = 'none';
-    document.getElementById('creators-prompt').value = '';
-});
-document.querySelector('#prompt-creators .prompt-submit').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
-    document.getElementById('prompt-creators').style.display = 'none';
-    let input = document.getElementById('creators-prompt').value;
-    let levelData = getLevel();
-    levelData.creators = input;
-    setLevel(levelData);
-    document.getElementById('creators-prompt').value = '';
-});
-document.getElementById('checkpoints-btn').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'grid';
-    document.getElementById('prompt-checkpoints').style.display = 'flex';
-});
-document.querySelector('#prompt-checkpoints .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
-    document.getElementById('prompt-checkpoints').style.display = 'none';
-    document.getElementById('checkpoints-prompt').value = '';
-});
-document.querySelector('#prompt-checkpoints .prompt-submit').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
-    document.getElementById('prompt-checkpoints').style.display = 'none';
-    let input = document.getElementById('checkpoints-prompt').value;
-    let levelData = getLevel();
-    levelData.maxCheckpointCount = parseInt(input);
-    setLevel(levelData);
-    document.getElementById('checkpoints-prompt').value = '';
-});
-document.getElementById('cleardetails-btn').addEventListener('click', () => {
-    let levelData = getLevel();
-    levelData.maxCheckpointCount = 0;
-    levelData.title = "";
-    levelData.description = "";
-    levelData.creators = "";
-    setLevel(levelData);
-});
-document.getElementById('group-btn').addEventListener('click', () => {
-    let levelData = getLevel();
-    levelData.levelNodes = [{
-        "levelNodeGroup": {
-            "position": {
-                "y": 0, 
-                "x": 0, 
-                "z": 0
-            }, 
-            "rotation": {
-                "w": 1.0
-            }, 
-            "scale": {
-                "y": 1.0, 
-                "x": 1.0, 
-                "z": 1.0
-            },
-            "childNodes": levelData.levelNodes
-        }
-    }];
-    setLevel(levelData);
-});
-document.getElementById('duplicate-btn').addEventListener('click', () => {
-    let levelData = getLevel();
-    levelData.levelNodes = levelData.levelNodes.concat(levelData.levelNodes);
-    setLevel(levelData);
-});
-document.getElementById('insertpc-btn').addEventListener('click', () => {document.getElementById('insertpc-btn-input').click()});
-document.getElementById('insertpc-btn-input').addEventListener('change', (e) => {appendLevelFile(e.target.files)});
-document.getElementById('image-btn').addEventListener('click', () => {document.getElementById('image-btn-input').click()});
-document.querySelector('#prompt-pixel .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
-    document.getElementById('prompt-pixel').style.display = 'none';
-    document.getElementById('pixel-prompt').value = '';
-});
-document.querySelector('#prompt-pixel .prompt-submit').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
-    document.getElementById('prompt-pixel').style.display = 'none';
+}
+function randomizeLevel() {
+    let obj = getLevel();
+    obj.levelNodes.forEach((node) => {
+        Object.values(node)[0].position.x *= Math.random() + 0.5;
+        Object.values(node)[0].position.y *= Math.random() + 0.5;
+        Object.values(node)[0].position.z *= Math.random() + 0.5;
+        Object.values(node)[0].scale.x *= Math.random() + 0.5;
+        Object.values(node)[0].scale.y *= Math.random() + 0.5;
+        Object.values(node)[0].scale.z *= Math.random() + 0.5;
+    });
+    setLevel(obj);
+}
+function loadProtobuf(url) {
+    fetch(url)
+    .then(response => response.text())
+    .then(proto_data => {
+        document.getElementById('protobuf-prompt').value = proto_data;
+    });
+}
+function generatePixelArt() {
     let quality = document.getElementById('pixel-prompt').value;
     document.getElementById('pixel-prompt').value = '';
     
@@ -1201,31 +977,233 @@ document.querySelector('#prompt-pixel .prompt-submit').addEventListener('click',
         img.src = data;
     }
     reader.readAsDataURL(file);
+}
+function duplicateLevel() {
+    let levelData = getLevel();
+    levelData.levelNodes = levelData.levelNodes.concat(levelData.levelNodes);
+    setLevel(levelData);
+}
+function groupLevel() {
+    let levelData = getLevel();
+    levelData.levelNodes = [{
+        "levelNodeGroup": {
+            "position": {
+                "y": 0, 
+                "x": 0, 
+                "z": 0
+            }, 
+            "rotation": {
+                "w": 1.0
+            }, 
+            "scale": {
+                "y": 1.0, 
+                "x": 1.0, 
+                "z": 1.0
+            },
+            "childNodes": levelData.levelNodes
+        }
+    }];
+    setLevel(levelData);
+}
+function ungroupLevel() {
+    let levelData = getLevel();
+    levelData.levelNodes = levelData.levelNodes[0].levelNodeGroup.childNodes;
+    setLevel(levelData);
+}
+function clearLevelDetails() {
+    let levelData = getLevel();
+    levelData.maxCheckpointCount = 0;
+    levelData.title = "";
+    levelData.description = "";
+    levelData.creators = "";
+    setLevel(levelData);
+}
+function handleEditInput(e) {
+    if (e.code === "Tab") {
+        e.preventDefault();
+        let selection = window.getSelection();
+        selection.collapseToStart();
+        let range = selection.getRangeAt(0);
+        range.insertNode(document.createTextNode("    "));
+        selection.collapseToEnd();
+    }
+}
+function goToStart() {
+    let obj = getLevel();
+    let start = findStart(obj);
+    if (start) {
+        camera.position.x = start.position.x;
+        camera.position.y = start.position.y;
+        camera.position.z = start.position.z;
+    }
+}
+
+loader = new GLTFLoader();
+scene = new THREE.Scene();
+camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
+renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize( window.innerWidth , window.innerHeight );
+document.getElementById('render-container').appendChild( renderer.domElement );
+light = new THREE.AmbientLight(0xffffff);
+scene.add(light);
+sun = new THREE.DirectionalLight( 0xffffff, 0.5 );
+scene.add( sun );
+controls = new OrbitControls( camera, renderer.domElement );
+controls.mouseButtons = {LEFT: 2, MIDDLE: 1, RIGHT: 0}
+fly = new FlyControls( camera, renderer.domElement );
+fly.pointerdown = fly.pointerup = fly.pointermove = () => {};
+fly.dragToLook = false;
+fly.rollSpeed = 0;
+fly.movementSpeed = 0.2;
+addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+});
+// let equiManaged = new CubemapToEquirectangular( renderer, true );
+// setTimeout(()=>{equiManaged.update( camera, scene );}, 10000);
+camera.position.set(0, 10, 10);
+initAttributes();
+animate();
+highlightTextEditor();
+
+// Terminal 
+document.getElementById('terminal-input').addEventListener('keydown', (e) => {
+    if (e.which === 13 && e.shiftKey === false && e.altKey === false) {
+        e.preventDefault();
+        let input = document.getElementById('terminal-input').value;
+        let level = getLevel();
+        let success = 0;
+        let fail = 0;
+        level.levelNodes.forEach(node => {
+            try {
+                eval(input);
+                success++;
+            } catch (e) {
+                console.error(e)
+                fail++;
+            }
+        });
+        document.getElementById("terminal-input").placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\n${success} success | ${fail} error${fail != 0 ? "\n[ctrl]+[shift]+[i] for details" : ""}`;
+        setLevel(level);
+        lastRan = input
+        document.getElementById('terminal-input').value = '';
+    } else if (e.which === 13 && e.altKey === true && e.shiftKey === false) {
+        e.preventDefault();
+        let input = document.getElementById('terminal-input').value;
+        let level = getLevel();
+        try {
+            eval(input);
+            document.getElementById("terminal-input").placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\nsuccess`;
+        } catch (e) {
+            console.error(e);
+            document.getElementById("terminal-input").placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\nerror | [ctrl]+[shift]+[i] for details`;
+        }
         
+        setLevel(level);
+        lastRan = input
+        document.getElementById('terminal-input').value = '';
+    } else if (e.which === 38 && e.altKey === true) {
+        e.preventDefault();
+        document.getElementById('terminal-input').value = lastRan;
+    }
+});
+
+// prompts
+document.getElementById('title-btn').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'grid';
+    document.getElementById('prompt-title').style.display = 'flex';
+});
+document.querySelector('#prompt-title .prompt-cancel').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-title').style.display = 'none';
+    document.getElementById('title-prompt').value = '';
+});
+document.querySelector('#prompt-title .prompt-submit').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-title').style.display = 'none';
+    let input = document.getElementById('title-prompt').value;
+    let levelData = getLevel();
+    levelData.title = input;
+    setLevel(levelData);
+    document.getElementById('title-prompt').value = '';
+});
+document.getElementById('description-btn').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'grid';
+    document.getElementById('prompt-description').style.display = 'flex';
+});
+document.getElementById('quest-btn').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'grid';
+    document.getElementById('prompt-levels').style.display = 'flex';
+    listQuestLevels();
+});
+document.querySelector('#prompt-levels .prompt-cancel').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-levels').style.display = 'none';
+});
+document.querySelector('#prompt-description .prompt-cancel').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-description').style.display = 'none';
+    document.getElementById('description-prompt').value = '';
+});
+document.querySelector('#prompt-description .prompt-submit').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-description').style.display = 'none';
+    let input = document.getElementById('description-prompt').value;
+    let levelData = getLevel();
+    levelData.description = input;
+    setLevel(levelData);
+    document.getElementById('description-prompt').value = '';
+});
+document.getElementById('creators-btn').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'grid';
+    document.getElementById('prompt-creators').style.display = 'flex';
+});
+document.querySelector('#prompt-creators .prompt-cancel').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-creators').style.display = 'none';
+    document.getElementById('creators-prompt').value = '';
+});
+document.querySelector('#prompt-creators .prompt-submit').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-creators').style.display = 'none';
+    let input = document.getElementById('creators-prompt').value;
+    let levelData = getLevel();
+    levelData.creators = input;
+    setLevel(levelData);
+    document.getElementById('creators-prompt').value = '';
+});
+document.getElementById('checkpoints-btn').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'grid';
+    document.getElementById('prompt-checkpoints').style.display = 'flex';
+});
+document.querySelector('#prompt-checkpoints .prompt-cancel').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-checkpoints').style.display = 'none';
+    document.getElementById('checkpoints-prompt').value = '';
+});
+document.querySelector('#prompt-checkpoints .prompt-submit').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-checkpoints').style.display = 'none';
+    let input = document.getElementById('checkpoints-prompt').value;
+    let levelData = getLevel();
+    levelData.maxCheckpointCount = parseInt(input);
+    setLevel(levelData);
+    document.getElementById('checkpoints-prompt').value = '';
+});
+document.querySelector('#prompt-pixel .prompt-cancel').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-pixel').style.display = 'none';
+    document.getElementById('pixel-prompt').value = '';
+});
+document.querySelector('#prompt-pixel .prompt-submit').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-pixel').style.display = 'none';
+    generatePixelArt();
 });
 document.getElementById('image-btn-input').addEventListener('change', (e) => {
     document.getElementById('prompts').style.display = 'grid';
     document.getElementById('prompt-pixel').style.display = 'flex';
-});
-document.getElementById('hide-btn').addEventListener('click', () => {
-    if (HIDE_TEXT) {
-        document.getElementById('edit-input').style.display = 'block';
-        HIDE_TEXT = false;
-        highlightTextEditor();
-    } else {
-        document.getElementById('edit-input').style.display = 'none';
-        HIDE_TEXT = true;
-        highlightTextEditor();
-    }
-});
-document.getElementById('highlight-btn').addEventListener('click', () => {
-    if (HIGHLIGHT_TEXT) {
-        HIGHLIGHT_TEXT = false;
-        highlightTextEditor();
-    } else {
-        HIGHLIGHT_TEXT = true;
-        highlightTextEditor();
-    }
 });
 document.getElementById('protobuf-btn').addEventListener('click', () => {
     document.getElementById('prompts').style.display = 'grid';
@@ -1237,7 +1215,56 @@ document.querySelector('#prompt-protobuf .prompt-cancel').addEventListener('clic
     document.getElementById('prompt-protobuf').style.display = 'none';
     document.getElementById('protobuf-prompt').value = PROTOBUF_DATA;
 });
+document.querySelector('#prompt-protobuf .prompt-submit').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-protobuf').style.display = 'none';
+    PROTOBUF_DATA = document.getElementById('protobuf-prompt').value;
+});
+// buttons
+document.getElementById('hide-btn').addEventListener('click', () => {document.getElementById('edit-input').style.display = HIDE_TEXT ? 'block' : 'none';HIDE_TEXT = !HIDE_TEXT;highlightTextEditor()});
+document.getElementById('highlight-btn').addEventListener('click', () => {HIGHLIGHT_TEXT = !HIGHLIGHT_TEXT;highlightTextEditor()});
+document.getElementById('performance-btn').addEventListener('click', () => {renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 )});
+document.getElementById('range-btn').addEventListener('click', () => {loadProtobuf("proto/hacked.proto")});
+document.getElementById("self-credit").addEventListener("click", (e) => {e.target.style.display = 'none'});
+document.getElementById('edit-input').addEventListener('keydown', (e) => {handleEditInput(e)});
+document.getElementById('start-btn').addEventListener('click', goToStart);
+document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
+document.getElementById('edit-input').addEventListener('blur', highlightTextEditor);
+document.getElementById('json-btn').addEventListener('click', downloadAsJSON);
+document.getElementById('gltf-btn').addEventListener('click', exportLevelAsGLTF);
+document.getElementById('toquest-btn').addEventListener('click', saveToQuest);
+document.getElementById('connect-adb-btn').addEventListener('click', connectUsb);
+document.getElementById('cleardetails-btn').addEventListener('click', clearLevelDetails);
+document.getElementById('group-btn').addEventListener('click', groupLevel);
+document.getElementById('ungroup-btn').addEventListener('click', ungroupLevel);
+document.getElementById('randomize-btn').addEventListener('click', randomizeLevel);
+document.getElementById('duplicate-btn').addEventListener('click', duplicateLevel);
 document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
+document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('json_files/empty.json')});
+// links
+document.getElementById('the-index-btn').addEventListener('click', () => {openProto('levels/the-index.level')});
+document.getElementById('slindev-btn').addEventListener('click', () => {window.open("https://discord.slin.dev", "_blank")});
+document.getElementById('email-btn').addEventListener('click', () => {location.href = "mailto:twhlynch.index@gmail.com"});
+document.getElementById('discord-btn').addEventListener('click', () => {window.open("https://discordapp.com/users/649165311257608192", "_blank")});
+document.getElementById('server-btn').addEventListener('click', () => {window.open("https://twhlynch.me/discord", "_blank")});
+document.getElementById('docs-btn').addEventListener('click', () => {window.open("docs.html", "_blank")});
+document.getElementById('cheat-btn').addEventListener('click', () => {window.open("cheat-sheet.html", "_blank")});
+// hidden inputs
+document.getElementById('pc-btn').addEventListener('click', () => {document.getElementById('pc-btn-input').click()});
+document.getElementById('pcjson-btn').addEventListener('click', () => {document.getElementById('pcjson-btn-input').click()});
+document.getElementById('insertpc-btn').addEventListener('click', () => {document.getElementById('insertpc-btn-input').click()});
+document.getElementById('image-btn').addEventListener('click', () => {document.getElementById('image-btn-input').click()});
+document.getElementById('pc-btn-input').addEventListener('change', (e) => {openLevelFile(e.target.files)});
+document.getElementById('pcjson-btn-input').addEventListener('change', (e) => {openJSONFile(e.target.files[0])});
+document.getElementById('insertpc-btn-input').addEventListener('change', (e) => {appendLevelFile(e.target.files)});
+// set ambience
+document.getElementById('clearambience-btn').addEventListener('click', () => {setAmbience({"r": 0,"g": 0,"b": 0,"a": 1}, {"r": 0,"g": 0,"b": 0,"a": 1},0,0,0,0)});
+document.getElementById('maxambience-btn').addEventListener('click', () => {setAmbience({"r": 32000,"g": 32000,"b": 32000,"a": 1}, {"r": 32000,"g": 32000,"b": 32000,"a": 1},32000,32000,32000,32000)});
+document.getElementById('minambience-btn').addEventListener('click', () => {setAmbience({"r": -32000,"g": -32000,"b": -32000,"a": 1}, {"r": -32000,"g": -32000,"b": -32000,"a": 1},-32000,-32000,-32000,-32000)});
+document.getElementById('fireambience-btn').addEventListener('click', () => {setAmbience({"a": 1}, {"r": 999999,"g": 982082.8125,"b": 949219.75,"a": 1},88.97185516357422,315,99999,0.7152965068817139)});
+document.getElementById('randomambience-btn').addEventListener('click', () => {setAmbience({"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1}, {"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1},Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999)});
+document.getElementById('defaultambience-btn').addEventListener('click', setAmbience);
+// insert nodes
 document.getElementById('nodeStatic-btn').addEventListener('click', () => {appendJSON("json_files/static-node.json")});
 document.getElementById('nodeCrumbling-btn').addEventListener('click', () => {appendJSON("json_files/crumbling-node.json")});
 document.getElementById('nodeColored-btn').addEventListener('click', () => {appendJSON("json_files/colored-node.json")});
@@ -1245,163 +1272,7 @@ document.getElementById('nodeSign-btn').addEventListener('click', () => {appendJ
 document.getElementById('nodeStart-btn').addEventListener('click', () => {appendJSON("json_files/start-node.json")});
 document.getElementById('nodeFinish-btn').addEventListener('click', () => {appendJSON("json_files/finish-node.json")});
 document.getElementById('nodeInvisible-btn').addEventListener('click', () => {appendJSON("json_files/invisible-node.json")});
-document.getElementById('clearambience-btn').addEventListener('click', () => {
-    let levelData = getLevel();
-    levelData.ambienceSettings = {
-        "skyZenithColor": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-        },
-        "skyHorizonColor": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-        },
-        "sunAltitude": 0,
-        "sunAzimuth": 0,
-        "sunSize": 1,
-        "fogDDensity": 0
-    };
-    setLevel(levelData);
-});
-document.getElementById('maxambience-btn').addEventListener('click', () => {
-    let levelData = getLevel();
-    levelData.ambienceSettings = {
-        "skyZenithColor": {
-            "r": 32000,
-            "g": 32000,
-            "b": 32000,
-            "a": 1
-        },
-        "skyHorizonColor": {
-            "r": 32000,
-            "g": 32000,
-            "b": 32000,
-            "a": 1
-        },
-        "sunAltitude": 32000,
-        "sunAzimuth": 32000,
-        "sunSize": 32000,
-        "fogDDensity": 32000
-    };
-    setLevel(levelData);
-});
-document.getElementById('gltf-btn').addEventListener('click', exportLevelAsGLTF);
-document.getElementById('start-btn').addEventListener('click', () => {
-    let obj = getLevel();
-    let start = findStart(obj);
-    if (start) {
-        camera.position.x = start.position.x;
-        camera.position.y = start.position.y;
-        camera.position.z = start.position.z;
-    }
-});
-document.getElementById('randomize-btn').addEventListener('click', () => {
-    let obj = getLevel();
-    obj.levelNodes.forEach((node) => {
-        Object.values(node)[0].position.x *= Math.random() + 0.5;
-        Object.values(node)[0].position.y *= Math.random() + 0.5;
-        Object.values(node)[0].position.z *= Math.random() + 0.5;
-        Object.values(node)[0].scale.x *= Math.random() + 0.5;
-        Object.values(node)[0].scale.y *= Math.random() + 0.5;
-        Object.values(node)[0].scale.z *= Math.random() + 0.5;
-    });
-    setLevel(obj);
-});
-document.getElementById('minambience-btn').addEventListener('click', () => {
-    let levelData = getLevel();
-    levelData.ambienceSettings = {
-        "skyZenithColor": {
-            "r": -32000,
-            "g": -32000,
-            "b": -32000,
-            "a": 1
-        },
-        "skyHorizonColor": {
-            "r": -32000,
-            "g": -32000,
-            "b": -32000,
-            "a": 1
-        },
-        "sunAltitude": -32000,
-        "sunAzimuth": -32000,
-        "sunSize": -32000,
-        "fogDDensity": -32000
-    };
-    setLevel(levelData);
-});
-document.getElementById('fireambience-btn').addEventListener('click', () => {
-    let ambience = {
-        "skyZenithColor": {
-            "a": 1
-        },
-        "skyHorizonColor": {
-            "r": 999999,
-            "g": 982082.8125,
-            "b": 949219.75,
-            "a": 1
-        },
-        "sunAltitude": 88.97185516357422,
-        "sunAzimuth": 315,
-        "sunSize": 99999,
-        "fogDDensity": 0.7152965068817139
-    };
-    let levelData = getLevel();
-    levelData.ambienceSettings = ambience;
-    setLevel(levelData);
-});
-document.getElementById('defaultambience-btn').addEventListener('click', () => {
-    let levelData = getLevel();
-    levelData.ambienceSettings = {
-        "skyZenithColor": {
-            "r": 0.28,
-            "g": 0.476,
-            "b": 0.73,
-            "a": 1
-        },
-        "skyHorizonColor": {
-            "r": 0.916,
-            "g": 0.9574,
-            "b": 0.9574,
-            "a": 1
-        },
-        "sunAltitude": 45,
-        "sunAzimuth": 315,
-        "sunSize": 1,
-        "fogDDensity": 0
-    };
-    setLevel(levelData);
-});
-document.getElementById('randomambience-btn').addEventListener('click', () => {
-    let levelData = getLevel();
-    levelData.ambienceSettings = {
-        "skyZenithColor": {
-            "r": Math.floor(Math.random() * 19999999999) - 9999999999,
-            "g": Math.floor(Math.random() * 19999999999) - 9999999999,
-            "b": Math.floor(Math.random() * 19999999999) - 9999999999,
-            "a": 1
-        },
-        "skyHorizonColor": {
-            "r": Math.floor(Math.random() * 19999999999) - 9999999999,
-            "g": Math.floor(Math.random() * 19999999999) - 9999999999,
-            "b": Math.floor(Math.random() * 19999999999) - 9999999999,
-            "a": 1
-        },
-        "sunAltitude": Math.floor(Math.random() * 19999999999) - 9999999999,
-        "sunAzimuth": Math.floor(Math.random() * 19999999999) - 9999999999,
-        "sunSize": Math.floor(Math.random() * 19999999999) - 9999999999,
-        "fogDDensity": Math.floor(Math.random() * 19999999999) - 9999999999
-    };
-    setLevel(levelData);
-});
-document.querySelector('#prompt-protobuf .prompt-submit').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
-    document.getElementById('prompt-protobuf').style.display = 'none';
-    PROTOBUF_DATA = document.getElementById('protobuf-prompt').value;
-});
+// insert prefabs
 document.getElementById('Parallelograms-btn').addEventListener('click', () => {appendJSON("json_files/parallelograms.json")});
 document.getElementById('BreakTimes-btn').addEventListener('click', () => {appendJSON("json_files/break-times.json")});
 document.getElementById('FreeStartFinish-btn').addEventListener('click', () => {appendJSON("json_files/free-start-finish.json")});
@@ -1409,10 +1280,3 @@ document.getElementById('TexturedSigns-btn').addEventListener('click', () => {ap
 document.getElementById('SpecialStones-btn').addEventListener('click', () => {appendJSON("json_files/special-stones.json")});
 document.getElementById('NoHitbox-btn').addEventListener('click', () => {appendJSON("json_files/no-hitbox.json")});
 document.getElementById('Inverted-btn').addEventListener('click', () => {appendJSON("json_files/inverted.json")});
-document.getElementById('range-btn').addEventListener('click', () => {
-    fetch('proto/hacked.proto')
-    .then(response => response.text())
-    .then(HACKED_PROTO => {
-    document.getElementById('protobuf-prompt').value = HACKED_PROTO;
-    });
-});
