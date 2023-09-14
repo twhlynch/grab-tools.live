@@ -782,7 +782,6 @@ function toggleTextures() {
     altTextures = !altTextures;
     refreshScene();
 }
-
 async function connectUsb() {
     try {
         webusb = await Adb.open("WebUSB");
@@ -1241,8 +1240,9 @@ document.getElementById('randomize-btn').addEventListener('click', randomizeLeve
 document.getElementById('duplicate-btn').addEventListener('click', duplicateLevel);
 document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
 document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('json_files/empty.json')});
-// links
 document.getElementById('the-index-btn').addEventListener('click', () => {openProto('levels/the-index.level')});
+document.getElementById('all-objects-btn').addEventListener('click', () => {openProto('levels/cheat-sheet-6.level')});
+// links
 document.getElementById('slindev-btn').addEventListener('click', () => {window.open("https://discord.slin.dev", "_blank")});
 document.getElementById('email-btn').addEventListener('click', () => {location.href = "mailto:twhlynch.index@gmail.com"});
 document.getElementById('discord-btn').addEventListener('click', () => {window.open("https://discordapp.com/users/649165311257608192", "_blank")});
