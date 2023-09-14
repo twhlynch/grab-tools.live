@@ -22,75 +22,108 @@ let HIGHLIGHT_TEXT = true;
 let templates = [
     {
         "name": "Lobby",
-        "link": "lobbies/lobby.level"
+        "link": "lobbies/lobby.level",
+        "type": "file"
     },
     {
         "name": "Treehouse Lobby",
-        "link": "lobbies/lobby-treehouse.level"
+        "link": "lobbies/lobby-treehouse.level",
+        "type": "file"
     },
     {
         "name": "Temple Lobby",
-        "link": "lobbies/lobby-temple.level"
+        "link": "lobbies/lobby-temple.level",
+        "type": "file"
     },
     {
         "name": "Dojo Lobby",
-        "link": "lobbies/lobby-dojo.level"
+        "link": "lobbies/lobby-dojo.level",
+        "type": "file"
     },
     {
         "name": "Christmas Lobby",
-        "link": "lobbies/lobby-christmas.level"
+        "link": "lobbies/lobby-christmas.level",
+        "type": "file"
     },
     {
         "name": "Cave Lobby",
-        "link": "lobbies/lobby-cave.level"
+        "link": "lobbies/lobby-cave.level",
+        "type": "file"
     },
     {
         "name": "Beach Lobby",
-        "link": "lobbies/lobby-beach.level"
+        "link": "lobbies/lobby-beach.level",
+        "type": "file"
     },
     {
         "name": "New Editor",
-        "link": "levels/new.level"
+        "link": "levels/new.level",
+        "type": "file"
     },
     {
         "name": "Castle Lobby 2023",
-        "link": "lobbies/lobby-castle-2023.level"
+        "link": "lobbies/lobby-castle-2023.level",
+        "type": "file"
     },
     {
         "name": "Christmas Lobby 2022",
-        "link": "lobbies/lobby-christmas-2022.level"
+        "link": "lobbies/lobby-christmas-2022.level",
+        "type": "file"
     },
     {
         "name": "Easter GTF Lobby 2023",
-        "link": "lobbies/lobby-easter-2023.level"
+        "link": "lobbies/lobby-easter-2023.level",
+        "type": "file"
     },
     {
         "name": "Summer Lobby 2023",
-        "link": "lobbies/lobby-summer-2023.level"
+        "link": "lobbies/lobby-summer-2023.level",
+        "type": "file"
     },
     {
         "name": "Space Lobby",
-        "link": "lobbies/lobby-space.level"
+        "link": "lobbies/lobby-space.level",
+        "type": "file"
     },
     {
         "name": "Restaurant Lobby",
-        "link": "lobbies/lobby-restaurant.level"
+        "link": "lobbies/lobby-restaurant.level",
+        "type": "file"
     },
     {
         "name": "Halloween Lobby",
-        "link": "lobbies/lobby-halloween.level"
+        "link": "lobbies/lobby-halloween.level",
+        "type": "file"
     },
     {
         "name": "Forest Lobby",
-        "link": "lobbies/lobby-forest.level"
+        "link": "lobbies/lobby-forest.level",
+        "type": "file"
     },
     {
         "name": "Floating Islands Lobby 2023",
-        "link": "lobbies/lobby-floating-islands-2023.level"
+        "link": "lobbies/lobby-floating-islands-2023.level",
+        "type": "file"
     },
     {
         "name": "Winter Lobby 2023",
-        "link": "lobbies/lobby-winter-2023.level"
+        "link": "lobbies/lobby-winter-2023.level",
+        "type": "file"
+    },
+    {
+        "name": "The Mountain",
+        "link": "29r46v7djliny6t4rzvq7:1654257963",
+        "type": "identifier"
+    },
+    {
+        "name": ".index's challenge",
+        "link": "29sgp24f1uorbc6vq8d2k:1667046337",
+        "type": "identifier"
+    },
+    {
+        "name": "FROSTYs climbing adventure",
+        "link": "29ffxg2ijqxyrgxyy2vjj:1642284195",
+        "type": "identifier"
     }
 ];
 let PROTOBUF_DATA = `
@@ -1118,7 +1151,11 @@ function loadTemplateButtons() {
         templateElement.classList.add('template');
         templateElement.innerText = template.name;
         templateElement.addEventListener('click', () => {
-            openProto(template.link);
+            if (template.type == 'identifier') {
+                downloadAndOpenLevel(template.link);
+            } else if (template.type == 'file') {
+                openProto(template.link);
+            }
         });
         container.appendChild(templateElement);
     });
