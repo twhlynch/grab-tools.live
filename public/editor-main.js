@@ -19,6 +19,40 @@ let altTextures = false;
 let lastRan = '';
 let HIDE_TEXT = false;
 let HIGHLIGHT_TEXT = true;
+let templates = [
+    {
+        "name": "Lobby",
+        "link": "lobbies/lobby.level"
+    },
+    {
+        "name": "Treehouse Lobby",
+        "link": "lobbies/lobby-treehouse.level"
+    },
+    {
+        "name": "Temple Lobby",
+        "link": "lobbies/lobby-temple.level"
+    },
+    {
+        "name": "Dojo Lobby",
+        "link": "lobbies/lobby-dojo.level"
+    },
+    {
+        "name": "Christmas Lobby",
+        "link": "lobbies/lobby-christmas.level"
+    },
+    {
+        "name": "Cave Lobby",
+        "link": "lobbies/lobby-cave.level"
+    },
+    {
+        "name": "Beach Lobby",
+        "link": "lobbies/lobby-beach.level"
+    },
+    {
+        "name": "New",
+        "link": "levels/new.level"
+    }
+];
 let PROTOBUF_DATA = `
 syntax = "proto3";
 
@@ -1036,6 +1070,19 @@ function goToStart() {
         camera.position.z = start.position.z;
     }
 }
+function loadTemplateButtons() {
+    let container = document.getElementById('templates-container');
+    container.innerHTML = '';
+    templates.forEach(template => {
+        let templateElement = document.createElement('div');
+        templateElement.classList.add('template');
+        templateElement.innerText = template.name;
+        templateElement.addEventListener('click', () => {
+            openProto(template.link);
+        });
+        container.appendChild(templateElement);
+    });
+}
 
 loader = new GLTFLoader();
 scene = new THREE.Scene();
@@ -1139,6 +1186,15 @@ document.getElementById('quest-btn').addEventListener('click', () => {
 document.querySelector('#prompt-levels .prompt-cancel').addEventListener('click', () => {
     document.getElementById('prompts').style.display = 'none';
     document.getElementById('prompt-levels').style.display = 'none';
+});
+document.getElementById('template-btn').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'grid';
+    document.getElementById('prompt-templates').style.display = 'flex';
+    loadTemplateButtons();
+});
+document.querySelector('#prompt-templates .prompt-cancel').addEventListener('click', () => {
+    document.getElementById('prompts').style.display = 'none';
+    document.getElementById('prompt-templates').style.display = 'none';
 });
 document.querySelector('#prompt-description .prompt-cancel').addEventListener('click', () => {
     document.getElementById('prompts').style.display = 'none';
