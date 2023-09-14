@@ -49,8 +49,48 @@ let templates = [
         "link": "lobbies/lobby-beach.level"
     },
     {
-        "name": "New",
+        "name": "New Editor",
         "link": "levels/new.level"
+    },
+    {
+        "name": "Castle Lobby 2023",
+        "link": "lobbies/lobby-castle-2023.level"
+    },
+    {
+        "name": "Christmas Lobby 2022",
+        "link": "lobbies/lobby-christmas-2022.level"
+    },
+    {
+        "name": "Easter GTF Lobby 2023",
+        "link": "lobbies/lobby-easter-2023.level"
+    },
+    {
+        "name": "Summer Lobby 2023",
+        "link": "lobbies/lobby-summer-2023.level"
+    },
+    {
+        "name": "Space Lobby",
+        "link": "lobbies/lobby-space.level"
+    },
+    {
+        "name": "Restaurant Lobby",
+        "link": "lobbies/lobby-restaurant.level"
+    },
+    {
+        "name": "Halloween Lobby",
+        "link": "lobbies/lobby-halloween.level"
+    },
+    {
+        "name": "Forest Lobby",
+        "link": "lobbies/lobby-forest.level"
+    },
+    {
+        "name": "Floating Islands Lobby 2023",
+        "link": "lobbies/lobby-floating-islands-2023.level"
+    },
+    {
+        "name": "Winter Lobby 2023",
+        "link": "lobbies/lobby-winter-2023.level"
     }
 ];
 let PROTOBUF_DATA = `
