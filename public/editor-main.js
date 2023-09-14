@@ -483,13 +483,13 @@ function setLevel(level) {
     } else {
         document.getElementById('warning').style.display = "none";
     }
-    !level.levelNodes ? level.levelNodes = [] : {};
+    level.levelNodes ? {} : level.levelNodes = [];
     level.levelNodes.forEach(node => {
         if (node.hasOwnProperty('levelNodeStatic')) {
-            !node.levelNodeStatic.color ? node.levelNodeStatic.color = {} : {};
-            !node.levelNodeStatic.color.r ? node.levelNodeStatic.color.r = 0 : {};
-            !node.levelNodeStatic.color.g ? node.levelNodeStatic.color.g = 0 : {};
-            !node.levelNodeStatic.color.b ? node.levelNodeStatic.color.b = 0 : {};
+            node.levelNodeStatic.color ? {} : node.levelNodeStatic.color = {};
+            node.levelNodeStatic.color.r ? {} : node.levelNodeStatic.color.r = 0;
+            node.levelNodeStatic.color.g ? {} : node.levelNodeStatic.color.g = 0;
+            node.levelNodeStatic.color.b ? {} : node.levelNodeStatic.color.b = 0;
         }
     });
 
@@ -719,12 +719,10 @@ function loadLevelNode(node, parent) {
             } else {
                 node.material ? material = materials[node.material].clone() : material = materials[0].clone();    
             }
+        } else if (altTextures) {
+            material = materials[0].clone();
         } else {
-            if (altTextures) {
-                material = materials[0].clone();
-            } else {
-                material = exportMaterials[0].clone();
-            }
+            material = exportMaterials[0].clone();
         }
         if (node.material == 8) {
             node.color.r ? null : node.color.r = 0;
@@ -764,12 +762,10 @@ function loadLevelNode(node, parent) {
             } else {
                 node.material ? cube.material = materials[node.material] : cube.material = materials[0];
             }
+        } else if (altTextures) {
+            cube.material = exportMaterials[0];
         } else {
-            if (altTextures) {
-                cube.material = exportMaterials[0];
-            } else {
-                cube.material = materials[0];
-            }
+            cube.material = materials[0];
         }
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
@@ -843,7 +839,7 @@ function readArrayBuffer(file) {
         let reader = new FileReader();
         reader.onload = function() {
             let data = reader.result;
-            let root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
+            let {root} = protobuf.parse(PROTOBUF_DATA, { keepCase: true });
             console.log(root);
             let message = root.lookupType("COD.Level.Level");
             let decoded = message.decode(new Uint8Array(data));
@@ -888,7 +884,7 @@ function openLevelFile(level) {
     let files = level;
     let readers = [];
 
-    if (!files.length) return;
+    if (!files.length) {return};
 
     for (let i = 0; i < files.length; i++) {
         readers.push(readArrayBuffer(files[i]));
@@ -921,7 +917,7 @@ function appendLevelFile(level) {
     let files = level;
     let readers = [];
 
-    if (!files.length) return;
+    if (!files.length) {return};
 
     for (let i = 0; i < files.length; i++) {
         readers.push(readArrayBuffer(files[i]));
@@ -936,10 +932,10 @@ function appendLevelFile(level) {
     });
 }
 function downloadProto(obj) {
-    let root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
+    let {root} = protobuf.parse(PROTOBUF_DATA, { keepCase: true });
     let message = root.lookupType("COD.Level.Level");
     let errMsg = message.verify(obj);
-    if(errMsg) throw Error(errMsg);
+    if(errMsg) {throw Error(errMsg)};
     let buffer = message.encode(message.fromObject(obj)).finish();
     
     let blob = new Blob([buffer], {type: "application/octet-stream"});
@@ -1047,10 +1043,10 @@ async function openQuestLevel(level) {
 }
 async function saveToQuest(name=(Date.now()).toString().slice(0, -3)) {
     let obj = getLevel();
-    let root = protobuf.parse(PROTOBUF_DATA, { keepCase: true }).root;
+    let {root} = protobuf.parse(PROTOBUF_DATA, { keepCase: true });
     let message = root.lookupType("COD.Level.Level");
     let errMsg = message.verify(obj);
-    if(errMsg) throw Error(errMsg);
+    if(errMsg) {throw Error(errMsg)};
     let buffer = message.encode(message.fromObject(obj)).finish();
     
     let blob = new Blob([buffer], {type: "application/octet-stream"});
