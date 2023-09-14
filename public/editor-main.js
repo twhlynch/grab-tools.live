@@ -124,6 +124,121 @@ let templates = [
         "name": "FROSTYs climbing adventure",
         "link": "29ffxg2ijqxyrgxyy2vjj:1642284195",
         "type": "identifier"
+    },
+    {
+        "name": "fire",
+        "link": "2a4lsr3j8bypkewcx9s90:fire",
+        "type": "identifier"
+    },
+    {
+        "name": "WOODEN",
+        "link": "29sgp24f1uorbc6vq8d2k:1693731780",
+        "type": "identifier"
+    },
+    {
+        "name": "Blood in the ice",
+        "link": "2a4lsr3j8bypkewcx9s90:1691122081",
+        "type": "identifier"
+    },
+    {
+        "name": "DON'T SLIP!",
+        "link": "29sgp24f1uorbc6vq8d2k:1693033756",
+        "type": "identifier"
+    },
+    {
+        "name": ".index's X-Ray",
+        "link": "29sgp24f1uorbc6vq8d2k:1685501411",
+        "type": "identifier"
+    },
+    {
+        "name": "COW!",
+        "link": "29sgp24f1uorbc6vq8d2k:1685501444",
+        "type": "identifier"
+    },
+    {
+        "name": "VERY FUN LEVEL",
+        "link": "2a4lsr3j8bypkewcx9s90:1684323969",
+        "type": "identifier"
+    },
+    {
+        "name": "Tutorial 1",
+        "link": "official/1-tutorial-1.level",
+        "type": "file"
+    },
+    {
+        "name": "Tutorial 2",
+        "link": "official/2-tutorial-2.level",
+        "type": "file"
+    },
+    {
+        "name": "Tutorial 3",
+        "link": "official/3-tutorial-3.level",
+        "type": "file"
+    },
+    {
+        "name": "Tutorial 4",
+        "link": "official/4-tutorial-4.level",
+        "type": "file"
+    },
+    {
+        "name": "Tutorial 5",
+        "link": "official/5-tutorial-5.level",
+        "type": "file"
+    },
+    {
+        "name": "Tutorial 6",
+        "link": "official/6-tutorial-6.level",
+        "type": "file"
+    },
+    {
+        "name": "Tutorial 7",
+        "link": "official/7-tutorial-7.level",
+        "type": "file"
+    },
+    {
+        "name": "Easy 1",
+        "link": "official/10-easy-1.level",
+        "type": "file"
+    },
+    {
+        "name": "Easy 2",
+        "link": "official/11-easy-2.level",
+        "type": "file"
+    },
+    {
+        "name": "Easy 3",
+        "link": "official/12-easy-3.level",
+        "type": "file"
+    },
+    {
+        "name": "Easy 4",
+        "link": "official/13-easy-4.level",
+        "type": "file"
+    },
+    {
+        "name": "Easy 5",
+        "link": "official/14-easy-5.level",
+        "type": "file"
+    },
+    {
+        "name": "Easy 6",
+        "link": "official/15-easy-6.level",
+        "type": "file"
+    },
+    {
+        "name": "Easy tower",
+        "link": "official/20-easy-tower.level",
+        "type": "file"
+    },
+    {
+        "name": "Death Tower",
+        "link": "official/30-death-tower.level",
+        "type": "file"
+    },
+    {
+        "name": "BFL",
+        "link": "official/40-BFL-1.level",
+        "type": "file"
     }
 ];
 let PROTOBUF_DATA = `
@@ -1395,6 +1510,8 @@ document.getElementById('clearambience-btn').addEventListener('click', () => {se
 document.getElementById('maxambience-btn').addEventListener('click', () => {setAmbience({"r": 32000,"g": 32000,"b": 32000,"a": 1}, {"r": 32000,"g": 32000,"b": 32000,"a": 1},32000,32000,32000,32000)});
 document.getElementById('minambience-btn').addEventListener('click', () => {setAmbience({"r": -32000,"g": -32000,"b": -32000,"a": 1}, {"r": -32000,"g": -32000,"b": -32000,"a": 1},-32000,-32000,-32000,-32000)});
 document.getElementById('fireambience-btn').addEventListener('click', () => {setAmbience({"a": 1}, {"r": 999999,"g": 982082.8125,"b": 949219.75,"a": 1},88.97185516357422,315,99999,0.7152965068817139)});
+document.getElementById('bitiambience-btn').addEventListener('click', () => {setAmbience({"g": 0.16071408987045288,"b": 0.2620195746421814,"a": 1}, {"r": 0.998467206954956,"g": 0.997838020324707,"b": 0.9967743158340454,"a": 1},35999997952,360,0.66828852891922,10)});
+document.getElementById('oilcanambience-btn').addEventListener('click', () => {setAmbience({"r": 0.3706502318382263,"g": 0.2603767216205597,"b": 0.6742851734161377,"a": 1}, {"g": 1.0326478481292725,"b": 5,"a": 1},-270,315,1.5,0)});
 document.getElementById('randomambience-btn').addEventListener('click', () => {setAmbience({"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1}, {"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1},Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999)});
 document.getElementById('defaultambience-btn').addEventListener('click', setAmbience);
 // insert nodes
