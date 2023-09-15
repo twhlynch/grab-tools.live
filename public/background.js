@@ -18,24 +18,24 @@ var geometries = [];
 var objects = [];
 
 var objPaths = [
-    "models/gate_angel.sgm.obj",
-    "models/halo_angel_basic.sgm.obj",
-    "models/horns_devil_basic.sgm.obj",
-    "models/pentagram_devil.sgm.obj",
-    "models/spear_angel.sgm.obj",
-    "models/trident_devil.sgm.obj",
-    "models/gate_angel.sgm.obj",
-    "models/halo_angel_basic.sgm.obj",
-    "models/horns_devil_basic.sgm.obj",
-    "models/pentagram_devil.sgm.obj",
-    "models/spear_angel.sgm.obj",
-    "models/trident_devil.sgm.obj",
-    "models/gate_angel.sgm.obj",
-    "models/halo_angel_basic.sgm.obj",
-    "models/horns_devil_basic.sgm.obj",
-    "models/pentagram_devil.sgm.obj",
-    "models/spear_angel.sgm.obj",
-    "models/trident_devil.sgm.obj",
+    // "models/gate_angel.sgm.obj",
+    // "models/halo_angel_basic.sgm.obj",
+    // "models/horns_devil_basic.sgm.obj",
+    // "models/pentagram_devil.sgm.obj",
+    // "models/spear_angel.sgm.obj",
+    // "models/trident_devil.sgm.obj",
+    // "models/gate_angel.sgm.obj",
+    // "models/halo_angel_basic.sgm.obj",
+    // "models/horns_devil_basic.sgm.obj",
+    // "models/pentagram_devil.sgm.obj",
+    // "models/spear_angel.sgm.obj",
+    // "models/trident_devil.sgm.obj",
+    // "models/gate_angel.sgm.obj",
+    // "models/halo_angel_basic.sgm.obj",
+    // "models/horns_devil_basic.sgm.obj",
+    // "models/pentagram_devil.sgm.obj",
+    // "models/spear_angel.sgm.obj",
+    // "models/trident_devil.sgm.obj",
     // "models/avatar_old.sgm.obj",
     // "models/balloon_heart.sgm.obj",
     // "models/cheese_basic.sgm.obj",
@@ -102,6 +102,15 @@ var objPaths = [
     // "models/sign.sgm.obj",
     // "models/sphere.sgm.obj",
     'models/index.obj',
+    'models/the_mountain.obj',
+    'models/the_mountain_simple.obj',
+    'models/the_mountain.obj',
+    'models/the_mountain_simple.obj',
+    'models/the_mountain.obj',
+    'models/the_mountain_simple.obj',
+    'models/the_mountain_simple.obj',
+    'models/the_mountain_simple.obj',
+    'models/the_mountain_simple.obj',
 ];
 
 function createObjectsWithGeometries() {
@@ -126,6 +135,7 @@ function createObjectsWithGeometries() {
 		var x = rightEdge * 3;
         var y = Math.random() * 30 - 15;
         mesh.position.set(x, y, 0);
+        mesh.rotConst = Math.random() * 360;
         scene.add(mesh);
         objects.push(mesh);
         // speed *= .99
@@ -216,6 +226,7 @@ function animate() {
             object.rotation.y = elapsedTime * 2;
         } else {
 		    object.rotation.z = elapsedTime * 2;
+            object.rotation.x = elapsedTime * object.rotConst;
         }
 		object.position.add(object.velocity);
 
