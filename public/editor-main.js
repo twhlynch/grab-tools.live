@@ -569,6 +569,9 @@ function loadModel(path) {
     return new Promise((resolve) => {
         loader.load(path, function (gltf) {
             const glftScene = gltf.scene;
+            if (path == 'models/editor/pyramid.glb' || path == 'models/editor/prism.glb') {
+                glftScene.children[0].geometry.rotateX(Math.PI);
+            }
             resolve(glftScene.children[0]);
         });
     });
