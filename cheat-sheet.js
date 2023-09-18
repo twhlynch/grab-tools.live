@@ -69,7 +69,7 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
             let interact = document.createElement('img');
             interact.src = `shapes/${obj.attributes.interaction_hitbox}-g.svg`.toLowerCase();
             let texture = document.createElement('img');
-            texture.src = `textures/${obj.attributes.texture.split("/")[0]}.png`.toLowerCase();
+            texture.src = `/img/textures/${obj.attributes.texture.split("/")[0]}.png`.toLowerCase();
             shape.draggable = false;
             hitbox.draggable = false;
             interact.draggable = false;
