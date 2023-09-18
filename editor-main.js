@@ -22,92 +22,92 @@ let HIGHLIGHT_TEXT = true;
 let templates = [
     {
         "name": "Lobby",
-        "link": "lobbies/lobby.level",
+        "link": "level_data/lobbies/lobby.level",
         "type": "file"
     },
     {
         "name": "Treehouse Lobby",
-        "link": "lobbies/lobby-treehouse.level",
+        "link": "level_data/lobbies/lobby-treehouse.level",
         "type": "file"
     },
     {
         "name": "Temple Lobby",
-        "link": "lobbies/lobby-temple.level",
+        "link": "level_data/lobbies/lobby-temple.level",
         "type": "file"
     },
     {
         "name": "Dojo Lobby",
-        "link": "lobbies/lobby-dojo.level",
+        "link": "level_data/lobbies/lobby-dojo.level",
         "type": "file"
     },
     {
         "name": "Christmas Lobby",
-        "link": "lobbies/lobby-christmas.level",
+        "link": "level_data/lobbies/lobby-christmas.level",
         "type": "file"
     },
     {
         "name": "Cave Lobby",
-        "link": "lobbies/lobby-cave.level",
+        "link": "level_data/lobbies/lobby-cave.level",
         "type": "file"
     },
     {
         "name": "Beach Lobby",
-        "link": "lobbies/lobby-beach.level",
+        "link": "level_data/lobbies/lobby-beach.level",
         "type": "file"
     },
     {
         "name": "New Editor",
-        "link": "levels/new.level",
+        "link": "level_data/new.level",
         "type": "file"
     },
     {
         "name": "Castle Lobby 2023",
-        "link": "lobbies/lobby-castle-2023.level",
+        "link": "level_data/lobbies/lobby-castle-2023.level",
         "type": "file"
     },
     {
         "name": "Christmas Lobby 2022",
-        "link": "lobbies/lobby-christmas-2022.level",
+        "link": "level_data/lobbies/lobby-christmas-2022.level",
         "type": "file"
     },
     {
         "name": "Easter GTF Lobby 2023",
-        "link": "lobbies/lobby-easter-2023.level",
+        "link": "level_data/lobbies/lobby-easter-2023.level",
         "type": "file"
     },
     {
         "name": "Summer Lobby 2023",
-        "link": "lobbies/lobby-summer-2023.level",
+        "link": "level_data/lobbies/lobby-summer-2023.level",
         "type": "file"
     },
     {
         "name": "Space Lobby",
-        "link": "lobbies/lobby-space.level",
+        "link": "level_data/lobbies/lobby-space.level",
         "type": "file"
     },
     {
         "name": "Restaurant Lobby",
-        "link": "lobbies/lobby-restaurant.level",
+        "link": "level_data/lobbies/lobby-restaurant.level",
         "type": "file"
     },
     {
         "name": "Halloween Lobby",
-        "link": "lobbies/lobby-halloween.level",
+        "link": "level_data/lobbies/lobby-halloween.level",
         "type": "file"
     },
     {
         "name": "Forest Lobby",
-        "link": "lobbies/lobby-forest.level",
+        "link": "level_data/lobbies/lobby-forest.level",
         "type": "file"
     },
     {
         "name": "Floating Islands Lobby 2023",
-        "link": "lobbies/lobby-floating-islands-2023.level",
+        "link": "level_data/lobbies/lobby-floating-islands-2023.level",
         "type": "file"
     },
     {
         "name": "Winter Lobby 2023",
-        "link": "lobbies/lobby-winter-2023.level",
+        "link": "level_data/lobbies/lobby-winter-2023.level",
         "type": "file"
     },
     {
@@ -162,82 +162,82 @@ let templates = [
     },
     {
         "name": "Tutorial 1",
-        "link": "official/1-tutorial-1.level",
+        "link": "level_data/official/1-tutorial-1.level",
         "type": "file"
     },
     {
         "name": "Tutorial 2",
-        "link": "official/2-tutorial-2.level",
+        "link": "level_data/official/2-tutorial-2.level",
         "type": "file"
     },
     {
         "name": "Tutorial 3",
-        "link": "official/3-tutorial-3.level",
+        "link": "level_data/official/3-tutorial-3.level",
         "type": "file"
     },
     {
         "name": "Tutorial 4",
-        "link": "official/4-tutorial-4.level",
+        "link": "level_data/official/4-tutorial-4.level",
         "type": "file"
     },
     {
         "name": "Tutorial 5",
-        "link": "official/5-tutorial-5.level",
+        "link": "level_data/official/5-tutorial-5.level",
         "type": "file"
     },
     {
         "name": "Tutorial 6",
-        "link": "official/6-tutorial-6.level",
+        "link": "level_data/official/6-tutorial-6.level",
         "type": "file"
     },
     {
         "name": "Tutorial 7",
-        "link": "official/7-tutorial-7.level",
+        "link": "level_data/official/7-tutorial-7.level",
         "type": "file"
     },
     {
         "name": "Easy 1",
-        "link": "official/10-easy-1.level",
+        "link": "level_data/official/10-easy-1.level",
         "type": "file"
     },
     {
         "name": "Easy 2",
-        "link": "official/11-easy-2.level",
+        "link": "level_data/official/11-easy-2.level",
         "type": "file"
     },
     {
         "name": "Easy 3",
-        "link": "official/12-easy-3.level",
+        "link": "level_data/official/12-easy-3.level",
         "type": "file"
     },
     {
         "name": "Easy 4",
-        "link": "official/13-easy-4.level",
+        "link": "level_data/official/13-easy-4.level",
         "type": "file"
     },
     {
         "name": "Easy 5",
-        "link": "official/14-easy-5.level",
+        "link": "level_data/official/14-easy-5.level",
         "type": "file"
     },
     {
         "name": "Easy 6",
-        "link": "official/15-easy-6.level",
+        "link": "level_data/official/15-easy-6.level",
         "type": "file"
     },
     {
         "name": "Easy tower",
-        "link": "official/20-easy-tower.level",
+        "link": "level_data/official/20-easy-tower.level",
         "type": "file"
     },
     {
         "name": "Death Tower",
-        "link": "official/30-death-tower.level",
+        "link": "level_data/official/30-death-tower.level",
         "type": "file"
     },
     {
         "name": "BFL",
-        "link": "official/40-BFL-1.level",
+        "link": "level_data/official/40-BFL-1.level",
         "type": "file"
     }
 ];
@@ -1486,9 +1486,9 @@ document.getElementById('ungroup-btn').addEventListener('click', ungroupLevel);
 document.getElementById('randomize-btn').addEventListener('click', randomizeLevel);
 document.getElementById('duplicate-btn').addEventListener('click', duplicateLevel);
 document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
-document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('json_files/empty.json')});
-document.getElementById('the-index-btn').addEventListener('click', () => {openProto('levels/the-index.level')});
-document.getElementById('all-objects-btn').addEventListener('click', () => {openProto('levels/cheat-sheet-6.level')});
+document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('level_data/json_files/empty.json')});
+document.getElementById('the-index-btn').addEventListener('click', () => {openProto('level_data/the-index.level')});
+document.getElementById('all-objects-btn').addEventListener('click', () => {openProto('level_data/cheat-sheet-6.level')});
 // links
 document.getElementById('slindev-btn').addEventListener('click', () => {window.open("https://discord.slin.dev", "_blank")});
 document.getElementById('email-btn').addEventListener('click', () => {location.href = "mailto:twhlynch.index@gmail.com"});
@@ -1513,18 +1513,18 @@ document.getElementById('oilcanambience-btn').addEventListener('click', () => {s
 document.getElementById('randomambience-btn').addEventListener('click', () => {setAmbience({"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1}, {"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1},Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999)});
 document.getElementById('defaultambience-btn').addEventListener('click', setAmbience);
 // insert nodes
-document.getElementById('nodeStatic-btn').addEventListener('click', () => {appendJSON("json_files/static-node.json")});
-document.getElementById('nodeCrumbling-btn').addEventListener('click', () => {appendJSON("json_files/crumbling-node.json")});
-document.getElementById('nodeColored-btn').addEventListener('click', () => {appendJSON("json_files/colored-node.json")});
-document.getElementById('nodeSign-btn').addEventListener('click', () => {appendJSON("json_files/sign-node.json")});
-document.getElementById('nodeStart-btn').addEventListener('click', () => {appendJSON("json_files/start-node.json")});
-document.getElementById('nodeFinish-btn').addEventListener('click', () => {appendJSON("json_files/finish-node.json")});
-document.getElementById('nodeInvisible-btn').addEventListener('click', () => {appendJSON("json_files/invisible-node.json")});
+document.getElementById('nodeStatic-btn').addEventListener('click', () => {appendJSON("level_data/json_files/static-node.json")});
+document.getElementById('nodeCrumbling-btn').addEventListener('click', () => {appendJSON("level_data/json_files/crumbling-node.json")});
+document.getElementById('nodeColored-btn').addEventListener('click', () => {appendJSON("level_data/json_files/colored-node.json")});
+document.getElementById('nodeSign-btn').addEventListener('click', () => {appendJSON("level_data/json_files/sign-node.json")});
+document.getElementById('nodeStart-btn').addEventListener('click', () => {appendJSON("level_data/json_files/start-node.json")});
+document.getElementById('nodeFinish-btn').addEventListener('click', () => {appendJSON("level_data/json_files/finish-node.json")});
+document.getElementById('nodeInvisible-btn').addEventListener('click', () => {appendJSON("level_data/json_files/invisible-node.json")});
 // insert prefabs
-document.getElementById('Parallelograms-btn').addEventListener('click', () => {appendJSON("json_files/parallelograms.json")});
-document.getElementById('BreakTimes-btn').addEventListener('click', () => {appendJSON("json_files/break-times.json")});
-document.getElementById('FreeStartFinish-btn').addEventListener('click', () => {appendJSON("json_files/free-start-finish.json")});
-document.getElementById('TexturedSigns-btn').addEventListener('click', () => {appendJSON("json_files/textured-signs.json")});
-document.getElementById('SpecialStones-btn').addEventListener('click', () => {appendJSON("json_files/special-stones.json")});
-document.getElementById('NoHitbox-btn').addEventListener('click', () => {appendJSON("json_files/no-hitbox.json")});
-document.getElementById('Inverted-btn').addEventListener('click', () => {appendJSON("json_files/inverted.json")});
+document.getElementById('Parallelograms-btn').addEventListener('click', () => {appendJSON("level_data/json_files/parallelograms.json")});
+document.getElementById('BreakTimes-btn').addEventListener('click', () => {appendJSON("level_data/json_files/break-times.json")});
+document.getElementById('FreeStartFinish-btn').addEventListener('click', () => {appendJSON("level_data/json_files/free-start-finish.json")});
+document.getElementById('TexturedSigns-btn').addEventListener('click', () => {appendJSON("level_data/json_files/textured-signs.json")});
+document.getElementById('SpecialStones-btn').addEventListener('click', () => {appendJSON("level_data/json_files/special-stones.json")});
+document.getElementById('NoHitbox-btn').addEventListener('click', () => {appendJSON("level_data/json_files/no-hitbox.json")});
+document.getElementById('Inverted-btn').addEventListener('click', () => {appendJSON("level_data/json_files/inverted.json")});
