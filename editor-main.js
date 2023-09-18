@@ -3,7 +3,7 @@ import { OrbitControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/cont
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm/loaders/GLTFLoader.js';
 import { FlyControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/controls/FlyControls.js';
 import { GLTFExporter } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm//exporters/GLTFExporter.js';
-// import { CubemapToEquirectangular } from './CubemapToEquirectangular.js';
+// import { CubemapToEquirectangular } from './js/CubemapToEquirectangular.js';
 
 let webusb = null;
 let adb = null;
