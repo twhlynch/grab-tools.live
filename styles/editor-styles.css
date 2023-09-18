@@ -223,7 +223,7 @@
                 transform: translateY(-100%);
             }
             .menu-btn:has(+ ul):not(.menu-list > li > button)::after {
-                content: url(editor-icons/carat.svg);
+                content: url(/editor-icons/carat.svg);
             }
             #credit-menu {
                 max-height: 200px;
