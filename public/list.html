@@ -3,15 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <title>Docs | Grab Tools | .index | twhlynch</title>
-        <meta name="description" content="Tools for modding GrabVR, stats, resources, and more.">
+        <title>The List | Grab Tools | .index</title>
+        <meta name="description" content="The ranking of the hardest maps in GRAB!">
         <meta name="author" content="twhlynch">
-        <meta property="og:title" content="Docs | Grab Tools | .index | twhlynch">
-        <meta property="og:description" content="Tools for modding GrabVR, stats, resources, and more.">
-        <meta property="og:site_name" content="Docs | Grab Tools | .index">
+        <meta property="og:title" content="The List | Grab Tools | .index">
+        <meta property="og:description" content="The ranking of the hardest maps in GRAB!">
+        <meta property="og:site_name" content="The List | Grab Tools | .index">
         <meta property="og:locale" content="en_us">
         <meta property="og:type" content="website">
-        <meta property="og:url" content="http://grab-tools.live/docs.html">
+        <meta property="og:url" content="http://grab-tools.live/stats.html">
         <meta property="og:image" content="http://grab-tools.live/favicon.gif">
         <link rel="icon" href="favicon.gif" type="image/gif">
         <link rel="stylesheet" href="styles.css">
@@ -34,22 +34,32 @@
         </script>
         <script src="background.js" type="module" defer></script>
         <script src="main.js" defer></script>
+        <script src="list.js" defer></script>
     </head>
     <body>
         <nav>
             <button id="Home">Home</button>
-            <button id="Docs">Docs</button>
             <button id="Stats">Stats</button>
+            <button id="List">List</button>
             <button id="Other-Tools">Other Tools</button>
         </nav>
         <main>
             <div class="alt-heading">
-                <h1>D</h1>
-                <h1>o</h1>
-                <h1>c</h1>
+                <h1>T</h1>
+                <h1>h</h1>
+                <h1>e</h1>
+                <h1>&nbsp;</h1>
+                <h1>L</h1>
+                <h1>i</h1>
                 <h1>s</h1>
+                <h1>t</h1>
             </div>
-            <p>No docs yet :3</p>
+            <p>The ranking of the hardest maps in GRAB!</p>
+            <div class="listData" id="data">
+                <p id="judges"></p>
+                <div class="LeaderboardOutput" id="list">
+                </div>
+            </div>
         </main>
         <br><br>
         <footer>
