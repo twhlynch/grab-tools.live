@@ -525,25 +525,25 @@ function highlightTextEditor() {
             highlightedText = highlightedText.replace(/<span style="color: #dd612e">"material"<\/span><span style="color: #007acc">:<\/span> ?[0-9]/gsi, (match) => {
                 switch (parseInt(match.split(">")[4])) {
                     case 0:
-                        return `<span style="background-image: url(textures/default.png); background-size: contain">${match}</span>`;
+                        return `<span style="background-image: url(/img/textures/default.png); background-size: contain">${match}</span>`;
                     case 1:
-                        return `<span style="background-image: url(textures/grabbable.png); background-size: contain">${match}</span>`;
+                        return `<span style="background-image: url(/img/textures/grabbable.png); background-size: contain">${match}</span>`;
                     case 2:
-                        return `<span style="background-image: url(textures/ice.png); background-size: contain">${match}</span>`;
+                        return `<span style="background-image: url(/img/textures/ice.png); background-size: contain">${match}</span>`;
                     case 3:
-                        return `<span style="background-image: url(textures/lava.png); background-size: contain">${match}</span>`;
+                        return `<span style="background-image: url(/img/textures/lava.png); background-size: contain">${match}</span>`;
                     case 4:
-                        return `<span style="background-image: url(textures/wood.png); background-size: contain">${match}</span>`;
+                        return `<span style="background-image: url(/img/textures/wood.png); background-size: contain">${match}</span>`;
                     case 5:
-                        return `<span style="background-image: url(textures/grapplable.png); background-size: contain">${match}</span>`;
+                        return `<span style="background-image: url(/img/textures/grapplable.png); background-size: contain">${match}</span>`;
                     case 6:
-                        return `<span style="background-image: url(textures/grapplable_lava.png); background-size: contain">${match}</span>`;
+                        return `<span style="background-image: url(/img/textures/grapplable_lava.png); background-size: contain">${match}</span>`;
                     case 7:
-                        return `<span style="background-image: url(textures/grabbable_crumbling.png); background-size: contain">${match}</span>`;
+                        return `<span style="background-image: url(/img/textures/grabbable_crumbling.png); background-size: contain">${match}</span>`;
                     case 8:
-                        return `<span style="background-image: url(textures/default_colored.png); background-size: contain">${match}</span>`;
+                        return `<span style="background-image: url(/img/textures/default_colored.png); background-size: contain">${match}</span>`;
                     case 9:
-                        return `<span style="background-image: url(textures/bouncing.png); background-size: contain">${match}</span>`;
+                        return `<span style="background-image: url(/img/textures/bouncing.png); background-size: contain">${match}</span>`;
                     default:
                         break;
                 }
@@ -579,16 +579,16 @@ function loadModel(path) {
 async function initAttributes() {
 
     for (const path of [
-        'textures/default.png',
-        'textures/grabbable.png',
-        'textures/ice.png',
-        'textures/lava.png',
-        'textures/wood.png',
-        'textures/grapplable.png',
-        'textures/grapplable_lava.png',
-        'textures/grabbable_crumbling.png',
-        'textures/default_colored.png',
-        'textures/bouncing.png'
+        '/img/textures/default.png',
+        '/img/textures/grabbable.png',
+        '/img/textures/ice.png',
+        '/img/textures/lava.png',
+        '/img/textures/wood.png',
+        '/img/textures/grapplable.png',
+        '/img/textures/grapplable_lava.png',
+        '/img/textures/grabbable_crumbling.png',
+        '/img/textures/default_colored.png',
+        '/img/textures/bouncing.png'
         ]) {
             const texture = await loadTexture(path);
             let material = new THREE.MeshBasicMaterial({ map: texture });
@@ -597,16 +597,16 @@ async function initAttributes() {
         }
 
     for (const path of [
-        'textures/default.png',
-        'textures/grabbable.png',
-        'textures/ice.png',
-        'textures/lava.png',
-        'textures/wood.png',
-        'textures/grapplable.png',
-        'textures/grapplable_lava.png',
-        'textures/grabbable_crumbling.png',
-        'textures/default_colored.png',
-        'textures/bouncing.png'
+        '/img/textures/default.png',
+        '/img/textures/grabbable.png',
+        '/img/textures/ice.png',
+        '/img/textures/lava.png',
+        '/img/textures/wood.png',
+        '/img/textures/grapplable.png',
+        '/img/textures/grapplable_lava.png',
+        '/img/textures/grabbable_crumbling.png',
+        '/img/textures/default_colored.png',
+        '/img/textures/bouncing.png'
         ]) {
             const texture = await loadTexture(path);
             let material = new THREE.ShaderMaterial({
