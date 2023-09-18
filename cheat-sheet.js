@@ -25,7 +25,7 @@ var levelJson = {
     }
 };
 var list = [];
-fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
+fetch("stats_data/cheat-sheet.json").then((response) => response.json()).then((data) => {
     var table = document.getElementById("data-table");
     let cols = data.shapes.length;
     let rows = data.materials.length;
@@ -83,7 +83,7 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
             obj.attributes.effects.forEach((effect) => {
                 let icon = document.createElement('img');
                 icon.draggable = false;
-                icon.src = `effects/${effect}.svg`.toLowerCase();
+                icon.src = `/img/effects/${effect}.svg`.toLowerCase();
                 div2.appendChild(icon);
             });
             cell.append(div2);
