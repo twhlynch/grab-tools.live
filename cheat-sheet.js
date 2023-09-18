@@ -63,11 +63,11 @@ fetch("cheat-sheet.json").then((response) => response.json()).then((data) => {
             let div = document.createElement("div");
             let obj = data.results[j + (i * cols)];
             let shape = document.createElement('img');
-            shape.src = `shapes/${obj.attributes.model}.svg`.toLowerCase();
+            shape.src = `/img/shapes/${obj.attributes.model}.svg`.toLowerCase();
             let hitbox = document.createElement('img');
-            hitbox.src = `shapes/${obj.attributes.hitbox}-r.svg`.toLowerCase();
+            hitbox.src = `/img/shapes/${obj.attributes.hitbox}-r.svg`.toLowerCase();
             let interact = document.createElement('img');
-            interact.src = `shapes/${obj.attributes.interaction_hitbox}-g.svg`.toLowerCase();
+            interact.src = `/img/shapes/${obj.attributes.interaction_hitbox}-g.svg`.toLowerCase();
             let texture = document.createElement('img');
             texture.src = `/img/textures/${obj.attributes.texture.split("/")[0]}.png`.toLowerCase();
             shape.draggable = false;
