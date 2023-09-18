@@ -26,8 +26,8 @@ jobs:
         run: |
           git config --global user.email "twhlynch@gmail.com"
           git config --global user.name "twhlynch"
-          git add public/stats_data/all_levels1.json
-          git add public/stats_data/all_levels2.json
+          git add stats_data/all_levels1.json
+          git add stats_data/all_levels2.json
           git commit -m "All levels"
           git push
         env:

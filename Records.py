@@ -1,6 +1,6 @@
 import json, requests
 
-with open("public/stats_data/all_verified.json") as file:
+with open("stats_data/all_verified.json") as file:
     data = json.load(file)
   
 leaderboard = {}
@@ -26,8 +26,8 @@ for level in data:
 
 sorted_leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][0], reverse=True))
 
-with open("public/stats_data/sorted_leaderboard_records.json", "w") as file:
+with open("stats_data/sorted_leaderboard_records.json", "w") as file:
     json.dump(sorted_leaderboard, file, indent=4)
 
-with open("public/stats_data/leaderboard_levels.json", "w") as file:
+with open("stats_data/leaderboard_levels.json", "w") as file:
     json.dump(data, file, indent=4)
