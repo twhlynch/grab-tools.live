@@ -398,3 +398,12 @@ footer p:hover {
     border: dashed 2px #cfe0ea7e;
     font-weight: 600;
 }
+.listData, .listData #list {
+    width: 100%;
+}
+.listData .leaderboard-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

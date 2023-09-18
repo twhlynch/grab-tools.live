@@ -1,8 +1,8 @@
 document.getElementById('Home').addEventListener('click', () => {
     window.location.href = 'index.html';
 });
-document.getElementById('Docs').addEventListener('click', () => {
-    window.location.href = 'docs.html';
+document.getElementById('List').addEventListener('click', () => {
+    window.location.href = 'list.html';
 });
 document.getElementById('Stats').addEventListener('click', () => {
     window.location.href = 'stats.html';

@@ -1494,7 +1494,6 @@ document.getElementById('slindev-btn').addEventListener('click', () => {window.o
 document.getElementById('email-btn').addEventListener('click', () => {location.href = "mailto:twhlynch.index@gmail.com"});
 document.getElementById('discord-btn').addEventListener('click', () => {window.open("https://discordapp.com/users/649165311257608192", "_blank")});
 document.getElementById('server-btn').addEventListener('click', () => {window.open("https://twhlynch.me/discord", "_blank")});
-document.getElementById('docs-btn').addEventListener('click', () => {window.open("docs.html", "_blank")});
 document.getElementById('cheat-btn').addEventListener('click', () => {window.open("cheat-sheet.html", "_blank")});
 // hidden inputs
 document.getElementById('pc-btn').addEventListener('click', () => {document.getElementById('pc-btn-input').click()});
