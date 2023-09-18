@@ -1,0 +1,85 @@
+/* menu icons */
+.menu-btn#protobuf-btn::after {
+    content: url(/editor-icons/protobuf.svg);
+}
+.menu-btn#docs-btn::after {
+    content: url(/editor-icons/info.svg);
+}
+.menu-btn#search-btn::after {
+    content: url(/editor-icons/search.svg);
+}
+.menu-btn#help-btn::after {
+    content: url(/editor-icons/help.svg);
+}
+.menu-btn#prefabs-btn::after, .menu-btn#prefab-btn::after {
+    content: url(/editor-icons/cube.svg);
+}
+.menu-btn#empty-btn::after, .menu-btn#template-btn::after {
+    content: url(/editor-icons/blank.svg);
+}
+.menu-btn#controls-btn::after {
+    content: url(/editor-icons/controls.svg);
+}
+.menu-btn#login-btn::after {
+    content: url(/editor-icons/login.svg);
+}
+.menu-btn#logout-btn::after {
+    content: url(/editor-icons/logout.svg);
+}
+.menu-btn#gltf-btn::after {
+    content: url(/editor-icons/export.svg);
+}
+.menu-btn#png-btn::after, .menu-btn#image-btn::after {
+    content: url(/editor-icons/photo.svg);
+}
+.menu-btn#json-btn::after, .menu-btn#pcjson-btn::after {
+    content: url(/editor-icons/json.svg);
+}
+.menu-btn#discord-btn::after {
+    content: url(/editor-icons/message.svg);
+}
+.menu-btn#text-btn::after {
+    content: url(/editor-icons/text.svg);
+}
+.menu-btn#group-btn::after {
+    content: url(/editor-icons/group.svg);
+}
+.menu-btn#video-btn::after {
+    content: url(/editor-icons/video.svg);
+}
+.menu-btn#joshi-btn::after {
+    content: url(/editor-icons/mountain.svg);
+}
+.menu-btn#slin-btn::after {
+    content: url(/editor-icons/slindev.svg);
+}
+.menu-btn#ebspark-btn::after {
+    content: url(/editor-icons/moon.svg);
+}
+.menu-btn#rad-btn::after {
+    content: url(/editor-icons/lilrad.svg);
+}
+.menu-btn#account-btn::after {
+    content: url(/editor-icons/user.svg);
+}
+
+.menu-btn#quest-btn::after {
+    content: url(/editor-icons/drive.svg);
+}
+.menu-btn#toquest-btn::after {
+    content: url(/editor-icons/export.svg);
+}
+.menu-btn#pc-btn::after {
+    content: url(/editor-icons/drive.svg);
+}
+.menu-btn#topc-btn::after {
+    content: url(/editor-icons/save.svg);
+}
+.menu-btn#model-btn::after {
+    content: url(/editor-icons/cube.svg);
+}
+
+
+.r {
+    background-color: #ff7777 !important;
+}
