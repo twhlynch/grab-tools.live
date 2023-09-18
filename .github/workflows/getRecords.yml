@@ -26,8 +26,8 @@ jobs:
         run: |
           git config --global user.email "twhlynch@gmail.com"
           git config --global user.name "twhlynch"
-          git add public/stats_data/sorted_leaderboard_records.json
-          git add public/stats_data/leaderboard_levels.json
+          git add stats_data/sorted_leaderboard_records.json
+          git add stats_data/leaderboard_levels.json
           git commit -m "Records"
           git push
         env:

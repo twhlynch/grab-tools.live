@@ -21,5 +21,5 @@ if __name__ == "__main__":
     data = getLevels()
     data1 = data[:len(data)//2]
     data2 = data[len(data)//2:]
-    write_json_file("public/stats_data/all_levels1.json", data1)
-    write_json_file("public/stats_data/all_levels2.json", data2)
+    write_json_file("stats_data/all_levels1.json", data1)
+    write_json_file("stats_data/all_levels2.json", data2)
