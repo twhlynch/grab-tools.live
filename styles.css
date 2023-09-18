@@ -79,7 +79,7 @@ h1 {
     color: #4683ce
 }
 .heading::after {
-    content: url('edit.svg');
+    content: url('img/edit.svg');
     width: 25px;
     height: 25px;
     color: #cfe0ea;
