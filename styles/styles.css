@@ -407,3 +407,9 @@ footer p:hover {
     align-items: center;
     justify-content: space-between;
 }
+#counter {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    margin: 10px;
+}
