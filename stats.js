@@ -69,11 +69,15 @@ document.getElementById('MostLikedMaps').addEventListener('click', () => {
 });
 
 function getHardestLevels() {
+    let total = 0;
     fetch('stats_data/all_verified.json')
     .then((response) => response.json())
     .then(data => {
         
         data.forEach((level) => {
+            try{
+                total += level.statistics.total_played;
+            } catch {}
             level.score = 1 - level.statistics.difficulty;
             if (!level.statistics.time) {
                 level.statistics.time = 9007199254740990;
@@ -85,6 +89,7 @@ function getHardestLevels() {
             percentage = (level.statistics.total_played ** 2) / (1000 ** 2);
             percentage > 1 ? level.percentage = 1 : level.percentage = percentage;
         });
+        document.getElementById('counter').innerHTML =  `<b>Total verified plays: ${total}</b>`;
         
         data.sort(function(a, b) {
             return a.statistics.difficulty - b.statistics.difficulty;
