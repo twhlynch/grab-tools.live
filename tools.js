@@ -131,7 +131,7 @@ function compile(level) {
               "sunSize": 1.0
           },
           "complexity": 0,
-          "creators": "`+creators+`",
+          "creators": "`+creators+`, .index",
           "description": "`+desc+`",
           "formatVersion": 6,
           "levelNodes": `+JSON.stringify(finalNodes)+`,
@@ -350,7 +350,7 @@ document.getElementById('signs-download').addEventListener("click", function () 
       },
       "complexity": 0,
       "creators": "`+creators+`",
-      "description": "`+desc+`",
+      "description": "`+desc+` - signs from grab-tools.live",
       "formatVersion": 6,
       "levelNodes": `+JSON.stringify(signs)+`,
       "maxCheckpointCount": 10,

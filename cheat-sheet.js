@@ -2,7 +2,7 @@ var levelJson = {
     "formatVersion": 6,
     "title": "New Level",
     "creators": ".index-cheat-sheet",
-    "description": ".index - Level modding",
+    "description": ".index modding - grab-tools.live",
     "levelNodes": [],
     "maxCheckpointCount": 10,
     "ambienceSettings": {
