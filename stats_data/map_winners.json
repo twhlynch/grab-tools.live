@@ -6262,5 +6262,55 @@
     },
     1695273060,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 1,
+        "best_time": 45.6554,
+        "user_id": "2ap0yu9y9g2lcvxbc5x3g",
+        "user_name": "Itz_Alwx"
+      },
+      {
+        "position": 2,
+        "best_time": 47.8631,
+        "user_id": "29wqa67tov5nq1kmxsr2l",
+        "user_name": "QT_synth"
+      },
+      {
+        "position": 3,
+        "best_time": 74.4565,
+        "user_id": "2aejscunjtm5ktmn0lh0w",
+        "user_name": "LowkeyVrPro"
+      }
+    ],
+    {
+      "identifier": "2aejscunjtm5ktmn0lh0w:1694568870",
+      "title": "Lava Cave",
+      "complexity": 1911,
+      "format_version": 6,
+      "update_timestamp": 1694794992682,
+      "creation_timestamp": 1694794992682,
+      "data_key": "level_data:2aejscunjtm5ktmn0lh0w:1694568870:1",
+      "description": "NO COLOR BLOCKS",
+      "creators": [
+        "LowkeyVrPro",
+        "Mclovin",
+        "cody.abbot",
+        "deanzilla"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 800,
+        "difficulty": 0.007082152974504249,
+        "liked": 1,
+        "time": 60.58715999999998
+      },
+      "creator": "LowkeyVrPro"
+    },
+    1695359466,
+    "daily_map"
   ]
 ]
