@@ -134,8 +134,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8500,
-      "difficulty": 0.003590357326038639,
+      "total_played": 8700,
+      "difficulty": 0.0035169988276670576,
       "liked": 1,
       "time": 709.7520952380953
     },
@@ -326,8 +326,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 50100,
-      "difficulty": 0.0023609266637155085,
+      "total_played": 50600,
+      "difficulty": 0.0023408924652523777,
       "liked": 0.9375,
       "time": 1895.3241250000008
     },
@@ -418,8 +418,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 6626,
-      "difficulty": 0.021109658135624883,
+      "total_played": 6726,
+      "difficulty": 0.020749173705471906,
       "liked": 0.9210526315789473,
       "time": 762.4560196078427
     },
@@ -1178,6 +1178,29 @@
     "creator": "toxicPhantom"
   },
   {
+    "identifier": "2ap647di3dc1k42jf4o2o:1682810607",
+    "title": "yoohoos difficuity chart",
+    "complexity": 3000,
+    "format_version": 6,
+    "update_timestamp": 1682839616621,
+    "creation_timestamp": 1682839616621,
+    "data_key": "level_data:2ap647di3dc1k42jf4o2o:1682810607:1",
+    "description": "test your skill or die and there is 0 checkpoints",
+    "creators": [
+      "yoohoo vr"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 136200,
+      "difficulty": 0.0031875881523272215,
+      "liked": 0.8705882352941177,
+      "time": 213.79263805309728
+    },
+    "creator": "yoohoo vr"
+  },
+  {
     "identifier": "29n53to671s7yzye5x87c:1655330217",
     "title": "super tower",
     "complexity": 1805,
@@ -1221,29 +1244,6 @@
       "time": 326.36533999999995
     },
     "creator": "imawin"
-  },
-  {
-    "identifier": "2ap647di3dc1k42jf4o2o:1682810607",
-    "title": "yoohoos difficuity chart",
-    "complexity": 3000,
-    "format_version": 6,
-    "update_timestamp": 1682839616621,
-    "creation_timestamp": 1682839616621,
-    "data_key": "level_data:2ap647di3dc1k42jf4o2o:1682810607:1",
-    "description": "test your skill or die and there is 0 checkpoints",
-    "creators": [
-      "yoohoo vr"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 135500,
-      "difficulty": 0.0031718161479425675,
-      "liked": 0.8690476190476191,
-      "time": 213.4997955357142
-    },
-    "creator": "yoohoo vr"
   },
   {
     "identifier": "29lmtkl6kqeqou0r3azch:1644701448",
@@ -1308,8 +1308,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 30602,
-      "difficulty": 0.0029721822319230947,
+      "total_played": 30702,
+      "difficulty": 0.0029639234937248182,
       "liked": 0.8666666666666667,
       "time": 1952.335278947368
     },
@@ -1471,10 +1471,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8500,
-      "difficulty": 0.1135593220338983,
-      "liked": 0.8597359735973598,
-      "time": 316.8351146766166
+      "total_played": 8600,
+      "difficulty": 0.1135633468361503,
+      "liked": 0.8599348534201955,
+      "time": 316.8869694956947
     },
     "creator": "jeffbobdude"
   },
@@ -1679,12 +1679,35 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 52300,
-      "difficulty": 0.00032455824017309774,
+      "total_played": 52400,
+      "difficulty": 0.0003239857446272364,
       "liked": 0.8571428571428571,
       "time": 4686.148222222222
     },
     "creator": "BLUDUK"
+  },
+  {
+    "identifier": "29rkswgx13q8mej7mxdg6:1673192588",
+    "title": "BEFOREDEATH",
+    "complexity": 2999,
+    "format_version": 6,
+    "update_timestamp": 1674083674466,
+    "creation_timestamp": 1673816032304,
+    "data_key": "level_data:29rkswgx13q8mej7mxdg6:1673192588:2",
+    "description": "the prequel to AFTERLIFE (leads up to the first game)",
+    "creators": [
+      "AFT studios"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 7700,
+      "difficulty": 0.02601947656725502,
+      "liked": 0.8571428571428571,
+      "time": 222.8273549707603
+    },
+    "creator": "AFT studios"
   },
   {
     "identifier": "2ap647di3dc1k42jf4o2o:1690356946",
@@ -1777,29 +1800,6 @@
       "time": 1003.0027650000007
     },
     "creator": "JustSimpl1fy"
-  },
-  {
-    "identifier": "29rkswgx13q8mej7mxdg6:1673192588",
-    "title": "BEFOREDEATH",
-    "complexity": 2999,
-    "format_version": 6,
-    "update_timestamp": 1674083674466,
-    "creation_timestamp": 1673816032304,
-    "data_key": "level_data:29rkswgx13q8mej7mxdg6:1673192588:2",
-    "description": "the prequel to AFTERLIFE (leads up to the first game)",
-    "creators": [
-      "AFT studios"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 7600,
-      "difficulty": 0.02574379528287344,
-      "liked": 0.8547008547008547,
-      "time": 225.44299161676653
-    },
-    "creator": "AFT studios"
   },
   {
     "identifier": "29i1vararozh6jevm06av:1643123373",
@@ -2030,8 +2030,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 13600,
-      "difficulty": 0.005933757686913367,
+      "total_played": 13700,
+      "difficulty": 0.005889912186763761,
       "liked": 0.8484848484848485,
       "time": 176.6071218181818
     },
@@ -2099,10 +2099,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 117900,
-      "difficulty": 0.0018236147119567606,
+      "total_played": 118100,
+      "difficulty": 0.001841620626151013,
       "liked": 0.847457627118644,
-      "time": 2342.9209156626503
+      "time": 2320.7105238095232
     },
     "creator": "BLUDUK"
   },
@@ -2304,10 +2304,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 36000,
-      "difficulty": 0.36808947728829033,
-      "liked": 0.8424667761684336,
-      "time": 212.07503692174066
+      "total_played": 36200,
+      "difficulty": 0.3680359901844951,
+      "liked": 0.8424576019041952,
+      "time": 212.1249656377325
     },
     "creator": "Mystery8281"
   },
