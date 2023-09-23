@@ -1097,6 +1097,75 @@ function randomizeLevel() {
     });
     setLevel(obj);
 }
+function deepClone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+function outlineNode(node) {
+    let nodes = [];
+    if (node.levelNodeGroup) {
+        let newGroup = deepClone(node);
+        newGroup.levelNodeGroup.childNodes = [];
+        for (let i = 0; i < node.levelNodeGroup.childNodes.length; i++) {
+            let child = deepClone(node.levelNodeGroup.childNodes[i]);
+            let outlined = outlineNode(child);
+            newGroup.levelNodeGroup.childNodes = newGroup.levelNodeGroup.childNodes.concat(outlined);
+        }
+        nodes.push(newGroup);
+        return nodes;
+    }
+    let nodeData = false;
+    if (node.levelNodeStatic) {
+        nodeData = node.levelNodeStatic;
+    } else if (node.levelNodeCrumbling) {
+        nodeData = node.levelNodeCrumbling;
+    }
+    if (nodeData) {
+        let outlineSize = 0.01;
+        let count = 0;
+        if (nodeData.scale.x > 15) {
+            count++;
+        }
+        if (nodeData.scale.y > 15) {
+            count++;
+        }
+        if (nodeData.scale.z > 15) {
+            count++;
+        }
+        if (count > 1) {
+            outlineSize = 0.1;
+        }
+        nodes.push({
+            "levelNodeStatic": {
+                "shape": nodeData.shape,
+                "material": 8,
+                "position": nodeData.position,
+                "scale": {
+                    "x": (nodeData.scale.x + outlineSize)*-1,
+                    "y": (nodeData.scale.y + outlineSize)*-1,
+                    "z": (nodeData.scale.z + outlineSize)*-1
+                },
+                "rotation": nodeData.rotation,
+                "color": {
+                    "r": 0,
+                    "g": 0,
+                    "a": 1,
+                    "b": 0
+                }
+            }
+        });
+        return nodes;
+    }
+}
+function outlineLevel() {
+    let levelData = getLevel();
+    let newNodes = [];
+    for (let i = 0; i < levelData.levelNodes.length; i++) {
+        const node = levelData.levelNodes[i];
+        newNodes = newNodes.concat(outlineNode(node));
+    }
+    levelData.levelNodes = levelData.levelNodes.concat(newNodes);
+    setLevel(levelData);
+}
 function loadProtobuf(url) {
     fetch(url)
     .then(response => response.text())
@@ -1483,6 +1552,7 @@ document.getElementById('connect-adb-btn').addEventListener('click', connectUsb)
 document.getElementById('cleardetails-btn').addEventListener('click', clearLevelDetails);
 document.getElementById('group-btn').addEventListener('click', groupLevel);
 document.getElementById('ungroup-btn').addEventListener('click', ungroupLevel);
+document.getElementById('outline-btn').addEventListener('click', outlineLevel);
 document.getElementById('randomize-btn').addEventListener('click', randomizeLevel);
 document.getElementById('duplicate-btn').addEventListener('click', duplicateLevel);
 document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
