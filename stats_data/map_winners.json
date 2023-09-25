@@ -1,1 +1,49 @@
-[]
+[
+  [
+    [
+      {
+        "position": 1,
+        "best_time": 62.9713,
+        "user_id": "2bz4saidt6iyhsy59t89o",
+        "user_name": "matealt"
+      },
+      {
+        "position": 2,
+        "best_time": 64.1906,
+        "user_id": "29px3pmrktk2sms8qmvqb",
+        "user_name": "CokeDeee"
+      },
+      {
+        "position": 3,
+        "best_time": 68.5328,
+        "user_id": "29wqa67tov5nq1kmxsr2l",
+        "user_name": "QT_synth"
+      }
+    ],
+    {
+      "identifier": "29px3pmrktk2sms8qmvqb:1690775329",
+      "title": "No Control",
+      "complexity": 2508,
+      "format_version": 6,
+      "update_timestamp": 1690778871032,
+      "creation_timestamp": 1690778871032,
+      "data_key": "level_data:29px3pmrktk2sms8qmvqb:1690775329:1",
+      "creators": [
+        "CokeDeee",
+        "JeffBobDude"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 600,
+        "difficulty": 0.0625,
+        "liked": 0.6875,
+        "time": 78.2769294117647
+      },
+      "creator": "CokeDeee"
+    },
+    1695615681,
+    "daily_map"
+  ]
+]
