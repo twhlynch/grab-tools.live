@@ -413,3 +413,6 @@ footer p:hover {
     background-color: transparent;
     margin: 10px;
 }
+#judges {
+    margin-inline: auto;
+}
