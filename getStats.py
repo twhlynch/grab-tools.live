@@ -423,7 +423,8 @@ def run_bot(message, unbeaten_levels=[]):
                     over_100.append(level)
                 
             if len(over_100) > 0:
-                embed.add_field(name="Over 100 Days", value="\n".join([f"[{level['title']}]({level['link']})" for level in over_100]), inline=False)
+                embed.add_field(name="Over 100 Days", value="\n".join([f"{level['title']}" for level in over_100]), inline=False)
+                # embed.add_field(name="Over 100 Days", value="\n".join([f"[{level['title']}]({level['link']})" for level in over_100]), inline=False)
 
             embed.add_field(name="Newest", value=unbeaten_levels[-1]["title"], inline=False)
 
