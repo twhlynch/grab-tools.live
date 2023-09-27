@@ -478,6 +478,7 @@ function getLevel() {
     return JSON.parse(document.getElementById('edit-input').innerText);
 }
 function setLevel(level) {
+    console.log(level);
     if (level.formatVersion != 6) {
         document.getElementById('warning').style.display = "block";
     } else {
@@ -1154,6 +1155,8 @@ function outlineNode(node) {
             }
         });
         return nodes;
+    } else {
+        return false;
     }
 }
 function outlineLevel() {
@@ -1161,8 +1164,12 @@ function outlineLevel() {
     let newNodes = [];
     for (let i = 0; i < levelData.levelNodes.length; i++) {
         const node = levelData.levelNodes[i];
-        newNodes = newNodes.concat(outlineNode(node));
+        let outlinedNode = outlineNode(node);
+        if (outlinedNode) {
+            newNodes = newNodes.concat(outlinedNode);
+        }
     }
+    console.log(newNodes);
     levelData.levelNodes = levelData.levelNodes.concat(newNodes);
     setLevel(levelData);
 }
