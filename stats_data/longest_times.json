@@ -15,8 +15,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 19900,
-      "difficulty": 6.910372469076083e-05,
+      "total_played": 20000,
+      "difficulty": 6.88089176357256e-05,
       "liked": 1,
       "time": 15388.4
     },
@@ -84,8 +84,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1700,
-      "difficulty": 0.001326259946949602,
+      "total_played": 1800,
+      "difficulty": 0.001257071024512885,
       "time": 4853.52,
       "liked": 0
     },
@@ -249,8 +249,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2400,
-      "difficulty": 0.0015166835187057635,
+      "total_played": 2500,
+      "difficulty": 0.0014527845036319612,
       "liked": 1,
       "time": 3095.3566666666666
     },
@@ -533,10 +533,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 118700,
-      "difficulty": 0.001874659400544959,
+      "total_played": 118800,
+      "difficulty": 0.0018732710361802696,
       "liked": 0.85,
-      "time": 2299.1783953488366
+      "time": 2298.683499999999
     },
     "creator": "BLUDUK"
   },
@@ -653,8 +653,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 4300,
-      "difficulty": 0.0005657708628005657,
+      "total_played": 4400,
+      "difficulty": 0.0005530973451327434,
       "liked": 1,
       "time": 2215.62
     },
@@ -746,8 +746,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 117400,
-      "difficulty": 0.00033746019024318225,
+      "total_played": 117500,
+      "difficulty": 0.0003372041560412232,
       "liked": 0.7916666666666666,
       "time": 2095.2756875
     },
@@ -909,8 +909,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 30802,
-      "difficulty": 0.002953800710758296,
+      "total_played": 30902,
+      "difficulty": 0.0029433406916850625,
       "liked": 0.8666666666666667,
       "time": 1952.335278947368
     },
@@ -956,8 +956,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 52600,
-      "difficulty": 0.00230990430396455,
+      "total_played": 52900,
+      "difficulty": 0.0023011176857330702,
       "liked": 0.9393939393939394,
       "time": 1925.8697755102048
     },
@@ -1451,8 +1451,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 6200,
-      "difficulty": 0.0012121212121212121,
+      "total_played": 6300,
+      "difficulty": 0.0011916583912611719,
       "liked": 1,
       "time": 1711.691
     },
@@ -1737,6 +1737,40 @@
       "time": 1538.664375
     },
     "creator": "Mr. Madlord"
+  },
+  {
+    "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbord-3",
+    "title": "SMORGASBORD 3",
+    "complexity": 2999,
+    "format_version": 6,
+    "update_timestamp": 1667991610809,
+    "creation_timestamp": 1667991610809,
+    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:smorgasbord-3:1",
+    "description": "SMORGASBORD IS A GROUP OF VERIFIED CREATORS THAT MAKE BI-WEEKLY MAPS FOR THE GRAB COMMUNITY. HOSTED BY BLUDUK & .INDEX (NSKC7). VERSION 3 CREATORS: ETXNIGHT, KINGBRODY1, CAZIYGGY, MR.MADLORD, AURANART, KIRBO, NASH_HUMAN, THEABYSS, JBK777JBK, GRAYTHEGAMER820",
+    "creators": [
+      "BLUDUK",
+      "INDEX",
+      "ETXNIGHT",
+      "KINGBRODY",
+      "CAZIYGGY",
+      "MADLORD",
+      "AURAN",
+      "KIRBO",
+      "NASH",
+      "ABYSS",
+      "JBK",
+      "GRAY"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 12100,
+      "difficulty": 0.009081621069360881,
+      "liked": 0.7592592592592593,
+      "time": 1538.3453600000007
+    },
+    "creator": "BLUDUK"
   },
   {
     "identifier": "2aecs0jaf5xivnzt738gn:1689260349",
@@ -2347,29 +2381,5 @@
       "time": 1408.8599375
     },
     "creator": "BUCK"
-  },
-  {
-    "identifier": "29r0m9fnboxpvz4dnkwnq:1666220933",
-    "title": "Grapple Pro",
-    "complexity": 1000,
-    "format_version": 6,
-    "update_timestamp": 1666393214610,
-    "creation_timestamp": 1666313756533,
-    "data_key": "level_data:29r0m9fnboxpvz4dnkwnq:1666220933:2",
-    "description": "Try to beat it, you better have protection on your controllers lol. good luck",
-    "creators": [
-      "TylerVB",
-      "iamaverag8"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 1900,
-      "difficulty": 0.0215916101172116,
-      "liked": 0.8695652173913043,
-      "time": 1401.298257142857
-    },
-    "creator": "TylerVB"
   }
 ]
