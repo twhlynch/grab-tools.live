@@ -1258,13 +1258,6 @@ function magicOutlineNode(node) {
                 "b": 0.25882352941176473,
                 "a": 1
             }
-        } else if (nodeData.material == 8) {
-            color = {
-                "r": 0.8745098039215686,
-                "g": 0.8745098039215686,
-                "b": 0.8745098039215686,
-                "a": 1
-            }
         } else if (nodeData.material == 9) {
             color = {
                 "r": 0.8784313725490196,
