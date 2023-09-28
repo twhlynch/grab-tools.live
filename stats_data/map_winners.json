@@ -93,5 +93,53 @@
     },
     1695792484,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 37.594,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      },
+      {
+        "position": 1,
+        "best_time": 49.5254,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      },
+      {
+        "position": 2,
+        "best_time": 55.5902,
+        "user_id": "2apqgju0ttomc3mztt3p6",
+        "user_name": "iSkype"
+      }
+    ],
+    {
+      "identifier": "29v9vd6n9z45d16mi2o2n:1675014236",
+      "title": "cool jungle climb",
+      "complexity": 2995,
+      "format_version": 6,
+      "update_timestamp": 1675017753366,
+      "creation_timestamp": 1675017753366,
+      "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1675014236:1",
+      "creators": [
+        "jeffbobdude",
+        "draymay702",
+        "AFT_daring"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 800,
+        "difficulty": 0.00804289544235925,
+        "liked": 0.6666666666666666,
+        "time": 78.20625
+      },
+      "creator": "jeffbobdude"
+    },
+    1695877865,
+    "daily_map"
   ]
 ]
