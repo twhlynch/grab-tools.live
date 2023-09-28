@@ -1159,12 +1159,159 @@ function outlineNode(node) {
         return false;
     }
 }
+function magicOutlineNode(node) {
+    let nodes = [];
+    if (node.levelNodeGroup) {
+        let newGroup = deepClone(node);
+        newGroup.levelNodeGroup.childNodes = [];
+        for (let i = 0; i < node.levelNodeGroup.childNodes.length; i++) {
+            let child = deepClone(node.levelNodeGroup.childNodes[i]);
+            let outlined = outlineNode(child);
+            newGroup.levelNodeGroup.childNodes = newGroup.levelNodeGroup.childNodes.concat(outlined);
+        }
+        nodes.push(newGroup);
+        return nodes;
+    }
+    let nodeData = false;
+    if (node.levelNodeStatic) {
+        nodeData = node.levelNodeStatic;
+    } else if (node.levelNodeCrumbling) {
+        nodeData = node.levelNodeCrumbling;
+    }
+    if (nodeData) {
+        let outlineSize = 0.01;
+        let count = 0;
+        if (nodeData.scale.x > 15) {
+            count++;
+        }
+        if (nodeData.scale.y > 15) {
+            count++;
+        }
+        if (nodeData.scale.z > 15) {
+            count++;
+        }
+        if (count > 1) {
+            outlineSize = 0.1;
+        }
+        let color = false;
+        if (!nodeData.hasOwnProperty("material")) {
+            color = {
+                "r": 0.7333333333333333,
+                "g": 0.7137254901960784,
+                "b": 0.7137254901960784,
+                "a": 1
+            }
+        } 
+        if (nodeData.material == 0) {
+            color = {
+                "r": 0.7333333333333333,
+                "g": 0.7137254901960784,
+                "b": 0.7137254901960784,
+                "a": 1
+            }
+        } else if (nodeData.material == 1) {
+            color = {
+                "r": 0.9803921568627451,
+                "g": 0.7529411764705882,
+                "b": 0.2980392156862745,
+                "a": 1
+            }
+        } else if (nodeData.material == 2) {
+            color = {
+                "r": 0.17647058823529413,
+                "g": 0.6352941176470588,
+                "b": 0.8313725490196079,
+                "a": 1
+            }
+        } else if (nodeData.material == 3) {
+            color = {
+                "r": 0.9333333333333333,
+                "g": 0.17254901960784313,
+                "b": 0.054901960784313725,
+                "a": 1
+            }
+        } else if (nodeData.material == 4) {
+            color = {
+                "r": 0.611764705882353,
+                "g": 0.49019607843137253,
+                "b": 0.3058823529411765,
+                "a": 1
+            }
+        } else if (nodeData.material == 5) {
+            color = {
+                "r": 0.43529411764705883,
+                "g": 0.6588235294117647,
+                "b": 0.3137254901960784,
+                "a": 1
+            }
+        } else if (nodeData.material == 6) {
+            color = {
+                "r": 0.8313725490196079,
+                "g": 0.45098039215686275,
+                "b": 0.16470588235294117,
+                "a": 1
+            }
+        } else if (nodeData.material == 7) {
+            color = {
+                "r": 0.8705882352941177,
+                "g": 0.6470588235294118,
+                "b": 0.25882352941176473,
+                "a": 1
+            }
+        } else if (nodeData.material == 8) {
+            color = {
+                "r": 0.8745098039215686,
+                "g": 0.8745098039215686,
+                "b": 0.8745098039215686,
+                "a": 1
+            }
+        } else if (nodeData.material == 9) {
+            color = {
+                "r": 0.8784313725490196,
+                "g": 0.5019607843137255,
+                "b": 0.8,
+                "a": 1
+            }
+        }
+        nodes.push({
+            "levelNodeStatic": {
+                "shape": 3,
+                "material": 8,
+                "position": nodeData.position,
+                "scale": {
+                    "x": (nodeData.scale.x + outlineSize)*-1,
+                    "y": (nodeData.scale.y + outlineSize)*-1,
+                    "z": (nodeData.scale.z + outlineSize)*-1
+                },
+                "rotation": nodeData.rotation,
+                "color": color ? color : nodeData.color
+            }
+        });
+        return nodes;
+    } else {
+        return false;
+    }
+}
 function outlineLevel() {
     let levelData = getLevel();
     let newNodes = [];
     for (let i = 0; i < levelData.levelNodes.length; i++) {
         const node = levelData.levelNodes[i];
         let outlinedNode = outlineNode(node);
+        if (outlinedNode) {
+            newNodes = newNodes.concat(outlinedNode);
+        }
+    }
+    console.log(newNodes);
+    levelData.levelNodes = levelData.levelNodes.concat(newNodes);
+    setLevel(levelData);
+}
+function magicOutline() {
+    let levelData = getLevel();
+    let newNodes = [];
+    for (let i = 0; i < levelData.levelNodes.length; i++) {
+        const node = levelData.levelNodes[i];
+        let outlinedNode = magicOutlineNode(node);
         if (outlinedNode) {
             newNodes = newNodes.concat(outlinedNode);
         }
@@ -1560,6 +1707,7 @@ document.getElementById('cleardetails-btn').addEventListener('click', clearLevel
 document.getElementById('group-btn').addEventListener('click', groupLevel);
 document.getElementById('ungroup-btn').addEventListener('click', ungroupLevel);
 document.getElementById('outline-btn').addEventListener('click', outlineLevel);
+document.getElementById('magic-outline-btn').addEventListener('click', magicOutline);
 document.getElementById('randomize-btn').addEventListener('click', randomizeLevel);
 document.getElementById('duplicate-btn').addEventListener('click', duplicateLevel);
 document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
