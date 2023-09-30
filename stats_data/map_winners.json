@@ -223,5 +223,79 @@
     },
     1695964259,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 13.274,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      },
+      {
+        "position": 1,
+        "best_time": 13.701,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      },
+      {
+        "position": 2,
+        "best_time": 29.4208,
+        "user_id": "2aalxvlevhadqz9rznqz3",
+        "user_name": "DragosPop"
+      }
+    ],
+    {
+      "identifier": "29xstwkcsmy5232q2a5g6:1695929711",
+      "title": "Sky City",
+      "complexity": 315,
+      "format_version": 6,
+      "update_timestamp": 1695934052309,
+      "creation_timestamp": 1695934052309,
+      "data_key": "level_data:29xstwkcsmy5232q2a5g6:1695929711:1",
+      "description": "You take an adventure on a crane elevator to Sky City Dont. Fall.",
+      "creators": [
+        "MintyZX"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 200,
+        "difficulty": 0.07777777777777778,
+        "liked": 1,
+        "time": 88.66052857142857
+      },
+      "creator": "MintyZX"
+    },
+    1696050633,
+    "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 897.523,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      },
+      {
+        "position": 1,
+        "best_time": 1955.37,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      }
+    ],
+    {
+      "plays": "792",
+      "link": "https://grabvr.quest/levels/viewer?level=29st9jdcbxxotp0t9d8en:1686681306",
+      "title": "The Crazy Tower (Icey Addition)",
+      "age": "83.38538194444445 days",
+      "creators": [
+        "Mystery8281"
+      ]
+    },
+    1696050634,
+    "unbeaten_map"
   ]
 ]

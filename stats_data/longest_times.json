@@ -108,8 +108,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 53300,
-      "difficulty": 0.00035464765755222185,
+      "total_played": 53400,
+      "difficulty": 0.00035399483167545756,
       "liked": 0.8571428571428571,
       "time": 3935.0306999999993
     },
@@ -322,8 +322,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3000,
-      "difficulty": 0.0007833920877399138,
+      "total_played": 3100,
+      "difficulty": 0.0007604562737642585,
       "liked": 1,
       "time": 3040.04
     },
@@ -369,8 +369,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 14900,
-      "difficulty": 0.0001790350013427625,
+      "total_played": 15000,
+      "difficulty": 0.00017803097739006588,
       "liked": 0.5,
       "time": 2951.9835000000003
     },
@@ -556,8 +556,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 119000,
-      "difficulty": 0.0018695652173913043,
+      "total_played": 119100,
+      "difficulty": 0.0018678597802006863,
       "liked": 0.85,
       "time": 2298.683499999999
     },
@@ -769,8 +769,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 117600,
-      "difficulty": 0.0003369130343230154,
+      "total_played": 117700,
+      "difficulty": 0.00033657284698556945,
       "liked": 0.7916666666666666,
       "time": 2095.2756875
     },
@@ -908,8 +908,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 12452,
-      "difficulty": 0.0017107779007748817,
+      "total_played": 12552,
+      "difficulty": 0.0016971149046620744,
       "liked": 0.7777777777777778,
       "time": 1953.5132499999997
     },
@@ -979,8 +979,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 53700,
-      "difficulty": 0.0022744151503899,
+      "total_played": 54200,
+      "difficulty": 0.002257440339076753,
       "liked": 0.9393939393939394,
       "time": 1925.8697755102048
     },
@@ -1735,6 +1735,28 @@
     "creator": "rivler"
   },
   {
+    "identifier": "29rhk9gdy7iiza0k3tttk:1660802726",
+    "title": "castle on the volcano",
+    "complexity": 2990,
+    "format_version": 4,
+    "update_timestamp": 1661053338106,
+    "creation_timestamp": 1661053338106,
+    "data_key": "level_data:29rhk9gdy7iiza0k3tttk:1660802726:1",
+    "creators": [
+      "itsatrap11190"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 9182,
+      "difficulty": 0.0015420200462606013,
+      "liked": 0.8666666666666667,
+      "time": 1545.7401666666665
+    },
+    "creator": "itsatrap11190"
+  },
+  {
     "identifier": "29r0m9fnboxpvz4dnkwnq:1676248753",
     "title": "Volcanic Disaster Remastered",
     "complexity": 1670,
@@ -1751,34 +1773,12 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 800,
-      "difficulty": 0.0056657223796034,
+      "total_played": 900,
+      "difficulty": 0.006218905472636816,
       "liked": 1,
-      "time": 1566.51525
+      "time": 1543.7941999999998
     },
     "creator": "TylerVB"
-  },
-  {
-    "identifier": "29rhk9gdy7iiza0k3tttk:1660802726",
-    "title": "castle on the volcano",
-    "complexity": 2990,
-    "format_version": 4,
-    "update_timestamp": 1661053338106,
-    "creation_timestamp": 1661053338106,
-    "data_key": "level_data:29rhk9gdy7iiza0k3tttk:1660802726:1",
-    "creators": [
-      "itsatrap11190"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 9082,
-      "difficulty": 0.0015578346098922497,
-      "liked": 0.8666666666666667,
-      "time": 1545.7401666666665
-    },
-    "creator": "itsatrap11190"
   },
   {
     "identifier": "29w20l59y1m2zkzhkojnu:1657470247",
