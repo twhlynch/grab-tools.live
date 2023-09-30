@@ -256,53 +256,42 @@ addEventListener("click", async (e) => {
         var id = user;
         if (user) {
             try {
-                const userDataResponse = await fetch(
-                    `https://api.slin.dev/grab/v1/list?type=user_name&search_term=${user}`
-                );
+                const userDataResponse = await fetch(`https://api.slin.dev/grab/v1/list?type=user_name&search_term=${user}`);
                 const userData = await userDataResponse.json();
-                id = userData[0]
-                    .user_id
-                    .toLowerCase();
-            } catch  {
+                id = userData[0].user_id.toLowerCase();
+            } catch (error) {
+                console.error("Error fetching user data:", error);
                 var rand = Math.floor(Math.random() * 11);
                 id = '29sgp24f1uorbc6vq8d2k';
             }
         }
-        const keys = keyInput
-            .value
-            .toLowerCase()
-            .split("|");
+
+        const keys = keyInput.value.toLowerCase().split("|");
 
         const promises2 = [fetch('stats_data/all_verified.json')];
-        var promise1 = [
-            []
-        ];
-        if (user == '' || user == null) {
-            var promises1 = [
-                []
-            ];
-        } else {
-            var promises1 = [fetch(`https://api.slin.dev/grab/v1/list?max_format_version=7&user_id=${id}`)];
+        let array2 = [];
+        try {
+            const responses2 = await Promise.all(promises2);
+            const json_data2 = await Promise.all(responses2.map(res => res.json()));
+            array2 = json_data2.flat();
+        } catch (error) {
+            console.error("Error fetching verified stats data:", error);
         }
 
-        const responses2 = await Promise.all(promises2);
-        const json_data2 = await Promise.all(responses2.map(res => res.json()));
-        const array2 = json_data2.flat();
-        var array1 = [];
-        if (user == '' || user == null) {
-            var array1 = [];
-        } else {
-            const responses1 = await Promise.all(promises1);
-            const json_data1 = await Promise.all(responses1.map(res => res.json()));
-
-            var array1 = json_data1
-                .flat()
-                .filter(level => !level.tags || level.tags.ok);
-
+        let array1 = [];
+        if (user !== '' && user !== null) {
+            try {
+                const response1 = await fetch(`https://api.slin.dev/grab/v1/list?max_format_version=7&user_id=${id}`);
+                const json_data1 = await response1.json();
+                array1 = json_data1.flat().filter(level => !level.tags || level.tags.ok);
+            } catch (error) {
+                console.error("Error fetching user level data:", error);
+            }
         }
-        var array = array1.concat(array2);
 
-        var levels = array.filter(level => {
+        const array = array1.concat(array2);
+
+        let levels = array.filter(level => {
             for (var key of keys) {
                 if (level["title"].toLowerCase().includes(key)) {
                     if (level["identifier"].split(":")[0].toLowerCase().includes(id)) {
@@ -313,24 +302,35 @@ addEventListener("click", async (e) => {
             return false;
         });
 
+        levels = levels.filter(level => level.hasOwnProperty("statistics"));
+        levels = levels.filter(level => level.statistics.hasOwnProperty("total_played"));
         levels.sort((a, b) => b.statistics.total_played - a.statistics.total_played);
 
         let total = 0;
-        output
-            .querySelectorAll('.leaderboard-item')
-            .forEach(e => {
-                e.remove();
-            });
+        output.querySelectorAll('.leaderboard-item').forEach(e => e.remove());
+
+        const fragment = document.createDocumentFragment();
+
         levels.forEach(item => {
-            total += item["statistics"]["total_played"];
-            output.innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(
+            try {
+                total += item.statistics.total_played;
+            } catch (error) {
+                console.error("Error accessing total_played:", error);
+            }
+
+            const levelDiv = document.createElement('div');
+            levelDiv.classList.add('leaderboard-item');
+            levelDiv.innerHTML = `<div><a href="https://grabvr.quest/levels/viewer/?level=${item.identifier}">${item.title}</a><br>by <span title="${item.creators}">${item.creator}</span></div><span>${new Date(
                 item.creation_timestamp
             )
                 .toDateString()
-                .substring(4)}</span><span>${item["statistics"]["total_played"]} plays</span></div>`;
+                .substring(4)}</span><span>${item.statistics.total_played} plays</span>`;
+            fragment.appendChild(levelDiv);
         });
 
-        document.getElementById('counter').innerHTML =  `<b>Total plays: ${total}</b>`;
+        output.appendChild(fragment);
+
+        document.getElementById('counter').innerHTML = `<b>Total plays: ${total}</b>`;
     }
 });
 
