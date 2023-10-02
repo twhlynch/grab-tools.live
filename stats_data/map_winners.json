@@ -343,5 +343,51 @@
     },
     1696137042,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 9.12797,
+        "user_id": "29lmdv56fjch18bes1u2j",
+        "user_name": "Caziggy"
+      },
+      {
+        "position": 1,
+        "best_time": 9.20004,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      },
+      {
+        "position": 2,
+        "best_time": 9.69204,
+        "user_id": "2bxznfs3tfog3d18517as",
+        "user_name": "MedievalDuck"
+      }
+    ],
+    {
+      "identifier": "2bdk6lzsfwe5k45tusqls:1695406952",
+      "title": "cave parkour",
+      "complexity": 1438,
+      "format_version": 6,
+      "update_timestamp": 1695916626291,
+      "creation_timestamp": 1695409760555,
+      "data_key": "level_data:2bdk6lzsfwe5k45tusqls:1695406952:2",
+      "creators": [
+        "lucaswilkie666 and Dinosaurien"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 400,
+        "difficulty": 0.11602209944751381,
+        "liked": 0.88,
+        "time": 58.19154285714286
+      },
+      "creator": "lucaswilkie666 and Dinosaurien"
+    },
+    1696223478,
+    "daily_map"
   ]
 ]
