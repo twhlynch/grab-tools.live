@@ -615,5 +615,52 @@
     },
     1696569073,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 7.21704,
+        "user_id": "29st9jdcbxxotp0t9d8en",
+        "user_name": "Mystery8281"
+      },
+      {
+        "position": 1,
+        "best_time": 7.375,
+        "user_id": "29ngj2xcdlinnuqz0vrw5",
+        "user_name": "CursedPhantom"
+      },
+      {
+        "position": 2,
+        "best_time": 9.68203,
+        "user_id": "2ajh3ta3oul1bb2sw66r5",
+        "user_name": "freezeeduck"
+      }
+    ],
+    {
+      "identifier": "29v9vd6n9z45d16mi2o2n:1685759025",
+      "title": "Bewilder.",
+      "complexity": 3000,
+      "format_version": 6,
+      "update_timestamp": 1685834961307,
+      "creation_timestamp": 1685834961307,
+      "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1685759025:1",
+      "description": "explore through a magical, alien, coastline",
+      "creators": [
+        "jeffbobdude"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 400,
+        "difficulty": 0.1111111111111111,
+        "liked": 0.75,
+        "time": 60.668644615384615
+      },
+      "creator": "jeffbobdude"
+    },
+    1696655436,
+    "daily_map"
   ]
 ]
