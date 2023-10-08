@@ -21,6 +21,11 @@ let HIDE_TEXT = false;
 let HIGHLIGHT_TEXT = true;
 let templates = [
     {
+        "name": "Animation Cheat Sheet",
+        "link": "level_data/animations.level",
+        "type": "file"
+    },
+    {
         "name": "Lobby",
         "link": "level_data/lobbies/lobby.level",
         "type": "file"
