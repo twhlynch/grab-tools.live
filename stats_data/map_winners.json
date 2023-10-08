@@ -662,5 +662,51 @@
     },
     1696655436,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 18.7129,
+        "user_id": "2a8031alixx3u6tyu2a7k",
+        "user_name": "iamaverag8"
+      },
+      {
+        "position": 1,
+        "best_time": 20.1709,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      },
+      {
+        "position": 2,
+        "best_time": 21.3289,
+        "user_id": "29wvwcyosrr43a72at6m5",
+        "user_name": "Poggggg"
+      }
+    ],
+    {
+      "identifier": "2adps2mxxoc2scx8mlroe:1696201736",
+      "title": "GEOMETRY DASH ADVENTURE PT.1",
+      "complexity": 647,
+      "format_version": 6,
+      "update_timestamp": 1696206269356,
+      "creation_timestamp": 1696206269356,
+      "data_key": "level_data:2adps2mxxoc2scx8mlroe:1696201736:1",
+      "creators": [
+        "CoolWhiten"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 400,
+        "difficulty": 0.03278688524590164,
+        "liked": 0.7142857142857143,
+        "time": 42.524775
+      },
+      "creator": "CoolWhiten"
+    },
+    1696741837,
+    "daily_map"
   ]
 ]
