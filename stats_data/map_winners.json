@@ -1038,5 +1038,52 @@
     },
     1697173901,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 33.5598,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "dotindex"
+      },
+      {
+        "position": 1,
+        "best_time": 54.4368,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      },
+      {
+        "position": 2,
+        "best_time": 57.8921,
+        "user_id": "2ap647di3dc1k42jf4o2o",
+        "user_name": "yO0hooVr"
+      }
+    ],
+    {
+      "identifier": "2baynsibq2c69fvduas9c:1696546413",
+      "title": "Lava Only Up",
+      "complexity": 293,
+      "format_version": 7,
+      "update_timestamp": 1696547121967,
+      "creation_timestamp": 1696547121967,
+      "data_key": "level_data:2baynsibq2c69fvduas9c:1696546413:1",
+      "description": "This Map Is Fun :)",
+      "creators": [
+        "Bear_werk"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 400,
+        "difficulty": 0.0026455026455026454,
+        "liked": 0,
+        "time": 91.5501
+      },
+      "creator": "Bear_werk"
+    },
+    1697260233,
+    "daily_map"
   ]
 ]
