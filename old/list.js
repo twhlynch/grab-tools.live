@@ -1,4 +1,4 @@
-fetch("/stats_data/list.json")
+fetch("stats_data/list.json")
 .then(response => response.json())
 .then(data => {
     if (data.judges.length > 0) {
