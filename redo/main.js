@@ -1,6 +1,6 @@
 let cursorOuter = document.getElementById("cursor-outer");
 let cursorInner = document.getElementById("cursor-inner");
-let links = document.getElementsByTagName("a");
+let links = document.querySelectorAll("a, button, .button");
 
 document.addEventListener("mousemove", function (e) {
     cursorInner.style.transform =
