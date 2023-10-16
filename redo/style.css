@@ -21,6 +21,7 @@
             --font-size-alt: 14px;
             --font-size-small: 12px;
             --font-size-big: 24px;
+            --font-size-xl: 48px;
         }
         * {
             margin: 0;
@@ -337,6 +338,34 @@
             background-color: #ced0d4;
             opacity: 0.3;
         }
+        #tools img {
+            width: 260px;
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            transition: all 0.3s;
+        }
+        #tools img:hover {
+            transform: scale(1.01);
+        }
+        #tools .tool {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: var(--padding-main);
+        }
+        .tool a {
+            color: var(--text-color-alt);
+            text-decoration: none;
+        }
+        h1 {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--text-color-alt);
+        }
+        #cheat-sheet-tool.tool, #list-tool.tool {
+            flex-direction: row-reverse;
+        }
         @media screen and (max-width: 727px) {
             section#repos {
                 grid-template-columns: 1fr;
@@ -354,6 +383,9 @@
         @media screen and (max-width: 630px) {
             #socials span {
                 display: none;
+            }
+            #tools .tool {
+                flex-direction: column-reverse;
             }
         }
         @media (hover: none) {
