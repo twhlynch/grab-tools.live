@@ -1,74 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <title>Stats | Grab Tools | .index | twhlynch</title>
-        <meta name="description" content="A collection of Grab related Stats and leaderboards">
-        <meta name="author" content="twhlynch">
-        <meta property="og:title" content="Stats | Grab Tools | .index | twhlynch">
-        <meta property="og:description" content="A collection of Grab related Stats and leaderboards">
-        <meta property="og:site_name" content="Stats | Grab Tools | .index">
-        <meta property="og:locale" content="en_us">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="http://grab-tools.live/stats.html">
-        <meta property="og:image" content="http://grab-tools.live/favicon.gif">
-        <link rel="icon" href="favicon.gif" type="image/gif">
-        <link rel="stylesheet" href="styles/styles.css">
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BDS57RBQ3Q"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-BDS57RBQ3Q');
-        </script>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2378042345376266" crossorigin="anonymous"></script>
-        <script src="//cdn.jsdelivr.net/npm/protobufjs@7.X.X/dist/protobuf.js"></script>
-        <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
-        <script type="importmap">
-            {
-                "imports": {
-                    "three": "https://unpkg.com/three@0.145.0/build/three.module.js"
-                }
-            }
-        </script>
-        <script src="background.js" type="module" defer></script>
-        <script src="main.js" defer></script>
-        <script src="stats.js" defer></script>
-    </head>
-    <body>
-        <nav>
-            <a class="button" id="Home" href="/">Home</a>
-            <a class="button" id="Stats" href="/stats">Stats</a>
-            <a class="button" id="Wiki" href="https://wiki.grab-tools.live">Wiki</a>
-            <a class="button" id="List" href="list">List</a>
-            <a class="button" id="Other-Tools" href="tools">Other Tools</a>
-        </nav>
-        <main>
-            <div class="alt-heading">
-                <h1>S</h1>
-                <h1>t</h1>
-                <h1>a</h1>
-                <h1>t</h1>
-                <h1>s</h1>
-            </div>
-            <p title="Player data updated every 4 days. Unbeaten maps updated every 2 days">A collection of Grab related Stats and leaderboards<br>updated 05:00 UTC daily*</p>
-            <div id="tabs">
-                <button class="tab-active" id="UnbeatenMaps">Unbeaten Maps</button>
-                <button id="HardestMaps">Hardest Maps</button>
-                <button id="MostVerifiedMaps">Most Verified Maps</button>
-                <button id="LevelSearch">Level Search</button>
-                <button id="MostPlays">Most Plays</button>
-                <button id="MostPlayedMaps">Top Played Maps</button>
-                <button id="MostLikedMaps">Top Liked Maps</button>
-                <button id="MostTimeMaps">Longest Time Maps</button>
-                <button id="DailyMap">Daily Map</button>
-                <button id="WeeklyMap">Weekly Map</button>
-                <button id="UnbeatenMap">Unbeaten Map</button>
-                <button id="MapChallenges">Map Challenge Scores</button>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats | GRAB Tools</title>
+    <meta name="description" content="A collection of tools for modding GrabVR, stats about players and levels, resources, and more.">
+    <meta name="keywords" content="grab mods stats tools grabvr .index index dotindex tom lynch twhlynch vr modding hacks discord programming coding website development developer github">
+    <meta name="author" content="twhlynch">
+    <meta property="og:title" content="Stats | GRAB Tools">
+    <meta property="og:description" content="A collection of tools for modding GrabVR, stats about players and levels, resources, and more.">
+    <meta property="og:site_name" content="Stats | GRAB Tools">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://grab-tools.live/stats">
+    <meta property="og:image" content="http://grab-tools.live/favicon.png">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BDS57RBQ3Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-BDS57RBQ3Q');
+    </script>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="main.js" defer></script>
+    <script src="stats.js" defer></script>
+</head>
+<body>
+    <div id="cursor-outer"></div>
+    <div id="cursor-inner"></div>
+    <!-- <h1 class="title">Grab</h1> -->
+    <nav>
+        <a href="/" class="button">Home</a>
+        <a href="/list" class="button">List</a>
+        <a href="/stats" class="button">Stats</a>
+        <a href="/tools" class="button">Tools</a>
+        <a href="/discord" class="button">Discord</a>
+        <a href="https://wiki.grab-tools.live" class="button">Wiki</a>
+    </nav>
+    <main>
+        <section id="info">
+            <h2>Grab Stats</h2>
+            <p>Here you will find stats and leaderboards scraped from the grab servers. The data is updated at 05:00 UTC daily, though unbeaten maps is only updated every 2 days and player data every 4.</p>
             <p id="counter"></p>
+        </section>
+        <section id="tools">
+            <button class="tab-active button" id="UnbeatenMaps">Unbeaten Maps</button>
+            <button class="button" id="HardestMaps">Hardest Maps</button>
+            <button class="button" id="MostVerifiedMaps">Most Verified Maps</button>
+            <button class="button" id="LevelSearch">Level Search</button>
+            <button class="button" id="MostPlays">Most Plays</button>
+            <button class="button" id="MostPlayedMaps">Top Played Maps</button>
+            <button class="button" id="MostLikedMaps">Top Liked Maps</button>
+            <button class="button" id="MostTimeMaps">Longest Time Maps</button>
+            <button class="button" id="DailyMap">Daily Map</button>
+            <button class="button" id="WeeklyMap">Weekly Map</button>
+            <button class="button" id="UnbeatenMap">Unbeaten Map</button>
+            <button class="button" id="MapChallenges">Map Challenge Scores</button>
+        </section>
+        <section id="statistics">
             <div class="LeaderboardOutput" id="UnbeatenMaps-out">
             </div>
             <div class="LeaderboardOutput" id="HardestMaps-out">
@@ -78,7 +71,7 @@
             <div class="LeaderboardOutput" id="LevelSearch-out">
                 <input type="text" id="user-input" placeholder="USER">
                 <input type="text" id="key-input" placeholder="KEY (split '|')">
-                <button id="submit-btn">Submit</button>
+                <button id="submit-btn" class="button">Submit</button>
             </div>
             <div class="LeaderboardOutput" id="MostPlays-out">
             </div>
@@ -96,11 +89,10 @@
             </div>
             <div class="LeaderboardOutput" id="UnbeatenMap-out">
             </div>
-        </main>
-        <br><br>
-        <footer>
-            <p>Website built by <a href="https://twhlynch.me">twhlynch</a></p>
-            <p>Find me on <a href="https://github.com/twhlynch">GitHub</a><p>
-        </footer>
-    </body>
+        </section>
+    </main>
+    <footer>
+        <span>twhlynch</span><span>|</span><span>.index</span>
+    </footer>
+</body>
 </html>

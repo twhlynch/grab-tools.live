@@ -1,71 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <title>The List | Grab Tools | .index</title>
-        <meta name="description" content="The ranking of the hardest maps in GRAB!">
-        <meta name="author" content="twhlynch">
-        <meta property="og:title" content="The List | Grab Tools | .index">
-        <meta property="og:description" content="The ranking of the hardest maps in GRAB!">
-        <meta property="og:site_name" content="The List | Grab Tools | .index">
-        <meta property="og:locale" content="en_us">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="http://grab-tools.live/stats.html">
-        <meta property="og:image" content="http://grab-tools.live/favicon.gif">
-        <link rel="icon" href="favicon.gif" type="image/gif">
-        <link rel="stylesheet" href="styles/styles.css">
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BDS57RBQ3Q"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-BDS57RBQ3Q');
-        </script>
-        <script src="//cdn.jsdelivr.net/npm/protobufjs@7.X.X/dist/protobuf.js"></script>
-        <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
-        <script type="importmap">
-            {
-                "imports": {
-                    "three": "https://unpkg.com/three@0.145.0/build/three.module.js"
-                }
-            }
-        </script>
-        <script src="background.js" type="module" defer></script>
-        <script src="main.js" defer></script>
-        <script src="list.js" defer></script>
-    </head>
-    <body>
-        <nav>
-            <a class="button" id="Home" href="/">Home</a>
-            <a class="button" id="Stats" href="/stats">Stats</a>
-            <a class="button" id="Wiki" href="https://wiki.grab-tools.live">Wiki</a>
-            <a class="button" id="List" href="list">List</a>
-            <a class="button" id="Other-Tools" href="tools">Other Tools</a>
-        </nav>
-        <main>
-            <div class="alt-heading">
-                <h1>T</h1>
-                <h1>h</h1>
-                <h1>e</h1>
-                <h1>&nbsp;</h1>
-                <h1>L</h1>
-                <h1>i</h1>
-                <h1>s</h1>
-                <h1>t</h1>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List | GRAB Tools</title>
+    <meta name="description" content="A collection of tools for modding GrabVR, stats about players and levels, resources, and more.">
+    <meta name="keywords" content="grab mods stats tools grabvr .index index dotindex tom lynch twhlynch vr modding hacks discord programming coding website development developer github">
+    <meta name="author" content="twhlynch">
+    <meta property="og:title" content="List | GRAB Tools">
+    <meta property="og:description" content="A collection of tools for modding GrabVR, stats about players and levels, resources, and more.">
+    <meta property="og:site_name" content="List | GRAB Tools">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://grab-tools.live/list">
+    <meta property="og:image" content="http://grab-tools.live/favicon.png">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BDS57RBQ3Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-BDS57RBQ3Q');
+    </script>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="main.js" defer></script>
+    <script src="list.js" defer></script>
+</head>
+<body>
+    <div id="cursor-outer"></div>
+    <div id="cursor-inner"></div>
+    <!-- <h1 class="title">Grab</h1> -->
+    <nav>
+        <a href="/" class="button">Home</a>
+        <a href="/list" class="button">List</a>
+        <a href="/stats" class="button">Stats</a>
+        <a href="/tools" class="button">Tools</a>
+        <a href="/discord" class="button">Discord</a>
+        <a href="https://wiki.grab-tools.live" class="button">Wiki</a>
+    </nav>
+    <main>
+        <section id="info">
+            <h2>The List</h2>
             <p>The ranking of the hardest maps in GRAB!</p>
+        </section>
+        <section id="list-section">
             <div class="listData" id="data">
                 <p id="judges"></p>
                 <div class="LeaderboardOutput" id="list">
                 </div>
             </div>
-        </main>
-        <br><br>
-        <footer>
-            <p>Website built by <a href="https://twhlynch.me">twhlynch</a></p>
-            <p>Find me on <a href="https://github.com/twhlynch">GitHub</a><p>
-        </footer>
-    </body>
+        </section>
+    </main>
+    <footer>
+        <span>twhlynch</span><span>|</span><span>.index</span>
+    </footer>
+</body>
 </html>

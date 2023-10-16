@@ -1,20 +1,38 @@
-// document.getElementById('Home').addEventListener('click', () => {
-//     window.location.href = 'index.html';
-// });
-// document.getElementById('List').addEventListener('click', () => {
-//     window.location.href = 'list.html';
-// });
-// document.getElementById('Stats').addEventListener('click', () => {
-//     window.location.href = 'stats.html';
-// });
-// document.getElementById('Other-Tools').addEventListener('click', () => {
-//     window.location.href = 'tools.html';
-// });
-if (window.location.href.includes('index.html') || document.title == 'Grab Tools | .index | twhlynch') {
-    document.getElementById('editor').addEventListener('click', () => {
-        window.location.href = 'editor.html';
+let cursorOuter = document.getElementById("cursor-outer");
+let cursorInner = document.getElementById("cursor-inner");
+let links = document.querySelectorAll("a, button, .button");
+
+document.addEventListener("mousemove", function (e) {
+    cursorInner.style.transform =
+        cursorOuter.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+});
+
+for (let i = 0; i < links.length; i++) {
+    links[i].addEventListener("mouseover", () => {
+        cursorOuter.classList.add("cursor-outer-hover");
+        cursorInner.classList.add("cursor-inner-hover");
     });
-    document.getElementById('cheat').addEventListener('click', () => {
-        window.location.href = 'cheat-sheet.html';
+    links[i].addEventListener("mouseout", () => {
+        cursorOuter.classList.remove("cursor-outer-hover");
+        cursorInner.classList.remove("cursor-inner-hover");
     });
 }
+
+const currentTime = document.getElementById("currentTime");
+const currentState = document.getElementById("currentState");
+const time = new Date();
+
+const options = { timeZone: 'Australia/Melbourne' };
+const localTime = time.toLocaleString('en-US', options);
+
+let hour = new Date(localTime).getHours();
+
+if (hour >= 17 && hour < 24) {
+    currentState.innerHTML = "awake";
+} else if (hour >= 9 && hour < 17) {
+    currentState.innerHTML = "working";
+} else {
+    currentState.innerHTML = "sleeping";
+}
+let minutes = new Date(localTime).getMinutes();
+currentTime.innerHTML = `${hour < 12 ? hour : hour - 12}:${minutes < 10 ? '0' + minutes : minutes} ${hour >= 12 ? "PM" : "AM"}`;

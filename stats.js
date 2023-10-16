@@ -70,7 +70,7 @@ document.getElementById('MostLikedMaps').addEventListener('click', () => {
 
 function getHardestLevels() {
     let total = 0;
-    fetch('stats_data/all_verified.json')
+    fetch('/stats_data/all_verified.json')
     .then((response) => response.json())
     .then(data => {
         
@@ -180,7 +180,7 @@ function getHardestLevels() {
 }
 
 function getUnbeatenLevels() {
-    fetch('stats_data/unbeaten_levels.json')
+    fetch('/stats_data/unbeaten_levels.json')
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
@@ -190,7 +190,7 @@ function getUnbeatenLevels() {
 }
 
 async function getTopPlayers(limit = 10) {
-    fetch('stats_data/most_verified.json')
+    fetch('/stats_data/most_verified.json')
     .then(res => res.json())
     .then(json_data => {
         for (const id in json_data) {
@@ -205,7 +205,7 @@ async function getTopPlayers(limit = 10) {
 }
 
 function getPlayedLevels() {
-    fetch('stats_data/most_played_maps.json')
+    fetch('/stats_data/most_played_maps.json')
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
@@ -215,7 +215,7 @@ function getPlayedLevels() {
 }
 
 function getTopLikes() {
-    fetch('stats_data/most_liked.json')
+    fetch('/stats_data/most_liked.json')
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
@@ -225,7 +225,7 @@ function getTopLikes() {
 }
 
 function getTopTimes() {
-    fetch('stats_data/longest_times.json')
+    fetch('/stats_data/longest_times.json')
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
@@ -235,7 +235,7 @@ function getTopTimes() {
 }
 
 function getPlaysLevels() {
-    fetch('stats_data/most_plays.json')
+    fetch('/stats_data/most_plays.json')
     .then((response) => response.json())
     .then(json_data => {
         for (const id in json_data) {
@@ -268,7 +268,7 @@ addEventListener("click", async (e) => {
 
         const keys = keyInput.value.toLowerCase().split("|");
 
-        const promises2 = [fetch('stats_data/all_verified.json')];
+        const promises2 = [fetch('/stats_data/all_verified.json')];
         let array2 = [];
         try {
             const responses2 = await Promise.all(promises2);
@@ -335,7 +335,7 @@ addEventListener("click", async (e) => {
 });
 
 function getDailyMap() {
-    fetch('stats_data/daily_map.json')
+    fetch('/stats_data/daily_map.json')
     .then((response) => response.json())
     .then(item => {
         document.getElementById('DailyMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></h1>`;
@@ -350,7 +350,7 @@ function getDailyMap() {
 }
 
 function getWeeklyMap() {
-    fetch('stats_data/weekly_map.json')
+    fetch('/stats_data/weekly_map.json')
     .then((response) => response.json())
     .then(item => {
         document.getElementById('WeeklyMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></h1>`;
@@ -365,7 +365,7 @@ function getWeeklyMap() {
 }
 
 function getUnbeatenMap() {
-    fetch('stats_data/unbeaten_map.json')
+    fetch('/stats_data/unbeaten_map.json')
     .then((response) => response.json())
     .then(item => {
         document.getElementById('UnbeatenMap-out').innerHTML += `<h1><a href="${item["link"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creators"]}</span></h1>`;
@@ -380,7 +380,7 @@ function getUnbeatenMap() {
 }
 
 function getChallengeScores() {
-    fetch('stats_data/map_winners.json')
+    fetch('/stats_data/map_winners.json')
     .then((response) => response.json())
     .then(items => {
         leaderboard = {};
