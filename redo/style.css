@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
         :root {
-            --text-color-default: #757e88;
+            --text-color-default: #5b5f64;
             --text-color-alt: #618dc3;
             --text-color-accent: #4683ce;
             --background-color-default: #dee7ec;
             --background-color-alt: #aec7de;
             --text-color-link: #2f81f7;
-            --border-color: #30363d;
+            --border-color: #5b5f6488;
             --font-weight-default: 400;
             --font-weight-bold: 600;
             --font-family-default: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -28,12 +28,24 @@
             padding: 0;
             box-sizing: border-box;
         }
+        html {
+            background-image: linear-gradient(#5f8bc2, #cfe0ea, #5f8bc2);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
         body {
             width: 100%;
             height: 100vh;
             overflow-x: hidden;
             font-size: var(--font-size-default);
-            background-color: var(--background-color-default);
+            /* background-color: var(--background-color-default); */
+            background-image: linear-gradient(#5f8bc220 1px, transparent 1px),
+            linear-gradient(90deg, #5f8bc220 1px, transparent 1px),
+            linear-gradient(#5f8bc220 1px, transparent 1px),
+            linear-gradient(90deg, #5f8bc220 1px, transparent 1px);
+            background-size:75px 75px, 75px 75px, 15px 15px, 15px 15px;
+            background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
             font-family: var(--font-family-default);
             color: var(--text-color-default);
         }
@@ -41,6 +53,14 @@
             width: min(800px, 80%);
             margin-inline: auto;
             margin-top: 100px;
+        }
+        nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: var(--padding-secondary);
+            padding-block: var(--padding-secondary);
         }
         section {
             padding: var(--padding-main);
@@ -238,6 +258,20 @@
             align-items: center;
             gap: var(--padding-secondary);
         }
+        .button {
+            text-decoration: none;
+            color: var(--text-color-default);
+            font-size: var(--font-size-default);
+            font-weight: var(--font-weight-bold);
+            padding: var(--padding-secondary);
+            border-radius: var(--border-radius);
+            border: solid 2px var(--border-color);
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: var(--padding-secondary);
+        }
         footer {
             margin-inline: auto;
             width: fit-content;
@@ -281,7 +315,7 @@
             left: min(6rem, 10vw);
             top: 4rem;
             font-family: "Open Sans", sans-serif;
-            opacity: 0.1;
+            opacity: 0.05;
             font-weight: 800;
             max-width: calc(100vw - min(6rem, 10vw));
             overflow: hidden;
@@ -338,34 +372,6 @@
             background-color: #ced0d4;
             opacity: 0.3;
         }
-        #tools img {
-            width: 260px;
-            max-width: 100%;
-            border-radius: var(--border-radius);
-            transition: all 0.3s;
-        }
-        #tools img:hover {
-            transform: scale(1.01);
-        }
-        #tools .tool {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: var(--padding-main);
-        }
-        .tool a {
-            color: var(--text-color-alt);
-            text-decoration: none;
-        }
-        h1 {
-            font-size: var(--font-size-xl);
-            font-weight: var(--font-weight-bold);
-            color: var(--text-color-alt);
-        }
-        #cheat-sheet-tool.tool, #list-tool.tool {
-            flex-direction: row-reverse;
-        }
         @media screen and (max-width: 727px) {
             section#repos {
                 grid-template-columns: 1fr;
@@ -383,9 +389,6 @@
         @media screen and (max-width: 630px) {
             #socials span {
                 display: none;
-            }
-            #tools .tool {
-                flex-direction: column-reverse;
             }
         }
         @media (hover: none) {
