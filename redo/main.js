@@ -36,12 +36,3 @@ if (hour >= 17 && hour < 24) {
 }
 let minutes = new Date(localTime).getMinutes();
 currentTime.innerHTML = `${hour < 12 ? hour : hour - 12}:${minutes < 10 ? '0' + minutes : minutes} ${hour >= 12 ? "PM" : "AM"}`;
-    
-function changeStyle() {
-    document.documentElement.style.setProperty('--text-color-default', "#b7b8c5");
-    document.documentElement.style.setProperty('--text-color-alt', "#e0e1f0");
-    document.documentElement.style.setProperty('--background-color-default', "#1d1d1d");
-    document.documentElement.style.setProperty('--background-color-alt', "#131c22");
-    document.documentElement.style.setProperty('--text-color-link', "#329e9e");
-    document.documentElement.style.setProperty('--border-color', "#262626");
-}
