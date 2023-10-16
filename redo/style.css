@@ -46,6 +46,7 @@
             linear-gradient(90deg, #5f8bc220 1px, transparent 1px);
             background-size:75px 75px, 75px 75px, 15px 15px, 15px 15px;
             background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+            background-attachment: fixed;
             font-family: var(--font-family-default);
             color: var(--text-color-default);
         }
