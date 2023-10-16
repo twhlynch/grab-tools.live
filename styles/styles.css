@@ -34,7 +34,7 @@ main {
     max-width: 800px;
     height: 100%;
 }
-button {
+button, .button {
     background-color: transparent;
     text-align: center;
     text-decoration: none;
@@ -91,7 +91,7 @@ h1 {
     vertical-align: middle;
     font-weight: 600;
 }
-button:hover, #editor:hover, #cheat:hover {
+button:hover, #editor:hover, #cheat:hover, .button:hover {
     background-color: #5f8cc235;
     border: dashed 2px #4683ce70;
 }
