@@ -180,8 +180,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 54800,
-      "difficulty": 0.0003805964985122137,
+      "total_played": 54900,
+      "difficulty": 0.000379860487602735,
       "liked": 0.875,
       "time": 3856.6569999999992
     },
@@ -251,8 +251,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8700,
-      "difficulty": 0.00013829345871940258,
+      "total_played": 8800,
+      "difficulty": 0.00013672409078479628,
       "liked": 1,
       "time": 3297.82
     },
@@ -274,8 +274,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8300,
-      "difficulty": 0.000143000143000143,
+      "total_played": 8400,
+      "difficulty": 0.00014132278123233464,
       "liked": 0.75,
       "time": 3275.62
     },
@@ -297,8 +297,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 21502,
-      "difficulty": 0.0010316786017720598,
+      "total_played": 21602,
+      "difficulty": 0.001027190332326284,
       "liked": 0.9090909090909091,
       "time": 3170.572066666667
     },
@@ -817,8 +817,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 119300,
-      "difficulty": 0.0003318262889377411,
+      "total_played": 119400,
+      "difficulty": 0.0003315375051802735,
       "liked": 0.7916666666666666,
       "time": 2095.2756875
     },
@@ -1026,8 +1026,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 59700,
-      "difficulty": 0.0022079741836864676,
+      "total_played": 60000,
+      "difficulty": 0.0021984526275736693,
       "liked": 0.9166666666666666,
       "time": 1928.3903653846162
     },
@@ -1074,8 +1074,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 34078,
-      "difficulty": 0.0017477170446104776,
+      "total_played": 34178,
+      "difficulty": 0.001742767514813524,
       "liked": 0.8064516129032258,
       "time": 1917.176588055556
     },
@@ -1218,38 +1218,6 @@
       "time": 1871.86775
     },
     "creator": "luhmao"
-  },
-  {
-    "identifier": "29sgp24f1uorbc6vq8d2k:SMORGASBORD6",
-    "title": "SMORGASBORD 6",
-    "complexity": 2997,
-    "format_version": 6,
-    "update_timestamp": 1675574772441,
-    "creation_timestamp": 1675574772441,
-    "data_key": "level_data:29sgp24f1uorbc6vq8d2k:SMORGASBORD6:1",
-    "description": "SMORGASBORD IS A GROUP OF VERIFIED CREATORS THAT MAKE BI-WEEKLY MAPS FOR THE GRAB COMMUNITY. HOSTED BY BLUDUK & .INDEX(NSKC7). VERSION 6 CREATORS: EBSPARK, DANDESTROYS, FISH_DUDE, AXS4LY, COBLERB1, NASH, OCGRAB, OCULUSBEST, GEYBOOI, BLOCKLY",
-    "creators": [
-      "EBSPARK",
-      "DANDESTROYS",
-      "FISHDUDE",
-      "AXS4LY",
-      "COBLER",
-      "NASH",
-      "OCGRB",
-      "OCULUSBEST",
-      "GEYBOOI",
-      "BLOCKLY"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 2200,
-      "difficulty": 0.002733734281027884,
-      "liked": 1,
-      "time": 1871.0453999999997
-    },
-    "creator": "EBSPARK"
   },
   {
     "identifier": "2a0vlvqwxxjj77ap7s89p:1658438586",
@@ -1682,8 +1650,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 700,
-      "difficulty": 0.0018214936247723133,
+      "total_played": 800,
+      "difficulty": 0.0016051364365971107,
       "liked": 1,
       "time": 1648.91
     },
@@ -1731,8 +1699,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 18583,
-      "difficulty": 0.0004152249134948097,
+      "total_played": 18683,
+      "difficulty": 0.0004130808950086059,
       "liked": 0.6,
       "time": 1630.5276666666668
     },
@@ -1775,10 +1743,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 13600,
-      "difficulty": 0.02787890400459858,
+      "total_played": 13700,
+      "difficulty": 0.027685282085434307,
       "liked": 0.8585858585858586,
-      "time": 1598.793020962201
+      "time": 1598.3833439862558
     },
     "creator": "boohoo77"
   },
@@ -2362,5 +2330,28 @@
       "liked": 0
     },
     "creator": "Poggggg"
+  },
+  {
+    "identifier": "29v9vd6n9z45d16mi2o2n:1679108855",
+    "title": "Solitude lvl2 Blue Magesty",
+    "complexity": 2618,
+    "format_version": 6,
+    "update_timestamp": 1679246332809,
+    "creation_timestamp": 1679200829260,
+    "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1679108855:2",
+    "creators": [
+      "jeffbobdude",
+      "FmasonF"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 400,
+      "difficulty": 0.03278688524590164,
+      "liked": 1,
+      "time": 1449.4011666666665
+    },
+    "creator": "jeffbobdude"
   }
 ]
