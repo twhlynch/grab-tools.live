@@ -1369,5 +1369,53 @@
     },
     1697778674,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 19.2819,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      },
+      {
+        "position": 1,
+        "best_time": 19.9509,
+        "user_id": "29wqa67tov5nq1kmxsr2l",
+        "user_name": "QT_synth"
+      },
+      {
+        "position": 2,
+        "best_time": 25.2209,
+        "user_id": "2bjz8nebkbbt9ima3sn9x",
+        "user_name": "ThomasM10"
+      }
+    ],
+    {
+      "identifier": "2a7dpr68r014rdkz6927a:1696808457",
+      "title": "Birch Climb (Short Easy Parkour)",
+      "complexity": 2630,
+      "format_version": 7,
+      "update_timestamp": 1696812543405,
+      "creation_timestamp": 1696812543405,
+      "data_key": "level_data:2a7dpr68r014rdkz6927a:1696808457:1",
+      "description": "Thanks to cokedee for some building tips.",
+      "creators": [
+        "AuranSimia",
+        "Moltenvr"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 200,
+        "difficulty": 0.20725388601036268,
+        "liked": 0.7692307692307693,
+        "time": 91.17962000000001
+      },
+      "creator": "AuranSimia"
+    },
+    1697865048,
+    "daily_map"
   ]
 ]
