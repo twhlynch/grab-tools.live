@@ -1417,5 +1417,52 @@
     },
     1697865048,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 22.8679,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "dotindex"
+      },
+      {
+        "position": 1,
+        "best_time": 25.1379,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      },
+      {
+        "position": 2,
+        "best_time": 30.1398,
+        "user_id": "29qv0sdmg8m5y3lpdt05w",
+        "user_name": "MrPiglett"
+      }
+    ],
+    {
+      "identifier": "2apwp69ys241z6dxb1ezd:1697753376",
+      "title": "Stone runis 4.0",
+      "complexity": 1077,
+      "format_version": 7,
+      "update_timestamp": 1697840172731,
+      "creation_timestamp": 1697762795632,
+      "data_key": "level_data:2apwp69ys241z6dxb1ezd:1697753376:2",
+      "description": "This is part 4 yay",
+      "creators": [
+        "Albio1236"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 25,
+        "difficulty": 0.04,
+        "time": 63.7952,
+        "liked": 0
+      },
+      "creator": "Albio1236"
+    },
+    1697951464,
+    "daily_map"
   ]
 ]
