@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List | GRAB Tools</title>
+    <title>Video to Grab | GRAB Tools</title>
     <meta name="description" content="A collection of tools for modding GrabVR, stats about players and levels, resources, and more.">
     <meta name="keywords" content="grab mods stats tools grabvr .index index dotindex tom lynch twhlynch vr modding hacks discord programming coding website development developer github">
     <meta name="author" content="twhlynch">
-    <meta property="og:title" content="List | GRAB Tools">
+    <meta property="og:title" content="Video Gen | GRAB Tools">
     <meta property="og:description" content="A collection of tools for modding GrabVR, stats about players and levels, resources, and more.">
-    <meta property="og:site_name" content="List | GRAB Tools">
+    <meta property="og:site_name" content="Video Gen | GRAB Tools">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://grab-tools.live/list">
+    <meta property="og:url" content="http://grab-tools.live/video">
     <meta property="og:image" content="http://grab-tools.live/favicon.gif">
     <link rel="icon" href="favicon.gif" type="image/gif">
     <link rel="shortcut icon" href="favicon.gif" type="image/x-icon">
@@ -27,7 +27,41 @@
     </script>
     <link rel="stylesheet" href="styles/style.css">
     <script src="main.js" defer></script>
-    <script src="list.js" defer></script>
+    <script>
+        async function processVideo() {
+            const fileInput = document.getElementById("videoFile");
+            const videoFile = fileInput.files[0];
+
+            const formData = new FormData();
+            formData.append("file", videoFile);
+
+            try {
+                const response = await fetch(
+                    "https://dotindex.pythonanywhere.com/process_video",
+                    {
+                        method: "POST",
+                        body: formData,
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Error processing video");
+                }
+
+                const processedFile = await response.blob();
+                const downloadLink = URL.createObjectURL(processedFile);
+
+                const link = document.createElement("a");
+                link.href = downloadLink;
+                link.download = `${Math.floor(Date.now() / 1000)}.level`;
+                link.click();
+
+                URL.revokeObjectURL(downloadLink);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="cursor-outer"></div>
@@ -42,15 +76,12 @@
         <a href="https://wiki.grab-tools.live" class="button">Wiki</a>
     </nav>
     <main>
-        <section id="info">
-            <h2>The List</h2>
-            <p>The ranking of the hardest maps in GRAB!</p>
-        </section>
-        <section id="list-section">
-            <div class="listData" id="data">
-                <p id="judges"></p>
-                <div class="LeaderboardOutput" id="list">
-                </div>
+        <section id="video-section">
+            <h1>Video Generator (Mp42Grab)</h1>
+            <p>This is a demo. The full tool can be found <a href="https://github.com/twhlynch/Mp42Grab">here</a> to download.</p>
+            <div id="video-buttons">
+                <input type="file" id="videoFile" />
+                <button class="button" onclick="processVideo()">Process Video</button>
             </div>
         </section>
     </main>
