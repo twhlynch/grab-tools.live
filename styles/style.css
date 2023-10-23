@@ -513,3 +513,16 @@ input, #smorg-urls {
     border: solid 2px #4683ce70;
     outline: none;
 }
+#video-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+#video-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
