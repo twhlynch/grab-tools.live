@@ -115,8 +115,16 @@ def get_most_plays(data):
             most_plays[id]["plays"] += level["statistics"]["total_played"]
             most_plays[id]["count"] += 1
         else:
-            most_plays[id] = {"plays": level["statistics"]["total_played"], "count": 1}
+            creators = [""]
+            if "creators" in level and len(level["creators"]) > 0:
+                creators = level["creators"]
+            most_plays[id] = {"plays": level["statistics"]["total_played"], "count": 1, "potential_user_name": creators[0]+"?"}
     most_plays = sorted(most_plays.items(), key=lambda x: x[1]["plays"], reverse=True)
+    potentials = most_plays[10:][:90]
+    potentials = {t[0]: t[1] for t in potentials}
+    for id in potentials:
+        potentials[id]["user_name"] = potentials[id]["potential_user_name"]
+        potentials[id]["levels"] = potentials[id]["count"]
     most_plays = most_plays[:10]
     most_plays = {t[0]: t[1] for t in most_plays}
     for i, (id, data) in enumerate(most_plays.items()):
@@ -125,6 +133,7 @@ def get_most_plays(data):
         print("Sending request")
         most_plays[id]["user_name"] = user_data["user_name"]
         most_plays[id]["levels"] = user_data["user_level_count"]
+    most_plays.update(potentials)
     return most_plays
 
 def get_most_played_maps(data):
