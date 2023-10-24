@@ -1,66 +1,15 @@
-function toggleTabs() {
-    document.querySelectorAll('.LeaderboardOutput').forEach(e => {
-        e.style.display = 'none';
-    });
-    document.querySelectorAll('.tab-active').forEach(e => {
-        e.classList.remove('tab-active');
-    });
-}
-
-document.getElementById('UnbeatenMaps').addEventListener('click', () => {
-    toggleTabs();
-    document.getElementById('UnbeatenMaps-out').style.display = "flex";
-    document.getElementById('UnbeatenMaps').classList.add('tab-active');
-});
-document.getElementById('MostVerifiedMaps').addEventListener('click', () => {
-    toggleTabs();
-    document.getElementById('MostVerifiedMaps-out').style.display = "flex";
-    document.getElementById('MostVerifiedMaps').classList.add('tab-active');
-});
-document.getElementById('LevelSearch').addEventListener('click', () => {
-    toggleTabs();
-    document.getElementById('LevelSearch-out').style.display = "flex";
-    document.getElementById('LevelSearch').classList.add('tab-active');
-});
-document.getElementById('MostPlays').addEventListener('click', () => {
-    toggleTabs();
-    document.getElementById('MostPlays-out').style.display = "flex";
-    document.getElementById('MostPlays').classList.add('tab-active');
-});
-document.getElementById('MostPlayedMaps').addEventListener('click', () => {
-    toggleTabs();
-    document.getElementById('MostPlayedMaps-out').style.display = "flex";
-    document.getElementById('MostPlayedMaps').classList.add('tab-active');
-});
-document.getElementById('DailyMap').addEventListener('click', () => {
-    toggleTabs();
-    document.getElementById('DailyMap-out').style.display = "flex";
-    document.getElementById('DailyMap').classList.add('tab-active');
-});
-document.getElementById('WeeklyMap').addEventListener('click', () => {
-    toggleTabs();
-    document.getElementById('WeeklyMap-out').style.display = "flex";
-    document.getElementById('WeeklyMap').classList.add('tab-active');
-});
-document.getElementById('UnbeatenMap').addEventListener('click', () => {
-    toggleTabs();
-    document.getElementById('UnbeatenMap-out').style.display = "flex";
-    document.getElementById('UnbeatenMap').classList.add('tab-active');
-});
-document.getElementById('MapChallenges').addEventListener('click', () => {
-    toggleTabs();
-    document.getElementById('MapChallenges-out').style.display = "flex";
-    document.getElementById('MapChallenges').classList.add('tab-active');
-});
-document.getElementById('MostTimeMaps').addEventListener('click', () => {
-    toggleTabs();
-    document.getElementById('MostTimeMaps-out').style.display = "flex";
-    document.getElementById('MostTimeMaps').classList.add('tab-active');
-});
-document.getElementById('MostLikedMaps').addEventListener('click', () => {
-    toggleTabs();
-    document.getElementById('MostLikedMaps-out').style.display = "flex";
-    document.getElementById('MostLikedMaps').classList.add('tab-active');
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('stats-button')) {
+        let btnId = e.target.id;
+        document.querySelectorAll('.LeaderboardOutput').forEach(e => {
+            e.style.display = 'none';
+        });
+        document.querySelectorAll('.tab-active').forEach(e => {
+            e.classList.remove('tab-active');
+        });
+        document.getElementById(`${btnId}-out`).style.display = "flex";
+        e.target.classList.add('tab-active');
+    }
 });
 
 function getUnbeatenLevels() {
@@ -68,22 +17,18 @@ function getUnbeatenLevels() {
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
-            document.getElementById('UnbeatenMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="${item["link"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creators"][0]}</span></div><span>${parseInt(item["age"].split(" ")[0])} ${item["age"].split(" ")[1]}</span><span>${item["plays"]} plays</span></div>`;
+            document.getElementById('UnbeatenMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="${item["link"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creators"][0]}</span></div><span>${parseInt(item["age"].split(" ")[0])} ${item["age"].split(" ")[1]}<br>${item["plays"]} plays</span></div>`;
         });
     });
 }
 
-async function getTopPlayers(limit = 10) {
+async function getTopPlayers() {
     fetch('/stats_data/most_verified.json')
     .then(res => res.json())
     .then(json_data => {
         for (const id in json_data) {
             const value = json_data[id];
-            if (value["count"] != value["levels"]) {
-                document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["count"]} verified of ${value["levels"]} maps</span></div>`;
-            } else {
-                document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["count"]} verified</span></div>`;
-            }
+            document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["count"]} verified${(value["count"] != value["levels"]) ? (" of "+value["levels"]) : ""}</span></div>`;
         }
     });
 }
@@ -113,7 +58,7 @@ function getTopTimes() {
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
-            document.getElementById('MostTimeMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${item["statistics"]["time"]}s</span></div>`;
+            document.getElementById('MostTimeMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${Math.round(item["statistics"]["time"])}s</span></div>`;
         });
     });
 }
@@ -124,7 +69,7 @@ function getPlaysLevels() {
     .then(json_data => {
         for (const id in json_data) {
             const value = json_data[id];
-            document.getElementById('MostPlays-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["plays"]} from ${value["count"]} / ${value["levels"]} maps</span></div>`;
+            document.getElementById('MostPlays-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["plays"]} from ${value["count"]}${(value.count != value.levels) ? (' / '+value["levels"]) : ""} maps</span></div>`;
         }
     });
 }
@@ -324,7 +269,7 @@ function getChallengeScores() {
 }
 
 
-getTopPlayers(10);
+getTopPlayers();
 getUnbeatenLevels();
 getPlayedLevels();
 getPlaysLevels();
