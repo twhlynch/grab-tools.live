@@ -12,11 +12,6 @@ document.getElementById('UnbeatenMaps').addEventListener('click', () => {
     document.getElementById('UnbeatenMaps-out').style.display = "flex";
     document.getElementById('UnbeatenMaps').classList.add('tab-active');
 });
-document.getElementById('HardestMaps').addEventListener('click', () => {
-    toggleTabs();
-    document.getElementById('HardestMaps-out').style.display = "flex";
-    document.getElementById('HardestMaps').classList.add('tab-active');
-});
 document.getElementById('MostVerifiedMaps').addEventListener('click', () => {
     toggleTabs();
     document.getElementById('MostVerifiedMaps-out').style.display = "flex";
@@ -67,117 +62,6 @@ document.getElementById('MostLikedMaps').addEventListener('click', () => {
     document.getElementById('MostLikedMaps-out').style.display = "flex";
     document.getElementById('MostLikedMaps').classList.add('tab-active');
 });
-
-function getHardestLevels() {
-    let total = 0;
-    fetch('/stats_data/all_verified.json')
-    .then((response) => response.json())
-    .then(data => {
-        
-        data.forEach((level) => {
-            try{
-                total += level.statistics.total_played;
-            } catch {}
-            level.score = 1 - level.statistics.difficulty;
-            if (!level.statistics.time) {
-                level.statistics.time = 9007199254740990;
-            }
-            level.statistics.finishes = level.statistics.total_played * level.statistics.difficulty;
-            if (Date.now() - level.creation_timestamp < 604800000) {
-                data.splice(data.indexOf(level), 1);
-            }
-            percentage = (level.statistics.total_played ** 2) / (1000 ** 2);
-            percentage > 1 ? level.percentage = 1 : level.percentage = percentage;
-        });
-        document.getElementById('counter').innerHTML =  `<b>Total verified plays: ${total}</b>`;
-        
-        data.sort(function(a, b) {
-            return a.statistics.difficulty - b.statistics.difficulty;
-        });
-        // diff0++ & top100diff++
-        var i = 0;
-        data.forEach(level => {
-            if (i < 100) {
-                if (level.statistics.difficulty == 0) {
-                    i--;
-                    level.score++;
-                }
-                level.score++;
-                i++;
-            }
-        });
-
-        data.sort(function(a, b) {
-            return b.statistics.time - a.statistics.time;
-        });
-        // timeN/a++ & top100time++
-        i = 0;
-        data.forEach(level => {
-            if (i < 100) {
-                /*if (level.statistics.time == 9007199254740990) {
-                    i--;
-//                            level.score++;
-                }*/
-                level.score++;
-                i++;
-            }
-        });
-
-        data.sort(function(a, b) {
-            return a.statistics.finishes - b.statistics.finishes;
-        });
-        // 0finish++ & top100finish++
-        i = 0;
-        data.forEach(level => {
-            if (i < 100) {
-                if (level.statistics.finishes == 0) {
-                    i--;
-                    level.score++;
-                }
-                level.score++;
-                i++;
-            }
-        });
-
-            
-
-        data.sort(function(a, b) {
-            return a.creation_timestamp - b.creation_timestamp;
-        });
-
-        data.sort(function(a, b) {
-            return b.score*b.percentage - a.score*a.percentage;
-        });
-
-        // console.log(data);
-
-        i = 0;
-        data.forEach(level => {
-            if (i < 100) {
-                document.getElementById("HardestMaps-out").innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${level.identifier}">${level.title}</a><br>by <span title="${level.creators}">${level.creator}</span></div><span>${new Date(level.creation_timestamp).toDateString().substring(4)}</span><span>${(( 1 - level.statistics.difficulty ) * 100).toString().slice(0, 5)}% | ${(Math.round((level.score*level.percentage) * 1000) / 1000)}</span></div>`;
-                i++;
-            }
-        });
-        
-        // data.sort(function(a, b) {
-        //     return a.creation_timestamp - b.creation_timestamp;
-        // });
-
-        // data.sort(function(a, b) {
-        //     return b.score - a.score;
-        // });
-
-        // console.log(data);
-
-        // i = 0;
-        // data.forEach(level => {
-        //     if (i < 100) {
-        //         document.getElementById("leaderboard-output-2").innerHTML += "<div><a href='https://grabvr.quest/levels/viewer/?level=" + level.identifier + "'>" + level.title + "</a> by " + level.creators + " <p>(" + (Math.round(level.statistics.difficulty * 10000) / 10000) + " | " + (Math.round(level.score * 10000) / 10000) + ")</p></div>";
-        //         i++;
-        //     }
-        // });
-    });
-}
 
 function getUnbeatenLevels() {
     fetch('/stats_data/unbeaten_levels.json')
@@ -442,7 +326,6 @@ function getChallengeScores() {
 
 getTopPlayers(10);
 getUnbeatenLevels();
-getHardestLevels();
 getPlayedLevels();
 getPlaysLevels();
 getTopTimes();
