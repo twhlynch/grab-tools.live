@@ -107,7 +107,7 @@ def get_most_verified(data):
     most_verified.update(sub10)
     return most_verified
 
-def get_most_plays(data):
+def get_most_plays(data, old_data):
     most_plays = {}
     for level in data:
         id = level["identifier"].split(":")[0]
@@ -134,11 +134,21 @@ def get_most_plays(data):
         most_plays[id]["user_name"] = user_data["user_name"]
         most_plays[id]["levels"] = user_data["user_level_count"]
     most_plays.update(potentials)
+    for id, data in most_plays.items():
+        if id in old_data:
+            most_plays[id]["change"] = old_data[id]["plays"] - most_plays[id]["plays"]
+        else:
+            most_plays[id]["change"] = most_plays[id]["plays"]
     return most_plays
 
-def get_most_played_maps(data):
+def get_most_played_maps(data, old_data):
     most_played_maps = sorted(data[25:], key=lambda x: x["statistics"]["total_played"], reverse=True)
     most_played_maps = most_played_maps[:100]
+    for i, level in enumerate(most_played_maps):
+        if level["identifier"] in old_data:
+            most_played_maps[i]["change"] = old_data[level["identifier"]]["statistics"]["total_played"] - level["statistics"]["total_played"]
+        else:
+            most_played_maps[i]["change"] = level["statistics"]["total_played"]
     return most_played_maps
 
 def get_longest_times(data):
@@ -270,13 +280,17 @@ def get_unbeaten_map():
     return level_data
 
 def get_level_data():
+    with open("stats_data/most_plays.json") as data_file:
+        most_plays_old = json.load(data_file)
+    with open("stats_data/most_played_maps.json") as data_file:
+        most_played_old = json.load(data_file)
     message_result = [False, False, False]
     with open("stats_data/log_data.json", 'r') as file:
         log_data = json.load(file)
     if datetime.now().timestamp() - log_data["last_ran"] > 72000:
         all_verified = get_all_verified()
         write_json_file('stats_data/all_verified.json', all_verified)
-        most_played_maps = get_most_played_maps(all_verified)
+        most_played_maps = get_most_played_maps(all_verified, most_played_old)
         write_json_file('stats_data/most_played_maps.json', most_played_maps)
         most_liked = get_most_liked(all_verified)
         write_json_file('stats_data/most_liked.json', most_liked)
@@ -297,31 +311,20 @@ def get_level_data():
             message_result[1] = [weekly_level["title"], "https://grabvr.quest/levels/viewer?level=" + weekly_level["identifier"]]
             write_json_file('stats_data/weekly_map.json', weekly_level)
             weekly = 0
-        did_players = False
-        did_unbeaten = False
-        if not log_data["unbeaten_levels"]:
-            unbeaten_levels = get_unbeaten(all_verified)
-            write_json_file('stats_data/unbeaten_levels.json', unbeaten_levels)
-            did_unbeaten = True
-            if not log_data["players"]:
-                most_verified = get_most_verified(all_verified)
-                write_json_file('stats_data/most_verified.json', most_verified)
-                most_plays = get_most_plays(all_verified)
-                write_json_file('stats_data/most_plays.json', most_plays)
-                did_players = True
+        unbeaten_levels = get_unbeaten(all_verified)
+        write_json_file('stats_data/unbeaten_levels.json', unbeaten_levels)
+        most_verified = get_most_verified(all_verified)
+        write_json_file('stats_data/most_verified.json', most_verified)
+        most_plays = get_most_plays(all_verified, most_plays_old)
+        write_json_file('stats_data/most_plays.json', most_plays)
 
-        log(did_players, did_unbeaten, weekly)
-        if did_unbeaten:
-            run_bot(message_result, unbeaten_levels)
-        else:
-            run_bot(message_result)
+        log(weekly)
+        run_bot(message_result, unbeaten_levels)
 
-def log(players, unbeaten_levels, weekly):
+def log(weekly):
     log_data = {
         "days_since_weekly": weekly,
-        "last_ran": datetime.now().timestamp(),
-        "players": players,
-        "unbeaten_levels": unbeaten_levels
+        "last_ran": datetime.now().timestamp()
     }
     write_json_file('stats_data/log_data.json', log_data)
 
