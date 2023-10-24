@@ -526,3 +526,8 @@ input, #smorg-urls {
     justify-content: center;
     gap: 5px;
 }
+.stats-change {
+    font-size: 11px;
+    padding: 3px;
+    vertical-align: middle;
+}
