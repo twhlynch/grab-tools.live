@@ -76,7 +76,7 @@ def get_unbeaten(data):
                 unbeaten.append(new_data)
     return unbeaten[::-1]
 
-def get_most_verified(data):
+def get_most_verified(data, old_data):
     most_verified = {}
     for level in data:
         id = level["identifier"].split(":")[0]
@@ -105,6 +105,11 @@ def get_most_verified(data):
                 break
         sub10[id]["levels"] = sub10[id]["count"]
     most_verified.update(sub10)
+    for id, data4 in most_verified.items():
+        if id in old_data:
+            most_verified[id]["change"] = most_verified[id]["count"] - old_data[id]["count"]
+        else:
+            most_verified[id]["change"] = most_verified[id]["count"]
     return most_verified
 
 def get_most_plays(data, old_data):
@@ -136,19 +141,14 @@ def get_most_plays(data, old_data):
     most_plays.update(potentials)
     for id, data in most_plays.items():
         if id in old_data:
-            most_plays[id]["change"] = old_data[id]["plays"] - most_plays[id]["plays"]
+            most_plays[id]["change"] = most_plays[id]["plays"] - old_data[id]["plays"]
         else:
             most_plays[id]["change"] = most_plays[id]["plays"]
     return most_plays
 
-def get_most_played_maps(data, old_data):
+def get_most_played_maps(data):
     most_played_maps = sorted(data[25:], key=lambda x: x["statistics"]["total_played"], reverse=True)
     most_played_maps = most_played_maps[:100]
-    for i, level in enumerate(most_played_maps):
-        if level["identifier"] in old_data:
-            most_played_maps[i]["change"] = old_data[level["identifier"]]["statistics"]["total_played"] - level["statistics"]["total_played"]
-        else:
-            most_played_maps[i]["change"] = level["statistics"]["total_played"]
     return most_played_maps
 
 def get_longest_times(data):
@@ -282,15 +282,15 @@ def get_unbeaten_map():
 def get_level_data():
     with open("stats_data/most_plays.json") as data_file:
         most_plays_old = json.load(data_file)
-    with open("stats_data/most_played_maps.json") as data_file:
-        most_played_old = json.load(data_file)
+    with open("stats_data/most_verified_maps.json") as data_file:
+        most_verified_old = json.load(data_file)
     message_result = [False, False, False]
     with open("stats_data/log_data.json", 'r') as file:
         log_data = json.load(file)
     if datetime.now().timestamp() - log_data["last_ran"] > 72000:
         all_verified = get_all_verified()
         write_json_file('stats_data/all_verified.json', all_verified)
-        most_played_maps = get_most_played_maps(all_verified, most_played_old)
+        most_played_maps = get_most_played_maps(all_verified)
         write_json_file('stats_data/most_played_maps.json', most_played_maps)
         most_liked = get_most_liked(all_verified)
         write_json_file('stats_data/most_liked.json', most_liked)
@@ -313,7 +313,7 @@ def get_level_data():
             weekly = 0
         unbeaten_levels = get_unbeaten(all_verified)
         write_json_file('stats_data/unbeaten_levels.json', unbeaten_levels)
-        most_verified = get_most_verified(all_verified)
+        most_verified = get_most_verified(all_verified, most_verified_old)
         write_json_file('stats_data/most_verified.json', most_verified)
         most_plays = get_most_plays(all_verified, most_plays_old)
         write_json_file('stats_data/most_plays.json', most_plays)
