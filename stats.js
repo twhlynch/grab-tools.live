@@ -196,9 +196,9 @@ async function getTopPlayers(limit = 10) {
         for (const id in json_data) {
             const value = json_data[id];
             if (value["count"] != value["levels"]) {
-                document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>${value["count"]} verified of ${value["levels"]} maps</span></div>`;
+                document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["count"]} verified of ${value["levels"]} maps</span></div>`;
             } else {
-                document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>${value["count"]} verified</span></div>`;
+                document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["count"]} verified</span></div>`;
             }
         }
     });
@@ -240,7 +240,7 @@ function getPlaysLevels() {
     .then(json_data => {
         for (const id in json_data) {
             const value = json_data[id];
-            document.getElementById('MostPlays-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>${value["plays"]} from ${value["count"]} / ${value["levels"]} maps</span></div>`;
+            document.getElementById('MostPlays-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["plays"]} from ${value["count"]} / ${value["levels"]} maps</span></div>`;
         }
     });
 }
