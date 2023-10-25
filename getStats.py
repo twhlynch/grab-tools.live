@@ -282,7 +282,7 @@ def get_unbeaten_map():
 def get_level_data():
     with open("stats_data/most_plays.json") as data_file:
         most_plays_old = json.load(data_file)
-    with open("stats_data/most_verified_maps.json") as data_file:
+    with open("stats_data/most_verified.json") as data_file:
         most_verified_old = json.load(data_file)
     message_result = [False, False, False]
     with open("stats_data/log_data.json", 'r') as file:
