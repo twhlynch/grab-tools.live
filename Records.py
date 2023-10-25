@@ -17,10 +17,11 @@ for level in data:
         iter = 0
         if res_data[0]["user_name"] == "EvildragonVR":
             iter = 1
-        if res_data[0]["user_name"] not in leaderboard:
-            leaderboard[res_data[iter]["user_name"]] = [0, []]
-        leaderboard[res_data[iter]["user_name"]][0] += 1
-        leaderboard[res_data[iter]["user_name"]][1].append([level["title"] + "|" + level["identifier"]])
+        if len(res_data) < iter+1:
+            if res_data[0]["user_name"] not in leaderboard:
+                leaderboard[res_data[iter]["user_name"]] = [0, []]
+            leaderboard[res_data[iter]["user_name"]][0] += 1
+            leaderboard[res_data[iter]["user_name"]][1].append([level["title"] + "|" + level["identifier"]])
     print(i)
     i += 1
 
