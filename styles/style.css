@@ -273,7 +273,9 @@ h1.title {
 #judges {
     margin-inline: auto;
 }
-
+#list {
+    display: flex;
+}
 
 .LeaderboardOutput {
     display: none;
