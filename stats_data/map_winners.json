@@ -1559,5 +1559,51 @@
     },
     1698121911,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 26.6559,
+        "user_id": "29wqa67tov5nq1kmxsr2l",
+        "user_name": "QT_synth"
+      },
+      {
+        "position": 1,
+        "best_time": 26.6839,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "dotindex"
+      },
+      {
+        "position": 2,
+        "best_time": 38.672,
+        "user_id": "2beom2etphxca0g9r3zij",
+        "user_name": "zholliss"
+      }
+    ],
+    {
+      "identifier": "2bgi9lylhp5z9ywogu4j1:1694373166",
+      "title": "Milk.and.0reos diffculty chart",
+      "complexity": 1469,
+      "format_version": 7,
+      "update_timestamp": 1696876174459,
+      "creation_timestamp": 1696086634461,
+      "data_key": "level_data:2bgi9lylhp5z9ywogu4j1:1694373166:2",
+      "creators": [
+        "Milk.and.0reos"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 400,
+        "difficulty": 0.02694610778443114,
+        "liked": 0.7142857142857143,
+        "time": 59.34515555555556
+      },
+      "creator": "Milk.and.0reos"
+    },
+    1698210871,
+    "daily_map"
   ]
 ]
