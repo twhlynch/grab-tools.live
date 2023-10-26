@@ -466,3 +466,7 @@ input, #smorg-urls {
     padding: 3px;
     vertical-align: middle;
 }
+#tools .stats-button svg {
+    width: 22px;
+    height: 22px;
+}
