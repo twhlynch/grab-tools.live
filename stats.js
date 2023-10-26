@@ -1,6 +1,7 @@
-document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('stats-button')) {
-        let btnId = e.target.id;
+let buttons = document.querySelectorAll('.stats-button');
+buttons.forEach((btn) => {
+    let btnId = btn.id;
+    btn.addEventListener('click', () => {
         document.querySelectorAll('.LeaderboardOutput').forEach(e => {
             e.style.display = 'none';
         });
@@ -8,8 +9,8 @@ document.addEventListener('click', (e) => {
             e.classList.remove('tab-active');
         });
         document.getElementById(`${btnId}-out`).style.display = "flex";
-        e.target.classList.add('tab-active');
-    }
+        btn.classList.add('tab-active');
+    });
 });
 
 function getUnbeatenLevels() {
