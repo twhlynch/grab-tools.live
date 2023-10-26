@@ -1605,5 +1605,51 @@
     },
     1698210871,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 17.9939,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      },
+      {
+        "position": 1,
+        "best_time": 57.4597,
+        "user_id": "2ap647di3dc1k42jf4o2o",
+        "user_name": "yO0hooVr"
+      },
+      {
+        "position": 2,
+        "best_time": 62.7172,
+        "user_id": "29wqa67tov5nq1kmxsr2l",
+        "user_name": "QT_synth"
+      }
+    ],
+    {
+      "identifier": "2bojjyjkmhegoqt73au7m:1697854070",
+      "title": "Sugar Rush Valley",
+      "complexity": 874,
+      "format_version": 7,
+      "update_timestamp": 1697857420076,
+      "creation_timestamp": 1697857420076,
+      "data_key": "level_data:2bojjyjkmhegoqt73au7m:1697854070:1",
+      "creators": [
+        "Fitartist334071"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 100,
+        "difficulty": 0.010309278350515464,
+        "time": 57.4597,
+        "liked": 0
+      },
+      "creator": "Fitartist334071"
+    },
+    1698297074,
+    "daily_map"
   ]
 ]
