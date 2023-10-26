@@ -71,6 +71,16 @@ function getPlaysLevels() {
             const value = json_data[id];
             document.getElementById('MostPlays-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["plays"]} from ${value["count"]}${(value.count != value.levels) ? (' / '+value["levels"]) : ""} maps</span></div>`;
         }
+
+        const sorted = Object.entries(json_data).sort((a, b) => b[1]["change"] - a[1]["change"]);
+        const filtered = sorted.filter(item => item[1]["change"] != 0);
+
+        console.log(filtered);
+
+        for (const [id, value] of filtered) {
+            document.getElementById('TodaysPlays-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>+${value["change"]}</span></div>`;
+        }
+
     });
 }
 
