@@ -54,6 +54,16 @@ function getTopLikes() {
     });
 }
 
+function getTopDisikes() {
+    fetch('/stats_data/most_disliked.json')
+    .then((response) => response.json())
+    .then(data => {
+        data.forEach(item => {
+            document.getElementById('MostDislikedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${100- (100 * item["statistics"]["liked"])}%</span></div>`;
+        });
+    });
+}
+
 function getTopTimes() {
     fetch('/stats_data/longest_times.json')
     .then((response) => response.json())
@@ -321,6 +331,7 @@ getPlayedLevels();
 getPlaysLevels();
 getTopTimes();
 getTopLikes();
+getTopDisikes();
 getDailyMap();
 getWeeklyMap();
 getUnbeatenMap();

@@ -164,6 +164,14 @@ def get_most_liked(data):
             best.append(map)
     return best[:100]
 
+def get_most_disliked(data):
+    worst = []
+    least_liked = sorted(data, key=lambda x: (x["statistics"]["liked"], -x["creation_timestamp"]))
+    for map in least_liked:
+        if map["statistics"]["total_played"] > 5000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10:
+            worst.append(map)
+    return worst[:100]
+
 def get_daily_winner():
     with open("stats_data/map_winners.json", 'r') as winners, open("stats_data/daily_map.json", "r") as map, open("stats_data/user_blacklist.json", "r") as blacklist:
         map_json = json.load(map)
@@ -294,6 +302,8 @@ def get_level_data():
         write_json_file('stats_data/most_played_maps.json', most_played_maps)
         most_liked = get_most_liked(all_verified)
         write_json_file('stats_data/most_liked.json', most_liked)
+        most_disliked = get_most_disliked(all_verified)
+        write_json_file('stats_data/most_disliked.json', most_disliked)
         longest_times = get_longest_times(all_verified)
         write_json_file('stats_data/longest_times.json', longest_times)
         get_daily_winner()
