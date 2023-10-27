@@ -157,8 +157,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16300,
-      "difficulty": 0.0022811519817507843,
+      "total_played": 16400,
+      "difficulty": 0.0022686454296247283,
       "liked": 1,
       "time": 705.2987916666667
     },
@@ -181,8 +181,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16600,
-      "difficulty": 0.0010527547081530004,
+      "total_played": 16800,
+      "difficulty": 0.0010404624277456647,
       "liked": 1,
       "time": 51.91076666666666
     },
@@ -521,8 +521,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 63700,
-      "difficulty": 0.002177331559211322,
+      "total_played": 63900,
+      "difficulty": 0.002170767004341534,
       "liked": 0.918918918918919,
       "time": 1805.387407407408
     },
@@ -567,8 +567,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 28800,
-      "difficulty": 0.002959053103007038,
+      "total_played": 29100,
+      "difficulty": 0.0029304609535878347,
       "liked": 0.9166666666666666,
       "time": 124.8352891891892
     },
@@ -591,8 +591,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8400,
-      "difficulty": 0.0035165648713677586,
+      "total_played": 8500,
+      "difficulty": 0.0034824046920821114,
       "liked": 0.9166666666666666,
       "time": 551.5497684210527
     },
@@ -852,10 +852,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16500,
-      "difficulty": 0.019139261922385534,
-      "liked": 0.8983050847457628,
-      "time": 171.83049298342536
+      "total_played": 16700,
+      "difficulty": 0.019262981574539362,
+      "liked": 0.8991596638655462,
+      "time": 170.5667517934782
     },
     "creator": "Ima_Rainbow"
   },
@@ -1335,8 +1335,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 55800,
-      "difficulty": 0.000374646640100814,
+      "total_played": 55900,
+      "difficulty": 0.0003740351593049747,
       "liked": 0.875,
       "time": 3856.6569999999992
     },
@@ -1361,8 +1361,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 17100,
-      "difficulty": 0.0019212295869356388,
+      "total_played": 17300,
+      "difficulty": 0.0018998507260143845,
       "liked": 0.875,
       "time": 197.59578571428574
     },
@@ -1385,8 +1385,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 6100,
-      "difficulty": 0.01128084606345476,
+      "total_played": 6200,
+      "difficulty": 0.011118832522585128,
       "liked": 0.875,
       "time": 583.1469854166667
     },
@@ -1432,8 +1432,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 32002,
-      "difficulty": 0.003074181332145244,
+      "total_played": 32102,
+      "difficulty": 0.0030654404904704785,
       "liked": 0.8723404255319149,
       "time": 1913.6602564516124
     },
@@ -1531,6 +1531,24 @@
     "creator": "imawin"
   },
   {
+    "identifier": "29r46v7djliny6t4rzvq7:1674935327",
+    "title": "The Lake",
+    "complexity": 1340,
+    "format_version": 7,
+    "update_timestamp": 1696506095176,
+    "creation_timestamp": 1696506095176,
+    "data_key": "level_data:29r46v7djliny6t4rzvq7:1674935327:1",
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 6800,
+      "difficulty": 0.10971579643093192,
+      "liked": 0.8684931506849315,
+      "time": 142.32151686746968
+    }
+  },
+  {
     "identifier": "29lmtkl6kqeqou0r3azch:1644701448",
     "title": "Frigid Strata",
     "complexity": 331,
@@ -1599,24 +1617,6 @@
     "creator": "itsatrap11190"
   },
   {
-    "identifier": "29r46v7djliny6t4rzvq7:1674935327",
-    "title": "The Lake",
-    "complexity": 1340,
-    "format_version": 7,
-    "update_timestamp": 1696506095176,
-    "creation_timestamp": 1696506095176,
-    "data_key": "level_data:29r46v7djliny6t4rzvq7:1674935327:1",
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 6700,
-      "difficulty": 0.10932619366354306,
-      "liked": 0.8662952646239555,
-      "time": 142.87846408163247
-    }
-  },
-  {
     "identifier": "290oi9eahuxme7h87s2zw:1628729625",
     "title": "Prison Escape v2",
     "complexity": 332,
@@ -1664,29 +1664,6 @@
     "creator": "TheGrimist"
   },
   {
-    "identifier": "29l4bgqjgc3prrst0udbe:1696450909",
-    "title": "Turning Gears",
-    "complexity": 543,
-    "format_version": 7,
-    "update_timestamp": 1696600662343,
-    "creation_timestamp": 1696541843183,
-    "data_key": "level_data:29l4bgqjgc3prrst0udbe:1696450909:2",
-    "description": "Navigate your way through the spinning course! (ANIMATED)",
-    "creators": [
-      "kudcom"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 13900,
-      "difficulty": 0.06057945566286216,
-      "liked": 0.8640226628895185,
-      "time": 266.8410286542444
-    },
-    "creator": "kudcom"
-  },
-  {
     "identifier": "29rhk9gdy7iiza0k3tttk:1667024629",
     "title": "slope VR",
     "complexity": 2289,
@@ -1707,6 +1684,29 @@
       "time": 41.54650836653386
     },
     "creator": "itsatrap11190"
+  },
+  {
+    "identifier": "29l4bgqjgc3prrst0udbe:1696450909",
+    "title": "Turning Gears",
+    "complexity": 543,
+    "format_version": 7,
+    "update_timestamp": 1696600662343,
+    "creation_timestamp": 1696541843183,
+    "data_key": "level_data:29l4bgqjgc3prrst0udbe:1696450909:2",
+    "description": "Navigate your way through the spinning course! (ANIMATED)",
+    "creators": [
+      "kudcom"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 14200,
+      "difficulty": 0.0605091624646415,
+      "liked": 0.8623595505617978,
+      "time": 264.9479935772358
+    },
+    "creator": "kudcom"
   },
   {
     "identifier": "2arn6chfmad0jogazqk7z:1667871087",
@@ -1800,6 +1800,29 @@
     "creator": "cjbeast006"
   },
   {
+    "identifier": "2ap647di3dc1k42jf4o2o:1682810607",
+    "title": "yoohoos difficuity chart",
+    "complexity": 3000,
+    "format_version": 6,
+    "update_timestamp": 1682839616621,
+    "creation_timestamp": 1682839616621,
+    "data_key": "level_data:2ap647di3dc1k42jf4o2o:1682810607:1",
+    "description": "test your skill or die and there is 0 checkpoints",
+    "creators": [
+      "yoohoo vr"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 167200,
+      "difficulty": 0.00994976581648749,
+      "liked": 0.8593272171253823,
+      "time": 99.78736073170731
+    },
+    "creator": "yoohoo vr"
+  },
+  {
     "identifier": "2ak5u4cyuivrwrfb682hs:1674825261",
     "title": "dracula's castle",
     "complexity": 2997,
@@ -1863,10 +1886,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 10100,
-      "difficulty": 0.11393619573039099,
-      "liked": 0.8589211618257261,
-      "time": 319.3594815789471
+      "total_played": 10200,
+      "difficulty": 0.11396316102198455,
+      "liked": 0.8575342465753425,
+      "time": 320.3027052137641
     },
     "creator": "jeffbobdude"
   },
@@ -1891,7 +1914,6 @@
       "liked": 0.8571428571428571,
       "time": 506.92909666666657
     },
-    "page_timestamp": "AAAAAFGMra_g65syCBzN44FNBqJIk7ycxXikTdmPUcVJUIaXadJUxUxkUwzzWQFOYQWKqfBmMOrR2Xp9t0pROY0EHkcQh6IVCKA_3VMx0yc5BiYVuE4wyXpLo7HhZouoeuZj9KrPb5iYfDl7SUTc4nm6MEQA28QKbfjAvhbzoCGq3dLZRZlWUzfWLiGka5oFFiyfaxBBocn2vW5gdok7PIGtM5EBAG5LQc3jYQnbTmmZaDqHQ5ubcKeBcccNWbK4KPV1SsjEiuRgH_22-pzJsjAtoLgCTG6t5Qc_iCy3cWP7Ht8Wz4w5LH9HWwi_ZANshwPQDs3jiUo8gCQlDG6L9Fkyft5bMNtfhmuqI6eIqlNRojFg-K6KMMDi6n-Tf8a_jVK3luYdtIkCQyPcbxSTY38EMgJxGnA",
     "creator": "MC1125"
   },
   {
@@ -1984,29 +2006,6 @@
       "time": 1035.5055413625
     },
     "creator": "22Joshi22"
-  },
-  {
-    "identifier": "2ap647di3dc1k42jf4o2o:1682810607",
-    "title": "yoohoos difficuity chart",
-    "complexity": 3000,
-    "format_version": 6,
-    "update_timestamp": 1682839616621,
-    "creation_timestamp": 1682839616621,
-    "data_key": "level_data:2ap647di3dc1k42jf4o2o:1682810607:1",
-    "description": "test your skill or die and there is 0 checkpoints",
-    "creators": [
-      "yoohoo vr"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 166300,
-      "difficulty": 0.009842855402606895,
-      "liked": 0.8571428571428571,
-      "time": 100.68654950495048
-    },
-    "creator": "yoohoo vr"
   },
   {
     "identifier": "2a3z4abfe72jix3igkiwm:1685391045",
@@ -2220,6 +2219,29 @@
     "creator": "boop"
   },
   {
+    "identifier": "29px3pmrktk2sms8qmvqb:1689442478",
+    "title": "The 20 Layers Of Easy",
+    "complexity": 1579,
+    "format_version": 6,
+    "update_timestamp": 1689533094998,
+    "creation_timestamp": 1689533094998,
+    "data_key": "level_data:29px3pmrktk2sms8qmvqb:1689442478:1",
+    "description": "20 Layers of easy fun parkour",
+    "creators": [
+      "CokeDeee"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 9000,
+      "difficulty": 0.14896196393392938,
+      "liked": 0.8511821974965229,
+      "time": 853.7372990844354
+    },
+    "creator": "CokeDeee"
+  },
+  {
     "identifier": "29gx2im6aa2ylnelnzaki:1640181875",
     "title": "the great parkour map",
     "complexity": 749,
@@ -2268,29 +2290,6 @@
     "creator": "burningfire85"
   },
   {
-    "identifier": "29px3pmrktk2sms8qmvqb:1689442478",
-    "title": "The 20 Layers Of Easy",
-    "complexity": 1579,
-    "format_version": 6,
-    "update_timestamp": 1689533094998,
-    "creation_timestamp": 1689533094998,
-    "data_key": "level_data:29px3pmrktk2sms8qmvqb:1689442478:1",
-    "description": "20 Layers of easy fun parkour",
-    "creators": [
-      "CokeDeee"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 8900,
-      "difficulty": 0.14866931783420007,
-      "liked": 0.8497191011235955,
-      "time": 842.7409032921811
-    },
-    "creator": "CokeDeee"
-  },
-  {
     "identifier": "29g6z3bh87azfj1owz0xj:1643067230",
     "title": "The Entitys Tower",
     "complexity": 349,
@@ -2314,26 +2313,28 @@
     "creator": "EntityArks"
   },
   {
-    "identifier": "29tt9h06ove2r7tgqxk8u:1689188625",
-    "title": "Buddys And Syphons Escape Room",
-    "complexity": 2003,
-    "format_version": 7,
-    "update_timestamp": 1697398858092,
-    "creation_timestamp": 1689718825964,
-    "data_key": "level_data:29tt9h06ove2r7tgqxk8u:1689188625:4",
-    "description": "The BEST Escape Room- Index (it is a joke but it is literally the Best Escape Room) THERE'S A NEW UPDATE",
+    "identifier": "29rkswgx13q8mej7mxdg6:1672351284",
+    "title": "GETTING OVER IT 2",
+    "complexity": 2989,
+    "format_version": 6,
+    "update_timestamp": 1672368950147,
+    "creation_timestamp": 1672368371250,
+    "data_key": "level_data:29rkswgx13q8mej7mxdg6:1672351284:2",
+    "description": "Welcome back to the pain...",
     "creators": [
-      "Syphon"
+      "AFT_Dating",
+      "KooKooKrazy",
+      "and CursedPhantom"
     ],
     "tags": [
       "ok"
     ],
     "statistics": {
-      "total_played": 17600,
-      "difficulty": 0.2920469361147327,
-      "liked": 0.8486017357762777,
-      "time": 270.3241819754457
+      "total_played": 13900,
+      "difficulty": 0.005812724582540689,
+      "liked": 0.8484848484848485,
+      "time": 176.6071218181818
     },
-    "creator": "Syphon"
+    "creator": "AFT_Dating"
   }
 ]
