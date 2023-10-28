@@ -62,8 +62,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8480,
-      "difficulty": 0.0036644165863066536,
+      "total_played": 8580,
+      "difficulty": 0.0036224976167778837,
       "liked": 1,
       "time": 530.9879400000001
     },
@@ -157,8 +157,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16400,
-      "difficulty": 0.0022686454296247283,
+      "total_played": 16500,
+      "difficulty": 0.002256275265582401,
       "liked": 1,
       "time": 705.2987916666667
     },
@@ -181,8 +181,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16800,
-      "difficulty": 0.0010404624277456647,
+      "total_played": 17100,
+      "difficulty": 0.0010223787345223219,
       "liked": 1,
       "time": 51.91076666666666
     },
@@ -325,10 +325,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 5400,
-      "difficulty": 0.01977552111170497,
-      "liked": 0.9387755102040817,
-      "time": 554.792581081081
+      "total_played": 5500,
+      "difficulty": 0.0199632256369845,
+      "liked": 0.9411764705882353,
+      "time": 573.6718552631578
     },
     "creator": "Caziggy"
   },
@@ -521,8 +521,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 63900,
-      "difficulty": 0.002170767004341534,
+      "total_played": 64200,
+      "difficulty": 0.0021635482190792902,
       "liked": 0.918918918918919,
       "time": 1805.387407407408
     },
@@ -567,8 +567,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 29100,
-      "difficulty": 0.0029304609535878347,
+      "total_played": 29400,
+      "difficulty": 0.0029051507537688442,
       "liked": 0.9166666666666666,
       "time": 124.8352891891892
     },
@@ -591,8 +591,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8500,
-      "difficulty": 0.0034824046920821114,
+      "total_played": 8600,
+      "difficulty": 0.0034426526544663887,
       "liked": 0.9166666666666666,
       "time": 551.5497684210527
     },
@@ -852,10 +852,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16700,
-      "difficulty": 0.019262981574539362,
-      "liked": 0.8991596638655462,
-      "time": 170.5667517934782
+      "total_played": 17000,
+      "difficulty": 0.019238683127572015,
+      "liked": 0.9,
+      "time": 168.89363812834222
     },
     "creator": "Ima_Rainbow"
   },
@@ -1335,8 +1335,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 55900,
-      "difficulty": 0.0003740351593049747,
+      "total_played": 56000,
+      "difficulty": 0.0003734129947722181,
       "liked": 0.875,
       "time": 3856.6569999999992
     },
@@ -1361,8 +1361,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 17300,
-      "difficulty": 0.0018998507260143845,
+      "total_played": 17600,
+      "difficulty": 0.0018676627534685165,
       "liked": 0.875,
       "time": 197.59578571428574
     },
@@ -1385,35 +1385,12 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 6200,
-      "difficulty": 0.011118832522585128,
+      "total_played": 6400,
+      "difficulty": 0.010786516853932584,
       "liked": 0.875,
       "time": 583.1469854166667
     },
     "creator": "levi8020"
-  },
-  {
-    "identifier": "29rkswgx13q8mej7mxdg6:1673192588",
-    "title": "BEFOREDEATH 0",
-    "complexity": 2992,
-    "format_version": 7,
-    "update_timestamp": 1697306130417,
-    "creation_timestamp": 1673816032304,
-    "data_key": "level_data:29rkswgx13q8mej7mxdg6:1673192588:3",
-    "description": "the prequel to AFTERLIFE (leads up to the first game)",
-    "creators": [
-      "AFT studios"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 8100,
-      "difficulty": 0.027266134880348077,
-      "liked": 0.8731343283582089,
-      "time": 215.54864893617037
-    },
-    "creator": "AFT studios"
   },
   {
     "identifier": "29t798uon2urbra1f8w2q:1650499561",
@@ -1531,6 +1508,29 @@
     "creator": "imawin"
   },
   {
+    "identifier": "29rkswgx13q8mej7mxdg6:1673192588",
+    "title": "BEFOREDEATH 0",
+    "complexity": 2992,
+    "format_version": 7,
+    "update_timestamp": 1697306130417,
+    "creation_timestamp": 1673816032304,
+    "data_key": "level_data:29rkswgx13q8mej7mxdg6:1673192588:3",
+    "description": "the prequel to AFTERLIFE (leads up to the first game)",
+    "creators": [
+      "AFT studios"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 8200,
+      "difficulty": 0.03142488161859664,
+      "liked": 0.86875,
+      "time": 205.9233004566211
+    },
+    "creator": "AFT studios"
+  },
+  {
     "identifier": "29r46v7djliny6t4rzvq7:1674935327",
     "title": "The Lake",
     "complexity": 1340,
@@ -1609,8 +1609,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 9282,
-      "difficulty": 0.001525940996948118,
+      "total_played": 9382,
+      "difficulty": 0.0015100037750094375,
       "liked": 0.8666666666666667,
       "time": 1429.916
     },
@@ -1701,10 +1701,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 14200,
-      "difficulty": 0.0605091624646415,
-      "liked": 0.8623595505617978,
-      "time": 264.9479935772358
+      "total_played": 14400,
+      "difficulty": 0.060444228668527736,
+      "liked": 0.8631284916201117,
+      "time": 263.28260811244985
     },
     "creator": "kudcom"
   },
@@ -1732,6 +1732,51 @@
     "creator": "cristabon"
   },
   {
+    "identifier": "2a0vlvqwxxjj77ap7s89p:1658438586",
+    "title": "castle raid",
+    "complexity": 1000,
+    "format_version": 4,
+    "update_timestamp": 1658599322126,
+    "creation_timestamp": 1658521190091,
+    "data_key": "level_data:2a0vlvqwxxjj77ap7s89p:1658438586:2",
+    "creators": [
+      "chuck"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 34754,
+      "difficulty": 0.023152606238224828,
+      "liked": 0.8610421836228288,
+      "time": 1853.1612531279147
+    },
+    "creator": "chuck"
+  },
+  {
+    "identifier": "2ap647di3dc1k42jf4o2o:1682810607",
+    "title": "yoohoos difficuity chart",
+    "complexity": 3000,
+    "format_version": 6,
+    "update_timestamp": 1682839616621,
+    "creation_timestamp": 1682839616621,
+    "data_key": "level_data:2ap647di3dc1k42jf4o2o:1682810607:1",
+    "description": "test your skill or die and there is 0 checkpoints",
+    "creators": [
+      "yoohoo vr"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 168300,
+      "difficulty": 0.010145172588709872,
+      "liked": 0.8605341246290801,
+      "time": 98.68267738095237
+    },
+    "creator": "yoohoo vr"
+  },
+  {
     "identifier": "29kr4qh7ycwj79bi87w4w:1643452160",
     "title": "prison",
     "complexity": 617,
@@ -1755,28 +1800,6 @@
     "creator": "ddd"
   },
   {
-    "identifier": "2a0vlvqwxxjj77ap7s89p:1658438586",
-    "title": "castle raid",
-    "complexity": 1000,
-    "format_version": 4,
-    "update_timestamp": 1658599322126,
-    "creation_timestamp": 1658521190091,
-    "data_key": "level_data:2a0vlvqwxxjj77ap7s89p:1658438586:2",
-    "creators": [
-      "chuck"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 34654,
-      "difficulty": 0.023048826567026323,
-      "liked": 0.8596491228070176,
-      "time": 1858.9604295116142
-    },
-    "creator": "chuck"
-  },
-  {
     "identifier": "29l50ea34l4s54rtclzus:1647396700",
     "title": "towers of valhala",
     "complexity": 2986,
@@ -1798,29 +1821,6 @@
       "time": 1472.475804085714
     },
     "creator": "cjbeast006"
-  },
-  {
-    "identifier": "2ap647di3dc1k42jf4o2o:1682810607",
-    "title": "yoohoos difficuity chart",
-    "complexity": 3000,
-    "format_version": 6,
-    "update_timestamp": 1682839616621,
-    "creation_timestamp": 1682839616621,
-    "data_key": "level_data:2ap647di3dc1k42jf4o2o:1682810607:1",
-    "description": "test your skill or die and there is 0 checkpoints",
-    "creators": [
-      "yoohoo vr"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 167200,
-      "difficulty": 0.00994976581648749,
-      "liked": 0.8593272171253823,
-      "time": 99.78736073170731
-    },
-    "creator": "yoohoo vr"
   },
   {
     "identifier": "2ak5u4cyuivrwrfb682hs:1674825261",
@@ -2164,8 +2164,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 121600,
-      "difficulty": 0.0018703904440051861,
+      "total_played": 121700,
+      "difficulty": 0.0018691985811083499,
       "liked": 0.8524590163934426,
       "time": 2263.767863636363
     },

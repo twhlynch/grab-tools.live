@@ -1744,5 +1744,51 @@
     },
     1698384395,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 30.2577,
+        "user_id": "2b5f06beql4s712awjzd1",
+        "user_name": "oculus_crab07"
+      },
+      {
+        "position": 1,
+        "best_time": 43.241,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "dotindex"
+      },
+      {
+        "position": 2,
+        "best_time": 49.6265,
+        "user_id": "29wqa67tov5nq1kmxsr2l",
+        "user_name": "QT_synth"
+      }
+    ],
+    {
+      "identifier": "2b177hao1rzgp5hlnw0ki:1696169086",
+      "title": "GOD TIER LAVA PARKOR",
+      "complexity": 111,
+      "format_version": 7,
+      "update_timestamp": 1698277643922,
+      "creation_timestamp": 1698277643922,
+      "data_key": "level_data:2b177hao1rzgp5hlnw0ki:1696169086:1",
+      "creators": [
+        "Willi_2009 CYDIGI3"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 200,
+        "difficulty": 0.00558659217877095,
+        "time": 43.241,
+        "liked": 0
+      },
+      "creator": "Willi_2009 CYDIGI3"
+    },
+    1698469838,
+    "daily_map"
   ]
 ]
