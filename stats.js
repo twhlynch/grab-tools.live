@@ -49,7 +49,7 @@ function getTopLikes() {
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
-            document.getElementById('MostLikedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${Math.round(100 * item["statistics"]["liked"])}%</span></div>`;
+            document.getElementById('MostLikedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${Math.round(item["statistics"]["liked"] * item["statistics"]["difficulty"] * item["statistics"]["total_played"])} (${Math.round(100 * item["statistics"]["liked"])}%)</span></div>`;
         });
     });
 }
@@ -59,7 +59,7 @@ function getTopDisikes() {
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
-            document.getElementById('MostDislikedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${Math.round(100- (100 * item["statistics"]["liked"]))}%</span></div>`;
+            document.getElementById('MostDislikedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${Math.round(item["statistics"]["liked"] * item["statistics"]["difficulty"] * item["statistics"]["total_played"])} (${Math.round(100- (100 * item["statistics"]["liked"]))}%)</span></div>`;
         });
     });
 }
