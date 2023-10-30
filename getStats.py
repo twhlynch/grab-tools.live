@@ -158,18 +158,20 @@ def get_longest_times(data):
 
 def get_most_liked(data):
     best = []
-    most_liked = sorted(data, key=lambda x: (x["statistics"]["liked"], -x["creation_timestamp"]), reverse=True)
+    most_liked = sorted(data, key=lambda x: x["statistics"]["liked"] * x["statistics"]["difficulty"] * x["statistics"]["total_played"], reverse=True)
     for map in most_liked:
-        if map["statistics"]["total_played"] > 5000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10:
+        if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10:
             best.append(map)
+    # best.sort(key=lambda x: x["statistics"]["liked"], reverse=True)
     return best[:100]
 
 def get_most_disliked(data):
     worst = []
-    least_liked = sorted(data, key=lambda x: (x["statistics"]["liked"], -x["creation_timestamp"]))
+    least_liked = sorted(data, key=lambda x: x["statistics"]["liked"] * x["statistics"]["difficulty"] * x["statistics"]["total_played"])
     for map in least_liked:
-        if map["statistics"]["total_played"] > 5000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10:
+        if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10:
             worst.append(map)
+    # worst.sort(key=lambda x: x["statistics"]["liked"])
     return worst[:100]
 
 def get_daily_winner():
