@@ -146,8 +146,7 @@ addEventListener("click", async (e) => {
                 id = userData[0].user_id.toLowerCase();
             } catch (error) {
                 console.error("Error fetching user data:", error);
-                var rand = Math.floor(Math.random() * 11);
-                id = '29sgp24f1uorbc6vq8d2k';
+                id = '290oi9frh8eihrh1r5z0q';
             }
         }
 
