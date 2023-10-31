@@ -191,17 +191,33 @@ addEventListener("click", async (e) => {
         levels = levels.filter(level => level.statistics.hasOwnProperty("total_played"));
         levels.sort((a, b) => b.statistics.total_played - a.statistics.total_played);
 
-        let total = 0;
         output.querySelectorAll('.leaderboard-item').forEach(e => e.remove());
-
         const fragment = document.createDocumentFragment();
 
+        let total_plays = 0;
+        let total_okplays = 0;
+        let total_maps = 0;
+        let total_ok = 0;
+        let average_likes = 0;
+        let likes_count = 0;
+        let average_difficulty = 0;
+        let difficulty_count = 0;
+        let average_time = 0;
+        let time_count = 0;
+        let total_complexity = 0;
+
         levels.forEach(item => {
-            try {
-                total += item.statistics.total_played;
-            } catch (error) {
-                console.error("Error accessing total_played:", error);
-            }
+            total_maps += 1;
+            item?.statistics?.total_played ? total_plays += item?.statistics?.total_played : null;
+            item?.tags?.includes("ok") ? total_okplays += item?.statistics?.total_played : null;
+            item?.tags?.includes("ok") ? total_ok += 1 : null;
+            item?.statistics?.liked ? average_likes += item?.statistics?.liked : null;
+            item?.statistics?.liked ? likes_count += 1 : null;
+            item?.statistics?.difficulty ? average_difficulty += item?.statistics?.difficulty : null;
+            item?.statistics?.difficulty ? difficulty_count += 1 : null;
+            item?.statistics?.time ? average_time += item?.statistics?.time : null;
+            item?.statistics?.time ? time_count += 1 : null;
+            item?.complexity ? total_complexity += item?.complexity : null;
 
             const levelDiv = document.createElement('div');
             levelDiv.classList.add('leaderboard-item');
@@ -215,7 +231,14 @@ addEventListener("click", async (e) => {
 
         output.appendChild(fragment);
 
-        document.getElementById('counter').innerHTML = `<b>Total plays: ${total}</b>`;
+        document.getElementById('plays-results').innerHTML = `<b>Total plays: ${total_plays}</b>`;
+        document.getElementById('okplays-results').innerHTML = `<b>Total verified plays: ${total_okplays}</b>`;
+        document.getElementById('maps-results').innerHTML = `<b>Total maps: ${total_maps}</b>`;
+        document.getElementById('ok-results').innerHTML = `<b>Total verified maps: ${total_ok}</b>`;
+        document.getElementById('likes-results').innerHTML = `<b>Average likes: ${Math.round((average_likes * 100) / likes_count)}%</b>`;
+        document.getElementById('difficulty-results').innerHTML = `<b>Average difficulty: ${Math.round(100 - ((average_difficulty * 100) / difficulty_count))}%</b>`;
+        document.getElementById('time-results').innerHTML = `<b>Average time: ${Math.round(Math.round(average_time / time_count))}s</b>`;
+        document.getElementById('complexity-results').innerHTML = `<b>Total complexity: ${total_complexity}</b>`;
     }
 });
 
@@ -324,6 +347,17 @@ function getChallengeScores() {
     });
 }
 
+function getGlobalPlays() {
+    fetch('/stats_data/all_verified.json')
+    .then((response) => response.json())
+    .then(data => {
+        let total_global_plays = 0;
+        for (const level of data) {
+            total_global_plays += level?.statistics?.total_played;
+        }
+        document.getElementById('counter').innerHTML = `<b>Total global plays: ${total_global_plays}</b>`;
+    });
+}
 
 getTopPlayers();
 getUnbeatenLevels();
@@ -337,3 +371,4 @@ getWeeklyMap();
 getUnbeatenMap();
 getChallengeScores();
 getKeyWords();
+getGlobalPlays();
