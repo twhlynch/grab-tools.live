@@ -271,8 +271,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 14600,
-      "difficulty": 0.000709471443774388,
+      "total_played": 14700,
+      "difficulty": 0.0007046595613494231,
       "liked": 0.75,
       "time": 118.131775
     },
@@ -294,8 +294,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16062,
-      "difficulty": 0.000904295403165034,
+      "total_played": 16162,
+      "difficulty": 0.0008998200359928015,
       "liked": 0.5555555555555556,
       "time": 1062.3494999999996
     },
@@ -1001,30 +1001,6 @@
     "creator": "BWLBuck'CursedPhantom and ColVillian and EBSpark"
   },
   {
-    "identifier": "29t798uon2urbra1f8w2q:1684797189",
-    "title": "Peaks-Canyon Climb",
-    "complexity": 2986,
-    "format_version": 6,
-    "update_timestamp": 1686357014861,
-    "creation_timestamp": 1686357014861,
-    "data_key": "level_data:29t798uon2urbra1f8w2q:1684797189:1",
-    "description": "simple endurence climbing ",
-    "creators": [
-      "BlackCat508",
-      "Battlesquid112"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 4000,
-      "difficulty": 0.002875399361022364,
-      "liked": 1,
-      "time": 1445.109888888889
-    },
-    "creator": "BlackCat508"
-  },
-  {
     "identifier": "29uyvcxcuqnm4ekq7z5u0:1672004775",
     "title": "GRAB VR 6",
     "complexity": 3000,
@@ -1046,6 +1022,30 @@
       "time": 485.5991666666666
     },
     "creator": "Triplecyber57 JeffBobDude"
+  },
+  {
+    "identifier": "29t798uon2urbra1f8w2q:1684797189",
+    "title": "Peaks-Canyon Climb",
+    "complexity": 2986,
+    "format_version": 6,
+    "update_timestamp": 1686357014861,
+    "creation_timestamp": 1686357014861,
+    "data_key": "level_data:29t798uon2urbra1f8w2q:1684797189:1",
+    "description": "simple endurence climbing ",
+    "creators": [
+      "BlackCat508",
+      "Battlesquid112"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 4100,
+      "difficulty": 0.0028186658315064203,
+      "liked": 1,
+      "time": 1445.109888888889
+    },
+    "creator": "BlackCat508"
   },
   {
     "identifier": "29h3fwz7t7qrs4yd07ykf:1653100442",
@@ -1343,30 +1343,6 @@
     "creator": "coolgamer056"
   },
   {
-    "identifier": "2ag78daeo0xaz2bca9eq3:1697868530",
-    "title": "SKILLS ONLY 9",
-    "complexity": 2953,
-    "format_version": 7,
-    "update_timestamp": 1698231295980,
-    "creation_timestamp": 1698230021238,
-    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:1697868530:2",
-    "description": "FOLLOW US ON TIK TOK (BLVDVK & DOTINDEX) SEIZURE WARNING, BE CARFUL & MAKE SURE TO HYDRATE!!!",
-    "creators": [
-      "BLUDUK",
-      ".index"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 6700,
-      "difficulty": 0.002435064935064935,
-      "liked": 0.8,
-      "time": 2189.900111111112
-    },
-    "creator": "BLUDUK"
-  },
-  {
     "identifier": "2aa73bmv50jap4z792rrz:1659597081",
     "title": "space climb",
     "complexity": 954,
@@ -1415,6 +1391,30 @@
       "time": 339.4531818181818
     },
     "creator": "Cursedphantom(RMB)"
+  },
+  {
+    "identifier": "2ag78daeo0xaz2bca9eq3:1697868530",
+    "title": "SKILLS ONLY 9",
+    "complexity": 2953,
+    "format_version": 7,
+    "update_timestamp": 1698231295980,
+    "creation_timestamp": 1698230021238,
+    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:1697868530:2",
+    "description": "FOLLOW US ON TIK TOK (BLVDVK & DOTINDEX) SEIZURE WARNING, BE CARFUL & MAKE SURE TO HYDRATE!!!",
+    "creators": [
+      "BLUDUK",
+      ".index"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 7100,
+      "difficulty": 0.0023261824760920135,
+      "liked": 0.8,
+      "time": 2139.170444444445
+    },
+    "creator": "BLUDUK"
   },
   {
     "identifier": "2bmuky1ruhsbvvz6rtss8:1688699826",
