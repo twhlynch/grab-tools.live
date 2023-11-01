@@ -1,56 +1,76 @@
-let webusb = null;
-let adb = null;
-let shell = null;
-let sync = null;
+let adb;
+let webusb;
+let decoder = new TextDecoder();
+let input = document.getElementById("input");
 
-async function connectUsb() {
-    try {
-        webusb = await Adb.open("WebUSB");
-        adb = await webusb.connectAdb("host::");
-    } catch (e) { console.log(e); }
-    if (adb != null) {
-        alert("Success! (If headset sleeps, it worked.)");
-        shell = await adb.shell(`input keyevent KEYCODE_SLEEP`);
-    }
-}
-async function listQuestLevels() {
-    shell = await adb.shell(`ls /sdcard/Android/data/com.slindev.grab_demo/files/levels/user/`);
-    let r = await shell.receive();
-    let directoryListing = decoder.decode(r.data);
+let init = async () => {
+    webusb = await Adb.open("WebUSB");
+};
 
-    let container = document.getElementById('levels-container');
-    container.innerHTML = '';
-    let levels = directoryListing.replaceAll(" ", "").replaceAll("\n", "").split('.level');
-    levels.forEach(level => {
-        if (level != '') {
-            let levelElement = document.createElement('div');
-            levelElement.classList.add('level');
-            levelElement.innerText = level+".level";
-            levelElement.addEventListener('click', () => {
-                openQuestLevel(level+".level");
+let connect = async () => {
+    if (webusb.isAdb()) {
+        try {
+            adb = null;
+            adb = await webusb.connectAdb("host::", () => {
+                console.log(
+                    "Please check the screen of your " + webusb.device.productName + "."
+                );
             });
-            console.log(level+".level");
-            container.appendChild(levelElement);
+        } catch (error) {
+            console.error(error);
+            adb = null;
         }
-    });
-}
-async function saveToQuest(name=(Date.now()).toString().slice(0, -3)) {
-    let obj = getLevel();
-    let {root} = protobuf.parse(PROTOBUF_DATA, { keepCase: true });
-    let message = root.lookupType("COD.Level.Level");
-    let errMsg = message.verify(obj);
-    if(errMsg) {throw Error(errMsg)};
-    let buffer = message.encode(message.fromObject(obj)).finish();
-    
-    let blob = new Blob([buffer], {type: "application/octet-stream"});
-    let file = new File([blob], name+".level");
-    
-    sync = await adb.sync();
-    let push_dest = `/sdcard/Android/data/com.slindev.grab_demo/files/levels/user/${file.name}`;
-    await sync.push(file, push_dest, "0644");
+    }
+};
+
+let disconnect = async () => {
+    webusb.close();
+};
+
+let pull = async (filename) => {
+    let sync = await adb.sync();
+    let content = await sync.pull(filename);
+
     await sync.quit();
-    sync = null;
-    alert("Success!");
+
+    return content;
+};
+
+let push = async (content, filename) => {
+    let sync = await adb.sync();
+    await sync.push(content, filename, "0777");
+
+    await sync.quit();
 }
-connectUsb();
-listQuestLevels();
+
+let download = async (filename) => {
+    let data = await pull(filename);
+    let a = document.createElement('a')
+    a.href = URL.createObjectURL(new Blob([data]));
+    a.download = filename.replaceAll("\\", "/").split("/").pop();
+    a.click();
+};
+
+let list = async (folder) => {
+    let sync = await adb.sync();
+    let shell = await adb.shell(`ls -l ${folder}`);
+    let r = await shell.receive();
+    let files = decoder.decode(r.data);
+
+    await sync.quit();
+
+    return files;
+};
+
+let test = async () => {
+    await init();
+    await connect();
+    let files = input.files;
+    for (let i = 0; i < files.length; i++) {
+        await push(files[i], "sdcard/Download/"+files[i].name);
+    }
+    
+    await disconnect();
+};
+
+input.onchange = test;
