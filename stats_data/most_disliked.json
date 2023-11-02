@@ -207,30 +207,6 @@
     "creator": "EBSpark"
   },
   {
-    "identifier": "29t798uon2urbra1f8w2q:1676509386",
-    "title": "Peaks-Spiked Climb",
-    "complexity": 2998,
-    "format_version": 6,
-    "update_timestamp": 1677203130216,
-    "creation_timestamp": 1677203130216,
-    "data_key": "level_data:29t798uon2urbra1f8w2q:1676509386:1",
-    "description": "Simple endurence climbing",
-    "creators": [
-      "BlackCat508",
-      "Battlesquid112"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 7000,
-      "difficulty": 0.0014419610670511895,
-      "liked": 0.75,
-      "time": 1298.5403375
-    },
-    "creator": "BlackCat508"
-  },
-  {
     "identifier": "29t0awh1gulr6jyup13wf:1670163862",
     "title": "quick but scary and hard with a surprise at the end obby",
     "complexity": 971,
@@ -271,8 +247,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 14700,
-      "difficulty": 0.0007046595613494231,
+      "total_played": 14800,
+      "difficulty": 0.0007004640574380527,
       "liked": 0.75,
       "time": 118.131775
     },
@@ -392,6 +368,30 @@
       "time": 742.2949960899999
     },
     "creator": "Ravensniper1234"
+  },
+  {
+    "identifier": "29t798uon2urbra1f8w2q:1676509386",
+    "title": "Peaks-Spiked Climb",
+    "complexity": 2998,
+    "format_version": 6,
+    "update_timestamp": 1677203130216,
+    "creation_timestamp": 1677203130216,
+    "data_key": "level_data:29t798uon2urbra1f8w2q:1676509386:1",
+    "description": "Simple endurence climbing",
+    "creators": [
+      "BlackCat508",
+      "Battlesquid112"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 7100,
+      "difficulty": 0.001601993592025632,
+      "liked": 0.8,
+      "time": 1217.8357444444446
+    },
+    "creator": "BlackCat508"
   },
   {
     "identifier": "29ngj2xcdlinnuqz0vrw5:1666834704",
@@ -1409,8 +1409,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7100,
-      "difficulty": 0.0023261824760920135,
+      "total_played": 7600,
+      "difficulty": 0.002192448233861145,
       "liked": 0.8,
       "time": 2139.170444444445
     },
