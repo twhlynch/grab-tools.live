@@ -18,21 +18,54 @@ for (let i = 0; i < links.length; i++) {
     });
 }
 
-const currentTime = document.getElementById("currentTime");
-const currentState = document.getElementById("currentState");
-const time = new Date();
+if (document.title === "GRAB Tools") {
+    const currentTime = document.getElementById("currentTime");
+    const currentState = document.getElementById("currentState");
+    const time = new Date();
 
-const options = { timeZone: 'Australia/Melbourne' };
-const localTime = time.toLocaleString('en-US', options);
+    const options = { timeZone: 'Australia/Melbourne' };
+    const localTime = time.toLocaleString('en-US', options);
 
-let hour = new Date(localTime).getHours();
+    let hour = new Date(localTime).getHours();
 
-if (hour >= 17 && hour < 24) {
-    currentState.innerHTML = "awake";
-} else if (hour >= 9 && hour < 17) {
-    currentState.innerHTML = "working";
-} else {
-    currentState.innerHTML = "sleeping";
+    if (hour >= 17 && hour < 24) {
+        currentState.innerHTML = "awake";
+    } else if (hour >= 9 && hour < 17) {
+        currentState.innerHTML = "working";
+    } else {
+        currentState.innerHTML = "sleeping";
+    }
+    let minutes = new Date(localTime).getMinutes();
+    currentTime.innerHTML = `${hour < 12 ? hour : hour - 12}:${minutes < 10 ? '0' + minutes : minutes} ${hour >= 12 ? "PM" : "AM"}`;
 }
-let minutes = new Date(localTime).getMinutes();
-currentTime.innerHTML = `${hour < 12 ? hour : hour - 12}:${minutes < 10 ? '0' + minutes : minutes} ${hour >= 12 ? "PM" : "AM"}`;
+
+const ads = document.getElementById("ads");
+setInterval(() => {
+    if (window.innerWidth > 1200) {
+        ads.innerHTML = `
+        <div id="ads-overlay-r">
+            <amp-ad
+                layout="fixed"
+                width="120"
+                height="400"
+                type="adsense"
+                data-ad-client="ca-pub-2378042345376266"
+                data-ad-slot="6059350775">
+            </amp-ad>
+        </div>
+        <div id="ads-overlay-l">
+            <amp-ad
+                layout="fixed"
+                width="120"
+                height="400"
+                type="adsense"
+                data-ad-client="ca-pub-2378042345376266"
+                data-ad-slot="6059350775">
+            </amp-ad>
+        </div>
+        `;
+    } else {
+        ads.innerHTML = "";
+    }
+    console.log("ads");
+}, 1000);

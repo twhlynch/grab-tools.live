@@ -492,3 +492,29 @@ input, #smorg-urls {
     font-size: 20px;
     color: var(--text-color-accent);
 }
+
+#ads {
+    height: 0;
+    width: 0;
+    overflow: visible;
+}
+#ads-overlay-r {
+    right: 0;
+}
+#ads-overlay-l {
+    left: 0;
+}
+#ads-overlay-l, #ads-overlay-r {
+    height: 100vh;
+    width: 120px;
+    position: fixed;
+    top: 0;
+    display: grid;
+    place-items: center;
+    background-color: #00000055;
+}
+@media screen and (max-width: 1200px) {
+    #ads {
+        display: none;
+    }
+}
