@@ -2057,5 +2057,100 @@
     },
     1698901916,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 6.26803,
+        "user_id": "2a6ekr378kiwrrodjri7e",
+        "user_name": "YelloducVR"
+      },
+      {
+        "position": 1,
+        "best_time": 6.96804,
+        "user_id": "2aer1ouapoy5r6fidnezr",
+        "user_name": "AzimuthGT"
+      },
+      {
+        "position": 2,
+        "best_time": 8.07605,
+        "user_id": "2aq9fh6i6l4soav6z570t",
+        "user_name": "Eyspi"
+      }
+    ],
+    {
+      "identifier": "2btrmb2eeku7a3vve4vzk:1698442498",
+      "title": "nature",
+      "complexity": 1673,
+      "format_version": 7,
+      "update_timestamp": 1698882074925,
+      "creation_timestamp": 1698444475705,
+      "data_key": "level_data:2btrmb2eeku7a3vve4vzk:1698442498:4",
+      "description": "hi",
+      "creators": [
+        "draginvr"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 100,
+        "difficulty": 0.5568181818181818,
+        "liked": 0.9285714285714286,
+        "time": 22.478064693877545
+      },
+      "creator": "draginvr"
+    },
+    1698988310,
+    "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 347.787,
+        "user_id": "2bjz8nebkbbt9ima3sn9x",
+        "user_name": "ThomasM10"
+      },
+      {
+        "position": 1,
+        "best_time": 429.119,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7"
+      },
+      {
+        "position": 2,
+        "best_time": 434.751,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      }
+    ],
+    {
+      "identifier": "2aa51k2ga9394jlg03h13:1682176457",
+      "title": "SKILL ISSUE 1",
+      "complexity": 1068,
+      "format_version": 6,
+      "update_timestamp": 1682368414137,
+      "creation_timestamp": 1682368414137,
+      "data_key": "level_data:2aa51k2ga9394jlg03h13:1682176457:1",
+      "description": "A better skills only (TOTALLY)",
+      "creators": [
+        "3zb",
+        "mercury174"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 800,
+        "difficulty": 0.0013812154696132596,
+        "liked": 1,
+        "time": 429.119
+      },
+      "creator": "3zb"
+    },
+    1698988311,
+    "weekly_map"
   ]
 ]
