@@ -511,7 +511,7 @@ input, #smorg-urls {
     top: 0;
     display: grid;
     place-items: center;
-    background-color: #00000055;
+    /* background-color: #00000055; */
 }
 @media screen and (max-width: 1200px) {
     #ads {
