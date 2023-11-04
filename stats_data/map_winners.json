@@ -2152,5 +2152,52 @@
     },
     1698988311,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 239.444,
+        "user_id": "2bjz8nebkbbt9ima3sn9x",
+        "user_name": "ThomasM10"
+      },
+      {
+        "position": 1,
+        "best_time": 546.211,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071"
+      },
+      {
+        "position": 2,
+        "best_time": 1196.82,
+        "user_id": "29ffxg2ijqxyrgxyy2vjj",
+        "user_name": "FROSTY_CROSS"
+      }
+    ],
+    {
+      "identifier": "2b9nzi1l8bepm47u5mj24:1698704065",
+      "title": "clostraphobia",
+      "complexity": 502,
+      "format_version": 7,
+      "update_timestamp": 1698972852081,
+      "creation_timestamp": 1698972852081,
+      "data_key": "level_data:2b9nzi1l8bepm47u5mj24:1698704065:1",
+      "description": "small parkour",
+      "creators": [
+        "slapwe"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 25,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "creator": "slapwe"
+    },
+    1699074680,
+    "daily_map"
   ]
 ]
