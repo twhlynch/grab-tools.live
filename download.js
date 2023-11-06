@@ -17,6 +17,14 @@ async function download(id) {
 const urlParams = new URLSearchParams(window.location.search);
 const level = urlParams.get('level');
 if (level) {
-    download(level);
+    console.log(level);
+    const levels = level.split(" ");
+    downloadAll(levels);
 }
 
+async function downloadAll(levels) {
+    console.log(levels);
+    for (let i = 0; i < levels.length; i++) {
+        await download(levels[i]);
+    }
+}

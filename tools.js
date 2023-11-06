@@ -45,7 +45,12 @@ document.getElementById('smorg-btn').addEventListener('click', () => {
     let links = document.getElementById('smorg-urls').value;
     links = links.split(',');
     console.log(links);
-    smorgasbord(links);
+    // smorgasbord(links);
+    for (let i = 0; i < links.length; i++) {
+        links[i] = links[i].split('=')[1];
+    }
+    links = links.join('+');
+    window.location.href = `download.html?level=${links}`;
 });
 
 
