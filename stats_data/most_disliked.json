@@ -270,8 +270,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16262,
-      "difficulty": 0.0008951883625512868,
+      "total_played": 16362,
+      "difficulty": 0.0008908024645534853,
       "liked": 0.5555555555555556,
       "time": 1062.3494999999996
     },
@@ -439,6 +439,29 @@
       "time": 509.9844444444444
     },
     "creator": "shadowmaker99"
+  },
+  {
+    "identifier": "29l4bgqjgc3prrst0udbe:1656253628",
+    "title": "The Rise",
+    "complexity": 283,
+    "format_version": 4,
+    "update_timestamp": 1656546876041,
+    "creation_timestamp": 1656546876041,
+    "data_key": "level_data:29l4bgqjgc3prrst0udbe:1656253628:1",
+    "description": "The Rise. The first of a trilogy of levels. Can you beat them all?",
+    "creators": [
+      "kudcom"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 6934,
+      "difficulty": 0.0015434745326702109,
+      "liked": 0.8571428571428571,
+      "time": 449.184811111111
+    },
+    "creator": "kudcom"
   },
   {
     "identifier": "2af2v4lqxksl1ru5itxr1:1677507116",
@@ -1024,30 +1047,6 @@
     "creator": "Triplecyber57 JeffBobDude"
   },
   {
-    "identifier": "29t798uon2urbra1f8w2q:1684797189",
-    "title": "Peaks-Canyon Climb",
-    "complexity": 2986,
-    "format_version": 6,
-    "update_timestamp": 1686357014861,
-    "creation_timestamp": 1686357014861,
-    "data_key": "level_data:29t798uon2urbra1f8w2q:1684797189:1",
-    "description": "simple endurence climbing ",
-    "creators": [
-      "BlackCat508",
-      "Battlesquid112"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 4100,
-      "difficulty": 0.0028186658315064203,
-      "liked": 1,
-      "time": 1445.109888888889
-    },
-    "creator": "BlackCat508"
-  },
-  {
     "identifier": "29h3fwz7t7qrs4yd07ykf:1653100442",
     "title": "Tower of Shags 2",
     "complexity": 965,
@@ -1132,8 +1131,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 4000,
-      "difficulty": 0.003346516580468512,
+      "total_played": 4100,
+      "difficulty": 0.003261191817373258,
       "liked": 0.8888888888888888,
       "time": 557.0279090909091
     },
@@ -1385,8 +1384,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3800,
-      "difficulty": 0.003462385898646522,
+      "total_played": 3900,
+      "difficulty": 0.0033783783783783786,
       "liked": 1,
       "time": 339.4531818181818
     },
@@ -1485,30 +1484,6 @@
     "creator": "MC1125"
   },
   {
-    "identifier": "2ag78daeo0xaz2bca9eq3:1697868530",
-    "title": "SKILLS ONLY 9",
-    "complexity": 2953,
-    "format_version": 7,
-    "update_timestamp": 1698231295980,
-    "creation_timestamp": 1698230021238,
-    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:1697868530:2",
-    "description": "FOLLOW US ON TIK TOK (BLVDVK & DOTINDEX) SEIZURE WARNING, BE CARFUL & MAKE SURE TO HYDRATE!!!",
-    "creators": [
-      "BLUDUK",
-      ".index"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 9500,
-      "difficulty": 0.0018156142828323583,
-      "liked": 0.8,
-      "time": 2109.9392222222227
-    },
-    "creator": "BLUDUK"
-  },
-  {
     "identifier": "29mirpsj1sj6qgc7iuwy6:1669935131",
     "title": "wonky skills 1",
     "complexity": 566,
@@ -1556,6 +1531,30 @@
       "time": 424.2825625
     },
     "creator": "galaxy0921"
+  },
+  {
+    "identifier": "29t798uon2urbra1f8w2q:1684797189",
+    "title": "Peaks-Canyon Climb",
+    "complexity": 2986,
+    "format_version": 6,
+    "update_timestamp": 1686357014861,
+    "creation_timestamp": 1686357014861,
+    "data_key": "level_data:29t798uon2urbra1f8w2q:1684797189:1",
+    "description": "simple endurence climbing ",
+    "creators": [
+      "BlackCat508",
+      "Battlesquid112"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 4200,
+      "difficulty": 0.0033680342927127987,
+      "liked": 1,
+      "time": 1188.0398181818182
+    },
+    "creator": "BlackCat508"
   },
   {
     "identifier": "2a16lrhk70q0s94hkbdwz:1663289818",
@@ -1897,6 +1896,30 @@
       "time": 1108.8045882352942
     },
     "creator": "Ravensniper1234"
+  },
+  {
+    "identifier": "2ag78daeo0xaz2bca9eq3:1697868530",
+    "title": "SKILLS ONLY 9",
+    "complexity": 2953,
+    "format_version": 7,
+    "update_timestamp": 1698231295980,
+    "creation_timestamp": 1698230021238,
+    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:1697868530:2",
+    "description": "FOLLOW US ON TIK TOK (BLVDVK & DOTINDEX) SEIZURE WARNING, BE CARFUL & MAKE SURE TO HYDRATE!!!",
+    "creators": [
+      "BLUDUK",
+      ".index"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 10200,
+      "difficulty": 0.001889287738522577,
+      "liked": 0.8,
+      "time": 2050.9213000000004
+    },
+    "creator": "BLUDUK"
   },
   {
     "identifier": "29lmtkl6kqeqou0r3azch:1644701448",
@@ -2293,28 +2316,5 @@
       "time": 342.89768749999996
     },
     "creator": "Diskeren"
-  },
-  {
-    "identifier": "29st9jdcbxxotp0t9d8en:1668039641",
-    "title": "The New World",
-    "complexity": 2600,
-    "format_version": 6,
-    "update_timestamp": 1668042553411,
-    "creation_timestamp": 1668042553411,
-    "data_key": "level_data:29st9jdcbxxotp0t9d8en:1668039641:1",
-    "description": "After you fell in the hole in the train yard you find yourself trapped in another world",
-    "creators": [
-      "Mystery8281"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 5200,
-      "difficulty": 0.004117219665778639,
-      "liked": 0.8,
-      "time": 604.3760588235295
-    },
-    "creator": "Mystery8281"
   }
 ]
