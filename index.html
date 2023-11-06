@@ -85,6 +85,19 @@
                 }
             })();">Open In Editor</a>
             <a href="javascript:(()=>{document.getElementById('download-button').click()})();" class="bookmarklet button">Download As glTF</a>
+            <a href="javascript:(()=>{ 
+                var url = window.location.href;
+                var idRegex = /level=([^&]+)/;
+                var match = url.match(idRegex);
+                
+                if (match && match[1]) {
+                    var id = match[1];
+                    var newUrl = 'http://grab-tools.live/download.html?level=' + id;
+                    window.location.href = newUrl;
+                } else {
+                    alert('Could not find level ID in the URL.');
+                }
+            })();" class="bookmarklet button">Download</a>
         </section>
         <section id="about">
             <h2>.index</h2>
