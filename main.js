@@ -67,5 +67,4 @@ setInterval(() => {
     } else {
         ads.innerHTML = "";
     }
-    console.log("ads");
 }, 1000);
