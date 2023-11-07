@@ -518,3 +518,6 @@ input, #smorg-urls {
         display: none;
     }
 }
+#extension-update {
+    display: none;
+}
