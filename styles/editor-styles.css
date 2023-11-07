@@ -21,6 +21,9 @@
             #editor-ad-container {
                 height: 40%;
                 width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+                max-height: 40%;
             }
             #terminal-input {
                 background-color: #252526;
