@@ -39,32 +39,32 @@ if (document.title === "GRAB Tools") {
     currentTime.innerHTML = `${hour < 12 ? hour : hour - 12}:${minutes < 10 ? '0' + minutes : minutes} ${hour >= 12 ? "PM" : "AM"}`;
 }
 
-const ads = document.getElementById("ads");
-setInterval(() => {
-    if (window.innerWidth > 1200) {
-        ads.innerHTML = `
-        <div id="ads-overlay-r">
-            <amp-ad
-                layout="fixed"
-                width="120"
-                height="400"
-                type="adsense"
-                data-ad-client="ca-pub-2378042345376266"
-                data-ad-slot="6059350775">
-            </amp-ad>
-        </div>
-        <div id="ads-overlay-l">
-            <amp-ad
-                layout="fixed"
-                width="120"
-                height="400"
-                type="adsense"
-                data-ad-client="ca-pub-2378042345376266"
-                data-ad-slot="6059350775">
-            </amp-ad>
-        </div>
-        `;
-    } else {
-        ads.innerHTML = "";
-    }
-}, 1000);
+// const ads = document.getElementById("ads");
+// setInterval(() => {
+//     if (window.innerWidth > 1200) {
+//         ads.innerHTML = `
+//         <div id="ads-overlay-r">
+//             <amp-ad
+//                 layout="fixed"
+//                 width="120"
+//                 height="400"
+//                 type="adsense"
+//                 data-ad-client="ca-pub-2378042345376266"
+//                 data-ad-slot="6059350775">
+//             </amp-ad>
+//         </div>
+//         <div id="ads-overlay-l">
+//             <amp-ad
+//                 layout="fixed"
+//                 width="120"
+//                 height="400"
+//                 type="adsense"
+//                 data-ad-client="ca-pub-2378042345376266"
+//                 data-ad-slot="6059350775">
+//             </amp-ad>
+//         </div>
+//         `;
+//     } else {
+//         ads.innerHTML = "";
+//     }
+// }, 1000);
