@@ -55,6 +55,24 @@ def get_all_verified(stamp=''):
             break
     return verified
 
+def get_a_challenge():
+    url = "https://api.slin.dev/grab/v1/list?max_format_version=100&type=curated_challenge"
+    data = requests.get(url).json()
+    print("Sending request")
+    user_leaderboard = {}
+    for level in data:
+        id = level["identifier"]
+        lb_url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
+        leaderboard = requests.get(lb_url).json()
+        print("Sending request")
+        for i in range(min(len(leaderboard), 3)):
+            if leaderboard[i]["user_id"] in user_leaderboard:
+                user_leaderboard[leaderboard[i]["user_id"]][0] += 3 - i
+            else:
+                user_leaderboard[leaderboard[i]["user_id"]] = [3 - i, leaderboard[i]["user_name"]]
+    user_leaderboard = sorted(user_leaderboard.items(), key=lambda x: x[1][0], reverse=True)
+    return user_leaderboard
+
 def get_unbeaten(data):
     unbeaten = []
     for level in data:
@@ -300,6 +318,8 @@ def get_level_data():
     if datetime.now().timestamp() - log_data["last_ran"] > 72000:
         all_verified = get_all_verified()
         write_json_file('stats_data/all_verified.json', all_verified)
+        a_challenge = get_a_challenge()
+        write_json_file('stats_data/a_challenge.json', a_challenge)
         most_played_maps = get_most_played_maps(all_verified)
         write_json_file('stats_data/most_played_maps.json', most_played_maps)
         most_liked = get_most_liked(all_verified)

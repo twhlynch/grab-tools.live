@@ -358,6 +358,16 @@ function getGlobalPlays() {
     });
 }
 
+function getAChallenge() {
+    fetch('/stats_data/a_challenge.json')
+    .then((response) => response.json())
+    .then(data => {
+        data.forEach(item => {
+            document.getElementById('AChallenge-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${item[0]}">${item[1][1]}</a></div><span>${item[1][0]}</span></div>`;
+        });
+    });
+}
+
 getTopPlayers();
 getUnbeatenLevels();
 getPlayedLevels();
@@ -371,3 +381,4 @@ getUnbeatenMap();
 getChallengeScores();
 getKeyWords();
 getGlobalPlays();
+getAChallenge();
