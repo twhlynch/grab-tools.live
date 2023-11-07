@@ -18,10 +18,14 @@
                 width: 10px;
                 background-color: #b6b6b677;
             }
-
+            #editor-ad-container {
+                height: 40%;
+                width: 100%;
+            }
             #terminal-input {
                 background-color: #252526;
                 color: #eeeeee;
+                height: 60%;
             }
             #edit-input {
                 background-color: #eeeeee;
@@ -32,7 +36,6 @@
                 font-family: monospace;
             }
             #terminal-input, #edit-input {
-                height: 100%;
                 padding: 0.5em;
                 resize: none;
                 border-radius: 0;

@@ -24,7 +24,6 @@
             gtag('config', 'G-BDS57RBQ3Q');
         </script>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2378042345376266" crossorigin="anonymous"></script>
-        <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
         <script src="/js/webadb.js"></script>
         <script src="//cdn.jsdelivr.net/npm/protobufjs@7.X.X/dist/protobuf.js"></script>
         <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
@@ -454,18 +453,24 @@
                 </div>
                 <div id="terminal-resize">&nbsp;</div>
                 <div id="terminal">
-                    <textarea name="terminal-input" id="terminal-input" cols="30" rows="10" spellcheck="false" contenteditable="true"></textarea>
+                    <textarea name="terminal-input" id="terminal-input" cols="20" rows="10" spellcheck="false" contenteditable="true"></textarea>
                     <script>
                         document.getElementById("terminal-input").placeholder = "[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})";
                     </script>
-                    <amp-ad width="100%" height="20%"
-                        type="adsense"
-                        data-ad-client="ca-pub-2378042345376266"
-                        data-ad-slot="5157849564"
-                        data-auto-format="rspv"
-                        data-full-width="">
-                        <div overflow=""></div>
-                    </amp-ad>
+                    <div id="editor-ad-container">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2378042345376266"
+                                crossorigin="anonymous"></script>
+                        <!-- editor-ad -->
+                        <ins class="adsbygoogle"
+                                style="display:block"
+                                data-ad-client="ca-pub-2378042345376266"
+                                data-ad-slot="5157849564"
+                                data-ad-format="auto"
+                                data-full-width-responsive="true"></ins>
+                        <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
                 </div>
             </div>
         </div>
