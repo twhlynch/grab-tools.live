@@ -84,7 +84,7 @@
                 
                 if (match && match[1]) {
                     var id = match[1];
-                    var newUrl = 'http://grab-tools.live/editor.html?level=' + id;
+                    var newUrl = 'http://grab-tools.live/editor?level=' + id;
                     window.location.href = newUrl;
                 } else {
                     alert('Could not find level ID in the URL.');
@@ -98,7 +98,7 @@
                 
                 if (match && match[1]) {
                     var id = match[1];
-                    var newUrl = 'http://grab-tools.live/download.html?level=' + id;
+                    var newUrl = 'http://grab-tools.live/download?level=' + id;
                     window.location.href = newUrl;
                 } else {
                     alert('Could not find level ID in the URL.');
