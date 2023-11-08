@@ -26,6 +26,36 @@ let templates = [
         "type": "file"
     },
     {
+        "name": "Tutorial",
+        "link": "29t798uon2urbra1f8w2q:1693775768",
+        "type": "identifier"
+    },
+    {
+        "name": "Rick Roll",
+        "link": "29sgp24f1uorbc6vq8d2k:1696497039",
+        "type": "identifier"
+    },
+    {
+        "name": "BAD APPLE!!",
+        "link": "29sgp24f1uorbc6vq8d2k:1696497038",
+        "type": "identifier"
+    },
+    {
+        "name": "animation test file",
+        "link": "level_data/animtesting.level",
+        "type": "file"
+    },
+    {
+        "name": "Best Of Grab Lobby",
+        "link": "level_data/lobbies/lobby-best-of-grab-2023.level",
+        "type": "file"
+    },
+    {
+        "name": "Halloween Lobby 2023",
+        "link": "level_data/lobbies/lobby-halloween-2023.level",
+        "type": "file"
+    },
+    {
         "name": "Lobby",
         "link": "level_data/lobbies/lobby.level",
         "type": "file"
