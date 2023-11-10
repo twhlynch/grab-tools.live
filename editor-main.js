@@ -1098,10 +1098,7 @@ async function saveToQuest(name=(Date.now()).toString().slice(0, -3)) {
     sync = null;
     alert("Success!");
 }
-function setAmbience(
-    skyZenithColor = {"r": 0.28,"g": 0.476,"b": 0.73,"a": 1}, 
-    skyHorizonColor = {"r": 0.916,"g": 0.9574,"b": 0.9574,"a": 1}, 
-    sunAltitude = 45, sunAzimuth = 315, sunSize = 1, fogDDensity = 0) {
+function setAmbience(skyZenithColor, skyHorizonColor, sunAltitude, sunAzimuth, sunSize, fogDDensity) {
     let levelData = getLevel();
     levelData.ambienceSettings.skyZenithColor = skyZenithColor;
     levelData.ambienceSettings.skyHorizonColor = skyHorizonColor;
@@ -1133,6 +1130,15 @@ function randomizeLevel() {
     });
     setLevel(obj);
 }
+
+function randomizeLevelMaterials() {
+    let obj = getLevel();
+    obj.levelNodes.forEach((node) => {
+        Object.values(node)[0].material = Math.floor(Math.random() * 10);
+    });
+    setLevel(obj);
+}
+
 function deepClone(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
@@ -1737,6 +1743,7 @@ document.getElementById('ungroup-btn').addEventListener('click', ungroupLevel);
 document.getElementById('outline-btn').addEventListener('click', outlineLevel);
 document.getElementById('magic-outline-btn').addEventListener('click', magicOutline);
 document.getElementById('randomize-btn').addEventListener('click', randomizeLevel);
+document.getElementById('randomizematerials-btn').addEventListener('click', randomizeLevelMaterials);
 document.getElementById('duplicate-btn').addEventListener('click', duplicateLevel);
 document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
 document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('level_data/json_files/empty.json')});
@@ -1764,7 +1771,7 @@ document.getElementById('fireambience-btn').addEventListener('click', () => {set
 document.getElementById('bitiambience-btn').addEventListener('click', () => {setAmbience({"g": 0.16071408987045288,"b": 0.2620195746421814,"a": 1}, {"r": 0.998467206954956,"g": 0.997838020324707,"b": 0.9967743158340454,"a": 1},35999997952,360,0.66828852891922,10)});
 document.getElementById('oilcanambience-btn').addEventListener('click', () => {setAmbience({"r": 0.3706502318382263,"g": 0.2603767216205597,"b": 0.6742851734161377,"a": 1}, {"g": 1.0326478481292725,"b": 5,"a": 1},-270,315,1.5,0)});
 document.getElementById('randomambience-btn').addEventListener('click', () => {setAmbience({"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1}, {"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1},Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999)});
-document.getElementById('defaultambience-btn').addEventListener('click', setAmbience);
+document.getElementById('defaultambience-btn').addEventListener('click', () => {setAmbience({"r": 0.28,"g": 0.476,"b": 0.73,"a": 1}, {"r": 0.916,"g": 0.9574,"b": 0.9574,"a": 1}, 45, 315, 1, 0)});
 // insert nodes
 document.getElementById('nodeStatic-btn').addEventListener('click', () => {appendJSON("level_data/json_files/static-node.json")});
 document.getElementById('nodeCrumbling-btn').addEventListener('click', () => {appendJSON("level_data/json_files/crumbling-node.json")});
