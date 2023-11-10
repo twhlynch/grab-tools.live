@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <title>Grab Pixel Art! | GRAB Tools</title>
+        <meta name="description" content="Pixel art generator for GRAB VR!">
+        <meta name="author" content="twhlynch">
+        <meta property="og:title" content="Grab Pixel Art! | GRAB Tools">
+        <meta property="og:description" content="Pixel art generator for GRAB VR!">
+        <meta property="og:site_name" content="Grab Pixel Art! | GRAB Tools">
+        <meta property="og:locale" content="en_us">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="http://grab-tools.live/image">
+        <meta property="og:image" content="http://grab-tools.live/favicon.gif">
+        <link rel="icon" href="favicon.gif" type="image/gif">
+        <link rel="stylesheet" href="styles/image.css">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BDS57RBQ3Q"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BDS57RBQ3Q');
+        </script>
+        <script src="//cdn.jsdelivr.net/npm/protobufjs@7.X.X/dist/protobuf.js"></script>
+        <script src="image.js" defer></script>
+    </head>
+    <body>
+        <nav>
+            <a id="toolsHover" href="https://grab-tools.live">Tools &#9660;</a>
+            <div id="tools">
+                <a href="https://grab-tools.live/tools">Level Compiler</a>
+                <a href="#">Pixel Art</a>
+                <a href="https://grab-tools.live/tools">Bulk Signs</a>
+                <a href="https://grab-tools.live/cheat-sheet">Cheat Sheet</a>
+                <a href="https://grab-tools.live/editor">Editor</a>
+                <a href="#">presets</a>
+            </div>
+            <a href="https://twhlynch.me">My Website</a>
+            <a href="/discord">Docs / Help</a>
+        </nav>
+        <main>
+            <h2>Pixel Art</h2>
+            <p>Specify the quality, and details, and convert an image to a grab level.</p>
+            <div id="inputs">
+                <input type="text" id="title" name="title" placeholder="Title">
+                <input type="text" id="creators" name="creators" placeholder="Creators">
+                <input type="text" id="desc" name="description" placeholder="Description">
+                <input type="number" name="quality" id="quality" placeholder="Quality: 50" min="1">
+                <button id="choose-file">Choose File</button>
+                <input type="file" name="file" id="file" accept="image/*">
+            </div>
+            <div id="outs">
+                <canvas id="image"></canvas>
+                <canvas id="background"></canvas>
+            </div>
+            <div id="buttons">
+                <button id="pixelate-btn">Pixelate</button>
+                <a id="download">Download</a>
+            </div>
+        </main>
+        <footer>
+            <p>Website built by <a href="https://twhlynch.me">.index</a> / <a href="https://github.com/twhlynch">twhlynch</a></p>
+        </footer>
+    </body>
+</html>
