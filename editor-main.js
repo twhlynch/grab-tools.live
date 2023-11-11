@@ -1933,10 +1933,6 @@ document.getElementById('openvr-btn').addEventListener('click', () => {
     renderer.setAnimationLoop( function () {
         renderer.render( scene, camera );
     } );
-    renderer.xr.addEventListener('sessionstart', () => {
-        renderer.xr.getCamera().position.copy( camera.target);
-        renderer.xr.getCamera().lookAt( camera.target );
-    });
     vrButton.click()
 });
 // links
