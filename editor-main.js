@@ -4,7 +4,7 @@ import { GLTFLoader } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm/
 import { FlyControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/controls/FlyControls.js';
 import { GLTFExporter } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm//exporters/GLTFExporter.js';
 import { VRButton } from "https://cdn.jsdelivr.net/npm/three@0.145.0/examples/jsm/webxr/VRButton.min.js";
-import { XRControllerModelFactory } from 'https://cdn.jsdelivr.net/npm/three@0.145.0/examples/jsm/webxr/XRControllerModelFactory.js';
+// import { XRControllerModelFactory } from 'https://cdn.jsdelivr.net/npm/three@0.145.0/examples/jsm/webxr/XRControllerModelFactory.js';
 // import { CubemapToEquirectangular } from './js/CubemapToEquirectangular.js';
 
 let webusb = null;
@@ -22,7 +22,6 @@ let lastRan = '';
 let HIDE_TEXT = false;
 let HIGHLIGHT_TEXT = true;
 let vrButton;
-let controller1, controller2;
 let templates = [
     {
         "name": "Animation Cheat Sheet",
@@ -1933,29 +1932,9 @@ document.getElementById('openvr-btn').addEventListener('click', () => {
     renderer.xr.enabled = true;
     renderer.setAnimationLoop( function () {
         renderer.render( scene, camera );
-        updateMovement();
     } );
-
-    controller1 = renderer.xr.getController(0);
-    controller1.addEventListener('connected', function(e) {
-        controller1.addEventListener('update', onUpdate);
-    } );
-    scene.add(controller1);
-
-    controller2 = renderer.xr.getController(1);
-    controller2.addEventListener('connected', function(e) {
-        controller2.addEventListener('update', onUpdate);
-    } );
-    scene.add(controller2);
-
     vrButton.click()
 });
-function onUpdate(event) {
-    const gamepad = event.target.gamepad;
-    camera.position.x += gamepad.axes[0] * 0.1;
-    camera.position.z += -gamepad.axes[1] * 0.1;
-    camera.scale.multiplyScalar(1 + (gamepad.axes[2] - gamepad.axes[3]) * 0.02);
-}
 // links
 document.getElementById('slindev-btn').addEventListener('click', () => {window.open("https://discord.slin.dev", "_blank")});
 document.getElementById('email-btn').addEventListener('click', () => {location.href = "mailto:twhlynch.index@gmail.com"});
