@@ -75,7 +75,7 @@
 .menu-btn#topc-btn::after {
     content: url(/img/editor-icons/save.svg);
 }
-.menu-btn#model-btn::after {
+.menu-btn#wireframe-btn::after, .menu-btn#pointcloud-btn::after {
     content: url(/img/editor-icons/cube.svg);
 }
 
