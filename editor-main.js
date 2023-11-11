@@ -3,6 +3,7 @@ import { OrbitControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/cont
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm/loaders/GLTFLoader.js';
 import { FlyControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/controls/FlyControls.js';
 import { GLTFExporter } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm//exporters/GLTFExporter.js';
+import { VRButton } from "https://cdn.jsdelivr.net/npm/three@0.145.0/examples/jsm/webxr/VRButton.min.js";
 // import { CubemapToEquirectangular } from './js/CubemapToEquirectangular.js';
 
 let webusb = null;
@@ -19,6 +20,7 @@ let altTextures = false;
 let lastRan = '';
 let HIDE_TEXT = false;
 let HIGHLIGHT_TEXT = true;
+let vrButton;
 let templates = [
     {
         "name": "Animation Cheat Sheet",
@@ -1130,7 +1132,6 @@ function randomizeLevel() {
     });
     setLevel(obj);
 }
-
 function randomizeLevelMaterials() {
     let obj = getLevel();
     obj.levelNodes.forEach((node) => {
@@ -1138,7 +1139,6 @@ function randomizeLevelMaterials() {
     });
     setLevel(obj);
 }
-
 function deepClone(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
@@ -1361,6 +1361,183 @@ function loadProtobuf(url) {
         document.getElementById('protobuf-prompt').value = proto_data;
     });
 }
+function openPointCloud(file) {
+    let reader = new FileReader();
+
+    reader.onload = function() {
+        let data = reader.result;
+        let level = getLevel();
+        let lines = data.split("\n");
+        let points = {
+            "levelNodeGroup": {
+                "position": {
+                    "y": 0, 
+                    "x": 0, 
+                    "z": 0
+                }, 
+                "rotation": {
+                    "w": 1.0
+                }, 
+                "scale": {
+                    "y": 1.0, 
+                    "x": 1.0, 
+                    "z": 1.0
+                },
+                "childNodes": []
+            }
+        };
+        for (let i = 0; i < lines.length; i++) {
+            let line = lines[i];
+            if (line.startsWith("v ")) {
+                line = line.replace("v ", "");
+                let coords = line.split(" ");
+                points.levelNodeGroup.childNodes.push({
+                    "levelNodeStatic": {
+                        "material": 8,
+                        "position": {
+                            "x": parseFloat(coords[0]),
+                            "y": parseFloat(coords[1]),
+                            "z": parseFloat(coords[2])
+                        },
+                        "color": {
+                            "r": 1,
+                            "g": 1,
+                            "b": 1,
+                            "a": 1
+                        },
+                        "rotation": {
+                            "w": 1
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "shape": 1001
+                    }
+                });
+            }
+        }
+        level.levelNodes.push(points);
+        setLevel(level);
+    }
+    reader.readAsText(file);
+}
+function openWireframe(file) {
+    let reader = new FileReader();
+
+    reader.onload = function() {
+        let data = reader.result;
+        let level = getLevel();
+        let lines = data.split("\n");
+        let wireframe = {
+            "levelNodeGroup": {
+                "position": {
+                    "y": 0,
+                    "x": 0,
+                    "z": 0
+                },
+                "rotation": {
+                    "w": 1.0
+                },
+                "scale": {
+                    "y": 1.0,
+                    "x": 1.0,
+                    "z": 1.0
+                },
+                "childNodes": []
+            }
+        };
+
+        let vertices = [];
+        let edges = [];
+
+        for (let i = 0; i < lines.length; i++) {
+            let line = lines[i];
+            if (line.startsWith("v ")) {
+                line = line.replace("v ", "");
+                let coords = line.trim().split(" ");
+                vertices.push({
+                    "x": parseFloat(coords[0]),
+                    "y": parseFloat(coords[1]),
+                    "z": parseFloat(coords[2])
+                });
+            } else if (line.startsWith("f ")) {
+                line = line.replace("f ", "");
+                let faceIndices = line.trim().split(" ");
+                let edgeA = parseInt(faceIndices[0].split("/")[0]) - 1;
+                let edgeB = parseInt(faceIndices[1].split("/")[0]) - 1;
+                let edgeC = parseInt(faceIndices[2].split("/")[0]) - 1;
+                edges.push({
+                    "a": edgeA,
+                    "b": edgeB
+                });
+                edges.push({
+                    "a": edgeB,
+                    "b": edgeC
+                });
+                edges.push({
+                    "a": edgeC,
+                    "b": edgeA
+                });
+            }
+        }
+
+        for (let i = 0; i < edges.length; i++) {
+            const edge = edges[i];
+            
+            let pointA = vertices[edge.a];
+            let pointB = vertices[edge.b];
+
+            let distance = Math.sqrt(
+                Math.pow(pointB.x - pointA.x, 2) +
+                Math.pow(pointB.y - pointA.y, 2) +
+                Math.pow(pointB.z - pointA.z, 2)
+            );
+
+            let midpoint = {
+                x: (pointA.x + pointB.x) / 2,
+                y: (pointA.y + pointB.y) / 2,
+                z: (pointA.z + pointB.z) / 2,
+            };
+
+            let rotation = {
+                x: 0,
+                y: 0,
+                z: 0,
+                w: 1
+            };
+
+            // rotate to cross points 
+
+            wireframe.levelNodeGroup.childNodes.push({
+                "levelNodeStatic": {
+                    "material": 8,
+                    "position": midpoint,
+                    "color": {
+                        "r": 1,
+                        "g": 1,
+                        "b": 1,
+                        "a": 1
+                    },
+                    "rotation": rotation,
+                    "scale": {
+                        "x": 1,
+                        "y": distance,
+                        "z": 1
+                    },
+                    "shape": 1002
+                }
+            });
+        }
+        
+
+        level.levelNodes.push(wireframe);
+        setLevel(level);
+    };
+
+    reader.readAsText(file);
+}
 function generatePixelArt() {
     let quality = document.getElementById('pixel-prompt').value;
     document.getElementById('pixel-prompt').value = '';
@@ -1542,6 +1719,7 @@ light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
 sun = new THREE.DirectionalLight( 0xffffff, 0.5 );
 scene.add( sun );
+vrButton = VRButton.createButton( renderer );
 controls = new OrbitControls( camera, renderer.domElement );
 controls.mouseButtons = {LEFT: 2, MIDDLE: 1, RIGHT: 0}
 fly = new FlyControls( camera, renderer.domElement );
@@ -1749,6 +1927,12 @@ document.getElementById('topc-btn').addEventListener('click', () => {downloadPro
 document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('level_data/json_files/empty.json')});
 document.getElementById('the-index-btn').addEventListener('click', () => {openProto('level_data/the-index.level')});
 document.getElementById('all-objects-btn').addEventListener('click', () => {openProto('level_data/cheat-sheet-6.level')});
+document.getElementById('openvr-btn').addEventListener('click', () => {
+    renderer.xr.enabled = true;
+    renderer.setAnimationLoop( function () {
+        renderer.render( scene, camera );
+    } );
+    vrButton.click()});
 // links
 document.getElementById('slindev-btn').addEventListener('click', () => {window.open("https://discord.slin.dev", "_blank")});
 document.getElementById('email-btn').addEventListener('click', () => {location.href = "mailto:twhlynch.index@gmail.com"});
@@ -1760,6 +1944,10 @@ document.getElementById('pc-btn').addEventListener('click', () => {document.getE
 document.getElementById('pcjson-btn').addEventListener('click', () => {document.getElementById('pcjson-btn-input').click()});
 document.getElementById('insertpc-btn').addEventListener('click', () => {document.getElementById('insertpc-btn-input').click()});
 document.getElementById('image-btn').addEventListener('click', () => {document.getElementById('image-btn-input').click()});
+document.getElementById('pointcloud-btn').addEventListener('click', () => {document.getElementById('pointcloud-btn-input').click()});
+document.getElementById('pointcloud-btn-input').addEventListener('change', (e) => {openPointCloud(e.target.files[0])});
+document.getElementById('wireframe-btn').addEventListener('click', () => {document.getElementById('wireframe-btn-input').click()});
+document.getElementById('wireframe-btn-input').addEventListener('change', (e) => {openWireframe(e.target.files[0])});
 document.getElementById('pc-btn-input').addEventListener('change', (e) => {openLevelFile(e.target.files)});
 document.getElementById('pcjson-btn-input').addEventListener('change', (e) => {openJSONFile(e.target.files[0])});
 document.getElementById('insertpc-btn-input').addEventListener('change', (e) => {appendLevelFile(e.target.files)});

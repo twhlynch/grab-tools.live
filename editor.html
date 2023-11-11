@@ -163,10 +163,12 @@
                                     <button class="menu-btn r" id="video-btn">Video</button>
                                 </li>
                                 <li>
-                                    <button class="menu-btn r" id="pointcloud-btn">Point Cloud (.obj)</button>
+                                    <button class="menu-btn" id="pointcloud-btn">Point Cloud (.obj)</button>
+                                    <input type="file" id="pointcloud-btn-input" style="display:none">
                                 </li>
                                 <li>
                                     <button class="menu-btn r" id="wireframe-btn">Wireframe (.obj)</button>
+                                    <input type="file" id="wireframe-btn-input" style="display:none">
                                 </li>
                             </ul>
                         </li>
@@ -198,9 +200,6 @@
                         </li>
                         <li>
                             <button class="menu-btn r" id="text-btn">Bulk Text</button>
-                        </li>
-                        <li>
-                            <button class="menu-btn r" id="model-btn">3D Model</button>
                         </li>
                     </ul>
                 </li>
@@ -265,9 +264,6 @@
                         <li>
                             <button class="menu-btn">Ambience</button>
                             <ul class="menu-dropdown">
-                                <li>
-                                    <button class="menu-btn r">Set Custom</button>
-                                </li>
                                 <li>
                                     <button class="menu-btn" id="maxambience-btn">Max</button>
                                 </li>
