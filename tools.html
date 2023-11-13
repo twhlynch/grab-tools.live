@@ -49,60 +49,130 @@
             <h2>Tools</h2>
             <p>This is a collection of simple tools to use out of the JSON Level Editor. The level compiler will merge levels, grouping each part so they arent mixed up. The bulk signs tool will generate a long line of signs from text input. The pixel art tool does what it says it does.</p>
         </section>
-        <section id="other-tools">
-            <h2>Pixel Art</h2>
-            <p>Specify the quality, and convert an image to a grab level.</p>
-            <div id="pixel-tool">
-                <input type="text" id="pixel-title" name="title" placeholder="Title">
-                <input type="text" id="pixel-desc" name="description" placeholder="Description">
-                <input type="text" id="pixel-creators" name="creators" placeholder="Creators">
-                <input type="number" name="num" id="pixel-num" placeholder="Quality (default: 50, recommended: 30)" min="1">
-                <input type="file" name="file" id="pixel-file" accept="image/*">
-                <button id="pixelate-btn" class="button">Pixelate</button>
-                <div id="pixelate-out">
-                    <canvas id="pixel-canvas"></canvas>
-                    <canvas id="pixel-canvas2"></canvas>
-                </div>
-            </div>
-            <h2>Text To Signs</h2>
-            <p>Convert text into a line of signs horizontally or vertically.</p>
-            <div id="sign-tool">
-                <input type="text" id="signs-title" name="title" placeholder="Title">
-                <input type="text" id="signs-desc" name="description" placeholder="Description">
-                <input type="text" id="signs-creators" name="creators" placeholder="Creators">
-                <input type="text" id="signs-text" name="text" placeholder="Text">
-                <div class="signs-direction-wrapper">
-                    <label for="signs-direction"><p>Direction:</p></label>
-                    <select name="signs-direction" id="signs-direction">
-                        <option value="horizontal">Horizontal</option>
-                        <option value="vertical">Vertical</option>
-                    </select>
-                    <label for="signs-words"><p>Words per sign:</p></label>
-                    <input type="number" name="signs-words" id="signs-words" value="16">
-                </div>
-                <button id="signs-download" class="button">Download</button>
-            </div>
-            <h2>Level Compiler</h2>
-            <p>Select multiple level files and combine them into one file. (autogroups levels)</p>
-            <div id="compiler-tool">
-                <input type="text" id="compile-title" name="title" placeholder="Title">
-                <input type="text" id="compile-desc" name="description" placeholder="Description" maxlength="300">
-                <input type="text" id="compile-creators" name="creators" placeholder="Creators" maxlength="80">
-                <input type="file" name="file" id="compile-file" accept=".level" multiple>
-                <button id="compile-btn" class="button">Compile</button>
-            </div>
-            <h2>Multi Download</h2>
-            <p>Paste a list of level browser links to download all the maps.</p>
-            <div id="smorgasbord-tool">
-                <textarea name="smorg-urls" id="smorg-urls" cols="30" rows="5" placeholder='link, link, link, link'></textarea>
-                <button id="smorg-btn" class="button">Run</button>
-            </div>
+        <section id="tools">
+            <button class="button tools-button" id="CompilerButton">Compiler
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: none;" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25" />
+                </svg>
+            </button>
+            <button class="button tools-button" id="PixelArtButton">Pixel Art
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: none;" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+                </svg>
+            </button>
+            <button class="button tools-button" id="TextToSignButton">Text To Sign
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: none;" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+                </svg>
+            </button>
+            <button class="button tools-button" id="MultiDownloadButton">Multi Download
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: none;" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m-6 3.75l3 3m0 0l3-3m-3 3V1.5m6 9h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" />
+                </svg>
+            </button>
+            <button class="button tools-button" id="CustomColorsButton">Custom Colors
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: none;" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z" />
+                </svg>
+            </button>
+            <button class="button tools-button" id="PointCloudButton">Point Cloud
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: none;" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </svg>                  
+            </button>
+            <button class="button tools-button" id="Level2ModelButton">Level2Model
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: none;" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </svg>                  
+            </button>
+            <button class="button tools-button" id="ExplodeButton">Explode
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: none;" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </svg>                  
+            </button>
+            <button class="button tools-button" id="ExplodeAnimatedButton">Explode Animated
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: none;" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </svg>                  
+            </button>
+            <button class="button tools-button" id="OutlineButton">Outline
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: none;" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </svg>                  
+            </button>
+            <button class="button tools-button" id="RandomizerButton">Randomizer
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: none;" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </svg>                  
+            </button>
+            <button class="button tools-button" id="JSONButton">JSON
+                <svg xmlns="http://www.w3.org/2000/svg" style="fill: none;" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </svg>                  
+            </button>
         </section>
-        <section id="secret">
-            <h2>Custom Colors</h2>
-            <p>Drag this to your bookmarks bar and click it in the level browser while logged in. You will see a response with either status: 200, or status: 500 and an Error. (Min color: 5)</p>
-            <div id="bookmark-links">
-                <a class="button" href="javascript:(function() {var popupContainer = document.createElement('div');popupContainer.style.position = 'fixed';popupContainer.style.top = '50%';popupContainer.style.left = '50%';popupContainer.style.transform = 'translate(-50%, -50%)';popupContainer.style.padding = '20px';popupContainer.style.background = '#ffffff';popupContainer.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';popupContainer.style.zIndex = '9999';var colorPicker = document.createElement('input');colorPicker.type = 'color';colorPicker.style.marginBottom = '10px';var colorPicker2 = document.createElement('input');colorPicker2.type = 'color';colorPicker2.style.marginBottom = '10px';var sendButton = document.createElement('button');sendButton.textContent = 'Send RGB Values';sendButton.style.padding = '8px 16px';sendButton.style.cursor = 'pointer';popupContainer.appendChild(colorPicker);popupContainer.appendChild(colorPicker2);popupContainer.appendChild(sendButton);sendButton.addEventListener('click', function() {var color = colorPicker.value;var color2 = colorPicker2.value;var red = parseInt(color.substring(1, 3), 16) / 255;var green = parseInt(color.substring(3, 5), 16) / 255;var blue = parseInt(color.substring(5, 7), 16) / 255;var red2 = parseInt(color2.substring(1, 3), 16) / 255;var green2 = parseInt(color2.substring(3, 5), 16) / 255;var blue2 = parseInt(color2.substring(5, 7), 16) / 255;const requestBody = JSON.parse(localStorage.user).user.info.active_customizations;requestBody.player_color_primary.color = [red, green, blue];requestBody.player_color_secondary.color = [red2, green2, blue2];fetch(`https://api.slin.dev/grab/v1/set_active_customizations?access_token=${JSON.parse(localStorage.user).user.access_token}`, {method: 'POST',headers: {'Content-Type': 'application/json'},body: JSON.stringify(requestBody)}).then(function(response) {return response;}).then(function(data) {console.log(data);}).catch(function(error) {console.error('Error:', error);});});document.body.appendChild(popupContainer);})();" id="illegal-color-picker">Illegal Color Picker</a>
+        <section id="other-tools">
+            <div id="Compiler">
+                <h2>Level Compiler</h2>
+                <p>Select multiple level files and combine them into one file. Each level will be grouped.</p>
+                <div id="compiler-tool">
+                    <input type="text" id="compile-title" name="title" placeholder="Title">
+                    <input type="text" id="compile-description" name="description" placeholder="Description" maxlength="300">
+                    <input type="text" id="compile-creators" name="creators" placeholder="Creators" maxlength="80">
+                    <input type="file" name="file" id="compile-file" accept=".level" multiple>
+                    <button id="compile-btn" class="button">Compile</button>
+                </div>
+            </div>
+            <div id="PixelArt">
+                <h2>Pixel Art</h2>
+                <p>Specify the quality, and convert an image to a grab level.</p>
+                <div id="pixel-tool">
+                    <input type="text" id="pixel-title" name="title" placeholder="Title">
+                    <input type="text" id="pixel-desc" name="description" placeholder="Description">
+                    <input type="text" id="pixel-creators" name="creators" placeholder="Creators">
+                    <input type="number" name="num" id="pixel-num" placeholder="Quality (default: 50, recommended: 30)" min="1">
+                    <input type="file" name="file" id="pixel-file" accept="image/*">
+                    <button id="pixelate-btn" class="button">Pixelate</button>
+                    <div id="pixelate-out">
+                        <canvas id="pixel-canvas"></canvas>
+                        <canvas id="pixel-canvas2"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div id="TextToSign">
+                <h2>Text To Signs</h2>
+                <p>Convert text into a line of signs horizontally or vertically.</p>
+                <div id="sign-tool">
+                    <input type="text" id="signs-title" name="title" placeholder="Title">
+                    <input type="text" id="signs-desc" name="description" placeholder="Description">
+                    <input type="text" id="signs-creators" name="creators" placeholder="Creators">
+                    <input type="text" id="signs-text" name="text" placeholder="Text">
+                    <div class="signs-direction-wrapper">
+                        <label for="signs-direction"><p>Direction:</p></label>
+                        <select name="signs-direction" id="signs-direction">
+                            <option value="horizontal">Horizontal</option>
+                            <option value="vertical">Vertical</option>
+                        </select>
+                        <label for="signs-words"><p>Words per sign:</p></label>
+                        <input type="number" name="signs-words" id="signs-words" value="16">
+                    </div>
+                    <button id="signs-download" class="button">Download</button>
+                </div>
+            </div>
+            <div id="MultiDownload">
+                <h2>Multi Download</h2>
+                <p>Paste a list of level browser links to download all the maps.</p>
+                <div id="smorgasbord-tool">
+                    <textarea name="smorg-urls" id="smorg-urls" cols="30" rows="5" placeholder='link, link, link, link'></textarea>
+                    <button id="smorg-btn" class="button">Run</button>
+                </div>
+            </div>
+            <div id="CustomColors">
+                <h2>Custom Colors</h2>
+                <p>Drag this to your bookmarks bar and click it in the level browser while logged in. You will see a response with either status: 200, or status: 500 and an Error. Min color for black is 5, 5, 5</p>
+                <div id="bookmark-links">
+                    <a class="button" href="javascript:(function() {var popupContainer = document.createElement('div');popupContainer.style.position = 'fixed';popupContainer.style.top = '50%';popupContainer.style.left = '50%';popupContainer.style.transform = 'translate(-50%, -50%)';popupContainer.style.padding = '20px';popupContainer.style.background = '#ffffff';popupContainer.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';popupContainer.style.zIndex = '9999';var colorPicker = document.createElement('input');colorPicker.type = 'color';colorPicker.style.marginBottom = '10px';var colorPicker2 = document.createElement('input');colorPicker2.type = 'color';colorPicker2.style.marginBottom = '10px';var sendButton = document.createElement('button');sendButton.textContent = 'Send RGB Values';sendButton.style.padding = '8px 16px';sendButton.style.cursor = 'pointer';popupContainer.appendChild(colorPicker);popupContainer.appendChild(colorPicker2);popupContainer.appendChild(sendButton);sendButton.addEventListener('click', function() {var color = colorPicker.value;var color2 = colorPicker2.value;var red = parseInt(color.substring(1, 3), 16) / 255;var green = parseInt(color.substring(3, 5), 16) / 255;var blue = parseInt(color.substring(5, 7), 16) / 255;var red2 = parseInt(color2.substring(1, 3), 16) / 255;var green2 = parseInt(color2.substring(3, 5), 16) / 255;var blue2 = parseInt(color2.substring(5, 7), 16) / 255;const requestBody = JSON.parse(localStorage.user).user.info.active_customizations;requestBody.player_color_primary.color = [red, green, blue];requestBody.player_color_secondary.color = [red2, green2, blue2];fetch(`https://api.slin.dev/grab/v1/set_active_customizations?access_token=${JSON.parse(localStorage.user).user.access_token}`, {method: 'POST',headers: {'Content-Type': 'application/json'},body: JSON.stringify(requestBody)}).then(function(response) {return response;}).then(function(data) {console.log(data);}).catch(function(error) {console.error('Error:', error);});});document.body.appendChild(popupContainer);})();" id="illegal-color-picker">Custom Color Picker</a>
+                </div>
             </div>
         </section>
     </main>

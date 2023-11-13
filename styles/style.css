@@ -521,3 +521,6 @@ input, #smorg-urls {
 #extension-update {
     display: none;
 }
+#other-tools > div {
+    display: none;
+}
