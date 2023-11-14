@@ -270,8 +270,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 17662,
-      "difficulty": 0.0008323506970937089,
+      "total_played": 17762,
+      "difficulty": 0.0008287865184059672,
       "liked": 0.5555555555555556,
       "time": 1062.3494999999996
     },
@@ -859,29 +859,6 @@
     "creator": "Krampy2"
   },
   {
-    "identifier": "29wqa67tov5nq1kmxsr2l:1665272902",
-    "title": "skill issue 2.0 by surge",
-    "complexity": 294,
-    "format_version": 6,
-    "update_timestamp": 1666838132240,
-    "creation_timestamp": 1666838132240,
-    "data_key": "level_data:29wqa67tov5nq1kmxsr2l:1665272902:1",
-    "description": "this level shall be on of many, containing rageful obstacles that few will consider fun, or even easy. but try as you may have fun and please promote the level!",
-    "creators": [
-      "newsynthesis"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 4200,
-      "difficulty": 0.002617801047120419,
-      "liked": 1,
-      "time": 518.3797777777777
-    },
-    "creator": "newsynthesis"
-  },
-  {
     "identifier": "29w20l59y1m2zkzhkojnu:1657470247",
     "title": "5 Levels of Friendly Fun",
     "complexity": 1796,
@@ -1160,6 +1137,29 @@
       "time": 248.49643999999998
     },
     "creator": "Mystery8281"
+  },
+  {
+    "identifier": "29wqa67tov5nq1kmxsr2l:1665272902",
+    "title": "skill issue 2.0 by surge",
+    "complexity": 294,
+    "format_version": 6,
+    "update_timestamp": 1666838132240,
+    "creation_timestamp": 1666838132240,
+    "data_key": "level_data:29wqa67tov5nq1kmxsr2l:1665272902:1",
+    "description": "this level shall be on of many, containing rageful obstacles that few will consider fun, or even easy. but try as you may have fun and please promote the level!",
+    "creators": [
+      "newsynthesis"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 4300,
+      "difficulty": 0.002849002849002849,
+      "liked": 1,
+      "time": 479.7718
+    },
+    "creator": "newsynthesis"
   },
   {
     "identifier": "29rhk9gdy7iiza0k3tttk:1660802726",
@@ -1825,29 +1825,6 @@
     "creator": "Rainbowmonke"
   },
   {
-    "identifier": "2a7dpr68r014rdkz6927a:1659748259",
-    "title": "Moltens Spiral",
-    "complexity": 981,
-    "format_version": 4,
-    "update_timestamp": 1659921238894,
-    "creation_timestamp": 1659761842765,
-    "data_key": "level_data:2a7dpr68r014rdkz6927a:1659748259:2",
-    "description": "Dont spiral into madness!",
-    "creators": [
-      "Auran"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 2919,
-      "difficulty": 0.006551059730250481,
-      "liked": 0.8,
-      "time": 449.88547058823525
-    },
-    "creator": "Auran"
-  },
-  {
     "identifier": "29l50ea34l4s54rtclzus:1656078020",
     "title": "all parcore",
     "complexity": 971,
@@ -1956,8 +1933,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 19395,
-      "difficulty": 0.001005564121472146,
+      "total_played": 19495,
+      "difficulty": 0.0010008006405124099,
       "liked": 0.8,
       "time": 1238.6078
     },
@@ -2097,8 +2074,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 19824,
-      "difficulty": 0.0009355120369215418,
+      "total_played": 19924,
+      "difficulty": 0.000930925339787749,
       "liked": 0.8888888888888888,
       "time": 1145.7810909090908
     },
@@ -2310,5 +2287,28 @@
       "time": 604.3760588235295
     },
     "creator": "Mystery8281"
+  },
+  {
+    "identifier": "29ngj2xcdlinnuqz0vrw5:1666407862",
+    "title": "Climbing Islands",
+    "complexity": 2038,
+    "format_version": 6,
+    "update_timestamp": 1669258644624,
+    "creation_timestamp": 1669258644624,
+    "data_key": "level_data:29ngj2xcdlinnuqz0vrw5:1666407862:1",
+    "description": "Climb to the top of the island that lays ahead.",
+    "creators": [
+      "Cursedphantom(RMB)"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 4400,
+      "difficulty": 0.004549331816889394,
+      "liked": 0.8571428571428571,
+      "time": 1492.6353749999998
+    },
+    "creator": "Cursedphantom(RMB)"
   }
 ]
