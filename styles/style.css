@@ -524,3 +524,6 @@ input, #smorg-urls {
 #other-tools > div {
     display: none;
 }
+.levelItemOk {
+    border-left: solid 5px #6ee4bb49;
+}
