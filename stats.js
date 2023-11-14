@@ -220,6 +220,7 @@ addEventListener("click", async (e) => {
 
             const levelDiv = document.createElement('div');
             levelDiv.classList.add('leaderboard-item');
+            item?.tags?.includes("ok") ? levelDiv.classList.add("levelItemOk") : null;
             levelDiv.innerHTML = `<div><a href="https://grabvr.quest/levels/viewer/?level=${item.identifier}">${item.title}</a><br>by <span title="${item.creators}">${item.creator}</span></div><span>${new Date(
                 item.creation_timestamp
             )
