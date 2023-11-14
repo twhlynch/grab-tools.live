@@ -14,7 +14,7 @@ buttons.forEach((btn) => {
     });
 });
 
-function readArrayBuffer(file) {
+function readArrayBufferGroup(file) {
     return new Promise(function(resolve, reject) {
         let reader = new FileReader();
         reader.onload = function() {
@@ -51,11 +51,32 @@ function readArrayBuffer(file) {
         reader.readAsArrayBuffer(file);
     });
 }
+function readArrayBuffer(file) {
+    return new Promise(function(resolve, reject) {
+        let reader = new FileReader();
+        reader.onload = function() {
+            let data = reader.result;
+            protobuf.load("proto/level.proto", function(err, root) {
+                if(err) throw err;
+                let message = root.lookupType("COD.Level.Level");
+                let decoded = message.decode(new Uint8Array(data));
+                let object = message.toObject(decoded);
+                resolve(object);
+            });
+        }
+        reader.onerror = function() {
+            reject(reader);
+        }
+        reader.readAsArrayBuffer(file);
+    });
+}
 
 document.getElementById('pixelate-btn').addEventListener("click", pixelate);
 document.getElementById('smorg-btn').addEventListener('click', MultiDownload);
 document.getElementById("compile-btn").addEventListener("click", compile);
 document.getElementById('signs-download').addEventListener("click", TextToSigns);
+document.getElementById('json-btn').addEventListener("click", convertJSON);
+document.getElementById('pointcloud-btn').addEventListener("click", generatePointCloud);
 
 // model, explode, explode-anim, outline, magic-outline, randomizer, to model, to json
 
@@ -144,7 +165,7 @@ function compile() {
     
     let readers = [];
     for (let i = 0; i < files.length; i++) {
-        readers.push(readArrayBuffer(files[i]));
+        readers.push(readArrayBufferGroup(files[i]));
     }
 
     Promise.all(readers).then((values) => {
@@ -317,6 +338,144 @@ function pixelate() {
         img.src = data;
     }
     reader.readAsDataURL(file);
+}
+function convertJSON() {
+    let file = document.getElementById('json-file').files[0];
+    if (file.name.split('.')[1] === 'json') {
+        let reader = new FileReader();
+        reader.onload = function() {
+            let data = reader.result;
+            let obj = JSON.parse(data);
+            protobuf.load("proto/level.proto", function(err, root) {
+                if(err) throw err;
+
+                let message = root.lookupType("COD.Level.Level");
+                let errMsg = message.verify(obj);
+                if(errMsg) throw Error(errMsg);
+                let buffer = message.encode(message.fromObject(obj)).finish();
+                
+                let blob = new Blob([buffer], {type: "application/octet-stream"});
+                
+                let link = document.createElement("a");
+                link.href = window.URL.createObjectURL(blob);
+                link.download = file.name.replace('.json', '.level');
+                link.click();
+            });
+        }
+        reader.readAsText(file);
+    } else if (file.name.split('.')[1] === 'level') {
+        readArrayBuffer(file).then((obj) => {
+            let json = JSON.stringify(obj, null, 2);
+            let blob = new Blob([json], {type: "application/json"});
+                
+            let link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = file.name.replace('.level', '.json');
+            link.click();
+        });
+    }
+}
+function generatePointCloud() {
+    let file = document.getElementById('pointcloud-file').files[0];
+    let reader = new FileReader();
+    reader.onload = function() {
+        let data = reader.result;
+        let level = {
+            "ambienceSettings": {
+                "skyHorizonColor": {
+                    "a": 1.0,
+                    "b": 0.9574,
+                    "g": 0.9574,
+                    "r": 0.916
+                },
+                "skyZenithColor": {
+                    "a": 1.0,
+                    "b": 0.73,
+                    "g": 0.476,
+                    "r": 0.28
+                },
+                "sunAltitude": 45.0,
+                "sunAzimuth": 315.0,
+                "sunSize": 1.0
+            },
+            "creators": "",
+            "description": "model by grab-tools.live",
+            "formatVersion": 6,
+            "levelNodes": [],
+            "maxCheckpointCount": 10,
+            "title": "pointcloud"
+        }
+        let lines = data.split("\n");
+        let points = {
+            "levelNodeGroup": {
+                "position": {
+                    "y": 0, 
+                    "x": 0, 
+                    "z": 0
+                }, 
+                "rotation": {
+                    "w": 1.0
+                }, 
+                "scale": {
+                    "y": 1.0, 
+                    "x": 1.0, 
+                    "z": 1.0
+                },
+                "childNodes": []
+            }
+        };
+        for (let i = 0; i < lines.length; i++) {
+            let line = lines[i];
+            if (line.startsWith("v ")) {
+                line = line.replace("v ", "");
+                let coords = line.split(" ");
+                points.levelNodeGroup.childNodes.push({
+                    "levelNodeStatic": {
+                        "material": 8,
+                        "position": {
+                            "x": parseFloat(coords[0]),
+                            "y": parseFloat(coords[1]),
+                            "z": parseFloat(coords[2])
+                        },
+                        "color": {
+                            "r": 1,
+                            "g": 1,
+                            "b": 1,
+                            "a": 1
+                        },
+                        "rotation": {
+                            "w": 1
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "shape": 1001
+                    }
+                });
+            }
+        }
+        level.levelNodes.push(points);
+
+        protobuf.load("proto/level.proto", function(err, root) {
+            if(err) throw err;
+
+            let message = root.lookupType("COD.Level.Level");
+            let errMsg = message.verify(level);
+            if(errMsg) throw Error(errMsg);
+            let buffer = message.encode(message.fromObject(level)).finish();
+            
+            let blob = new Blob([buffer], {type: "application/octet-stream"});
+            
+            let link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = (Date.now()).toString().slice(0, -3)+".level";
+            link.click();
+        });
+    }
+    reader.readAsText(file);
+
 }
 
 /*
