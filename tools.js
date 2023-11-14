@@ -482,29 +482,41 @@ function generatePointCloud() {
 javascript:(function() {
     var popupContainer = document.createElement('div');
     popupContainer.style.position = 'fixed';
+    popupContainer.style.borderRadius = '10px';
     popupContainer.style.top = '50%';
     popupContainer.style.left = '50%';
     popupContainer.style.transform = 'translate(-50%, -50%)';
     popupContainer.style.padding = '20px';
-    popupContainer.style.background = '#ffffff';
-    popupContainer.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
+    popupContainer.style.background = '#c3d7e6';
+    popupContainer.style.border = 'solid 2px #4683ce70';
     popupContainer.style.zIndex = '9999';
   
     var colorPicker = document.createElement('input');
     colorPicker.type = 'color';
     colorPicker.style.marginBottom = '10px';
+    colorPicker.style.background = '#c3d7e6';
+    colorPicker.style.border = 'solid 2px #4683ce70';
+    colorPicker.style.borderRadius = '10px';
 
     var colorPicker2 = document.createElement('input');
     colorPicker2.type = 'color';
     colorPicker2.style.marginBottom = '10px';
+    colorPicker2.style.background = '#c3d7e6';
+    colorPicker2.style.border = 'solid 2px #4683ce70';
+    colorPicker2.style.borderRadius = '10px';
+    colorPicker2.style.float = 'right';
   
     var sendButton = document.createElement('button');
     sendButton.textContent = 'Send RGB Values';
     sendButton.style.padding = '8px 16px';
+    sendButton.style.borderRadius = '10px';
     sendButton.style.cursor = 'pointer';
+    sendButton.style.background = '#5f8cc235';
+    sendButton.style.border = 'solid 2px #4683ce70';
   
     popupContainer.appendChild(colorPicker);
     popupContainer.appendChild(colorPicker2);
+    popupContainer.appendChild(document.createElement('br'));
     popupContainer.appendChild(sendButton);
   
     sendButton.addEventListener('click', function() {
