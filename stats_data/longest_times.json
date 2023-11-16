@@ -15,8 +15,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 23100,
-      "difficulty": 0.00012126356636148669,
+      "total_played": 23200,
+      "difficulty": 0.00012083862002295934,
       "liked": 1,
       "time": 9918.465
     },
@@ -110,8 +110,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 58300,
-      "difficulty": 0.0003613310120553165,
+      "total_played": 58400,
+      "difficulty": 0.00036101083032490973,
       "liked": 0.875,
       "time": 3856.6569999999992
     },
@@ -371,8 +371,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 123800,
-      "difficulty": 0.0018564485513443607,
+      "total_played": 123900,
+      "difficulty": 0.0018551715512569308,
       "liked": 0.8548387096774194,
       "time": 2654.121685393258
     },
@@ -423,29 +423,6 @@
       "time": 2584.1627000000003
     },
     "creator": "cjbeast006"
-  },
-  {
-    "identifier": "29r46v7djliny6t4rzvq7:1653137100",
-    "title": "The Tutorial Cave",
-    "complexity": 2986,
-    "format_version": 4,
-    "update_timestamp": 1653255722499,
-    "creation_timestamp": 1653255722499,
-    "data_key": "level_data:29r46v7djliny6t4rzvq7:1653137100:1",
-    "description": "The Neckbreaker 9000",
-    "creators": [
-      "22Joshi22"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 22902,
-      "difficulty": 0.001267573173542291,
-      "liked": 0.88,
-      "time": 2499.4706
-    },
-    "creator": "22Joshi22"
   },
   {
     "identifier": "2axkwzh6f43g1regf401p:1680445764",
@@ -515,6 +492,29 @@
       "time": 2415.9836666666665
     },
     "creator": "coleaaron"
+  },
+  {
+    "identifier": "29r46v7djliny6t4rzvq7:1653137100",
+    "title": "The Tutorial Cave",
+    "complexity": 2986,
+    "format_version": 4,
+    "update_timestamp": 1653255722499,
+    "creation_timestamp": 1653255722499,
+    "data_key": "level_data:29r46v7djliny6t4rzvq7:1653137100:1",
+    "description": "The Neckbreaker 9000",
+    "creators": [
+      "22Joshi22"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 23002,
+      "difficulty": 0.0013783597518952446,
+      "liked": 0.8846153846153846,
+      "time": 2410.7007727272726
+    },
+    "creator": "22Joshi22"
   },
   {
     "identifier": "29ngj2xcdlinnuqz0vrw5:1667965708",
@@ -889,8 +889,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 122100,
-      "difficulty": 0.0003443665680832962,
+      "total_played": 122200,
+      "difficulty": 0.0003441365209822061,
       "liked": 0.8,
       "time": 2053.5111176470587
     },
@@ -1352,8 +1352,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 69700,
-      "difficulty": 0.002174891255437228,
+      "total_played": 70000,
+      "difficulty": 0.0021670091537455633,
       "liked": 0.9230769230769231,
       "time": 1787.5515517241386
     },
@@ -1766,10 +1766,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 14900,
-      "difficulty": 0.0016608996539792388,
+      "total_played": 15300,
+      "difficulty": 0.001626457034426674,
       "liked": 1,
-      "time": 1622.319166666667
+      "time": 1618.894166666667
     },
     "creator": "BLUDUK"
   },

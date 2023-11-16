@@ -2740,5 +2740,56 @@
     },
     1700025128,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 39.8601,
+        "user_id": "29z0nxar0nqsefbvvly4k",
+        "user_name": "Neville_Tiger_Strike",
+        "timestamp": "0001699735035034"
+      },
+      {
+        "position": 1,
+        "best_time": 51.4062,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "dotindex",
+        "timestamp": "0001699699624802"
+      },
+      {
+        "position": 2,
+        "best_time": 55.0432,
+        "user_id": "29wvwcyosrr43a72at6m5",
+        "user_name": "Poggggg",
+        "timestamp": "0001699659494024"
+      }
+    ],
+    {
+      "identifier": "2abebn7t4lq4ydl89oxje:1699562914",
+      "title": "Hexagon! (To Hell)",
+      "complexity": 1728,
+      "format_version": 7,
+      "update_timestamp": 1699584804021,
+      "creation_timestamp": 1699584804021,
+      "data_key": "level_data:2abebn7t4lq4ydl89oxje:1699562914:1",
+      "description": "Some parts are inspired by Ash Valley!",
+      "creators": [
+        "FruitByTheFist",
+        "MedievalDuck"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 900,
+        "difficulty": 0.01616915422885572,
+        "liked": 0.75,
+        "time": 99.83022307692308
+      },
+      "creator": "FruitByTheFist"
+    },
+    1700111535,
+    "daily_map"
   ]
 ]
