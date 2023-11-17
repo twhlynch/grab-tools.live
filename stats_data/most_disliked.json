@@ -270,8 +270,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 18162,
-      "difficulty": 0.0008135041692088672,
+      "total_played": 18362,
+      "difficulty": 0.0008060182697474476,
       "liked": 0.5555555555555556,
       "time": 1062.3494999999996
     },
@@ -348,6 +348,29 @@
     "creator": "Chickenfartin"
   },
   {
+    "identifier": "29sgp24f1uorbc6vq8d2k:1677488429",
+    "title": ".index's fling difficulty chart",
+    "complexity": 2954,
+    "format_version": 6,
+    "update_timestamp": 1678881256898,
+    "creation_timestamp": 1677660755645,
+    "data_key": "level_data:29sgp24f1uorbc6vq8d2k:1677488429:2",
+    "description": "+ Levi8020 built the spawn",
+    "creators": [
+      ".index (NSKC7)"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 41200,
+      "difficulty": 0.00026936026936026934,
+      "liked": 0.8,
+      "time": 130.7947833333335
+    },
+    "creator": ".index (NSKC7)"
+  },
+  {
     "identifier": "2aa73bmv50jap4z792rrz:1667014300",
     "title": "Ravens Point Mountain",
     "complexity": 2997,
@@ -415,29 +438,6 @@
       "time": 509.9844444444444
     },
     "creator": "shadowmaker99"
-  },
-  {
-    "identifier": "29sgp24f1uorbc6vq8d2k:1677488429",
-    "title": ".index's fling difficulty chart",
-    "complexity": 2954,
-    "format_version": 6,
-    "update_timestamp": 1678881256898,
-    "creation_timestamp": 1677660755645,
-    "data_key": "level_data:29sgp24f1uorbc6vq8d2k:1677488429:2",
-    "description": "+ Levi8020 built the spawn",
-    "creators": [
-      ".index (NSKC7)"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 41100,
-      "difficulty": 0.00026992981824725573,
-      "liked": 0.8333333333333334,
-      "time": 118.68971666666685
-    },
-    "creator": ".index (NSKC7)"
   },
   {
     "identifier": "2af2v4lqxksl1ru5itxr1:1677507116",
@@ -1139,29 +1139,6 @@
     "creator": "Mr. Madlord"
   },
   {
-    "identifier": "29st9jdcbxxotp0t9d8en:1690990909",
-    "title": "Grapple Gallery",
-    "complexity": 1158,
-    "format_version": 6,
-    "update_timestamp": 1691073714158,
-    "creation_timestamp": 1691073714158,
-    "data_key": "level_data:29st9jdcbxxotp0t9d8en:1690990909:1",
-    "description": "A very simple Grapple Course, 4 checkpoints have fun.",
-    "creators": [
-      "Mystery8281"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 2200,
-      "difficulty": 0.00552791597567717,
-      "liked": 1,
-      "time": 248.49643999999998
-    },
-    "creator": "Mystery8281"
-  },
-  {
     "identifier": "29wqa67tov5nq1kmxsr2l:1665272902",
     "title": "skill issue 2.0 by surge",
     "complexity": 294,
@@ -1385,6 +1362,29 @@
       "time": 367.17427272727275
     },
     "creator": "Mastershadowgamer1010"
+  },
+  {
+    "identifier": "29st9jdcbxxotp0t9d8en:1690990909",
+    "title": "Grapple Gallery",
+    "complexity": 1158,
+    "format_version": 6,
+    "update_timestamp": 1691073714158,
+    "creation_timestamp": 1691073714158,
+    "data_key": "level_data:29st9jdcbxxotp0t9d8en:1690990909:1",
+    "description": "A very simple Grapple Course, 4 checkpoints have fun.",
+    "creators": [
+      "Mystery8281"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 2300,
+      "difficulty": 0.005826271186440678,
+      "liked": 1,
+      "time": 238.5285818181818
+    },
+    "creator": "Mystery8281"
   },
   {
     "identifier": "29srqtwaq08zzhp3kng3u:1663852041",
@@ -1640,8 +1640,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 4300,
-      "difficulty": 0.0033566433566433566,
+      "total_played": 4400,
+      "difficulty": 0.0032822757111597373,
       "liked": 1,
       "time": 328.0606666666667
     },
