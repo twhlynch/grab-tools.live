@@ -2943,5 +2943,55 @@
     },
     1700284295,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 16.0929,
+        "user_id": "29wvwcyosrr43a72at6m5",
+        "user_name": "Poggggg",
+        "timestamp": "0001700280177838"
+      },
+      {
+        "position": 1,
+        "best_time": 16.2559,
+        "user_id": "29zwujsnjq6iu1jqa4keo",
+        "user_name": "levi8020",
+        "timestamp": "0001700340842649"
+      },
+      {
+        "position": 2,
+        "best_time": 24.9247,
+        "user_id": "2bjz8nebkbbt9ima3sn9x",
+        "user_name": "NSKC8",
+        "timestamp": "0001700352422070"
+      }
+    ],
+    {
+      "identifier": "2bb7ndvntrf86g47ciwxn:1693731408",
+      "title": "NinjaWarior Course",
+      "complexity": 992,
+      "format_version": 7,
+      "update_timestamp": 1700263328882,
+      "creation_timestamp": 1700263149282,
+      "data_key": "level_data:2bb7ndvntrf86g47ciwxn:1693731408:2",
+      "creators": [
+        "danny",
+        "bradeeznuts"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 100,
+        "difficulty": 0.1134020618556701,
+        "liked": 0.6666666666666666,
+        "time": 80.19017272727272
+      },
+      "creator": "danny"
+    },
+    1700370684,
+    "daily_map"
   ]
 ]
