@@ -270,8 +270,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 18962,
-      "difficulty": 0.0007845188284518828,
+      "total_played": 19262,
+      "difficulty": 0.0007739938080495357,
       "liked": 0.5555555555555556,
       "time": 1062.3494999999996
     },
@@ -363,8 +363,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 41300,
-      "difficulty": 0.0002688774367017701,
+      "total_played": 41400,
+      "difficulty": 0.00026838432635534085,
       "liked": 0.8,
       "time": 130.7947833333335
     },
@@ -1016,8 +1016,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7134,
-      "difficulty": 0.0018422374811589348,
+      "total_played": 7234,
+      "difficulty": 0.0018157807857378673,
       "liked": 0.875,
       "time": 407.1438636363636
     },
@@ -1589,12 +1589,51 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 4500,
-      "difficulty": 0.0031746031746031746,
+      "total_played": 4600,
+      "difficulty": 0.0031064670996893535,
       "liked": 1,
       "time": 1188.0398181818182
     },
     "creator": "BlackCat508"
+  },
+  {
+    "identifier": "29rkswgx13q8mej7mxdg6:1698601019",
+    "title": "Hole in the wall!",
+    "complexity": 1394,
+    "format_version": 7,
+    "update_timestamp": 1700410224917,
+    "creation_timestamp": 1698806130025,
+    "data_key": "level_data:29rkswgx13q8mej7mxdg6:1698601019:2",
+    "description": "my first animated level. Sorry if its bad!!!!! I hope you like it!!",
+    "creators": [
+      "AFT Daring",
+      "levi8020",
+      "BWLBuck",
+      "Milojensopha",
+      "and EBSpark"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 6500,
+      "difficulty": 0.0022087244616234127,
+      "liked": 1,
+      "time": 86.90041249999999
+    },
+    "images": {
+      "full": {
+        "key": "level_29rkswgx13q8mej7mxdg6_1698601019_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29rkswgx13q8mej7mxdg6_1698601019_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "AFT Daring"
   },
   {
     "identifier": "29fpodhowxpo5wf9i7n40:1664583460",
@@ -2287,28 +2326,5 @@
       "time": 141.43644285714285
     },
     "creator": "mrcryingjolly"
-  },
-  {
-    "identifier": "29st9jdcbxxotp0t9d8en:1668039641",
-    "title": "The New World",
-    "complexity": 2600,
-    "format_version": 6,
-    "update_timestamp": 1668042553411,
-    "creation_timestamp": 1668042553411,
-    "data_key": "level_data:29st9jdcbxxotp0t9d8en:1668039641:1",
-    "description": "After you fell in the hole in the train yard you find yourself trapped in another world",
-    "creators": [
-      "Mystery8281"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 5200,
-      "difficulty": 0.004117219665778639,
-      "liked": 0.8,
-      "time": 604.3760588235295
-    },
-    "creator": "Mystery8281"
   }
 ]
