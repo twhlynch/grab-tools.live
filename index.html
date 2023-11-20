@@ -76,7 +76,7 @@
                 } else {
                     alert('Could not find level ID in the URL.');
                 }
-            })();">Get Historical Stats</a>
+            })();">Historical Stats</a>
             <a class="bookmarklet button" href="javascript:(function() {
                 var url = window.location.href;
                 var idRegex = /level=([^&]+)/;
@@ -89,8 +89,21 @@
                 } else {
                     alert('Could not find level ID in the URL.');
                 }
-            })();">Open In Editor</a>
-            <a href="javascript:(()=>{document.getElementById('download-button').click()})();" class="bookmarklet button">Download As glTF</a>
+            })();">JSON Editor</a>
+            <a class="bookmarklet button" href="javascript:(function() {
+                var url = window.location.href;
+                var idRegex = /level=([^&]+)/;
+                var match = url.match(idRegex);
+                
+                if (match && match[1]) {
+                    var id = match[1];
+                    var newUrl = 'http://twhlynch.me/grab-web-editor?level=' + id;
+                    window.location.href = newUrl;
+                } else {
+                    alert('Could not find level ID in the URL.');
+                }
+            })();">Web Editor</a>
+            <a href="javascript:(()=>{document.getElementById('download-button').click()})();" class="bookmarklet button">Download glTF</a>
             <a href="javascript:(()=>{ 
                 var url = window.location.href;
                 var idRegex = /level=([^&]+)/;
