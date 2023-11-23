@@ -366,7 +366,12 @@ h1.title {
 #UnbeatenMap-out > .leaderboard-item:nth-child(4) > :nth-child(1)::after {
     content: "+1";
 }
+.leaderboard-item img {
+    height: 30px;
+    aspect-ratio: 512/288;
+    border-radius: 3px;
 
+}
 .leaderboard-item span {
     color: #4e88cf;
     font-weight: 600;
