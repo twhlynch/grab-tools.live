@@ -93,7 +93,7 @@ def get_unbeaten(data):
                     "age": age,
                     "creators": level["creators"]
                 }
-                unbeaten.append(new_data)
+                unbeaten.append(level)
     return unbeaten[::-1]
 
 def get_most_verified(data, old_data):

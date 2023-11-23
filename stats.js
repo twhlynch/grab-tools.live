@@ -1,3 +1,58 @@
+function levelCard(
+    identifier,
+    title,
+    creators,
+    imageThumb,
+    verified,
+    updatedTimestamp,
+    detail
+) {
+    const levelUrl = `https://grabvr.quest/levels/viewer/?level=${identifier}`;
+    const creatorUrl = `https://grabvr.quest/levels?tab=tab_other_user&user_id=${identifier.split(':')[0]}`;
+    const creatorsString = creators.join(", ");
+    const creator = creators[0];
+    const daysOld = Math.round((new Date() - new Date(updatedTimestamp)) / (1000 * 60 * 60 * 24));
+    const imageUrl = `https://grab-images.slin.dev/${imageThumb}`;
+
+    const cardElement = document.createElement('div');
+    cardElement.classList.add('leaderboard-item');
+    cardElement.classList.add('leaderboard-item-card');
+    verified ? cardElement.classList.add('levelItemOk') : null;
+
+    const imageElement = document.createElement('img');
+    imageElement.setAttribute('src', imageUrl);
+
+    const infoElement = document.createElement('div');
+    infoElement.classList.add('leaderboard-item-info');
+    const titleElement = document.createElement('a');
+    titleElement.setAttribute('href', levelUrl);
+    titleElement.innerText = title;
+    const byElement = document.createElement('span');
+    byElement.innerText = 'by ';
+    const creatorElement = document.createElement('a');
+    creatorElement.setAttribute('href', creatorUrl);
+    creatorElement.setAttribute('title', creatorsString);
+    creatorElement.innerText = `${creator}`;
+
+    const daysElement = document.createElement('span');
+    daysElement.innerText = `${daysOld} days`;
+    const detailElement = document.createElement('span');
+    detailElement.innerText = detail;
+
+    infoElement.appendChild(titleElement);
+    infoElement.appendChild(document.createElement('br'));
+    infoElement.appendChild(byElement);
+    infoElement.appendChild(creatorElement);
+
+    cardElement.appendChild(imageElement);
+    cardElement.appendChild(infoElement);
+    cardElement.appendChild(daysElement);
+    cardElement.appendChild(detailElement);
+
+    return cardElement;
+}
+
+
 let buttons = document.querySelectorAll('.stats-button');
 buttons.forEach((btn) => {
     let btnId = btn.id;
@@ -18,7 +73,17 @@ function getUnbeatenLevels() {
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
-            document.getElementById('UnbeatenMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="${item["link"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creators"][0]}</span></div><span>${parseInt(item["age"].split(" ")[0])} ${item["age"].split(" ")[1]}<br>${item["plays"]} plays</span></div>`;
+            // document.getElementById('UnbeatenMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="${item["link"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creators"][0]}</span></div><span>${parseInt(item["age"].split(" ")[0])} ${item["age"].split(" ")[1]}<br>${item["plays"]} plays</span></div>`;
+            const levelDiv = levelCard(
+                item?.identifier,
+                item?.title,
+                item?.creators,
+                item?.images?.thumb?.key,
+                (item?.tags ? item.tags : []).includes("ok"),
+                item?.update_timestamp,
+                ''
+            );
+            document.getElementById('UnbeatenMaps-out').appendChild(levelDiv);
         });
     });
 }
@@ -39,7 +104,17 @@ function getPlayedLevels() {
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
-            document.getElementById('MostPlayedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${item["statistics"]["total_played"]} plays</span></div>`;
+            // document.getElementById('MostPlayedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${item["statistics"]["total_played"]} plays</span></div>`;
+            const levelDiv = levelCard(
+                item?.identifier,
+                item?.title,
+                item?.creators,
+                item?.images?.thumb?.key,
+                (item?.tags ? item.tags : []).includes("ok"),
+                item?.update_timestamp,
+                `${item?.statistics?.total_played} plays`
+            );
+            document.getElementById('MostPlayedMaps-out').appendChild(levelDiv);
         });
     });
 }
@@ -49,7 +124,17 @@ function getTopLikes() {
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
-            document.getElementById('MostLikedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${Math.round(item["statistics"]["liked"] * item["statistics"]["difficulty"] * item["statistics"]["total_played"])} (${Math.round(100 * item["statistics"]["liked"])}%)</span></div>`;
+            // document.getElementById('MostLikedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${Math.round(item["statistics"]["liked"] * item["statistics"]["difficulty"] * item["statistics"]["total_played"])} (${Math.round(100 * item["statistics"]["liked"])}%)</span></div>`;
+            const levelDiv = levelCard(
+                item?.identifier,
+                item?.title,
+                item?.creators,
+                item?.images?.thumb?.key,
+                (item?.tags ? item.tags : []).includes("ok"),
+                item?.update_timestamp,
+                `${Math.round(item?.statistics?.liked * item?.statistics?.difficulty * item?.statistics?.total_played)} (${Math.round(100 * item?.statistics?.liked)}%)`
+            );
+            document.getElementById('MostLikedMaps-out').appendChild(levelDiv);
         });
     });
 }
@@ -59,7 +144,17 @@ function getTopDisikes() {
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
-            document.getElementById('MostDislikedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${Math.round(item["statistics"]["liked"] * item["statistics"]["difficulty"] * item["statistics"]["total_played"])} (${Math.round(100- (100 * item["statistics"]["liked"]))}%)</span></div>`;
+            // document.getElementById('MostDislikedMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${Math.round(item["statistics"]["liked"] * item["statistics"]["difficulty"] * item["statistics"]["total_played"])} (${Math.round(100- (100 * item["statistics"]["liked"]))}%)</span></div>`;
+            const levelDiv = levelCard(
+                item?.identifier,
+                item?.title,
+                item?.creators,
+                item?.images?.thumb?.key,
+                (item?.tags ? item.tags : []).includes("ok"),
+                item?.update_timestamp,
+                `${Math.round(item?.statistics?.liked * item?.statistics?.difficulty * item?.statistics?.total_played)} (${Math.round(100- (100 * item?.statistics?.liked))}%)`
+            );
+            document.getElementById('MostDislikedMaps-out').appendChild(levelDiv);
         });
     });
 }
@@ -69,7 +164,17 @@ function getTopTimes() {
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
-            document.getElementById('MostTimeMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${Math.round(item["statistics"]["time"])}s</span></div>`;
+            // document.getElementById('MostTimeMaps-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></div><span>${new Date(item.creation_timestamp).toDateString().substring(4)}</span><span>${Math.round(item["statistics"]["time"])}s</span></div>`;
+            const levelDiv = levelCard(
+                item?.identifier,
+                item?.title,
+                item?.creators,
+                item?.images?.thumb?.key,
+                (item?.tags ? item.tags : []).includes("ok"),
+                item?.update_timestamp,
+                `${Math.round(item?.statistics?.time)}s`
+            );
+            document.getElementById('MostTimeMaps-out').appendChild(levelDiv);
         });
     });
 }
@@ -218,21 +323,30 @@ addEventListener("click", async (e) => {
             item?.statistics?.time ? time_count += 1 : null;
             item?.complexity ? total_complexity += item?.complexity : null;
 
-            const levelDiv = document.createElement('div');
-            levelDiv.classList.add('leaderboard-item');
-            item?.tags?.includes("ok") ? levelDiv.classList.add("levelItemOk") : null;
+            // const levelDiv = document.createElement('div');
+            // levelDiv.classList.add('leaderboard-item');
+            // item?.tags?.includes("ok") ? levelDiv.classList.add("levelItemOk") : null;
 
-            let imageUrl = item?.images?.thumb?.key;
-            imageUrl ? imageUrl = `https://grab-images.slin.dev/${imageUrl}` : null;
+            // let imageUrl = item?.images?.thumb?.key;
+            // imageUrl ? imageUrl = `https://grab-images.slin.dev/${imageUrl}` : null;
             
 
-            levelDiv.innerHTML = `<div><a href="https://grabvr.quest/levels/viewer/?level=${item.identifier}">${item.title}</a><br>by <span title="${item.creators}">${item.creator}</span></div>
-            ${imageUrl ? "<img src='"+imageUrl+"'>" : ""}
-            <span>${new Date(
-                item.creation_timestamp
-            )
-                .toDateString()
-                .substring(4)}</span><span>${item.statistics.total_played} plays</span>`;
+            // levelDiv.innerHTML = `<div><a href="https://grabvr.quest/levels/viewer/?level=${item.identifier}">${item.title}</a><br>by <span title="${item.creators}">${item.creator}</span></div>
+            // ${imageUrl ? "<img src='"+imageUrl+"'>" : ""}
+            // <span>${new Date(
+            //     item.creation_timestamp
+            // )
+            //     .toDateString()
+            //     .substring(4)}</span><span>${item.statistics.total_played} plays</span>`;
+            const levelDiv = levelCard(
+                item?.identifier,
+                item?.title,
+                item?.creators,
+                item?.images?.thumb?.key,
+                (item?.tags ? item.tags : []).includes("ok"),
+                item?.update_timestamp,
+                `${item?.statistics?.total_played} plays`
+            );
             fragment.appendChild(levelDiv);
         });
 
