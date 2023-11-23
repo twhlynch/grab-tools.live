@@ -70,6 +70,8 @@ def get_a_challenge():
                 user_leaderboard[leaderboard[i]["user_id"]][0] += 3 - i
             else:
                 user_leaderboard[leaderboard[i]["user_id"]] = [3 - i, leaderboard[i]["user_name"]]
+        for i in range(len(leaderboard)):
+            user_leaderboard[leaderboard[i]["user_id"]][0] += 1
     user_leaderboard = sorted(user_leaderboard.items(), key=lambda x: x[1][0], reverse=True)
     return user_leaderboard
 
