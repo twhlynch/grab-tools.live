@@ -298,8 +298,10 @@ h1.title {
     flex-direction: row;
     gap: 5px;
     margin-inline: auto;
+    align-items: center;
+    border-left: solid 5px transparent;
 }
-.leaderboard-item span:nth-last-child(1) {
+.leaderboard-item:not(.leaderboard-item-card) span:nth-last-child(1), .leaderboard-item-card span:nth-last-child(2) {
     margin-left: auto;
 }
 .leaderboard-item span:nth-last-child(2) {
@@ -367,10 +369,12 @@ h1.title {
     content: "+1";
 }
 .leaderboard-item img {
-    height: 30px;
+    height: 35px;
     aspect-ratio: 512/288;
     border-radius: 3px;
-
+}
+.leaderboard-item-info {
+    max-width: 50%;
 }
 .leaderboard-item span {
     color: #4e88cf;
