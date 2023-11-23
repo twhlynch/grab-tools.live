@@ -3129,5 +3129,68 @@
     },
     1700629942,
     "unbeaten_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 9.49803,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071",
+        "timestamp": "0001700679821632"
+      },
+      {
+        "position": 1,
+        "best_time": 11.862,
+        "user_id": "29zwujsnjq6iu1jqa4keo",
+        "user_name": "levi8020",
+        "timestamp": "0001699734234851"
+      },
+      {
+        "position": 2,
+        "best_time": 12.432,
+        "user_id": "29v9vd6n9z45d16mi2o2n",
+        "user_name": "JeffBobDude",
+        "timestamp": "0001699050256493"
+      }
+    ],
+    {
+      "identifier": "29v9vd6n9z45d16mi2o2n:1698609573",
+      "title": "ROUGH SEAS AHEAD",
+      "complexity": 766,
+      "format_version": 7,
+      "update_timestamp": 1700411126016,
+      "creation_timestamp": 1698613037580,
+      "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1698609573:3",
+      "creators": [
+        "JEFFBOBDUDE",
+        "ebspark",
+        "d2whiplash"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 300,
+        "difficulty": 0.05925925925925926,
+        "liked": 1,
+        "time": 52.286006250000014
+      },
+      "images": {
+        "full": {
+          "key": "level_29v9vd6n9z45d16mi2o2n_1698609573_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_29v9vd6n9z45d16mi2o2n_1698609573_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "JEFFBOBDUDE"
+    },
+    1700716323,
+    "daily_map"
   ]
 ]
