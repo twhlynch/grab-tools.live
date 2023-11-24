@@ -339,7 +339,7 @@ def get_level_data():
         write_json_file('stats_data/daily_map.json', daily_level)
         get_unbeaten_winner()
         unbeaten_level = get_unbeaten_map()
-        message_result[2] = [unbeaten_level["title"], unbeaten_level["link"]]
+        message_result[2] = [unbeaten_level["title"], "https://grabvr.quest/levels/viewer/?level="+unbeaten_level["id"]]
         write_json_file('stats_data/unbeaten_map.json', unbeaten_level)
         weekly = log_data["days_since_weekly"] + 1
         if weekly == 7:
