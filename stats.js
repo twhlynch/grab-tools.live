@@ -272,13 +272,13 @@ addEventListener("click", async (e) => {
             try {
                 const response1 = await fetch(`https://api.slin.dev/grab/v1/list?max_format_version=7&user_id=${id}`);
                 const json_data1 = await response1.json();
-                array1 = json_data1.flat().filter(level => !level.tags || level.tags.ok);
+                array1 = json_data1.flat()//.filter(level => !level.tags || level.tags.ok);
             } catch (error) {
                 console.error("Error fetching user level data:", error);
             }
         }
 
-        const array = array1.concat(array2);
+        const array = array1;//.concat(array2);
 
         let levels = array.filter(level => {
             for (var key of keys) {
