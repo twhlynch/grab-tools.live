@@ -250,7 +250,7 @@ def get_weekly_winner():
 def get_unbeaten_winner():
     with open("stats_data/map_winners.json", 'r') as winners, open("stats_data/unbeaten_map.json", "r") as map, open("stats_data/user_blacklist.json", "r") as blacklist:
         map_json = json.load(map)
-        id = map_json["identifier"]
+        id = map_json["link"].split('=')[1]
         url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
         winnerList = requests.get(url).json()
         blacklist_data = json.loads(blacklist.read())
