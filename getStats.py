@@ -467,9 +467,9 @@ def run_bot(message, unbeaten_levels=[]):
             
             over_100 = []
 
-            for level in unbeaten_levels:
-                if int(level["age"].split(".")[0]) >= 100 and level["age"].split(" ")[1] == "days":
-                    over_100.append(level)
+            #for level in unbeaten_levels:
+                #if int(level["age"].split(".")[0]) >= 100 and level["age"].split(" ")[1] == "days":
+                    #over_100.append(level)
                 
             if len(over_100) > 0:
                 embed.add_field(name="Over 100 Days", value="\n".join([f"{level['title']}" for level in over_100]), inline=False)
