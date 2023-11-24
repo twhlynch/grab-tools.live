@@ -257,15 +257,15 @@ addEventListener("click", async (e) => {
 
         const keys = keyInput.value.toLowerCase().split("|");
 
-        const promises2 = [fetch('/stats_data/all_verified.json')];
-        let array2 = [];
-        try {
-            const responses2 = await Promise.all(promises2);
-            const json_data2 = await Promise.all(responses2.map(res => res.json()));
-            array2 = json_data2.flat();
-        } catch (error) {
-            console.error("Error fetching verified stats data:", error);
-        }
+        // const promises2 = [fetch('/stats_data/all_verified.json')];
+        // let array2 = [];
+        // try {
+        //     const responses2 = await Promise.all(promises2);
+        //     const json_data2 = await Promise.all(responses2.map(res => res.json()));
+        //     array2 = json_data2.flat();
+        // } catch (error) {
+        //     console.error("Error fetching verified stats data:", error);
+        // }
 
         let array1 = [];
         if (user !== '' && user !== null) {
