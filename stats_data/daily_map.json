@@ -1,23 +1,35 @@
 {
-  "identifier": "29hvf45loqwhxjjpus1jr:1640534598",
-  "title": "story",
-  "complexity": 107,
-  "format_version": 3,
-  "update_timestamp": 1640537660924,
-  "creation_timestamp": 1640537660924,
-  "data_key": "level_data:29hvf45loqwhxjjpus1jr:1640534598:1",
-  "description": "its a story level",
+  "identifier": "29y5xtwiv6shb636vdb9c:1677789356",
+  "title": "Editor Tutorial",
+  "complexity": 2713,
+  "format_version": 7,
+  "update_timestamp": 1700762998243,
+  "creation_timestamp": 1677947664041,
+  "data_key": "level_data:29y5xtwiv6shb636vdb9c:1677789356:9",
+  "description": "You can learn the basics of the Editor Mode in this level.",
   "creators": [
-    "Shadow6708"
+    "Supermeow10"
   ],
   "tags": [
     "ok"
   ],
   "statistics": {
-    "total_played": 5214,
-    "difficulty": 0.4045769473021205,
-    "liked": 0.7938718662952646,
-    "time": 76.2056954582272
+    "total_played": 1700,
+    "difficulty": 0.6632016632016632,
+    "liked": 0.66796875,
+    "time": 32.46045070010451
   },
-  "creator": "Shadow6708"
+  "images": {
+    "full": {
+      "key": "level_29y5xtwiv6shb636vdb9c_1677789356_2.png",
+      "width": 1920,
+      "height": 1080
+    },
+    "thumb": {
+      "key": "level_29y5xtwiv6shb636vdb9c_1677789356_2_thumb.png",
+      "width": 512,
+      "height": 288
+    }
+  },
+  "creator": "Supermeow10"
 }
