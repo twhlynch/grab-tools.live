@@ -3342,5 +3342,67 @@
     },
     1700889486,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 3.37499,
+        "user_id": "29y5xtwiv6shb636vdb9c",
+        "user_name": "Supermeow10",
+        "timestamp": "0001689248734260"
+      },
+      {
+        "position": 1,
+        "best_time": 3.46199,
+        "user_id": "2a330dj0lwxto6urn4k9u",
+        "user_name": "GalNightWatcher",
+        "timestamp": "0001687583563070"
+      },
+      {
+        "position": 2,
+        "best_time": 3.47199,
+        "user_id": "2bfqb0o1v8789e6mkzbra",
+        "user_name": "Phantom287",
+        "timestamp": "0001689472779535"
+      }
+    ],
+    {
+      "identifier": "29y5xtwiv6shb636vdb9c:1677789356",
+      "title": "Editor Tutorial",
+      "complexity": 2713,
+      "format_version": 7,
+      "update_timestamp": 1700762998243,
+      "creation_timestamp": 1677947664041,
+      "data_key": "level_data:29y5xtwiv6shb636vdb9c:1677789356:9",
+      "description": "You can learn the basics of the Editor Mode in this level.",
+      "creators": [
+        "Supermeow10"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 1700,
+        "difficulty": 0.6632016632016632,
+        "liked": 0.66796875,
+        "time": 32.46045070010451
+      },
+      "images": {
+        "full": {
+          "key": "level_29y5xtwiv6shb636vdb9c_1677789356_2.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_29y5xtwiv6shb636vdb9c_1677789356_2_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "Supermeow10"
+    },
+    1700975502,
+    "daily_map"
   ]
 ]

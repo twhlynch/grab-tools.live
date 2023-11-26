@@ -86,8 +86,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2700,
-      "difficulty": 0.003598740440845704,
+      "total_played": 2800,
+      "difficulty": 0.003457216940363008,
       "liked": 0.8333333333333334,
       "time": 5665.001249999999
     },
@@ -144,8 +144,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3500,
-      "difficulty": 0.000333889816360601,
+      "total_played": 3600,
+      "difficulty": 0.0003254149040026033,
       "liked": 1,
       "time": 3808.61
     },
@@ -180,8 +180,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 59800,
-      "difficulty": 0.00035455278001611605,
+      "total_played": 59900,
+      "difficulty": 0.00035400508480030893,
       "liked": 0.8888888888888888,
       "time": 3726.3631818181816
     },
@@ -361,8 +361,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7300,
-      "difficulty": 0.00034417484081913615,
+      "total_played": 7400,
+      "difficulty": 0.00034042553191489364,
       "liked": 1,
       "time": 3040.04
     },
@@ -477,8 +477,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 125600,
-      "difficulty": 0.0018935885561387259,
+      "total_played": 125800,
+      "difficulty": 0.0018903980109725275,
       "liked": 0.8615384615384616,
       "time": 2598.219217391304
     },
@@ -985,8 +985,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 123500,
-      "difficulty": 0.0003406608821112959,
+      "total_played": 123600,
+      "difficulty": 0.00034036078242937514,
       "liked": 0.8,
       "time": 2021.9417058823533
     },
@@ -1180,29 +1180,6 @@
     "creator": "Cosmic_Blade"
   },
   {
-    "identifier": "29r46v7djliny6t4rzvq7:1653137100",
-    "title": "The Tutorial Cave",
-    "complexity": 2986,
-    "format_version": 4,
-    "update_timestamp": 1653255722499,
-    "creation_timestamp": 1653255722499,
-    "data_key": "level_data:29r46v7djliny6t4rzvq7:1653137100:1",
-    "description": "The Neckbreaker 9000",
-    "creators": [
-      "22Joshi22"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 23602,
-      "difficulty": 0.0018033248802479572,
-      "liked": 0.9032258064516129,
-      "time": 1960.9612000000002
-    },
-    "creator": "22Joshi22"
-  },
-  {
     "identifier": "29de83wbqxgo92ijwuub9:1639010130",
     "title": "The 19 levels of agony",
     "complexity": 711,
@@ -1224,6 +1201,29 @@
       "time": 1953.5132499999997
     },
     "creator": "MC1125"
+  },
+  {
+    "identifier": "29r46v7djliny6t4rzvq7:1653137100",
+    "title": "The Tutorial Cave",
+    "complexity": 2986,
+    "format_version": 4,
+    "update_timestamp": 1653255722499,
+    "creation_timestamp": 1653255722499,
+    "data_key": "level_data:29r46v7djliny6t4rzvq7:1653137100:1",
+    "description": "The Neckbreaker 9000",
+    "creators": [
+      "22Joshi22"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 23702,
+      "difficulty": 0.0017974498679997754,
+      "liked": 0.875,
+      "time": 1929.4955000000002
+    },
+    "creator": "22Joshi22"
   },
   {
     "identifier": "29t798uon2urbra1f8w2q:1651155984",
@@ -1458,42 +1458,6 @@
     "creator": "chuck"
   },
   {
-    "identifier": "29t798uon2urbra1f8w2q:1650499561",
-    "title": "Peeks-Dessert climb",
-    "complexity": 2986,
-    "format_version": 4,
-    "update_timestamp": 1651107153020,
-    "creation_timestamp": 1651107153020,
-    "data_key": "level_data:29t798uon2urbra1f8w2q:1650499561:1",
-    "description": "a more simple climbing level, the first of a series? ",
-    "creators": [
-      "blackcat508",
-      "battlesquid112"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 33402,
-      "difficulty": 0.0032657270539704366,
-      "liked": 0.8823529411764706,
-      "time": 1834.2803753623182
-    },
-    "images": {
-      "full": {
-        "key": "level_29t798uon2urbra1f8w2q_1650499561_3.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29t798uon2urbra1f8w2q_1650499561_3_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "blackcat508"
-  },
-  {
     "identifier": "2atgm7q6qci6b42iag71a:1668481708",
     "title": "Skills Reqired",
     "complexity": 395,
@@ -1538,6 +1502,42 @@
       "time": 1832.625
     },
     "creator": "jckarp"
+  },
+  {
+    "identifier": "29t798uon2urbra1f8w2q:1650499561",
+    "title": "Peeks-Dessert climb",
+    "complexity": 2986,
+    "format_version": 4,
+    "update_timestamp": 1651107153020,
+    "creation_timestamp": 1651107153020,
+    "data_key": "level_data:29t798uon2urbra1f8w2q:1650499561:1",
+    "description": "a more simple climbing level, the first of a series? ",
+    "creators": [
+      "blackcat508",
+      "battlesquid112"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 33502,
+      "difficulty": 0.003300047143530622,
+      "liked": 0.8823529411764706,
+      "time": 1828.0462271428564
+    },
+    "images": {
+      "full": {
+        "key": "level_29t798uon2urbra1f8w2q_1650499561_3.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29t798uon2urbra1f8w2q_1650499561_3_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "blackcat508"
   },
   {
     "identifier": "29v9vd6n9z45d16mi2o2n:1664504388",
@@ -1615,8 +1615,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 73200,
-      "difficulty": 0.002086931491076569,
+      "total_played": 73600,
+      "difficulty": 0.0020771407083766073,
       "liked": 0.925,
       "time": 1783.9151206896559
     },
@@ -1866,8 +1866,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7100,
-      "difficulty": 0.00040306328093510683,
+      "total_played": 7200,
+      "difficulty": 0.0003984857541342897,
       "liked": 1,
       "time": 1730.5349999999999
     }
@@ -2649,8 +2649,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8667,
-      "difficulty": 0.0001409046075806679,
+      "total_played": 8767,
+      "difficulty": 0.00013931457230426304,
       "liked": 0.75,
       "time": 1461.88
     },
