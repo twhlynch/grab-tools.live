@@ -1,6 +1,5 @@
-import json, random, requests, time, sys
+import json, random, requests, time, sys, discord
 from datetime import datetime, date
-import discord
 from discord.ext import commands
 from discord import Embed
 
@@ -8,19 +7,8 @@ def write_json_file(filename, data):
     with open(filename, 'w') as file:
         json.dump(data, file, indent=2)
 
-def timestamp_to_age(timestamp_in_milliseconds):
-    time_elapsed_in_seconds = int((datetime.now().timestamp() * 1000 - timestamp_in_milliseconds) / 1000)
-    time_elapsed_in_minutes = time_elapsed_in_seconds / 60
-    time_elapsed_in_hours = time_elapsed_in_minutes / 60
-    time_elapsed_in_days = time_elapsed_in_hours / 24
-    if time_elapsed_in_days > 0:
-        return f"{time_elapsed_in_days} days"
-    elif time_elapsed_in_hours > 0:
-        return f"{time_elapsed_in_hours} hours"
-    elif time_elapsed_in_minutes > 0:
-        return f"{time_elapsed_in_minutes} minutes"
-    else:
-        return f"{time_elapsed_in_seconds} seconds"
+def timestamp_to_days(timestamp_in_milliseconds):
+    return (datetime.now().timestamp() * 1000 - timestamp_in_milliseconds) / 1000 /60 / 60 / 24
 
 def get_all_verified(stamp=''):
     verified = []
@@ -81,21 +69,14 @@ def get_a_challenge():
 def get_unbeaten(data):
     unbeaten = []
     for level in data:
-        age = timestamp_to_age(level["creation_timestamp"])
-        if level["statistics"]["difficulty"] == 0 and "days" in age and level["statistics"]["total_played"] > 300:
+        age = timestamp_to_days(level["creation_timestamp"])
+        if level["statistics"]["difficulty"] == 0 and age > 1 and level["statistics"]["total_played"] > 300:
             url = f"https://api.slin.dev/grab/v1/statistics/{level['identifier'].replace(':', '/')}"
             stats = requests.get(url).json()
             print("Sending request")
             if stats["finished_count"] == 0:
                 if "creators" not in level:
                     level["creators"] = ["?"]
-                new_data = {
-                    "plays": str(stats["total_played_count"]),
-                    "link": f"https://grabvr.quest/levels/viewer?level={level['identifier']}",
-                    "title": level["title"],
-                    "age": age,
-                    "creators": level["creators"]
-                }
                 unbeaten.append(level)
     return unbeaten[::-1]
 
@@ -166,7 +147,7 @@ def get_most_plays(data, old_data):
         if id in old_data:
             most_plays[id]["change"] = most_plays[id]["plays"] - old_data[id]["plays"]
         else:
-            most_plays[id]["change"] = most_plays[id]["plays"]
+            most_plays[id]["change"] = 0
     return most_plays
 
 def get_most_played_maps(data):
@@ -185,16 +166,14 @@ def get_most_liked(data):
     for map in most_liked:
         if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10:
             best.append(map)
-    # best.sort(key=lambda x: x["statistics"]["liked"], reverse=True)
     return best[:100]
 
 def get_most_disliked(data):
     worst = []
-    least_liked = sorted(data, key=lambda x: x["statistics"]["liked"] * x["statistics"]["difficulty"] * x["statistics"]["total_played"])
+    least_liked = sorted(data, key=lambda x: (1 - x["statistics"]["liked"]) * x["statistics"]["difficulty"] * x["statistics"]["total_played"], reverse=True)
     for map in least_liked:
         if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10:
             worst.append(map)
-    # worst.sort(key=lambda x: x["statistics"]["liked"])
     return worst[:100]
 
 def get_daily_winner():
@@ -308,7 +287,7 @@ def get_weekly_map(all_data):
 def get_unbeaten_map():
     with open("stats_data/unbeaten_levels.json") as data_file:
         data = json.load(data_file)
-    filtered_data = data#[e for e in data if float(e["age"].split(" ")[0]) >= 50]
+    filtered_data = data
     level_data = random.choice(filtered_data)
     return level_data
 
@@ -385,7 +364,10 @@ async def get_challenge_scores():
                 leaderboard[user_id][1] += 10
             elif item[3] == 'unbeaten_map':
                 leaderboard[user_id][1] += 2
-                age = float(item[1]['age'].split(' ')[0])
+                if "age" in item[1]:
+                    age = int(item[1]['age'].split(" ")[0])
+                else:
+                    age = timestamp_to_days(item[1]['update_timestamp'])
                 leaderboard[user_id][1] += age // 50
 
         if len(item[0]) > 1:
@@ -401,7 +383,10 @@ async def get_challenge_scores():
                 leaderboard[user_id][1] += 7
             elif item[3] == 'unbeaten_map':
                 leaderboard[user_id][1] += 1
-                age = float(item[1]['age'].split(' ')[0])
+                if "age" in item[1]:
+                    age = int(item[1]['age'].split(" ")[0])
+                else:
+                    age = timestamp_to_days(item[1]['update_timestamp'])
                 leaderboard[user_id][1] += age // 100
 
         if len(item[0]) > 2:
@@ -467,13 +452,12 @@ def run_bot(message, unbeaten_levels=[]):
             
             over_100 = []
 
-            #for level in unbeaten_levels:
-                #if int(timestamp_to_age(level["update_timestamp"]).split(" ")[0]) >= 100:
-                    #over_100.append(level)
+            for level in unbeaten_levels:
+                if timestamp_to_days(level["update_timestamp"]) >= 100:
+                    over_100.append(level)
                 
             if len(over_100) > 0:
                 embed.add_field(name="Over 100 Days", value="\n".join([f"{level['title']}" for level in over_100]), inline=False)
-                # embed.add_field(name="Over 100 Days", value="\n".join([f"[{level['title']}]({level['link']})" for level in over_100]), inline=False)
 
             embed.add_field(name="Newest", value=unbeaten_levels[-1]["title"], inline=False)
 
