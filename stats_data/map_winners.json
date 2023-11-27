@@ -3404,5 +3404,56 @@
     },
     1700975502,
     "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 39.118,
+        "user_id": "2a8031alixx3u6tyu2a7k",
+        "user_name": "iamaverag8",
+        "timestamp": "0001697921557632"
+      },
+      {
+        "position": 1,
+        "best_time": 55.4218,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071",
+        "timestamp": "0001698100370652"
+      },
+      {
+        "position": 2,
+        "best_time": 61.9689,
+        "user_id": "2a3getd6zzefgotpj7oeb",
+        "user_name": "EthanHardMan",
+        "timestamp": "0001701024360835"
+      }
+    ],
+    {
+      "identifier": "2adps2mxxoc2scx8mlroe:1697900773",
+      "title": "The Climbable Mountains",
+      "complexity": 1104,
+      "format_version": 7,
+      "update_timestamp": 1697949573378,
+      "creation_timestamp": 1697902312067,
+      "data_key": "level_data:2adps2mxxoc2scx8mlroe:1697900773:2",
+      "description": "Welcome To The Place I Call The Climbable Mountains.",
+      "creators": [
+        "CoolWhiten",
+        "Moltenvr.2023"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 200,
+        "difficulty": 0.02857142857142857,
+        "liked": 0.5,
+        "time": 78.92224
+      },
+      "creator": "CoolWhiten"
+    },
+    1701061952,
+    "daily_map"
   ]
 ]
