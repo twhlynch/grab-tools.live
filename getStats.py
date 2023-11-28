@@ -20,6 +20,10 @@ def get_level_leaderboard(level_identifier):
     leaderboard_url = f"{SERVER_URL}statistics_top_leaderboard/{level_identifier.replace(':', '/')}"
     return requests.get(leaderboard_url).json()
 
+def get_level_stats(level_identifier):
+    stats_url = f"{SERVER_URL}statistics/{level_identifier.replace(':', '/')}"
+    return requests.get(stats_url).json()
+
 def write_json_file(filename, data):
     with open(filename, 'w') as file:
         json.dump(data, file, indent=2)
@@ -52,7 +56,6 @@ def get_all_verified(stamp=''):
                     statistics["liked"] = 0
                 if "time" not in statistics:
                     statistics["time"] = 100
-        print("Sending request")
         verified.extend(data)
         if data[-1].get("page_timestamp"):
             stamp = data[-1]["page_timestamp"]
@@ -61,13 +64,11 @@ def get_all_verified(stamp=''):
     return verified
 
 def get_a_challenge():
-    data = get_level_list("curated_challenge")
-    print("Sending request")
+    a_challenge_maps = get_level_list("curated_challenge")
     user_leaderboard = {}
-    for level in data:
+    for level in a_challenge_maps:
         identifier = level["identifier"]
         leaderboard = get_level_leaderboard(identifier)
-        print("Sending request")
         for i in range(min(len(leaderboard), 3)):
             if leaderboard[i]["user_id"] in user_leaderboard:
                 user_leaderboard[leaderboard[i]["user_id"]][0] += 3 - i
@@ -81,23 +82,21 @@ def get_a_challenge():
     user_leaderboard = sorted(user_leaderboard.items(), key=lambda x: x[1][0], reverse=True)
     return user_leaderboard
 
-def get_unbeaten(data):
+def get_unbeaten(all_verified_maps):
     unbeaten = []
-    for level in data:
-        age = timestamp_to_days(level["creation_timestamp"])
-        if level["statistics"]["difficulty"] == 0 and age > 1 and level["statistics"]["total_played"] > 300:
-            url = f"{SERVER_URL}statistics/{level['identifier'].replace(':', '/')}"
-            stats = requests.get(url).json()
-            print("Sending request")
+    for level in all_verified_maps:
+        days_old = timestamp_to_days(level["creation_timestamp"])
+        if level["statistics"]["difficulty"] == 0 and days_old > 1 and level["statistics"]["total_played"] > 300:
+            stats = get_level_stats(level['identifier'])
             if stats["finished_count"] == 0:
                 if "creators" not in level:
                     level["creators"] = ["?"]
                 unbeaten.append(level)
     return unbeaten[::-1]
 
-def get_most_verified(data, old_data):
+def get_most_verified(all_verified_maps, old_data):
     most_verified = {}
-    for level in data:
+    for level in all_verified_maps:
         user_identifier = level["identifier"].split(":")[0]
         if user_identifier not in most_verified:
             most_verified[user_identifier] = {"count": 0}
@@ -109,11 +108,10 @@ def get_most_verified(data, old_data):
     most_verified = {t[0]: t[1] for t in most_verified}
     for user_identifier in most_verified:
         user_data = get_user_info(user_identifier)
-        print("Sending request")
         most_verified[user_identifier]["user_name"] = user_data["user_name"]
         most_verified[user_identifier]["levels"] = user_data["user_level_count"]
     for i, (user_identifier, data3) in enumerate(sub10.items()):
-        for level in data:
+        for level in all_verified_maps:
             if user_identifier == level["identifier"].split(":")[0]:
                 if "creator" in level:
                     sub10[user_identifier]["user_name"] = f"{level['creator']}?"
@@ -128,16 +126,16 @@ def get_most_verified(data, old_data):
             most_verified[user_identifier]["change"] -= old_data[user_identifier]["count"]
     return most_verified
 
-def get_most_plays(data, old_data):
+def get_most_plays(all_verified_maps, old_data):
     most_plays = {}
-    for level in data:
+    for level in all_verified_maps:
         user_identifier = level["identifier"].split(":")[0]
         if user_identifier in most_plays:
             most_plays[user_identifier]["plays"] += level["statistics"]["total_played"]
             most_plays[user_identifier]["count"] += 1
         else:
             creators = [""]
-            if "creators" in level and len(level["creators"]) > 0:
+            if "creators" in level and level["creators"]:
                 creators = level["creators"]
             most_plays[user_identifier] = {"plays": level["statistics"]["total_played"], "count": 1, "potential_user_name": f"{creators[0]}?"}
     most_plays = sorted(most_plays.items(), key=lambda x: x[1]["plays"], reverse=True)
@@ -150,7 +148,6 @@ def get_most_plays(data, old_data):
     most_plays = {t[0]: t[1] for t in most_plays}
     for user_identifier in most_plays:
         user_data = get_user_info(user_identifier)
-        print("Sending request")
         most_plays[user_identifier]["user_name"] = user_data["user_name"]
         most_plays[user_identifier]["levels"] = user_data["user_level_count"]
     most_plays |= potentials
@@ -161,18 +158,18 @@ def get_most_plays(data, old_data):
             most_plays[user_identifier]["change"] = 0
     return most_plays
 
-def get_most_played_maps(data):
-    return sorted(data[25:], key=lambda x: x["statistics"]["total_played"], reverse=True)[:100]
+def get_most_played_maps(all_verified_maps):
+    return sorted(all_verified_maps[25:], key=lambda x: x["statistics"]["total_played"], reverse=True)[:100]
 
-def get_longest_times(data):
-    return sorted(data[25:], key=lambda x: x["statistics"]["time"], reverse=True)[:100]
+def get_longest_times(all_verified_maps):
+    return sorted(all_verified_maps[25:], key=lambda x: x["statistics"]["time"], reverse=True)[:100]
 
-def get_most_liked(data):
-    most_liked = sorted(data, key=lambda x: x["statistics"]["liked"] * x["statistics"]["difficulty"] * x["statistics"]["total_played"], reverse=True)
+def get_most_liked(all_verified_maps):
+    most_liked = sorted(all_verified_maps, key=lambda x: x["statistics"]["liked"] * x["statistics"]["difficulty"] * x["statistics"]["total_played"], reverse=True)
     return [map for map in most_liked if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10][:100]
 
-def get_most_disliked(data):
-    least_liked = sorted(data, key=lambda x: (1 - x["statistics"]["liked"]) * x["statistics"]["difficulty"] * x["statistics"]["total_played"], reverse=True)
+def get_most_disliked(all_verified_maps):
+    least_liked = sorted(all_verified_maps, key=lambda x: (1 - x["statistics"]["liked"]) * x["statistics"]["difficulty"] * x["statistics"]["total_played"], reverse=True)
     return [map for map in least_liked if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10][:100]
 
 def get_daily_winner():
@@ -188,14 +185,8 @@ def get_daily_winner():
             if winner_list[i - offset]["user_name"] in blacklist_data:
                 winner_list.pop(i - offset)
                 offset += 1
-        if len(winner_list) == 0:
-            return
-        if len(winner_list) == 1:
-            winner = [winner_list[0]]
-        if len(winner_list) == 2:
-            winner = [winner_list[0], winner_list[1]]
-        if len(winner_list) >= 3:    
-            winner = [winner_list[0], winner_list[1], winner_list[2]]
+        if winner_list:
+            winner = winner_list[:3]
         winners_json.append([winner, map_json, int(time.time()), "daily_map"])
     write_json_file('stats_data/map_winners.json', winners_json)
 
@@ -212,14 +203,8 @@ def get_weekly_winner():
             if winner_list[i - offset]["user_name"] in blacklist_data:
                 winner_list.pop(i - offset)
                 offset += 1
-        if len(winner_list) == 0:
-            return
-        if len(winner_list) == 1:
-            winner = [winner_list[0]]
-        if len(winner_list) == 2:
-            winner = [winner_list[0], winner_list[1]]
-        if len(winner_list) >= 3:    
-            winner = [winner_list[0], winner_list[1], winner_list[2]]
+        if winner_list:
+            winner = winner_list[:3]
         winners_json.append([winner, map_json, int(time.time()), "weekly_map"])
     write_json_file('stats_data/map_winners.json', winners_json)
 
@@ -236,18 +221,12 @@ def get_unbeaten_winner():
             if winner_list[i - offset]["user_name"] in blacklist_data:
                 winner_list.pop(i - offset)
                 i += 1
-        if len(winner_list) == 0:
-            return
-        if len(winner_list) == 1:
-            winner = [winner_list[0]]
-        if len(winner_list) == 2:
-            winner = [winner_list[0], winner_list[1]]
-        if len(winner_list) >= 3:    
-            winner = [winner_list[0], winner_list[1], winner_list[2]]
+        if winner_list:
+            winner = winner_list[:3]
         winners_json.append([winner, map_json, int(time.time()), "unbeaten_map"])
     write_json_file('stats_data/map_winners.json', winners_json)
 
-def get_daily_map(all_data):
+def get_daily_map(all_verified_maps):
     with open("stats_data/next_up.json") as data_file:
         data = json.load(data_file)
     if data["daily"] != False:
@@ -256,13 +235,13 @@ def get_daily_map(all_data):
             new_data["daily"] = False
             json.dump(new_data, data_file)
         return data["daily"]
-    maps = sorted(all_data, key=lambda x: x["update_timestamp"], reverse=True)
+    maps = sorted(all_verified_maps, key=lambda x: x["update_timestamp"], reverse=True)
     filtered_maps = [e for e in maps if (e["statistics"]["time"] <= 100 and e["statistics"]["time"] >= 3)]
     weights = [filtered_maps[i]["update_timestamp"]/(i+1) for i in range(len(filtered_maps))]
     level_data = random.choices(filtered_maps, weights, k=1)
     return level_data[0]
 
-def get_weekly_map(all_data):
+def get_weekly_map(all_verified_maps):
     with open("stats_data/next_up.json") as data_file:
         data = json.load(data_file)
     if data["weekly"] != False:
@@ -271,7 +250,7 @@ def get_weekly_map(all_data):
             new_data["weekly"] = False
             json.dump(new_data, data_file)
         return data["weekly"]
-    maps = sorted(all_data, key=lambda x: x["statistics"]["difficulty"])
+    maps = sorted(all_verified_maps, key=lambda x: x["statistics"]["difficulty"])
     weights = [(1 - maps[i]["statistics"]["difficulty"])/(i+1) for i in range(len(maps))]
     level_data = random.choices(maps, weights, k=1)
     return level_data[0]
@@ -431,7 +410,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[]):
         await channel.send(embed=scores_embed)
 
         # Unbeaten
-        if len(unbeaten_levels) > 0:
+        if unbeaten_levels:
             channel = bot.get_channel(1144060608937996359)
             role = guild.get_role(1077411286696087664)
 
