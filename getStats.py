@@ -1,4 +1,4 @@
-import json, random, requests, time, sys, discord
+import json, random, requests, sys, discord
 from datetime import datetime, date
 from discord.ext import commands
 from discord import Embed
@@ -187,7 +187,7 @@ def get_daily_winner():
                 offset += 1
         if winner_list:
             winner = winner_list[:3]
-        winners_json.append([winner, map_json, int(time.time()), "daily_map"])
+        winners_json.append([winner, map_json, int(datetime.now().timestamp()), "daily_map"])
     write_json_file('stats_data/map_winners.json', winners_json)
 
 def get_weekly_winner():
@@ -205,7 +205,7 @@ def get_weekly_winner():
                 offset += 1
         if winner_list:
             winner = winner_list[:3]
-        winners_json.append([winner, map_json, int(time.time()), "weekly_map"])
+        winners_json.append([winner, map_json, int(datetime.now().timestamp()), "weekly_map"])
     write_json_file('stats_data/map_winners.json', winners_json)
 
 def get_unbeaten_winner():
@@ -223,7 +223,7 @@ def get_unbeaten_winner():
                 i += 1
         if winner_list:
             winner = winner_list[:3]
-        winners_json.append([winner, map_json, int(time.time()), "unbeaten_map"])
+        winners_json.append([winner, map_json, int(datetime.now().timestamp()), "unbeaten_map"])
     write_json_file('stats_data/map_winners.json', winners_json)
 
 def get_daily_map(all_verified_maps):
