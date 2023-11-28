@@ -3,6 +3,11 @@ from datetime import datetime, date
 from discord.ext import commands
 from discord import Embed
 
+SERVER_URL = "https://api.slin.dev/grab/v1/"
+PAGE_URL = "https://grab-tools.live/"
+VIEWER_URL = "https://grabvr.quest/levels/viewer/"
+FORMAT_VERSION = "100"
+
 def write_json_file(filename, data):
     with open(filename, 'w') as file:
         json.dump(data, file, indent=2)
@@ -13,7 +18,7 @@ def timestamp_to_days(timestamp_in_milliseconds):
 def get_all_verified(stamp=''):
     verified = []
     while True:
-        url = f"https://api.slin.dev/grab/v1/list?max_format_version=100&type=ok&page_timestamp={stamp}"
+        url = f"{SERVER_URL}list?max_format_version={FORMAT_VERSION}&type=ok&page_timestamp={stamp}"
         data = requests.get(url).json()
         for level in data:
             if "creators" in level:
@@ -44,13 +49,13 @@ def get_all_verified(stamp=''):
     return verified
 
 def get_a_challenge():
-    url = "https://api.slin.dev/grab/v1/list?max_format_version=100&type=curated_challenge"
+    url = f"{SERVER_URL}list?max_format_version={FORMAT_VERSION}&type=curated_challenge"
     data = requests.get(url).json()
     print("Sending request")
     user_leaderboard = {}
     for level in data:
-        id = level["identifier"]
-        lb_url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
+        identifier = level["identifier"]
+        lb_url = f"{SERVER_URL}statistics_top_leaderboard/{identifier.replace(':', '/')}"
         leaderboard = requests.get(lb_url).json()
         print("Sending request")
         for i in range(min(len(leaderboard), 3)):
@@ -71,7 +76,7 @@ def get_unbeaten(data):
     for level in data:
         age = timestamp_to_days(level["creation_timestamp"])
         if level["statistics"]["difficulty"] == 0 and age > 1 and level["statistics"]["total_played"] > 300:
-            url = f"https://api.slin.dev/grab/v1/statistics/{level['identifier'].replace(':', '/')}"
+            url = f"{SERVER_URL}statistics/{level['identifier'].replace(':', '/')}"
             stats = requests.get(url).json()
             print("Sending request")
             if stats["finished_count"] == 0:
@@ -83,104 +88,91 @@ def get_unbeaten(data):
 def get_most_verified(data, old_data):
     most_verified = {}
     for level in data:
-        id = level["identifier"].split(":")[0]
-        if id in most_verified:
-            most_verified[id]["count"] += 1
+        user_identifier = level["identifier"].split(":")[0]
+        if user_identifier in most_verified:
+            most_verified[user_identifier]["count"] += 1
         else:
-            most_verified[id] = {"count": 1}
+            most_verified[user_identifier] = {"count": 1}
     most_verified = sorted(most_verified.items(), key=lambda x: x[1]["count"], reverse=True)
     sub10 = most_verified[10:][:100]
     sub10 = {t[0]: t[1] for t in sub10}
     most_verified = most_verified[:10]
     most_verified = {t[0]: t[1] for t in most_verified}
-    for i, (id, data2) in enumerate(most_verified.items()):
-        url = f"https://api.slin.dev/grab/v1/get_user_info?user_id={id}"
+    for user_identifier in most_verified:
+        url = f"{SERVER_URL}get_user_info?user_id={user_identifier}"
         user_data = requests.get(url).json()
         print("Sending request")
-        most_verified[id]["user_name"] = user_data["user_name"]
-        most_verified[id]["levels"] = user_data["user_level_count"]
-    for i, (id, data3) in enumerate(sub10.items()):
+        most_verified[user_identifier]["user_name"] = user_data["user_name"]
+        most_verified[user_identifier]["levels"] = user_data["user_level_count"]
+    for i, (user_identifier, data3) in enumerate(sub10.items()):
         for level in data:
-            if id == level["identifier"].split(":")[0]:
+            if user_identifier == level["identifier"].split(":")[0]:
                 if "creator" in level:
-                    sub10[id]["user_name"] = level["creator"] + "?"
+                    sub10[user_identifier]["user_name"] = f"{level['creator']}?"
                 else:
-                    sub10[id]["user_name"] = "?"
+                    sub10[user_identifier]["user_name"] = "?"
                 break
-        sub10[id]["levels"] = sub10[id]["count"]
-    most_verified.update(sub10)
-    for id, data4 in most_verified.items():
-        if id in old_data:
-            most_verified[id]["change"] = most_verified[id]["count"] - old_data[id]["count"]
-        else:
-            most_verified[id]["change"] = most_verified[id]["count"]
+        sub10[user_identifier]["levels"] = sub10[user_identifier]["count"]
+    most_verified |= sub10
+    for user_identifier in most_verified:
+        most_verified[user_identifier]["change"] = most_verified[user_identifier]["count"]
+        if user_identifier in old_data:
+            most_verified[user_identifier]["change"] -= old_data[user_identifier]["count"]
     return most_verified
 
 def get_most_plays(data, old_data):
     most_plays = {}
     for level in data:
-        id = level["identifier"].split(":")[0]
-        if id in most_plays:
-            most_plays[id]["plays"] += level["statistics"]["total_played"]
-            most_plays[id]["count"] += 1
+        user_identifier = level["identifier"].split(":")[0]
+        if user_identifier in most_plays:
+            most_plays[user_identifier]["plays"] += level["statistics"]["total_played"]
+            most_plays[user_identifier]["count"] += 1
         else:
             creators = [""]
             if "creators" in level and len(level["creators"]) > 0:
                 creators = level["creators"]
-            most_plays[id] = {"plays": level["statistics"]["total_played"], "count": 1, "potential_user_name": creators[0]+"?"}
+            most_plays[user_identifier] = {"plays": level["statistics"]["total_played"], "count": 1, "potential_user_name": f"{creators[0]}?"}
     most_plays = sorted(most_plays.items(), key=lambda x: x[1]["plays"], reverse=True)
     potentials = most_plays[10:][:90]
     potentials = {t[0]: t[1] for t in potentials}
-    for id in potentials:
-        potentials[id]["user_name"] = potentials[id]["potential_user_name"]
-        potentials[id]["levels"] = potentials[id]["count"]
+    for user_identifier in potentials:
+        potentials[user_identifier]["user_name"] = potentials[user_identifier]["potential_user_name"]
+        potentials[user_identifier]["levels"] = potentials[user_identifier]["count"]
     most_plays = most_plays[:10]
     most_plays = {t[0]: t[1] for t in most_plays}
-    for i, (id, data) in enumerate(most_plays.items()):
-        url = f"https://api.slin.dev/grab/v1/get_user_info?user_id={id}"
+    for user_identifier in most_plays:
+        url = f"{SERVER_URL}get_user_info?user_id={user_identifier}"
         user_data = requests.get(url).json()
         print("Sending request")
-        most_plays[id]["user_name"] = user_data["user_name"]
-        most_plays[id]["levels"] = user_data["user_level_count"]
-    most_plays.update(potentials)
-    for id, data in most_plays.items():
-        if id in old_data:
-            most_plays[id]["change"] = most_plays[id]["plays"] - old_data[id]["plays"]
+        most_plays[user_identifier]["user_name"] = user_data["user_name"]
+        most_plays[user_identifier]["levels"] = user_data["user_level_count"]
+    most_plays |= potentials
+    for user_identifier in most_plays:
+        if user_identifier in old_data:
+            most_plays[user_identifier]["change"] = most_plays[user_identifier]["plays"] - old_data[user_identifier]["plays"]
         else:
-            most_plays[id]["change"] = 0
+            most_plays[user_identifier]["change"] = 0
     return most_plays
 
 def get_most_played_maps(data):
-    most_played_maps = sorted(data[25:], key=lambda x: x["statistics"]["total_played"], reverse=True)
-    most_played_maps = most_played_maps[:100]
-    return most_played_maps
+    return sorted(data[25:], key=lambda x: x["statistics"]["total_played"], reverse=True)[:100]
 
 def get_longest_times(data):
-    longest_times = sorted(data[25:], key=lambda x: x["statistics"]["time"], reverse=True)
-    longest_times = longest_times[:100]
-    return longest_times
+    return sorted(data[25:], key=lambda x: x["statistics"]["time"], reverse=True)[:100]
 
 def get_most_liked(data):
-    best = []
     most_liked = sorted(data, key=lambda x: x["statistics"]["liked"] * x["statistics"]["difficulty"] * x["statistics"]["total_played"], reverse=True)
-    for map in most_liked:
-        if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10:
-            best.append(map)
-    return best[:100]
+    return [map for map in most_liked if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10][:100]
 
 def get_most_disliked(data):
-    worst = []
     least_liked = sorted(data, key=lambda x: (1 - x["statistics"]["liked"]) * x["statistics"]["difficulty"] * x["statistics"]["total_played"], reverse=True)
-    for map in least_liked:
-        if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10:
-            worst.append(map)
-    return worst[:100]
+    return [map for map in least_liked if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10][:100]
 
 def get_daily_winner():
     with open("stats_data/map_winners.json", 'r') as winners, open("stats_data/daily_map.json", "r") as map, open("stats_data/user_blacklist.json", "r") as blacklist:
         map_json = json.load(map)
-        id = map_json["identifier"]
-        url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
+        identifier = map_json["identifier"]
+        url = f"{SERVER_URL}statistics_top_leaderboard/{identifier.replace(':', '/')}"
         winner_list = requests.get(url).json()
         print(winner_list)
         blacklist_data = json.loads(blacklist.read())
@@ -204,8 +196,8 @@ def get_daily_winner():
 def get_weekly_winner():
     with open("stats_data/map_winners.json", 'r') as winners, open("stats_data/weekly_map.json", "r") as map, open("stats_data/user_blacklist.json", "r") as blacklist:
         map_json = json.load(map)
-        id = map_json["identifier"]
-        url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
+        identifier = map_json["identifier"]
+        url = f"{SERVER_URL}statistics_top_leaderboard/{identifier.replace(':', '/')}"
         winner_list = requests.get(url).json()
         blacklist_data = json.loads(blacklist.read())
         offset = 0
@@ -229,8 +221,8 @@ def get_weekly_winner():
 def get_unbeaten_winner():
     with open("stats_data/map_winners.json", 'r') as winners, open("stats_data/unbeaten_map.json", "r") as map, open("stats_data/user_blacklist.json", "r") as blacklist:
         map_json = json.load(map)
-        id = map_json["identifier"]
-        url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id.replace(':', '/')}"
+        identifier = map_json["identifier"]
+        url = f"{SERVER_URL}statistics_top_leaderboard/{identifier.replace(':', '/')}"
         winnerList = requests.get(url).json()
         blacklist_data = json.loads(blacklist.read())
         offset = 0
@@ -262,9 +254,7 @@ def get_daily_map(all_data):
         return data["daily"]
     maps = sorted(all_data, key=lambda x: x["update_timestamp"], reverse=True)
     filtered_maps = [e for e in maps if (e["statistics"]["time"] <= 100 and e["statistics"]["time"] >= 3)]
-    weights = []
-    for i in range(len(filtered_maps)):
-        weights.append(filtered_maps[i]["update_timestamp"]/(i+1))
+    weights = [filtered_maps[i]["update_timestamp"]/(i+1) for i in range(len(filtered_maps))]
     level_data = random.choices(filtered_maps, weights, k=1)
     return level_data[0]
 
@@ -278,18 +268,14 @@ def get_weekly_map(all_data):
             json.dump(new_data, data_file)
         return data["weekly"]
     maps = sorted(all_data, key=lambda x: x["statistics"]["difficulty"])
-    weights = []
-    for i in range(len(maps)):
-        weights.append((1 - maps[i]["statistics"]["difficulty"])/(i+1))
+    weights = [(1 - maps[i]["statistics"]["difficulty"])/(i+1) for i in range(len(maps))]
     level_data = random.choices(maps, weights, k=1)
     return level_data[0]
 
 def get_unbeaten_map():
     with open("stats_data/unbeaten_levels.json") as data_file:
         data = json.load(data_file)
-    filtered_data = data
-    level_data = random.choice(filtered_data)
-    return level_data
+    return random.choice(data)
 
 def get_level_data():
     with open("stats_data/most_plays.json") as data_file:
@@ -299,7 +285,7 @@ def get_level_data():
     message_result = [False, False, False]
     with open("stats_data/log_data.json", 'r') as file:
         log_data = json.load(file)
-    if datetime.now().timestamp() - log_data["last_ran"] > 72000:
+    if datetime.now().timestamp() - log_data["last_ran"] > 60*60*20:
         all_verified = get_all_verified()
         write_json_file('stats_data/all_verified.json', all_verified)
         a_challenge = get_a_challenge()
@@ -314,17 +300,17 @@ def get_level_data():
         write_json_file('stats_data/longest_times.json', longest_times)
         get_daily_winner()
         daily_level = get_daily_map(all_verified)
-        message_result[0] = [daily_level["title"], "https://grabvr.quest/levels/viewer?level=" + daily_level["identifier"]]
+        message_result[0] = [daily_level["title"], f"{VIEWER_URL}?level={daily_level['identifier']}"]
         write_json_file('stats_data/daily_map.json', daily_level)
         get_unbeaten_winner()
         unbeaten_level = get_unbeaten_map()
-        message_result[2] = [unbeaten_level["title"], "https://grabvr.quest/levels/viewer/?level="+unbeaten_level["identifier"]]
+        message_result[2] = [unbeaten_level["title"], f"{VIEWER_URL}?level={unbeaten_level['identifier']}"]
         write_json_file('stats_data/unbeaten_map.json', unbeaten_level)
         weekly = log_data["days_since_weekly"] + 1
         if weekly == 7:
             get_weekly_winner()
             weekly_level = get_weekly_map(all_verified)
-            message_result[1] = [weekly_level["title"], "https://grabvr.quest/levels/viewer?level=" + weekly_level["identifier"]]
+            message_result[1] = [weekly_level["title"], f"{VIEWER_URL}?level={weekly_level['identifier']}"]
             write_json_file('stats_data/weekly_map.json', weekly_level)
             weekly = 0
         unbeaten_levels = get_unbeaten(all_verified)
@@ -405,7 +391,7 @@ async def get_challenge_scores():
 
     leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][1], reverse=True))
 
-    embed = discord.Embed(title='Map Challenges Leaderboard', url="https://grab-tools.live/stats.html", description=str(date.today()), color=0x00ffff)
+    embed = discord.Embed(title='Map Challenges Leaderboard', url=f"{PAGE_URL}stats", description=str(date.today()), color=0x00ffff)
     count = 0
     for value in leaderboard.values():
         if count >= 25:
@@ -429,7 +415,7 @@ def run_bot(message, unbeaten_levels=[]):
         guild = bot.get_guild(1048213818775437394)
         role = guild.get_role(1110735575083929622)
 
-        embed = Embed(title="Daily/Weekly Maps Update", url="https://grab-tools.live/stats.html", description="Daily Update", color=0x00ffff)
+        embed = Embed(title="Daily/Weekly Maps Update", url=f"{PAGE_URL}stats", description="Daily Update", color=0x00ffff)
         if message[0]:
             embed.add_field(name="Daily", value=f"[{message[0][0]}]({message[0][1]})")
         if message[1]:
@@ -447,7 +433,7 @@ def run_bot(message, unbeaten_levels=[]):
             channel = bot.get_channel(1144060608937996359)
             role = guild.get_role(1077411286696087664)
 
-            embed = Embed(title="Unbeaten Levels Update", url="https://grab-tools.live/stats.html", description="Unbeaten Update", color=0x00ffff)
+            embed = Embed(title="Unbeaten Levels Update", url=f"{PAGE_URL}stats", description="Unbeaten Update", color=0x00ffff)
             embed.add_field(name="Count", value=str(len(unbeaten_levels)))
             
             over_100 = []
@@ -456,7 +442,7 @@ def run_bot(message, unbeaten_levels=[]):
                 if timestamp_to_days(level["update_timestamp"]) >= 100:
                     over_100.append(level)
                 
-            if len(over_100) > 0:
+            if over_100:
                 embed.add_field(name="Over 100 Days", value="\n".join([f"{level['title']}" for level in over_100]), inline=False)
 
             embed.add_field(name="Newest", value=unbeaten_levels[-1]["title"], inline=False)
