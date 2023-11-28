@@ -348,7 +348,7 @@ h1.title {
     content: "+10";
 } 
 #UnbeatenMap-out > .leaderboard-item:nth-child(2) > :nth-child(1)::after {
-    content: "+2";
+    content: "+3";
 }
 #DailyMap-out > .leaderboard-item:nth-child(3) > :nth-child(1)::after {
     content: "+2";
@@ -357,13 +357,13 @@ h1.title {
     content: "+7";
 } 
 #UnbeatenMap-out > .leaderboard-item:nth-child(3) > :nth-child(1)::after {
-    content: "+1";
+    content: "+2";
 }
 #DailyMap-out > .leaderboard-item:nth-child(4) > :nth-child(1)::after {
     content: "+1";
 } 
 #WeeklyMap-out > .leaderboard-item:nth-child(4) > :nth-child(1)::after {
-    content: "+3";
+    content: "+4";
 } 
 #UnbeatenMap-out > .leaderboard-item:nth-child(4) > :nth-child(1)::after {
     content: "+1";
