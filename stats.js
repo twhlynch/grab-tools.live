@@ -132,7 +132,7 @@ function getTopLikes() {
                 item?.images?.thumb?.key,
                 (item?.tags ? item.tags : []).includes("ok"),
                 item?.update_timestamp,
-                `${Math.round(item?.statistics?.liked * item?.statistics?.total_played)} (${Math.round(100 * item?.statistics?.liked)}%)`
+                `${Math.round(item?.statistics?.liked * item?.statistics?.total_played * (1 - item?.statistics?.difficulty))} (${Math.round(100 * item?.statistics?.liked)}%)`
             );
             document.getElementById('MostLikedMaps-out').appendChild(levelDiv);
         });
@@ -152,7 +152,7 @@ function getTopDisikes() {
                 item?.images?.thumb?.key,
                 (item?.tags ? item.tags : []).includes("ok"),
                 item?.update_timestamp,
-                `${Math.round((1 - item?.statistics?.liked) *  item?.statistics?.total_played)} (${Math.round(100 - (100 * item?.statistics?.liked))}%)`
+                `${Math.round((1 - item?.statistics?.liked) *  item?.statistics?.total_played * (1 - item?.statistics?.difficulty))} (${Math.round(100 - (100 * item?.statistics?.liked))}%)`
             );
             document.getElementById('MostDislikedMaps-out').appendChild(levelDiv);
         });
