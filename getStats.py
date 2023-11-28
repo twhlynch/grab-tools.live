@@ -228,8 +228,7 @@ def get_unbeaten_winner():
             if winner_list[i - offset]["user_name"] in blacklist_data:
                 winner_list.pop(i - offset)
                 i += 1
-        if winner_list:
-            winner = winner_list[:3]
+        winner = winner_list[:3]
         winners_json.append([winner, map_json, int(datetime.now().timestamp()), "unbeaten_map"])
     write_json_file('stats_data/map_winners.json', winners_json)
 
