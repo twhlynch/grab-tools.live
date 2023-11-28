@@ -28,8 +28,8 @@ def write_json_file(filename, data):
     with open(filename, 'w') as file:
         json.dump(data, file, indent=2)
 
-def timestamp_to_days(timestamp_in_milliseconds):
-    return (datetime.now().timestamp() * 1000 - timestamp_in_milliseconds) / 1000 /60 / 60 / 24
+def timestamp_to_days(timestamp_in_milliseconds, now=datetime.now().timestamp() * 1000):
+    return (now - timestamp_in_milliseconds) / 1000 / 60 / 60 / 24
 
 def get_all_verified(stamp=''):
     verified = []
@@ -320,57 +320,25 @@ async def get_challenge_scores():
     leaderboard = {}
 
     for item in items:
-        if len(item[0]) > 0:
-            user_id = item[0][0]['user_id']
-            user_name = item[0][0]['user_name']
+        top_three = item[0]
+        level = item[1]
+        time = item[2]
+        score_type = item[3]
+        for i in range(min(len(leaderboard) - 1, 3)):
+            user_name = top_three[i]["user_name"]
+            user_id = top_three[i]["user_id"]
 
             if user_id not in leaderboard:
                 leaderboard[user_id] = [user_name, 0, user_id]
-
-            if item[3] == 'daily_map':
-                leaderboard[user_id][1] += 3
-            elif item[3] == 'weekly_map':
-                leaderboard[user_id][1] += 10
-            elif item[3] == 'unbeaten_map':
-                leaderboard[user_id][1] += 2
-                if "age" in item[1]:
-                    age = int(item[1]['age'].split(" ")[0])
-                else:
-                    age = timestamp_to_days(item[1]['update_timestamp'])
-                leaderboard[user_id][1] += age // 50
-
-        if len(item[0]) > 1:
-            user_id = item[0][1]['user_id']
-            user_name = item[0][1]['user_name']
-
-            if user_id not in leaderboard:
-                leaderboard[user_id] = [user_name, 0, user_id]
-
-            if item[3] == 'daily_map':
-                leaderboard[user_id][1] += 2
-            elif item[3] == 'weekly_map':
-                leaderboard[user_id][1] += 7
-            elif item[3] == 'unbeaten_map':
-                leaderboard[user_id][1] += 1
-                if "age" in item[1]:
-                    age = int(item[1]['age'].split(" ")[0])
-                else:
-                    age = timestamp_to_days(item[1]['update_timestamp'])
-                leaderboard[user_id][1] += age // 100
-
-        if len(item[0]) > 2:
-            user_id = item[0][2]['user_id']
-            user_name = item[0][2]['user_name']
-
-            if user_id not in leaderboard:
-                leaderboard[user_id] = [user_name, 0, user_id]
-
-            if item[3] == 'daily_map':
-                leaderboard[user_id][1] += 1
-            elif item[3] == 'weekly_map':
-                leaderboard[user_id][1] += 3
-            elif item[3] == 'unbeaten_map':
-                leaderboard[user_id][1] += 1
+            
+            if score_type == "daily_map":
+                leaderboard[user_id][1] += 3 - i
+            elif score_type == "weekly_map":
+                leaderboard[user_id][1] += 10 - i * 3
+            elif score_type == "unbeaten_map":
+                leaderboard[user_id][1] += 3 - i
+                days_old = timestamp_to_days(level['update_timestamp'], time * 1000)
+                leaderboard[user_id][1] += days_old // (100 - 50 * i)
 
     leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][1], reverse=True))
 
