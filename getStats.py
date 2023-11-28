@@ -128,34 +128,36 @@ def get_most_verified(all_verified_maps, old_data):
 
 def get_most_plays(all_verified_maps, old_data):
     most_plays = {}
+
     for level in all_verified_maps:
         user_identifier = level["identifier"].split(":")[0]
-        if user_identifier in most_plays:
-            most_plays[user_identifier]["plays"] += level["statistics"]["total_played"]
-            most_plays[user_identifier]["count"] += 1
-        else:
-            creators = [""]
-            if "creators" in level and level["creators"]:
-                creators = level["creators"]
-            most_plays[user_identifier] = {"plays": level["statistics"]["total_played"], "count": 1, "potential_user_name": f"{creators[0]}?"}
+        if user_identifier not in most_plays:
+            creator = f'{level.get("creators", [""])[0]}?'
+            most_plays[user_identifier] = {"plays": 0, "count": 0, "user_name": creator }
+        most_plays[user_identifier]["plays"] += level["statistics"]["total_played"]
+        most_plays[user_identifier]["count"] += 1
+
     most_plays = sorted(most_plays.items(), key=lambda x: x[1]["plays"], reverse=True)
-    potentials = most_plays[10:][:90]
-    potentials = {t[0]: t[1] for t in potentials}
+    potentials = {t[0]: t[1] for t in most_plays[10:][:90]}
+
     for user_identifier in potentials:
-        potentials[user_identifier]["user_name"] = potentials[user_identifier]["potential_user_name"]
         potentials[user_identifier]["levels"] = potentials[user_identifier]["count"]
+
     most_plays = most_plays[:10]
     most_plays = {t[0]: t[1] for t in most_plays}
+
     for user_identifier in most_plays:
         user_data = get_user_info(user_identifier)
         most_plays[user_identifier]["user_name"] = user_data["user_name"]
         most_plays[user_identifier]["levels"] = user_data["user_level_count"]
+
     most_plays |= potentials
+
     for user_identifier in most_plays:
+        most_plays[user_identifier]["change"] = most_plays[user_identifier]["plays"]
         if user_identifier in old_data:
-            most_plays[user_identifier]["change"] = most_plays[user_identifier]["plays"] - old_data[user_identifier]["plays"]
-        else:
-            most_plays[user_identifier]["change"] = 0
+            most_plays[user_identifier]["change"] -= old_data[user_identifier]["plays"]
+            
     return most_plays
 
 def get_most_played_maps(all_verified_maps):
