@@ -9,8 +9,8 @@ function levelCard(
 ) {
     const levelUrl = `https://grabvr.quest/levels/viewer/?level=${identifier}`;
     const creatorUrl = `https://grabvr.quest/levels?tab=tab_other_user&user_id=${identifier.split(':')[0]}`;
-    const creatorsString = creators.join(", ");
-    const creator = creators[0];
+    const creatorsString = creators? creators.join(', ') : '';
+    const creator = creators ? creators[0] : '?';
     const daysOld = Math.round((new Date() - new Date(updatedTimestamp)) / (1000 * 60 * 60 * 24));
     const imageUrl = `https://grab-images.slin.dev/${imageThumb}`;
 
@@ -397,8 +397,8 @@ function getUnbeatenMap() {
     fetch('/stats_data/unbeaten_map.json')
     .then((response) => response.json())
     .then(item => {
-        document.getElementById('UnbeatenMap-out').innerHTML += `<h1><a href="${item["link"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creators"]}</span></h1>`;
-        fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item['link'].split("=")[1].replace(':', '/')}`)
+        document.getElementById('UnbeatenMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creators"]}</span></h1>`;
+        fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item['identifier'].replaceAll(':', '/')}`)
         .then((response2) => response2.json())
         .then(leaderboard => {
             leaderboard.forEach( lItem => {
@@ -425,7 +425,9 @@ function getChallengeScores() {
                     leaderboard[item[0][0]["user_id"]][1] += 10;
                 } else if (item[3] === "unbeaten_map") {
                     leaderboard[item[0][0]["user_id"]][1] += 3;
-                    let age = parseInt((item[1]["update_timestamp"] - item[2] * 1000) / 1000 / 60 / 60 / 24);
+                    let updated = item[1]["update_timestamp"];
+                    console.log(item[1]);
+                    let age = parseInt((item[2] * 1000 - updated) / 1000 / 60 / 60 / 24);
                     leaderboard[item[0][0]["user_id"]][1] += Math.floor(age / 50);
                 }
 
@@ -441,7 +443,8 @@ function getChallengeScores() {
                     leaderboard[item[0][1]["user_id"]][1] += 7;
                 } else if (item[3] === "unbeaten_map") {
                     leaderboard[item[0][1]["user_id"]][1] += 2;
-                    let age = parseInt((item[1]["update_timestamp"] - item[2] * 1000) / 1000 / 60 / 60 / 24);
+                    let updated = item[1]["update_timestamp"];
+                    let age = parseInt((item[2] * 1000 - updated) / 1000 / 60 / 60 / 24);
                     leaderboard[item[0][1]["user_id"]][1] += Math.floor(age / 100);
                 }
             
