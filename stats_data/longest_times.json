@@ -109,8 +109,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2100,
-      "difficulty": 0.002944640753828033,
+      "total_played": 2200,
+      "difficulty": 0.002826455624646693,
       "liked": 1,
       "time": 5508.868
     },
@@ -477,8 +477,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 126000,
-      "difficulty": 0.0018867150650096387,
+      "total_played": 126100,
+      "difficulty": 0.0018850527609876038,
       "liked": 0.8615384615384616,
       "time": 2598.219217391304
     },
@@ -985,8 +985,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 123800,
-      "difficulty": 0.0003397621664834616,
+      "total_played": 123900,
+      "difficulty": 0.0003394975436354196,
       "liked": 0.8,
       "time": 2021.9417058823533
     },
@@ -1180,6 +1180,40 @@
     "creator": "Cosmic_Blade"
   },
   {
+    "identifier": "29st9jdcbxxotp0t9d8en:1686615165",
+    "title": "The Crazy Tower (Special Addition) ",
+    "complexity": 2994,
+    "format_version": 6,
+    "update_timestamp": 1686674626627,
+    "creation_timestamp": 1686674626627,
+    "data_key": "level_data:29st9jdcbxxotp0t9d8en:1686615165:1",
+    "creators": [
+      "Mystery8281"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 1100,
+      "difficulty": 0.030467899891186073,
+      "liked": 0.8888888888888888,
+      "time": 1957.6276785714283
+    },
+    "images": {
+      "full": {
+        "key": "level_29st9jdcbxxotp0t9d8en_1686615165_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29st9jdcbxxotp0t9d8en_1686615165_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "Mystery8281"
+  },
+  {
     "identifier": "29de83wbqxgo92ijwuub9:1639010130",
     "title": "The 19 levels of agony",
     "complexity": 711,
@@ -1306,40 +1340,6 @@
       "time": 1893.8825000000002
     },
     "creator": "jckarp"
-  },
-  {
-    "identifier": "29st9jdcbxxotp0t9d8en:1686615165",
-    "title": "The Crazy Tower (Special Addition) ",
-    "complexity": 2994,
-    "format_version": 6,
-    "update_timestamp": 1686674626627,
-    "creation_timestamp": 1686674626627,
-    "data_key": "level_data:29st9jdcbxxotp0t9d8en:1686615165:1",
-    "creators": [
-      "Mystery8281"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 1000,
-      "difficulty": 0.027186761229314422,
-      "liked": 0.9333333333333333,
-      "time": 1892.8561739130432
-    },
-    "images": {
-      "full": {
-        "key": "level_29st9jdcbxxotp0t9d8en_1686615165_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29st9jdcbxxotp0t9d8en_1686615165_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "Mystery8281"
   },
   {
     "identifier": "2a56pfisaa1mgejtlsb2z:1688572583",
@@ -1520,8 +1520,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 33502,
-      "difficulty": 0.003300047143530622,
+      "total_played": 33602,
+      "difficulty": 0.0032917236662106703,
       "liked": 0.8823529411764706,
       "time": 1828.0462271428564
     },
@@ -1615,8 +1615,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 74100,
-      "difficulty": 0.002066115702479339,
+      "total_played": 74300,
+      "difficulty": 0.002061782375315488,
       "liked": 0.925,
       "time": 1783.9151206896559
     },
@@ -2094,28 +2094,6 @@
     "creator": "boohoo77"
   },
   {
-    "identifier": "29z0xnmo2bj7t5r2xfed1:1688436008",
-    "title": "Master Parkour!",
-    "complexity": 1006,
-    "format_version": 6,
-    "update_timestamp": 1688671713110,
-    "creation_timestamp": 1688671713110,
-    "data_key": "level_data:29z0xnmo2bj7t5r2xfed1:1688436008:1",
-    "creators": [
-      "gman2giant"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 1200,
-      "difficulty": 0.012207527975584944,
-      "liked": 0.7777777777777778,
-      "time": 1591.3953333333332
-    },
-    "creator": "gman2giant"
-  },
-  {
     "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbordfinal",
     "title": "SMORGASBORD",
     "complexity": 2992,
@@ -2242,7 +2220,6 @@
       "liked": 1,
       "time": 1543.7941999999998
     },
-    "page_timestamp": "AAAAAEvKG31zRirYzJdfILRqxasFr69SAPji9T20S5Z6bPRvWQD54tM8CteiLoBggiuSx3KFSKMCYU0Kbg-0muh5eG4DI_FHCD7kJh4fjhBeYCZzmm29K3kzldFgfhvzmf9S97qX-Omnco5q-O95lA9Bd6HWt3cWoauQFv-RHrBpSLsA4BvRCgm2AWH-pNgQJDHz7OgtMLP5cZoF_afPAa2zcNoqClaY3CAqF0JTjSo4fUzPYjUt8h-qzvKDKpimx383xS7dcu6-BgE12zUCrTvX1hmKleF3s6rLsWKgb1A-Y3Q01XY_FkV7jE88bIKlOrUhIV8ST94vSk8Fv56WnoKtyekv_If-Fr5cT3BKOtGKMwHoDQaynKtDsalM0iIo08VZpiTvo2Dd7jv4dCVRoWMhl9OoZrQ",
     "creator": "TylerVB"
   },
   {
@@ -2329,6 +2306,28 @@
       "time": 1518.6381428571433
     },
     "creator": "jeffbobdude"
+  },
+  {
+    "identifier": "29z0xnmo2bj7t5r2xfed1:1688436008",
+    "title": "Master Parkour!",
+    "complexity": 1006,
+    "format_version": 6,
+    "update_timestamp": 1688671713110,
+    "creation_timestamp": 1688671713110,
+    "data_key": "level_data:29z0xnmo2bj7t5r2xfed1:1688436008:1",
+    "creators": [
+      "gman2giant"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 1300,
+      "difficulty": 0.01216089803554724,
+      "liked": 0.7777777777777778,
+      "time": 1515.7467692307691
+    },
+    "creator": "gman2giant"
   },
   {
     "identifier": "2ahcj7h43oouxb22ztqzj:1660439857",
