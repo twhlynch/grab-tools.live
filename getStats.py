@@ -330,7 +330,7 @@ async def get_challenge_scores():
         level = item[1]
         time = item[2]
         score_type = item[3]
-        for i in range(min(len(leaderboard) - 1, 3)):
+        for i in range(len(top_three)):
             user_name = top_three[i]["user_name"]
             user_id = top_three[i]["user_id"]
 
@@ -351,7 +351,7 @@ async def get_challenge_scores():
     embed = discord.Embed(title='Map Challenges Leaderboard', url=f"{PAGE_URL}stats", description=str(date.today()), color=0x00ffff)
     count = 0
     for value in leaderboard.values():
-        if count >= 25:
+        if count >= 20:
             break
         embed.add_field(name=f'{value[0]} - {value[1]} Pt', value='\u200B', inline=False)
         count += 1
