@@ -11,6 +11,10 @@ buttons.forEach((btn) => {
         });
         document.getElementById(btnId.replace("Button", "")).style.display = "flex";
         btn.classList.add('tab-active');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('tab', btnId);
+        window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
     });
 });
 
@@ -555,3 +559,9 @@ javascript:(function() {
     document.body.appendChild(popupContainer);
   })();
   */
+
+const urlParams = new URLSearchParams(window.location.search);
+const tab = urlParams.get('tab');
+if (tab) {
+    document.getElementById(tab).click();
+}
