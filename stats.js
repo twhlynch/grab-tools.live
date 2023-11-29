@@ -65,6 +65,10 @@ buttons.forEach((btn) => {
         });
         document.getElementById(`${btnId}-out`).style.display = "flex";
         btn.classList.add('tab-active');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('tab', btnId);
+        window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
     });
 });
 
@@ -484,14 +488,21 @@ const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get('userId');
 const userName = urlParams.get('userName');
 const search = urlParams.get('search');
+const tab = urlParams.get('tab');
 if (userId) {
     document.getElementById('user-input').value = `userId:${userId}`;
     document.getElementById('submit-btn').click();
+    document.getElementById('LevelSearch').click();
 } else if (userName) {
     document.getElementById('user-input').value = userName;
     document.getElementById('submit-btn').click();
+    document.getElementById('LevelSearch').click();
 }
 if (search) {
     document.getElementById('key-input').value = search;
     document.getElementById('submit-btn').click();
+    document.getElementById('LevelSearch').click();
+}
+if (tab) {
+    document.getElementById(tab).click();
 }
