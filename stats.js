@@ -239,7 +239,7 @@ addEventListener("click", async (e) => {
         let user = idInput.value;
 
         let id = user;
-        if (user) {
+        if (user && !user.includes(":")) {
             try {
                 const userDataResponse = await fetch(`https://api.slin.dev/grab/v1/list?type=user_name&search_term=${user}`);
                 const userData = await userDataResponse.json();
@@ -248,6 +248,10 @@ addEventListener("click", async (e) => {
                 console.error("Error fetching user data:", error);
                 id = '290oi9frh8eihrh1r5z0q';
             }
+        }
+
+        if (user && user.includes(":")) {
+            id = user.split(":")[1]
         }
 
         const keys = keyInput.value.toLowerCase().split("|");
@@ -475,3 +479,19 @@ getChallengeScores();
 getKeyWords();
 getGlobalPlays();
 getAChallenge();
+
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get('userId');
+const userName = urlParams.get('userName');
+const search = urlParams.get('search');
+if (userId) {
+    document.getElementById('user-input').value = `userId:${userId}`;
+    document.getElementById('submit-btn').click();
+} else if (userName) {
+    document.getElementById('user-input').value = userName;
+    document.getElementById('submit-btn').click();
+}
+if (search) {
+    document.getElementById('key-input').value = search;
+    document.getElementById('submit-btn').click();
+}
