@@ -7,12 +7,9 @@ fetch("/stats_data/list.json")
         const dataElement = document.getElementById('data');
         for (let i = 0; i < data.levels.length; i++) {
             let item = data.levels[i];
-            let level = item.level;
-            let id = level.identifier;
-            let title = level.title;
-            let creator = level.creator;
-            let mapLink = `https://grabvr.quest/levels/viewer/?level=${id}`;
-            let userLink = `https://grabvr.quest/levels?tab=tab_other_user&user_id=${id.split(":")[0]}`;
+            let {level, identifier, title, creator} = item.level;
+            let mapLink = `https://grabvr.quest/levels/viewer/?level=${identifier}`;
+            let userLink = `https://grabvr.quest/levels?tab=tab_other_user&user_id=${identifier.split(":")[0]}`;
 
             list.innerHTML += `
             <div class="leaderboard-item">

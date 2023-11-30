@@ -1,4 +1,4 @@
-var levelJson = {
+let levelJson = {
     "formatVersion": 6,
     "title": "New Level",
     "creators": ".index-cheat-sheet",
@@ -24,9 +24,9 @@ var levelJson = {
         "fogDDensity": 0
     }
 };
-var list = [];
+let list = [];
 fetch("stats_data/cheat-sheet.json").then((response) => response.json()).then((data) => {
-    var table = document.getElementById("data-table");
+    let table = document.getElementById("data-table");
     let cols = data.shapes.length;
     let rows = data.materials.length;
 
@@ -40,7 +40,7 @@ fetch("stats_data/cheat-sheet.json").then((response) => response.json()).then((d
         });
     });
     row1.appendChild(col1);
-    for (var i = 0; i < cols; i++) {
+    for (let i = 0; i < cols; i++) {
         let col = document.createElement("td");
         col.innerHTML = `${data.shapes[i]}`;
         row1.appendChild(col);
@@ -56,9 +56,7 @@ fetch("stats_data/cheat-sheet.json").then((response) => response.json()).then((d
             let cell = document.createElement("td")
             cell.id = `${data.materials[i]}_${data.shapes[j]}`;
             if (data.materials[i] < 0) {
-                // cell.style.outline = '#f00 solid 1px';
                 cell.classList.add('unknown');
-                // cell.style.background = '#FFCCCC';
             }
             let div = document.createElement("div");
             let obj = data.results[j + (i * cols)];
@@ -101,13 +99,11 @@ fetch("stats_data/cheat-sheet.json").then((response) => response.json()).then((d
                 el.style.backgroundColor = 'rgb(204, 255, 204)';
                 list.push(el.id);
             }
-            // console.log(list);
         });
     });
     let params = location.href.split('=');
     if (params.length > 1) {
         params = params[1]
-        // console.log(params)
         if (params.length > 0) {
             params.split('+').forEach((value) => {
                 document.getElementById(value).click();
@@ -133,7 +129,6 @@ fetch("stats_data/cheat-sheet.json").then((response) => response.json()).then((d
             } else {
                 msArr[1] = parseInt(msArr[1])
             }
-            // console.log(msArr);
             node = {
                 "levelNodeStatic": {
                     "material": msArr[0],
@@ -230,10 +225,10 @@ fetch("stats_data/cheat-sheet.json").then((response) => response.json()).then((d
         }
         protobuf.load("proto/hacked.proto", function(err, root) {
             console.log(levelJson);
-            if(err) throw err;
+            if(err) {throw err};
             let message = root.lookupType("COD.Level.Level");
             let errMsg = message.verify(levelJson);
-            if(errMsg) throw Error(errMsg);
+            if(errMsg) {throw Error(errMsg)};
             let buffer = message.encode(message.fromObject(levelJson)).finish();
             let blob = new Blob([buffer], {type: "application/octet-stream"});
             let link = document.createElement("a");

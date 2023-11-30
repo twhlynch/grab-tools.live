@@ -1,14 +1,14 @@
-var nodes;
-var quality;
-var title;
-var desc;
-var creators;
-var name;
-var file;
-var image;
-var background;
-var ctx;
-var ictx;
+let nodes;
+let quality;
+let title;
+let desc;
+let creators;
+let name;
+let file;
+let image;
+let background;
+let ctx;
+let ictx;
 
 document.getElementById('choose-file').addEventListener("click", () => {
     document.getElementById('file').click();
@@ -31,7 +31,7 @@ function pixelate() {
         quality = 50;
     }
 
-    var reader = new FileReader();
+    let reader = new FileReader();
 
     reader.onload = function() {
         let data = reader.result;
@@ -43,7 +43,7 @@ function pixelate() {
             background.width = quality;
             background.height = quality;
             background.style.display = 'block';
-            var pixels = [];
+            let pixels = [];
             for (let x = 0; x < quality; x++) {
                 for (let y = 0; y < quality; y++) {
                     let pixel = ictx.getImageData(x*(img.width/quality), y*(img.height/quality), 1, 1);
@@ -52,10 +52,10 @@ function pixelate() {
                     pixels.push([rgb[0], rgb[1], rgb[2], x, y*-1]);
                 }
             }
-            var obj = pixelsToLevel(pixels);
+            let obj = pixelsToLevel(pixels);
             
             protobuf.load("proto/level.proto", function(err, root) {
-                if(err) throw err;
+                if(err) {throw err};
   
                 let message = root.lookupType("COD.Level.Level");
                 let errMsg = message.verify(obj);
@@ -75,8 +75,8 @@ function pixelate() {
 }
 
 function pixelsToLevel(pixels) {
-    var pixelNodes = [];
-    for (var i = 0; i < pixels.length; i++) {
+    let pixelNodes = [];
+    for (let i = 0; i < pixels.length; i++) {
         if (pixels[i][0] == 0) {
             pixels[i][0] == 1;
         }
