@@ -24,6 +24,23 @@ def get_level_stats(level_identifier):
     stats_url = f"{SERVER_URL}statistics/{level_identifier.replace(':', '/')}"
     return requests.get(stats_url).json()
 
+def get_level_browser():
+    browser_url = f"{SERVER_URL}get_level_browser?version=1"
+    return requests.get(browser_url).json()
+
+def get_user_name(user_identifier, potential_user_name, priority=False):
+    with open("stats_data/featured_creators.json") as featured_creators:
+        creators = json.load(featured_creators)
+        for creator in creators:
+            if creator["list_key"].split(":")[1] == user_identifier:
+                return creator["title"]
+    
+    if priority:
+        user_data = get_user_info(user_identifier)
+        return user_data["user_name"]
+    
+    return f"{potential_user_name}?"
+
 def write_json_file(filename, data):
     with open(filename, 'w') as file:
         json.dump(data, file, indent=2)
@@ -82,6 +99,11 @@ def get_a_challenge():
     user_leaderboard = sorted(user_leaderboard.items(), key=lambda x: x[1][0], reverse=True)
     return user_leaderboard
 
+def get_creators():
+    level_browser = get_level_browser()["sections"]
+    best_of_grab = [section for section in level_browser if section["title"] == "Best of GRAB"][0]["sections"]
+    return [section for section in level_browser if section["title"] == "Featured Creators"][0]["sections"]
+
 def get_unbeaten(all_verified_maps):
     unbeaten = []
     for level in all_verified_maps:
@@ -104,8 +126,8 @@ def get_most_verified(all_verified_maps, old_data):
         most_verified[user_identifier]["count"] += 1
 
     most_verified = sorted(most_verified.items(), key=lambda x: x[1]["count"], reverse=True)
-    
-    sub10 = {t[0]: t[1] for t in most_verified[10:][:100]}
+
+    potentials = {t[0]: t[1] for t in most_verified[10:][:100]}
     most_verified = {t[0]: t[1] for t in most_verified[:10]}
 
     for user_identifier in most_verified:
@@ -113,17 +135,17 @@ def get_most_verified(all_verified_maps, old_data):
         most_verified[user_identifier]["user_name"] = user_data["user_name"]
         most_verified[user_identifier]["levels"] = user_data["user_level_count"]
 
-    for user_identifier in sub10:
+    for user_identifier in potentials:
         for level in all_verified_maps:
             if user_identifier == level["identifier"].split(":")[0]:
-                if "creator" in level:
-                    sub10[user_identifier]["user_name"] = f"{level['creator']}?"
-                else:
-                    sub10[user_identifier]["user_name"] = "?"
+                potential_name = ""
+                if "creators" in level and level["creators"]:
+                    potential_name = level["creators"][0]
+                potentials[user_identifier]["user_name"] = get_user_name(user_identifier, potential_name)
                 break
-        sub10[user_identifier]["levels"] = sub10[user_identifier]["count"]
+        potentials[user_identifier]["levels"] = potentials[user_identifier]["count"]
 
-    most_verified |= sub10
+    most_verified |= potentials
 
     for user_identifier in most_verified:
         most_verified[user_identifier]["change"] = most_verified[user_identifier]["count"]
@@ -138,18 +160,23 @@ def get_most_plays(all_verified_maps, old_data):
     for level in all_verified_maps:
         user_identifier = level["identifier"].split(":")[0]
         if user_identifier not in most_plays:
-            creator = f'{level.get("creators", [""])[0]}?'
-            most_plays[user_identifier] = {"plays": 0, "count": 0, "user_name": creator }
+            most_plays[user_identifier] = {"plays": 0, "count": 0}
         most_plays[user_identifier]["plays"] += level["statistics"]["total_played"]
         most_plays[user_identifier]["count"] += 1
 
     most_plays = sorted(most_plays.items(), key=lambda x: x[1]["plays"], reverse=True)
-    potentials = {t[0]: t[1] for t in most_plays[10:][:90]}
+    potentials = {t[0]: t[1] for t in most_plays[10:][:100]}
+    most_plays = {t[0]: t[1] for t in most_plays[:10]}
 
     for user_identifier in potentials:
+        for level in all_verified_maps:
+            if user_identifier == level["identifier"].split(":")[0]:
+                potential_name = ""
+                if "creators" in level and level["creators"]:
+                    potential_name = level["creators"][0]
+                potentials[user_identifier]["user_name"] = get_user_name(user_identifier, potential_name)
+                break
         potentials[user_identifier]["levels"] = potentials[user_identifier]["count"]
-
-    most_plays = {t[0]: t[1] for t in most_plays[:10]}
 
     for user_identifier in most_plays:
         user_data = get_user_info(user_identifier)
@@ -282,6 +309,7 @@ def get_level_data():
     unbeaten_levels = get_unbeaten(all_verified)
     write_json_file('stats_data/all_verified.json', all_verified)
     write_json_file('stats_data/a_challenge.json', get_a_challenge())
+    write_json_file('stats_data/featured_creators.json', get_creators())
     write_json_file('stats_data/most_played_maps.json', get_most_played_maps(all_verified))
     write_json_file('stats_data/most_liked.json', get_most_liked(all_verified))
     write_json_file('stats_data/most_disliked.json', get_most_disliked(all_verified))
