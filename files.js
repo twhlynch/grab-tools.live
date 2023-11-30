@@ -65,7 +65,7 @@ let list = async (folder) => {
 let test = async () => {
     await init();
     await connect();
-    let files = input.files;
+    let { files } = input;
     for (let i = 0; i < files.length; i++) {
         await push(files[i], "sdcard/Download/"+files[i].name);
     }

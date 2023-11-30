@@ -24,7 +24,7 @@ function readArrayBufferGroup(file) {
         reader.onload = function() {
             let data = reader.result;
             protobuf.load("proto/level.proto", function(err, root) {
-                if(err) throw err;
+                if(err) {throw err};
                 let message = root.lookupType("COD.Level.Level");
                 let decoded = message.decode(new Uint8Array(data));
                 let object = message.toObject(decoded);
@@ -61,7 +61,7 @@ function readArrayBuffer(file) {
         reader.onload = function() {
             let data = reader.result;
             protobuf.load("proto/level.proto", function(err, root) {
-                if(err) throw err;
+                if(err) {throw err};
                 let message = root.lookupType("COD.Level.Level");
                 let decoded = message.decode(new Uint8Array(data));
                 let object = message.toObject(decoded);
@@ -139,11 +139,11 @@ function TextToSigns() {
     
     
     protobuf.load("proto/level.proto", function(err, root) {
-        if(err) throw err;
+        if(err) {throw err};
 
         let message = root.lookupType("COD.Level.Level");
         let errMsg = message.verify(obj);
-        if(errMsg) throw Error(errMsg);
+        if(errMsg) {throw Error(errMsg)};
         let buffer = message.encode(message.fromObject(obj)).finish();
         
         let blob = new Blob([buffer], {type: "application/octet-stream"});
@@ -164,8 +164,8 @@ function MultiDownload() {
     window.location.href = `download.html?level=${links}`;
 }
 function compile() {
-    const files = document.getElementById("compile-file").files;
-    if (!files.length) return;
+    const { files } = document.getElementById("compile-file");
+    if (!files.length) {return};
     
     let readers = [];
     for (let i = 0; i < files.length; i++) {
@@ -173,7 +173,7 @@ function compile() {
     }
 
     Promise.all(readers).then((values) => {
-        var finalNodes = [];
+        let finalNodes = [];
         for (let i = 0; i < values.length; i++) {
             finalNodes = finalNodes.concat(values[i]);
         }
@@ -208,11 +208,11 @@ function compile() {
         }
         
         protobuf.load("proto/level.proto", function(err, root) {
-            if(err) throw err;
+            if(err) {throw err};
 
             let message = root.lookupType("COD.Level.Level");
             let errMsg = message.verify(obj);
-            if(errMsg) throw Error(errMsg);
+            if(errMsg) {throw Error(errMsg)};
             let buffer = message.encode(message.fromObject(obj)).finish();
             
             let blob = new Blob([buffer], {type: "application/octet-stream"});
@@ -256,9 +256,9 @@ function pixelate() {
   
             let imageData = ctx.getImageData(0, 0, img.width, img.height);
             
-            var pixels = rgbArray;
-            var pixelNodes = [];
-            for (var i = 0; i < pixels.length; i++) {
+            let pixels = rgbArray;
+            let pixelNodes = [];
+            for (let i = 0; i < pixels.length; i++) {
                 if (pixels[i][0] == 0) {
                     pixels[i][0] == 1;
                 }
@@ -325,7 +325,7 @@ function pixelate() {
                 "title": title
             }
             protobuf.load("proto/level.proto", function(err, root) {
-                if(err) throw err;
+                if(err) {throw err};
   
                 let message = root.lookupType("COD.Level.Level");
                 let errMsg = message.verify(obj);
@@ -351,11 +351,11 @@ function convertJSON() {
             let data = reader.result;
             let obj = JSON.parse(data);
             protobuf.load("proto/level.proto", function(err, root) {
-                if(err) throw err;
+                if(err) {throw err};
 
                 let message = root.lookupType("COD.Level.Level");
                 let errMsg = message.verify(obj);
-                if(errMsg) throw Error(errMsg);
+                if(errMsg) {throw Error(errMsg)};
                 let buffer = message.encode(message.fromObject(obj)).finish();
                 
                 let blob = new Blob([buffer], {type: "application/octet-stream"});
@@ -463,11 +463,11 @@ function generatePointCloud() {
         level.levelNodes.push(points);
 
         protobuf.load("proto/level.proto", function(err, root) {
-            if(err) throw err;
+            if(err) {throw err};
 
             let message = root.lookupType("COD.Level.Level");
             let errMsg = message.verify(level);
-            if(errMsg) throw Error(errMsg);
+            if(errMsg) {throw Error(errMsg)};
             let buffer = message.encode(message.fromObject(level)).finish();
             
             let blob = new Blob([buffer], {type: "application/octet-stream"});

@@ -1319,7 +1319,7 @@ function magicOutlineNode(node) {
                     "z": (nodeData.scale.z + outlineSize)*-1
                 },
                 "rotation": nodeData.rotation,
-                "color": color ? color : nodeData.color
+                "color": color || nodeData.color
             }
         });
         return nodes;

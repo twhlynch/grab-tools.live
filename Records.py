@@ -1,27 +1,24 @@
-import json, requests
+import json, requests, contextlib
 
 with open("stats_data/all_verified.json") as file:
     data = json.load(file)
   
 leaderboard = {}
-i = 1
-for level in data:
-    id = level["identifier"].replace(":", "/")
-    url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{id}"
-    try:
+for i, level in enumerate(data, start=1):
+    identifier = level["identifier"].replace(":", "/")
+    url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{identifier}"
+    with contextlib.suppress(Exception):
         res_data = requests.get(url).json()
-    except:
-        pass
     if len(res_data) != 0:
         level["leaderboard"] = res_data
-        iter = 0
+        iteration = 0
         if res_data[0]["user_name"] == "EvildragonVR":
-            iter = 1
-        if len(res_data) > iter:
-            if res_data[iter]["user_name"] not in leaderboard:
-                leaderboard[res_data[iter]["user_name"]] = [0, []]
-            leaderboard[res_data[iter]["user_name"]][0] += 1
-            leaderboard[res_data[iter]["user_name"]][1].append([level["title"] + "|" + level["identifier"]])
+            iteration = 1
+        if len(res_data) > iteration:
+            if res_data[iteration]["user_name"] not in leaderboard:
+                leaderboard[res_data[iteration]["user_name"]] = [0, []]
+            leaderboard[res_data[iteration]["user_name"]][0] += 1
+            leaderboard[res_data[iteration]["user_name"]][1].append([level["title"] + "|" + level["identifier"]])
     print(i)
     i += 1
 
