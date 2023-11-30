@@ -343,7 +343,7 @@ function getDailyMap() {
     fetch('/stats_data/daily_map.json')
     .then((response) => response.json())
     .then(item => {
-        document.getElementById('DailyMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></h1>`;
+        document.getElementById('DailyMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${(item.creators || [""])[0]}</span></h1>`;
         fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item['identifier'].replace(':', '/')}`)
         .then((response2) => response2.json())
         .then(leaderboard => {
@@ -358,7 +358,7 @@ function getWeeklyMap() {
     fetch('/stats_data/weekly_map.json')
     .then((response) => response.json())
     .then(item => {
-        document.getElementById('WeeklyMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creator"]}</span></h1>`;
+        document.getElementById('WeeklyMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${(item.creators || [""])[0]}</span></h1>`;
         fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item['identifier'].replace(':', '/')}`)
         .then((response2) => response2.json())
         .then(leaderboard => {
@@ -373,7 +373,7 @@ function getUnbeatenMap() {
     fetch('/stats_data/unbeaten_map.json')
     .then((response) => response.json())
     .then(item => {
-        document.getElementById('UnbeatenMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${item["creators"]}</span></h1>`;
+        document.getElementById('UnbeatenMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${(item.creators || [""])[0]}</span></h1>`;
         fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item['identifier'].replaceAll(':', '/')}`)
         .then((response2) => response2.json())
         .then(leaderboard => {
