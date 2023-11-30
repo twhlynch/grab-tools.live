@@ -127,7 +127,7 @@ def get_most_verified(all_verified_maps, old_data):
 
     most_verified = sorted(most_verified.items(), key=lambda x: x[1]["count"], reverse=True)
 
-    potentials = {t[0]: t[1] for t in most_verified[10:][:100]}
+    potentials = {t[0]: t[1] for t in most_verified[10:][:190]}
     most_verified = {t[0]: t[1] for t in most_verified[:10]}
 
     for user_identifier in most_verified:
@@ -166,7 +166,7 @@ def get_most_plays(all_verified_maps, old_data):
         most_plays[user_identifier]["count"] += 1
 
     most_plays = sorted(most_plays.items(), key=lambda x: x[1]["plays"], reverse=True)
-    potentials = {t[0]: t[1] for t in most_plays[10:][:100]}
+    potentials = {t[0]: t[1] for t in most_plays[10:][:190]}
     most_plays = {t[0]: t[1] for t in most_plays[:10]}
 
     for user_identifier in potentials:
@@ -194,18 +194,18 @@ def get_most_plays(all_verified_maps, old_data):
     return most_plays
 
 def get_most_played_maps(all_verified_maps):
-    return sorted(all_verified_maps[25:], key=lambda x: x["statistics"]["total_played"], reverse=True)[:100]
+    return sorted(all_verified_maps[25:], key=lambda x: x["statistics"]["total_played"], reverse=True)[:200]
 
 def get_longest_times(all_verified_maps):
-    return sorted(all_verified_maps[25:], key=lambda x: x["statistics"]["time"], reverse=True)[:100]
+    return sorted(all_verified_maps[25:], key=lambda x: x["statistics"]["time"], reverse=True)[:200]
 
 def get_most_liked(all_verified_maps):
     most_liked = sorted(all_verified_maps, key=lambda x: x["statistics"]["liked"] * (1 - x["statistics"]["difficulty"]) * x["statistics"]["total_played"], reverse=True)
-    return [map for map in most_liked if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10][:100]
+    return [map for map in most_liked if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10][:200]
 
 def get_most_disliked(all_verified_maps):
     least_liked = sorted(all_verified_maps, key=lambda x: (1 - x["statistics"]["liked"]) * (1 - x["statistics"]["difficulty"]) * x["statistics"]["total_played"], reverse=True)
-    return [map for map in least_liked if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10][:100]
+    return [map for map in least_liked if map["statistics"]["total_played"] > 2000 and (map["statistics"]["total_played"] * map["statistics"]["difficulty"]) > 10][:200]
 
 def get_daily_winner():
     with open("stats_data/map_winners.json") as winners, open("stats_data/daily_map.json") as map, open("stats_data/user_blacklist.json") as blacklist:
