@@ -102,7 +102,7 @@ def get_a_challenge():
 def get_creators():
     level_browser = get_level_browser()["sections"]
     best_of_grab = [section for section in level_browser if "title" in section and section["title"] == "Best of GRAB"][0]["sections"]
-    return [section for section in level_browser if "title" in section and section["title"] == "Featured Creators"][0]["sections"]
+    return [section for section in best_of_grab if "title" in section and section["title"] == "Featured Creators"][0]["sections"]
 
 def get_unbeaten(all_verified_maps):
     unbeaten = []
