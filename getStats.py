@@ -148,9 +148,10 @@ def get_most_verified(all_verified_maps, old_data):
     most_verified |= potentials
 
     for user_identifier in most_verified:
-        most_verified[user_identifier]["change"] = most_verified[user_identifier]["count"]
         if user_identifier in old_data:
-            most_verified[user_identifier]["change"] -= old_data[user_identifier]["count"]
+            most_verified[user_identifier]["change"] = most_verified[user_identifier]["count"] - old_data[user_identifier]["count"]
+        else:
+            most_verified[user_identifier]["change"] = 0
 
     return most_verified
 
@@ -186,10 +187,10 @@ def get_most_plays(all_verified_maps, old_data):
     most_plays |= potentials
 
     for user_identifier in most_plays:
-        most_plays[user_identifier]["change"] = most_plays[user_identifier]["plays"]
         if user_identifier in old_data:
-            most_plays[user_identifier]["change"] -= old_data[user_identifier]["plays"]
-
+            most_plays[user_identifier]["change"] = most_plays[user_identifier]["plays"] - old_data[user_identifier]["plays"]
+        else:
+            most_plays[user_identifier]["change"] = 0
     return most_plays
 
 def get_most_played_maps(all_verified_maps):
