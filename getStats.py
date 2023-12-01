@@ -220,8 +220,7 @@ def get_daily_winner():
             if winner_list[i - offset]["user_name"] in blacklist_data:
                 winner_list.pop(i - offset)
                 offset += 1
-        if winner_list:
-            winner = winner_list[:3]
+        winner = winner_list[:3]
         winners_json.append([winner, map_json, int(datetime.now().timestamp()), "daily_map"])
     write_json_file('stats_data/map_winners.json', winners_json)
 
@@ -238,8 +237,7 @@ def get_weekly_winner():
             if winner_list[i - offset]["user_name"] in blacklist_data:
                 winner_list.pop(i - offset)
                 offset += 1
-        if winner_list:
-            winner = winner_list[:3]
+        winner = winner_list[:3]
         winners_json.append([winner, map_json, int(datetime.now().timestamp()), "weekly_map"])
     write_json_file('stats_data/map_winners.json', winners_json)
 
