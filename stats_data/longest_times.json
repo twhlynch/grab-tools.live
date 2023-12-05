@@ -180,8 +180,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 60700,
-      "difficulty": 0.0003502626970227671,
+      "total_played": 60800,
+      "difficulty": 0.00034976152623211444,
       "liked": 0.9,
       "time": 3692.6339999999996
     },
@@ -477,8 +477,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 126600,
-      "difficulty": 0.0018783560301353641,
+      "total_played": 126700,
+      "difficulty": 0.0018767467003937088,
       "liked": 0.8615384615384616,
       "time": 2598.101260869565
     },
@@ -985,8 +985,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 124300,
-      "difficulty": 0.00033853077643029254,
+      "total_played": 124400,
+      "difficulty": 0.00033824787600230803,
       "liked": 0.8,
       "time": 2021.9417058823533
     },
@@ -1450,10 +1450,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 35254,
-      "difficulty": 0.02327596880029714,
-      "liked": 0.8619854721549637,
-      "time": 1862.79474074761
+      "total_played": 35354,
+      "difficulty": 0.023379296151471496,
+      "liked": 0.8609112709832134,
+      "time": 1858.4119708871199
     },
     "images": {
       "full": {
@@ -1627,8 +1627,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 75400,
-      "difficulty": 0.002037947997189037,
+      "total_played": 75600,
+      "difficulty": 0.0020329477742726952,
       "liked": 0.925,
       "time": 1783.9151206896559
     },
@@ -2027,41 +2027,6 @@
     "creator": "cjbeast006"
   },
   {
-    "identifier": "29ffxg2ijqxyrgxyy2vjj:1653135637",
-    "title": "FROSTYs quick thinker",
-    "complexity": 3000,
-    "format_version": 4,
-    "update_timestamp": 1653430383295,
-    "creation_timestamp": 1653430383295,
-    "data_key": "level_data:29ffxg2ijqxyrgxyy2vjj:1653135637:1",
-    "description": "your gonna perish, neck pain 34, difficulty 24, you will not do it",
-    "creators": [
-      "FROSTY_CROSS"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 20583,
-      "difficulty": 0.0003819709702062643,
-      "liked": 0.6,
-      "time": 1630.5276666666668
-    },
-    "images": {
-      "full": {
-        "key": "level_29ffxg2ijqxyrgxyy2vjj_1653135637_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29ffxg2ijqxyrgxyy2vjj_1653135637_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "FROSTY_CROSS"
-  },
-  {
     "identifier": "29z0xnmo2bj7t5r2xfed1:1677186587",
     "title": "escape hell",
     "complexity": 1498,
@@ -2082,6 +2047,41 @@
       "time": 1628.594
     },
     "creator": "gman2giant"
+  },
+  {
+    "identifier": "29t798uon2urbra1f8w2q:1698018033",
+    "title": "Peaks - Spooky climb",
+    "complexity": 2999,
+    "format_version": 7,
+    "update_timestamp": 1701542069620,
+    "creation_timestamp": 1701542069620,
+    "data_key": "level_data:29t798uon2urbra1f8w2q:1698018033:1",
+    "description": "Simple endurance climbing, NOW WITH ANIMATIONS!!!",
+    "creators": [
+      "BlackCat508"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 1200,
+      "difficulty": 0.000970873786407767,
+      "liked": 1,
+      "time": 1620.68
+    },
+    "images": {
+      "full": {
+        "key": "level_29t798uon2urbra1f8w2q_1698018033_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29t798uon2urbra1f8w2q_1698018033_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "BlackCat508"
   },
   {
     "identifier": "2ak5u4cyuivrwrfb682hs:1674825261",
@@ -2295,6 +2295,41 @@
       }
     },
     "creator": "Bray.ace"
+  },
+  {
+    "identifier": "29ffxg2ijqxyrgxyy2vjj:1653135637",
+    "title": "FROSTYs quick thinker",
+    "complexity": 3000,
+    "format_version": 4,
+    "update_timestamp": 1653430383295,
+    "creation_timestamp": 1653430383295,
+    "data_key": "level_data:29ffxg2ijqxyrgxyy2vjj:1653135637:1",
+    "description": "your gonna perish, neck pain 34, difficulty 24, you will not do it",
+    "creators": [
+      "FROSTY_CROSS"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 20683,
+      "difficulty": 0.00044461382113821136,
+      "liked": 0.6666666666666666,
+      "time": 1532.3242857142861
+    },
+    "images": {
+      "full": {
+        "key": "level_29ffxg2ijqxyrgxyy2vjj_1653135637_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29ffxg2ijqxyrgxyy2vjj_1653135637_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "FROSTY_CROSS"
   },
   {
     "identifier": "29v9vd6n9z45d16mi2o2n:1680045422",
@@ -2578,8 +2613,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 75,
-      "difficulty": 0.013513513513513514,
+      "total_played": 100,
+      "difficulty": 0.010101010101010102,
       "liked": 1,
       "time": 1476.65
     },
@@ -3413,8 +3448,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 24000,
-      "difficulty": 0.001193207893529142,
+      "total_played": 24200,
+      "difficulty": 0.0011845102505694761,
       "liked": 0.9,
       "time": 1351.6562307692313
     },
@@ -4110,8 +4145,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 19695,
-      "difficulty": 0.0009905566928613881,
+      "total_played": 19795,
+      "difficulty": 0.0009854805860324552,
       "liked": 0.8,
       "time": 1238.6078
     },
@@ -4889,8 +4924,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1700,
-      "difficulty": 0.0006954102920723226,
+      "total_played": 1800,
+      "difficulty": 0.0006613756613756613,
       "liked": 1,
       "time": 1154.67
     },
@@ -5084,8 +5119,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 24200,
-      "difficulty": 0.0017468422467078742,
+      "total_played": 24400,
+      "difficulty": 0.0017347211102215106,
       "liked": 0.95,
       "time": 1132.317076923077
     },
@@ -5159,8 +5194,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 21562,
-      "difficulty": 0.0007650659133709981,
+      "total_played": 21662,
+      "difficulty": 0.0007624186264735206,
       "liked": 0.6,
       "time": 1117.6115999999997
     },
@@ -5329,8 +5364,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 9000,
-      "difficulty": 0.0025252525252525255,
+      "total_played": 9100,
+      "difficulty": 0.002499166944351883,
       "liked": 1,
       "time": 1103.5719333333332
     },
@@ -5407,41 +5442,5 @@
       "time": 1095.1014999999998
     },
     "creator": "melodicmedia"
-  },
-  {
-    "identifier": "29sgp24f1uorbc6vq8d2k:1661329640",
-    "title": "inferno",
-    "complexity": 1586,
-    "format_version": 4,
-    "update_timestamp": 1661344372223,
-    "creation_timestamp": 1661344372223,
-    "data_key": "level_data:29sgp24f1uorbc6vq8d2k:1661329640:1",
-    "description": "good luck.",
-    "creators": [
-      "nskc7",
-      "Entity_Slime"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 4853,
-      "difficulty": 0.0036978341257263604,
-      "liked": 0.6923076923076923,
-      "time": 1093.6550883384616
-    },
-    "images": {
-      "full": {
-        "key": "level_29sgp24f1uorbc6vq8d2k_1661329640_2.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29sgp24f1uorbc6vq8d2k_1661329640_2_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "nskc7"
   }
 ]
