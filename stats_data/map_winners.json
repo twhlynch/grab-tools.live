@@ -1107,5 +1107,107 @@
     },
     1702012378,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 15.02,
+        "user_id": "2bojjyjkmhegoqt73au7m",
+        "user_name": "FitArtist334071",
+        "timestamp": "0001702085052374"
+      },
+      {
+        "position": 1,
+        "best_time": 18.374,
+        "user_id": "29qyifkrtj57y85tpv5i5",
+        "user_name": "xani13",
+        "timestamp": "0001702060023700"
+      },
+      {
+        "position": 2,
+        "best_time": 21.3579,
+        "user_id": "2bypzw5szidllahzthirr",
+        "user_name": "0.Smiler.0",
+        "timestamp": "0001701197319472"
+      }
+    ],
+    {
+      "identifier": "2at1it9e8crom8o0lhh3i:1700918494",
+      "title": "Attack of the snowmen",
+      "complexity": 1193,
+      "format_version": 7,
+      "update_timestamp": 1700920833371,
+      "creation_timestamp": 1700920833371,
+      "data_key": "level_data:2at1it9e8crom8o0lhh3i:1700918494:1",
+      "description": "Oh no, runnn!Also thanks for the verified map.",
+      "creators": [
+        "freddy_fazbearnumber2"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 200,
+        "difficulty": 0.14136125654450263,
+        "liked": 0.8571428571428571,
+        "time": 57.455255555555546
+      },
+      "images": {
+        "full": {
+          "key": "level_2at1it9e8crom8o0lhh3i_1700918494_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2at1it9e8crom8o0lhh3i_1700918494_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "freddy_fazbearnumber2"
+    },
+    1702098735,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "29mu59yo9pbgwqloqhthe:1658771442",
+      "title": "demise",
+      "complexity": 287,
+      "format_version": 4,
+      "update_timestamp": 1658786145758,
+      "creation_timestamp": 1658786145758,
+      "data_key": "level_data:29mu59yo9pbgwqloqhthe:1658771442:1",
+      "description": "this map is the skill cap, it destroys anyone who tries to beat it.",
+      "creators": [
+        "littlebeastm8"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 32037,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_29mu59yo9pbgwqloqhthe_1658771442_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_29mu59yo9pbgwqloqhthe_1658771442_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "littlebeastm8"
+    },
+    1702098735,
+    "unbeaten_map"
   ]
 ]
