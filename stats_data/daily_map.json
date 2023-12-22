@@ -1,34 +1,36 @@
 {
-  "identifier": "2br9o7n5m8j6cjhi0wbjf:1701102274",
-  "title": "The tower of obstacles",
-  "complexity": 186,
+  "identifier": "2a8mnd0wzek61lnq9ozrv:1692539613",
+  "title": "CopyCat EP: 1 (Scrapped Version)",
+  "complexity": 2328,
   "format_version": 7,
-  "update_timestamp": 1702920053243,
-  "creation_timestamp": 1701112518086,
-  "data_key": "level_data:2br9o7n5m8j6cjhi0wbjf:1701102274:8",
+  "update_timestamp": 1702859159269,
+  "creation_timestamp": 1702859159269,
+  "data_key": "level_data:2a8mnd0wzek61lnq9ozrv:1692539613:1",
+  "description": "This is what we originally had for CopyCat EP 1, but it's boring but it took awhile so publishing anyways. Very unfinished",
   "creators": [
-    "TTC_FelixVr"
+    "Sco0terCat",
+    "Spibsboft"
   ],
   "tags": [
     "ok"
   ],
   "statistics": {
-    "total_played": 500,
-    "difficulty": 0.45064377682403434,
-    "liked": 0.8333333333333334,
-    "time": 82.1233538095238
+    "total_played": 600,
+    "difficulty": 0.6823956442831216,
+    "liked": 0.7731958762886598,
+    "time": 55.27304228723402
   },
   "images": {
     "full": {
-      "key": "level_2br9o7n5m8j6cjhi0wbjf_1701102274_1.png",
+      "key": "level_2a8mnd0wzek61lnq9ozrv_1692539613_1.png",
       "width": 1920,
       "height": 1080
     },
     "thumb": {
-      "key": "level_2br9o7n5m8j6cjhi0wbjf_1701102274_1_thumb.png",
+      "key": "level_2a8mnd0wzek61lnq9ozrv_1692539613_1_thumb.png",
       "width": 512,
       "height": 288
     }
   },
-  "creator": "TTC_FelixVr"
+  "creator": "Sco0terCat"
 }
