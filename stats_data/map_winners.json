@@ -2548,5 +2548,104 @@
     },
     1703221978,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 13.448,
+        "user_id": "2apqgju0ttomc3mztt3p6",
+        "user_name": "iSkype",
+        "timestamp": "0001703080525921"
+      },
+      {
+        "position": 1,
+        "best_time": 13.7879,
+        "user_id": "2a8031alixx3u6tyu2a7k",
+        "user_name": "iamaverag8",
+        "timestamp": "0001703268468003"
+      },
+      {
+        "position": 2,
+        "best_time": 15.582,
+        "user_id": "2b8xxpb13ie10xo6oufdc",
+        "user_name": "SocksisbadM8__sox",
+        "timestamp": "0001703261283629"
+      }
+    ],
+    {
+      "identifier": "2a8mnd0wzek61lnq9ozrv:1692539613",
+      "title": "CopyCat EP: 1 (Scrapped Version)",
+      "complexity": 2328,
+      "format_version": 7,
+      "update_timestamp": 1702859159269,
+      "creation_timestamp": 1702859159269,
+      "data_key": "level_data:2a8mnd0wzek61lnq9ozrv:1692539613:1",
+      "description": "This is what we originally had for CopyCat EP 1, but it's boring but it took awhile so publishing anyways. Very unfinished",
+      "creators": [
+        "Sco0terCat",
+        "Spibsboft"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 600,
+        "difficulty": 0.6823956442831216,
+        "liked": 0.7731958762886598,
+        "time": 55.27304228723402
+      },
+      "images": {
+        "full": {
+          "key": "level_2a8mnd0wzek61lnq9ozrv_1692539613_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2a8mnd0wzek61lnq9ozrv_1692539613_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "Sco0terCat"
+    },
+    1703308304,
+    "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 89.2397,
+        "user_id": "2a8031alixx3u6tyu2a7k",
+        "user_name": "iamaverag8",
+        "timestamp": "0001703268900240"
+      }
+    ],
+    {
+      "identifier": "2bgi9lylhp5z9ywogu4j1:1697379933",
+      "title": "THE Water DEMON!!",
+      "complexity": 2407,
+      "format_version": 7,
+      "update_timestamp": 1697580889663,
+      "creation_timestamp": 1697580889663,
+      "data_key": "level_data:2bgi9lylhp5z9ywogu4j1:1697379933:1",
+      "description": "Get to the END AND Dont RAGE QUIT GOODLUCK",
+      "creators": [
+        "Milk.and.0reos"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 400,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "creator": "Milk.and.0reos"
+    },
+    1703308304,
+    "unbeaten_map"
   ]
 ]
