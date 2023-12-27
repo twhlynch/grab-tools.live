@@ -1136,19 +1136,25 @@ function downloadAsJSON() {
 function randomizeLevel() {
     let obj = getLevel();
     runOnNodes(obj.levelNodes, (node) => {
-        Object.values(node)[0].position.x *= Math.random() + 0.5;
-        Object.values(node)[0].position.y *= Math.random() + 0.5;
-        Object.values(node)[0].position.z *= Math.random() + 0.5;
-        Object.values(node)[0].scale.x *= Math.random() + 0.5;
-        Object.values(node)[0].scale.y *= Math.random() + 0.5;
-        Object.values(node)[0].scale.z *= Math.random() + 0.5;
+        if (Object.values(node)[0].hasOwnProperty("posiiton")) {
+            Object.values(node)[0].position.x *= Math.random() + 0.5;
+            Object.values(node)[0].position.y *= Math.random() + 0.5;
+            Object.values(node)[0].position.z *= Math.random() + 0.5;
+        }
+        if (Object.values(node)[0].hasOwnProperty("scale")) {
+            Object.values(node)[0].scale.x *= Math.random() + 0.5;
+            Object.values(node)[0].scale.y *= Math.random() + 0.5;
+            Object.values(node)[0].scale.z *= Math.random() + 0.5;
+        }
     }, false);
     setLevel(obj);
 }
 function randomizeLevelMaterials() {
     let obj = getLevel();
     runOnNodes(obj.levelNodes, (node) => {
-        Object.values(node)[0].material = Math.floor(Math.random() * 10);
+        if (node.levelNodeStatic) {
+            Object.values(node)[0].material = Math.floor(Math.random() * 10);
+        }
     }, false);
     setLevel(obj);
 }
