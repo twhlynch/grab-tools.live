@@ -15,10 +15,11 @@ for i, level in enumerate(data, start=1):
         if res_data[0]["user_name"] == "EvildragonVR":
             iteration = 1
         if len(res_data) > iteration:
-            if res_data[iteration]["user_name"] not in leaderboard:
-                leaderboard[res_data[iteration]["user_name"]] = [0, []]
-            leaderboard[res_data[iteration]["user_name"]][0] += 1
-            leaderboard[res_data[iteration]["user_name"]][1].append([level["title"] + "|" + level["identifier"]])
+            keyName = res_data[iteration]["user_id"] + ':' + res_data[iteration]["user_name"]
+            if keyName not in leaderboard:
+                leaderboard[keyName] = [0, []]
+            leaderboard[keyName][0] += 1
+            leaderboard[keyName][1].append([level["title"] + "|" + level["identifier"]])
     print(i)
     i += 1
 
