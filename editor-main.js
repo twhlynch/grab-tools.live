@@ -22,6 +22,7 @@ let lastRan = '';
 let HIDE_TEXT = false;
 let HIGHLIGHT_TEXT = true;
 let vrButton;
+let startMaterial, finishMaterial;
 let templates = [
     {
         "name": "Animation Cheat Sheet",
@@ -511,6 +512,29 @@ void main()
     color.rgb *= texSample * adjustment.rgb;
     gl_FragColor = LinearTosRGB(color);
 }`;
+const startFinishVS = /*glsl*/`
+varying vec2 vTexcoord;
+
+void main()
+{
+    vTexcoord = uv;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}`;
+const startFinishFS = /*glsl*/`
+varying vec2 vTexcoord;
+
+uniform vec4 diffuseColor;
+
+void main()
+{
+    vec4 color = diffuseColor;
+    float factor = vTexcoord.y;
+    factor *= factor * factor;
+    factor = clamp(factor, 0.0, 1.0);
+    color.a = factor;
+
+    gl_FragColor = color;
+}`;
 
 function getLevel() {
     return JSON.parse(document.getElementById('edit-input').innerText);
@@ -608,9 +632,9 @@ function loadModel(path) {
     return new Promise((resolve) => {
         loader.load(path, function (gltf) {
             const glftScene = gltf.scene;
-            if (path == 'models/editor/pyramid.glb' || path == 'models/editor/prism.glb') {
-                glftScene.children[0].geometry.rotateX(Math.PI);
-            }
+            // if (path == 'models/editor/pyramid.glb' || path == 'models/editor/prism.glb') {
+            //     glftScene.children[0].geometry.rotateX(Math.PI);
+            // }
             resolve(glftScene.children[0]);
         });
     });
@@ -675,6 +699,23 @@ async function initAttributes() {
         const model = await loadModel(path);
         shapes.push(model);
     }
+
+    startMaterial = new THREE.ShaderMaterial();
+	startMaterial.vertexShader = startFinishVS;
+	startMaterial.fragmentShader = startFinishFS;
+	startMaterial.flatShading = true;
+	startMaterial.transparent = true;
+	startMaterial.depthWrite = false;
+	startMaterial.uniforms = { "diffuseColor": {value: [0.0, 1.0, 0.0, 1.0]}};
+
+	finishMaterial = new THREE.ShaderMaterial();
+	finishMaterial.vertexShader = startFinishVS;
+	finishMaterial.fragmentShader = startFinishFS;
+	finishMaterial.flatShading = true;
+	finishMaterial.transparent = true;
+	finishMaterial.depthWrite = false;
+	finishMaterial.uniforms = { "diffuseColor": {value: [1.0, 0.0, 0.0, 1.0]}};
+
     console.log('Ready', materials, shapes);
     
     const urlParams = new URLSearchParams(window.location.search);
@@ -761,7 +802,7 @@ function loadLevelNode(node, parent) {
             } else {
                 node.material ? material = materials[node.material].clone() : material = materials[0].clone();    
             }
-        } else if (altTextures) {
+        } else if (!altTextures) {
             material = materials[0].clone();
         } else {
             material = exportMaterials[0].clone();
@@ -787,12 +828,29 @@ function loadLevelNode(node, parent) {
         node.scale.x ? cube.scale.x = node.scale.x : cube.scale.x = 0;
         node.scale.y ? cube.scale.y = node.scale.y : cube.scale.y = 0;
         node.scale.z ? cube.scale.z = node.scale.z : cube.scale.z = 0;
+
+        if (!altTextures) {
+            console.log(material);
+            let targetVector = new THREE.Vector3();
+            let targetQuaternion = new THREE.Quaternion();
+            let worldMatrix = new THREE.Matrix4();
+            worldMatrix.compose(
+                cube.getWorldPosition(targetVector), 
+                cube.getWorldQuaternion(targetQuaternion), 
+                cube.getWorldScale(targetVector)
+            );
+
+            let normalMatrix = new THREE.Matrix3();
+            normalMatrix.getNormalMatrix(worldMatrix);
+            material.uniforms.worldNormalMatrix.value = normalMatrix;
+        }
+
         parent.add(cube);
         objects.push(cube);
         return 2;
     } else if (node.levelNodeCrumbling) {
         node = node.levelNodeCrumbling;
-        let cube;
+        let cube, material;
         if (node.shape-1000 >= 0 && node.shape-1000 < shapes.length) {
             cube = shapes[node.shape-1000].clone();
         } else {
@@ -800,15 +858,16 @@ function loadLevelNode(node, parent) {
         }
         if (node.material >= 0 && node.material < materials.length) {
             if (altTextures) {
-                node.material ? cube.material = exportMaterials[node.material] : cube.material = exportMaterials[0];
+                node.material ? material = exportMaterials[node.material] : material = exportMaterials[0];
             } else {
-                node.material ? cube.material = materials[node.material] : cube.material = materials[0];
+                node.material ? material = materials[node.material] : material = materials[0];
             }
-        } else if (altTextures) {
-            cube.material = exportMaterials[0];
+        } else if (!altTextures) {
+            material = exportMaterials[0];
         } else {
-            cube.material = materials[0];
+            material = materials[0];
         }
+        cube.material = material;
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
         node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
@@ -819,6 +878,22 @@ function loadLevelNode(node, parent) {
         node.scale.x ? cube.scale.x = node.scale.x : cube.scale.x = 0;
         node.scale.y ? cube.scale.y = node.scale.y : cube.scale.y = 0;
         node.scale.z ? cube.scale.z = node.scale.z : cube.scale.z = 0;
+
+        if (!altTextures) {
+            let targetVector = new THREE.Vector3();
+            let targetQuaternion = new THREE.Quaternion();
+            let worldMatrix = new THREE.Matrix4();
+            worldMatrix.compose(
+                cube.getWorldPosition(targetVector), 
+                cube.getWorldQuaternion(targetQuaternion), 
+                cube.getWorldScale(targetVector)
+            );
+
+            let normalMatrix = new THREE.Matrix3();
+            normalMatrix.getNormalMatrix(worldMatrix);
+            material.uniforms.worldNormalMatrix.value = normalMatrix;
+        }
+
         parent.add(cube);
         objects.push(cube);
         return 3;
@@ -843,7 +918,8 @@ function loadLevelNode(node, parent) {
     } else if (node.levelNodeStart) {
         node = node.levelNodeStart;
         let cube = shapes[6].clone();
-        cube.material = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0.5 });
+        // cube.material = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0.5 });
+        cube.material = startMaterial;
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
         node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
@@ -859,7 +935,8 @@ function loadLevelNode(node, parent) {
     } else if (node.levelNodeFinish) {
         node = node.levelNodeFinish;
         let cube = shapes[6].clone();
-        cube.material = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
+        // cube.material = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
+        cube.material = finishMaterial;
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
         node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
