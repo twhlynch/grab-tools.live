@@ -247,7 +247,16 @@ addEventListener("click", async (e) => {
             try {
                 const userDataResponse = await fetch(`https://api.slin.dev/grab/v1/list?type=user_name&search_term=${user}`);
                 const userData = await userDataResponse.json();
-                id = userData[0].user_id.toLowerCase();
+                let foundExact = false;
+                userData.forEach((item) => {
+                    if (item.user_name.toLowerCase() == user.toLowerCase()) {
+                        id = item.user_id.toLowerCase();
+                        foundExact = true;
+                    }
+                });
+                if (!foundExact) {
+                    id = userData[0].user_id.toLowerCase();
+                }
             } catch (error) {
                 console.error("Error fetching user data:", error);
                 id = '290oi9frh8eihrh1r5z0q';
