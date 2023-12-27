@@ -478,6 +478,26 @@ function getAChallenge() {
     });
 }
 
+function getRecords() {
+    fetch('/stats_data/sorted_leaderboard_records.json')
+    .then((response) => response.json())
+    .then(data => {
+        let lows = 0;
+        let totalLow = 0;
+        for (let key in data) {
+            if (data.hasOwnProperty(key)) {
+                if (data[key][0] >= 10) {
+                    document.getElementById('Records-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels/viewer/?level=${key.split(':')[0]}">${key.split(':')[1]}</a><span>${data[key][0]}</span></div>`;
+                } else {
+                    lows += 1;
+                    totalLow += data[key][0];
+                }
+            }
+        }
+        document.getElementById('Records-out').innerHTML += `<div class="leaderboard-item"><p>+ ${lows}</p><span>${totalLow}</span></div>`;
+    });
+}
+
 getTopPlayers();
 getUnbeatenLevels();
 getPlayedLevels();
@@ -492,6 +512,7 @@ getChallengeScores();
 getKeyWords();
 getGlobalPlays();
 getAChallenge();
+getRecords();
 
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get('userId');
