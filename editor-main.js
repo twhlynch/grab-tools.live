@@ -1022,21 +1022,21 @@ function exportLevelAsGLTF()
 	    {}
 	);
 }
-function findStart(obj) {
-    let levelNodes;
-    obj.hasOwnProperty("levelNodes") ? levelNodes = obj.levelNodes : levelNodes = obj.childNodes;
-    for (let node in levelNodes) {
+function goToStart() {
+    let obj = getLevel();
+    let start = false;
+    runOnNodes(obj.levelNodes, (node) => {
         if (node.hasOwnProperty("levelNodeStart")) {
-            return node.levelNodeStart;
+            start = node.levelNodeStart;
         }
-        if (node.hasOwnProperty("levelNodeGroup")) {
-            const result = findStart(node.levelNodeGroup);
-            if (result) {
-                return result;
-            }
-        }
+    }, false);
+    if (start) {
+        camera.position.x = start.position.x;
+        camera.position.y = start.position.y + 1;
+        camera.position.z = start.position.z + 1;
+
+        camera.lookAt(start.position.x, start.position.y, start.position.z);
     }
-    return false;
 }
 function toggleTextures() {
     altTextures = !altTextures;
@@ -1111,6 +1111,18 @@ function setAmbience(skyZenithColor, skyHorizonColor, sunAltitude, sunAzimuth, s
     levelData.ambienceSettings.fogDDensity = fogDDensity;
     setLevel(levelData);
 }
+function runOnNodes(levelNodes, func, doGroups = true) {
+    levelNodes.forEach((node) => {
+        let isGroup = node.hasOwnProperty("levelNodeGroup");
+        if ((isGroup && doGroups) || !isGroup) {
+            func(node);
+        }
+        if (isGroup) {
+            runOnNodes(node.levelNodeGroup.childNodes, func, doGroups);
+        }
+    });
+}
+
 function downloadAsJSON() {
     const blob = new Blob([JSON.stringify(getLevel())], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -1123,25 +1135,62 @@ function downloadAsJSON() {
 }
 function randomizeLevel() {
     let obj = getLevel();
-    obj.levelNodes.forEach((node) => {
+    runOnNodes(obj.levelNodes, (node) => {
         Object.values(node)[0].position.x *= Math.random() + 0.5;
         Object.values(node)[0].position.y *= Math.random() + 0.5;
         Object.values(node)[0].position.z *= Math.random() + 0.5;
         Object.values(node)[0].scale.x *= Math.random() + 0.5;
         Object.values(node)[0].scale.y *= Math.random() + 0.5;
         Object.values(node)[0].scale.z *= Math.random() + 0.5;
-    });
+    }, false);
     setLevel(obj);
 }
 function randomizeLevelMaterials() {
     let obj = getLevel();
-    obj.levelNodes.forEach((node) => {
+    runOnNodes(obj.levelNodes, (node) => {
         Object.values(node)[0].material = Math.floor(Math.random() * 10);
-    });
+    }, false);
     setLevel(obj);
 }
 function deepClone(obj) {
     return JSON.parse(JSON.stringify(obj));
+}
+function explodeLevel() {
+    let obj = getLevel();
+    let max = [0, 0, 0];
+    let min = [0, 0, 0];
+    let center = [0, 0, 0];
+    runOnNodes(obj.levelNodes, (node) => {
+        let position = Object.values(node)[0].position;
+        if (position.x > max[0]) {
+            max[0] = position.x;
+        }
+        if (position.y > max[1]) {
+            max[1] = position.y;
+        }
+        if (position.z > max[2]) {
+            max[2] = position.z;
+        }
+        if (position.x < min[0]) {
+            min[0] = position.x;
+        }
+        if (position.y < min[1]) {
+            min[1] = position.y;
+        }
+        if (position.z < min[2]) {
+            min[2] = position.z;
+        }
+    }, false);
+    center[0] = (max[0] + min[0])/2;
+    center[1] = (max[1] + min[1])/2;
+    center[2] = (max[2] + min[2])/2;
+    runOnNodes(obj.levelNodes, (node) => {
+        let position = Object.values(node)[0].position;
+        position.x += (position.x - center[0])*0.2;
+        position.y += (position.y - center[1])*0.2;
+        position.z += (position.z - center[2])*0.2;
+    }, false);
+    setLevel(obj);
 }
 function outlineNode(node) {
     let nodes = [];
@@ -1683,15 +1732,6 @@ function handleEditInput(e) {
         selection.collapseToEnd();
     }
 }
-function goToStart() {
-    let obj = getLevel();
-    let start = findStart(obj);
-    if (start) {
-        camera.position.x = start.position.x;
-        camera.position.y = start.position.y;
-        camera.position.z = start.position.z;
-    }
-}
 function loadTemplateButtons() {
     let container = document.getElementById('templates-container');
     container.innerHTML = '';
@@ -1923,6 +1963,7 @@ document.getElementById('outline-btn').addEventListener('click', outlineLevel);
 document.getElementById('magic-outline-btn').addEventListener('click', magicOutline);
 document.getElementById('randomize-btn').addEventListener('click', randomizeLevel);
 document.getElementById('randomizematerials-btn').addEventListener('click', randomizeLevelMaterials);
+document.getElementById('explode-btn').addEventListener('click', explodeLevel);
 document.getElementById('duplicate-btn').addEventListener('click', duplicateLevel);
 document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
 document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('level_data/json_files/empty.json')});
