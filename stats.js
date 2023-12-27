@@ -249,7 +249,7 @@ addEventListener("click", async (e) => {
                 const userData = await userDataResponse.json();
                 let foundExact = false;
                 userData.forEach((item) => {
-                    if (item.user_name.toLowerCase() == user.toLowerCase()) {
+                    if (!foundExact && item.user_name.toLowerCase() == user.toLowerCase()) {
                         id = item.user_id.toLowerCase();
                         foundExact = true;
                     }
