@@ -83,9 +83,9 @@ for char in text:
 
     level["levelNodes"][sign_iter]["animations"][0]["frames"].append({
         "position": {
-            "z": -1 * foreward_pos,
+            "z": 1 * foreward_pos,
             "y": height * char_width * -2,
-            "x": -1 * active_position * char_width
+            "x": 1 * active_position * char_width
         },
         "rotation": {
             "w": 1.0
@@ -95,9 +95,9 @@ for char in text:
 
     level["levelNodes"][sign_iter]["animations"][0]["frames"].append({
         "position": {
-            "z": -1 * foreward_pos,
+            "z": 1 * foreward_pos,
             "y": height * char_width * -2,
-            "x": -1 * active_position * char_width
+            "x": 1 * active_position * char_width
         },
         "rotation": {
             "w": 1.0
