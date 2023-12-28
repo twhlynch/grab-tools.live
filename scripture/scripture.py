@@ -2,10 +2,10 @@ import json
 
 count = 0
 char_width = 0.05
-appearance_time = 1
+appearance_time = 2
 interval = 0.1
 active_position = 0
-visible_length = 50 
+visible_length = 40 
 foreward_pos = 1
 height = 0
 
@@ -47,6 +47,8 @@ def find_char(char):
             return i
     return 0
 
+wants_return = False
+
 for char in text:
     count += 1
     sign_iter = find_char(char)
@@ -78,7 +80,7 @@ for char in text:
         })
     sign_iter = find_char(char)
     last_10.append(sign_iter)
-    if len(last_10) > 10:
+    if len(last_10) > appearance_time / interval:
         last_10.pop(0)
 
     level["levelNodes"][sign_iter]["animations"][0]["frames"].append({
@@ -116,8 +118,11 @@ for char in text:
 
     active_position += 1
     if active_position > visible_length:
+        wants_return = True
+    if wants_return and char == " ":
         active_position = 0
         height += 1
+        wants_return = False
 
 for i in range(len(level["levelNodes"])):
     level["levelNodes"][i]["animations"][0]["frames"].append({
