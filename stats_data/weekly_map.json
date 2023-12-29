@@ -1,35 +1,23 @@
 {
-  "identifier": "29ud7gez9vdk384pyn63e:1685791338",
-  "title": "LOST",
-  "complexity": 1223,
-  "format_version": 7,
-  "update_timestamp": 1701987796483,
-  "creation_timestamp": 1701987796483,
-  "data_key": "level_data:29ud7gez9vdk384pyn63e:1685791338:1",
-  "description": "where are we?",
+  "identifier": "29k763epg4asdivyctend:1689527615",
+  "title": "brick level",
+  "complexity": 2083,
+  "format_version": 6,
+  "update_timestamp": 1696017096578,
+  "creation_timestamp": 1696017096578,
+  "data_key": "level_data:29k763epg4asdivyctend:1689527615:1",
+  "description": "slight insparation from outpost (a series by milojensopha) and peeks - frozen climb (BlackCat508, Battlesquid112)                                                                                                                         *-+difficulty_very hard+-*",
   "creators": [
-    "Kristok"
+    "gray"
   ],
   "tags": [
     "ok"
   ],
   "statistics": {
-    "total_played": 100,
-    "difficulty": 0,
-    "liked": 0,
-    "time": 100
+    "total_played": 700,
+    "difficulty": 0.006837606837606838,
+    "liked": 1,
+    "time": 719.9165
   },
-  "images": {
-    "full": {
-      "key": "level_29ud7gez9vdk384pyn63e_1685791338_2.png",
-      "width": 1920,
-      "height": 1080
-    },
-    "thumb": {
-      "key": "level_29ud7gez9vdk384pyn63e_1685791338_2_thumb.png",
-      "width": 512,
-      "height": 288
-    }
-  },
-  "creator": "Kristok"
+  "creator": "gray"
 }
