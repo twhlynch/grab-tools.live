@@ -127,6 +127,23 @@ message LevelNodeSign
 	string text = 3;
 }
 
+message LevelNodeGravity
+{
+	enum Mode
+	{
+		DEFAULT = 0;
+		NOLEGS = 1; //gtag like movement with the head on the ground, also no leg collisions with lava
+	}
+
+	Mode mode = 1;
+
+	Vector position = 2;
+	Vector scale = 3;
+	Quaternion rotation = 4;
+
+	Vector direction = 5;
+}
+
 message AnimationFrame
 {
 	float time = 1;
@@ -160,6 +177,7 @@ message LevelNode
 		LevelNodeSign levelNodeSign = 4;
 		LevelNodeCrumbling levelNodeCrumbling = 5;
 		LevelNodeGroup levelNodeGroup = 7;
+		LevelNodeGravity levelNodeGravity = 8;
 	}
 
 	//A level node can have any number (might limit it in the UI) of named animations, if groups are involved every block that is part of the same animation should have an animation with the same name
