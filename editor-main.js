@@ -50,6 +50,11 @@ let templates = [
         "type": "file"
     },
     {
+        "name": "New Years 2024 Lobby",
+        "link": "level_data/lobbies/lobby-new-year-2024.level",
+        "type": "file"
+    },
+    {
         "name": "Best Of Grab Lobby",
         "link": "level_data/lobbies/lobby-best-of-grab-2023.level",
         "type": "file"
@@ -421,6 +426,23 @@ message LevelNodeSign
 	string text = 3;
 }
 
+message LevelNodeGravity
+{
+	enum Mode
+	{
+		DEFAULT = 0;
+		NOLEGS = 1; //gtag like movement with the head on the ground, also no leg collisions with lava
+	}
+
+	Mode mode = 1;
+
+	Vector position = 2;
+	Vector scale = 3;
+	Quaternion rotation = 4;
+
+	Vector direction = 5;
+}
+
 message AnimationFrame
 {
 	float time = 1;
@@ -454,6 +476,7 @@ message LevelNode
 		LevelNodeSign levelNodeSign = 4;
 		LevelNodeCrumbling levelNodeCrumbling = 5;
 		LevelNodeGroup levelNodeGroup = 7;
+		LevelNodeGravity levelNodeGravity = 8;
 	}
 
 	repeated Animation animations = 15;
@@ -769,24 +792,68 @@ function refreshScene() {
 }
 function loadLevelNode(node, parent) {
     if (node.levelNodeGroup) {
+        node = node.levelNodeGroup;
         let cube = new THREE.Object3D()
         objects.push( cube );
         parent.add( cube );
-        node.levelNodeGroup.position.x ? cube.position.x = node.levelNodeGroup.position.x : cube.position.x = 0;
-        node.levelNodeGroup.position.y ? cube.position.y = node.levelNodeGroup.position.y : cube.position.y = 0;
-        node.levelNodeGroup.position.z ? cube.position.z = node.levelNodeGroup.position.z : cube.position.z = 0;
-        node.levelNodeGroup.scale.x ? cube.scale.x = node.levelNodeGroup.scale.x : cube.scale.x = 0;
-        node.levelNodeGroup.scale.y ? cube.scale.y = node.levelNodeGroup.scale.y : cube.scale.y = 0;
-        node.levelNodeGroup.scale.z ? cube.scale.z = node.levelNodeGroup.scale.z : cube.scale.z = 0;
-        node.levelNodeGroup.rotation.x ? cube.quaternion.x = node.levelNodeGroup.rotation.x : cube.quaternion.x = 0;
-        node.levelNodeGroup.rotation.y ? cube.quaternion.y = node.levelNodeGroup.rotation.y : cube.quaternion.y = 0;
-        node.levelNodeGroup.rotation.z ? cube.quaternion.z = node.levelNodeGroup.rotation.z : cube.quaternion.z = 0;
-        node.levelNodeGroup.rotation.w ? cube.quaternion.w = node.levelNodeGroup.rotation.w : cube.quaternion.w = 0;
+        node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
+        node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
+        node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
+        node.scale.x ? cube.scale.x = node.scale.x : cube.scale.x = 0;
+        node.scale.y ? cube.scale.y = node.scale.y : cube.scale.y = 0;
+        node.scale.z ? cube.scale.z = node.scale.z : cube.scale.z = 0;
+        node.rotation.x ? cube.quaternion.x = node.rotation.x : cube.quaternion.x = 0;
+        node.rotation.y ? cube.quaternion.y = node.rotation.y : cube.quaternion.y = 0;
+        node.rotation.z ? cube.quaternion.z = node.rotation.z : cube.quaternion.z = 0;
+        node.rotation.w ? cube.quaternion.w = node.rotation.w : cube.quaternion.w = 0;
         let groupComplexity = 0;
-        node.levelNodeGroup.childNodes.forEach(node => {
+        node.childNodes.forEach(node => {
             groupComplexity += loadLevelNode(node, cube);
         });
         return groupComplexity;
+    } else if (node.levelNodeGravity) {
+        node = node.levelNodeGravity;
+
+        let particleGeometry = new THREE.BufferGeometry();
+
+        let particleColor = new THREE.Color(1.0, 1.0, 1.0);
+        if (node?.mode == 1) {
+            particleColor = new THREE.Color(1.0, 0.6, 0.6);
+        }
+        let particleMaterial = new THREE.PointsMaterial({ color: particleColor, size: 0.05 });
+
+        let object = new THREE.Object3D()
+        object.position.x = node.position.x
+        object.position.y = node.position.y
+        object.position.z = node.position.z
+
+        object.scale.x = node.scale.x
+        object.scale.y = node.scale.y
+        object.scale.z = node.scale.z
+
+        object.quaternion.x = node.rotation.x
+        object.quaternion.y = node.rotation.y
+        object.quaternion.z = node.rotation.z
+        object.quaternion.w = node.rotation.w
+
+        let particleCount = Math.floor(object.scale.x * object.scale.y * object.scale.z * 50.0)
+        let particlePositions = [];
+
+        for (let i = 0; i < particleCount; i++) {
+            let x = (Math.random() - 0.5) * object.scale.x;
+            let y = (Math.random() - 0.5) * object.scale.y;
+            let z = (Math.random() - 0.5) * object.scale.z;
+
+            particlePositions.push(x, y, z);
+        }
+
+        particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(particlePositions, 3));
+        let particles = new THREE.Points(particleGeometry, particleMaterial);
+        object.add(particles);
+        parent.add(object);
+        objects.push(object);
+
+        return 10;
     } else if (node.levelNodeStatic) { 
         node = node.levelNodeStatic;
         let cube;
@@ -830,7 +897,7 @@ function loadLevelNode(node, parent) {
         node.scale.z ? cube.scale.z = node.scale.z : cube.scale.z = 0;
 
         if (!altTextures) {
-            console.log(material);
+            // console.log(material);
             let targetVector = new THREE.Vector3();
             let targetQuaternion = new THREE.Quaternion();
             let worldMatrix = new THREE.Matrix4();
@@ -2093,6 +2160,7 @@ document.getElementById('nodeColored-btn').addEventListener('click', () => {appe
 document.getElementById('nodeSign-btn').addEventListener('click', () => {appendJSON("level_data/json_files/sign-node.json")});
 document.getElementById('nodeStart-btn').addEventListener('click', () => {appendJSON("level_data/json_files/start-node.json")});
 document.getElementById('nodeFinish-btn').addEventListener('click', () => {appendJSON("level_data/json_files/finish-node.json")});
+document.getElementById('nodeGravity-btn').addEventListener('click', () => {appendJSON("level_data/json_files/gravity-node.json")});
 document.getElementById('nodeInvisible-btn').addEventListener('click', () => {appendJSON("level_data/json_files/invisible-node.json")});
 // insert prefabs
 document.getElementById('Parallelograms-btn').addEventListener('click', () => {appendJSON("level_data/json_files/parallelograms.json")});
