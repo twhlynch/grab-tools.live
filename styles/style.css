@@ -536,3 +536,41 @@ input, #smorg-urls {
 .levelItemOk {
     border-left: solid 5px #6ee4bb49;
 }
+
+#darkMode svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-color-default);
+    color: var(--text-color-default);
+}
+#darkMode {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--padding-secondary);
+    padding-block: var(--padding-secondary);
+    flex-wrap: wrap;
+    background-color: transparent;
+    border: none;
+}
+#darkMode.dark svg:nth-last-child(1) {
+    display: none;
+}
+#darkMode:not(.dark) svg:nth-child(1) {
+    display: none;
+}
+
+html.dark-mode {
+    --text-color-default: #cfe0ea;
+    --text-color-alt: #a6b8c1;
+    --text-color-accent: #b8d1dd;
+    --background-color-default: #1c1f22;
+    --background-color-alt: #2e3236;
+    --text-color-link: #2f81f7;
+    --border-color: #cfe0ea88;
+    background-image: linear-gradient(#2c2f31, #24354a, #2c2f31);
+}
+html.dark-mode .leaderboard-item span:nth-last-child(2), html.dark-mode .leaderboard-item-card span:nth-last-child(2) {
+    color: #a6b8c1;
+}
