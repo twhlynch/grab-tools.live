@@ -39,6 +39,28 @@ if (document.title === "GRAB Tools") {
     currentTime.innerHTML = `${hour < 12 ? hour : hour - 12}:${minutes < 10 ? '0' + minutes : minutes} ${hour >= 12 ? "PM" : "AM"}`;
 }
 
+let darkModeButton = document.getElementById("darkMode");
+if (darkModeButton) {
+    darkModeButton.addEventListener("click", () => {
+        if (darkModeButton.classList.contains("dark")) {
+            darkModeButton.classList.remove("dark");
+            localStorage.setItem("darkMode", "false");
+            document.body.parentElement.classList.remove("dark-mode");
+        } else {
+            darkModeButton.classList.add("dark");
+            localStorage.setItem("darkMode", "true");
+            document.body.parentElement.classList.add("dark-mode");
+        }
+    });
+}
+
+// load dark mode styles
+if (localStorage.getItem("darkMode") === "true") {
+    document.body.parentElement.classList.add("dark-mode");
+    darkModeButton.classList.add("dark");
+}
+
+
 // const ads = document.getElementById("ads");
 // setInterval(() => {
 //     if (window.innerWidth > 1200) {
