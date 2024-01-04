@@ -81,6 +81,7 @@ document.getElementById("compile-btn").addEventListener("click", compile);
 document.getElementById('signs-download').addEventListener("click", TextToSigns);
 document.getElementById('json-btn').addEventListener("click", convertJSON);
 document.getElementById('pointcloud-btn').addEventListener("click", generatePointCloud);
+document.getElementById('explode-btn').addEventListener("click", explodeLevel);
 
 // model, explode, explode-anim, outline, magic-outline, randomizer, to model, to json
 
@@ -480,6 +481,76 @@ function generatePointCloud() {
     }
     reader.readAsText(file);
 
+}
+
+function runOnNodes(levelNodes, func, doGroups = true) {
+    levelNodes.forEach((node) => {
+        let isGroup = node.hasOwnProperty("levelNodeGroup");
+        if ((isGroup && doGroups) || !isGroup) {
+            func(node);
+        }
+        if (isGroup) {
+            runOnNodes(node.levelNodeGroup.childNodes, func, doGroups);
+        }
+    });
+}
+
+function explodeLevel() {
+    let file = document.getElementById('explode-file').files[0];
+    readArrayBuffer(file).then((level) => {
+
+        let max = [0, 0, 0];
+        let min = [0, 0, 0];
+        let center = [0, 0, 0];
+        runOnNodes(level.levelNodes, (node) => {
+            let position = Object.values(node)[0].position;
+            if (position.x > max[0]) {
+                max[0] = position.x;
+            }
+            if (position.y > max[1]) {
+                max[1] = position.y;
+            }
+            if (position.z > max[2]) {
+                max[2] = position.z;
+            }
+            if (position.x < min[0]) {
+                min[0] = position.x;
+            }
+            if (position.y < min[1]) {
+                min[1] = position.y;
+            }
+            if (position.z < min[2]) {
+                min[2] = position.z;
+            }
+        }, false);
+        center[0] = (max[0] + min[0])/2;
+        center[1] = (max[1] + min[1])/2;
+        center[2] = (max[2] + min[2])/2;
+        runOnNodes(level.levelNodes, (node) => {
+            let position = Object.values(node)[0].position;
+            position.x += (position.x - center[0])*0.2;
+            position.y += (position.y - center[1])*0.2;
+            position.z += (position.z - center[2])*0.2;
+        }, false);
+
+        level.title += " Exploded"
+
+        protobuf.load("proto/level.proto", function(err, root) {
+            if(err) {throw err};
+
+            let message = root.lookupType("COD.Level.Level");
+            let errMsg = message.verify(level);
+            if(errMsg) {throw Error(errMsg)};
+            let buffer = message.encode(message.fromObject(level)).finish();
+            
+            let blob = new Blob([buffer], {type: "application/octet-stream"});
+            
+            let link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = (Date.now()).toString().slice(0, -3)+".level";
+            link.click();
+        });
+    });
 }
 
 /*
