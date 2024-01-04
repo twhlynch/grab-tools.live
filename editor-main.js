@@ -50,6 +50,16 @@ let templates = [
         "type": "file"
     },
     {
+        "name": "Space Lobby 2024",
+        "link": "level_data/lobbies/lobby-space-2024.level",
+        "type": "file"
+    },
+    {
+        "name": "Christmas Lobby 2023",
+        "link": "level_data/lobbies/lobby-christmas-2023.level",
+        "type": "file"
+    },
+    {
         "name": "New Years 2024 Lobby",
         "link": "level_data/lobbies/lobby-new-year-2024.level",
         "type": "file"
