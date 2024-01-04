@@ -272,7 +272,7 @@ addEventListener("click", async (e) => {
         let array1 = [];
         if (user !== '' && user !== null) {
             try {
-                const response1 = await fetch(`https://api.slin.dev/grab/v1/list?max_format_version=7&user_id=${id}`);
+                const response1 = await fetch(`https://api.slin.dev/grab/v1/list?max_format_version=100&user_id=${id}`);
                 const json_data1 = await response1.json();
                 array1 = json_data1.flat()
             } catch (error) {
