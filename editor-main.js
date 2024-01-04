@@ -846,7 +846,8 @@ function loadLevelNode(node, parent) {
         object.quaternion.z = node.rotation.z
         object.quaternion.w = node.rotation.w
 
-        let particleCount = Math.floor(object.scale.x * object.scale.y * object.scale.z * 50.0)
+        let particleCount = Math.floor(object.scale.x * object.scale.y * object.scale.z)
+        particleCount = Math.min(particleCount, 2000);
         let particlePositions = [];
 
         for (let i = 0; i < particleCount; i++) {
