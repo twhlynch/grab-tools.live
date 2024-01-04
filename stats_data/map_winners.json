@@ -3813,5 +3813,95 @@
     },
     1704258746,
     "unbeaten_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 1.83,
+        "user_id": "2ap0yu9y9g2lcvxbc5x3g",
+        "user_name": "Itz_Alwx",
+        "timestamp": "0001697329988903"
+      },
+      {
+        "position": 1,
+        "best_time": 2.191,
+        "user_id": "2a8031alixx3u6tyu2a7k",
+        "user_name": "iamaverag8",
+        "timestamp": "0001697329496955"
+      },
+      {
+        "position": 2,
+        "best_time": 2.288,
+        "user_id": "29vwpoz1ta63oys21bvfv",
+        "user_name": "dandestroys",
+        "timestamp": "0001697272785300"
+      }
+    ],
+    {
+      "identifier": "2ap0yu9y9g2lcvxbc5x3g:1694975891",
+      "title": " Gravity Sliders",
+      "complexity": 948,
+      "format_version": 8,
+      "update_timestamp": 1704234154411,
+      "creation_timestamp": 1697271268172,
+      "data_key": "level_data:2ap0yu9y9g2lcvxbc5x3g:1694975891:8",
+      "creators": [
+        "Itz_Alwx"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "verification_time": 59.97,
+      "statistics": {
+        "total_played": 800,
+        "difficulty": 0.06140350877192982,
+        "liked": 0.9090909090909091,
+        "time": 39.66894457142856
+      },
+      "images": {
+        "full": {
+          "key": "level_2ap0yu9y9g2lcvxbc5x3g_1694975891_4.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2ap0yu9y9g2lcvxbc5x3g_1694975891_4_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "Itz_Alwx"
+    },
+    1704345169,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "2an5o0os69dlqt13h5p08:1678838383",
+      "title": "Slippery Slopes",
+      "complexity": 1464,
+      "format_version": 6,
+      "update_timestamp": 1689566907409,
+      "creation_timestamp": 1689566907409,
+      "data_key": "level_data:2an5o0os69dlqt13h5p08:1678838383:1",
+      "description": "Climb and find three totems and get to the top of the mountain!",
+      "creators": [
+        "brodcoolol"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 400,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "creator": "brodcoolol"
+    },
+    1704345170,
+    "unbeaten_map"
   ]
 ]
