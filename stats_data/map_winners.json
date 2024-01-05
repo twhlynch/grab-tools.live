@@ -3903,5 +3903,139 @@
     },
     1704345170,
     "unbeaten_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 39.615,
+        "user_id": "2b98oapjfx05t5nq33xpp",
+        "user_name": "crazysherman2",
+        "timestamp": "0001704418224232"
+      },
+      {
+        "position": 1,
+        "best_time": 56.6446,
+        "user_id": "2bjxfndgtanz81tc9m38c",
+        "user_name": "lvffy",
+        "timestamp": "0001704420530698"
+      }
+    ],
+    {
+      "identifier": "2bjxfndgtanz81tc9m38c:1703961327",
+      "title": "Try Not To Fall! ",
+      "complexity": 1173,
+      "format_version": 8,
+      "update_timestamp": 1704338391223,
+      "creation_timestamp": 1704338391223,
+      "data_key": "level_data:2bjxfndgtanz81tc9m38c:1703961327:1",
+      "description": "Goodluck on beating the map and I hope you enjoy!",
+      "creators": [
+        "lvffy"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "verification_time": 88.4,
+      "statistics": {
+        "total_played": 25,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_2bjxfndgtanz81tc9m38c_1703961327_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2bjxfndgtanz81tc9m38c_1703961327_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "lvffy"
+    },
+    1704432795,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "29srqtwaq08zzhp3kng3u:1691836806",
+      "title": "satans garden of sin",
+      "complexity": 1408,
+      "format_version": 6,
+      "update_timestamp": 1695495724476,
+      "creation_timestamp": 1695495724476,
+      "data_key": "level_data:29srqtwaq08zzhp3kng3u:1691836806:1",
+      "creators": [
+        "CoblerB1",
+        "Pnut"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 400,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "creator": "CoblerB1"
+    },
+    1704432796,
+    "unbeaten_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 287.401,
+        "user_id": "2bxznfs3tfog3d18517as",
+        "user_name": "MedievalDuck",
+        "timestamp": "0001699678964080"
+      },
+      {
+        "position": 1,
+        "best_time": 291.343,
+        "user_id": "2c4xi8nmty5corrgbsm4i",
+        "user_name": "Aclimber8",
+        "timestamp": "0001699918648917"
+      },
+      {
+        "position": 2,
+        "best_time": 726.402,
+        "user_id": "29k763epg4asdivyctend",
+        "user_name": "graythegamer820",
+        "timestamp": "0001696358065248"
+      }
+    ],
+    {
+      "identifier": "29k763epg4asdivyctend:1689527615",
+      "title": "brick level",
+      "complexity": 2083,
+      "format_version": 6,
+      "update_timestamp": 1696017096578,
+      "creation_timestamp": 1696017096578,
+      "data_key": "level_data:29k763epg4asdivyctend:1689527615:1",
+      "description": "slight insparation from outpost (a series by milojensopha) and peeks - frozen climb (BlackCat508, Battlesquid112)                                                                                                                         *-+difficulty_very hard+-*",
+      "creators": [
+        "gray"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 700,
+        "difficulty": 0.006837606837606838,
+        "liked": 1,
+        "time": 719.9165
+      },
+      "creator": "gray"
+    },
+    1704432796,
+    "weekly_map"
   ]
 ]
