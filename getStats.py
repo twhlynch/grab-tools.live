@@ -10,18 +10,22 @@ FORMAT_VERSION = "100"
 
 def get_level_list(type):
     list_url = f"{SERVER_URL}list?max_format_version={FORMAT_VERSION}&type={type}"
+    print(list_url)
     return requests.get(list_url).json()
 
 def get_user_info(user_identifier):
     user_url = f"{SERVER_URL}get_user_info?user_id={user_identifier}"
+    print(user_url)
     return requests.get(user_url).json()
 
 def get_level_leaderboard(level_identifier):
     leaderboard_url = f"{SERVER_URL}statistics_top_leaderboard/{level_identifier.replace(':', '/')}"
+    print(leaderboard_url)
     return requests.get(leaderboard_url).json()
 
 def get_level_stats(level_identifier):
     stats_url = f"{SERVER_URL}statistics/{level_identifier.replace(':', '/')}"
+    print(stats_url)
     return requests.get(stats_url).json()
 
 def get_level_browser():
