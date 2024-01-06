@@ -1520,7 +1520,7 @@ function magicOutlineNode(node) {
         }
         nodes.push({
             "levelNodeStatic": {
-                "shape": 3,
+                "shape": 4,
                 "material": 8,
                 "position": nodeData.position,
                 "scale": {

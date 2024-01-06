@@ -25,7 +25,11 @@ let levelJson = {
     }
 };
 let list = [];
-fetch("stats_data/cheat-sheet.json").then((response) => response.json()).then((data) => {
+let version = "2"
+if (location.href.includes("v1")) {
+    version = "1";
+}
+fetch(`stats_data/cheat-sheetv${version}.json`).then((response) => response.json()).then((data) => {
     let table = document.getElementById("data-table");
     let cols = data.shapes.length;
     let rows = data.materials.length;
