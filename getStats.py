@@ -385,7 +385,7 @@ async def get_challenge_scores():
     for value in leaderboard.values():
         if count >= 10:
             break
-            embed_values += f'{value[0]}: {value[1]} Pt'
+            embed_values += f'{value[0]}: {int(value[1])} Pt'
         count += 1
     embed.add_field(name='Leaderboard', value='\n'.join(embed_values), inline=False)
 
