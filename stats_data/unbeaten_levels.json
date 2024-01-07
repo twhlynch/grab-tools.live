@@ -15,7 +15,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 33037,
+      "total_played": 33137,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -50,7 +50,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 41100,
+      "total_played": 41300,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -565,7 +565,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2800,
+      "total_played": 2900,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -716,7 +716,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3000,
+      "total_played": 3100,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -938,7 +938,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2900,
+      "total_played": 3100,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -1008,7 +1008,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3600,
+      "total_played": 3800,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -1062,76 +1062,5 @@
       }
     },
     "creator": "CoblerB1"
-  },
-  {
-    "identifier": "2cbes2ovz1kspih1b775x:1703626596",
-    "title": "the frozen mountain!",
-    "complexity": 1496,
-    "format_version": 7,
-    "update_timestamp": 1703630910260,
-    "creation_timestamp": 1703630910260,
-    "data_key": "level_data:2cbes2ovz1kspih1b775x:1703626596:1",
-    "description": "attempt to climb up this mountain that got completely got covered in slippery ice!",
-    "creators": [
-      "iamaverag8",
-      "cookedbeans_vr",
-      "Z_FilmZ"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 500,
-      "difficulty": 0,
-      "liked": 0,
-      "time": 100
-    },
-    "images": {
-      "full": {
-        "key": "level_2cbes2ovz1kspih1b775x_1703626596_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_2cbes2ovz1kspih1b775x_1703626596_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "iamaverag8"
-  },
-  {
-    "identifier": "2a3do6ykbb3oogw62idpu:1702513458",
-    "title": "mountain climbing- desert rock",
-    "complexity": 3000,
-    "format_version": 7,
-    "update_timestamp": 1703563652556,
-    "creation_timestamp": 1703563652556,
-    "data_key": "level_data:2a3do6ykbb3oogw62idpu:1702513458:1",
-    "creators": [
-      "ShawboiZ"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 400,
-      "difficulty": 0,
-      "liked": 0,
-      "time": 100
-    },
-    "images": {
-      "full": {
-        "key": "level_2a3do6ykbb3oogw62idpu_1702513458_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_2a3do6ykbb3oogw62idpu_1702513458_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "ShawboiZ"
   }
 ]

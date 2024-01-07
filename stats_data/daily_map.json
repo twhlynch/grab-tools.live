@@ -1,36 +1,23 @@
 {
-  "identifier": "2aalxvlevhadqz9rznqz3:1704507125",
-  "title": "Tower Of Parkour",
-  "complexity": 801,
-  "format_version": 8,
-  "update_timestamp": 1704512482365,
-  "creation_timestamp": 1704510077109,
-  "data_key": "level_data:2aalxvlevhadqz9rznqz3:1704507125:2",
-  "description": "Parkour.",
+  "identifier": "2b2preh4hxhwksl00jlsi:1682351429",
+  "title": "mini golf",
+  "complexity": 463,
+  "format_version": 6,
+  "update_timestamp": 1682354271774,
+  "creation_timestamp": 1682354271774,
+  "data_key": "level_data:2b2preh4hxhwksl00jlsi:1682351429:1",
+  "description": "one hole",
   "creators": [
-    "DragosPop"
+    "russthepro2022"
   ],
   "tags": [
     "ok"
   ],
-  "verification_time": 856.08,
   "statistics": {
-    "total_played": 25,
-    "difficulty": 0,
-    "liked": 0,
-    "time": 100
+    "total_played": 1500,
+    "difficulty": 0.7181745396317054,
+    "liked": 0.7220026350461133,
+    "time": 17.641665942029007
   },
-  "images": {
-    "full": {
-      "key": "level_2aalxvlevhadqz9rznqz3_1704507125_1.png",
-      "width": 1920,
-      "height": 1080
-    },
-    "thumb": {
-      "key": "level_2aalxvlevhadqz9rznqz3_1704507125_1_thumb.png",
-      "width": 512,
-      "height": 288
-    }
-  },
-  "creator": "DragosPop"
+  "creator": "russthepro2022"
 }
