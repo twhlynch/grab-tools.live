@@ -380,12 +380,14 @@ async def get_challenge_scores():
     leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][1], reverse=True))
 
     embed = discord.Embed(title='Map Challenges Leaderboard', url=f"{PAGE_URL}stats", description=str(date.today()), color=0x00ffff)
+    embed_values = []
     count = 0
     for value in leaderboard.values():
-        if count >= 20:
+        if count >= 10:
             break
-        embed.add_field(name=f'{value[0]} - {value[1]} Pt', value='\u200B', inline=False)
+            embed_values += f'{value[0]}: {value[1]} Pt'
         count += 1
+    embed.add_field(name='Leaderboard', value='\n'.join(embed_values), inline=False)
 
     return embed
 
