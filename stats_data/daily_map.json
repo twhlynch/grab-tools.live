@@ -1,23 +1,35 @@
 {
-  "identifier": "2b2preh4hxhwksl00jlsi:1682351429",
-  "title": "mini golf",
-  "complexity": 463,
-  "format_version": 6,
-  "update_timestamp": 1682354271774,
-  "creation_timestamp": 1682354271774,
-  "data_key": "level_data:2b2preh4hxhwksl00jlsi:1682351429:1",
-  "description": "one hole",
+  "identifier": "2avwivweloaof1owfioza:1700684663",
+  "title": "manchu's minigolf course",
+  "complexity": 1809,
+  "format_version": 7,
+  "update_timestamp": 1701268353013,
+  "creation_timestamp": 1701268353013,
+  "data_key": "level_data:2avwivweloaof1owfioza:1700684663:1",
+  "description": "minigolf's fun but this next level",
   "creators": [
-    "russthepro2022"
+    "manchuj"
   ],
   "tags": [
     "ok"
   ],
   "statistics": {
-    "total_played": 1500,
-    "difficulty": 0.7181745396317054,
-    "liked": 0.7220026350461133,
-    "time": 17.641665942029007
+    "total_played": 1100,
+    "difficulty": 0.16222479721900349,
+    "liked": 0.8620689655172413,
+    "time": 59.56149785714286
   },
-  "creator": "russthepro2022"
+  "images": {
+    "full": {
+      "key": "level_2avwivweloaof1owfioza_1700684663_1.png",
+      "width": 1920,
+      "height": 1080
+    },
+    "thumb": {
+      "key": "level_2avwivweloaof1owfioza_1700684663_1_thumb.png",
+      "width": 512,
+      "height": 288
+    }
+  },
+  "creator": "manchuj"
 }
