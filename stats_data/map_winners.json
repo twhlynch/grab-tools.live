@@ -4603,5 +4603,162 @@
     },
     1704949994,
     "unbeaten_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 13.774,
+        "user_id": "2a7x7ltu3a9riukdybg60",
+        "user_name": "bearbear_169",
+        "timestamp": "0001699552505006"
+      },
+      {
+        "position": 1,
+        "best_time": 15.9239,
+        "user_id": "29w20l59y1m2zkzhkojnu",
+        "user_name": "Mr.Madlord",
+        "timestamp": "0001705018903246"
+      },
+      {
+        "position": 2,
+        "best_time": 19.1949,
+        "user_id": "2br2vs9936len6aaadk09",
+        "user_name": "monkeman101",
+        "timestamp": "0001700212855085"
+      }
+    ],
+    {
+      "identifier": "29tad169gwi8rzp025l04:1663356130",
+      "title": "super fun obby",
+      "complexity": 588,
+      "format_version": 8,
+      "update_timestamp": 1704916209535,
+      "creation_timestamp": 1663358971510,
+      "data_key": "level_data:29tad169gwi8rzp025l04:1663356130:29",
+      "description": "this obby is super fun",
+      "creators": [
+        "mr.platinum"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "verification_time": 105.53,
+      "statistics": {
+        "total_played": 1200,
+        "difficulty": 0.25257731958762886,
+        "liked": 0.7771739130434783,
+        "time": 86.49284516734693
+      },
+      "images": {
+        "full": {
+          "key": "level_29tad169gwi8rzp025l04_1663356130_2.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_29tad169gwi8rzp025l04_1663356130_2_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "mr.platinum"
+    },
+    1705036415,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "29l50ea34l4s54rtclzus:1679854344",
+      "title": "10 levels of hyper tower 2 (cj edition)",
+      "complexity": 2940,
+      "format_version": 6,
+      "update_timestamp": 1685132040439,
+      "creation_timestamp": 1685132040439,
+      "data_key": "level_data:29l50ea34l4s54rtclzus:1679854344:1",
+      "description": "hehe",
+      "creators": [
+        "cjbeast006",
+        "cobler",
+        "bwlbuck",
+        "convrist",
+        "D2whiplash"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 4500,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_29l50ea34l4s54rtclzus_1679854344_2.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_29l50ea34l4s54rtclzus_1679854344_2_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "cjbeast006"
+    },
+    1705036416,
+    "unbeaten_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 42.7761,
+        "user_id": "2b98oapjfx05t5nq33xpp",
+        "user_name": "crazysherman2",
+        "timestamp": "0001704511237238"
+      },
+      {
+        "position": 1,
+        "best_time": 43.5149,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7",
+        "timestamp": "0001681554876005"
+      },
+      {
+        "position": 2,
+        "best_time": 44.1543,
+        "user_id": "2bj6ydngek0c7xum29ea9",
+        "user_name": "gtagbanevader",
+        "timestamp": "0001681463021623"
+      }
+    ],
+    {
+      "identifier": "29fs95tg98uoeuusuatrg:1680419549",
+      "title": "THIS IS OCGRAB",
+      "complexity": 568,
+      "format_version": 6,
+      "update_timestamp": 1681277325393,
+      "creation_timestamp": 1681277325393,
+      "data_key": "level_data:29fs95tg98uoeuusuatrg:1680419549:1",
+      "description": "OCGRABS LEVELS",
+      "creators": [
+        "OCGRAB"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 600,
+        "difficulty": 0.10018214936247723,
+        "liked": 0.7105263157894737,
+        "time": 338.5296890909091
+      },
+      "creator": "OCGRAB"
+    },
+    1705036417,
+    "weekly_map"
   ]
 ]
