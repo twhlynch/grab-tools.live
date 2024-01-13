@@ -15,7 +15,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 33337,
+      "total_played": 33437,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -50,7 +50,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 42200,
+      "total_played": 42400,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -188,7 +188,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 5500,
+      "total_played": 5600,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -566,7 +566,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1900,
+      "total_played": 2000,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -608,12 +608,12 @@
     },
     "images": {
       "full": {
-        "key": "level_29sgp24f1uorbc6vq8d2k_1700045225_1.png",
+        "key": "level_29sgp24f1uorbc6vq8d2k_1700045225_2.png",
         "width": 1920,
         "height": 1080
       },
       "thumb": {
-        "key": "level_29sgp24f1uorbc6vq8d2k_1700045225_1_thumb.png",
+        "key": "level_29sgp24f1uorbc6vq8d2k_1700045225_2_thumb.png",
         "width": 512,
         "height": 288
       }
@@ -735,41 +735,6 @@
       }
     },
     "creator": "TLTT"
-  },
-  {
-    "identifier": "2ap647di3dc1k42jf4o2o:1700351505",
-    "title": "ONLY UP V2 YOOHOOVR",
-    "complexity": 2994,
-    "format_version": 7,
-    "update_timestamp": 1701064027331,
-    "creation_timestamp": 1701048518896,
-    "data_key": "level_data:2ap647di3dc1k42jf4o2o:1700351505:2",
-    "description": "ONLY UP is a game were you have to climb do parkour and make long jumps. and your goal is to get to the top.Also you have no checkpoints.GOOD LUCK(:",
-    "creators": [
-      "yO0hooVr&Itz_Alwx"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 3300,
-      "difficulty": 0,
-      "liked": 0,
-      "time": 100
-    },
-    "images": {
-      "full": {
-        "key": "level_2ap647di3dc1k42jf4o2o_1700351505_2.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_2ap647di3dc1k42jf4o2o_1700351505_2_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "yO0hooVr&Itz_Alwx"
   },
   {
     "identifier": "2ajh3ta3oul1bb2sw66r5:1680819641",
@@ -974,7 +939,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3600,
+      "total_played": 3700,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -1044,7 +1009,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 4700,
+      "total_played": 4900,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -1207,5 +1172,41 @@
       }
     },
     "creator": "danny"
+  },
+  {
+    "identifier": "29lmdv56fjch18bes1u2j:1702145332",
+    "title": "Four Walls",
+    "complexity": 489,
+    "format_version": 8,
+    "update_timestamp": 1705033456648,
+    "creation_timestamp": 1705033456648,
+    "data_key": "level_data:29lmdv56fjch18bes1u2j:1702145332:1",
+    "description": "Inspired by .index's kaizo. This has taken much longer than it should have lol.",
+    "creators": [
+      "Caziggy"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "verification_time": 947.83,
+    "statistics": {
+      "total_played": 400,
+      "difficulty": 0,
+      "liked": 0,
+      "time": 100
+    },
+    "images": {
+      "full": {
+        "key": "level_29lmdv56fjch18bes1u2j_1702145332_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29lmdv56fjch18bes1u2j_1702145332_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "Caziggy"
   }
 ]

@@ -4760,5 +4760,107 @@
     },
     1705036417,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 13.077,
+        "user_id": "29w20l59y1m2zkzhkojnu",
+        "user_name": "Mr.Madlord",
+        "timestamp": "0001705104801760"
+      },
+      {
+        "position": 1,
+        "best_time": 15.938,
+        "user_id": "2aqc3k7n1gyseudxliibq",
+        "user_name": "C1ikkz",
+        "timestamp": "0001702149109233"
+      },
+      {
+        "position": 2,
+        "best_time": 16.801,
+        "user_id": "29uv38c0g6ybrxlaql9or",
+        "user_name": "nolan8420",
+        "timestamp": "0001702511168958"
+      }
+    ],
+    {
+      "identifier": "2cj4z99vtw60g1k3bptfh:1701984653",
+      "title": "(Short version.) Climb antartica!",
+      "complexity": 988,
+      "format_version": 7,
+      "update_timestamp": 1701987131192,
+      "creation_timestamp": 1701987131192,
+      "data_key": "level_data:2cj4z99vtw60g1k3bptfh:1701984653:1",
+      "description": "yessss",
+      "creators": [
+        "lemon-champion"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 300,
+        "difficulty": 0.42592592592592593,
+        "liked": 0.75,
+        "time": 72.99115043478261
+      },
+      "images": {
+        "full": {
+          "key": "level_2cj4z99vtw60g1k3bptfh_1701984653_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2cj4z99vtw60g1k3bptfh_1701984653_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "lemon-champion"
+    },
+    1705122787,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "2bkjejfjfpk62f85u6b7o:1701022024",
+      "title": "lavvy's HYPER TOWER",
+      "complexity": 1315,
+      "format_version": 7,
+      "update_timestamp": 1703795458443,
+      "creation_timestamp": 1701024293505,
+      "data_key": "level_data:2bkjejfjfpk62f85u6b7o:1701022024:3",
+      "description": "go through 16 levels of pure evil.",
+      "creators": [
+        "lavvyvr"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 1000,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_2bkjejfjfpk62f85u6b7o_1701022024_2.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2bkjejfjfpk62f85u6b7o_1701022024_2_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "lavvyvr"
+    },
+    1705122787,
+    "unbeaten_map"
   ]
 ]
