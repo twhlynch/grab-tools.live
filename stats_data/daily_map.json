@@ -1,36 +1,36 @@
 {
-  "identifier": "2batnodjmg3q9mw46ra04:1703819734",
-  "title": "Aprio",
-  "complexity": 297,
-  "format_version": 8,
-  "update_timestamp": 1705369822434,
-  "creation_timestamp": 1703823307791,
-  "data_key": "level_data:2batnodjmg3q9mw46ra04:1703819734:2",
-  "description": "Can you survive the lava adventure?",
+  "identifier": "2bs9a0kjj1uhssit33q3e:1703187464",
+  "title": "Candyland Part 1: The Peppermint Patch",
+  "complexity": 2539,
+  "format_version": 7,
+  "update_timestamp": 1703260865271,
+  "creation_timestamp": 1703193649074,
+  "data_key": "level_data:2bs9a0kjj1uhssit33q3e:1703187464:2",
+  "description": "Welcome to Candyland! In this level you have to traverse all different types of candy!",
   "creators": [
-    "CybermonkeVR"
+    "BernanaBread",
+    "ChaseP6"
   ],
   "tags": [
     "ok"
   ],
-  "verification_time": 73.65,
   "statistics": {
-    "total_played": 50,
-    "difficulty": 0.2127659574468085,
-    "liked": 0.8333333333333334,
-    "time": 52.3725
+    "total_played": 100,
+    "difficulty": 0.21052631578947367,
+    "liked": 0.8666666666666667,
+    "time": 53.960365
   },
   "images": {
     "full": {
-      "key": "level_2batnodjmg3q9mw46ra04_1703819734_2.png",
+      "key": "level_2bs9a0kjj1uhssit33q3e_1703187464_1.png",
       "width": 1920,
       "height": 1080
     },
     "thumb": {
-      "key": "level_2batnodjmg3q9mw46ra04_1703819734_2_thumb.png",
+      "key": "level_2bs9a0kjj1uhssit33q3e_1703187464_1_thumb.png",
       "width": 512,
       "height": 288
     }
   },
-  "creator": "CybermonkeVR"
+  "creator": "BernanaBread"
 }
