@@ -5264,5 +5264,109 @@
     },
     1705468382,
     "unbeaten_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 16.8089,
+        "user_id": "29xc83sott7wc21mlni58",
+        "user_name": "13OliviA",
+        "timestamp": "0001705529329887"
+      },
+      {
+        "position": 1,
+        "best_time": 17.7509,
+        "user_id": "29w20l59y1m2zkzhkojnu",
+        "user_name": "Mr.Madlord",
+        "timestamp": "0001705516394112"
+      },
+      {
+        "position": 2,
+        "best_time": 21.0199,
+        "user_id": "2a6ekr378kiwrrodjri7e",
+        "user_name": "YelloducVR",
+        "timestamp": "0001703411218843"
+      }
+    ],
+    {
+      "identifier": "2bs9a0kjj1uhssit33q3e:1703187464",
+      "title": "Candyland Part 1: The Peppermint Patch",
+      "complexity": 2539,
+      "format_version": 7,
+      "update_timestamp": 1703260865271,
+      "creation_timestamp": 1703193649074,
+      "data_key": "level_data:2bs9a0kjj1uhssit33q3e:1703187464:2",
+      "description": "Welcome to Candyland! In this level you have to traverse all different types of candy!",
+      "creators": [
+        "BernanaBread",
+        "ChaseP6"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 100,
+        "difficulty": 0.21052631578947367,
+        "liked": 0.8666666666666667,
+        "time": 53.960365
+      },
+      "images": {
+        "full": {
+          "key": "level_2bs9a0kjj1uhssit33q3e_1703187464_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2bs9a0kjj1uhssit33q3e_1703187464_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "BernanaBread"
+    },
+    1705554810,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "29mu59yo9pbgwqloqhthe:1687203226",
+      "title": "Perplexed",
+      "complexity": 1708,
+      "format_version": 6,
+      "update_timestamp": 1688844562576,
+      "creation_timestamp": 1688844562576,
+      "data_key": "level_data:29mu59yo9pbgwqloqhthe:1687203226:1",
+      "description": "This level has 15 unique sections varying in difficulty. This Level uses not well known mechanics for each section. If you solve every section you are one of the smartest grab players ever. Good luck!",
+      "creators": [
+        "by littlebeastm8",
+        "thanks to Coblerb1 and Socks-sucks for some help"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 5600,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_29mu59yo9pbgwqloqhthe_1687203226_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_29mu59yo9pbgwqloqhthe_1687203226_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "by littlebeastm8"
+    },
+    1705554811,
+    "unbeaten_map"
   ]
 ]
