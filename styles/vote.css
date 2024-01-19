@@ -1,0 +1,46 @@
+#voteOverlayContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #a4bfdb;
+    border: 3px solid #618dc3;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 9999;
+    width: 80%;
+    max-width: 300px;
+}
+
+#voteOverlayContainer button {
+    margin-block: 10px;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+}
+
+#voteOverlayContainer a {
+    color: #ffffff;
+    background-color: #618dc3;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+    justify-content: center;
+    border: none;
+    box-shadow: #4e7db3 0px 0px 2px 2px;
+}
+
+#voteOverlayContainer button:nth-child(4) {
+    border: none;
+}
+
+#voteOverlayContainer p {
+    font-size: 18px;
+    font-weight: 700
+}
+
+#voteOverlayContainer a:hover {
+    background-color: #4e7db3;
+}
