@@ -22,6 +22,7 @@ let lastRan = '';
 let HIDE_TEXT = false;
 let HIGHLIGHT_TEXT = true;
 let vrButton;
+let showGroups = false;
 let startMaterial, finishMaterial;
 let templates = [
     {
@@ -803,7 +804,12 @@ function refreshScene() {
 function loadLevelNode(node, parent) {
     if (node.levelNodeGroup) {
         node = node.levelNodeGroup;
-        let cube = new THREE.Object3D()
+        let cube = new THREE.Object3D();
+        if (showGroups) {
+            let geometry = new THREE.BoxGeometry(1, 1, 1);
+            let material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+            cube = new THREE.Mesh(geometry, material);
+        }
         objects.push( cube );
         parent.add( cube );
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
@@ -2112,6 +2118,7 @@ document.getElementById("self-credit").addEventListener("click", (e) => {e.targe
 document.getElementById('edit-input').addEventListener('keydown', (e) => {handleEditInput(e)});
 document.getElementById('start-btn').addEventListener('click', goToStart);
 document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
+document.getElementById('showGroups-btn').addEventListener('click', () => {showGroups = !showGroups; refreshScene()});
 document.getElementById('edit-input').addEventListener('blur', highlightTextEditor);
 document.getElementById('json-btn').addEventListener('click', downloadAsJSON);
 document.getElementById('gltf-btn').addEventListener('click', exportLevelAsGLTF);

@@ -199,6 +199,25 @@ function getPlaysLevels() {
     });
 }
 
+function getTrendingLevels() {
+    fetch('/stats_data/trending_levels.json')
+    .then((response) => response.json())
+    .then(data => {
+        data.forEach(item => {
+            const levelDiv = levelCard(
+                item?.identifier,
+                item?.title,
+                item?.creators,
+                item?.images?.thumb?.key,
+                (item?.tags ? item.tags : []).includes("ok"),
+                item?.creation_timestamp,
+                `${item?.change} plays`
+            );
+            document.getElementById('Trending-out').appendChild(levelDiv);
+        });
+    });
+}
+
 function getKeyWords() {
     fetch('/stats_data/all_verified.json')
     .then((response) => response.json())
@@ -513,6 +532,7 @@ getKeyWords();
 getGlobalPlays();
 getAChallenge();
 getRecords();
+getTrendingLevels();
 
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get('userId');
