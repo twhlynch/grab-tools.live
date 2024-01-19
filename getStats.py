@@ -296,6 +296,25 @@ def get_unbeaten_map():
         data = json.load(data_file)
     return random.choice(data)
 
+def get_trending_levels(all_verified):
+    with open("stats_data/all_verified.json") as old_data_file:
+        old_data = json.load(old_data_file)
+
+    for level in all_verified:
+        old_level = False
+        for old_level_i in old_data:
+            if level["identifier"] == old_level_i["identifier"]:
+                old_level = old_level_i
+        
+        if old_level:
+            level["change"] = level["statistics"]["total_played"] - old_level["statistics"]["total_played"]
+        else:
+            level["change"] = level["statistics"]["total_played"]
+        
+    sorted_levels = sorted(all_verified, key=lambda x: x["change"], reverse=True)
+
+    return sorted_levels[:200]        
+
 def get_level_data():
     with open("stats_data/log_data.json") as log_file:
         log_data = json.load(log_file)
@@ -307,8 +326,8 @@ def get_level_data():
         most_plays_old = json.load(most_plays_file)
         most_verified_old = json.load(most_verified_file)
 
-
     all_verified = get_all_verified()
+    write_json_file('stats_data/trending_levels.json', get_trending_levels(all_verified))
     unbeaten_levels = get_unbeaten(all_verified)
     write_json_file('stats_data/all_verified.json', all_verified)
     write_json_file('stats_data/a_challenge.json', get_a_challenge())
