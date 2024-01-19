@@ -79,11 +79,279 @@ document.getElementById('pixelate-btn').addEventListener("click", pixelate);
 document.getElementById('smorg-btn').addEventListener('click', MultiDownload);
 document.getElementById("compile-btn").addEventListener("click", compile);
 document.getElementById('signs-download').addEventListener("click", TextToSigns);
+document.getElementById('Scripture-download').addEventListener("click", scripture);
 document.getElementById('json-btn').addEventListener("click", convertJSON);
 document.getElementById('pointcloud-btn').addEventListener("click", generatePointCloud);
 document.getElementById('explode-btn').addEventListener("click", explodeLevel);
+document.getElementById('outline-btn').addEventListener("click", outlineLevel);
 
 // model, explode, explode-anim, outline, magic-outline, randomizer, to model, to json
+
+function outlineNode(node) {
+    let nodes = [];
+    if (node.levelNodeGroup) {
+        let newGroup = deepClone(node);
+        newGroup.levelNodeGroup.childNodes = [];
+        for (let i = 0; i < node.levelNodeGroup.childNodes.length; i++) {
+            let child = deepClone(node.levelNodeGroup.childNodes[i]);
+            let outlined = outlineNode(child);
+            newGroup.levelNodeGroup.childNodes = newGroup.levelNodeGroup.childNodes.concat(outlined);
+        }
+        nodes.push(newGroup);
+        return nodes;
+    }
+    let nodeData = false;
+    if (node.levelNodeStatic) {
+        nodeData = node.levelNodeStatic;
+    } else if (node.levelNodeCrumbling) {
+        nodeData = node.levelNodeCrumbling;
+    }
+    if (nodeData) {
+        let outlineSize = 0.01;
+        let count = 0;
+        if (nodeData.scale.x > 15) {
+            count++;
+        }
+        if (nodeData.scale.y > 15) {
+            count++;
+        }
+        if (nodeData.scale.z > 15) {
+            count++;
+        }
+        if (count > 1) {
+            outlineSize = 0.1;
+        }
+        nodes.push({
+            "levelNodeStatic": {
+                "shape": nodeData.shape,
+                "material": 8,
+                "position": nodeData.position,
+                "scale": {
+                    "x": (nodeData.scale.x + outlineSize)*-1,
+                    "y": (nodeData.scale.y + outlineSize)*-1,
+                    "z": (nodeData.scale.z + outlineSize)*-1
+                },
+                "rotation": nodeData.rotation,
+                "color": {
+                    "r": 0,
+                    "g": 0,
+                    "a": 1,
+                    "b": 0
+                }
+            }
+        });
+        return nodes;
+    } else {
+        return false;
+    }
+}
+
+function outlineLevel() {
+    let { files } = document.getElementById('outline-file');
+
+    readArrayBuffer(files[0]).then((levelData) => {
+
+        let newNodes = [];
+        for (let i = 0; i < levelData.levelNodes.length; i++) {
+            const node = levelData.levelNodes[i];
+            let outlinedNode = outlineNode(node);
+            if (outlinedNode) {
+                newNodes = newNodes.concat(outlinedNode);
+            }
+        }
+        console.log(newNodes);
+        levelData.levelNodes = levelData.levelNodes.concat(newNodes);
+
+        protobuf.load("proto/level.proto", function(err, root) {
+            if(err) {throw err};
+
+            let message = root.lookupType("COD.Level.Level");
+            let errMsg = message.verify(levelData);
+            if(errMsg) {throw Error(errMsg)};
+            let buffer = message.encode(message.fromObject(levelData)).finish();
+            
+            let blob = new Blob([buffer], {type: "application/octet-stream"});
+            
+            let link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = (Date.now()).toString().slice(0, -3)+".level";
+            link.click();
+        });
+        
+    });
+}
+
+function find_char(char, last_10, level) {
+    for (let i = 0; i < level.levelNodes.length; i++) {
+        if (level.levelNodes[i].levelNodeSign.text == char && !last_10.includes(i)) {
+            return i
+        }
+    }
+    return false
+}
+
+function scripture() {
+    let creators = document.getElementById('Scripture-creators').value;
+    let desc = document.getElementById('Scripture-desc').value;
+    let title = document.getElementById('Scripture-title').value;
+    let text = document.getElementById('Scripture-text').value;
+
+    // config
+    let count = 0;
+    let char_width = 0.05;
+    let appearance_time = 2;
+    let interval = 0.1;
+    let active_position = 0;
+    let visible_length = 40 ;
+    let foreward_pos = 1;
+    let height = 0;
+
+    let level = {
+        "formatVersion": 6,
+        "title": title,
+        "creators": creators+", .index",
+        "description": desc+"  grab-tools.live",
+        "maxCheckpointCount": 10,
+        "ambienceSettings": {
+            "skyZenithColor": {
+                "r": 0.28,
+                "g": 0.476,
+                "b": 0.73,
+                "a": 1
+            },
+            "skyHorizonColor": {
+                "r": 0.916,
+                "g": 0.9574,
+                "b": 0.9574,
+                "a": 1
+            },
+            "sunAltitude": 45,
+            "sunAzimuth": 315,
+            "sunSize": 1,
+            "fogDDensity": 0
+        },
+        "levelNodes": []
+    };
+
+    let last_10 = [];
+
+    let wants_return = false;
+
+    for (let i = 0; i < text.split("").length; i++) {
+        let char = text.charAt(i);
+        if (char == "\n") {
+            wants_return = true;
+        }
+        let sign_iter = find_char(char, last_10, level);
+        if (!sign_iter) {
+            level.levelNodes.push({
+                "levelNodeSign": {
+                    "position": {
+                    },
+                    "rotation": {
+                        "w": 1.0
+                    },
+                    "text": char
+                },
+                "animations": [
+                    {
+                        "frames": [
+                            {
+                                "position": {
+                                },
+                                "rotation": {
+                                    "w": 1.0
+                                }
+                            }
+                        ],
+                        "name": "idle",
+                        "speed": 1
+                    }
+                ]
+            })
+        }
+
+        sign_iter = find_char(char, last_10, level)
+        last_10.push(sign_iter)
+
+        if (last_10.length > appearance_time / interval) {
+            last_10.pop(0)
+        }
+
+        level.levelNodes[sign_iter].animations[0].frames.push({
+            "position": {
+                "z": 1 * foreward_pos,
+                "y": height * char_width * -2,
+                "x": 1 * active_position * char_width
+            },
+            "rotation": {
+                "w": 1.0
+            },
+            "time": count * interval
+        })
+    
+        level.levelNodes[sign_iter].animations[0].frames.push({
+            "position": {
+                "z": 1 * foreward_pos,
+                "y": height * char_width * -2,
+                "x": 1 * active_position * char_width
+            },
+            "rotation": {
+                "w": 1.0
+            },
+            "time": count * interval + appearance_time
+        })
+    
+        level.levelNodes[sign_iter].animations[0].frames.push({
+            "position": {
+            },
+            "rotation": {
+                "w": 1.0
+            },
+            "time": count * interval + appearance_time
+        })
+
+        active_position += 1;
+        if (active_position > visible_length) {
+            wants_return = true;
+        }
+        if (wants_return && char == " ") {
+            active_position = 0;
+            height += 1;
+            wants_return = false;
+        }
+    }
+
+    for (i = 0; i < level.levelNodes.length; i++) {
+        level.levelNodes[i].animations[0].frames.push({
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "rotation": {
+                "w": 1.0
+            },
+            "time": count * interval + appearance_time + 1
+        })
+    }    
+    
+    protobuf.load("proto/level.proto", function(err, root) {
+        if(err) {throw err};
+
+        let message = root.lookupType("COD.Level.Level");
+        let errMsg = message.verify(level);
+        if(errMsg) {throw Error(errMsg)};
+        let buffer = message.encode(message.fromObject(level)).finish();
+        
+        let blob = new Blob([buffer], {type: "application/octet-stream"});
+        
+        let link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = (Date.now()).toString().slice(0, -3)+".level";
+        link.click();
+    });
+}
 
 function TextToSigns() {
     let creators = document.getElementById('signs-creators').value;
