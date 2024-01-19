@@ -15,7 +15,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 33837,
+      "total_played": 33937,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -50,7 +50,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 43500,
+      "total_played": 43700,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -256,7 +256,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1800,
+      "total_played": 1900,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -315,7 +315,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1500,
+      "total_played": 1600,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -589,7 +589,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2100,
+      "total_played": 2200,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -624,7 +624,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 3700,
+      "total_played": 3800,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -669,12 +669,12 @@
     },
     "images": {
       "full": {
-        "key": "level_29nxcg0chi4uqcj7yk7f4_1700402282_2.png",
+        "key": "level_29nxcg0chi4uqcj7yk7f4_1700402282_3.png",
         "width": 1920,
         "height": 1080
       },
       "thumb": {
-        "key": "level_29nxcg0chi4uqcj7yk7f4_1700402282_2_thumb.png",
+        "key": "level_29nxcg0chi4uqcj7yk7f4_1700402282_3_thumb.png",
         "width": 512,
         "height": 288
       }
@@ -997,7 +997,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 4300,
+      "total_played": 4500,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -1032,7 +1032,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 6000,
+      "total_played": 6200,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -1233,41 +1233,5 @@
       }
     },
     "creator": "monkeman101"
-  },
-  {
-    "identifier": "2ban48bn4bd13rt3ys7ul:1705427041",
-    "title": "Gone Stone 3",
-    "complexity": 1652,
-    "format_version": 8,
-    "update_timestamp": 1705435801406,
-    "creation_timestamp": 1705435801406,
-    "data_key": "level_data:2ban48bn4bd13rt3ys7ul:1705427041:1",
-    "description": "Everything is stone. discover New Areas And make it to the top ",
-    "creators": [
-      "carter.681313"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "verification_time": 765.37,
-    "statistics": {
-      "total_played": 400,
-      "difficulty": 0,
-      "liked": 0,
-      "time": 100
-    },
-    "images": {
-      "full": {
-        "key": "level_2ban48bn4bd13rt3ys7ul_1705427041_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_2ban48bn4bd13rt3ys7ul_1705427041_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "carter.681313"
   }
 ]
