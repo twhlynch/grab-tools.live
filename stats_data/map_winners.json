@@ -5503,5 +5503,95 @@
     },
     1705641179,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 6.50803,
+        "user_id": "29w20l59y1m2zkzhkojnu",
+        "user_name": "Mr.Madlord",
+        "timestamp": "0001705687776846"
+      },
+      {
+        "position": 1,
+        "best_time": 6.52703,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "NSKC7",
+        "timestamp": "0001695295069949"
+      },
+      {
+        "position": 2,
+        "best_time": 6.75702,
+        "user_id": "2bdgvs9mq43grmiabk1bk",
+        "user_name": "Oliver-M",
+        "timestamp": "0001692167543958"
+      }
+    ],
+    {
+      "identifier": "2bv1efi8h97za97zc2wos:1691607942",
+      "title": "The Test",
+      "complexity": 625,
+      "format_version": 6,
+      "update_timestamp": 1692044394270,
+      "creation_timestamp": 1691610604326,
+      "data_key": "level_data:2bv1efi8h97za97zc2wos:1691607942:2",
+      "description": "The start of the grab-Verse and many more.",
+      "creators": [
+        "Moltenvr"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 700,
+        "difficulty": 0.18125,
+        "liked": 0.7551020408163265,
+        "time": 43.172915172413795
+      },
+      "creator": "Moltenvr"
+    },
+    1705727563,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "29mu59yo9pbgwqloqhthe:1700955740",
+      "title": "The challenge",
+      "complexity": 2876,
+      "format_version": 7,
+      "update_timestamp": 1703644467081,
+      "creation_timestamp": 1703639626231,
+      "data_key": "level_data:29mu59yo9pbgwqloqhthe:1700955740:3",
+      "description": "You won't succeed",
+      "creators": [
+        "LittleBeastM8"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 6200,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_29mu59yo9pbgwqloqhthe_1700955740_4.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_29mu59yo9pbgwqloqhthe_1700955740_4_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "LittleBeastM8"
+    },
+    1705727563,
+    "unbeaten_map"
   ]
 ]
