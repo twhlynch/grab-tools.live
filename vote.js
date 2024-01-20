@@ -1,9 +1,9 @@
-if (!localStorage.getItem("votePopupShown")) {
+if (!localStorage.getItem("finalVotePopupShown")) {
     let voteOverlayContainer = document.createElement("div");
     voteOverlayContainer.setAttribute("id", "voteOverlayContainer");
 
     let voteOverlayText = document.createElement("p");
-    voteOverlayText.innerHTML = "Voting for The GRAB Awards is live! Go nominate your favorite levels and creators!";
+    voteOverlayText.innerHTML = "Final voting for The GRAB Awards is open! Go cast your final votes!";
 
     let yButton = document.createElement("a");
     yButton.classList.add("button");
@@ -11,7 +11,7 @@ if (!localStorage.getItem("votePopupShown")) {
     yButton.setAttribute("href", "https://grab-tools.live/vote");
     yButton.addEventListener("click", () => {
         voteOverlayContainer.style.display = "none";
-        localStorage.setItem("votePopupShown", "true");
+        localStorage.setItem("finalVotePopupShown", "true");
     });
 
     let lButton = document.createElement("button");
@@ -26,7 +26,7 @@ if (!localStorage.getItem("votePopupShown")) {
     nButton.innerHTML = "No Thanks";
     nButton.addEventListener("click", () => {
         voteOverlayContainer.style.display = "none";
-        localStorage.setItem("votePopupShown", "true");
+        localStorage.setItem("finalVotePopupShown", "true");
     });
 
     document.body.appendChild(voteOverlayContainer);
