@@ -419,7 +419,7 @@ async def get_challenge_scores():
 
     leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][1], reverse=True))
 
-    embed = discord.Embed(title='Map Challenges Leaderboard', url=f"{PAGE_URL}stats", description=str(date.today()), color=0x00ffff)
+    embed = discord.Embed(title='Map Challenges Leaderboard', url=f"{PAGE_URL}stats?tab=MapChallenges", description=str(date.today()), color=0x00ffff)
     embed_values = []
     count = 0
     for value in leaderboard.values():
@@ -445,7 +445,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
         guild = bot.get_guild(1048213818775437394)
         role = guild.get_role(1110735575083929622)
 
-        embed = Embed(title="Daily/Weekly Maps Update", url=f"{PAGE_URL}stats", description="Daily Update", color=0x00ffff)
+        embed = Embed(title="Daily/Weekly Maps Update", url=f"{PAGE_URL}stats?tab=DailyMap", description="Daily Update", color=0x00ffff)
         embed.add_field(name="Daily", value=f"[{daily[0]}]({daily[1]})")
         embed.add_field(name="Unbeaten", value=f"[{unbeaten[0]}]({unbeaten[1]})")
         if weekly:
@@ -461,7 +461,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
             channel = bot.get_channel(1144060608937996359)
             role = guild.get_role(1077411286696087664)
 
-            embed = Embed(title="Unbeaten Levels Update", url=f"{PAGE_URL}stats", description="Unbeaten Update", color=0x00ffff)
+            embed = Embed(title="Unbeaten Levels Update", url=f"{PAGE_URL}stats?tab=UnbeatenMaps", description="Unbeaten Update", color=0x00ffff)
             embed.add_field(name="Count", value=str(len(unbeaten_levels)))
             
             over_100 = []
