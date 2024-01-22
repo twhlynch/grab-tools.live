@@ -315,6 +315,25 @@ def get_trending_levels(all_verified):
 
     return sorted_levels[:200]        
 
+def get_beaten_unbeaten(levels, levels_old):
+    beaten = []
+    for old_level in levels_old:
+        unbeaten = False
+        for level in levels:
+            if old_level["identifier"] == level["identifier"]:
+                unbeaten = True
+                break
+        if not unbeaten:
+            leaderboard = get_level_leaderboard(level["identifier"])
+            victor = leaderboard[0]
+            title = old_level["title"]
+            url = f"{VIEWER_URL}?level={old_level['identifier']}"
+            time = str(datetime.timedelta(seconds=victor["best_time"]))
+            user = victor["user_name"]
+            days = timestamp_to_days(old_level["update_timestamp"])
+            beaten.append([title, user, time, days, url])
+    return beaten
+
 def get_level_data():
     with open("stats_data/log_data.json") as log_file:
         log_data = json.load(log_file)
@@ -322,13 +341,15 @@ def get_level_data():
         print("Not running")
         return
 
-    with open("stats_data/most_plays.json") as most_plays_file, open("stats_data/most_verified.json") as most_verified_file:
+    with open("stats_data/most_plays.json") as most_plays_file, open("stats_data/most_verified.json") as most_verified_file, open("stats_data/unbeaten_levels.json") as unbeaten_file:
         most_plays_old = json.load(most_plays_file)
         most_verified_old = json.load(most_verified_file)
+        unbeaten_levels_old = json.load(unbeaten_file)
 
     all_verified = get_all_verified()
-    write_json_file('stats_data/trending_levels.json', get_trending_levels(all_verified))
     unbeaten_levels = get_unbeaten(all_verified)
+    beaten_unbeaten_levels = get_beaten_unbeaten(unbeaten_levels, unbeaten_levels_old)
+    write_json_file('stats_data/trending_levels.json', get_trending_levels(all_verified))
     write_json_file('stats_data/all_verified.json', all_verified)
     write_json_file('stats_data/a_challenge.json', get_a_challenge())
     write_json_file('stats_data/featured_creators.json', get_creators())
@@ -360,7 +381,7 @@ def get_level_data():
         weekly = 0
 
     log(weekly)
-    run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels)
+    run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels, beaten_unbeaten_levels)
 
 def log(weekly):
     log_data = {
@@ -403,15 +424,15 @@ async def get_challenge_scores():
     count = 0
     for value in leaderboard.values():
         if count >= 10:
-            break
             embed_values += f'{value[0]}: {int(value[1])} Pt'
+            break
         count += 1
     embed.add_field(name='Leaderboard', value='\n'.join(embed_values), inline=False)
 
     return embed
 
 
-def run_bot(daily, unbeaten, weekly, unbeaten_levels=[]):
+def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=[]):
 
     intents = discord.Intents.default()
     bot = commands.Bot(command_prefix='!', intents=intents)
@@ -456,6 +477,9 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[]):
 
             await channel.send(f"||{role.mention}||")
             await channel.send(embed=embed)
+            
+            for beaten in beaten_unbeaten_levels:
+                beaten_embed  = Embed(title=beaten[0], url=beaten[4], description=f"Beaten by {beaten[1]} in {beaten[2]} after {beaten[3]} days!", color=0xff0000)
 
         await bot.close()
 
