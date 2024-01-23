@@ -419,7 +419,7 @@ async def get_challenge_scores():
     count = 0
     for value in leaderboard.values():
         if count >= 10:
-            embed_values += f'{value[0]}: {int(value[1])} Pt'
+            embed_values.append(f'{value[0]}: {int(value[1])} Pt')
             break
         count += 1
     embed.add_field(name='Leaderboard', value='\n'.join(embed_values), inline=False)
@@ -473,9 +473,10 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
             await channel.send(f"||{role.mention}||")
             await channel.send(embed=embed)
             
-            for beaten in beaten_unbeaten_levels:
-                beaten_embed  = Embed(title=beaten[0], url=beaten[4], description=f"Beaten by {beaten[1]} in {beaten[2]} after {beaten[3]} days!", color=0xff0000)
-
+        for beaten in beaten_unbeaten_levels:
+            beaten_embed  = Embed(title=beaten[0], url=beaten[4], description=f"Beaten by {beaten[1]} in {beaten[2]} after {beaten[3]} days!", color=0xff0000)
+            await channel.send(embed=beaten_embed)
+            
         await bot.close()
 
     bot.run(sys.argv[1])
