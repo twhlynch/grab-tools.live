@@ -1,4 +1,4 @@
-import json, random, requests, sys, discord
+import json, random, requests, sys, discord, math
 from datetime import datetime, date, timedelta
 from discord.ext import commands
 from discord import Embed
@@ -418,8 +418,8 @@ async def get_challenge_scores():
     embed_values = []
     count = 0
     for value in leaderboard.values():
+        embed_values.append(f'{value[0]}: {int(value[1])} Pt')
         if count >= 10:
-            embed_values.append(f'{value[0]}: {int(value[1])} Pt')
             break
         count += 1
     embed.add_field(name='Leaderboard', value='\n'.join(embed_values), inline=False)
@@ -474,7 +474,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
             await channel.send(embed=embed)
             
         for beaten in beaten_unbeaten_levels:
-            beaten_embed  = Embed(title=beaten[0], url=beaten[4], description=f"Beaten by {beaten[1]} in {beaten[2]} after {beaten[3]} days!", color=0xff0000)
+            beaten_embed  = Embed(title=beaten[0], url=beaten[4], description=f"Beaten by {beaten[1]} in {beaten[2]} after {math.floor(beaten[3])} days!", color=0xff0000)
             await channel.send(embed=beaten_embed)
             
         await bot.close()
