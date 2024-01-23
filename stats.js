@@ -213,7 +213,9 @@ function getTrendingLevels() {
                 item?.creation_timestamp,
                 `${item?.change} plays`
             );
-            document.getElementById('Trending-out').appendChild(levelDiv);
+            if (item?.identifier != "2ap647di3dc1k42jf4o2o:1682810607" && item?.identifier != "29t798uon2urbra1f8w2q:1693775768") {
+                document.getElementById('Trending-out').appendChild(levelDiv);
+            }
         });
     });
 }
