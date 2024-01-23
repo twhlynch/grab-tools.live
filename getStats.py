@@ -315,16 +315,11 @@ def get_trending_levels(all_verified):
 
     return sorted_levels[:200]        
 
-def get_beaten_unbeaten(levels, levels_old):
+def get_beaten_unbeaten(levels_old):
     beaten = []
     for old_level in levels_old:
-        unbeaten = False
-        for level in levels:
-            if old_level["identifier"] == level["identifier"]:
-                unbeaten = True
-                break
-        if not unbeaten:
-            leaderboard = get_level_leaderboard(level["identifier"])
+        leaderboard = get_level_leaderboard(old_level["identifier"])
+        if len(leaderboard) > 0:
             victor = leaderboard[0]
             title = old_level["title"]
             url = f"{VIEWER_URL}?level={old_level['identifier']}"
@@ -348,7 +343,7 @@ def get_level_data():
 
     all_verified = get_all_verified()
     unbeaten_levels = get_unbeaten(all_verified)
-    beaten_unbeaten_levels = get_beaten_unbeaten(unbeaten_levels, unbeaten_levels_old)
+    beaten_unbeaten_levels = get_beaten_unbeaten(unbeaten_levels_old)
     write_json_file('stats_data/trending_levels.json', get_trending_levels(all_verified))
     write_json_file('stats_data/all_verified.json', all_verified)
     write_json_file('stats_data/a_challenge.json', get_a_challenge())
