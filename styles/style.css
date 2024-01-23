@@ -389,7 +389,7 @@ h1.title {
     background-color: #5f8cc235;
     border: solid 2px #4683ce70;
 }
-.LeaderboardOutput#UnbeatenMaps-out {
+.LeaderboardOutput#Trending-out {
     display: flex;
 }
 #DailyMap-out h1 a, #WeeklyMap-out h1 a, #UnbeatenMap-out h1 a{
