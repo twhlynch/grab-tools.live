@@ -1,5 +1,5 @@
 import json, random, requests, sys, discord
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from discord.ext import commands
 from discord import Embed
 
@@ -323,7 +323,7 @@ def get_beaten_unbeaten(levels_old):
             victor = leaderboard[0]
             title = old_level["title"]
             url = f"{VIEWER_URL}?level={old_level['identifier']}"
-            time = str(datetime.timedelta(seconds=victor["best_time"]))
+            time = str(timedelta(seconds=victor["best_time"]))
             user = victor["user_name"]
             days = timestamp_to_days(old_level["update_timestamp"])
             beaten.append([title, user, time, days, url])
