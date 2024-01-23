@@ -320,6 +320,7 @@ def get_beaten_unbeaten(levels_old):
     for old_level in levels_old:
         leaderboard = get_level_leaderboard(old_level["identifier"])
         if len(leaderboard) > 0:
+            leaderboard = sorted(leaderboard, key=lambda x: x["timestamp"])
             victor = leaderboard[0]
             title = old_level["title"]
             url = f"{VIEWER_URL}?level={old_level['identifier']}"
