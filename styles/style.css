@@ -523,7 +523,7 @@ input, #smorg-urls {
     /* background-color: #00000055; */
 }
 @media screen and (max-width: 1200px) {
-    #ads {
+    #ads:not(.forceads) {
         display: none;
     }
 }
