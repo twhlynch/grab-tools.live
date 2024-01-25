@@ -279,7 +279,7 @@
       }
     },
     "creator": "Aft",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2ag78daeo0xaz2bca9eq3:1669698644",
@@ -316,7 +316,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29t798uon2urbra1f8w2q:1678575533",
@@ -429,7 +429,7 @@
       }
     },
     "creator": "cjbeast006",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2bhksg3chwlldesbnkzb6:1698181953",
@@ -604,8 +604,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 133100,
-      "difficulty": 0.001887783897397972,
+      "total_played": 133200,
+      "difficulty": 0.0018864255153636718,
       "liked": 0.8676470588235294,
       "time": 2500.9099793814435
     },
@@ -718,7 +718,7 @@
       "time": 2415.9836666666665
     },
     "creator": "coleaaron",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29sgp24f1uorbc6vq8d2k:1698641452",
@@ -1002,7 +1002,7 @@
       }
     },
     "creator": "EBSpark",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29l50ea34l4s54rtclzus:1658880078",
@@ -1198,7 +1198,7 @@
       "time": 2162.867346153846
     },
     "creator": "22Joshi22",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2a383jd1x27ouq4brfj6q:1665804049",
@@ -1567,8 +1567,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 129800,
-      "difficulty": 0.00038255547054322876,
+      "total_played": 129900,
+      "difficulty": 0.0003822483850005734,
       "liked": 0.8214285714285714,
       "time": 1925.7092000000005
     },
@@ -1585,7 +1585,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "29de83wbqxgo92ijwuub9:1639010130",
@@ -1867,7 +1867,7 @@
       }
     },
     "creator": "chuck",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2ban48bn4bd13rt3ys7ul:1705427041",
@@ -2164,8 +2164,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 35602,
-      "difficulty": 0.003460630241836984,
+      "total_played": 35702,
+      "difficulty": 0.003453319249207768,
       "liked": 0.8867924528301887,
       "time": 1770.1227679487172
     },
@@ -2182,7 +2182,7 @@
       }
     },
     "creator": "blackcat508",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "29v9vd6n9z45d16mi2o2n:1674000810",
@@ -2260,8 +2260,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 88600,
-      "difficulty": 0.0018649871591048062,
+      "total_played": 88700,
+      "difficulty": 0.0018631643249847282,
       "liked": 0.9285714285714286,
       "time": 1755.4020655737709
     },
@@ -2321,8 +2321,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 39300,
-      "difficulty": 0.0009308278550235616,
+      "total_played": 39400,
+      "difficulty": 0.0009284512272964661,
       "liked": 0.9090909090909091,
       "time": 1750.5361250000003
     },
@@ -2339,7 +2339,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 200
+    "change": 100
   },
   {
     "identifier": "29fpodhowxpo5wf9i7n40:1668374679",
@@ -2386,7 +2386,7 @@
       "liked": 1,
       "time": 1730.5349999999999
     },
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2aqk2f39o44nxz0yixbas:1683377041",
@@ -2554,8 +2554,8 @@
     ],
     "verification_time": 547.59,
     "statistics": {
-      "total_played": 10900,
-      "difficulty": 0.0026124020349236905,
+      "total_played": 11100,
+      "difficulty": 0.002571389903911219,
       "liked": 0.8888888888888888,
       "time": 1673.7354736842105
     },
@@ -2572,7 +2572,7 @@
       }
     },
     "creator": "TLTT",
-    "change": 100
+    "change": 200
   },
   {
     "identifier": "2akd6s7rgta6k4s0inp6w:1698529774",
@@ -2684,6 +2684,42 @@
     },
     "creator": "gman2giant",
     "change": 0
+  },
+  {
+    "identifier": "29t798uon2urbra1f8w2q:1698018033",
+    "title": "Peaks - Spooky climb",
+    "complexity": 2999,
+    "format_version": 7,
+    "update_timestamp": 1701542069620,
+    "creation_timestamp": 1701542069620,
+    "data_key": "level_data:29t798uon2urbra1f8w2q:1698018033:1",
+    "description": "Simple endurance climbing, NOW WITH ANIMATIONS!!!",
+    "creators": [
+      "BlackCat508"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 5700,
+      "difficulty": 0.0009138679460817912,
+      "liked": 1,
+      "time": 1618.556
+    },
+    "images": {
+      "full": {
+        "key": "level_29t798uon2urbra1f8w2q_1698018033_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29t798uon2urbra1f8w2q_1698018033_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "BlackCat508",
+    "change": 100
   },
   {
     "identifier": "2ak5u4cyuivrwrfb682hs:1674825261",
@@ -4031,42 +4067,6 @@
     "change": 0
   },
   {
-    "identifier": "29t798uon2urbra1f8w2q:1698018033",
-    "title": "Peaks - Spooky climb",
-    "complexity": 2999,
-    "format_version": 7,
-    "update_timestamp": 1701542069620,
-    "creation_timestamp": 1701542069620,
-    "data_key": "level_data:29t798uon2urbra1f8w2q:1698018033:1",
-    "description": "Simple endurance climbing, NOW WITH ANIMATIONS!!!",
-    "creators": [
-      "BlackCat508"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 5600,
-      "difficulty": 0.0006950880444856349,
-      "liked": 1,
-      "time": 1360.4713333333334
-    },
-    "images": {
-      "full": {
-        "key": "level_29t798uon2urbra1f8w2q_1698018033_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29t798uon2urbra1f8w2q_1698018033_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "BlackCat508",
-    "change": 100
-  },
-  {
     "identifier": "29go992y0nneasny23jeg:1654471747",
     "title": "11 LEVEL GRAPPLE CHALLENGE!",
     "complexity": 2586,
@@ -4742,13 +4742,13 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 11500,
-      "difficulty": 0.001079476453919849,
+      "total_played": 11600,
+      "difficulty": 0.00107095046854083,
       "liked": 1,
       "time": 1261.41025
     },
     "creator": "cjbeast006",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "29hmkpynzlcg6ljnbfzpg:1701289429",
@@ -5753,8 +5753,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 117388,
-      "difficulty": 0.0007660427019701046,
+      "total_played": 117488,
+      "difficulty": 0.0007653661982887197,
       "liked": 0.775,
       "time": 1180.0492307692307
     },
@@ -5771,7 +5771,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2b9nzi1l8bepm47u5mj24:1693403980",
@@ -6004,8 +6004,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 2700,
-      "difficulty": 0.014971605575632421,
+      "total_played": 2800,
+      "difficulty": 0.01444223107569721,
       "liked": 0.95,
       "time": 1163.3627586206899
     },
@@ -6022,7 +6022,7 @@
       }
     },
     "creator": "Polaris",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2az2evnbubx4jnjc8vtxa:1695678422",
