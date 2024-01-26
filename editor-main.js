@@ -24,6 +24,7 @@ let HIGHLIGHT_TEXT = true;
 let vrButton;
 let showGroups = false;
 let startMaterial, finishMaterial;
+let oldText = '';
 let templates = [
     {
         "name": "Animation Cheat Sheet",
@@ -594,10 +595,12 @@ function setLevel(level) {
     highlightTextEditor();
 }
 function highlightTextEditor() {
-    if (!HIDE_TEXT) {
-        let textEditor = document.getElementById('edit-input');
+    let textEditor = document.getElementById('edit-input');
+    let hasChanged = oldText != textEditor.innerText
+    if (!HIDE_TEXT && hasChanged) {
         
         const editText = JSON.stringify(JSON.parse(textEditor.innerText), null, 4);
+
         if (HIGHLIGHT_TEXT) {
 
             let highlightedText = editText.replace(/"color":\s*{\s*("r":\s*(\d+(?:\.\d+)?),)?\s*("g":\s*(\d+(?:\.\d+)?),)?\s*("b":\s*(\d+(?:\.\d+)?),)?\s*("a":\s*\d+(?:\.\d+)?)?\s*}/, (match) => {
@@ -652,7 +655,11 @@ function highlightTextEditor() {
             textEditor.innerHTML = editText;
         }
     }
-    refreshScene();
+    if (hasChanged) {
+        refreshScene();
+    }
+    oldText = textEditor.innerText;
+
 }
 function loadTexture(path) {
     return new Promise((resolve) => {
