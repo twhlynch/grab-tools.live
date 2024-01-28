@@ -310,26 +310,35 @@ h1.title {
     font-size: 14px;
 }
 
-.LeaderboardOutput:not(#DailyMap-out):not(#WeeklyMap-out):not(#UnbeatenMap-out) > .leaderboard-item:nth-child(1) {
+.LeaderboardOutput > .leaderboard-item:nth-child(1) {
     background-color: #d4982955;
     font-weight: 600;
 }
-.LeaderboardOutput:not(#DailyMap-out):not(#WeeklyMap-out):not(#UnbeatenMap-out) > .leaderboard-item:nth-child(2) {
+.LeaderboardOutput > .leaderboard-item:nth-child(2) {
     background-color: #81818155;
     font-weight: 600;
 }
-.LeaderboardOutput:not(#DailyMap-out):not(#WeeklyMap-out):not(#UnbeatenMap-out) > .leaderboard-item:nth-child(3) {
+.LeaderboardOutput > .leaderboard-item:nth-child(3) {
     background-color: #dd710d55;
     font-weight: 600;
 }
-#DailyMap-out > .leaderboard-item:nth-child(2), #WeeklyMap-out > .leaderboard-item:nth-child(2), #UnbeatenMap-out > .leaderboard-item:nth-child(2) {
-    background-color: #d4982955;
+#DailyMap-out > .leaderboard-item:nth-child(2), 
+#WeeklyMap-out > .leaderboard-item:nth-child(2), 
+#AChallenge-out > .leaderboard-item:nth-child(2), 
+#UnbeatenMap-out > .leaderboard-item:nth-child(2) {
+    background-color: #d4982955 !important;
 }
-#DailyMap-out > .leaderboard-item:nth-child(3), #WeeklyMap-out > .leaderboard-item:nth-child(3), #UnbeatenMap-out > .leaderboard-item:nth-child(3) {
-    background-color: #81818155;
+#DailyMap-out > .leaderboard-item:nth-child(3), 
+#WeeklyMap-out > .leaderboard-item:nth-child(3), 
+#AChallenge-out > .leaderboard-item:nth-child(3), 
+#UnbeatenMap-out > .leaderboard-item:nth-child(3) {
+    background-color: #81818155 !important;
 }
-#DailyMap-out > .leaderboard-item:nth-child(4), #WeeklyMap-out > .leaderboard-item:nth-child(4), #UnbeatenMap-out > .leaderboard-item:nth-child(4) {
-    background-color: #dd710d55;
+#DailyMap-out > .leaderboard-item:nth-child(4), 
+#WeeklyMap-out > .leaderboard-item:nth-child(4), 
+#AChallenge-out > .leaderboard-item:nth-child(4), 
+#UnbeatenMap-out > .leaderboard-item:nth-child(4) {
+    background-color: #dd710d55 !important;
 }
 
 .challengeOutput > .leaderboard-item:nth-child(2) > :nth-child(1)::after,
