@@ -254,6 +254,18 @@ function getKeyWords() {
 }
 
 const submitBtn = document.getElementById("submit-btn");
+const userInput = document.getElementById("user-input");
+userInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        submitBtn.click();
+    }
+});
+userInput.addEventListener("change", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.delete('userId');
+    urlParams.delete('userName');
+    window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+});
 addEventListener("click", async (e) => {
     if (e.target.id == submitBtn.id) {
         const idInput = document.getElementById("user-input");
@@ -262,12 +274,18 @@ addEventListener("click", async (e) => {
         let user = idInput.value;
 
         let id = user;
+
+        let options = [];
+
         if (user && !user.includes(":")) {
-            try {
-                const userDataResponse = await fetch(`https://api.slin.dev/grab/v1/list?type=user_name&search_term=${user}`);
-                const userData = await userDataResponse.json();
+            const userDataResponse = await fetch(`https://api.slin.dev/grab/v1/list?type=user_name&search_term=${user}`);
+            const userData = await userDataResponse.json();
+            if (userData.length > 0) {
                 let foundExact = false;
                 userData.forEach((item) => {
+                    if (item.is_creator && userData[0].user_id.toLowerCase() !== item.user_id.toLowerCase()) {
+                        options.push(item);
+                    }
                     if (!foundExact && item.user_name.toLowerCase() == user.toLowerCase()) {
                         id = item.user_id.toLowerCase();
                         foundExact = true;
@@ -276,103 +294,120 @@ addEventListener("click", async (e) => {
                 if (!foundExact) {
                     id = userData[0].user_id.toLowerCase();
                 }
-            } catch (error) {
-                console.error("Error fetching user data:", error);
-                id = '290oi9frh8eihrh1r5z0q';
+            } else {
+                id = null;
             }
         }
 
         if (user && user.includes(":")) {
             id = user.split(":")[1]
         }
+        if (id) {
+            let userIDInt = [...id.toString()].reduce((r,v) => r * BigInt(36) + BigInt(parseInt(v,36)), 0n);
+            userIDInt >>= BigInt(32);
+            userIDInt >>= BigInt(32);
+            const joinDate = new Date(Number(userIDInt));
+            const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            if (!localTimeZone) { localTimeZone = "UTC"; }
+            const timeString = joinDate.toLocaleString('en-US', { timeZone: localTimeZone });
 
-        let userIDInt = [...id.toString()].reduce((r,v) => r * BigInt(36) + BigInt(parseInt(v,36)), 0n);
-        userIDInt >>= BigInt(32);
-        userIDInt >>= BigInt(32);
-        const joinDate = new Date(Number(userIDInt));
-        const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        if (!localTimeZone) { localTimeZone = "UTC"; }
-        const timeString = joinDate.toLocaleString('en-US', { timeZone: localTimeZone });
+            const keys = keyInput.value.toLowerCase().split("|");
 
-        const keys = keyInput.value.toLowerCase().split("|");
-
-        let array1 = [];
-        if (user !== '' && user !== null) {
-            try {
-                const response1 = await fetch(`https://api.slin.dev/grab/v1/list?max_format_version=100&user_id=${id}`);
-                const json_data1 = await response1.json();
-                array1 = json_data1.flat()
-            } catch (error) {
-                console.error("Error fetching user level data:", error);
-            }
-        }
-
-        const array = array1;
-
-        let levels = array.filter(level => {
-            for (var key of keys) {
-                if (level["title"].toLowerCase().includes(key) && level["identifier"].split(":")[0].toLowerCase().includes(id)) {
-                    return true;
+            let array1 = [];
+            if (user !== '' && user !== null) {
+                try {
+                    const response1 = await fetch(`https://api.slin.dev/grab/v1/list?max_format_version=100&user_id=${id}`);
+                    const json_data1 = await response1.json();
+                    array1 = json_data1.flat()
+                } catch (error) {
+                    console.error("Error fetching user level data:", error);
                 }
             }
-            return false;
-        });
 
-        levels = levels.filter(level => level.hasOwnProperty("statistics"));
-        levels = levels.filter(level => level.statistics.hasOwnProperty("total_played"));
-        levels.sort((a, b) => b.statistics.total_played - a.statistics.total_played);
+            const array = array1;
 
-        output.querySelectorAll('.leaderboard-item').forEach(e => e.remove());
-        const fragment = document.createDocumentFragment();
+            let levels = array.filter(level => {
+                for (var key of keys) {
+                    if (level["title"].toLowerCase().includes(key) && level["identifier"].split(":")[0].toLowerCase().includes(id)) {
+                        return true;
+                    }
+                }
+                return false;
+            });
 
-        let total_plays = 0;
-        let total_okplays = 0;
-        let total_maps = 0;
-        let total_ok = 0;
-        let average_likes = 0;
-        let likes_count = 0;
-        let average_difficulty = 0;
-        let difficulty_count = 0;
-        let average_time = 0;
-        let time_count = 0;
-        let total_complexity = 0;
+            levels = levels.filter(level => level.hasOwnProperty("statistics"));
+            levels = levels.filter(level => level.statistics.hasOwnProperty("total_played"));
+            levels.sort((a, b) => b.statistics.total_played - a.statistics.total_played);
 
-        levels.forEach(item => {
-            total_maps += 1;
-            item?.statistics?.total_played ? total_plays += item?.statistics?.total_played : null;
-            item?.tags?.includes("ok") ? total_okplays += item?.statistics?.total_played : null;
-            item?.tags?.includes("ok") ? total_ok += 1 : null;
-            item?.statistics?.liked ? average_likes += item?.statistics?.liked : null;
-            item?.statistics?.liked ? likes_count += 1 : null;
-            item?.statistics?.difficulty ? average_difficulty += item?.statistics?.difficulty : null;
-            item?.statistics?.difficulty ? difficulty_count += 1 : null;
-            item?.statistics?.time ? average_time += item?.statistics?.time : null;
-            item?.statistics?.time ? time_count += 1 : null;
-            item?.complexity ? total_complexity += item?.complexity : null;
+            output.querySelectorAll('.leaderboard-item').forEach(e => e.remove());
+            const fragment = document.createDocumentFragment();
 
-            const levelDiv = levelCard(
-                item?.identifier,
-                item?.title,
-                item?.creators,
-                item?.images?.thumb?.key,
-                (item?.tags ? item.tags : []).includes("ok"),
-                item?.update_timestamp,
-                `${item?.statistics?.total_played} plays`
-            );
-            fragment.appendChild(levelDiv);
-        });
+            let total_plays = 0;
+            let total_okplays = 0;
+            let total_maps = 0;
+            let total_ok = 0;
+            let average_likes = 0;
+            let likes_count = 0;
+            let average_difficulty = 0;
+            let difficulty_count = 0;
+            let average_time = 0;
+            let time_count = 0;
+            let total_complexity = 0;
 
-        output.appendChild(fragment);
+            levels.forEach(item => {
+                total_maps += 1;
+                item?.statistics?.total_played ? total_plays += item?.statistics?.total_played : null;
+                item?.tags?.includes("ok") ? total_okplays += item?.statistics?.total_played : null;
+                item?.tags?.includes("ok") ? total_ok += 1 : null;
+                item?.statistics?.liked ? average_likes += item?.statistics?.liked : null;
+                item?.statistics?.liked ? likes_count += 1 : null;
+                item?.statistics?.difficulty ? average_difficulty += item?.statistics?.difficulty : null;
+                item?.statistics?.difficulty ? difficulty_count += 1 : null;
+                item?.statistics?.time ? average_time += item?.statistics?.time : null;
+                item?.statistics?.time ? time_count += 1 : null;
+                item?.complexity ? total_complexity += item?.complexity : null;
 
-        document.getElementById('plays-results').innerHTML = `<b>Total plays: ${total_plays}</b>`;
-        document.getElementById('okplays-results').innerHTML = `<b>Total verified plays: ${total_okplays}</b>`;
-        document.getElementById('maps-results').innerHTML = `<b>Total maps: ${total_maps}</b>`;
-        document.getElementById('ok-results').innerHTML = `<b>Total verified maps: ${total_ok}</b>`;
-        document.getElementById('likes-results').innerHTML = `<b>Average likes: ${Math.round((average_likes * 100) / likes_count)}%</b>`;
-        document.getElementById('difficulty-results').innerHTML = `<b>Average difficulty: ${Math.round(100 - ((average_difficulty * 100) / difficulty_count))}%</b>`;
-        document.getElementById('time-results').innerHTML = `<b>Average time: ${Math.round(Math.round(average_time / time_count))}s</b>`;
-        document.getElementById('complexity-results').innerHTML = `<b>Total complexity: ${total_complexity}</b>`;
-        document.getElementById('join-date').innerHTML = `<b>Join date: ${timeString}</b>`;
+                const levelDiv = levelCard(
+                    item?.identifier,
+                    item?.title,
+                    item?.creators,
+                    item?.images?.thumb?.key,
+                    (item?.tags ? item.tags : []).includes("ok"),
+                    item?.update_timestamp,
+                    `${item?.statistics?.total_played} plays`
+                );
+                fragment.appendChild(levelDiv);
+            });
+
+            output.appendChild(fragment);
+
+            document.getElementById('other-user-options').innerText = '';
+            if (options && options.length > 0) {
+                document.getElementById('other-user-options').innerText = 'Did you mean?';
+            }
+            options.forEach(option => {
+                const optionElement = document.createElement('button');
+                optionElement.addEventListener('click', () => {
+                    idInput.value = `userId:${option.user_id}`;
+                    submitBtn.click();
+                });
+                optionElement.innerText = option.user_name;
+                optionElement.classList.add('button-sml');
+                document.getElementById('other-user-options').appendChild(optionElement);
+            });
+            document.getElementById('plays-results').innerHTML = `<b>Total plays: ${total_plays}</b>`;
+            document.getElementById('okplays-results').innerHTML = `<b>Total verified plays: ${total_okplays}</b>`;
+            document.getElementById('maps-results').innerHTML = `<b>Total maps: ${total_maps}</b>`;
+            document.getElementById('ok-results').innerHTML = `<b>Total verified maps: ${total_ok}</b>`;
+            document.getElementById('likes-results').innerHTML = `<b>Average likes: ${Math.round((average_likes * 100) / likes_count)}%</b>`;
+            document.getElementById('difficulty-results').innerHTML = `<b>Average difficulty: ${Math.round(100 - ((average_difficulty * 100) / difficulty_count))}%</b>`;
+            document.getElementById('time-results').innerHTML = `<b>Average time: ${Math.round(Math.round(average_time / time_count))}s</b>`;
+            document.getElementById('complexity-results').innerHTML = `<b>Total complexity: ${total_complexity}</b>`;
+            document.getElementById('join-date').innerHTML = `<b>Join date: ${timeString}</b>`;
+        } else {
+            output.querySelectorAll('.leaderboard-item').forEach(e => e.remove());
+            output.querySelectorAll('span').forEach(e => e.innerText = '');
+        }
     }
 });
 
