@@ -190,8 +190,6 @@ function getPlaysLevels() {
         const sorted = Object.entries(json_data).sort((a, b) => b[1]["change"] - a[1]["change"]);
         const filtered = sorted.filter(item => item[1]["change"] != 0);
 
-        console.log(filtered);
-
         for (const [id, value] of filtered) {
             document.getElementById('TodaysPlays-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>+${value["change"]}</span></div>`;
         }
@@ -288,6 +286,14 @@ addEventListener("click", async (e) => {
             id = user.split(":")[1]
         }
 
+        let userIDInt = [...id.toString()].reduce((r,v) => r * BigInt(36) + BigInt(parseInt(v,36)), 0n);
+        userIDInt >>= BigInt(32);
+        userIDInt >>= BigInt(32);
+        const joinDate = new Date(Number(userIDInt));
+        const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        if (!localTimeZone) { localTimeZone = "UTC"; }
+        const timeString = joinDate.toLocaleString('en-US', { timeZone: localTimeZone });
+
         const keys = keyInput.value.toLowerCase().split("|");
 
         let array1 = [];
@@ -366,6 +372,7 @@ addEventListener("click", async (e) => {
         document.getElementById('difficulty-results').innerHTML = `<b>Average difficulty: ${Math.round(100 - ((average_difficulty * 100) / difficulty_count))}%</b>`;
         document.getElementById('time-results').innerHTML = `<b>Average time: ${Math.round(Math.round(average_time / time_count))}s</b>`;
         document.getElementById('complexity-results').innerHTML = `<b>Total complexity: ${total_complexity}</b>`;
+        document.getElementById('join-date').innerHTML = `<b>Join date: ${timeString}</b>`;
     }
 });
 
@@ -432,7 +439,6 @@ function getChallengeScores() {
                 } else if (item[3] === "unbeaten_map") {
                     leaderboard[item[0][0]["user_id"]][1] += 3;
                     let updated = item[1]["update_timestamp"];
-                    console.log(item[1]);
                     let age = parseInt((item[2] * 1000 - updated) / 1000 / 60 / 60 / 24);
                     leaderboard[item[0][0]["user_id"]][1] += Math.floor(age / 50);
                 }
