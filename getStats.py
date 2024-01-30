@@ -112,7 +112,7 @@ def get_unbeaten(all_verified_maps):
     unbeaten = []
     for level in all_verified_maps:
         days_old = timestamp_to_days(level["creation_timestamp"])
-        if level["statistics"]["difficulty"] == 0 and days_old > 1 and level["statistics"]["total_played"] > 300:
+        if level["statistics"]["difficulty"] == 0 and ((days_old > 1 and level["statistics"]["total_played"] > 300) or days_old > 10):
             stats = get_level_stats(level['identifier'])
             if stats["finished_count"] == 0:
                 if "creators" not in level:

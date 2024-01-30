@@ -583,3 +583,26 @@ html.dark-mode {
 html.dark-mode .leaderboard-item span:nth-last-child(2), html.dark-mode .leaderboard-item-card span:nth-last-child(2) {
     color: #a6b8c1;
 }
+.button-sml {
+    text-decoration: none;
+    color: var(--text-color-default);
+    font-size: calc(var(--font-size-default) * 0.8);
+    font-weight: var(--font-weight-bold);
+    padding-block: calc(var(--padding-secondary) / 4);
+    padding-inline: calc(var(--padding-secondary) / 2);
+    border-radius: var(--border-radius);
+    border: solid 1px #4683ce70;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--padding-secondary);
+    background-color: #5f8cc235;
+    width: fit-content;
+}
+
+#other-user-options {
+    display: flex;
+    flex-direction: row;
+    gap: var(--padding-secondary);
+}
