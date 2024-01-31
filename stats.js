@@ -88,7 +88,7 @@ function getUnbeatenLevels() {
             );
             document.getElementById('UnbeatenMaps-out').appendChild(levelDiv);
             if (location.href.contains("checkUnbeaten")) {
-                fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item.identifier.split(":").join("/"}`)
+                fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item.identifier.split(":").join("/")}`)
                 .then((leaderboardResponse) => leaderboardResponse.json())
                 .then(leaderboardData => {
                     if (leaderboardData.length > 0) {
