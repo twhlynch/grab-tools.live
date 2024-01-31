@@ -92,7 +92,10 @@ function getUnbeatenLevels() {
                 .then((leaderboardResponse) => leaderboardResponse.json())
                 .then(leaderboardData => {
                     if (leaderboardData.length > 0) {
-                        levelDiv.style.backgroundColor = "#ff000055"
+                        levelDiv.style.backgroundColor = "#ff000055";
+                        const detailElement = document.createElement('span');
+                        detailElement.innerText = leaderboardData[0].user_name;
+                        levelDiv.appendChild(detailElement);
                     }
                 })
             }
