@@ -7013,5 +7013,111 @@
     },
     1706850834,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 251,
+        "user_id": "29n9hjza4lerqn38ee32h",
+        "user_name": "Famgal",
+        "timestamp": "0001706902255255"
+      },
+      {
+        "position": 1,
+        "best_time": 345.783,
+        "user_id": "29ffxg2ijqxyrgxyy2vjj",
+        "user_name": "FROSTY_CROSS",
+        "timestamp": "0001706919240798"
+      },
+      {
+        "position": 2,
+        "best_time": 571.893,
+        "user_id": "2bmbn2tcbm89x9wv2idh1",
+        "user_name": "rockyraider",
+        "timestamp": "0001706888447663"
+      }
+    ],
+    {
+      "identifier": "2b0an06iko4dlrx80hzts:1706748665",
+      "title": "Icy Mountain Climb",
+      "complexity": 1660,
+      "format_version": 8,
+      "update_timestamp": 1706844259075,
+      "creation_timestamp": 1706838430665,
+      "data_key": "level_data:2b0an06iko4dlrx80hzts:1706748665:2",
+      "creators": [
+        "trippie-kidd"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "verification_time": 752.12,
+      "images": {
+        "full": {
+          "key": "level_2b0an06iko4dlrx80hzts_1706748665_10.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2b0an06iko4dlrx80hzts_1706748665_10_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "trippie-kidd",
+      "statistics": {
+        "total_played": 0,
+        "difficulty": 1,
+        "liked": 0,
+        "time": 100
+      },
+      "change": 0
+    },
+    1706937166,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "2bjxfndgtanz81tc9m38c:1703568758",
+      "title": "The Frozen Icey Climb Tower",
+      "complexity": 2494,
+      "format_version": 7,
+      "update_timestamp": 1703706925329,
+      "creation_timestamp": 1703706925329,
+      "data_key": "level_data:2bjxfndgtanz81tc9m38c:1703568758:1",
+      "description": "This is my first ever Icey Climbing Map so I hope you guys Enjoy and Goodluck!",
+      "creators": [
+        "lvffy",
+        "nolan8420",
+        "Z_FilmZ"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 200,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_2bjxfndgtanz81tc9m38c_1703568758_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2bjxfndgtanz81tc9m38c_1703568758_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "lvffy",
+      "change": 0
+    },
+    1706937166,
+    "unbeaten_map"
   ]
 ]
