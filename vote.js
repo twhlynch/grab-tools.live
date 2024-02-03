@@ -1,4 +1,4 @@
-if (!localStorage.getItem("finalVotePopupShown")) {
+if (false && !localStorage.getItem("finalVotePopupShown")) {
     let voteOverlayContainer = document.createElement("div");
     voteOverlayContainer.setAttribute("id", "voteOverlayContainer");
 
