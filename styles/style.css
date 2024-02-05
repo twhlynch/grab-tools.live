@@ -606,3 +606,15 @@ html.dark-mode .leaderboard-item span:nth-last-child(2), html.dark-mode .leaderb
     flex-direction: row;
     gap: var(--padding-secondary);
 }
+
+#login svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-color-default);
+    color: var(--text-color-default);
+}
+
+#login {
+    gap: calc(var(--padding-secondary) / 4);
+    border: none;
+}
