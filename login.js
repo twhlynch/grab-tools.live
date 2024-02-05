@@ -14,7 +14,7 @@ async function login() {
                 let userData = await userResponse.json();
                 if (userData) {
                     localStorage.setItem('user', userData.alias);
-                    document.getElementById('user').innerHTML = document.getElementById('user').innerHTML.replace('Login', userData.alias);
+                    document.getElementById('login').innerHTML = document.getElementById('login').innerHTML.replace('Login', userData.alias);
                     console.log(userData.alias);
                 }
             }
