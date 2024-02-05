@@ -8,10 +8,9 @@ async function login() {
         const object = JSON.parse(decoded);
         if ("code" in object && "org_scoped_id" in object) {
             let response = await fetch('https://grab-tools-login.twhlynch.workers.dev/?code=' + object.code + '&org_scoped_id=' + object.org_scoped_id);
-            let data = await response.json();
-            if (data) {
-                access_token = data.oauth_token;
-                let userResponse = await fetch('https://graph.oculus.com/me?access_token=' + access_token + '&fields=alias')
+            let oauth_token = await response.text();
+            if (oauth_token) {
+                let userResponse = await fetch('https://graph.oculus.com/me?access_token=' + oauth_token + '&fields=alias')
                 let userData = await userResponse.json();
                 if (userData) {
                     localStorage.setItem('user', userData.alias);
