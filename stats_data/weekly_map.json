@@ -1,24 +1,42 @@
 {
-  "identifier": "29x0z6moj1lcgy0sw6xb7:1668465711",
-  "title": "Trials of Insanity",
-  "complexity": 985,
-  "format_version": 6,
-  "update_timestamp": 1669001649531,
-  "creation_timestamp": 1668568813676,
-  "data_key": "level_data:29x0z6moj1lcgy0sw6xb7:1668465711:2",
-  "description": "Inspired by the Skills Only maps. Credit to NSKC7 and Bluduk",
+  "identifier": "2bjxfndgtanz81tc9m38c:1706669611",
+  "title": "13 Levels of Skill",
+  "complexity": 2168,
+  "format_version": 8,
+  "update_timestamp": 1707014516433,
+  "creation_timestamp": 1707014516433,
+  "data_key": "level_data:2bjxfndgtanz81tc9m38c:1706669611:1",
+  "description": "All levels are based of off ice, Precision, and Grappling. Extra credits to phantomzombie and draginvr for helping the most.",
   "creators": [
-    "Chickenfartin"
+    "lvffy",
+    "InfectedMonk",
+    "nolan8420",
+    "BernanaBread",
+    "8875rx",
+    "+4 others"
   ],
   "tags": [
     "ok"
   ],
+  "verification_time": 150.12,
   "statistics": {
-    "total_played": 3900,
-    "difficulty": 0.0003132832080200501,
-    "liked": 1,
-    "time": 787.588
+    "total_played": 400,
+    "difficulty": 0,
+    "liked": 0,
+    "time": 100
   },
-  "creator": "Chickenfartin",
+  "images": {
+    "full": {
+      "key": "level_2bjxfndgtanz81tc9m38c_1706669611_1.png",
+      "width": 1920,
+      "height": 1080
+    },
+    "thumb": {
+      "key": "level_2bjxfndgtanz81tc9m38c_1706669611_1_thumb.png",
+      "width": 512,
+      "height": 288
+    }
+  },
+  "creator": "lvffy",
   "change": 0
 }
