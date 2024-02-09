@@ -11,7 +11,7 @@ function levelCard(
     const creatorUrl = `https://grabvr.quest/levels?tab=tab_other_user&user_id=${identifier.split(':')[0]}`;
     const creatorsString = creators? creators.join(', ') : '';
     const creator = creators ? creators[0] : '?';
-    const daysOld = Math.round((new Date() - new Date(updatedTimestamp)) / (1000 * 60 * 60 * 24));
+    let daysOld = Math.round((new Date() - new Date(updatedTimestamp)) / (1000 * 60 * 60 * 24));
     const imageUrl = `https://grab-images.slin.dev/${imageThumb}`;
 
     const cardElement = document.createElement('div');
@@ -21,6 +21,9 @@ function levelCard(
 
     const imageElement = document.createElement('img');
     imageElement.setAttribute('src', imageUrl);
+    imageElement.onerror = function() {
+        this.src = "/img/thumbnail_error.png";
+    }
 
     const infoElement = document.createElement('div');
     infoElement.classList.add('leaderboard-item-info');
@@ -37,7 +40,9 @@ function levelCard(
     creatorElement.innerText = `${creator}`;
 
     const daysElement = document.createElement('span');
-    daysElement.innerText = `${daysOld} days`;
+    if (daysOld) {
+        daysElement.innerHTML = `${daysOld} days`;
+    }
     const detailElement = document.createElement('span');
     detailElement.innerText = detail;
 
@@ -49,7 +54,9 @@ function levelCard(
     cardElement.appendChild(imageElement);
     cardElement.appendChild(infoElement);
     cardElement.appendChild(daysElement);
-    cardElement.appendChild(detailElement);
+    if (detail) {
+        cardElement.appendChild(detailElement);
+    }
 
     return cardElement;
 }
@@ -85,8 +92,8 @@ function getUnbeatenLevels() {
                 item?.creators,
                 item?.images?.thumb?.key,
                 (item?.tags ? item.tags : []).includes("ok"),
-                item?.update_timestamp,
-                ''
+                '',
+                `${Math.round((new Date() - new Date(item?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`
             );
             document.getElementById('UnbeatenMaps-out').appendChild(levelDiv);
             if (location.href.includes("checkUnbeaten")) {
@@ -146,7 +153,7 @@ function getTopLikes() {
                 item?.creators,
                 item?.images?.thumb?.key,
                 (item?.tags ? item.tags : []).includes("ok"),
-                item?.update_timestamp,
+                '',
                 `${Math.round(item?.statistics?.liked * item?.statistics?.total_played * (1 - item?.statistics?.difficulty))} (${Math.round(100 * item?.statistics?.liked)}%)`
             );
             document.getElementById('MostLikedMaps-out').appendChild(levelDiv);
@@ -154,7 +161,7 @@ function getTopLikes() {
     });
 }
 
-function getTopDisikes() {
+function getTopDislikes() {
     fetch('/stats_data/most_disliked.json')
     .then((response) => response.json())
     .then(data => {
@@ -165,7 +172,7 @@ function getTopDisikes() {
                 item?.creators,
                 item?.images?.thumb?.key,
                 (item?.tags ? item.tags : []).includes("ok"),
-                item?.update_timestamp,
+                '',
                 `${Math.round((1 - item?.statistics?.liked) *  item?.statistics?.total_played * (1 - item?.statistics?.difficulty))} (${Math.round(100 - (100 * item?.statistics?.liked))}%)`
             );
             document.getElementById('MostDislikedMaps-out').appendChild(levelDiv);
@@ -184,7 +191,7 @@ function getTopTimes() {
                 item?.creators,
                 item?.images?.thumb?.key,
                 (item?.tags ? item.tags : []).includes("ok"),
-                item?.update_timestamp,
+                '',
                 `${Math.round(item?.statistics?.time)}s`
             );
             document.getElementById('MostTimeMaps-out').appendChild(levelDiv);
@@ -580,7 +587,7 @@ getPlayedLevels();
 getPlaysLevels();
 getTopTimes();
 getTopLikes();
-getTopDisikes();
+getTopDislikes();
 getDailyMap();
 getWeeklyMap();
 getUnbeatenMap();
