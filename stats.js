@@ -26,11 +26,13 @@ function levelCard(
     infoElement.classList.add('leaderboard-item-info');
     const titleElement = document.createElement('a');
     titleElement.setAttribute('href', levelUrl);
+    titleElement.setAttribute('target', '_blank');
     titleElement.innerText = title;
     const byElement = document.createElement('span');
     byElement.innerText = 'by ';
     const creatorElement = document.createElement('a');
     creatorElement.setAttribute('href', creatorUrl);
+    creatorElement.setAttribute('target', '_blank');
     creatorElement.setAttribute('title', creatorsString);
     creatorElement.innerText = `${creator}`;
 
@@ -109,7 +111,7 @@ async function getTopPlayers() {
     .then(json_data => {
         for (const id in json_data) {
             const value = json_data[id];
-            document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["count"]} verified${(value["count"] != value["levels"]) ? (" of "+value["levels"]) : ""}</span></div>`;
+            document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["count"]} verified${(value["count"] != value["levels"]) ? (" of "+value["levels"]) : ""}</span></div>`;
         }
     });
 }
@@ -196,14 +198,14 @@ function getPlaysLevels() {
     .then(json_data => {
         for (const id in json_data) {
             const value = json_data[id];
-            document.getElementById('MostPlays-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["plays"]} from ${value["count"]}${(value.count != value.levels) ? (' / '+value["levels"]) : ""} maps</span></div>`;
+            document.getElementById('MostPlays-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["plays"]} from ${value["count"]}${(value.count != value.levels) ? (' / '+value["levels"]) : ""} maps</span></div>`;
         }
 
         const sorted = Object.entries(json_data).sort((a, b) => b[1]["change"] - a[1]["change"]);
         const filtered = sorted.filter(item => item[1]["change"] != 0);
 
         for (const [id, value] of filtered) {
-            document.getElementById('TodaysPlays-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>+${value["change"]}</span></div>`;
+            document.getElementById('TodaysPlays-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>+${value["change"]}</span></div>`;
         }
 
     });
@@ -427,12 +429,12 @@ function getDailyMap() {
     fetch('/stats_data/daily_map.json')
     .then((response) => response.json())
     .then(item => {
-        document.getElementById('DailyMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${(item.creators || [""])[0]}</span></h1>`;
+        document.getElementById('DailyMap-out').innerHTML += `<h1><a target="_blank" href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${(item.creators || [""])[0]}</span></h1>`;
         fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item['identifier'].replace(':', '/')}`)
         .then((response2) => response2.json())
         .then(leaderboard => {
             leaderboard.forEach( lItem => {
-                document.getElementById('DailyMap-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${lItem["user_id"]}">${lItem["user_name"]}</a><span>${lItem["best_time"]}s</span></div>`;
+                document.getElementById('DailyMap-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${lItem["user_id"]}">${lItem["user_name"]}</a><span>${lItem["best_time"]}s</span></div>`;
             });
         });
     });
@@ -442,12 +444,12 @@ function getWeeklyMap() {
     fetch('/stats_data/weekly_map.json')
     .then((response) => response.json())
     .then(item => {
-        document.getElementById('WeeklyMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${(item.creators || [""])[0]}</span></h1>`;
+        document.getElementById('WeeklyMap-out').innerHTML += `<h1><a target="_blank" href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${(item.creators || [""])[0]}</span></h1>`;
         fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item['identifier'].replace(':', '/')}`)
         .then((response2) => response2.json())
         .then(leaderboard => {
             leaderboard.forEach( lItem => {
-                document.getElementById('WeeklyMap-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${lItem["user_id"]}">${lItem["user_name"]}</a><span>${lItem["best_time"]}s</span></div>`;
+                document.getElementById('WeeklyMap-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${lItem["user_id"]}">${lItem["user_name"]}</a><span>${lItem["best_time"]}s</span></div>`;
             });
         });
     });
@@ -457,12 +459,12 @@ function getUnbeatenMap() {
     fetch('/stats_data/unbeaten_map.json')
     .then((response) => response.json())
     .then(item => {
-        document.getElementById('UnbeatenMap-out').innerHTML += `<h1><a href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${(item.creators || [""])[0]}</span></h1>`;
+        document.getElementById('UnbeatenMap-out').innerHTML += `<h1><a target="_blank" href="https://grabvr.quest/levels/viewer/?level=${item["identifier"]}">${item["title"]}</a><br>by <span title="${item["creators"]}">${(item.creators || [""])[0]}</span></h1>`;
         fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item['identifier'].replaceAll(':', '/')}`)
         .then((response2) => response2.json())
         .then(leaderboard => {
             leaderboard.forEach( lItem => {
-                document.getElementById('UnbeatenMap-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${lItem["user_id"]}">${lItem["user_name"]}</a><span>${lItem["best_time"]}s</span></div>`;
+                document.getElementById('UnbeatenMap-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${lItem["user_id"]}">${lItem["user_name"]}</a><span>${lItem["best_time"]}s</span></div>`;
             });
         });
     });
@@ -525,7 +527,7 @@ function getChallengeScores() {
         });
         leaderboard = Object.fromEntries(Object.entries(leaderboard).sort((a, b) => b[1][1] - a[1][1]));
         for (const value of Object.values(leaderboard)) {
-            document.getElementById('MapChallenges-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${value[2]}">${value[0]}</a><span>${value[1]} Pt</span></div>`;
+            document.getElementById('MapChallenges-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${value[2]}">${value[0]}</a><span>${value[1]} Pt</span></div>`;
         }
     });
 }
@@ -547,7 +549,7 @@ function getAChallenge() {
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
-            document.getElementById('AChallenge-out').innerHTML += `<div class="leaderboard-item"><div><a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${item[0]}">${item[1][1]}</a></div><span>${item[1][0]}</span></div>`;
+            document.getElementById('AChallenge-out').innerHTML += `<div class="leaderboard-item"><div><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${item[0]}">${item[1][1]}</a></div><span>${item[1][0]}</span></div>`;
         });
     });
 }
@@ -561,7 +563,7 @@ function getRecords() {
         for (let key in data) {
             if (data.hasOwnProperty(key)) {
                 if (data[key][0] >= 10) {
-                    document.getElementById('Records-out').innerHTML += `<div class="leaderboard-item"><a href="https://grabvr.quest/levels/viewer/?level=${key.split(':')[0]}">${key.split(':')[1]}</a><span>${data[key][0]}</span></div>`;
+                    document.getElementById('Records-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${key.split(':')[0]}">${key.split(':')[1]}</a><span>${data[key][0]}</span></div>`;
                 } else {
                     lows += 1;
                     totalLow += data[key][0];
