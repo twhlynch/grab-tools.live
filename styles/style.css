@@ -284,7 +284,7 @@ h1.title {
     gap: 5px;
     width: 100%;
     padding: 10px;
-    max-height: 500px;
+    max-height: 800px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -300,6 +300,7 @@ h1.title {
     margin-inline: auto;
     align-items: center;
     border-left: solid 5px transparent;
+    font-size: var(--font-size-default);
 }
 .leaderboard-item:not(.leaderboard-item-card) span:nth-last-child(1), .leaderboard-item-card span:nth-last-child(2) {
     margin-left: auto;
@@ -307,7 +308,7 @@ h1.title {
 .leaderboard-item span:nth-last-child(2) {
     font-weight: 400;
     color: #5e5e5e;
-    font-size: 14px;
+    font-size: calc(var(--font-size-default) - 2px);
 }
 
 .LeaderboardOutput > .leaderboard-item:nth-child(1) {
@@ -617,4 +618,40 @@ html.dark-mode .leaderboard-item span:nth-last-child(2), html.dark-mode .leaderb
 #login {
     gap: calc(var(--padding-secondary) / 4);
     border: none;
+}
+
+.hidden-icon-button {
+    display: none;
+    height: 24px;
+    width: 24px;
+}
+
+@media screen and (max-width: 400px) {
+    nav > a.button {
+        font-size: 0;
+        gap: 0;
+        border: none;
+    }
+    nav > a.button > .hidden-icon-button {
+        display: flex;
+    }
+    .stats-button, .tools-button {
+        font-size: 12px;
+        padding: 5px;
+        border-width: 1.5px;
+        gap: calc(var(--padding-secondary) / 2);
+    }
+    #tools .stats-button svg, #tools .tools-button svg {
+        width: 16px;
+        height: 16px;
+    }
+    #statistics * {
+        --font-size-default: 12px;
+    }
+    #login {
+        gap: 0;
+    }
+    #darkMode {
+        padding: var(--padding-secondary);
+    }
 }
