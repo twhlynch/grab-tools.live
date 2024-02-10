@@ -606,6 +606,7 @@ html.dark-mode .leaderboard-item span:nth-last-child(2), html.dark-mode .leaderb
     display: flex;
     flex-direction: row;
     gap: var(--padding-secondary);
+    flex-wrap: wrap;
 }
 
 #login svg {
