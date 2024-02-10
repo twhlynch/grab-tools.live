@@ -61,6 +61,40 @@ function levelCard(
     return cardElement;
 }
 
+function userCard(
+    identifier,
+    username,
+    isVerified,
+    isModerator,
+    isAdministrator,
+    detail,
+    extra
+) {
+    const userUrl = `https://grabvr.quest/levels?tab=tab_other_user&user_id=${identifier}`;
+    const cardElement = document.createElement('div');
+    cardElement.classList.add('leaderboard-item');
+    isVerified ? cardElement.classList.add('levelItemOk') : null;
+    isModerator ? cardElement.classList.add('levelItemModerator') : null;
+    isAdministrator ? cardElement.classList.add('levelItemAdministrator') : null;
+
+    const userElement = document.createElement('a');
+    userElement.setAttribute('href', userUrl);
+    userElement.setAttribute('target', '_blank');
+    userElement.innerText = username;
+
+    const extraElement = document.createElement('span');
+    extraElement.innerText = extra;
+    extraElement.classList.add('stats-change');
+
+    const detailElement = document.createElement('span');
+    detailElement.innerText = detail;
+
+    cardElement.appendChild(userElement);
+    userElement.appendChild(extraElement);
+    cardElement.appendChild(detailElement);
+
+    return cardElement;
+}
 
 let buttons = document.querySelectorAll('.stats-button');
 buttons.forEach((btn) => {
@@ -112,13 +146,22 @@ function getUnbeatenLevels() {
     });
 }
 
-async function getTopPlayers() {
+function getTopPlayers() {
     fetch('/stats_data/most_verified.json')
     .then(res => res.json())
     .then(json_data => {
         for (const id in json_data) {
             const value = json_data[id];
-            document.getElementById("MostVerifiedMaps-out").innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["count"]} verified${(value["count"] != value["levels"]) ? (" of "+value["levels"]) : ""}</span></div>`;
+            const user_card = userCard(
+                id, 
+                value["user_name"], 
+                false, 
+                false, 
+                false,  
+                `${value["count"]}${(value["count"] != value["levels"]) ? (" / "+value["levels"]) : ""}`, 
+                `+${value["change"]}`
+            );
+            document.getElementById('MostVerifiedMaps-out').appendChild(user_card);
         }
     });
 }
@@ -205,14 +248,32 @@ function getPlaysLevels() {
     .then(json_data => {
         for (const id in json_data) {
             const value = json_data[id];
-            document.getElementById('MostPlays-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}<span class="stats-change">+${value["change"]}</span></a><span>${value["plays"]} from ${value["count"]}${(value.count != value.levels) ? (' / '+value["levels"]) : ""} maps</span></div>`;
+            const user_card = userCard(
+                id, 
+                value["user_name"], 
+                false, 
+                false, 
+                false, 
+                `${value["plays"]} (${value["count"]} maps)`, 
+                `+${value["change"]}`
+            );
+            document.getElementById('MostPlays-out').appendChild(user_card);
         }
 
         const sorted = Object.entries(json_data).sort((a, b) => b[1]["change"] - a[1]["change"]);
         const filtered = sorted.filter(item => item[1]["change"] != 0);
 
         for (const [id, value] of filtered) {
-            document.getElementById('TodaysPlays-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}">${value["user_name"]}</a><span>+${value["change"]}</span></div>`;
+            const user_card = userCard(
+                id, 
+                value["user_name"], 
+                false, 
+                false, 
+                false, 
+                `+${value["change"]}`, 
+                ''
+            );
+            document.getElementById('TodaysPlays-out').appendChild(user_card);
         }
 
     });
@@ -462,7 +523,16 @@ function getDailyMap() {
         .then((response2) => response2.json())
         .then(leaderboard => {
             leaderboard.forEach( lItem => {
-                document.getElementById('DailyMap-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${lItem["user_id"]}">${lItem["user_name"]}</a><span>${lItem["best_time"]}s</span></div>`;
+                const user_card = userCard(
+                    lItem["user_id"], 
+                    lItem["user_name"], 
+                    false, 
+                    false, 
+                    false, 
+                    `${lItem["best_time"]}s`, 
+                    ''
+                );
+                document.getElementById('DailyMap-out').appendChild(user_card);
             });
         });
     });
@@ -477,7 +547,16 @@ function getWeeklyMap() {
         .then((response2) => response2.json())
         .then(leaderboard => {
             leaderboard.forEach( lItem => {
-                document.getElementById('WeeklyMap-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${lItem["user_id"]}">${lItem["user_name"]}</a><span>${lItem["best_time"]}s</span></div>`;
+                const user_card = userCard(
+                    lItem["user_id"], 
+                    lItem["user_name"], 
+                    false, 
+                    false, 
+                    false, 
+                    `${lItem["best_time"]}s`, 
+                    ''
+                );
+                document.getElementById('WeeklyMap-out').appendChild(user_card);
             });
         });
     });
@@ -492,7 +571,16 @@ function getUnbeatenMap() {
         .then((response2) => response2.json())
         .then(leaderboard => {
             leaderboard.forEach( lItem => {
-                document.getElementById('UnbeatenMap-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${lItem["user_id"]}">${lItem["user_name"]}</a><span>${lItem["best_time"]}s</span></div>`;
+                const user_card = userCard(
+                    lItem["user_id"], 
+                    lItem["user_name"], 
+                    false, 
+                    false, 
+                    false, 
+                    `${lItem["best_time"]}s`, 
+                    ''
+                );
+                document.getElementById('UnbeatenMap-out').appendChild(user_card);
             });
         });
     });
@@ -555,7 +643,16 @@ function getChallengeScores() {
         });
         leaderboard = Object.fromEntries(Object.entries(leaderboard).sort((a, b) => b[1][1] - a[1][1]));
         for (const value of Object.values(leaderboard)) {
-            document.getElementById('MapChallenges-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${value[2]}">${value[0]}</a><span>${value[1]} Pt</span></div>`;
+            const user_card = userCard(
+                value[2], 
+                value[0], 
+                false, 
+                false, 
+                false, 
+                `${value[1]} Pt`, 
+                ''
+            );
+            document.getElementById('MapChallenges-out').appendChild(user_card);
         }
     });
 }
@@ -577,7 +674,16 @@ function getAChallenge() {
     .then((response) => response.json())
     .then(data => {
         data.forEach(item => {
-            document.getElementById('AChallenge-out').innerHTML += `<div class="leaderboard-item"><div><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${item[0]}">${item[1][1]}</a></div><span>${item[1][0]}</span></div>`;
+            const user_card = userCard(
+                item[0], 
+                item[1][1], 
+                false, 
+                false, 
+                false, 
+                `${item[1][0]} Pt`, 
+                ''
+            );
+            document.getElementById('AChallenge-out').appendChild(user_card);
         });
     });
 }
@@ -591,7 +697,16 @@ function getRecords() {
         for (let key in data) {
             if (data.hasOwnProperty(key)) {
                 if (data[key][0] >= 10) {
-                    document.getElementById('Records-out').innerHTML += `<div class="leaderboard-item"><a target="_blank" href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${key.split(':')[0]}">${key.split(':')[1]}</a><span>${data[key][0]}</span></div>`;
+                    const user_card = userCard(
+                        key.split(':')[0], 
+                        key.split(':')[1], 
+                        false, 
+                        false, 
+                        false, 
+                        `${data[key][0]}`, 
+                        ''
+                    );
+                    document.getElementById('Records-out').appendChild(user_card);
                 } else {
                     lows += 1;
                     totalLow += data[key][0];
@@ -613,7 +728,7 @@ getDailyMap();
 getWeeklyMap();
 getUnbeatenMap();
 getChallengeScores();
-getKeyWords();
+// getKeyWords();
 getGlobalPlays();
 getAChallenge();
 getRecords();
