@@ -7722,5 +7722,97 @@
     },
     1707455563,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 7.55805,
+        "user_id": "2c17lom8ptqq4ybpr4nmu",
+        "user_name": "TheWeirdOne2",
+        "timestamp": "0001693884674719"
+      },
+      {
+        "position": 1,
+        "best_time": 7.85705,
+        "user_id": "2c1cq9mfme4zi5rerj0gg",
+        "user_name": "pkmqz1456",
+        "timestamp": "0001693884675560"
+      },
+      {
+        "position": 2,
+        "best_time": 7.87505,
+        "user_id": "2b9p83wnyt4ny4ffjnos8",
+        "user_name": "seriousgeourge",
+        "timestamp": "0001689655512668"
+      }
+    ],
+    {
+      "identifier": "2akd6s7rgta6k4s0inp6w:1664056901",
+      "title": " epic grappler",
+      "complexity": 750,
+      "format_version": 6,
+      "update_timestamp": 1694643451587,
+      "creation_timestamp": 1664059541721,
+      "data_key": "level_data:2akd6s7rgta6k4s0inp6w:1664056901:9",
+      "description": "very epic",
+      "creators": [
+        "Strictbrick"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 2200,
+        "difficulty": 0.019439679817038306,
+        "liked": 0.5483870967741935,
+        "time": 30.607414411764708
+      },
+      "creator": "Strictbrick",
+      "change": 0
+    },
+    1707541931,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "29sgp24f1uorbc6vq8d2k:1700045225",
+      "title": ".index's KAIZO REVENGE",
+      "complexity": 1295,
+      "format_version": 7,
+      "update_timestamp": 1700373080852,
+      "creation_timestamp": 1700373080852,
+      "data_key": "level_data:29sgp24f1uorbc6vq8d2k:1700045225:1",
+      "description": "If you can't beat them, join them.",
+      "creators": [
+        ".index"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 5200,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_29sgp24f1uorbc6vq8d2k_1700045225_2.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_29sgp24f1uorbc6vq8d2k_1700045225_2_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": ".index",
+      "change": 100
+    },
+    1707541932,
+    "unbeaten_map"
   ]
 ]
