@@ -546,6 +546,12 @@ input, #smorg-urls {
 .levelItemOk {
     border-left: solid 5px #6ee4bb49;
 }
+.levelItemModerator {
+    border-left: solid 5px #6ea1e449;
+}
+.levelItemAdministrator {
+    border-left: solid 5px #e46e6e49;
+}
 
 #darkMode svg {
     width: 24px;
