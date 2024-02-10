@@ -274,6 +274,27 @@ function getKeyWords() {
     });
 }
 
+function makeFeaturedButtons() {
+    fetch('/stats_data/featured_creators.json')
+    .then((response) => response.json())
+    .then(data => {
+        const output = document.getElementById('other-user-options');
+        data.forEach(creator => {
+            let creatorUserName = creator.title;
+            let creatorUserId = creator.list_key.split(':')[1];
+            
+            const optionElement = document.createElement('button');
+            optionElement.addEventListener('click', () => {
+                document.getElementById("user-input").value = `userId:${creatorUserId}`;
+                document.getElementById("submit-btn").click();
+            });
+            optionElement.innerText = creatorUserName;
+            optionElement.classList.add('button-sml');
+            output.appendChild(optionElement);
+        });
+    });
+}
+
 const submitBtn = document.getElementById("submit-btn");
 const userInput = document.getElementById("user-input");
 userInput.addEventListener("keydown", (event) => {
@@ -597,6 +618,7 @@ getGlobalPlays();
 getAChallenge();
 getRecords();
 getTrendingLevels();
+makeFeaturedButtons()
 
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get('userId');
