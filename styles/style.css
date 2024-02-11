@@ -665,4 +665,12 @@ html.dark-mode .leaderboard-item span:nth-last-child(2), html.dark-mode .leaderb
         width: 95%;
         margin-top: 50px;
     }
+    a.bookmarklet.button {
+        font-size: calc(var(--font-size-default) * 0.8);
+        font-weight: var(--font-weight-bold);
+        padding-block: calc(var(--padding-secondary) / 4);
+        padding-inline: calc(var(--padding-secondary) / 2);
+        border-radius: var(--border-radius);
+        border: solid 1px #4683ce70;
+    }
 }
