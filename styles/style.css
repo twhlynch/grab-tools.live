@@ -662,7 +662,7 @@ html.dark-mode .leaderboard-item span:nth-last-child(2), html.dark-mode .leaderb
         padding: var(--padding-secondary);
     }
     main {
-        width: 100%
+        width: 100%;
         margin-top: 50px;
     }
 }
