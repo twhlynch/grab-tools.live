@@ -16,6 +16,12 @@ for (let i = 0; i < links.length; i++) {
         cursorOuter.classList.remove("cursor-outer-hover");
         cursorInner.classList.remove("cursor-inner-hover");
     });
+    if (links[i].classList.includes("bookmarklet")) {
+        links[i].addEventListener("click", (e) => {
+            e.preventDefault();
+            navigator.clipboard.writeText(links[i].href);
+        });
+    }
 }
 
 if (document.title === "GRAB Tools") {
