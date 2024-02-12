@@ -680,7 +680,7 @@ function getAChallenge() {
                 false, 
                 false, 
                 false, 
-                `${item[1][0]} Pt`, 
+                `${item[1][0]} Pt (${item[1][2]} maps)`, 
                 ''
             );
             document.getElementById('AChallenge-out').appendChild(user_card);
