@@ -12,8 +12,8 @@ for i, level in enumerate(data, start=1):
     if len(res_data) != 0:
         level["leaderboard"] = res_data
         iteration = 0
-        if res_data[0]["user_name"] == "EvildragonVR":
-            iteration = 1
+        # if res_data[0]["user_name"] == "EvildragonVR":
+            # iteration = 1
         if len(res_data) > iteration:
             keyName = res_data[iteration]["user_id"] + ':' + res_data[iteration]["user_name"]
             if keyName not in leaderboard:
