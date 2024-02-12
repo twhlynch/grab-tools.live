@@ -1923,6 +1923,24 @@ function loadTemplateButtons() {
         container.appendChild(templateElement);
     });
 }
+function handleDrop(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        if (file.name.endsWith('.level')) {
+            openLevelFile([file]);
+        } else if (file.name.endsWith('.json')) {
+            appendJSON(URL.createObjectURL(file));
+        } else if (file.name.endsWith('.png') || file.name.endsWith('.jpg') || file.name.endsWith('.jpeg')) {
+            let imageInput = document.getElementById('image-btn-input');
+            imageInput.files = files;
+            generatePixelArt();
+        }
+    }
+}
 
 loader = new GLTFLoader();
 scene = new THREE.Scene();
@@ -2169,6 +2187,8 @@ document.getElementById('wireframe-btn-input').addEventListener('change', (e) =>
 document.getElementById('pc-btn-input').addEventListener('change', (e) => {openLevelFile(e.target.files)});
 document.getElementById('pcjson-btn-input').addEventListener('change', (e) => {openJSONFile(e.target.files[0])});
 document.getElementById('insertpc-btn-input').addEventListener('change', (e) => {appendLevelFile(e.target.files)});
+document.getElementById('editing-container').addEventListener('drop', handleDrop, false);
+
 // set ambience
 document.getElementById('clearambience-btn').addEventListener('click', () => {setAmbience({"r": 0,"g": 0,"b": 0,"a": 1}, {"r": 0,"g": 0,"b": 0,"a": 1},0,0,0,0)});
 document.getElementById('maxambience-btn').addEventListener('click', () => {setAmbience({"r": 32000,"g": 32000,"b": 32000,"a": 1}, {"r": 32000,"g": 32000,"b": 32000,"a": 1},32000,32000,32000,32000)});
