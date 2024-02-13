@@ -81,7 +81,7 @@
       "time": 5048.099999999999
     },
     "creator": "Levi__athan",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2a2x6ld8bmv9k29y6yusw:1705782298",
@@ -347,8 +347,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 68600,
-      "difficulty": 0.00040226417262879634,
+      "total_played": 68700,
+      "difficulty": 0.0004017216642754663,
       "liked": 0.9166666666666666,
       "time": 3073.452142857143
     },
@@ -458,8 +458,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8000,
-      "difficulty": 0.004878898762850671,
+      "total_played": 8100,
+      "difficulty": 0.0048234280792420325,
       "liked": 0.75,
       "time": 2894.6938000000005
     },
@@ -644,7 +644,7 @@
       }
     },
     "creator": "Rockyraider",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29l50ea34l4s54rtclzus:1662936920",
@@ -683,41 +683,6 @@
     "change": 0
   },
   {
-    "identifier": "29qyifkrtj57y85tpv5i5:1701521161",
-    "title": "10 levels of walljumping",
-    "complexity": 966,
-    "format_version": 7,
-    "update_timestamp": 1701556510691,
-    "creation_timestamp": 1701556510691,
-    "data_key": "level_data:29qyifkrtj57y85tpv5i5:1701521161:1",
-    "creators": [
-      "xani13"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 2700,
-      "difficulty": 0.006582278481012658,
-      "liked": 0.75,
-      "time": 2566.667923076923
-    },
-    "images": {
-      "full": {
-        "key": "level_29qyifkrtj57y85tpv5i5_1701521161_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29qyifkrtj57y85tpv5i5_1701521161_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "xani13",
-    "change": 0
-  },
-  {
     "identifier": "2ag78daeo0xaz2bca9eq3:1666678085",
     "title": "SKILLS ONLY 6",
     "complexity": 2735,
@@ -734,8 +699,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 135300,
-      "difficulty": 0.001876280369895273,
+      "total_played": 135500,
+      "difficulty": 0.0018736974934516184,
       "liked": 0.855072463768116,
       "time": 2473.134602040816
     },
@@ -752,7 +717,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 100
+    "change": 200
   },
   {
     "identifier": "2af2v4lqxksl1ru5itxr1:1673253154",
@@ -815,6 +780,41 @@
     "change": 0
   },
   {
+    "identifier": "29qyifkrtj57y85tpv5i5:1701521161",
+    "title": "10 levels of walljumping",
+    "complexity": 966,
+    "format_version": 7,
+    "update_timestamp": 1701556510691,
+    "creation_timestamp": 1701556510691,
+    "data_key": "level_data:29qyifkrtj57y85tpv5i5:1701521161:1",
+    "creators": [
+      "xani13"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 2800,
+      "difficulty": 0.007816316560820713,
+      "liked": 0.7,
+      "time": 2387.69725
+    },
+    "images": {
+      "full": {
+        "key": "level_29qyifkrtj57y85tpv5i5_1701521161_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29qyifkrtj57y85tpv5i5_1701521161_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "xani13",
+    "change": 100
+  },
+  {
     "identifier": "29sgp24f1uorbc6vq8d2k:1698641452",
     "title": ".index's Hyperest Tower",
     "complexity": 2512,
@@ -848,7 +848,7 @@
       }
     },
     "creator": ".index",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29ngj2xcdlinnuqz0vrw5:1667965708",
@@ -1114,8 +1114,8 @@
     ],
     "verification_time": 356.95,
     "statistics": {
-      "total_played": 18700,
-      "difficulty": 0.004266765606158984,
+      "total_played": 19000,
+      "difficulty": 0.004213611798113035,
       "liked": 0.9259259259259259,
       "time": 2238.5004347826084
     },
@@ -1132,7 +1132,7 @@
       }
     },
     "creator": "TLTT",
-    "change": 400
+    "change": 300
   },
   {
     "identifier": "29l50ea34l4s54rtclzus:1664812420",
@@ -1289,7 +1289,7 @@
       "time": 2162.867346153846
     },
     "creator": "22Joshi22",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2a383jd1x27ouq4brfj6q:1665804049",
@@ -1549,7 +1549,7 @@
       }
     },
     "creator": "cjbeast006",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2a7dx97v4xiepfpmj8gi4:1673121178",
@@ -1747,8 +1747,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 131700,
-      "difficulty": 0.00037697440343800655,
+      "total_played": 131800,
+      "difficulty": 0.00037671168371287034,
       "liked": 0.8214285714285714,
       "time": 1925.7092000000005
     },
@@ -2046,7 +2046,7 @@
       }
     },
     "creator": "chuck",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2ban48bn4bd13rt3ys7ul:1705427041",
@@ -2416,8 +2416,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 36302,
-      "difficulty": 0.003403812269742111,
+      "total_played": 36402,
+      "difficulty": 0.0033968748751148944,
       "liked": 0.8867924528301887,
       "time": 1770.1227679487172
     },
@@ -2434,7 +2434,7 @@
       }
     },
     "creator": "blackcat508",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "29v9vd6n9z45d16mi2o2n:1674000810",
@@ -2583,8 +2583,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 11800,
-      "difficulty": 0.0002527486414760521,
+      "total_played": 11900,
+      "difficulty": 0.0002506265664160401,
       "liked": 1,
       "time": 1730.5349999999999
     },
@@ -2744,8 +2744,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 92900,
-      "difficulty": 0.0018458833870495166,
+      "total_played": 93000,
+      "difficulty": 0.0018441543235173585,
       "liked": 0.9318181818181818,
       "time": 1695.4634444444446
     },
@@ -2762,7 +2762,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 200
+    "change": 100
   },
   {
     "identifier": "29ffxg2ijqxyrgxyy2vjj:1642388544",
@@ -2813,6 +2813,48 @@
     "change": 0
   },
   {
+    "identifier": "2ahb82qqut2dt3we3p2ok:1703732724",
+    "title": "SKILLED GRILLED 1",
+    "complexity": 1409,
+    "format_version": 7,
+    "update_timestamp": 1703888783800,
+    "creation_timestamp": 1703888783800,
+    "data_key": "level_data:2ahb82qqut2dt3we3p2ok:1703732724:1",
+    "description": "New series?? 8 LEVELS",
+    "creators": [
+      "BliixVR",
+      "Chazerz",
+      "lavvyvr",
+      "crazysherman2",
+      "OtterBoy06",
+      "McnuggetPlaysVR",
+      "draginvr"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 200,
+      "difficulty": 0.005917159763313609,
+      "liked": 1,
+      "time": 1668.3
+    },
+    "images": {
+      "full": {
+        "key": "level_2ahb82qqut2dt3we3p2ok_1703732724_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_2ahb82qqut2dt3we3p2ok_1703732724_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "BliixVR",
+    "change": 100
+  },
+  {
     "identifier": "29lmdv56fjch18bes1u2j:1687525547",
     "title": "NaCl ",
     "complexity": 572,
@@ -2845,6 +2887,7 @@
         "height": 288
       }
     },
+    "page_timestamp": "AAAAAMlLtZiER9PLvEAMijDBLj0X0WlttBMzSn1Y7fVzsS9DZcIgJ9kug8bQsW4JN_WjV1-Oxblo9jy6NxeOEKmqg8dcHt_KZxjnUCIXRooZrG4i4NST2XZBHMw0mpidxA1TkFm9aEHLJWgfMb45NNDtMXA1WBQtSy2PBg5QkotK70aVQIiTDNDi_om0myR3lJYnAHrZI1KIcJaUgsgqT3y_KABm91Voky2k_2ZVNjbHCnzD51yjbAphG2eeGh6fObLr3CLtDEOiSwy-moTJl00yUjwg0G95wtWq34lLmxwShN7Q8I8aEytdAqywsX3fYZMQppcOwu0anRoAmAJ83n-j4CkEH4hYPbfAACXfxVFrST0uRV1wWloDahSwT1ToNCUl0KW0sruEjp_idFEH7dhNthz6FN0",
     "creator": "Caziggy",
     "change": 0
   },
@@ -2926,8 +2969,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 43900,
-      "difficulty": 0.0008869873734738599,
+      "total_played": 44200,
+      "difficulty": 0.0008815141301529686,
       "liked": 0.9090909090909091,
       "time": 1644.0361176470592
     },
@@ -2944,7 +2987,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 500
+    "change": 300
   },
   {
     "identifier": "29l50ea34l4s54rtclzus:1664637802",
@@ -3030,7 +3073,7 @@
       }
     },
     "creator": "BlackCat508",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2ak5u4cyuivrwrfb682hs:1674825261",
@@ -3093,52 +3136,6 @@
     "change": 0
   },
   {
-    "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbordfinal",
-    "title": "SMORGASBORD",
-    "complexity": 2992,
-    "format_version": 6,
-    "update_timestamp": 1664518934873,
-    "creation_timestamp": 1664510790482,
-    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:smorgasbordfinal:2",
-    "description": "SMORGASBORD IS A GROUP OF VERIFIED CREATORS THAT MAKE BI-WEEKLY MAPS FOR THE GRAB COMMUNITY. HOSTED BY BLUDUK & NSKC7(.INDEX). VERSION 1 CREATORS IN LEVEL ORDER: CONVRIST, BLUDUK, NSKC7(.INDEX), IMA_RAINBOW, GRENEK, PEECHY, CAZIGGY, NASH_HUMAN, FROSTY_CROSS, D2WHIPLASH",
-    "creators": [
-      "BLUDUK",
-      "NSKC7",
-      ".INDEX",
-      "CONVRIST",
-      "IMARAINBOW",
-      "GRENEK",
-      "PEECHYY",
-      "CAZIGGY",
-      "NASH",
-      "FROSTY",
-      "D2"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 24200,
-      "difficulty": 0.003344692666919096,
-      "liked": 0.9285714285714286,
-      "time": 1590.4049811320754
-    },
-    "images": {
-      "full": {
-        "key": "level_2ag78daeo0xaz2bca9eq3_smorgasbordfinal_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_2ag78daeo0xaz2bca9eq3_smorgasbordfinal_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "BLUDUK",
-    "change": 0
-  },
-  {
     "identifier": "29rnnd0ymyemrickwtpx3:1666216978",
     "title": "the inflnite void",
     "complexity": 699,
@@ -3172,6 +3169,52 @@
     },
     "creator": "rivler",
     "change": 0
+  },
+  {
+    "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbordfinal",
+    "title": "SMORGASBORD",
+    "complexity": 2992,
+    "format_version": 6,
+    "update_timestamp": 1664518934873,
+    "creation_timestamp": 1664510790482,
+    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:smorgasbordfinal:2",
+    "description": "SMORGASBORD IS A GROUP OF VERIFIED CREATORS THAT MAKE BI-WEEKLY MAPS FOR THE GRAB COMMUNITY. HOSTED BY BLUDUK & NSKC7(.INDEX). VERSION 1 CREATORS IN LEVEL ORDER: CONVRIST, BLUDUK, NSKC7(.INDEX), IMA_RAINBOW, GRENEK, PEECHY, CAZIGGY, NASH_HUMAN, FROSTY_CROSS, D2WHIPLASH",
+    "creators": [
+      "BLUDUK",
+      "NSKC7",
+      ".INDEX",
+      "CONVRIST",
+      "IMARAINBOW",
+      "GRENEK",
+      "PEECHYY",
+      "CAZIGGY",
+      "NASH",
+      "FROSTY",
+      "D2"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 24300,
+      "difficulty": 0.0033943051103149163,
+      "liked": 0.9285714285714286,
+      "time": 1582.1443333333332
+    },
+    "images": {
+      "full": {
+        "key": "level_2ag78daeo0xaz2bca9eq3_smorgasbordfinal_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_2ag78daeo0xaz2bca9eq3_smorgasbordfinal_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "BLUDUK",
+    "change": 100
   },
   {
     "identifier": "29st9jdcbxxotp0t9d8en:1701383714",
@@ -3270,33 +3313,6 @@
       "time": 1543.7941999999998
     },
     "creator": "TylerVB",
-    "change": 0
-  },
-  {
-    "identifier": "29w20l59y1m2zkzhkojnu:1657470247",
-    "title": "5 Levels of Friendly Fun",
-    "complexity": 1796,
-    "format_version": 4,
-    "update_timestamp": 1657573176631,
-    "creation_timestamp": 1657573176631,
-    "data_key": "level_data:29w20l59y1m2zkzhkojnu:1657470247:1",
-    "description": "Parkour for beginners!",
-    "creators": [
-      "Mr. Madlord",
-      "Ostlerz",
-      "Luhmao",
-      "Bray.Ace"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 9493,
-      "difficulty": 0.0011634671320535194,
-      "liked": 1,
-      "time": 1538.664375
-    },
-    "creator": "Mr. Madlord",
     "change": 0
   },
   {
@@ -3423,7 +3439,7 @@
       }
     },
     "creator": "EBSpark",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2ahcj7h43oouxb22ztqzj:1660439857",
@@ -3531,7 +3547,7 @@
       "time": 1504.073333333333
     },
     "creator": "Jupiterjus",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29ngj2xcdlinnuqz0vrw5:1666407862",
@@ -4098,6 +4114,33 @@
     "change": 0
   },
   {
+    "identifier": "29w20l59y1m2zkzhkojnu:1657470247",
+    "title": "5 Levels of Friendly Fun",
+    "complexity": 1796,
+    "format_version": 4,
+    "update_timestamp": 1657573176631,
+    "creation_timestamp": 1657573176631,
+    "data_key": "level_data:29w20l59y1m2zkzhkojnu:1657470247:1",
+    "description": "Parkour for beginners!",
+    "creators": [
+      "Mr. Madlord",
+      "Ostlerz",
+      "Luhmao",
+      "Bray.Ace"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 9593,
+      "difficulty": 0.001294777729823047,
+      "liked": 1,
+      "time": 1410.5587777777778
+    },
+    "creator": "Mr. Madlord",
+    "change": 100
+  },
+  {
     "identifier": "2aiu0t8etvtgb6p0vz4me:1702752050",
     "title": "Destroyed Castle Parkour!",
     "complexity": 1495,
@@ -4446,7 +4489,7 @@
       }
     },
     "creator": ".index",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29ffxg2ijqxyrgxyy2vjj:1653135637",
@@ -4482,7 +4525,7 @@
       }
     },
     "creator": "FROSTY_CROSS",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29sgp24f1uorbc6vq8d2k:1673239195",
@@ -4990,8 +5033,8 @@
     ],
     "verification_time": 579.22,
     "statistics": {
-      "total_played": 8600,
-      "difficulty": 0.004724666014988596,
+      "total_played": 8700,
+      "difficulty": 0.004676665054023544,
       "liked": 0.875,
       "time": 1292.5667241379313
     },
@@ -5008,7 +5051,7 @@
       }
     },
     "creator": "yO0hooVr",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2c0jd4vvao1gicgwtbgp1:1706975178",
@@ -5045,7 +5088,7 @@
       }
     },
     "creator": "muffin3553857",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2am015n3aa6sebl0p6923:1677958275",
@@ -5279,8 +5322,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 12500,
-      "difficulty": 0.0009957679860592482,
+      "total_played": 12600,
+      "difficulty": 0.000988752935360277,
       "liked": 1,
       "time": 1261.41025
     },
@@ -5552,8 +5595,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 20595,
-      "difficulty": 0.0009486465975208703,
+      "total_played": 20695,
+      "difficulty": 0.0009443465122135483,
       "liked": 0.8,
       "time": 1238.6078
     },
@@ -5570,7 +5613,43 @@
       }
     },
     "creator": "EBSpark",
-    "change": 0
+    "change": 100
+  },
+  {
+    "identifier": "2awf62f0y60gptc9cbecf:1700697046",
+    "title": "What?",
+    "complexity": 941,
+    "format_version": 8,
+    "update_timestamp": 1707354429105,
+    "creation_timestamp": 1702879182816,
+    "data_key": "level_data:2awf62f0y60gptc9cbecf:1700697046:2",
+    "creators": [
+      "Eclipse"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "verification_time": 861.8,
+    "statistics": {
+      "total_played": 600,
+      "difficulty": 0.005836575875486381,
+      "liked": 1,
+      "time": 1237.5933333333332
+    },
+    "images": {
+      "full": {
+        "key": "level_2awf62f0y60gptc9cbecf_1700697046_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_2awf62f0y60gptc9cbecf_1700697046_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "Eclipse",
+    "change": 100
   },
   {
     "identifier": "2ban48bn4bd13rt3ys7ul:1705467443",
@@ -6185,68 +6264,5 @@
     },
     "creator": "Mystery8281",
     "change": 0
-  },
-  {
-    "identifier": "29jrhgl4yonfa4q8gk9yi:1660181558",
-    "title": "Escape the Volcano! ",
-    "complexity": 2984,
-    "format_version": 4,
-    "update_timestamp": 1660262893345,
-    "creation_timestamp": 1660262893345,
-    "data_key": "level_data:29jrhgl4yonfa4q8gk9yi:1660181558:1",
-    "description": "Dont turn into charcoal...",
-    "creators": [
-      "Slvrspeed BWLBuck mort.da.goat"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 4505,
-      "difficulty": 0.0007959671000265323,
-      "liked": 0.8,
-      "time": 1193.3766666666668
-    },
-    "creator": "Slvrspeed BWLBuck mort.da.goat",
-    "change": 0
-  },
-  {
-    "identifier": "29sgp24f1uorbc6vq8d2k:1707386223",
-    "title": "SMORGRAVITYBORD 25",
-    "complexity": 3079,
-    "format_version": 8,
-    "update_timestamp": 1707387434732,
-    "creation_timestamp": 1707387434732,
-    "data_key": "level_data:29sgp24f1uorbc6vq8d2k:1707386223:1",
-    "description": "SMORGASBORD IS A COMMUNITY MAP EVENT FOR GRAB. V25 HOSTED BY .INDEX WITH A GRAVITY FOCUS, FEATURING ICEYBOXES, TRAP11190, TLTT, BWLBUCK, JEFFBOBDUDE, COBLERB1, VRVINNY5509, AIWX, FRUITBYTHEFIST, PNUT, LOGICAL.ON.YT, MATTENVURG, YELLODUCVR, AND ECLIPSE!",
-    "creators": [
-      ".index",
-      "Alwx",
-      "+ 12 more"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "verification_time": 555.99,
-    "statistics": {
-      "total_played": 600,
-      "difficulty": 0.030864197530864196,
-      "liked": 0.9,
-      "time": 1192.2002666666667
-    },
-    "images": {
-      "full": {
-        "key": "level_29sgp24f1uorbc6vq8d2k_1707386223_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29sgp24f1uorbc6vq8d2k_1707386223_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": ".index",
-    "change": 100
   }
 ]
