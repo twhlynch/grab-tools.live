@@ -94,13 +94,16 @@ def get_a_challenge():
             if leaderboard[i]["user_id"] in user_leaderboard:
                 user_leaderboard[leaderboard[i]["user_id"]][0] += 3 - i
             else:
-                user_leaderboard[leaderboard[i]["user_id"]] = [3 - i, leaderboard[i]["user_name"], 0]
+                user_leaderboard[leaderboard[i]["user_id"]] = [3 - i, leaderboard[i]["user_name"], 0, leaderboard[i]["timestamp"]]
         for i in range(len(leaderboard)):
             if leaderboard[i]["user_id"] in user_leaderboard:
                 user_leaderboard[leaderboard[i]["user_id"]][0] += 1
                 user_leaderboard[leaderboard[i]["user_id"]][2] += 1
+                if leaderboard[i]["timestamp"] > user_leaderboard[leaderboard[i]["user_id"]][3]:
+                    user_leaderboard[leaderboard[i]["user_id"]][3] = leaderboard[i]["timestamp"]
+                    user_leaderboard[leaderboard[i]["user_id"]][1] = leaderboard[i]["user_name"]
             else:
-                user_leaderboard[leaderboard[i]["user_id"]] = [1, leaderboard[i]["user_name"], 1]
+                user_leaderboard[leaderboard[i]["user_id"]] = [1, leaderboard[i]["user_name"], 1, leaderboard[i]["timestamp"]]
     user_leaderboard = sorted(user_leaderboard.items(), key=lambda x: x[1][0], reverse=True)
     return user_leaderboard
 
