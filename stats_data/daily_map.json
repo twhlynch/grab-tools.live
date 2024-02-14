@@ -1,36 +1,23 @@
 {
-  "identifier": "2bq9033mwn0qx90k7m1tp:1702828940",
-  "title": "Happy Verification Purple_ahh!",
-  "complexity": 2599,
-  "format_version": 7,
-  "update_timestamp": 1702848717307,
-  "creation_timestamp": 1702835714429,
-  "data_key": "level_data:2bq9033mwn0qx90k7m1tp:1702828940:3",
-  "description": "Thank you all so much!",
+  "identifier": "2aqj12racvbkdg8ge3ns9:1679760113",
+  "title": "Mini Golf",
+  "complexity": 1498,
+  "format_version": 6,
+  "update_timestamp": 1679866746018,
+  "creation_timestamp": 1679866746018,
+  "data_key": "level_data:2aqj12racvbkdg8ge3ns9:1679760113:1",
   "creators": [
-    "The Grabbers"
+    "coleaaron"
   ],
   "tags": [
     "ok"
   ],
   "statistics": {
-    "total_played": 200,
-    "difficulty": 0.3655913978494624,
-    "liked": 0.8333333333333334,
-    "time": 49.61782647058824
+    "total_played": 2700,
+    "difficulty": 0.16093023255813954,
+    "liked": 0.7537878787878788,
+    "time": 18.38201549132949
   },
-  "images": {
-    "full": {
-      "key": "level_2bq9033mwn0qx90k7m1tp_1702828940_1.png",
-      "width": 1920,
-      "height": 1080
-    },
-    "thumb": {
-      "key": "level_2bq9033mwn0qx90k7m1tp_1702828940_1_thumb.png",
-      "width": 512,
-      "height": 288
-    }
-  },
-  "creator": "The Grabbers",
+  "creator": "coleaaron",
   "change": 0
 }
