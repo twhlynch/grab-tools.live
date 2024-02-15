@@ -1,4 +1,15 @@
 if (!localStorage.getItem("discordInviteShown")) {
+    let currentTime = new Date().getTime();
+    let previousTime = parseInt(localStorage.getItem("discordInviteTime"))
+    let willRun = true;
+    
+    if (previousTime) {
+        if (previousTime + 86400000 > currentTime) {
+            willRun = false;
+        }
+    }
+    
+    if (willRun) {
     let voteOverlayContainer = document.createElement("div");
     voteOverlayContainer.setAttribute("id", "voteOverlayContainer");
 
@@ -19,6 +30,7 @@ if (!localStorage.getItem("discordInviteShown")) {
     lButton.innerHTML = "Maybe Later";
     lButton.addEventListener("click", () => {
         voteOverlayContainer.style.display = "none";
+        localStorage.setItem("discordInviteTime", `${currentTime}`);
     });
 
     let nButton = document.createElement("button");
@@ -34,4 +46,5 @@ if (!localStorage.getItem("discordInviteShown")) {
     voteOverlayContainer.appendChild(yButton);
     voteOverlayContainer.appendChild(lButton);
     voteOverlayContainer.appendChild(nButton);
+    }
 }
