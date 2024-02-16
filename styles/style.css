@@ -633,6 +633,15 @@ html.dark-mode .leaderboard-item span:nth-last-child(2), html.dark-mode .leaderb
     width: 24px;
 }
 
+div#questMultiSelect {
+    display: none;
+}
+
+#compile-btn-qms {
+    display: none;
+}
+
+
 @media screen and (max-width: 400px) {
     nav > a.button {
         font-size: 0;

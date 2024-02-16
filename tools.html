@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="styles/style.css">
     <script src="main.js" defer></script>
     <script src="tools.js" defer></script>
-    <script src="vote.js" defer></script>
-    <link rel="stylesheet" href="styles/vote.css">
+    <script src="popup.js" defer></script>
+    <link rel="stylesheet" href="styles/popup.css">
 </head>
 <body>
     <div id="cursor-outer"></div>
@@ -167,12 +167,26 @@
             <div id="Compiler">
                 <h2>Level Compiler</h2>
                 <p>Select multiple level files and combine them into one file. Each level will be grouped.</p>
+                <button class="button-sml" id="questMultiSelectButton">Click me if you are on quest and can't select multiple files</button>
                 <div id="compiler-tool">
                     <input type="text" id="compile-title" name="title" placeholder="Title">
                     <input type="text" id="compile-description" name="description" placeholder="Description" maxlength="300">
                     <input type="text" id="compile-creators" name="creators" placeholder="Creators" maxlength="80">
                     <input type="file" name="file" id="compile-file" accept=".level" multiple>
+                    <div id="questMultiSelect">
+                        <input type="file" name="file0" id="compile-file0" accept=".level">
+                        <input type="file" name="file1" id="compile-file1" accept=".level">
+                        <input type="file" name="file2" id="compile-file2" accept=".level">
+                        <input type="file" name="file3" id="compile-file3" accept=".level">
+                        <input type="file" name="file4" id="compile-file4" accept=".level">
+                        <input type="file" name="file5" id="compile-file5" accept=".level">
+                        <input type="file" name="file6" id="compile-file6" accept=".level">
+                        <input type="file" name="file7" id="compile-file7" accept=".level">
+                        <input type="file" name="file8" id="compile-file8" accept=".level">
+                        <input type="file" name="file9" id="compile-file9" accept=".level">
+                    </div>
                     <button id="compile-btn" class="button">Compile</button>
+                    <button id="compile-btn-qms" class="button">Compile</button>
                 </div>
             </div>
             <div id="PixelArt">

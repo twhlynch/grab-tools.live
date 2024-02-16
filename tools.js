@@ -18,6 +18,13 @@ buttons.forEach((btn) => {
     });
 });
 
+document.getElementById('questMultiSelectButton').addEventListener('click', () => {
+    document.getElementById('questMultiSelect').style.display = 'flex';
+    document.getElementById('compile-file').style.display = 'none';
+    document.getElementById('compile-btn-qms').style.display = 'flex';
+    document.getElementById('compile-btn').style.display = 'none';
+});
+
 function readArrayBufferGroup(file) {
     return new Promise(function(resolve, reject) {
         let reader = new FileReader();
@@ -77,7 +84,8 @@ function readArrayBuffer(file) {
 
 document.getElementById('pixelate-btn').addEventListener("click", pixelate);
 document.getElementById('smorg-btn').addEventListener('click', MultiDownload);
-document.getElementById("compile-btn").addEventListener("click", compile);
+document.getElementById("compile-btn").addEventListener("click", () => {compile()});
+document.getElementById("compile-btn-qms").addEventListener("click", () => {compile(true)});
 document.getElementById('signs-download').addEventListener("click", TextToSigns);
 document.getElementById('Scripture-download').addEventListener("click", scripture);
 document.getElementById('json-btn').addEventListener("click", convertJSON);
@@ -432,8 +440,20 @@ function MultiDownload() {
     links = links.join('+');
     window.location.href = `download.html?level=${links}`;
 }
-function compile() {
-    const { files } = document.getElementById("compile-file");
+function compile(qms=false) {
+    let files;
+    if (qms) {
+        let fileInputs = [];
+        for (let i = 0; i < 10; i++) {
+            if (document.getElementById(`compile-file${i}`).files.length) {
+                fileInputs.push(document.getElementById(`compile-file${i}`));
+            }
+        }
+        files = fileInputs.map((input) => input.files[0]);
+    } else {
+        files = document.getElementById("compile-file").files;
+    }
+        
     if (!files.length) {return};
     
     let readers = [];

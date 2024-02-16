@@ -78,7 +78,15 @@
 .menu-btn#wireframe-btn::after, .menu-btn#pointcloud-btn::after {
     content: url(/img/editor-icons/cube.svg);
 }
-
+.menu-btn#start-btn::after {
+    content: url(/img/editor-icons/flag.svg);
+}
+.menu-btn#performance-btn::after {
+    content: url(/img/editor-icons/fast.svg);
+}
+.menu-btn#hide-btn::after {
+    content: url(/img/editor-icons/document.svg);
+}
 
 .r {
     background-color: #ff7777 !important;
