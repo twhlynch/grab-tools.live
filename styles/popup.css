@@ -1,4 +1,4 @@
-#voteOverlayContainer {
+#popupOverlayContainer {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -13,7 +13,7 @@
     max-width: 300px;
 }
 
-#voteOverlayContainer button {
+#popupOverlayContainer button {
     margin-block: 10px;
     width: 100%;
     cursor: pointer;
@@ -21,7 +21,7 @@
     justify-content: center;
 }
 
-#voteOverlayContainer a {
+#popupOverlayContainer a {
     color: #ffffff;
     background-color: #618dc3;
     cursor: pointer;
@@ -32,15 +32,15 @@
     box-shadow: #4e7db3 0px 0px 2px 2px;
 }
 
-#voteOverlayContainer button:nth-child(4) {
+#popupOverlayContainer button:nth-child(4) {
     border: none;
 }
 
-#voteOverlayContainer p {
+#popupOverlayContainer p {
     font-size: 18px;
     font-weight: 700
 }
 
-#voteOverlayContainer a:hover {
+#popupOverlayContainer a:hover {
     background-color: #4e7db3;
 }

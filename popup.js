@@ -10,18 +10,18 @@ if (!localStorage.getItem("discordInviteShown")) {
     }
     
     if (willRun) {
-    let voteOverlayContainer = document.createElement("div");
-    voteOverlayContainer.setAttribute("id", "voteOverlayContainer");
+    let popupOverlayContainer = document.createElement("div");
+    popupOverlayContainer.setAttribute("id", "popupOverlayContainer");
 
-    let voteOverlayText = document.createElement("p");
-    voteOverlayText.innerHTML = "The GRAB Tools Discord server is a great place to get help using the available tools and find out about tools you didn't know about! Consider joining with the link below or by using the invite code: YKfGWSYAqf";
+    let popupOverlayText = document.createElement("p");
+    popupOverlayText.innerHTML = "The GRAB Tools Discord server is a great place to get help using the available tools and find out about tools you didn't know about! Consider joining with the link below or by using the invite code: YKfGWSYAqf";
 
     let yButton = document.createElement("a");
     yButton.classList.add("button");
     yButton.innerHTML = "Join Now!";
     yButton.setAttribute("href", "https://grab-tools.live/discord");
     yButton.addEventListener("click", () => {
-        voteOverlayContainer.style.display = "none";
+        popupOverlayContainer.style.display = "none";
         localStorage.setItem("discordInviteShown", "true");
     });
 
@@ -29,7 +29,7 @@ if (!localStorage.getItem("discordInviteShown")) {
     lButton.classList.add("button");
     lButton.innerHTML = "Maybe Later";
     lButton.addEventListener("click", () => {
-        voteOverlayContainer.style.display = "none";
+        popupOverlayContainer.style.display = "none";
         localStorage.setItem("discordInviteTime", `${currentTime}`);
     });
 
@@ -37,14 +37,14 @@ if (!localStorage.getItem("discordInviteShown")) {
     nButton.classList.add("button");
     nButton.innerHTML = "No Thanks";
     nButton.addEventListener("click", () => {
-        voteOverlayContainer.style.display = "none";
+        popupOverlayContainer.style.display = "none";
         localStorage.setItem("discordInviteShown", "true");
     });
 
-    document.body.appendChild(voteOverlayContainer);
-    voteOverlayContainer.appendChild(voteOverlayText);
-    voteOverlayContainer.appendChild(yButton);
-    voteOverlayContainer.appendChild(lButton);
-    voteOverlayContainer.appendChild(nButton);
+    document.body.appendChild(popupOverlayContainer);
+    popupOverlayContainer.appendChild(popupOverlayText);
+    popupOverlayContainer.appendChild(yButton);
+    popupOverlayContainer.appendChild(lButton);
+    popupOverlayContainer.appendChild(nButton);
     }
 }
