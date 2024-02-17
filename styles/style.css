@@ -399,9 +399,9 @@ h1.title {
     background-color: #5f8cc235;
     border: solid 2px #4683ce70;
 }
-.LeaderboardOutput#Trending-out {
+/* .LeaderboardOutput#Trending-out {
     display: flex;
-}
+} */
 #DailyMap-out h1 a, #WeeklyMap-out h1 a, #UnbeatenMap-out h1 a{
     color: #2976d4;
     font-weight: 600;
@@ -640,7 +640,29 @@ div#questMultiSelect {
 #compile-btn-qms {
     display: none;
 }
-
+.stats-sorting {
+    display: none;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.stats-sorting > .button-sml {
+    gap: 5px;
+}
+.sort-active {
+    background-color: #1b5eb135;
+    border: solid 2px #2063b570;
+}
+#sorters {
+    padding-bottom: 0;
+}
+.sort-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--text-color-default);
+    color: var(--text-color-default);
+}
 
 @media screen and (max-width: 400px) {
     nav > a.button {

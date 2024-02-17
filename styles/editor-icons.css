@@ -69,7 +69,7 @@
 .menu-btn#toquest-btn::after {
     content: url(/img/editor-icons/export.svg);
 }
-.menu-btn#pc-btn::after {
+.menu-btn#pc-btn::after, .menu-btn#insertpc-btn::after {
     content: url(/img/editor-icons/drive.svg);
 }
 .menu-btn#topc-btn::after {
@@ -86,6 +86,18 @@
 }
 .menu-btn#hide-btn::after {
     content: url(/img/editor-icons/document.svg);
+}
+.menu-btn#ungroup-btn::after {
+    content: url(/img/editor-icons/expand.svg);
+}
+.menu-btn#highlight-btn::after {
+    content: url(/img/editor-icons/3lines.svg);
+}
+.menu-btn#openvr-btn::after {
+    content: url(/img/editor-icons/viewfinder.svg);
+}
+.menu-btn#duplicate-btn::after {
+    content: url(/img/editor-icons/duplicate.svg);
 }
 
 .r {

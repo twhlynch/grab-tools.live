@@ -100,18 +100,43 @@ let buttons = document.querySelectorAll('.stats-button');
 buttons.forEach((btn) => {
     let btnId = btn.id;
     btn.addEventListener('click', () => {
-        document.querySelectorAll('.LeaderboardOutput').forEach(e => {
+        document.querySelectorAll('.LeaderboardOutput, .stats-sorting, #advertisement').forEach(e => {
             e.style.display = 'none';
         });
         document.querySelectorAll('.tab-active').forEach(e => {
             e.classList.remove('tab-active');
         });
         document.getElementById(`${btnId}-out`).style.display = "flex";
+        let sorter = document.getElementById(`${btnId}-sort`);
+        if (sorter) {
+            sorter.style.display = "flex";
+        }
+        document.querySelectorAll('.sort-active').forEach(e => {
+            e.classList.remove('sort-active');
+        });
+        let sortBtn = document.getElementById(`${btnId}-sort-btn`);
+        if (sortBtn) {
+            sortBtn.classList.add('sort-active');
+        }
         btn.classList.add('tab-active');
 
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set('tab', btnId);
         window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+    });
+});
+let sort_buttons = document.querySelectorAll('.sort-btn');
+sort_buttons.forEach((btn) => {
+    let btnId = btn.id;
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.sort-active').forEach(e => {
+            e.classList.remove('sort-active');
+        });
+        btn.classList.add('sort-active');
+        document.querySelectorAll('.LeaderboardOutput').forEach(e => {
+            e.style.display = 'none';
+        });
+        document.getElementById(`${btnId.replace('sort-btn', 'out')}`).style.display = "flex";
     });
 });
 
@@ -684,6 +709,20 @@ function getAChallenge() {
                 ''
             );
             document.getElementById('AChallenge-out').appendChild(user_card);
+        });
+        
+        const sorted = data.sort((a, b) => b[1][2] - a[1][2]);
+        sorted.forEach(item => {
+            const user_card = userCard(
+                item[0], 
+                item[1][1], 
+                false, 
+                false, 
+                false, 
+                `${item[1][2]} Maps`, 
+                ''
+            );
+            document.getElementById('AChallengeMaps-out').appendChild(user_card);
         });
     });
 }
