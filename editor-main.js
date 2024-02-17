@@ -1333,30 +1333,40 @@ function monochromify() {
 function mirror(direction) {
     let levelData = getLevel();
     runOnNodes(levelData.levelNodes, (node) => {
+        let subNode;
         if (node.levelNodeStatic) {
+            subNode = node.levelNodeStatic;
+        } else if (node.levelNodeCrumbling) {
+            subNode = node.levelNodeCrumbling;
+        } else if (node.levelNodeStart) {
+            subNode = node.levelNodeStart;
+        } else if (node.levelNodeFinish) {
+            subNode = node.levelNodeFinish;
+        } else if (node.levelNodeSign) {
+            subNode = node.levelNodeSign;
+        } else if (node.levelNodeGravity) {
+            subNode = node.levelNodeGravity;
+        } else if (node.levelNodeGroup) {
+            subNode = node.levelNodeGroup;
+        }
+        if (subNode) {
             if (direction == "x") {
-                if (node.levelNodeStatic.hasOwnProperty("position")) {
-                    if (node.levelNodeStatic.position.x) {
-                        node.levelNodeStatic.position.x *= -1;
-                    }
+                if (subNode?.position?.x) {
+                    subNode.position.x *= -1;
                 }
             }
             if (direction == "y") {
-                if (node.levelNodeStatic.hasOwnProperty("position")) {
-                    if (node.levelNodeStatic.position.y) {
-                        node.levelNodeStatic.position.y *= -1;
-                    }
+                if (subNode?.position?.y) {
+                    subNode.position.y *= -1;
                 }
             }
             if (direction == "z") {
-                if (node.levelNodeStatic.hasOwnProperty("position")) {
-                    if (node.levelNodeStatic.position.z) {
-                        node.levelNodeStatic.position.z *= -1;
-                    }
+                if (subNode?.position?.z) {
+                    subNode.position.z *= -1;
                 }
             }
         }
-    }, false);
+    }, true);
     setLevel(levelData);
 }
 function randomizeLevelMaterials() {
@@ -2188,6 +2198,7 @@ document.getElementById('altTextures-btn').addEventListener('click', toggleTextu
 document.getElementById('showGroups-btn').addEventListener('click', () => {showGroups = !showGroups; refreshScene()});
 document.getElementById('edit-input').addEventListener('blur', highlightTextEditor);
 document.getElementById('json-btn').addEventListener('click', downloadAsJSON);
+document.getElementById('monochromify-btn').addEventListener('click', monochromify);
 document.getElementById('gltf-btn').addEventListener('click', exportLevelAsGLTF);
 document.getElementById('toquest-btn').addEventListener('click', saveToQuest);
 document.getElementById('connect-adb-btn').addEventListener('click', connectUsb);
@@ -2204,6 +2215,9 @@ document.getElementById('topc-btn').addEventListener('click', () => {downloadPro
 document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('level_data/json_files/empty.json')});
 document.getElementById('the-index-btn').addEventListener('click', () => {openProto('level_data/the-index.level')});
 document.getElementById('all-objects-btn').addEventListener('click', () => {openProto('level_data/cheat-sheet-6.level')});
+document.getElementById('mirror-x-btn').addEventListener('click', () => {mirror('x')});
+document.getElementById('mirror-y-btn').addEventListener('click', () => {mirror('y')});
+document.getElementById('mirror-z-btn').addEventListener('click', () => {mirror('z')});
 document.getElementById('openvr-btn').addEventListener('click', () => {
     renderer.xr.enabled = true;
     renderer.setAnimationLoop( function () {
