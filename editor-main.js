@@ -1317,6 +1317,48 @@ function randomizeLevel() {
     }, false);
     setLevel(obj);
 }
+function monochromify() {
+    let levelData = getLevel();
+    runOnNodes(levelData.levelNodes, (node) => {
+        if (node.levelNodeStatic && node.levelNodeStatic.material == 8) {
+            let color = node.levelNodeStatic.color;
+            let average = (color.r + color.g + color.b) / 3;
+            color.r = average;
+            color.g = average;
+            color.b = average;
+        }
+    }, false);
+    setLevel(levelData);
+}
+function mirror(direction) {
+    let levelData = getLevel();
+    runOnNodes(levelData.levelNodes, (node) => {
+        if (node.levelNodeStatic) {
+            if (direction == "x") {
+                if (node.levelNodeStatic.hasOwnProperty("position")) {
+                    if (node.levelNodeStatic.position.x) {
+                        node.levelNodeStatic.position.x *= -1;
+                    }
+                }
+            }
+            if (direction == "y") {
+                if (node.levelNodeStatic.hasOwnProperty("position")) {
+                    if (node.levelNodeStatic.position.y) {
+                        node.levelNodeStatic.position.y *= -1;
+                    }
+                }
+            }
+            if (direction == "z") {
+                if (node.levelNodeStatic.hasOwnProperty("position")) {
+                    if (node.levelNodeStatic.position.z) {
+                        node.levelNodeStatic.position.z *= -1;
+                    }
+                }
+            }
+        }
+    }, false);
+    setLevel(levelData);
+}
 function randomizeLevelMaterials() {
     let obj = getLevel();
     runOnNodes(obj.levelNodes, (node) => {

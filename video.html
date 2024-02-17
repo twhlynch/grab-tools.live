@@ -37,6 +37,9 @@
             const formData = new FormData();
             formData.append("file", videoFile);
 
+            document.getElementById("videoButton").style.display = "none";
+            document.getElementById("error").innerText = "Loading...";
+
             try {
                 const response = await fetch(
                     "https://dotindex.pythonanywhere.com/process_video",
@@ -47,6 +50,7 @@
                 );
 
                 if (!response.ok) {
+                    document.getElementById("error").innerText = await response.text();
                     throw new Error("Error processing video");
                 }
 
@@ -57,11 +61,14 @@
                 link.href = downloadLink;
                 link.download = `${Math.floor(Date.now() / 1000)}.level`;
                 link.click();
+                document.getElementById("error").innerText = "Success";
+
 
                 URL.revokeObjectURL(downloadLink);
             } catch (error) {
                 console.error(error);
             }
+            document.getElementById("videoButton").style.display = "flex";
         }
     </script>
 </head>
@@ -90,8 +97,9 @@
             <p>15 second max length. Output will always be 20x20. This is a demo. The full script can be found <a href="https://github.com/twhlynch/Mp42Grab">here</a> to download.</p>
             <div id="video-buttons">
                 <input type="file" id="videoFile" />
-                <button class="button" onclick="processVideo()">Process Video</button>
+                <button class="button" id="videoButton" onclick="processVideo()">Process Video</button>
             </div>
+            <p id="error"></p>
         </section>
     </main>
     <footer>
