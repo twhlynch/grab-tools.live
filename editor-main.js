@@ -1301,22 +1301,6 @@ function downloadAsJSON() {
     link.click();
     URL.revokeObjectURL(url);
 }
-function randomizeLevel() {
-    let obj = getLevel();
-    runOnNodes(obj.levelNodes, (node) => {
-        if (Object.values(node)[0].hasOwnProperty("posiiton")) {
-            Object.values(node)[0].position.x *= Math.random() + 0.5;
-            Object.values(node)[0].position.y *= Math.random() + 0.5;
-            Object.values(node)[0].position.z *= Math.random() + 0.5;
-        }
-        if (Object.values(node)[0].hasOwnProperty("scale")) {
-            Object.values(node)[0].scale.x *= Math.random() + 0.5;
-            Object.values(node)[0].scale.y *= Math.random() + 0.5;
-            Object.values(node)[0].scale.z *= Math.random() + 0.5;
-        }
-    }, false);
-    setLevel(obj);
-}
 function monochromify() {
     let levelData = getLevel();
     runOnNodes(levelData.levelNodes, (node) => {
@@ -1369,6 +1353,17 @@ function mirror(direction) {
     }, true);
     setLevel(levelData);
 }
+function randomizeLevelPositions() {
+    let obj = getLevel();
+    runOnNodes(obj.levelNodes, (node) => {
+        if (Object.values(node)[0].hasOwnProperty("position")) {
+            Object.values(node)[0].position.x *= Math.random() + 0.5;
+            Object.values(node)[0].position.y *= Math.random() + 0.5;
+            Object.values(node)[0].position.z *= Math.random() + 0.5;
+        }
+    }, false);
+    setLevel(obj);
+}
 function randomizeLevelMaterials() {
     let obj = getLevel();
     runOnNodes(obj.levelNodes, (node) => {
@@ -1377,6 +1372,61 @@ function randomizeLevelMaterials() {
         }
     }, false);
     setLevel(obj);
+}
+function randomizeLevelColors() {
+    let obj = getLevel();
+    runOnNodes(obj.levelNodes, (node) => {
+        if (node.levelNodeStatic && node.levelNodeStatic.material == 8) {
+            Object.values(node)[0].color = {
+                "r": Math.random(),
+                "g": Math.random(),
+                "b": Math.random(),
+                "a": 1
+            };
+        }
+    }, false);
+    setLevel(obj);
+
+}
+function randomizeLevelRotations() {
+    let obj = getLevel();
+    runOnNodes(obj.levelNodes, (node) => {
+        if (Object.values(node)[0].hasOwnProperty("rotation")) {
+            Object.values(node)[0].rotation.x ? Object.values(node)[0].rotation.x *= Math.random() + 0.5 : {};
+            Object.values(node)[0].rotation.y ? Object.values(node)[0].rotation.y *= Math.random() + 0.5 : {};
+            Object.values(node)[0].rotation.z ? Object.values(node)[0].rotation.z *= Math.random() + 0.5 : {};
+            Object.values(node)[0].rotation.w ? Object.values(node)[0].rotation.w *= Math.random() + 0.5 : {};
+        }
+    }, false);
+    setLevel(obj);
+}
+function randomizeLevelScales() {
+    let obj = getLevel();
+    runOnNodes(obj.levelNodes, (node) => {
+        if (Object.values(node)[0].hasOwnProperty("scale")) {
+            Object.values(node)[0].scale.x *= Math.random() + 0.5;
+            Object.values(node)[0].scale.y *= Math.random() + 0.5;
+            Object.values(node)[0].scale.z *= Math.random() + 0.5;
+        }
+    }, false);
+    setLevel(obj);
+}
+function randomizeLevelShapes() {
+    let obj = getLevel();
+    runOnNodes(obj.levelNodes, (node) => {
+        if (node.levelNodeStatic || node.levelNodeCrumbling) {
+            Object.values(node)[0].shape = Math.floor(Math.random() * 7) + 1000;
+        }
+    }, false);
+    setLevel(obj);
+}
+function randomizeLevelAll() {
+    randomizeLevelColors();
+    randomizeLevelMaterials();
+    randomizeLevelPositions();
+    randomizeLevelRotations();
+    randomizeLevelScales();
+    randomizeLevelShapes();
 }
 function deepClone(obj) {
     return JSON.parse(JSON.stringify(obj));
@@ -2207,8 +2257,13 @@ document.getElementById('group-btn').addEventListener('click', groupLevel);
 document.getElementById('ungroup-btn').addEventListener('click', ungroupLevel);
 document.getElementById('outline-btn').addEventListener('click', outlineLevel);
 document.getElementById('magic-outline-btn').addEventListener('click', magicOutline);
-document.getElementById('randomize-btn').addEventListener('click', randomizeLevel);
-document.getElementById('randomizematerials-btn').addEventListener('click', randomizeLevelMaterials);
+document.getElementById('randomize-positions-btn').addEventListener('click', randomizeLevelPositions);
+document.getElementById('randomize-materials-btn').addEventListener('click', randomizeLevelMaterials);
+document.getElementById('randomize-colors-btn').addEventListener('click', randomizeLevelColors);
+document.getElementById('randomize-rotations-btn').addEventListener('click', randomizeLevelRotations);
+document.getElementById('randomize-scales-btn').addEventListener('click', randomizeLevelScales);
+document.getElementById('randomize-shapes-btn').addEventListener('click', randomizeLevelShapes);
+document.getElementById('randomize-all-btn').addEventListener('click', randomizeLevelAll);
 document.getElementById('explode-btn').addEventListener('click', explodeLevel);
 document.getElementById('duplicate-btn').addEventListener('click', duplicateLevel);
 document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
