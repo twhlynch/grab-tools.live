@@ -28,49 +28,8 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2378042345376266" crossorigin="anonymous"></script>
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
     <link rel="stylesheet" href="styles/style.css">
-    <script src="main.js" defer></script>
-    <script>
-        async function processVideo() {
-            const fileInput = document.getElementById("videoFile");
-            const videoFile = fileInput.files[0];
-
-            const formData = new FormData();
-            formData.append("file", videoFile);
-
-            document.getElementById("videoButton").style.display = "none";
-            document.getElementById("error").innerText = "Loading...";
-
-            try {
-                const response = await fetch(
-                    "https://dotindex.pythonanywhere.com/process_video",
-                    {
-                        method: "POST",
-                        body: formData,
-                    }
-                );
-
-                if (!response.ok) {
-                    document.getElementById("error").innerText = await response.text();
-                    throw new Error("Error processing video");
-                }
-
-                const processedFile = await response.blob();
-                const downloadLink = URL.createObjectURL(processedFile);
-
-                const link = document.createElement("a");
-                link.href = downloadLink;
-                link.download = `${Math.floor(Date.now() / 1000)}.level`;
-                link.click();
-                document.getElementById("error").innerText = "Success";
-
-
-                URL.revokeObjectURL(downloadLink);
-            } catch (error) {
-                console.error(error);
-            }
-            document.getElementById("videoButton").style.display = "flex";
-        }
-    </script>
+    <script src="js/main.js" defer></script>
+    <script src="js/video.js" defer></script>
 </head>
 <body>
     <div id="cursor-outer"></div>
@@ -97,7 +56,7 @@
             <p>15 second max length. Output will always be 20x20. This is a demo. The full script can be found <a href="https://github.com/twhlynch/Mp42Grab">here</a> to download.</p>
             <div id="video-buttons">
                 <input type="file" id="videoFile" />
-                <button class="button" id="videoButton" onclick="processVideo()">Process Video</button>
+                <button class="button" id="videoButton">Process Video</button>
             </div>
             <p id="error"></p>
         </section>
