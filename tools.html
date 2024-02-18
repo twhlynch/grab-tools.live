@@ -28,9 +28,9 @@
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2378042345376266" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles/style.css">
-    <script src="main.js" defer></script>
-    <script src="tools.js" defer></script>
-    <script src="popup.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/tools.js" defer></script>
+    <script src="js/popup.js" defer></script>
     <link rel="stylesheet" href="styles/popup.css">
 </head>
 <body>
@@ -165,7 +165,8 @@
                 <button class="button-sml" id="questMultiSelectButton">Click me if you are on quest and can't select multiple files</button>
                 <div id="compiler-tool">
                     <input type="text" id="compile-title" name="title" placeholder="Title">
-                    <input type="text" id="compile-description" name="description" placeholder="Description" maxlength="300">
+                    <!-- <input type="text" id="compile-description" name="description" placeholder="Description" maxlength="300"> -->
+                    <textarea name="description" id="compile-description" maxlength="300" placeholder="Description"></textarea>
                     <input type="text" id="compile-creators" name="creators" placeholder="Creators" maxlength="80">
                     <input type="file" name="file" id="compile-file" accept=".level" multiple>
                     <div id="questMultiSelect">

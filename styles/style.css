@@ -431,7 +431,8 @@ h1.title {
     color: #2976d4;
     margin-bottom: 0;
 }
-#compiler-tool input, #pixel-tool input, #sign-tool input {
+#other-tools input,
+#other-tools textarea {
     width: 100%;
 }
 div#pixelate-out {
@@ -461,10 +462,11 @@ div#pixelate-out {
     font-size: 16px;
 }
 
-input, #smorg-urls {
+input, #smorg-urls, #other-tools textarea {
     padding: 5px;
     background-color: #5f8cc235;
     border: solid 2px #4683ce70;
+    border-radius: 5px;
     outline: none;
 }
 #video-section {
