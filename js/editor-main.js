@@ -520,6 +520,11 @@ uniform float opacity;
 uniform sampler2D colorTexture;
 uniform float tileFactor;
 
+uniform float sunSize;
+uniform vec3 sunColor;
+uniform vec3 sunDirection;
+uniform vec4 specularColor;
+
 const float gamma = 0.5;
 
 void main()
@@ -545,6 +550,25 @@ void main()
     texSample = pow(texSample, vec3(1.0 / gamma));
 
     color.rgb *= texSample * adjustment.rgb;
+
+    //Apply sun light
+
+    vec3 cameraToVertex = vWorldPosition - cameraPosition;
+    float distanceToCamera = length(cameraToVertex);
+    cameraToVertex = normalize(cameraToVertex);
+
+    vec3 lightDirection = normalize(-sunDirection);
+
+    float light = dot(normalize(vNormal), lightDirection);
+    float finalLight = clamp(light, 0.0, 1.0);
+    float lightFactor = finalLight;
+    lightFactor -= clamp(-light * 0.15, 0.0, 1.0);
+
+    vec3 halfVector = normalize((-sunDirection - cameraToVertex));
+    float lightSpecular = clamp(dot(normalize(vNormal), halfVector), 0.0, 1.0);
+
+    color.rgb = 0.5 * color.rgb + sunColor * clamp(sunSize * 0.7 + 0.3, 0.0, 1.0) * (color.rgb * lightFactor + pow(lightSpecular, specularColor.a) * specularColor.rgb * finalLight);
+
     gl_FragColor = LinearTosRGB(color);
 }`;
 const startFinishVS = /*glsl*/`
@@ -713,6 +737,19 @@ async function initAttributes() {
         '/img/textures/bouncing.png'
         ]) {
             const texture = await loadTexture(path);
+
+            let sunAngle = new THREE.Euler(THREE.MathUtils.degToRad(45), THREE.MathUtils.degToRad(315), 0.0)
+			let sunAltitude = 45.0
+			let horizonColor = [0.916, 0.9574, 0.9574]
+            const sunDirection = new THREE.Vector3( 0, 0, 1 );
+			sunDirection.applyEuler(sunAngle);
+            let sunColorFactor = 1.0 - sunAltitude / 90.0
+			sunColorFactor *= sunColorFactor
+			sunColorFactor = 1.0 - sunColorFactor
+			sunColorFactor *= 0.8
+			sunColorFactor += 0.2
+			let sunColor = [horizonColor[0] * (1.0 - sunColorFactor) + sunColorFactor, horizonColor[1] * (1.0 - sunColorFactor) + sunColorFactor, horizonColor[2] * (1.0 - sunColorFactor) + sunColorFactor]
+
             let material = new THREE.ShaderMaterial({
                 vertexShader: vertexShader,
                 fragmentShader: fragmentShader,
@@ -722,6 +759,10 @@ async function initAttributes() {
                     "worldNormalMatrix": { value: new THREE.Matrix3() },
                     "colors": { value: new THREE.Vector3(1.0, 1.0, 1.0) },
                     "opacity": { value: 1.0 },
+                    "sunSize": { value: 0.1 },
+                    "sunColor": { value: sunColor },
+                    "sunDirection": { value: sunDirection },
+                    "specularColor": { value: [0.15, 0.15, 0.15, 10.0] }
                 }
             });
 
@@ -829,6 +870,10 @@ function loadLevelNode(node, parent) {
         node.rotation.y ? cube.quaternion.y = node.rotation.y : cube.quaternion.y = 0;
         node.rotation.z ? cube.quaternion.z = node.rotation.z : cube.quaternion.z = 0;
         node.rotation.w ? cube.quaternion.w = node.rotation.w : cube.quaternion.w = 0;
+        
+        cube.initialPosition = cube.position.clone();
+        cube.initialRotation = cube.quaternion.clone();
+        
         let groupComplexity = 0;
         node.childNodes.forEach(node => {
             groupComplexity += loadLevelNode(node, cube);
@@ -846,6 +891,7 @@ function loadLevelNode(node, parent) {
         let particleMaterial = new THREE.PointsMaterial({ color: particleColor, size: 0.05 });
 
         let object = new THREE.Object3D()
+        parent.add(object);
         object.position.x = node.position.x
         object.position.y = node.position.y
         object.position.z = node.position.z
@@ -858,6 +904,9 @@ function loadLevelNode(node, parent) {
         object.quaternion.y = node.rotation.y
         object.quaternion.z = node.rotation.z
         object.quaternion.w = node.rotation.w
+
+        object.initialPosition = object.position.clone();
+        object.initialRotation = object.quaternion.clone();
 
         let particleCount = Math.floor(object.scale.x * object.scale.y * object.scale.z)
         particleCount = Math.min(particleCount, 2000);
@@ -874,7 +923,6 @@ function loadLevelNode(node, parent) {
         particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(particlePositions, 3));
         let particles = new THREE.Points(particleGeometry, particleMaterial);
         object.add(particles);
-        parent.add(object);
         objects.push(object);
 
         return 10;
@@ -909,6 +957,7 @@ function loadLevelNode(node, parent) {
             }
         }
         cube.material = material;
+        parent.add(cube);
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
         node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
@@ -919,6 +968,9 @@ function loadLevelNode(node, parent) {
         node.scale.x ? cube.scale.x = node.scale.x : cube.scale.x = 0;
         node.scale.y ? cube.scale.y = node.scale.y : cube.scale.y = 0;
         node.scale.z ? cube.scale.z = node.scale.z : cube.scale.z = 0;
+
+        cube.initialPosition = cube.position.clone();
+        cube.initialRotation = cube.quaternion.clone();
 
         if (!altTextures) {
             // console.log(material);
@@ -936,7 +988,6 @@ function loadLevelNode(node, parent) {
             material.uniforms.worldNormalMatrix.value = normalMatrix;
         }
 
-        parent.add(cube);
         objects.push(cube);
         return 2;
     } else if (node.levelNodeCrumbling) {
@@ -959,6 +1010,7 @@ function loadLevelNode(node, parent) {
             material = materials[0];
         }
         cube.material = material;
+        parent.add(cube);
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
         node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
@@ -969,6 +1021,9 @@ function loadLevelNode(node, parent) {
         node.scale.x ? cube.scale.x = node.scale.x : cube.scale.x = 0;
         node.scale.y ? cube.scale.y = node.scale.y : cube.scale.y = 0;
         node.scale.z ? cube.scale.z = node.scale.z : cube.scale.z = 0;
+
+        cube.initialPosition = cube.position.clone();
+        cube.initialRotation = cube.quaternion.clone();
 
         if (!altTextures) {
             let targetVector = new THREE.Vector3();
@@ -985,7 +1040,6 @@ function loadLevelNode(node, parent) {
             material.uniforms.worldNormalMatrix.value = normalMatrix;
         }
 
-        parent.add(cube);
         objects.push(cube);
         return 3;
     } else if (node.levelNodeSign) {
@@ -996,6 +1050,7 @@ function loadLevelNode(node, parent) {
         } else {
             cube.material = materials[4];
         }
+        parent.add(cube);
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
         node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
@@ -1003,7 +1058,10 @@ function loadLevelNode(node, parent) {
         node.rotation.x ? cube.quaternion.x = node.rotation.x : cube.quaternion.x = 0;
         node.rotation.y ? cube.quaternion.y = node.rotation.y : cube.quaternion.y = 0;
         node.rotation.z ? cube.quaternion.z = node.rotation.z : cube.quaternion.z = 0;
-        parent.add(cube);
+        
+        cube.initialPosition = cube.position.clone();
+        cube.initialRotation = cube.quaternion.clone();
+        
         objects.push(cube);
         return 5;
     } else if (node.levelNodeStart) {
@@ -1011,6 +1069,7 @@ function loadLevelNode(node, parent) {
         let cube = shapes[6].clone();
         // cube.material = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0.5 });
         cube.material = startMaterial;
+        parent.add(cube);
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
         node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
@@ -1020,7 +1079,10 @@ function loadLevelNode(node, parent) {
         node.rotation.z ? cube.quaternion.z = node.rotation.z : cube.quaternion.z = 0;
         node.radius ? cube.scale.x = node.radius : cube.scale.x = 0;
         node.radius ? cube.scale.z = node.radius : cube.scale.z = 0;
-        parent.add(cube);
+
+        cube.initialPosition = cube.position.clone();
+        cube.initialRotation = cube.quaternion.clone();
+
         objects.push(cube);
         return 0;
     } else if (node.levelNodeFinish) {
@@ -1028,12 +1090,16 @@ function loadLevelNode(node, parent) {
         let cube = shapes[6].clone();
         // cube.material = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
         cube.material = finishMaterial;
+        parent.add(cube);
         node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
         node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
         node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
         node.radius ? cube.scale.x = node.radius : cube.scale.x = 0;
         node.radius ? cube.scale.z = node.radius : cube.scale.z = 0;
-        parent.add(cube);
+
+        cube.initialPosition = cube.position.clone();
+        cube.initialRotation = cube.quaternion.clone();
+
         objects.push(cube);
         return 0;
     } else {
