@@ -326,18 +326,21 @@ h1.title {
 #DailyMap-out > .leaderboard-item:nth-child(2), 
 #WeeklyMap-out > .leaderboard-item:nth-child(2), 
 #AChallenge-out > .leaderboard-item:nth-child(2), 
+#AChallengeMaps-out > .leaderboard-item:nth-child(2), 
 #UnbeatenMap-out > .leaderboard-item:nth-child(2) {
     background-color: #d4982955 !important;
 }
 #DailyMap-out > .leaderboard-item:nth-child(3), 
 #WeeklyMap-out > .leaderboard-item:nth-child(3), 
 #AChallenge-out > .leaderboard-item:nth-child(3), 
+#AChallengeMaps-out > .leaderboard-item:nth-child(3), 
 #UnbeatenMap-out > .leaderboard-item:nth-child(3) {
     background-color: #81818155 !important;
 }
 #DailyMap-out > .leaderboard-item:nth-child(4), 
 #WeeklyMap-out > .leaderboard-item:nth-child(4), 
 #AChallenge-out > .leaderboard-item:nth-child(4), 
+#AChallengeMaps-out > .leaderboard-item:nth-child(4), 
 #UnbeatenMap-out > .leaderboard-item:nth-child(4) {
     background-color: #dd710d55 !important;
 }
