@@ -90,11 +90,30 @@ def get_a_challenge():
     for level in a_challenge_maps:
         identifier = level["identifier"]
         leaderboard = get_level_leaderboard(identifier)
-        for i in range(min(len(leaderboard), 3)):
-            if leaderboard[i]["user_id"] in user_leaderboard:
-                user_leaderboard[leaderboard[i]["user_id"]][0] += 3 - i
+        # top 1 if sole victor: 1
+        if leaderboard and len(leaderboard) == 1:
+            addition = 1
+            if leaderboard[0]["user_id"] in user_leaderboard:
+                user_leaderboard[leaderboard[0]["user_id"]][0] += addition
             else:
-                user_leaderboard[leaderboard[i]["user_id"]] = [3 - i, leaderboard[i]["user_name"], 0, leaderboard[i]["timestamp"]]
+                user_leaderboard[leaderboard[0]["user_id"]] = [addition, leaderboard[0]["user_name"], 0, leaderboard[0]["timestamp"]]
+        # top 3: 2, 1.5, 1
+        for i in range(min(len(leaderboard), 3)):
+            addition = 2 - (i*0.5)
+            if leaderboard[i]["user_id"] in user_leaderboard:
+                user_leaderboard[leaderboard[i]["user_id"]][0] += addition
+            else:
+                user_leaderboard[leaderboard[i]["user_id"]] = [addition, leaderboard[i]["user_name"], 0, leaderboard[i]["timestamp"]]
+        # rest of top 10: 0.5
+        for i in range(min(len(leaderboard), 10)):
+            if i > 2:
+                addition = 2 - (i*0.5)
+                if leaderboard[i]["user_id"] in user_leaderboard:
+                    user_leaderboard[leaderboard[i]["user_id"]][0] += addition
+                else:
+                    user_leaderboard[leaderboard[i]["user_id"]] = [addition, leaderboard[i]["user_name"], 0, leaderboard[i]["timestamp"]]
+        # top 100: 1
+        # and do map totals
         for i in range(len(leaderboard)):
             if leaderboard[i]["user_id"] in user_leaderboard:
                 user_leaderboard[leaderboard[i]["user_id"]][0] += 1
