@@ -60,39 +60,7 @@ if (darkModeButton) {
     });
 }
 
-// load dark mode styles
 if (localStorage.getItem("darkMode") === "true") {
     document.body.parentElement.classList.add("dark-mode");
     darkModeButton.classList.add("dark");
 }
-
-
-// const ads = document.getElementById("ads");
-// setInterval(() => {
-//     if (window.innerWidth > 1200) {
-//         ads.innerHTML = `
-//         <div id="ads-overlay-r">
-//             <amp-ad
-//                 layout="fixed"
-//                 width="120"
-//                 height="400"
-//                 type="adsense"
-//                 data-ad-client="ca-pub-2378042345376266"
-//                 data-ad-slot="6059350775">
-//             </amp-ad>
-//         </div>
-//         <div id="ads-overlay-l">
-//             <amp-ad
-//                 layout="fixed"
-//                 width="120"
-//                 height="400"
-//                 type="adsense"
-//                 data-ad-client="ca-pub-2378042345376266"
-//                 data-ad-slot="6059350775">
-//             </amp-ad>
-//         </div>
-//         `;
-//     } else {
-//         ads.innerHTML = "";
-//     }
-// }, 1000);
