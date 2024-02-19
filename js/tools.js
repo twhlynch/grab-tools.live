@@ -1,30 +1,3 @@
-
-let buttons = document.querySelectorAll('.tools-button');
-buttons.forEach((btn) => {
-    let btnId = btn.id;
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('#other-tools > div').forEach(e => {
-            e.style.display = 'none';
-        });
-        document.querySelectorAll('.tab-active').forEach(e => {
-            e.classList.remove('tab-active');
-        });
-        document.getElementById(btnId.replace("Button", "")).style.display = "flex";
-        btn.classList.add('tab-active');
-
-        const urlParams = new URLSearchParams(window.location.search);
-        urlParams.set('tab', btnId);
-        window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
-    });
-});
-
-document.getElementById('questMultiSelectButton').addEventListener('click', () => {
-    document.getElementById('questMultiSelect').style.display = 'flex';
-    document.getElementById('compile-file').style.display = 'none';
-    document.getElementById('compile-btn-qms').style.display = 'flex';
-    document.getElementById('compile-btn').style.display = 'none';
-});
-
 function readArrayBufferGroup(file) {
     return new Promise(function(resolve, reject) {
         let reader = new FileReader();
@@ -81,20 +54,6 @@ function readArrayBuffer(file) {
         reader.readAsArrayBuffer(file);
     });
 }
-
-document.getElementById('pixelate-btn').addEventListener("click", pixelate);
-document.getElementById('smorg-btn').addEventListener('click', MultiDownload);
-document.getElementById("compile-btn").addEventListener("click", () => {compile()});
-document.getElementById("compile-btn-qms").addEventListener("click", () => {compile(true)});
-document.getElementById('signs-download').addEventListener("click", TextToSigns);
-document.getElementById('Scripture-download').addEventListener("click", scripture);
-document.getElementById('json-btn').addEventListener("click", convertJSON);
-document.getElementById('pointcloud-btn').addEventListener("click", generatePointCloud);
-document.getElementById('explode-btn').addEventListener("click", explodeLevel);
-document.getElementById('outline-btn').addEventListener("click", outlineLevel);
-
-// model, explode, explode-anim, outline, magic-outline, randomizer, to model, to json
-
 function outlineNode(node) {
     let nodes = [];
     if (node.levelNodeGroup) {
@@ -153,7 +112,6 @@ function outlineNode(node) {
         return false;
     }
 }
-
 function outlineLevel() {
     let { files } = document.getElementById('outline-file');
 
@@ -188,7 +146,6 @@ function outlineLevel() {
         
     });
 }
-
 function find_char(char, last_10, level) {
     for (let i = 0; i < level.levelNodes.length; i++) {
         if (level.levelNodes[i].levelNodeSign.text == char && !last_10.includes(i)) {
@@ -197,7 +154,6 @@ function find_char(char, last_10, level) {
     }
     return false
 }
-
 function scripture() {
     let creators = document.getElementById('Scripture-creators').value;
     let desc = document.getElementById('Scripture-desc').value;
@@ -360,7 +316,6 @@ function scripture() {
         link.click();
     });
 }
-
 function TextToSigns() {
     let creators = document.getElementById('signs-creators').value;
     let desc = document.getElementById('signs-desc').value;
@@ -770,7 +725,6 @@ function generatePointCloud() {
     reader.readAsText(file);
 
 }
-
 function runOnNodes(levelNodes, func, doGroups = true) {
     levelNodes.forEach((node) => {
         let isGroup = node.hasOwnProperty("levelNodeGroup");
@@ -782,7 +736,6 @@ function runOnNodes(levelNodes, func, doGroups = true) {
         }
     });
 }
-
 function explodeLevel() {
     let file = document.getElementById('explode-file').files[0];
     readArrayBuffer(file).then((level) => {
@@ -841,83 +794,42 @@ function explodeLevel() {
     });
 }
 
-/*
-javascript:(function() {
-    var popupContainer = document.createElement('div');
-    popupContainer.style.position = 'fixed';
-    popupContainer.style.borderRadius = '10px';
-    popupContainer.style.top = '50%';
-    popupContainer.style.left = '50%';
-    popupContainer.style.transform = 'translate(-50%, -50%)';
-    popupContainer.style.padding = '20px';
-    popupContainer.style.background = '#c3d7e6';
-    popupContainer.style.border = 'solid 2px #4683ce70';
-    popupContainer.style.zIndex = '9999';
-  
-    var colorPicker = document.createElement('input');
-    colorPicker.type = 'color';
-    colorPicker.style.marginBottom = '10px';
-    colorPicker.style.background = '#c3d7e6';
-    colorPicker.style.border = 'solid 2px #4683ce70';
-    colorPicker.style.borderRadius = '10px';
+let buttons = document.querySelectorAll('.tools-button');
+buttons.forEach((btn) => {
+    let btnId = btn.id;
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('#other-tools > div').forEach(e => {
+            e.style.display = 'none';
+        });
+        document.querySelectorAll('.tab-active').forEach(e => {
+            e.classList.remove('tab-active');
+        });
+        document.getElementById(btnId.replace("Button", "")).style.display = "flex";
+        btn.classList.add('tab-active');
 
-    var colorPicker2 = document.createElement('input');
-    colorPicker2.type = 'color';
-    colorPicker2.style.marginBottom = '10px';
-    colorPicker2.style.background = '#c3d7e6';
-    colorPicker2.style.border = 'solid 2px #4683ce70';
-    colorPicker2.style.borderRadius = '10px';
-    colorPicker2.style.float = 'right';
-  
-    var sendButton = document.createElement('button');
-    sendButton.textContent = 'Send RGB Values';
-    sendButton.style.padding = '8px 16px';
-    sendButton.style.borderRadius = '10px';
-    sendButton.style.cursor = 'pointer';
-    sendButton.style.background = '#5f8cc235';
-    sendButton.style.border = 'solid 2px #4683ce70';
-  
-    popupContainer.appendChild(colorPicker);
-    popupContainer.appendChild(colorPicker2);
-    popupContainer.appendChild(document.createElement('br'));
-    popupContainer.appendChild(sendButton);
-  
-    sendButton.addEventListener('click', function() {
-      var color = colorPicker.value;
-      var color2 = colorPicker2.value;
-      var red = parseInt(color.substring(1, 3), 16) / 255;
-      var green = parseInt(color.substring(3, 5), 16) / 255;
-      var blue = parseInt(color.substring(5, 7), 16) / 255;
-  
-      var red2 = parseInt(color2.substring(1, 3), 16) / 255;
-      var green2 = parseInt(color2.substring(3, 5), 16) / 255;
-      var blue2 = parseInt(color2.substring(5, 7), 16) / 255;
-  
-
-      const requestBody = JSON.parse(localStorage.user).user.info.active_customizations;
-      requestBody.player_color_primary.color = [red, green, blue];
-      requestBody.player_color_secondary.color = [red2, green2, blue2];
-      fetch(`https://api.slin.dev/grab/v1/set_active_customizations?access_token=${JSON.parse(localStorage.user).user.access_token}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestBody)
-      }).then(function(response) {
-        return response;
-      })
-      .then(function(data) {
-        console.log(data);
-      })
-      .catch(function(error) {
-        console.error('Error:', error);
-      });
-      
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('tab', btnId);
+        window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
     });
-  
-    document.body.appendChild(popupContainer);
-  })();
-  */
+});
+
+document.getElementById('questMultiSelectButton').addEventListener('click', () => {
+    document.getElementById('questMultiSelect').style.display = 'flex';
+    document.getElementById('compile-file').style.display = 'none';
+    document.getElementById('compile-btn-qms').style.display = 'flex';
+    document.getElementById('compile-btn').style.display = 'none';
+});
+
+document.getElementById('pixelate-btn').addEventListener("click", pixelate);
+document.getElementById('smorg-btn').addEventListener('click', MultiDownload);
+document.getElementById("compile-btn").addEventListener("click", () => {compile()});
+document.getElementById("compile-btn-qms").addEventListener("click", () => {compile(true)});
+document.getElementById('signs-download').addEventListener("click", TextToSigns);
+document.getElementById('Scripture-download').addEventListener("click", scripture);
+document.getElementById('json-btn').addEventListener("click", convertJSON);
+document.getElementById('pointcloud-btn').addEventListener("click", generatePointCloud);
+document.getElementById('explode-btn').addEventListener("click", explodeLevel);
+document.getElementById('outline-btn').addEventListener("click", outlineLevel);
 
 const urlParams = new URLSearchParams(window.location.search);
 const tab = urlParams.get('tab');
