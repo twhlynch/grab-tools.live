@@ -651,6 +651,8 @@ div#questMultiSelect {
     gap: 5px;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+    max-width: 90%;
 }
 .stats-sorting > .button-sml {
     gap: 5px;
