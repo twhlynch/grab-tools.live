@@ -1,37 +1,37 @@
 {
-  "identifier": "2bhksg3chwlldesbnkzb6:1708119390",
-  "title": "Destroyed construction site",
-  "complexity": 2999,
+  "identifier": "2bjxfndgtanz81tc9m38c:1708224939",
+  "title": "Escape The Factory! PT2: The Underground Lab",
+  "complexity": 1870,
   "format_version": 8,
-  "update_timestamp": 1708191291052,
-  "creation_timestamp": 1708191291052,
-  "data_key": "level_data:2bhksg3chwlldesbnkzb6:1708119390:1",
-  "description": "the city has been destroyed",
+  "update_timestamp": 1708397647200,
+  "creation_timestamp": 1708390793667,
+  "data_key": "level_data:2bjxfndgtanz81tc9m38c:1708224939:2",
+  "description": "You found an Underground Lab under the Factory! This still means you're in the Factory. You must get out of it!",
   "creators": [
-    "Blueberry__VR"
+    "lvffy"
   ],
   "tags": [
     "ok"
   ],
-  "verification_time": 1021.16,
+  "verification_time": 162.75,
   "statistics": {
-    "total_played": 300,
-    "difficulty": 0,
-    "liked": 0,
-    "time": 100
+    "total_played": 200,
+    "difficulty": 0.005319148936170213,
+    "time": 98.5126,
+    "liked": 0
   },
   "images": {
     "full": {
-      "key": "level_2bhksg3chwlldesbnkzb6_1708119390_1.png",
+      "key": "level_2bjxfndgtanz81tc9m38c_1708224939_1.png",
       "width": 1920,
       "height": 1080
     },
     "thumb": {
-      "key": "level_2bhksg3chwlldesbnkzb6_1708119390_1_thumb.png",
+      "key": "level_2bjxfndgtanz81tc9m38c_1708224939_1_thumb.png",
       "width": 512,
       "height": 288
     }
   },
-  "creator": "Blueberry__VR",
-  "change": 300
+  "creator": "lvffy",
+  "change": 200
 }
