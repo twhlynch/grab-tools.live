@@ -107,7 +107,7 @@ def get_a_challenge():
         # rest of top 10: 0.5
         for i in range(min(len(leaderboard), 10)):
             if i > 2:
-                addition = 2 - (i*0.5)
+                addition = 0.5
                 if leaderboard[i]["user_id"] in user_leaderboard:
                     user_leaderboard[leaderboard[i]["user_id"]][0] += addition
                 else:
@@ -125,6 +125,43 @@ def get_a_challenge():
                 user_leaderboard[leaderboard[i]["user_id"]] = [1, leaderboard[i]["user_name"], 1, leaderboard[i]["timestamp"]]
     user_leaderboard = sorted(user_leaderboard.items(), key=lambda x: x[1][0], reverse=True)
     return user_leaderboard
+
+def find_list_keys(data):
+    list_keys = []
+    
+    if isinstance(data, dict):
+        if "list_key" in data:
+            list_keys.append(data["list_key"])
+        
+        for key, value in data.items():
+            list_keys.extend(find_list_keys(value))
+    elif isinstance(data, list):
+        for item in data:
+            list_keys.extend(find_list_keys(item))
+    
+    return list_keys
+
+def get_best_of_grab():
+    level_browser = get_level_browser()
+    all_list_keys = find_list_keys(level_browser)
+    levels = []
+    for list_key in all_list_keys:
+        if list_key.startswith("curated_"):
+            levels_list = get_level_list(list_key)
+            for level in levels_list:
+                level["list_key"] = list_key
+                leaderboard = get_level_leaderboard(level["identifier"])
+                level["leaderboard"] = leaderboard
+            for level in levels_list:
+                found = False
+                for level2 in levels:
+                    if level2["identifier"] == level["identifier"]:
+                        found = True
+                        level2["list_key"] = level2["list_key"] + ":" + level["list_key"]
+                        break
+                if not found:
+                    levels.append(level)
+    return levels
 
 def get_creators():
     level_browser = get_level_browser()["sections"]
@@ -371,6 +408,7 @@ def get_level_data():
     write_json_file('stats_data/trending_levels.json', get_trending_levels(all_verified))
     write_json_file('stats_data/all_verified.json', all_verified)
     write_json_file('stats_data/a_challenge.json', get_a_challenge())
+    write_json_file('stats_data/best_of_grab.json', get_best_of_grab())
     write_json_file('stats_data/featured_creators.json', get_creators())
     write_json_file('stats_data/most_played_maps.json', get_most_played_maps(all_verified))
     write_json_file('stats_data/most_liked.json', get_most_liked(all_verified))

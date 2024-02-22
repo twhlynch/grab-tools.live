@@ -172,11 +172,6 @@ let templates = [
         "type": "identifier"
     },
     {
-        "name": ".index's challenge",
-        "link": "29sgp24f1uorbc6vq8d2k:1667046337",
-        "type": "identifier"
-    },
-    {
         "name": "FROSTYs climbing adventure",
         "link": "29ffxg2ijqxyrgxyy2vjj:1642284195",
         "type": "identifier"
@@ -1150,10 +1145,19 @@ function openProto(link) {
         })
 }
 function downloadAndOpenLevel(id) {
+    let iteration = null;
+    if (id.split(':').length == 3) {
+        iteration = id.split(':')[2];
+        id = id.split(':')[0]+":"+id.split(':')[1];
+    }
     fetch(`https://api.slin.dev/grab/v1/details/${id.replace(":", "/")}`)
         .then(response => response.json())
         .then(data => {
-            openProto(`https://api.slin.dev/grab/v1/download/${data.data_key.replaceAll(":", "/").replace("level_data/", "")}`);
+            if (!iteration) {
+                iteration = data.iteration;
+            }
+            let link = `https://api.slin.dev/grab/v1/download/${id.replace(":", "/") + '/' + iteration}`;
+            openProto(link);
         });
 }
 function openLevelFile(level) {
@@ -2082,6 +2086,7 @@ function loadTemplateButtons() {
         templateElement.classList.add('template');
         templateElement.innerText = template.name;
         templateElement.addEventListener('click', () => {
+            document.querySelector('#prompt-templates .prompt-cancel').click();
             if (template.type == 'identifier') {
                 downloadAndOpenLevel(template.link);
             } else if (template.type == 'file') {

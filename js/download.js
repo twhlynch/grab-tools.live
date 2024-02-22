@@ -1,10 +1,15 @@
 async function download(id) {
+    let iteration = null;
+    console.log(id);
     let SERVER_URL = 'https://api.slin.dev/grab/v1/';
-    let response = await fetch(SERVER_URL + 'details/' + id.replace(':', '/'));
-    let details = await response.json();
-    let iteration = await details.iteration;
-    let link = SERVER_URL + 'download/' + id.replace(':', '/') + '/' + iteration;
-  
+    if (id.split(":").length != 3) {
+        let response = await fetch(SERVER_URL + 'details/' + id.replaceAll(':', '/'));
+        let details = await response.json();
+        iteration = await details.iteration;
+        console.log(iteration);
+    }
+    let link = SERVER_URL + 'download/' + id.replaceAll(':', '/') + (iteration ? '/' + iteration : '');
+    console.log(link);
     let fileResponse = await fetch(link);
     let fileBlob = await fileResponse.blob();
     let url = window.URL.createObjectURL(fileBlob);
