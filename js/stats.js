@@ -551,6 +551,130 @@ function getAChallenge() {
     });
 }
 
+function determineScore(record, length) {
+    let position = record.position;
+    let score = 1;
+    if (position < 3) {
+        score += 2 - (position / 2)
+    } else if (position < 10) {
+        score += 0.5;
+    }
+    if (length == 1) {
+        score += 1;
+    }
+    
+    return score;
+}
+
+function getBestOfGrab() {
+    fetch('/stats_data/best_of_grab.json')
+    .then((response) => response.json())
+    .then(data => {
+        let list_keys = [];
+        data.forEach(item => {
+            let list_key = item.list_key;
+            let list_key_split = list_key.split(":");
+            list_key_split.forEach( key => {
+                if (list_keys.indexOf(key) == -1) {
+                    list_keys.push(key);
+                }
+            } );
+        });
+        let playerCompletions = {};
+        let playerCompletionsByKey = {};
+        list_keys.forEach(key => {
+            playerCompletionsByKey[key] = {};
+        });
+        data.forEach(item => {
+            let leaderboard = item.leaderboard;
+            let list_key = item.list_key.split(":");
+            leaderboard.forEach( lItem => {
+                let score = determineScore(lItem, leaderboard.length);
+                if (playerCompletions[lItem.user_id]) {
+                    playerCompletions[lItem.user_id].maps += 1;
+                    playerCompletions[lItem.user_id].score += score;
+                } else {
+                    playerCompletions[lItem.user_id] = {
+                        user_name: lItem.user_name,
+                        maps: 1,
+                        score: score
+                    }
+                }
+                list_key.forEach( lKey => {
+                    if (playerCompletionsByKey[lKey][lItem.user_id]) {
+                        playerCompletionsByKey[lKey][lItem.user_id].maps += 1;
+                        playerCompletionsByKey[lKey][lItem.user_id].score += score;
+                    } else {
+                        playerCompletionsByKey[lKey][lItem.user_id] = {
+                            user_name: lItem.user_name,
+                            maps: 1,
+                            score: score
+                        }
+                    }
+                });
+            });
+        });
+
+        let sortingContainer = document.getElementById('BestOfGrab-sort');
+        let listsContainer = document.getElementById('statistics');
+        list_keys.forEach( list_key => {
+            let outputElement = document.createElement('div');
+            outputElement.id = 'BestOfGrab'+list_key+'-out';
+            outputElement.classList.add('LeaderboardOutput');
+            outputElement.style.display = 'none';
+            listsContainer.appendChild(outputElement);
+
+            let buttonElement = document.createElement('button');
+            buttonElement.className = 'sort-btn button-sml';
+            buttonElement.id = 'BestOfGrab'+list_key+'-sort-btn';
+            buttonElement.innerText = list_key.replace("curated_", "").replaceAll("_", " ");
+            buttonElement.addEventListener('click', () => {
+                document.querySelectorAll('.sort-active').forEach(e => {
+                    e.classList.remove('sort-active');
+                });
+                buttonElement.classList.add('sort-active');
+                document.querySelectorAll('.LeaderboardOutput').forEach(e => {
+                    e.style.display = 'none';
+                });
+                outputElement.style.display = 'flex';
+            });
+            sortingContainer.appendChild(buttonElement);
+        });
+
+        list_keys.forEach(key=>{
+            const sorted = Object.entries(playerCompletionsByKey[key]).sort((a, b) => b[1].maps - a[1].maps);
+            const top = sorted.slice(0, 200);
+            for (const [id, value] of top) {
+                const user_card = userCard(
+                    id, 
+                    value.user_name, 
+                    false, 
+                    false, 
+                    false, 
+                    `${value.maps} Maps (${value.score} Pt)`, 
+                    ''
+                );
+                document.getElementById('BestOfGrab'+key+'-out').appendChild(user_card);
+            }
+        });
+        const sorted = Object.entries(playerCompletions).sort((a, b) => b[1].maps - a[1].maps);
+        const top = sorted.slice(0, 200);
+        for (const [id, value] of top) {
+            const user_card = userCard(
+                id, 
+                value.user_name, 
+                false, 
+                false, 
+                false, 
+                `${value.maps} Maps (${value.score} Pt)`, 
+                ''
+            );
+            document.getElementById('BestOfGrab-out').appendChild(user_card);
+        }
+    });
+
+}
+
 function getRecords() {
     fetch('/stats_data/sorted_leaderboard_records.json')
     .then((response) => response.json())
@@ -798,7 +922,9 @@ getGlobalPlays();
 getAChallenge();
 getRecords();
 getTrendingLevels();
-makeFeaturedButtons()
+getBestOfGrab();
+makeFeaturedButtons();
+
 
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get('userId');
