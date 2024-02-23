@@ -683,7 +683,7 @@ function getBestOfGrab() {
                     let output = document.getElementById('CheckBestOfGrab-out')
                     output.innerHTML = `${value.user_name}'s progress on ${key.replace("curated_", "").replaceAll("_", " ")}`;
                     data.forEach(e => {
-                        if (e.list_key == key) {
+                        if (e.list_key.includes(key)) {
                             let found = false;
                             let time = 0.0;
                             let position = 0;
