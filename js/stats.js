@@ -681,7 +681,36 @@ function getBestOfGrab() {
                         e.style.display = 'none';
                     });
                     let output = document.getElementById('CheckBestOfGrab-out')
-                    output.innerHTML = `${value.user_name}'s progress on ${key.replace("curated_", "").replaceAll("_", " ")}`;
+                    let unbeatenOutput = document.getElementById('CheckBestOfGrabUnbeaten-out')
+                    let defaultText = document.createElement('p');
+                    defaultText.innerText = `${value.user_name}'s progress on ${key.replace("curated_", "").replaceAll("_", " ")}`;
+                    output.innerHTML = '';
+                    defaultText.classList.add('default-progress-text');
+                    output.appendChild(defaultText);
+    
+                    let defaultUnbeatenText = document.createElement('p');
+                    defaultUnbeatenText.innerText = `${value.user_name}'s unbeaten of ${key.replace("curated_", "").replaceAll("_", " ")}`;
+                    unbeatenOutput.innerHTML = '';
+                    defaultUnbeatenText.classList.add('default-progress-text');
+                    unbeatenOutput.appendChild(defaultUnbeatenText);
+    
+                    let showUnbeatenButton = document.createElement('button');
+                    showUnbeatenButton.innerText = "Show unbeaten";
+                    showUnbeatenButton.classList.add('button-sml');
+                    showUnbeatenButton.addEventListener('click', () => {
+                        output.style.display = 'none';
+                        unbeatenOutput.style.display = 'flex';
+                    });
+                    defaultText.appendChild(showUnbeatenButton);
+    
+                    let showAllButton = document.createElement('button');
+                    showAllButton.innerText = "Show all";
+                    showAllButton.classList.add('button-sml');
+                    showAllButton.addEventListener('click', () => {
+                        output.style.display = 'flex';
+                        unbeatenOutput.style.display = 'none';
+                    });
+                        let unbeatenCount = 0;
                     data.forEach(e => {
                         if (e.list_key.includes(key)) {
                             let found = false;
@@ -708,10 +737,26 @@ function getBestOfGrab() {
                             );
                             if (!found) {
                                 level_card.style.backgroundColor = "#ff000055";
+                                let level_card_copy = levelCard(
+                                    e?.identifier,
+                                    e?.title,
+                                    e?.creators,
+                                    e?.images?.thumb?.key,
+                                    false,
+                                    '',
+                                    ''
+                                    );
+                                    level_card_copy.style.backgroundColor = "#ff000055";
+                                    unbeatenCount++;
+                                unbeatenOutput.appendChild(level_card_copy);
+                                unbeatenOutput.appendChild(level_card);
                             }
                             output.appendChild(level_card);
                         }
-                    });    
+                    });
+                    showUnbeatenButton.innerText = `Show unbeaten (${unbeatenCount})`;
+                    defaultUnbeatenText.innerText = `${value.user_name}'s unbeaten of ${key.replace("curated_", "").replaceAll("_", " ")} (${unbeatenCount})`;
+                    defaultUnbeatenText.appendChild(showAllButton);
                     output.style.display = 'flex';
                 });                
                 user_card.insertBefore(checkUnbeatenButton, user_card.childNodes[1]);
@@ -738,7 +783,37 @@ function getBestOfGrab() {
                     e.style.display = 'none';
                 });
                 let output = document.getElementById('CheckBestOfGrab-out')
-                output.innerHTML = `${value.user_name}'s progress`;
+                let unbeatenOutput = document.getElementById('CheckBestOfGrabUnbeaten-out')
+
+                let defaultText = document.createElement('p');
+                defaultText.innerText = `${value.user_name}'s progress`;
+                output.innerHTML = '';
+                defaultText.classList.add('default-progress-text');
+                output.appendChild(defaultText);
+
+                let defaultUnbeatenText = document.createElement('p');
+                defaultUnbeatenText.innerText = `${value.user_name}'s unbeaten`;
+                unbeatenOutput.innerHTML = '';
+                defaultUnbeatenText.classList.add('default-progress-text');
+                unbeatenOutput.appendChild(defaultUnbeatenText);
+
+                let showUnbeatenButton = document.createElement('button');
+                showUnbeatenButton.innerText = "Show unbeaten";
+                showUnbeatenButton.classList.add('button-sml');
+                showUnbeatenButton.addEventListener('click', () => {
+                    output.style.display = 'none';
+                    unbeatenOutput.style.display = 'flex';
+                });
+                defaultText.appendChild(showUnbeatenButton);
+
+                let showAllButton = document.createElement('button');
+                showAllButton.innerText = "Show all";
+                showAllButton.classList.add('button-sml');
+                showAllButton.addEventListener('click', () => {
+                    output.style.display = 'flex';
+                    unbeatenOutput.style.display = 'none';
+                });
+                let unbeatenCount = 0;
                 data.forEach(e => {
                     let found = false;
                     let time = 0.0;
@@ -764,9 +839,24 @@ function getBestOfGrab() {
                         );
                     if (!found) {
                         level_card.style.backgroundColor = "#ff000055";
+                        let level_card_copy = levelCard(
+                            e?.identifier,
+                            e?.title,
+                            e?.creators,
+                            e?.images?.thumb?.key,
+                            false,
+                            '',
+                            ''
+                            );
+                            level_card_copy.style.backgroundColor = "#ff000055";
+                            unbeatenCount++;
+                        unbeatenOutput.appendChild(level_card_copy);
                     }
                     output.appendChild(level_card);
-                });    
+                });
+                showUnbeatenButton.innerText = `Show unbeaten (${unbeatenCount})`;
+                defaultUnbeatenText.innerText = `${value.user_name}'s unbeaten (${unbeatenCount})`;
+                defaultUnbeatenText.appendChild(showAllButton);
                 output.style.display = 'flex';
             });                
             user_card.insertBefore(checkUnbeatenButton, user_card.childNodes[1]);
