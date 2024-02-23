@@ -345,6 +345,12 @@ h1.title {
     background-color: #dd710d55 !important;
 }
 
+#CheckBestOfGrab-out > .leaderboard-item:nth-child(1),
+#CheckBestOfGrab-out > .leaderboard-item:nth-child(2),
+#CheckBestOfGrab-out > .leaderboard-item:nth-child(3) {
+    background-color: #2e5d9740;
+}
+
 .challengeOutput > .leaderboard-item:nth-child(2) > :nth-child(1)::after,
 .challengeOutput > .leaderboard-item:nth-child(3) > :nth-child(1)::after,
 .challengeOutput > .leaderboard-item:nth-child(4) > :nth-child(1)::after {
@@ -602,6 +608,24 @@ html.dark-mode .leaderboard-item span:nth-last-child(2), html.dark-mode .leaderb
     font-weight: var(--font-weight-bold);
     padding-block: calc(var(--padding-secondary) / 4);
     padding-inline: calc(var(--padding-secondary) / 2);
+    border-radius: var(--border-radius);
+    border: solid 1px #4683ce70;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--padding-secondary);
+    background-color: #5f8cc235;
+    width: fit-content;
+}
+
+.button-super-sml {
+    text-decoration: none;
+    color: var(--text-color-default);
+    font-size: calc(var(--font-size-default) / 2);
+    font-weight: var(--font-weight-bold);
+    padding-block: calc(var(--padding-secondary) / 8);
+    padding-inline: calc(var(--padding-secondary) / 4);
     border-radius: var(--border-radius);
     border: solid 1px #4683ce70;
     display: flex;

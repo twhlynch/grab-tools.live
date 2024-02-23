@@ -566,6 +566,25 @@ function determineScore(record, length) {
     return score;
 }
 
+function getSuffix(number) {
+    number = Math.abs(Math.floor(number));
+
+    if (number % 100 >= 11 && number % 100 <= 13) {
+        return 'th';
+    }
+
+    switch (number % 10) {
+        case 1:
+            return 'st';
+        case 2:
+            return 'nd';
+        case 3:
+            return 'rd';
+        default:
+            return 'th';
+    }
+}
+
 function getBestOfGrab() {
     fetch('/stats_data/best_of_grab.json')
     .then((response) => response.json())
@@ -654,6 +673,48 @@ function getBestOfGrab() {
                     `${value.maps} Maps (${value.score} Pt)`, 
                     ''
                 );
+                let checkUnbeatenButton = document.createElement('button');
+                checkUnbeatenButton.innerText = "Check";
+                checkUnbeatenButton.classList.add('button-super-sml');
+                checkUnbeatenButton.addEventListener('click', () => {
+                    document.querySelectorAll('.LeaderboardOutput').forEach(e => {
+                        e.style.display = 'none';
+                    });
+                    let output = document.getElementById('CheckBestOfGrab-out')
+                    output.innerHTML = `${value.user_name}'s progress on ${key.replace("curated_", "").replaceAll("_", " ")}`;
+                    data.forEach(e => {
+                        if (e.list_key == key) {
+                            let found = false;
+                            let time = 0.0;
+                            let position = 0;
+                            let suffix = '';
+                            eLeaderboard = e.leaderboard;
+                            eLeaderboard.forEach( lItem => {
+                                if (lItem.user_id == id) {
+                                    found = true;
+                                    time = lItem.best_time;
+                                    position = lItem.position + 1;
+                                    suffix = getSuffix(lItem.position + 1);
+                                }
+                            });
+                            let level_card = levelCard(
+                                e?.identifier,
+                                e?.title,
+                                e?.creators,
+                                e?.images?.thumb?.key,
+                                false,
+                                '',
+                                found ? `${position+suffix} - ${time}s` : 'Unbeaten'
+                            );
+                            if (!found) {
+                                level_card.style.backgroundColor = "#ff000055";
+                            }
+                            output.appendChild(level_card);
+                        }
+                    });    
+                    output.style.display = 'flex';
+                });                
+                user_card.insertBefore(checkUnbeatenButton, user_card.childNodes[1]);
                 document.getElementById('BestOfGrab'+key+'-out').appendChild(user_card);
             }
         });
@@ -669,6 +730,46 @@ function getBestOfGrab() {
                 `${value.maps} Maps (${value.score} Pt)`, 
                 ''
             );
+            let checkUnbeatenButton = document.createElement('button');
+            checkUnbeatenButton.innerText = "Check";
+            checkUnbeatenButton.classList.add('button-super-sml');
+            checkUnbeatenButton.addEventListener('click', () => {
+                document.querySelectorAll('.LeaderboardOutput').forEach(e => {
+                    e.style.display = 'none';
+                });
+                let output = document.getElementById('CheckBestOfGrab-out')
+                output.innerHTML = `${value.user_name}'s progress`;
+                data.forEach(e => {
+                    let found = false;
+                    let time = 0.0;
+                    let position = 0;
+                    let suffix = '';
+                    eLeaderboard = e.leaderboard;
+                    eLeaderboard.forEach( lItem => {
+                        if (lItem.user_id == id) {
+                            found = true;
+                            time = lItem.best_time;
+                            position = lItem.position + 1;
+                            suffix = getSuffix(lItem.position + 1);
+                        }
+                    });
+                    let level_card = levelCard(
+                        e?.identifier,
+                        e?.title,
+                        e?.creators,
+                        e?.images?.thumb?.key,
+                        false,
+                        '',
+                        found ? `${position+suffix} - ${time}s` : 'Unbeaten'
+                        );
+                    if (!found) {
+                        level_card.style.backgroundColor = "#ff000055";
+                    }
+                    output.appendChild(level_card);
+                });    
+                output.style.display = 'flex';
+            });                
+            user_card.insertBefore(checkUnbeatenButton, user_card.childNodes[1]);
             document.getElementById('BestOfGrab-out').appendChild(user_card);
         }
     });
