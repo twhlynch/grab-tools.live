@@ -2145,6 +2145,11 @@ initAttributes();
 animate();
 highlightTextEditor();
 
+// dark mode
+if (localStorage.getItem("darkMode") === "true") {
+    document.body.parentElement.classList.add("dark-mode");
+}
+
 // Terminal 
 document.getElementById('terminal-input').addEventListener('keydown', (e) => {
     if (e.which === 13 && e.shiftKey === false && e.altKey === false) {
