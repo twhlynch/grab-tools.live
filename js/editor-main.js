@@ -25,6 +25,9 @@ let vrButton;
 let showGroups = false;
 let startMaterial, finishMaterial;
 let oldText = '';
+let clock = new THREE.Clock();
+let animatedObjects = [];
+let animationTime = 0.0;
 let templates = [
     {
         "name": "Animation Cheat Sheet",
@@ -841,64 +844,64 @@ function refreshScene() {
     }
 
     document.getElementById('render-container').style.backgroundImage = `linear-gradient(rgb(${sky[0][0]}, ${sky[0][1]}, ${sky[0][2]}), rgb(${sky[1][0]}, ${sky[1][1]}, ${sky[1][2]}), rgb(${sky[0][0]}, ${sky[0][1]}, ${sky[0][2]}))`;
-
+    console.log('Refreshed', scene, objects, animatedObjects);
     renderer.render( scene, camera );
 }
 function loadLevelNode(node, parent) {
+    let object = undefined;
+    let complexity = 0;
     if (node.levelNodeGroup) {
-        node = node.levelNodeGroup;
-        let cube = new THREE.Object3D();
+        object = new THREE.Object3D();
         if (showGroups) {
             let geometry = new THREE.BoxGeometry(1, 1, 1);
             let material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
-            cube = new THREE.Mesh(geometry, material);
+            object = new THREE.Mesh(geometry, material);
         }
-        objects.push( cube );
-        parent.add( cube );
-        node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
-        node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
-        node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
-        node.scale.x ? cube.scale.x = node.scale.x : cube.scale.x = 0;
-        node.scale.y ? cube.scale.y = node.scale.y : cube.scale.y = 0;
-        node.scale.z ? cube.scale.z = node.scale.z : cube.scale.z = 0;
-        node.rotation.x ? cube.quaternion.x = node.rotation.x : cube.quaternion.x = 0;
-        node.rotation.y ? cube.quaternion.y = node.rotation.y : cube.quaternion.y = 0;
-        node.rotation.z ? cube.quaternion.z = node.rotation.z : cube.quaternion.z = 0;
-        node.rotation.w ? cube.quaternion.w = node.rotation.w : cube.quaternion.w = 0;
+        objects.push( object );
+        parent.add( object );
+        node.levelNodeGroup.position.x ? object.position.x = node.levelNodeGroup.position.x : object.position.x = 0;
+        node.levelNodeGroup.position.y ? object.position.y = node.levelNodeGroup.position.y : object.position.y = 0;
+        node.levelNodeGroup.position.z ? object.position.z = node.levelNodeGroup.position.z : object.position.z = 0;
+        node.levelNodeGroup.scale.x ? object.scale.x = node.levelNodeGroup.scale.x : object.scale.x = 0;
+        node.levelNodeGroup.scale.y ? object.scale.y = node.levelNodeGroup.scale.y : object.scale.y = 0;
+        node.levelNodeGroup.scale.z ? object.scale.z = node.levelNodeGroup.scale.z : object.scale.z = 0;
+        node.levelNodeGroup.rotation.x ? object.quaternion.x = node.levelNodeGroup.rotation.x : object.quaternion.x = 0;
+        node.levelNodeGroup.rotation.y ? object.quaternion.y = node.levelNodeGroup.rotation.y : object.quaternion.y = 0;
+        node.levelNodeGroup.rotation.z ? object.quaternion.z = node.levelNodeGroup.rotation.z : object.quaternion.z = 0;
+        node.levelNodeGroup.rotation.w ? object.quaternion.w = node.levelNodeGroup.rotation.w : object.quaternion.w = 0;
         
-        cube.initialPosition = cube.position.clone();
-        cube.initialRotation = cube.quaternion.clone();
+        object.initialPosition = object.position.clone();
+        object.initialRotation = object.quaternion.clone();
         
         let groupComplexity = 0;
-        node.childNodes.forEach(node => {
-            groupComplexity += loadLevelNode(node, cube);
+        node.levelNodeGroup.childNodes.forEach(node => {
+            groupComplexity += loadLevelNode(node, object);
         });
-        return groupComplexity;
+        complexity = groupComplexity;
     } else if (node.levelNodeGravity) {
-        node = node.levelNodeGravity;
 
         let particleGeometry = new THREE.BufferGeometry();
 
         let particleColor = new THREE.Color(1.0, 1.0, 1.0);
-        if (node?.mode == 1) {
+        if (node.levelNodeGravity?.mode == 1) {
             particleColor = new THREE.Color(1.0, 0.6, 0.6);
         }
         let particleMaterial = new THREE.PointsMaterial({ color: particleColor, size: 0.05 });
 
-        let object = new THREE.Object3D()
+        object = new THREE.Object3D()
         parent.add(object);
-        object.position.x = node.position.x
-        object.position.y = node.position.y
-        object.position.z = node.position.z
+        object.position.x = node.levelNodeGravity.position.x
+        object.position.y = node.levelNodeGravity.position.y
+        object.position.z = node.levelNodeGravity.position.z
 
-        object.scale.x = node.scale.x
-        object.scale.y = node.scale.y
-        object.scale.z = node.scale.z
+        object.scale.x = node.levelNodeGravity.scale.x
+        object.scale.y = node.levelNodeGravity.scale.y
+        object.scale.z = node.levelNodeGravity.scale.z
 
-        object.quaternion.x = node.rotation.x
-        object.quaternion.y = node.rotation.y
-        object.quaternion.z = node.rotation.z
-        object.quaternion.w = node.rotation.w
+        object.quaternion.x = node.levelNodeGravity.rotation.x
+        object.quaternion.y = node.levelNodeGravity.rotation.y
+        object.quaternion.z = node.levelNodeGravity.rotation.z
+        object.quaternion.w = node.levelNodeGravity.rotation.w
 
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
@@ -920,52 +923,50 @@ function loadLevelNode(node, parent) {
         object.add(particles);
         objects.push(object);
 
-        return 10;
+        complexity = 10;
     } else if (node.levelNodeStatic) { 
-        node = node.levelNodeStatic;
-        let cube;
-        if (node.shape-1000 >= 0 && node.shape-1000 < shapes.length) {
-            cube = shapes[node.shape-1000].clone();
+        if (node.levelNodeStatic.shape-1000 >= 0 && node.levelNodeStatic.shape-1000 < shapes.length) {
+            object = shapes[node.levelNodeStatic.shape-1000].clone();
         } else {
-            cube = shapes[0].clone();
+            object = shapes[0].clone();
         }
         let material;
-        if (node.material >= 0 && node.material < materials.length) {
+        if (node.levelNodeStatic.material >= 0 && node.levelNodeStatic.material < materials.length) {
             if (altTextures) {
-                node.material ? material = exportMaterials[node.material].clone() : material = exportMaterials[0].clone();    
+                node.levelNodeStatic.material ? material = exportMaterials[node.levelNodeStatic.material].clone() : material = exportMaterials[0].clone();    
             } else {
-                node.material ? material = materials[node.material].clone() : material = materials[0].clone();    
+                node.levelNodeStatic.material ? material = materials[node.levelNodeStatic.material].clone() : material = materials[0].clone();    
             }
         } else if (!altTextures) {
             material = materials[0].clone();
         } else {
             material = exportMaterials[0].clone();
         }
-        if (node.material == 8) {
-            node.color.r ? null : node.color.r = 0;
-            node.color.g ? null : node.color.g = 0;
-            node.color.b ? null : node.color.b = 0;
+        if (node.levelNodeStatic.material == 8) {
+            node.levelNodeStatic.color.r ? null : node.levelNodeStatic.color.r = 0;
+            node.levelNodeStatic.color.g ? null : node.levelNodeStatic.color.g = 0;
+            node.levelNodeStatic.color.b ? null : node.levelNodeStatic.color.b = 0;
             if (altTextures) {
-                material.color = new THREE.Color(node.color.r, node.color.g, node.color.b);
+                material.color = new THREE.Color(node.levelNodeStatic.color.r, node.levelNodeStatic.color.g, node.levelNodeStatic.color.b);
             } else {
-                material.uniforms.colors.value = new THREE.Vector3(node.color.r, node.color.g, node.color.b);
+                material.uniforms.colors.value = new THREE.Vector3(node.levelNodeStatic.color.r, node.levelNodeStatic.color.g, node.levelNodeStatic.color.b);
             }
         }
-        cube.material = material;
-        parent.add(cube);
-        node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
-        node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
-        node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
-        node.rotation.w ? cube.quaternion.w = node.rotation.w : cube.quaternion.w = 0;
-        node.rotation.x ? cube.quaternion.x = node.rotation.x : cube.quaternion.x = 0;
-        node.rotation.y ? cube.quaternion.y = node.rotation.y : cube.quaternion.y = 0;
-        node.rotation.z ? cube.quaternion.z = node.rotation.z : cube.quaternion.z = 0;
-        node.scale.x ? cube.scale.x = node.scale.x : cube.scale.x = 0;
-        node.scale.y ? cube.scale.y = node.scale.y : cube.scale.y = 0;
-        node.scale.z ? cube.scale.z = node.scale.z : cube.scale.z = 0;
+        object.material = material;
+        parent.add(object);
+        node.levelNodeStatic.position.x ? object.position.x = node.levelNodeStatic.position.x : object.position.x = 0;
+        node.levelNodeStatic.position.y ? object.position.y = node.levelNodeStatic.position.y : object.position.y = 0;
+        node.levelNodeStatic.position.z ? object.position.z = node.levelNodeStatic.position.z : object.position.z = 0;
+        node.levelNodeStatic.rotation.w ? object.quaternion.w = node.levelNodeStatic.rotation.w : object.quaternion.w = 0;
+        node.levelNodeStatic.rotation.x ? object.quaternion.x = node.levelNodeStatic.rotation.x : object.quaternion.x = 0;
+        node.levelNodeStatic.rotation.y ? object.quaternion.y = node.levelNodeStatic.rotation.y : object.quaternion.y = 0;
+        node.levelNodeStatic.rotation.z ? object.quaternion.z = node.levelNodeStatic.rotation.z : object.quaternion.z = 0;
+        node.levelNodeStatic.scale.x ? object.scale.x = node.levelNodeStatic.scale.x : object.scale.x = 0;
+        node.levelNodeStatic.scale.y ? object.scale.y = node.levelNodeStatic.scale.y : object.scale.y = 0;
+        node.levelNodeStatic.scale.z ? object.scale.z = node.levelNodeStatic.scale.z : object.scale.z = 0;
 
-        cube.initialPosition = cube.position.clone();
-        cube.initialRotation = cube.quaternion.clone();
+        object.initialPosition = object.position.clone();
+        object.initialRotation = object.quaternion.clone();
 
         if (!altTextures) {
             // console.log(material);
@@ -973,9 +974,9 @@ function loadLevelNode(node, parent) {
             let targetQuaternion = new THREE.Quaternion();
             let worldMatrix = new THREE.Matrix4();
             worldMatrix.compose(
-                cube.getWorldPosition(targetVector), 
-                cube.getWorldQuaternion(targetQuaternion), 
-                cube.getWorldScale(targetVector)
+                object.getWorldPosition(targetVector), 
+                object.getWorldQuaternion(targetQuaternion), 
+                object.getWorldScale(targetVector)
             );
 
             let normalMatrix = new THREE.Matrix3();
@@ -983,51 +984,50 @@ function loadLevelNode(node, parent) {
             material.uniforms.worldNormalMatrix.value = normalMatrix;
         }
 
-        objects.push(cube);
-        return 2;
+        objects.push(object);
+        complexity = 2;
     } else if (node.levelNodeCrumbling) {
-        node = node.levelNodeCrumbling;
-        let cube, material;
-        if (node.shape-1000 >= 0 && node.shape-1000 < shapes.length) {
-            cube = shapes[node.shape-1000].clone();
+        let material;
+        if (node.levelNodeCrumbling.shape-1000 >= 0 && node.levelNodeCrumbling.shape-1000 < shapes.length) {
+            object = shapes[node.levelNodeCrumbling.shape-1000].clone();
         } else {
-            cube = shapes[0].clone();
+            object = shapes[0].clone();
         }
-        if (node.material >= 0 && node.material < materials.length) {
+        if (node.levelNodeCrumbling.material >= 0 && node.levelNodeCrumbling.material < materials.length) {
             if (altTextures) {
-                node.material ? material = exportMaterials[node.material] : material = exportMaterials[0];
+                node.levelNodeCrumbling.material ? material = exportMaterials[node.levelNodeCrumbling.material] : material = exportMaterials[0];
             } else {
-                node.material ? material = materials[node.material] : material = materials[0];
+                node.levelNodeCrumbling.material ? material = materials[node.levelNodeCrumbling.material] : material = materials[0];
             }
         } else if (!altTextures) {
             material = exportMaterials[0];
         } else {
             material = materials[0];
         }
-        cube.material = material;
-        parent.add(cube);
-        node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
-        node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
-        node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
-        node.rotation.w ? cube.quaternion.w = node.rotation.w : cube.quaternion.w = 0;
-        node.rotation.x ? cube.quaternion.x = node.rotation.x : cube.quaternion.x = 0;
-        node.rotation.y ? cube.quaternion.y = node.rotation.y : cube.quaternion.y = 0;
-        node.rotation.z ? cube.quaternion.z = node.rotation.z : cube.quaternion.z = 0;
-        node.scale.x ? cube.scale.x = node.scale.x : cube.scale.x = 0;
-        node.scale.y ? cube.scale.y = node.scale.y : cube.scale.y = 0;
-        node.scale.z ? cube.scale.z = node.scale.z : cube.scale.z = 0;
+        object.material = material;
+        parent.add(object);
+        node.levelNodeCrumbling.position.x ? object.position.x = node.levelNodeCrumbling.position.x : object.position.x = 0;
+        node.levelNodeCrumbling.position.y ? object.position.y = node.levelNodeCrumbling.position.y : object.position.y = 0;
+        node.levelNodeCrumbling.position.z ? object.position.z = node.levelNodeCrumbling.position.z : object.position.z = 0;
+        node.levelNodeCrumbling.rotation.w ? object.quaternion.w = node.levelNodeCrumbling.rotation.w : object.quaternion.w = 0;
+        node.levelNodeCrumbling.rotation.x ? object.quaternion.x = node.levelNodeCrumbling.rotation.x : object.quaternion.x = 0;
+        node.levelNodeCrumbling.rotation.y ? object.quaternion.y = node.levelNodeCrumbling.rotation.y : object.quaternion.y = 0;
+        node.levelNodeCrumbling.rotation.z ? object.quaternion.z = node.levelNodeCrumbling.rotation.z : object.quaternion.z = 0;
+        node.levelNodeCrumbling.scale.x ? object.scale.x = node.levelNodeCrumbling.scale.x : object.scale.x = 0;
+        node.levelNodeCrumbling.scale.y ? object.scale.y = node.levelNodeCrumbling.scale.y : object.scale.y = 0;
+        node.levelNodeCrumbling.scale.z ? object.scale.z = node.levelNodeCrumbling.scale.z : object.scale.z = 0;
 
-        cube.initialPosition = cube.position.clone();
-        cube.initialRotation = cube.quaternion.clone();
+        object.initialPosition = object.position.clone();
+        object.initialRotation = object.quaternion.clone();
 
         if (!altTextures) {
             let targetVector = new THREE.Vector3();
             let targetQuaternion = new THREE.Quaternion();
             let worldMatrix = new THREE.Matrix4();
             worldMatrix.compose(
-                cube.getWorldPosition(targetVector), 
-                cube.getWorldQuaternion(targetQuaternion), 
-                cube.getWorldScale(targetVector)
+                object.getWorldPosition(targetVector), 
+                object.getWorldQuaternion(targetQuaternion), 
+                object.getWorldScale(targetVector)
             );
 
             let normalMatrix = new THREE.Matrix3();
@@ -1035,74 +1035,143 @@ function loadLevelNode(node, parent) {
             material.uniforms.worldNormalMatrix.value = normalMatrix;
         }
 
-        objects.push(cube);
-        return 3;
+        objects.push(object);
+        complexity = 3;
     } else if (node.levelNodeSign) {
-        node = node.levelNodeSign;
-        let cube = shapes[5].clone();
+        object = shapes[5].clone();
         if (altTextures) {
-            cube.material = exportMaterials[4];
+            object.material = exportMaterials[4];
         } else {
-            cube.material = materials[4];
+            object.material = materials[4];
         }
-        parent.add(cube);
-        node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
-        node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
-        node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
-        node.rotation.w ? cube.quaternion.w = node.rotation.w : cube.quaternion.w = 0;
-        node.rotation.x ? cube.quaternion.x = node.rotation.x : cube.quaternion.x = 0;
-        node.rotation.y ? cube.quaternion.y = node.rotation.y : cube.quaternion.y = 0;
-        node.rotation.z ? cube.quaternion.z = node.rotation.z : cube.quaternion.z = 0;
+        parent.add(object);
+        node.levelNodeSign.position.x ? object.position.x = node.levelNodeSign.position.x : object.position.x = 0;
+        node.levelNodeSign.position.y ? object.position.y = node.levelNodeSign.position.y : object.position.y = 0;
+        node.levelNodeSign.position.z ? object.position.z = node.levelNodeSign.position.z : object.position.z = 0;
+        node.levelNodeSign.rotation.w ? object.quaternion.w = node.levelNodeSign.rotation.w : object.quaternion.w = 0;
+        node.levelNodeSign.rotation.x ? object.quaternion.x = node.levelNodeSign.rotation.x : object.quaternion.x = 0;
+        node.levelNodeSign.rotation.y ? object.quaternion.y = node.levelNodeSign.rotation.y : object.quaternion.y = 0;
+        node.levelNodeSign.rotation.z ? object.quaternion.z = node.levelNodeSign.rotation.z : object.quaternion.z = 0;
         
-        cube.initialPosition = cube.position.clone();
-        cube.initialRotation = cube.quaternion.clone();
+        object.initialPosition = object.position.clone();
+        object.initialRotation = object.quaternion.clone();
         
-        objects.push(cube);
-        return 5;
+        objects.push(object);
+        complexity = 5;
     } else if (node.levelNodeStart) {
-        node = node.levelNodeStart;
-        let cube = shapes[6].clone();
-        // cube.material = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0.5 });
-        cube.material = startMaterial;
-        parent.add(cube);
-        node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
-        node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
-        node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
-        node.rotation.w ? cube.quaternion.w = node.rotation.w : cube.quaternion.w = 0;
-        node.rotation.x ? cube.quaternion.x = node.rotation.x : cube.quaternion.x = 0;
-        node.rotation.y ? cube.quaternion.y = node.rotation.y : cube.quaternion.y = 0;
-        node.rotation.z ? cube.quaternion.z = node.rotation.z : cube.quaternion.z = 0;
-        node.radius ? cube.scale.x = node.radius : cube.scale.x = 0;
-        node.radius ? cube.scale.z = node.radius : cube.scale.z = 0;
+        object = shapes[6].clone();
+        // object.material = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0.5 });
+        object.material = startMaterial;
+        parent.add(object);
+        node.levelNodeStart.position.x ? object.position.x = node.levelNodeStart.position.x : object.position.x = 0;
+        node.levelNodeStart.position.y ? object.position.y = node.levelNodeStart.position.y : object.position.y = 0;
+        node.levelNodeStart.position.z ? object.position.z = node.levelNodeStart.position.z : object.position.z = 0;
+        node.levelNodeStart.rotation.w ? object.quaternion.w = node.levelNodeStart.rotation.w : object.quaternion.w = 0;
+        node.levelNodeStart.rotation.x ? object.quaternion.x = node.levelNodeStart.rotation.x : object.quaternion.x = 0;
+        node.levelNodeStart.rotation.y ? object.quaternion.y = node.levelNodeStart.rotation.y : object.quaternion.y = 0;
+        node.levelNodeStart.rotation.z ? object.quaternion.z = node.levelNodeStart.rotation.z : object.quaternion.z = 0;
+        node.levelNodeStart.radius ? object.scale.x = node.levelNodeStart.radius : object.scale.x = 0;
+        node.levelNodeStart.radius ? object.scale.z = node.levelNodeStart.radius : object.scale.z = 0;
 
-        cube.initialPosition = cube.position.clone();
-        cube.initialRotation = cube.quaternion.clone();
+        object.initialPosition = object.position.clone();
+        object.initialRotation = object.quaternion.clone();
 
-        objects.push(cube);
-        return 0;
+        objects.push(object);
     } else if (node.levelNodeFinish) {
-        node = node.levelNodeFinish;
-        let cube = shapes[6].clone();
-        // cube.material = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
-        cube.material = finishMaterial;
-        parent.add(cube);
-        node.position.x ? cube.position.x = node.position.x : cube.position.x = 0;
-        node.position.y ? cube.position.y = node.position.y : cube.position.y = 0;
-        node.position.z ? cube.position.z = node.position.z : cube.position.z = 0;
-        node.radius ? cube.scale.x = node.radius : cube.scale.x = 0;
-        node.radius ? cube.scale.z = node.radius : cube.scale.z = 0;
+        object = shapes[6].clone();
+        // object.material = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
+        object.material = finishMaterial;
+        parent.add(object);
+        node.levelNodeFinish.position.x ? object.position.x = node.levelNodeFinish.position.x : object.position.x = 0;
+        node.levelNodeFinish.position.y ? object.position.y = node.levelNodeFinish.position.y : object.position.y = 0;
+        node.levelNodeFinish.position.z ? object.position.z = node.levelNodeFinish.position.z : object.position.z = 0;
+        node.levelNodeFinish.radius ? object.scale.x = node.levelNodeFinish.radius : object.scale.x = 0;
+        node.levelNodeFinish.radius ? object.scale.z = node.levelNodeFinish.radius : object.scale.z = 0;
 
-        cube.initialPosition = cube.position.clone();
-        cube.initialRotation = cube.quaternion.clone();
+        object.initialPosition = object.position.clone();
+        object.initialRotation = object.quaternion.clone();
 
-        objects.push(cube);
-        return 0;
-    } else {
-        return 0;
+        objects.push(object);
     }
+    if (object !== undefined) {
+        if(node.animations && node.animations.length > 0 && node.animations[0].frames && node.animations[0].frames.length > 0) {
+            object.animation = node.animations[0]
+            object.animation.currentFrameIndex = 0
+            animatedObjects.push(object)
+        }
+    }
+    return complexity;
+}
+function updateObjectAnimation(object, time) {
+	let animation = object.animation
+	const animationFrames = animation.frames
+	const relativeTime = (time * object.animation.speed) % animationFrames[animationFrames.length - 1].time;
+	
+	let oldFrame = animationFrames[animation.currentFrameIndex];
+	let newFrameIndex = animation.currentFrameIndex + 1;
+	if(newFrameIndex >= animationFrames.length) newFrameIndex = 0;
+	let newFrame = animationFrames[newFrameIndex];
+
+    // add 0s to missing attributes TODO: fix this at the start
+    oldFrame.position.x ? null : oldFrame.position.x = 0;
+    oldFrame.position.y ? null : oldFrame.position.y = 0;
+    oldFrame.position.z ? null : oldFrame.position.z = 0;
+    oldFrame.rotation.x ? null : oldFrame.rotation.x = 0;
+    oldFrame.rotation.y ? null : oldFrame.rotation.y = 0;
+    oldFrame.rotation.z ? null : oldFrame.rotation.z = 0;
+    oldFrame.rotation.w ? null : oldFrame.rotation.w = 0;
+    newFrame.position.x ? null : newFrame.position.x = 0;
+    newFrame.position.y ? null : newFrame.position.y = 0;
+    newFrame.position.z ? null : newFrame.position.z = 0;
+    newFrame.rotation.x ? null : newFrame.rotation.x = 0;
+    newFrame.rotation.y ? null : newFrame.rotation.y = 0;
+    newFrame.rotation.z ? null : newFrame.rotation.z = 0;
+    newFrame.rotation.w ? null : newFrame.rotation.w = 0;
+	
+	let loopCounter = 0;
+	while(loopCounter <= animationFrames.length)
+	{
+		oldFrame = animationFrames[animation.currentFrameIndex];
+		newFrameIndex = animation.currentFrameIndex + 1;
+		if(newFrameIndex >= animationFrames.length) newFrameIndex = 0;
+		newFrame = animationFrames[newFrameIndex];
+		
+		if(oldFrame.time <= relativeTime && newFrame.time > relativeTime) break;
+		animation.currentFrameIndex += 1;
+		if(animation.currentFrameIndex >= animationFrames.length - 1) animation.currentFrameIndex = 0;
+		
+		loopCounter += 1;
+	}
+
+	let factor = 0.0
+	let timeDiff = (newFrame.time - oldFrame.time);
+	if(Math.abs(timeDiff) > 0.00000001)
+	{
+		factor = (relativeTime - oldFrame.time) / timeDiff;
+	}
+
+	const oldRotation = new THREE.Quaternion( -oldFrame.rotation.x, oldFrame.rotation.y, -oldFrame.rotation.z, oldFrame.rotation.w )
+	const newRotation = new THREE.Quaternion( -newFrame.rotation.x, newFrame.rotation.y, -newFrame.rotation.z, newFrame.rotation.w )
+	const finalRotation = new THREE.Quaternion()
+	finalRotation.slerpQuaternions(oldRotation, newRotation, factor)
+
+	const oldPosition = new THREE.Vector3( -oldFrame.position.x, oldFrame.position.y, -oldFrame.position.z )
+	const newPosition = new THREE.Vector3( -newFrame.position.x, newFrame.position.y, -newFrame.position.z )
+	const finalPosition = new THREE.Vector3()
+	finalPosition.lerpVectors(oldPosition, newPosition, factor)
+
+	object.position.copy(object.initialPosition).add(finalPosition.applyQuaternion(object.initialRotation))
+	object.quaternion.multiplyQuaternions(object.initialRotation, finalRotation)
 }
 function animate() {
-	requestAnimationFrame( animate );
+    const delta = clock.getDelta();
+    controls.update(delta);
+    animationTime += delta;
+	for(let object of animatedObjects) {
+		updateObjectAnimation(object, animationTime)
+	}
+
+	// requestAnimationFrame( animate );
 	renderer.render( scene, camera );
 }
 function readArrayBuffer(file) {
@@ -2142,7 +2211,7 @@ addEventListener('resize', () => {
 // setTimeout(()=>{equiManaged.update( camera, scene );}, 10000);
 camera.position.set(0, 10, 10);
 initAttributes();
-animate();
+renderer.setAnimationLoop(animate);
 highlightTextEditor();
 
 // dark mode
