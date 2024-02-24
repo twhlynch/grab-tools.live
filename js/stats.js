@@ -1108,7 +1108,6 @@ getDailyMap();
 getWeeklyMap();
 getUnbeatenMap();
 getChallengeScores();
-// getKeyWords();
 getGlobalPlays();
 getAChallenge();
 getRecords();

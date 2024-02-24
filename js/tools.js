@@ -424,6 +424,7 @@ function compile(qms=false) {
         let creators = document.getElementById('compile-creators').value;
         let description = document.getElementById('compile-description').value + " grab-tools.live";
         let title = document.getElementById('compile-title').value;
+        let checkpoints = document.getElementById('compile-checkpoints').value;
         let obj = {
             "ambienceSettings": {
                 "skyHorizonColor": {
@@ -447,7 +448,7 @@ function compile(qms=false) {
             "description": description,
             "formatVersion": 6,
             "levelNodes": finalNodes,
-            "maxCheckpointCount": 10,
+            "maxCheckpointCount": checkpoints,
             "title": title
         }
         
