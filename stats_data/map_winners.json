@@ -9213,5 +9213,99 @@
     },
     1708665415,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 3.48799,
+        "user_id": "2a0r12prnob1y78t7wqpn",
+        "user_name": "Dyght_light",
+        "timestamp": "0001708127199118"
+      },
+      {
+        "position": 1,
+        "best_time": 4.59,
+        "user_id": "29w20l59y1m2zkzhkojnu",
+        "user_name": "Mr.Madlord",
+        "timestamp": "0001708734295460"
+      },
+      {
+        "position": 2,
+        "best_time": 4.85301,
+        "user_id": "29srqtwaq08zzhp3kng3u",
+        "user_name": "CoblerB1",
+        "timestamp": "0001708098990486"
+      }
+    ],
+    {
+      "identifier": "2aempisj2cr4n1zshv7bd:1707951633",
+      "title": "Gaer One",
+      "complexity": 1463,
+      "format_version": 8,
+      "update_timestamp": 1707966716602,
+      "creation_timestamp": 1707966716602,
+      "data_key": "level_data:2aempisj2cr4n1zshv7bd:1707951633:1",
+      "description": "gaers",
+      "creators": [
+        "h.191456 Lucius.x.Smith BBQsanwich"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "verification_time": 114.08,
+      "statistics": {
+        "total_played": 400,
+        "difficulty": 0.13101604278074866,
+        "liked": 0.7666666666666667,
+        "time": 78.15919653061223
+      },
+      "images": {
+        "full": {
+          "key": "level_2aempisj2cr4n1zshv7bd_1707951633_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2aempisj2cr4n1zshv7bd_1707951633_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "h.191456 Lucius.x.Smith BBQsanwich",
+      "change": 0
+    },
+    1708751653,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "29wvwcyosrr43a72at6m5:1696733040",
+      "title": "duellmeister",
+      "complexity": 881,
+      "format_version": 7,
+      "update_timestamp": 1696901828608,
+      "creation_timestamp": 1696901828608,
+      "data_key": "level_data:29wvwcyosrr43a72at6m5:1696733040:1",
+      "description": "two player :) each pick a side trust me. Challenge map worthy?? Took around a day to make and around three months to verify!",
+      "creators": [
+        "Poggggg",
+        "soxsux"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 300,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "creator": "Poggggg",
+      "change": 100
+    },
+    1708751653,
+    "unbeaten_map"
   ]
 ]
