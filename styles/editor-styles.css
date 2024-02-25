@@ -389,3 +389,40 @@ html.dark-mode #editing-container {
     color: #99f099;
     cursor: pointer;
 }
+#timeline-slider {
+    width: calc(90% - 110px);
+    padding-inline: 5px;
+    height: 2px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #777;
+    cursor: pointer;
+    pointer-events: none;
+}
+#timeline-slider::-webkit-slider-runnable-track, #timeline-slider::-moz-range-track {
+    height: 2px;
+    background-color: #a3a3a3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#timeline-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #aaa;
+    height: 14px;
+    width: 10px; 
+}
+#timeline-slider::-moz-range-thumb {
+    border: none;
+    border-radius: 0;
+    background-color: #aaa;
+    height: 14px;
+    width: 10px;
+}
+#timeline-slider:focus {
+    outline: none;
+}
+#timeline-slider:focus::-webkit-slider-thumb, #timeline-slider:focus::-moz-range-thumb {
+    outline: none;
+}
