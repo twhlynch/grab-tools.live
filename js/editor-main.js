@@ -2488,6 +2488,15 @@ function handleStatsClick() {
     });
     document.getElementById('stats-container').style.pointerEvents = "none";
 }
+function unlockLevel() {
+    let levelData = getLevel();
+    runOnNodes(levelData.levelNodes, (node) => {
+        if (node.isLocked) {
+            node.isLocked = false;
+        }
+    }, true);
+    setLevel(levelData);
+}
 
 loader = new GLTFLoader();
 scene = new THREE.Scene();
@@ -2725,6 +2734,7 @@ document.getElementById('all-objects-btn').addEventListener('click', () => {open
 document.getElementById('mirror-x-btn').addEventListener('click', () => {mirror('x')});
 document.getElementById('mirror-y-btn').addEventListener('click', () => {mirror('y')});
 document.getElementById('mirror-z-btn').addEventListener('click', () => {mirror('z')});
+document.getElementById('unlock-btn').addEventListener('click', unlockLevel);
 document.getElementById('openvr-btn').addEventListener('click', () => {
     renderer.xr.enabled = true;
     renderer.setAnimationLoop( function () {
