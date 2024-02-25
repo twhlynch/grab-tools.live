@@ -45,7 +45,7 @@ html {
     border: none;
     outline: none;
 }
-#complexity {
+#stats-container {
     position: fixed;
     left: 5px;
     font-size: 13px;
