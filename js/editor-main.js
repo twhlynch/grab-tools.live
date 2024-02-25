@@ -1403,6 +1403,11 @@ function updateObjectAnimation(object, time) {
 	let animation = object.animation
 	const animationFrames = animation.frames
 	const relativeTime = (time * object.animation.speed) % animationFrames[animationFrames.length - 1].time;
+    
+    const timeSlider = document.getElementById('timeline-slider');
+    if (parseInt(timeSlider.max) < animationFrames[animationFrames.length - 1].time) {
+		timeSlider.max = `${animationFrames[animationFrames.length - 1].time}`
+	}
 	
 	let oldFrame = animationFrames[animation.currentFrameIndex];
 	let newFrameIndex = animation.currentFrameIndex + 1;
@@ -1450,6 +1455,8 @@ function animate() {
     controls.update(delta);
     if (playAnimations) {
         animationTime += delta;
+        const timeSlider = document.getElementById('timeline-slider')
+        timeSlider.value = animationTime % timeSlider.max;
         for(let object of animatedObjects) {
             updateObjectAnimation(object, animationTime)
         }
