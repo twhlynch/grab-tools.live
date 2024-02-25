@@ -51,6 +51,22 @@ html {
     font-size: 13px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     bottom: 5px;
+    cursor: pointer;
+}
+.stats-general, .stats-extra {
+    color: #333333
+}
+.stats-material {
+    color: #336633
+}
+.stats-shape {
+    color: #333366
+}
+.stats-type {
+    color: #666633
+}
+.stats-material, .stats-shape, .stats-type, .stats-extra {
+    display: none;
 }
 #warning {
     position: relative;
