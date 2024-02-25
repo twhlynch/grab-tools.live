@@ -811,23 +811,75 @@ function refreshScene() {
     let levelNodes = levelData["levelNodes"];
     
     let statistics = {
+        // basic stats
         complexity: 0,
         animations: 0,
         groups: 0,
         frames: 0,
-        characters: 0
+        characters: 0,
+        objects: 0,
+        // node types
+        static: 0,
+        crumbling: 0,
+        start: 0,
+        end: 0,
+        sign: 0,
+        gravity: 0,
+        // materials
+        default: 0,
+        grabbable: 0,
+        lava: 0,
+        grapplable: 0,
+        grapplable_lava: 0,
+        grabbable_crumbling: 0,
+        default_colored: 0,
+        bouncing: 0,
+        ice: 0,
+        wood: 0,
+        // special attributes
+        neon: 0,
+        gravityNoLegs: 0,
+        // shapes
+        cube: 0,
+        sphere: 0,
+        cylinder: 0,
+        pyramid: 0,
+        prism: 0
     };
     objects = [];
     scene.clear();
     
     levelNodes.forEach((node) => {
-        // complexity += loadLevelNode(node, scene);
         let nodeStatistics = loadLevelNode(node, scene);
         statistics.complexity += nodeStatistics.complexity;
         statistics.animations += nodeStatistics.animations;
         statistics.groups += nodeStatistics.groups;
         statistics.frames += nodeStatistics.frames;
         statistics.characters += nodeStatistics.characters;
+        statistics.objects += nodeStatistics.objects;
+        statistics.static += nodeStatistics.static;
+        statistics.crumbling += nodeStatistics.crumbling;
+        statistics.start += nodeStatistics.start;
+        statistics.end += nodeStatistics.end;
+        statistics.sign += nodeStatistics.sign;
+        statistics.gravity += nodeStatistics.gravity;
+        statistics.neon += nodeStatistics.neon;
+        statistics.gravityNoLegs += nodeStatistics.gravityNoLegs;
+        statistics.default += nodeStatistics.default;
+        statistics.grabbable += nodeStatistics.grabbable;
+        statistics.lava += nodeStatistics.lava;
+        statistics.grapplable += nodeStatistics.grapplable;
+        statistics.grapplable_lava += nodeStatistics.grapplable_lava;
+        statistics.grabbable_crumbling += nodeStatistics.grabbable_crumbling;
+        statistics.default_colored += nodeStatistics.default_colored;
+        statistics.bouncing += nodeStatistics.bouncing;
+        statistics.ice += nodeStatistics.ice;
+        statistics.wood += nodeStatistics.wood;
+        statistics.cube += nodeStatistics.cube;
+        statistics.sphere += nodeStatistics.sphere;
+        statistics.cylinder += nodeStatistics.cylinder;
+        statistics.pyramid += nodeStatistics.pyramid;
+        statistics.prism += nodeStatistics.prism;
     });
     
     document.getElementById('stats-complexity').innerText = `Complexity: ${statistics.complexity}`;
@@ -835,8 +887,31 @@ function refreshScene() {
     document.getElementById('stats-groups').innerText = `Groups: ${statistics.groups}`;
     document.getElementById('stats-frames').innerText = `Frames: ${statistics.frames}`;
     document.getElementById('stats-characters').innerText = `Characters: ${statistics.characters}`;
-    
-    
+    document.getElementById('stats-objects').innerText = `Objects: ${statistics.objects}`;
+    document.getElementById('stats-static').innerText = `Static: ${statistics.static}`;
+    document.getElementById('stats-crumbling').innerText = `Crumbling: ${statistics.crumbling}`;
+    document.getElementById('stats-start').innerText = `Start: ${statistics.start}`;
+    document.getElementById('stats-end').innerText = `End: ${statistics.end}`;
+    document.getElementById('stats-sign').innerText = `Sign: ${statistics.sign}`;
+    document.getElementById('stats-gravity').innerText = `Gravity: ${statistics.gravity}`;
+    document.getElementById('stats-neon').innerText = `Neon: ${statistics.neon}`;
+    document.getElementById('stats-gravityNoLegs').innerText = `Gravity No Legs: ${statistics.gravityNoLegs}`;
+    document.getElementById('stats-default').innerText = `Default: ${statistics.default}`;
+    document.getElementById('stats-grabbable').innerText = `Grabbable: ${statistics.grabbable}`;
+    document.getElementById('stats-lava').innerText = `Lava: ${statistics.lava}`;
+    document.getElementById('stats-grapplable').innerText = `Grapplable: ${statistics.grapplable}`;
+    document.getElementById('stats-grapplable_lava').innerText = `Grapplable Lava: ${statistics.grapplable_lava}`;
+    document.getElementById('stats-grabbable_crumbling').innerText = `Grabbable Crumbling: ${statistics.grabbable_crumbling}`;
+    document.getElementById('stats-default_colored').innerText = `Default Colored: ${statistics.default_colored}`;
+    document.getElementById('stats-bouncing').innerText = `Bouncing: ${statistics.bouncing}`;
+    document.getElementById('stats-ice').innerText = `Ice: ${statistics.ice}`;
+    document.getElementById('stats-wood').innerText = `Wood: ${statistics.wood}`;
+    document.getElementById('stats-cube').innerText = `Cube: ${statistics.cube}`;
+    document.getElementById('stats-sphere').innerText = `Sphere: ${statistics.sphere}`;
+    document.getElementById('stats-cylinder').innerText = `Cylinder: ${statistics.cylinder}`;
+    document.getElementById('stats-pyramid').innerText = `Pyramid: ${statistics.pyramid}`;
+    document.getElementById('stats-prism').innerText = `Prism: ${statistics.prism}`;
+
     let ambience = levelData.ambienceSettings;
     let sky = [
         [
@@ -866,11 +941,40 @@ function refreshScene() {
 function loadLevelNode(node, parent) {
     let object = undefined;
     let statistics = {
+        // basic stats
         complexity: 0,
         animations: 0,
         groups: 0,
         frames: 0,
-        characters: 0
+        characters: 0,
+        objects: 1,
+        // node types
+        static: 0,
+        crumbling: 0,
+        start: 0,
+        end: 0,
+        sign: 0,
+        gravity: 0,
+        // materials
+        default: 0,
+        grabbable: 0,
+        lava: 0,
+        grapplable: 0,
+        grapplable_lava: 0,
+        grabbable_crumbling: 0,
+        default_colored: 0,
+        bouncing: 0,
+        ice: 0,
+        wood: 0,
+        // special attributes
+        neon: 0,
+        gravityNoLegs: 0,
+        // shapes
+        cube: 0,
+        sphere: 0,
+        cylinder: 0,
+        pyramid: 0,
+        prism: 0
     };
     if (node.levelNodeGroup) {
         object = new THREE.Object3D();
@@ -902,8 +1006,33 @@ function loadLevelNode(node, parent) {
             statistics.groups += childNodeStatistics.groups;
             statistics.frames += childNodeStatistics.frames;
             statistics.characters += childNodeStatistics.characters;
+            statistics.objects += childNodeStatistics.objects;
+            statistics.static += childNodeStatistics.static;
+            statistics.crumbling += childNodeStatistics.crumbling;
+            statistics.start += childNodeStatistics.start;
+            statistics.end += childNodeStatistics.end;
+            statistics.sign += childNodeStatistics.sign;
+            statistics.gravity += childNodeStatistics.gravity;
+            statistics.neon += childNodeStatistics.neon;
+            statistics.gravityNoLegs += childNodeStatistics.gravityNoLegs;
+            statistics.default += childNodeStatistics.default;
+            statistics.grabbable += childNodeStatistics.grabbable;
+            statistics.lava += childNodeStatistics.lava;
+            statistics.grapplable += childNodeStatistics.grapplable;
+            statistics.grapplable_lava += childNodeStatistics.grapplable_lava;
+            statistics.grabbable_crumbling += childNodeStatistics.grabbable_crumbling;
+            statistics.default_colored += childNodeStatistics.default_colored;
+            statistics.bouncing += childNodeStatistics.bouncing;
+            statistics.ice += childNodeStatistics.ice;
+            statistics.wood += childNodeStatistics.wood;
+            statistics.cube += childNodeStatistics.cube;
+            statistics.sphere += childNodeStatistics.sphere;
+            statistics.cylinder += childNodeStatistics.cylinder;
+            statistics.pyramid += childNodeStatistics.pyramid;
+            statistics.prism += childNodeStatistics.prism;
         });
         statistics.groups += 1;
+        statistics.objects -= 1;
     } else if (node.levelNodeGravity) {
 
         let particleGeometry = new THREE.BufferGeometry();
@@ -911,6 +1040,7 @@ function loadLevelNode(node, parent) {
         let particleColor = new THREE.Color(1.0, 1.0, 1.0);
         if (node.levelNodeGravity?.mode == 1) {
             particleColor = new THREE.Color(1.0, 0.6, 0.6);
+            statistics.gravityNoLegs += 1;
         }
         let particleMaterial = new THREE.PointsMaterial({ color: particleColor, size: 0.05 });
 
@@ -949,13 +1079,8 @@ function loadLevelNode(node, parent) {
         object.add(particles);
         objects.push(object);
 
-        statistics = {
-            complexity: 10,
-            animations: 0,
-            groups: 0,
-            frames: 0,
-            characters: 0
-        }
+        statistics.complexity = 10;
+        statistics.gravity += 1;
     } else if (node.levelNodeStatic) { 
         if (node.levelNodeStatic.shape-1000 >= 0 && node.levelNodeStatic.shape-1000 < shapes.length) {
             object = shapes[node.levelNodeStatic.shape-1000].clone();
@@ -982,6 +1107,9 @@ function loadLevelNode(node, parent) {
                 material.color = new THREE.Color(node.levelNodeStatic.color.r, node.levelNodeStatic.color.g, node.levelNodeStatic.color.b);
             } else {
                 material.uniforms.colors.value = new THREE.Vector3(node.levelNodeStatic.color.r, node.levelNodeStatic.color.g, node.levelNodeStatic.color.b);
+            }
+            if (node.levelNodeStatic.isNeon) {
+                statistics.neon += 1;
             }
         }
         object.material = material;
@@ -1017,12 +1145,64 @@ function loadLevelNode(node, parent) {
         }
 
         objects.push(object);
-        statistics = {
-            complexity: 2,
-            animations: 0,
-            groups: 0,
-            frames: 0,
-            characters: 0
+        statistics.complexity = 2;
+        statistics.static += 1;
+
+        switch (node.levelNodeStatic.shape) {
+            case 1000:
+                statistics.cube += 1;
+                break;
+            case 1001:
+                statistics.sphere += 1;
+                break;
+            case 1002:
+                statistics.cylinder += 1;
+                break;
+            case 1003:
+                statistics.pyramid += 1;
+                break;
+            case 1004:
+                statistics.prism += 1;
+                break;
+            default:
+                break;
+        }
+        switch (node.levelNodeStatic?.material) {
+            case undefined:
+                statistics.default += 1;
+                break;
+            case 0:
+                statistics.default += 1;
+                break;
+            case 1:
+                statistics.grabbable += 1;
+                break;
+            case 2:
+                statistics.ice += 1;
+                break;
+            case 3:
+                statistics.lava += 1;
+                break;
+            case 4:
+                statistics.wood += 1;
+                break;
+            case 5:
+                statistics.grapplable += 1;
+                break;
+            case 6:
+                statistics.grapplable_lava += 1;
+                break;
+            case 7:
+                statistics.grabbable_crumbling += 1;
+                break;
+            case 8:
+                statistics.default_colored += 1;
+                break;
+            case 9:
+                statistics.bouncing += 1;
+                break;
+            default:
+                break;
         }
     } else if (node.levelNodeCrumbling) {
         let material;
@@ -1074,12 +1254,63 @@ function loadLevelNode(node, parent) {
         }
 
         objects.push(object);
-        statistics = {
-            complexity: 3,
-            animations: 0,
-            groups: 0,
-            frames: 0,
-            characters: 0
+        statistics.complexity = 3;
+        statistics.crumbling += 1;
+        switch (node.levelNodeCrumbling.shape) {
+            case 1000:
+                statistics.cube += 1;
+                break;
+            case 1001:
+                statistics.sphere += 1;
+                break;
+            case 1002:
+                statistics.cylinder += 1;
+                break;
+            case 1003:
+                statistics.pyramid += 1;
+                break;
+            case 1004:
+                statistics.prism += 1;
+                break;
+            default:
+                break;
+        }
+        switch (node.levelNodeCrumbling?.material) {
+            case undefined:
+                statistics.default += 1;
+                break;
+            case 0:
+                statistics.default += 1;
+                break;
+            case 1:
+                statistics.grabbable += 1;
+                break;
+            case 2:
+                statistics.ice += 1;
+                break;
+            case 3:
+                statistics.lava += 1;
+                break;
+            case 4:
+                statistics.wood += 1;
+                break;
+            case 5:
+                statistics.grapplable += 1;
+                break;
+            case 6:
+                statistics.grapplable_lava += 1;
+                break;
+            case 7:
+                statistics.grabbable_crumbling += 1;
+                break;
+            case 8:
+                statistics.default_colored += 1;
+                break;
+            case 9:
+                statistics.bouncing += 1;
+                break;
+            default:
+                break;
         }
     } else if (node.levelNodeSign) {
         object = shapes[5].clone();
@@ -1104,13 +1335,9 @@ function loadLevelNode(node, parent) {
 
         let characters = node.levelNodeSign?.text?.length || 0;
 
-        statistics = {
-            complexity: 5,
-            animations: 0,
-            groups: 0,
-            frames: 0,
-            characters: characters
-        }
+        statistics.complexity = 5;
+        statistics.characters = characters;
+        statistics.sign += 1;
     } else if (node.levelNodeStart) {
         object = shapes[6].clone();
         // object.material = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0.5 });
@@ -1130,13 +1357,8 @@ function loadLevelNode(node, parent) {
         object.initialRotation = object.quaternion.clone();
 
         objects.push(object);
-        statistics = {
-            complexity: 0,
-            animations: 0,
-            groups: 0,
-            frames: 0,
-            characters: 0
-        }
+
+        statistics.start += 1;
     } else if (node.levelNodeFinish) {
         object = shapes[6].clone();
         // object.material = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
@@ -1152,13 +1374,7 @@ function loadLevelNode(node, parent) {
         object.initialRotation = object.quaternion.clone();
 
         objects.push(object);
-        statistics = {
-            complexity: 0,
-            animations: 0,
-            groups: 0,
-            frames: 0,
-            characters: 0
-        }
+        statistics.end += 1;
     }
     if (object !== undefined) {
         if(node.animations && node.animations.length > 0 && node.animations[0].frames && node.animations[0].frames.length > 0) {
@@ -2266,6 +2482,12 @@ function handleDrop(e) {
         }
     }
 }
+function handleStatsClick() {
+    document.querySelectorAll('.stats-material, .stats-shape, .stats-type, .stats-extra').forEach(element => {
+        element.style.display = "flex";
+    });
+    document.getElementById('stats-container').style.pointerEvents = "none";
+}
 
 loader = new GLTFLoader();
 scene = new THREE.Scene();
@@ -2464,6 +2686,8 @@ document.querySelector('#prompt-protobuf .prompt-submit').addEventListener('clic
     document.getElementById('prompt-protobuf').style.display = 'none';
     PROTOBUF_DATA = document.getElementById('protobuf-prompt').value;
 });
+// stats
+document.getElementById('stats-container').addEventListener('click', handleStatsClick);
 // buttons
 document.getElementById('hide-btn').addEventListener('click', () => {document.getElementById('edit-input').style.display = HIDE_TEXT ? 'block' : 'none';HIDE_TEXT = !HIDE_TEXT;highlightTextEditor()});
 document.getElementById('highlight-btn').addEventListener('click', () => {HIGHLIGHT_TEXT = !HIGHLIGHT_TEXT;highlightTextEditor()});
