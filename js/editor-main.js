@@ -28,6 +28,8 @@ let oldText = '';
 let clock = new THREE.Clock();
 let animatedObjects = [];
 let animationTime = 0.0;
+let animationSpeed = 1.0;
+let playAnimations = true;
 let templates = [
     {
         "name": "Animation Cheat Sheet",
@@ -1443,12 +1445,15 @@ function updateObjectAnimation(object, time) {
 	object.quaternion.multiplyQuaternions(object.initialRotation, finalRotation)
 }
 function animate() {
-    const delta = clock.getDelta();
+    let delta = clock.getDelta();
+    delta *= animationSpeed;
     controls.update(delta);
-    animationTime += delta;
-	for(let object of animatedObjects) {
-		updateObjectAnimation(object, animationTime)
-	}
+    if (playAnimations) {
+        animationTime += delta;
+        for(let object of animatedObjects) {
+            updateObjectAnimation(object, animationTime)
+        }
+    }
 
 	// requestAnimationFrame( animate );
 	renderer.render( scene, camera );
@@ -2500,9 +2505,9 @@ function unlockLevel() {
 
 loader = new GLTFLoader();
 scene = new THREE.Scene();
-camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
+camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight - 20), 0.1, 10000 );
 renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-renderer.setSize( window.innerWidth , window.innerHeight );
+renderer.setSize( window.innerWidth , window.innerHeight - 20 );
 document.getElementById('render-container').appendChild( renderer.domElement );
 light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
@@ -2517,9 +2522,9 @@ fly.dragToLook = false;
 fly.rollSpeed = 0;
 fly.movementSpeed = 0.2;
 addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = window.innerWidth / (window.innerHeight - 20);
     camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize( window.innerWidth, window.innerHeight - 20 );
 });
 // let equiManaged = new CubemapToEquirectangular( renderer, true );
 // setTimeout(()=>{equiManaged.update( camera, scene );}, 10000);
@@ -2694,6 +2699,24 @@ document.querySelector('#prompt-protobuf .prompt-submit').addEventListener('clic
     document.getElementById('prompts').style.display = 'none';
     document.getElementById('prompt-protobuf').style.display = 'none';
     PROTOBUF_DATA = document.getElementById('protobuf-prompt').value;
+});
+// timeline
+document.getElementById('timeline-slow').addEventListener('click', () => {
+    animationSpeed -= 0.1;
+});
+document.getElementById('timeline-fast').addEventListener('click', () => {
+    animationSpeed += 0.1;
+});
+document.getElementById('timeline-play').addEventListener('click', () => {
+    playAnimations = true;
+});
+document.getElementById('timeline-pause').addEventListener('click', () => {
+    playAnimations = false;
+});
+document.getElementById('timeline-reset').addEventListener('click', () => {
+    playAnimations = true;
+    animationSpeed = 1;
+    animationTime = 0;
 });
 // stats
 document.getElementById('stats-container').addEventListener('click', handleStatsClick);
