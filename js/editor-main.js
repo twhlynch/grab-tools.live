@@ -810,15 +810,31 @@ function refreshScene() {
     let levelData = getLevel();
     let levelNodes = levelData["levelNodes"];
     
-    let complexity = 0;
+    let statistics = {
+        complexity: 0,
+        animations: 0,
+        groups: 0,
+        frames: 0,
+        characters: 0
+    };
     objects = [];
     scene.clear();
     
     levelNodes.forEach((node) => {
-        complexity += loadLevelNode(node, scene);
+        // complexity += loadLevelNode(node, scene);
+        let nodeStatistics = loadLevelNode(node, scene);
+        statistics.complexity += nodeStatistics.complexity;
+        statistics.animations += nodeStatistics.animations;
+        statistics.groups += nodeStatistics.groups;
+        statistics.frames += nodeStatistics.frames;
+        statistics.characters += nodeStatistics.characters;
     });
     
-    document.getElementById('complexity').innerText = `Complexity: ${complexity}`;
+    document.getElementById('stats-complexity').innerText = `Complexity: ${statistics.complexity}`;
+    document.getElementById('stats-animations').innerText = `Animations: ${statistics.animations}`;
+    document.getElementById('stats-groups').innerText = `Groups: ${statistics.groups}`;
+    document.getElementById('stats-frames').innerText = `Frames: ${statistics.frames}`;
+    document.getElementById('stats-characters').innerText = `Characters: ${statistics.characters}`;
     
     
     let ambience = levelData.ambienceSettings;
@@ -849,7 +865,13 @@ function refreshScene() {
 }
 function loadLevelNode(node, parent) {
     let object = undefined;
-    let complexity = 0;
+    let statistics = {
+        complexity: 0,
+        animations: 0,
+        groups: 0,
+        frames: 0,
+        characters: 0
+    };
     if (node.levelNodeGroup) {
         object = new THREE.Object3D();
         if (showGroups) {
@@ -873,11 +895,15 @@ function loadLevelNode(node, parent) {
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
         
-        let groupComplexity = 0;
         node.levelNodeGroup.childNodes.forEach(node => {
-            groupComplexity += loadLevelNode(node, object);
+            let childNodeStatistics = loadLevelNode(node, object);
+            statistics.complexity += childNodeStatistics.complexity;
+            statistics.animations += childNodeStatistics.animations;
+            statistics.groups += childNodeStatistics.groups;
+            statistics.frames += childNodeStatistics.frames;
+            statistics.characters += childNodeStatistics.characters;
         });
-        complexity = groupComplexity;
+        statistics.groups += 1;
     } else if (node.levelNodeGravity) {
 
         let particleGeometry = new THREE.BufferGeometry();
@@ -923,7 +949,13 @@ function loadLevelNode(node, parent) {
         object.add(particles);
         objects.push(object);
 
-        complexity = 10;
+        statistics = {
+            complexity: 10,
+            animations: 0,
+            groups: 0,
+            frames: 0,
+            characters: 0
+        }
     } else if (node.levelNodeStatic) { 
         if (node.levelNodeStatic.shape-1000 >= 0 && node.levelNodeStatic.shape-1000 < shapes.length) {
             object = shapes[node.levelNodeStatic.shape-1000].clone();
@@ -985,7 +1017,13 @@ function loadLevelNode(node, parent) {
         }
 
         objects.push(object);
-        complexity = 2;
+        statistics = {
+            complexity: 2,
+            animations: 0,
+            groups: 0,
+            frames: 0,
+            characters: 0
+        }
     } else if (node.levelNodeCrumbling) {
         let material;
         if (node.levelNodeCrumbling.shape-1000 >= 0 && node.levelNodeCrumbling.shape-1000 < shapes.length) {
@@ -1036,7 +1074,13 @@ function loadLevelNode(node, parent) {
         }
 
         objects.push(object);
-        complexity = 3;
+        statistics = {
+            complexity: 3,
+            animations: 0,
+            groups: 0,
+            frames: 0,
+            characters: 0
+        }
     } else if (node.levelNodeSign) {
         object = shapes[5].clone();
         if (altTextures) {
@@ -1057,7 +1101,16 @@ function loadLevelNode(node, parent) {
         object.initialRotation = object.quaternion.clone();
         
         objects.push(object);
-        complexity = 5;
+
+        let characters = node.levelNodeSign?.text?.length || 0;
+
+        statistics = {
+            complexity: 5,
+            animations: 0,
+            groups: 0,
+            frames: 0,
+            characters: characters
+        }
     } else if (node.levelNodeStart) {
         object = shapes[6].clone();
         // object.material = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0.5 });
@@ -1077,6 +1130,13 @@ function loadLevelNode(node, parent) {
         object.initialRotation = object.quaternion.clone();
 
         objects.push(object);
+        statistics = {
+            complexity: 0,
+            animations: 0,
+            groups: 0,
+            frames: 0,
+            characters: 0
+        }
     } else if (node.levelNodeFinish) {
         object = shapes[6].clone();
         // object.material = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
@@ -1092,6 +1152,13 @@ function loadLevelNode(node, parent) {
         object.initialRotation = object.quaternion.clone();
 
         objects.push(object);
+        statistics = {
+            complexity: 0,
+            animations: 0,
+            groups: 0,
+            frames: 0,
+            characters: 0
+        }
     }
     if (object !== undefined) {
         if(node.animations && node.animations.length > 0 && node.animations[0].frames && node.animations[0].frames.length > 0) {
@@ -1104,13 +1171,15 @@ function loadLevelNode(node, parent) {
                 frame.rotation.z = frame.rotation.z || 0;
                 frame.rotation.w = frame.rotation.w || 0;
                 frame.time = frame.time || 0;
+                statistics.frames += 1;
             }
             object.animation = node.animations[0]
             object.animation.currentFrameIndex = 0
             animatedObjects.push(object)
+            statistics.animations += 1;
         }
     }
-    return complexity;
+    return statistics;
 }
 function updateObjectAnimation(object, time) {
 	let animation = object.animation
