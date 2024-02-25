@@ -25,6 +25,7 @@ let vrButton;
 let showGroups = false;
 let startMaterial, finishMaterial;
 let oldText = '';
+let oldHighlightedText = '';
 let clock = new THREE.Clock();
 let animatedObjects = [];
 let animationTime = 0.0;
@@ -675,12 +676,15 @@ function highlightTextEditor() {
             });
 
             textEditor.innerHTML = highlightedText;
+            oldHighlightedText = highlightedText;
         } else {
             textEditor.innerHTML = editText;
         }
     }
     if (hasChanged) {
         refreshScene();
+    } else {
+        textEditor.innerHTML = oldHighlightedText;
     }
     oldText = textEditor.innerText;
 
