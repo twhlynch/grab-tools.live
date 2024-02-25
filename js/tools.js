@@ -448,7 +448,7 @@ function compile(qms=false) {
             "description": description,
             "formatVersion": 6,
             "levelNodes": finalNodes,
-            "maxCheckpointCount": checkpoints,
+            "maxCheckpointCount": parseInt(checkpoints),
             "title": title
         }
         
