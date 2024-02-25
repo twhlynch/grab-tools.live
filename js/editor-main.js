@@ -2139,6 +2139,26 @@ function handleEditInput(e) {
         let range = selection.getRangeAt(0);
         range.insertNode(document.createTextNode("    "));
         selection.collapseToEnd();
+    } else if (e.code === "KeyF" && e.altKey) {
+        e.preventDefault();
+        let selection = window.getSelection();
+        selection.collapseToStart();
+        let range = selection.getRangeAt(0);
+        range.insertNode(document.createTextNode(JSON.stringify({
+            "time": 0.0,
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "rotation": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        }, null, 4)));
+        selection.collapseToEnd();
     }
 }
 function loadTemplateButtons() {
@@ -2450,6 +2470,7 @@ document.getElementById('randomambience-btn').addEventListener('click', () => {s
 document.getElementById('defaultambience-btn').addEventListener('click', () => {setAmbience({"r": 0.28,"g": 0.476,"b": 0.73,"a": 1}, {"r": 0.916,"g": 0.9574,"b": 0.9574,"a": 1}, 45, 315, 1, 0)});
 // insert nodes
 document.getElementById('nodeStatic-btn').addEventListener('click', () => {appendJSON("level_data/json_files/static-node.json")});
+document.getElementById('nodeAnimated-btn').addEventListener('click', () => {appendJSON("level_data/json_files/animated-node.json")});
 document.getElementById('nodeCrumbling-btn').addEventListener('click', () => {appendJSON("level_data/json_files/crumbling-node.json")});
 document.getElementById('nodeColored-btn').addEventListener('click', () => {appendJSON("level_data/json_files/colored-node.json")});
 document.getElementById('nodeSign-btn').addEventListener('click', () => {appendJSON("level_data/json_files/sign-node.json")});
