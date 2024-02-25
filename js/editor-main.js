@@ -1095,6 +1095,16 @@ function loadLevelNode(node, parent) {
     }
     if (object !== undefined) {
         if(node.animations && node.animations.length > 0 && node.animations[0].frames && node.animations[0].frames.length > 0) {
+            for (let frame of node.animations[0].frames) {
+                frame.position.x = frame.position.x || 0;
+                frame.position.y = frame.position.y || 0;
+                frame.position.z = frame.position.z || 0;
+                frame.rotation.x = frame.rotation.x || 0;
+                frame.rotation.y = frame.rotation.y || 0;
+                frame.rotation.z = frame.rotation.z || 0;
+                frame.rotation.w = frame.rotation.w || 0;
+                frame.time = frame.time || 0;
+            }
             object.animation = node.animations[0]
             object.animation.currentFrameIndex = 0
             animatedObjects.push(object)
@@ -1112,22 +1122,6 @@ function updateObjectAnimation(object, time) {
 	if(newFrameIndex >= animationFrames.length) newFrameIndex = 0;
 	let newFrame = animationFrames[newFrameIndex];
 
-    // add 0s to missing attributes TODO: fix this at the start
-    oldFrame.position.x ? null : oldFrame.position.x = 0;
-    oldFrame.position.y ? null : oldFrame.position.y = 0;
-    oldFrame.position.z ? null : oldFrame.position.z = 0;
-    oldFrame.rotation.x ? null : oldFrame.rotation.x = 0;
-    oldFrame.rotation.y ? null : oldFrame.rotation.y = 0;
-    oldFrame.rotation.z ? null : oldFrame.rotation.z = 0;
-    oldFrame.rotation.w ? null : oldFrame.rotation.w = 0;
-    newFrame.position.x ? null : newFrame.position.x = 0;
-    newFrame.position.y ? null : newFrame.position.y = 0;
-    newFrame.position.z ? null : newFrame.position.z = 0;
-    newFrame.rotation.x ? null : newFrame.rotation.x = 0;
-    newFrame.rotation.y ? null : newFrame.rotation.y = 0;
-    newFrame.rotation.z ? null : newFrame.rotation.z = 0;
-    newFrame.rotation.w ? null : newFrame.rotation.w = 0;
-	
 	let loopCounter = 0;
 	while(loopCounter <= animationFrames.length)
 	{
