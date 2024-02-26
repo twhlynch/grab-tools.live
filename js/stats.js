@@ -750,6 +750,8 @@ function getBestOfGrab() {
                                     unbeatenCount++;
                                 unbeatenOutput.appendChild(level_card_copy);
                                 unbeatenOutput.appendChild(level_card);
+                            } else if (position == 1) {
+                                level_card.style.backgroundColor = "#d4982955";
                             }
                             output.appendChild(level_card);
                         }
@@ -851,6 +853,8 @@ function getBestOfGrab() {
                             level_card_copy.style.backgroundColor = "#ff000055";
                             unbeatenCount++;
                         unbeatenOutput.appendChild(level_card_copy);
+                    } else if (position == 1) {
+                        level_card.style.backgroundColor = "#d4982955";
                     }
                     output.appendChild(level_card);
                 });
