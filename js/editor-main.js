@@ -5,8 +5,7 @@ import { FlyControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/contro
 import { GLTFExporter } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm//exporters/GLTFExporter.js';
 import { VRButton } from "https://cdn.jsdelivr.net/npm/three@0.145.0/examples/jsm/webxr/VRButton.min.js";
 // import { XRControllerModelFactory } from 'https://cdn.jsdelivr.net/npm/three@0.145.0/examples/jsm/webxr/XRControllerModelFactory.js';
-// import { CubemapToEquirectangular } from './js/CubemapToEquirectangular.js';
-
+import { vertexShader, fragmentShader, startFinishVS, startFinishFS } from './shaders.js';
 let webusb = null;
 let adb = null;
 let shell = null;
@@ -25,590 +24,61 @@ let vrButton;
 let showGroups = false;
 let startMaterial, finishMaterial;
 let oldText = '';
-let oldHighlightedText = '';
 let clock = new THREE.Clock();
 let animatedObjects = [];
 let animationTime = 0.0;
 let animationSpeed = 1.0;
 let playAnimations = true;
-let templates = [
-    {
-        "name": "Animation Cheat Sheet",
-        "link": "level_data/animations.level",
-        "type": "file"
-    },
-    {
-        "name": "Tutorial",
-        "link": "29t798uon2urbra1f8w2q:1693775768",
-        "type": "identifier"
-    },
-    {
-        "name": "Rick Roll",
-        "link": "29sgp24f1uorbc6vq8d2k:1696497039",
-        "type": "identifier"
-    },
-    {
-        "name": "BAD APPLE!!",
-        "link": "29sgp24f1uorbc6vq8d2k:1696497038",
-        "type": "identifier"
-    },
-    {
-        "name": "animation test file",
-        "link": "level_data/animtesting.level",
-        "type": "file"
-    },
-    {
-        "name": "Space Lobby 2024",
-        "link": "level_data/lobbies/lobby-space-2024.level",
-        "type": "file"
-    },
-    {
-        "name": "Christmas Lobby 2023",
-        "link": "level_data/lobbies/lobby-christmas-2023.level",
-        "type": "file"
-    },
-    {
-        "name": "New Years 2024 Lobby",
-        "link": "level_data/lobbies/lobby-new-year-2024.level",
-        "type": "file"
-    },
-    {
-        "name": "Best Of Grab Lobby",
-        "link": "level_data/lobbies/lobby-best-of-grab-2023.level",
-        "type": "file"
-    },
-    {
-        "name": "Halloween Lobby 2023",
-        "link": "level_data/lobbies/lobby-halloween-2023.level",
-        "type": "file"
-    },
-    {
-        "name": "Lobby",
-        "link": "level_data/lobbies/lobby.level",
-        "type": "file"
-    },
-    {
-        "name": "Treehouse Lobby",
-        "link": "level_data/lobbies/lobby-treehouse.level",
-        "type": "file"
-    },
-    {
-        "name": "Temple Lobby",
-        "link": "level_data/lobbies/lobby-temple.level",
-        "type": "file"
-    },
-    {
-        "name": "Dojo Lobby",
-        "link": "level_data/lobbies/lobby-dojo.level",
-        "type": "file"
-    },
-    {
-        "name": "Christmas Lobby",
-        "link": "level_data/lobbies/lobby-christmas.level",
-        "type": "file"
-    },
-    {
-        "name": "Cave Lobby",
-        "link": "level_data/lobbies/lobby-cave.level",
-        "type": "file"
-    },
-    {
-        "name": "Beach Lobby",
-        "link": "level_data/lobbies/lobby-beach.level",
-        "type": "file"
-    },
-    {
-        "name": "New Editor",
-        "link": "level_data/new.level",
-        "type": "file"
-    },
-    {
-        "name": "Castle Lobby 2023",
-        "link": "level_data/lobbies/lobby-castle-2023.level",
-        "type": "file"
-    },
-    {
-        "name": "Christmas Lobby 2022",
-        "link": "level_data/lobbies/lobby-christmas-2022.level",
-        "type": "file"
-    },
-    {
-        "name": "Easter GTF Lobby 2023",
-        "link": "level_data/lobbies/lobby-easter-2023.level",
-        "type": "file"
-    },
-    {
-        "name": "Summer Lobby 2023",
-        "link": "level_data/lobbies/lobby-summer-2023.level",
-        "type": "file"
-    },
-    {
-        "name": "Space Lobby",
-        "link": "level_data/lobbies/lobby-space.level",
-        "type": "file"
-    },
-    {
-        "name": "Restaurant Lobby",
-        "link": "level_data/lobbies/lobby-restaurant.level",
-        "type": "file"
-    },
-    {
-        "name": "Halloween Lobby",
-        "link": "level_data/lobbies/lobby-halloween.level",
-        "type": "file"
-    },
-    {
-        "name": "Forest Lobby",
-        "link": "level_data/lobbies/lobby-forest.level",
-        "type": "file"
-    },
-    {
-        "name": "Floating Islands Lobby 2023",
-        "link": "level_data/lobbies/lobby-floating-islands-2023.level",
-        "type": "file"
-    },
-    {
-        "name": "Winter Lobby 2023",
-        "link": "level_data/lobbies/lobby-winter-2023.level",
-        "type": "file"
-    },
-    {
-        "name": "The Mountain",
-        "link": "29r46v7djliny6t4rzvq7:1654257963",
-        "type": "identifier"
-    },
-    {
-        "name": "FROSTYs climbing adventure",
-        "link": "29ffxg2ijqxyrgxyy2vjj:1642284195",
-        "type": "identifier"
-    },
-    {
-        "name": "fire",
-        "link": "2a4lsr3j8bypkewcx9s90:fire",
-        "type": "identifier"
-    },
-    {
-        "name": "WOODEN",
-        "link": "29sgp24f1uorbc6vq8d2k:1693731780",
-        "type": "identifier"
-    },
-    {
-        "name": "Blood in the ice",
-        "link": "2a4lsr3j8bypkewcx9s90:1691122081",
-        "type": "identifier"
-    },
-    {
-        "name": "DON'T SLIP!",
-        "link": "29sgp24f1uorbc6vq8d2k:1693033756",
-        "type": "identifier"
-    },
-    {
-        "name": ".index's X-Ray",
-        "link": "29sgp24f1uorbc6vq8d2k:1685501411",
-        "type": "identifier"
-    },
-    {
-        "name": "COW!",
-        "link": "29sgp24f1uorbc6vq8d2k:1685501444",
-        "type": "identifier"
-    },
-    {
-        "name": "VERY FUN LEVEL",
-        "link": "2a4lsr3j8bypkewcx9s90:1684323969",
-        "type": "identifier"
-    },
-    {
-        "name": "Tutorial 1",
-        "link": "level_data/official/1-tutorial-1.level",
-        "type": "file"
-    },
-    {
-        "name": "Tutorial 2",
-        "link": "level_data/official/2-tutorial-2.level",
-        "type": "file"
-    },
-    {
-        "name": "Tutorial 3",
-        "link": "level_data/official/3-tutorial-3.level",
-        "type": "file"
-    },
-    {
-        "name": "Tutorial 4",
-        "link": "level_data/official/4-tutorial-4.level",
-        "type": "file"
-    },
-    {
-        "name": "Tutorial 5",
-        "link": "level_data/official/5-tutorial-5.level",
-        "type": "file"
-    },
-    {
-        "name": "Tutorial 6",
-        "link": "level_data/official/6-tutorial-6.level",
-        "type": "file"
-    },
-    {
-        "name": "Tutorial 7",
-        "link": "level_data/official/7-tutorial-7.level",
-        "type": "file"
-    },
-    {
-        "name": "Easy 1",
-        "link": "level_data/official/10-easy-1.level",
-        "type": "file"
-    },
-    {
-        "name": "Easy 2",
-        "link": "level_data/official/11-easy-2.level",
-        "type": "file"
-    },
-    {
-        "name": "Easy 3",
-        "link": "level_data/official/12-easy-3.level",
-        "type": "file"
-    },
-    {
-        "name": "Easy 4",
-        "link": "level_data/official/13-easy-4.level",
-        "type": "file"
-    },
-    {
-        "name": "Easy 5",
-        "link": "level_data/official/14-easy-5.level",
-        "type": "file"
-    },
-    {
-        "name": "Easy 6",
-        "link": "level_data/official/15-easy-6.level",
-        "type": "file"
-    },
-    {
-        "name": "Easy tower",
-        "link": "level_data/official/20-easy-tower.level",
-        "type": "file"
-    },
-    {
-        "name": "Death Tower",
-        "link": "level_data/official/30-death-tower.level",
-        "type": "file"
-    },
-    {
-        "name": "BFL",
-        "link": "level_data/official/40-BFL-1.level",
-        "type": "file"
-    }
-];
-let PROTOBUF_DATA = `
-syntax = "proto3";
+let templates = await fetch('/level_data/templates.json').then(response => response.json());
+let PROTOBUF_DATA = await fetch('/proto/proto.proto').then(response => response.text());
 
-package COD.Level;
-
-message Level
-{
-  uint32 formatVersion = 1;
-
-  string title = 2;
-  string creators = 3;
-  string description = 4;
-  uint32 complexity = 5;
-  uint32 maxCheckpointCount = 7;
-
-  AmbienceSettings ambienceSettings = 8;
-
-  repeated LevelNode levelNodes = 6;
-}
-
-message Vector
-{
-	float x = 1;
-	float y = 2;
-	float z = 3;
-}
-
-message Quaternion
-{
-	float x = 1;
-	float y = 2;
-	float z = 3;
-	float w = 4;
-}
-
-message Color
-{
-	float r = 1;
-	float g = 2;
-	float b = 3;
-	float a = 4;
-}
-
-message AmbienceSettings
-{
-	Color skyZenithColor = 1;
-	Color skyHorizonColor = 2;
-
-	float sunAltitude = 3;
-	float sunAzimuth = 4;
-	float sunSize = 5;
-
-	float fogDDensity = 6;
-}
-
-enum LevelNodeShape
-{
-	START = 0;
-	FINISH = 1;
-	SIGN = 2;
-
-	__END_OF_SPECIAL_PARTS__ = 3;
-
-	CUBE = 1000;
-	SPHERE = 1001;
-	CYLINDER = 1002;
-	PYRAMID = 1003;
-	PRISM = 1004;
-}
-
-enum LevelNodeMaterial
-{
-	DEFAULT = 0;
-	GRABBABLE = 1;
-	ICE = 2;
-	LAVA = 3;
-	WOOD = 4;
-	GRAPPLABLE = 5;
-	GRAPPLABLE_LAVA = 6;
-
-	GRABBABLE_CRUMBLING= 7;
-	DEFAULT_COLORED = 8;
-	BOUNCING = 9;
-}
-
-message LevelNodeGroup
-{
-	Vector position = 1;
-	Vector scale = 2;
-	Quaternion rotation = 3;
-
-	repeated LevelNode childNodes = 4;
-}
-
-message LevelNodeStart
-{
-	Vector position = 1;
-	Quaternion rotation = 2;
-	float radius = 3;
-}
-
-message LevelNodeFinish
-{
-	Vector position = 1;
-	float radius = 2;
-}
-
-message LevelNodeStatic
-{
-	LevelNodeShape shape = 1;
-	LevelNodeMaterial material = 2;
-
-	Vector position = 3;
-	Vector scale = 4;
-	Quaternion rotation = 5;
-
-	Color color = 6;
-	bool isNeon = 7;
-}
-
-message LevelNodeCrumbling
-{
-	LevelNodeShape shape = 1;
-	LevelNodeMaterial material = 2;
-
-	Vector position = 3;
-	Vector scale = 4;
-	Quaternion rotation = 5;
-
-	float stableTime = 6;
-	float respawnTime = 7;
-}
-
-message LevelNodeSign
-{
-	Vector position = 1;
-	Quaternion rotation = 2;
-
-	string text = 3;
-}
-
-message LevelNodeGravity
-{
-	enum Mode
-	{
-		DEFAULT = 0;
-		NOLEGS = 1; //gtag like movement with the head on the ground, also no leg collisions with lava
-	}
-
-	Mode mode = 1;
-
-	Vector position = 2;
-	Vector scale = 3;
-	Quaternion rotation = 4;
-
-	Vector direction = 5;
-}
-
-message AnimationFrame
-{
-	float time = 1;
-	Vector position = 2;
-	Quaternion rotation = 3;
-}
-
-message Animation
-{
-	enum Direction
-	{
-		RESTART = 0;
-		PINGPONG = 1;
-	}
-
-	string name = 1;
-	repeated AnimationFrame frames = 2;
-	Direction direction = 3;
-	float speed = 4;
-}
-
-message LevelNode
-{
-	bool isLocked = 6;
-
-	oneof content
-	{
-		LevelNodeStart levelNodeStart = 1;
-		LevelNodeFinish levelNodeFinish = 2;
-		LevelNodeStatic levelNodeStatic = 3;
-		LevelNodeSign levelNodeSign = 4;
-		LevelNodeCrumbling levelNodeCrumbling = 5;
-		LevelNodeGroup levelNodeGroup = 7;
-		LevelNodeGravity levelNodeGravity = 8;
-	}
-
-	repeated Animation animations = 15;
-}
-`
-const vertexShader = /*glsl*/`
-
-varying vec3 vWorldPosition;
-varying vec3 vNormal;
-
-uniform mat3 worldNormalMatrix;
-
-void main()
-{
-    vec4 worldPosition = modelMatrix * vec4(position, 1.0);
-    vWorldPosition = worldPosition.xyz;
-
-    vNormal = worldNormalMatrix * normal;
-
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-}`;
-const fragmentShader = /*glsl*/`
-
-varying vec3 vWorldPosition;
-varying vec3 vNormal;
-
-uniform vec3 colors;
-uniform float opacity;
-uniform sampler2D colorTexture;
-uniform float tileFactor;
-
-uniform float sunSize;
-uniform vec3 sunColor;
-uniform vec3 sunDirection;
-uniform vec4 specularColor;
-
-const float gamma = 0.5;
-
-void main()
-{
-    vec4 color = vec4(colors, opacity);
-    vec3 blendNormals = abs(vNormal);
-    vec3 texSample;
-    vec4 adjustment = vec4(1.0, 1.0, 1.0, 1.0);
-
-    if(blendNormals.x > blendNormals.y && blendNormals.x > blendNormals.z)
-    {
-        texSample = texture2D(colorTexture, vWorldPosition.zy * tileFactor).rgb;
-    }
-    else if(blendNormals.y > blendNormals.z)
-    {
-        texSample = texture2D(colorTexture, vWorldPosition.xz * tileFactor).rgb;
-    }
-    else
-    {
-        texSample = texture2D(colorTexture, vWorldPosition.xy * tileFactor).rgb;
-    }
-
-    texSample = pow(texSample, vec3(1.0 / gamma));
-
-    color.rgb *= texSample * adjustment.rgb;
-
-    //Apply sun light
-
-    vec3 cameraToVertex = vWorldPosition - cameraPosition;
-    float distanceToCamera = length(cameraToVertex);
-    cameraToVertex = normalize(cameraToVertex);
-
-    vec3 lightDirection = normalize(-sunDirection);
-
-    float light = dot(normalize(vNormal), lightDirection);
-    float finalLight = clamp(light, 0.0, 1.0);
-    float lightFactor = finalLight;
-    lightFactor -= clamp(-light * 0.15, 0.0, 1.0);
-
-    vec3 halfVector = normalize((-sunDirection - cameraToVertex));
-    float lightSpecular = clamp(dot(normalize(vNormal), halfVector), 0.0, 1.0);
-
-    color.rgb = 0.5 * color.rgb + sunColor * clamp(sunSize * 0.7 + 0.3, 0.0, 1.0) * (color.rgb * lightFactor + pow(lightSpecular, specularColor.a) * specularColor.rgb * finalLight);
-
-    gl_FragColor = LinearTosRGB(color);
-}`;
-const startFinishVS = /*glsl*/`
-varying vec2 vTexcoord;
-
-void main()
-{
-    vTexcoord = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-}`;
-const startFinishFS = /*glsl*/`
-varying vec2 vTexcoord;
-
-uniform vec4 diffuseColor;
-
-void main()
-{
-    vec4 color = diffuseColor;
-    float factor = vTexcoord.y;
-    factor *= factor * factor;
-    factor = clamp(factor, 0.0, 1.0);
-    color.a = factor;
-
-    gl_FragColor = color;
-}`;
+// elements
+const formatWarningElement = document.getElementById('formatWarning');
+const typeWarningElement = document.getElementById('definitionWarning');
+const editInputElement = document.getElementById('edit-input');
+const renderContainerElement = document.getElementById('render-container');
+const terminalInputElement = document.getElementById('terminal-input');
+const templatesContainerElement = document.getElementById('templates-container');
+const timelineSliderElement = document.getElementById('timeline-slider');
+const statsComplexityElement = document.getElementById('stats-complexity');
+const statsAnimationsElement = document.getElementById('stats-animations');
+const statsGroupsElement = document.getElementById('stats-groups');
+const statsFramesElement = document.getElementById('stats-frames');
+const statsCharactersElement = document.getElementById('stats-characters');
+const statsObjectsElement = document.getElementById('stats-objects');
+const statsStaticElement = document.getElementById('stats-static');
+const statsCrumblingElement = document.getElementById('stats-crumbling');
+const statsStartElement = document.getElementById('stats-start');
+const statsEndElement = document.getElementById('stats-end');
+const statsSignElement = document.getElementById('stats-sign');
+const statsGravityElement = document.getElementById('stats-gravity');
+const statsNeonElement = document.getElementById('stats-neon');
+const statsGravityNoLegsElement = document.getElementById('stats-gravityNoLegs');
+const statsDefaultElement = document.getElementById('stats-default');
+const statsGrabbableElement = document.getElementById('stats-grabbable');
+const statsLavaElement = document.getElementById('stats-lava');
+const statsGrapplableElement = document.getElementById('stats-grapplable');
+const statsGrapplable_lavaElement = document.getElementById('stats-grapplable_lava');
+const statsGrabbable_crumblingElement = document.getElementById('stats-grabbable_crumbling');
+const statsDefault_coloredElement = document.getElementById('stats-default_colored');
+const statsBouncingElement = document.getElementById('stats-bouncing');
+const statsIceElement = document.getElementById('stats-ice');
+const statsWoodElement = document.getElementById('stats-wood');
+const statsCubeElement = document.getElementById('stats-cube');
+const statsSphereElement = document.getElementById('stats-sphere');
+const statsCylinderElement = document.getElementById('stats-cylinder');
+const statsPyramidElement = document.getElementById('stats-pyramid');
+const statsPrismElement = document.getElementById('stats-prism');
 
 function getLevel() {
-    return JSON.parse(document.getElementById('edit-input').innerText);
+    return JSON.parse(editInputElement.innerText);
 }
 function setLevel(level) {
     console.log(level);
-    if (level.formatVersion != 6) {
-        document.getElementById('warning').style.display = "block";
-    } else {
-        document.getElementById('warning').style.display = "none";
-    }
+    formatWarningElement.style.display = level.formatVersion < 6 ? "block" : "none";    
     level.levelNodes ? {} : level.levelNodes = [];
     level.levelNodes.forEach(node => {
-        if (node.hasOwnProperty('levelNodeStatic')) {
+        if (node?.levelNodeStatic && node.levelNodeStatic.material == 8) {
             node.levelNodeStatic.color ? {} : node.levelNodeStatic.color = {};
             node.levelNodeStatic.color.r ? {} : node.levelNodeStatic.color.r = 0;
             node.levelNodeStatic.color.g ? {} : node.levelNodeStatic.color.g = 0;
@@ -616,30 +86,31 @@ function setLevel(level) {
         }
     });
 
-    document.getElementById('edit-input').innerText = JSON.stringify(level, null, 4);
+    editInputElement.innerText = JSON.stringify(level, null, 4);
     highlightTextEditor();
 }
 function highlightTextEditor() {
-    let textEditor = document.getElementById('edit-input');
-    let hasChanged = oldText != textEditor.innerText
+    let textEditor = editInputElement;
+    let hasChanged = oldText != textEditor.innerText;
+
     if (!HIDE_TEXT && hasChanged) {
         
         const editText = JSON.stringify(JSON.parse(textEditor.innerText), null, 4);
-
+        
         if (HIGHLIGHT_TEXT) {
-
+            
             let highlightedText = editText.replace(/"color":\s*{\s*("r":\s*(\d+(?:\.\d+)?),)?\s*("g":\s*(\d+(?:\.\d+)?),)?\s*("b":\s*(\d+(?:\.\d+)?),)?\s*("a":\s*\d+(?:\.\d+)?)?\s*}/, (match) => {
                 let jsonData = JSON.parse(`{${match}}`);
                 let color = `rgba(${(jsonData.color.r || 0) * 255}, ${(jsonData.color.g || 0) * 255}, ${(jsonData.color.b || 0) * 255}, 0.3)`;
                 return `<span style='text-shadow: 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color};'>${match}</span>`
             });
-
+            
             highlightedText = highlightedText.replace(/([bruf]*)(\"""|")(?:(?!\2)(?:\\.|[^\\]))*\2:?/gs, (match) => {
-            if (match.endsWith(":")) {
-                return `<span style="color: #dd612e">${match.slice(0,-1)}</span><span style="color: #007acc">:</span>`;
-            } else {
-                return `<span style="color: #487e02">${match}</span>`;
-            }
+                if (match.endsWith(":")) {
+                    return `<span style="color: #dd612e">${match.slice(0,-1)}</span><span style="color: #007acc">:</span>`;
+                } else {
+                    return `<span style="color: #487e02">${match}</span>`;
+                }
             });
             highlightedText = highlightedText.replace(/"levelNodeFinish"/gsi, (match) => {
                 return `<span style="background: #f006;">${match}</span>`
@@ -674,17 +145,14 @@ function highlightTextEditor() {
                 }
                 return match;
             });
-
+            
             textEditor.innerHTML = highlightedText;
-            oldHighlightedText = highlightedText;
         } else {
             textEditor.innerHTML = editText;
         }
     }
     if (hasChanged) {
         refreshScene();
-    } else {
-        textEditor.innerHTML = oldHighlightedText;
     }
     oldText = textEditor.innerText;
 
@@ -700,11 +168,7 @@ function loadTexture(path) {
 function loadModel(path) {
     return new Promise((resolve) => {
         loader.load(path, function (gltf) {
-            const glftScene = gltf.scene;
-            // if (path == 'models/editor/pyramid.glb' || path == 'models/editor/prism.glb') {
-            //     glftScene.children[0].geometry.rotateX(Math.PI);
-            // }
-            resolve(glftScene.children[0]);
+            resolve(gltf.scene.children[0]);
         });
     });
 }
@@ -850,7 +314,8 @@ function refreshScene() {
         sphere: 0,
         cylinder: 0,
         pyramid: 0,
-        prism: 0
+        prism: 0,
+        danger: false
     };
     objects = [];
     scene.clear();
@@ -886,37 +351,40 @@ function refreshScene() {
         statistics.cylinder += nodeStatistics.cylinder;
         statistics.pyramid += nodeStatistics.pyramid;
         statistics.prism += nodeStatistics.prism;
+        nodeStatistics.danger ? statistics.danger = true : null;
     });
     
-    document.getElementById('stats-complexity').innerText = `Complexity: ${statistics.complexity}`;
-    document.getElementById('stats-animations').innerText = `Animations: ${statistics.animations}`;
-    document.getElementById('stats-groups').innerText = `Groups: ${statistics.groups}`;
-    document.getElementById('stats-frames').innerText = `Frames: ${statistics.frames}`;
-    document.getElementById('stats-characters').innerText = `Characters: ${statistics.characters}`;
-    document.getElementById('stats-objects').innerText = `Objects: ${statistics.objects}`;
-    document.getElementById('stats-static').innerText = `Static: ${statistics.static}`;
-    document.getElementById('stats-crumbling').innerText = `Crumbling: ${statistics.crumbling}`;
-    document.getElementById('stats-start').innerText = `Start: ${statistics.start}`;
-    document.getElementById('stats-end').innerText = `End: ${statistics.end}`;
-    document.getElementById('stats-sign').innerText = `Sign: ${statistics.sign}`;
-    document.getElementById('stats-gravity').innerText = `Gravity: ${statistics.gravity}`;
-    document.getElementById('stats-neon').innerText = `Neon: ${statistics.neon}`;
-    document.getElementById('stats-gravityNoLegs').innerText = `Gravity No Legs: ${statistics.gravityNoLegs}`;
-    document.getElementById('stats-default').innerText = `Default: ${statistics.default}`;
-    document.getElementById('stats-grabbable').innerText = `Grabbable: ${statistics.grabbable}`;
-    document.getElementById('stats-lava').innerText = `Lava: ${statistics.lava}`;
-    document.getElementById('stats-grapplable').innerText = `Grapplable: ${statistics.grapplable}`;
-    document.getElementById('stats-grapplable_lava').innerText = `Grapplable Lava: ${statistics.grapplable_lava}`;
-    document.getElementById('stats-grabbable_crumbling').innerText = `Grabbable Crumbling: ${statistics.grabbable_crumbling}`;
-    document.getElementById('stats-default_colored').innerText = `Default Colored: ${statistics.default_colored}`;
-    document.getElementById('stats-bouncing').innerText = `Bouncing: ${statistics.bouncing}`;
-    document.getElementById('stats-ice').innerText = `Ice: ${statistics.ice}`;
-    document.getElementById('stats-wood').innerText = `Wood: ${statistics.wood}`;
-    document.getElementById('stats-cube').innerText = `Cube: ${statistics.cube}`;
-    document.getElementById('stats-sphere').innerText = `Sphere: ${statistics.sphere}`;
-    document.getElementById('stats-cylinder').innerText = `Cylinder: ${statistics.cylinder}`;
-    document.getElementById('stats-pyramid').innerText = `Pyramid: ${statistics.pyramid}`;
-    document.getElementById('stats-prism').innerText = `Prism: ${statistics.prism}`;
+    statsComplexityElement.innerText = `Complexity: ${statistics.complexity}`;
+    statsAnimationsElement.innerText = `Animations: ${statistics.animations}`;
+    statsGroupsElement.innerText = `Groups: ${statistics.groups}`;
+    statsFramesElement.innerText = `Frames: ${statistics.frames}`;
+    statsCharactersElement.innerText = `Characters: ${statistics.characters}`;
+    statsObjectsElement.innerText = `Objects: ${statistics.objects}`;
+    statsStaticElement.innerText = `Static: ${statistics.static}`;
+    statsCrumblingElement.innerText = `Crumbling: ${statistics.crumbling}`;
+    statsStartElement.innerText = `Start: ${statistics.start}`;
+    statsEndElement.innerText = `End: ${statistics.end}`;
+    statsSignElement.innerText = `Sign: ${statistics.sign}`;
+    statsGravityElement.innerText = `Gravity: ${statistics.gravity}`;
+    statsNeonElement.innerText = `Neon: ${statistics.neon}`;
+    statsGravityNoLegsElement.innerText = `Gravity No Legs: ${statistics.gravityNoLegs}`;
+    statsDefaultElement.innerText = `Default: ${statistics.default}`;
+    statsGrabbableElement.innerText = `Grabbable: ${statistics.grabbable}`;
+    statsLavaElement.innerText = `Lava: ${statistics.lava}`;
+    statsGrapplableElement.innerText = `Grapplable: ${statistics.grapplable}`;
+    statsGrapplable_lavaElement.innerText = `Grapplable Lava: ${statistics.grapplable_lava}`;
+    statsGrabbable_crumblingElement.innerText = `Grabbable Crumbling: ${statistics.grabbable_crumbling}`;
+    statsDefault_coloredElement.innerText = `Default Colored: ${statistics.default_colored}`;
+    statsBouncingElement.innerText = `Bouncing: ${statistics.bouncing}`;
+    statsIceElement.innerText = `Ice: ${statistics.ice}`;
+    statsWoodElement.innerText = `Wood: ${statistics.wood}`;
+    statsCubeElement.innerText = `Cube: ${statistics.cube}`;
+    statsSphereElement.innerText = `Sphere: ${statistics.sphere}`;
+    statsCylinderElement.innerText = `Cylinder: ${statistics.cylinder}`;
+    statsPyramidElement.innerText = `Pyramid: ${statistics.pyramid}`;
+    statsPrismElement.innerText = `Prism: ${statistics.prism}`;
+
+    typeWarningElement.style.display = statistics.danger ? 'block' : 'none';
 
     let ambience = levelData.ambienceSettings;
     let sky = [
@@ -940,7 +408,7 @@ function refreshScene() {
         }
     }
 
-    document.getElementById('render-container').style.backgroundImage = `linear-gradient(rgb(${sky[0][0]}, ${sky[0][1]}, ${sky[0][2]}), rgb(${sky[1][0]}, ${sky[1][1]}, ${sky[1][2]}), rgb(${sky[0][0]}, ${sky[0][1]}, ${sky[0][2]}))`;
+    renderContainerElement.style.backgroundImage = `linear-gradient(rgb(${sky[0][0]}, ${sky[0][1]}, ${sky[0][2]}), rgb(${sky[1][0]}, ${sky[1][1]}, ${sky[1][2]}), rgb(${sky[0][0]}, ${sky[0][1]}, ${sky[0][2]}))`;
     console.log('Refreshed', scene, objects, animatedObjects);
     renderer.render( scene, camera );
 }
@@ -980,7 +448,8 @@ function loadLevelNode(node, parent) {
         sphere: 0,
         cylinder: 0,
         pyramid: 0,
-        prism: 0
+        prism: 0,
+        danger: false
     };
     if (node.levelNodeGroup) {
         object = new THREE.Object3D();
@@ -1036,6 +505,7 @@ function loadLevelNode(node, parent) {
             statistics.cylinder += childNodeStatistics.cylinder;
             statistics.pyramid += childNodeStatistics.pyramid;
             statistics.prism += childNodeStatistics.prism;
+            childNodeStatistics.danger ? statistics.danger = true : null;
         });
         statistics.groups += 1;
         statistics.objects -= 1;
@@ -1171,6 +641,7 @@ function loadLevelNode(node, parent) {
                 statistics.prism += 1;
                 break;
             default:
+                statistics.danger = true;
                 break;
         }
         switch (node.levelNodeStatic?.material) {
@@ -1208,6 +679,7 @@ function loadLevelNode(node, parent) {
                 statistics.bouncing += 1;
                 break;
             default:
+                statistics.danger = true;
                 break;
         }
     } else if (node.levelNodeCrumbling) {
@@ -1279,6 +751,7 @@ function loadLevelNode(node, parent) {
                 statistics.prism += 1;
                 break;
             default:
+                statistics.danger = true;
                 break;
         }
         switch (node.levelNodeCrumbling?.material) {
@@ -1316,6 +789,7 @@ function loadLevelNode(node, parent) {
                 statistics.bouncing += 1;
                 break;
             default:
+                statistics.danger = true;
                 break;
         }
     } else if (node.levelNodeSign) {
@@ -1346,7 +820,6 @@ function loadLevelNode(node, parent) {
         statistics.sign += 1;
     } else if (node.levelNodeStart) {
         object = shapes[6].clone();
-        // object.material = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0.5 });
         object.material = startMaterial;
         parent.add(object);
         node.levelNodeStart.position.x ? object.position.x = node.levelNodeStart.position.x : object.position.x = 0;
@@ -1367,7 +840,6 @@ function loadLevelNode(node, parent) {
         statistics.start += 1;
     } else if (node.levelNodeFinish) {
         object = shapes[6].clone();
-        // object.material = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
         object.material = finishMaterial;
         parent.add(object);
         node.levelNodeFinish.position.x ? object.position.x = node.levelNodeFinish.position.x : object.position.x = 0;
@@ -1408,9 +880,8 @@ function updateObjectAnimation(object, time) {
 	const animationFrames = animation.frames
 	const relativeTime = (time * object.animation.speed) % animationFrames[animationFrames.length - 1].time;
     
-    const timeSlider = document.getElementById('timeline-slider');
-    if (parseInt(timeSlider.max) < animationFrames[animationFrames.length - 1].time) {
-		timeSlider.max = `${animationFrames[animationFrames.length - 1].time}`
+    if (parseInt(timelineSliderElement.max) < animationFrames[animationFrames.length - 1].time) {
+		timelineSliderElement.max = `${animationFrames[animationFrames.length - 1].time}`
 	}
 	
 	let oldFrame = animationFrames[animation.currentFrameIndex];
@@ -1459,8 +930,7 @@ function animate() {
     controls.update(delta);
     if (playAnimations) {
         animationTime += delta;
-        const timeSlider = document.getElementById('timeline-slider')
-        timeSlider.value = animationTime % timeSlider.max;
+        timelineSliderElement.value = animationTime % timelineSliderElement.max;
         for(let object of animatedObjects) {
             updateObjectAnimation(object, animationTime)
         }
@@ -1502,7 +972,6 @@ function openProto(link) {
             let blob = new Blob([data]);
             readers.push(readArrayBuffer(blob));
             
-
             Promise.all(readers).then((values) => {
                 setLevel(values[0]);
             });
@@ -2463,8 +1932,7 @@ function handleEditInput(e) {
     }
 }
 function loadTemplateButtons() {
-    let container = document.getElementById('templates-container');
-    container.innerHTML = '';
+    templatesContainerElement.innerHTML = '';
     templates.forEach(template => {
         let templateElement = document.createElement('div');
         templateElement.classList.add('template');
@@ -2477,7 +1945,7 @@ function loadTemplateButtons() {
                 openProto(template.link);
             }
         });
-        container.appendChild(templateElement);
+        templatesContainerElement.appendChild(templateElement);
     });
 }
 function handleDrop(e) {
@@ -2519,7 +1987,7 @@ scene = new THREE.Scene();
 camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight - 20), 0.1, 10000 );
 renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 renderer.setSize( window.innerWidth , window.innerHeight - 20 );
-document.getElementById('render-container').appendChild( renderer.domElement );
+renderContainerElement.appendChild( renderer.domElement );
 light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
 sun = new THREE.DirectionalLight( 0xffffff, 0.5 );
@@ -2537,8 +2005,6 @@ addEventListener('resize', () => {
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight - 20 );
 });
-// let equiManaged = new CubemapToEquirectangular( renderer, true );
-// setTimeout(()=>{equiManaged.update( camera, scene );}, 10000);
 camera.position.set(0, 10, 10);
 initAttributes();
 renderer.setAnimationLoop(animate);
@@ -2550,10 +2016,10 @@ if (localStorage.getItem("darkMode") === "true") {
 }
 
 // Terminal 
-document.getElementById('terminal-input').addEventListener('keydown', (e) => {
+terminalInputElement.addEventListener('keydown', (e) => {
     if (e.which === 13 && e.shiftKey === false && e.altKey === false) {
         e.preventDefault();
-        let input = document.getElementById('terminal-input').value;
+        let input = terminalInputElement.value;
         let level = getLevel();
         let success = 0;
         let fail = 0;
@@ -2566,43 +2032,44 @@ document.getElementById('terminal-input').addEventListener('keydown', (e) => {
                 fail++;
             }
         });
-        document.getElementById("terminal-input").placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\n${success} success | ${fail} error${fail != 0 ? "\n[ctrl]+[shift]+[i] for details" : ""}`;
+        terminalInputElement.placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\n${success} success | ${fail} error${fail != 0 ? "\n[ctrl]+[shift]+[i] for details" : ""}`;
         setLevel(level);
         lastRan = input
-        document.getElementById('terminal-input').value = '';
+        terminalInputElement.value = '';
     } else if (e.which === 13 && e.altKey === true && e.shiftKey === false) {
         e.preventDefault();
-        let input = document.getElementById('terminal-input').value;
+        let input = terminalInputElement.value;
         let level = getLevel();
         try {
             eval(input);
-            document.getElementById("terminal-input").placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\nsuccess`;
+            terminalInputElement.placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\nsuccess`;
         } catch (e) {
             console.error(e);
-            document.getElementById("terminal-input").placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\nerror | [ctrl]+[shift]+[i] for details`;
+            terminalInputElement.placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\nerror | [ctrl]+[shift]+[i] for details`;
         }
         
         setLevel(level);
         lastRan = input
-        document.getElementById('terminal-input').value = '';
+        terminalInputElement.value = '';
     } else if (e.which === 38 && e.altKey === true) {
         e.preventDefault();
-        document.getElementById('terminal-input').value = lastRan;
+        terminalInputElement.value = lastRan;
     }
 });
 
 // prompts
+const promptsElement = document.getElementById('prompts');
 document.getElementById('title-btn').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'grid';
+    promptsElement.style.display = 'grid';
     document.getElementById('prompt-title').style.display = 'flex';
 });
 document.querySelector('#prompt-title .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-title').style.display = 'none';
     document.getElementById('title-prompt').value = '';
 });
 document.querySelector('#prompt-title .prompt-submit').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-title').style.display = 'none';
     let input = document.getElementById('title-prompt').value;
     let levelData = getLevel();
@@ -2611,34 +2078,34 @@ document.querySelector('#prompt-title .prompt-submit').addEventListener('click',
     document.getElementById('title-prompt').value = '';
 });
 document.getElementById('description-btn').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'grid';
+    promptsElement.style.display = 'grid';
     document.getElementById('prompt-description').style.display = 'flex';
 });
 document.getElementById('quest-btn').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'grid';
+    promptsElement.style.display = 'grid';
     document.getElementById('prompt-levels').style.display = 'flex';
     listQuestLevels();
 });
 document.querySelector('#prompt-levels .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-levels').style.display = 'none';
 });
 document.getElementById('template-btn').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'grid';
+    promptsElement.style.display = 'grid';
     document.getElementById('prompt-templates').style.display = 'flex';
     loadTemplateButtons();
 });
 document.querySelector('#prompt-templates .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-templates').style.display = 'none';
 });
 document.querySelector('#prompt-description .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-description').style.display = 'none';
     document.getElementById('description-prompt').value = '';
 });
 document.querySelector('#prompt-description .prompt-submit').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-description').style.display = 'none';
     let input = document.getElementById('description-prompt').value;
     let levelData = getLevel();
@@ -2647,16 +2114,16 @@ document.querySelector('#prompt-description .prompt-submit').addEventListener('c
     document.getElementById('description-prompt').value = '';
 });
 document.getElementById('creators-btn').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'grid';
+    promptsElement.style.display = 'grid';
     document.getElementById('prompt-creators').style.display = 'flex';
 });
 document.querySelector('#prompt-creators .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-creators').style.display = 'none';
     document.getElementById('creators-prompt').value = '';
 });
 document.querySelector('#prompt-creators .prompt-submit').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-creators').style.display = 'none';
     let input = document.getElementById('creators-prompt').value;
     let levelData = getLevel();
@@ -2665,16 +2132,16 @@ document.querySelector('#prompt-creators .prompt-submit').addEventListener('clic
     document.getElementById('creators-prompt').value = '';
 });
 document.getElementById('checkpoints-btn').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'grid';
+    promptsElement.style.display = 'grid';
     document.getElementById('prompt-checkpoints').style.display = 'flex';
 });
 document.querySelector('#prompt-checkpoints .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-checkpoints').style.display = 'none';
     document.getElementById('checkpoints-prompt').value = '';
 });
 document.querySelector('#prompt-checkpoints .prompt-submit').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-checkpoints').style.display = 'none';
     let input = document.getElementById('checkpoints-prompt').value;
     let levelData = getLevel();
@@ -2683,31 +2150,31 @@ document.querySelector('#prompt-checkpoints .prompt-submit').addEventListener('c
     document.getElementById('checkpoints-prompt').value = '';
 });
 document.querySelector('#prompt-pixel .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-pixel').style.display = 'none';
     document.getElementById('pixel-prompt').value = '';
 });
 document.querySelector('#prompt-pixel .prompt-submit').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-pixel').style.display = 'none';
     generatePixelArt();
 });
 document.getElementById('image-btn-input').addEventListener('change', (e) => {
-    document.getElementById('prompts').style.display = 'grid';
+    promptsElement.style.display = 'grid';
     document.getElementById('prompt-pixel').style.display = 'flex';
 });
 document.getElementById('protobuf-btn').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'grid';
+    promptsElement.style.display = 'grid';
     document.getElementById('prompt-protobuf').style.display = 'flex';
     document.getElementById('protobuf-prompt').value = PROTOBUF_DATA;
 });
 document.querySelector('#prompt-protobuf .prompt-cancel').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-protobuf').style.display = 'none';
     document.getElementById('protobuf-prompt').value = PROTOBUF_DATA;
 });
 document.querySelector('#prompt-protobuf .prompt-submit').addEventListener('click', () => {
-    document.getElementById('prompts').style.display = 'none';
+    promptsElement.style.display = 'none';
     document.getElementById('prompt-protobuf').style.display = 'none';
     PROTOBUF_DATA = document.getElementById('protobuf-prompt').value;
 });
@@ -2732,16 +2199,16 @@ document.getElementById('timeline-reset').addEventListener('click', () => {
 // stats
 document.getElementById('stats-container').addEventListener('click', handleStatsClick);
 // buttons
-document.getElementById('hide-btn').addEventListener('click', () => {document.getElementById('edit-input').style.display = HIDE_TEXT ? 'block' : 'none';HIDE_TEXT = !HIDE_TEXT;highlightTextEditor()});
+document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = HIDE_TEXT ? 'block' : 'none';HIDE_TEXT = !HIDE_TEXT;highlightTextEditor()});
 document.getElementById('highlight-btn').addEventListener('click', () => {HIGHLIGHT_TEXT = !HIGHLIGHT_TEXT;highlightTextEditor()});
 document.getElementById('performance-btn').addEventListener('click', () => {renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 )});
 document.getElementById('range-btn').addEventListener('click', () => {loadProtobuf("proto/hacked.proto")});
 document.getElementById("self-credit").addEventListener("click", (e) => {e.target.style.display = 'none'});
-document.getElementById('edit-input').addEventListener('keydown', (e) => {handleEditInput(e)});
+editInputElement.addEventListener('keydown', (e) => {handleEditInput(e)});
 document.getElementById('start-btn').addEventListener('click', goToStart);
 document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
 document.getElementById('showGroups-btn').addEventListener('click', () => {showGroups = !showGroups; refreshScene()});
-document.getElementById('edit-input').addEventListener('blur', highlightTextEditor);
+editInputElement.addEventListener('blur', highlightTextEditor);
 document.getElementById('json-btn').addEventListener('click', downloadAsJSON);
 document.getElementById('monochromify-btn').addEventListener('click', monochromify);
 document.getElementById('gltf-btn').addEventListener('click', exportLevelAsGLTF);

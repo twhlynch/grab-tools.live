@@ -68,7 +68,7 @@ html {
 .stats-material, .stats-shape, .stats-type, .stats-extra {
     display: none;
 }
-#warning {
+.warning {
     position: relative;
     width: 100%;
     display: none;
@@ -245,8 +245,11 @@ html {
 .menu-btn:not(.menu-list > li > ul > li > button):not(.menu-list > li > button):not(#credit-menu > li > button) {
     transform: translateY(-100%);
 }
-.menu-btn:has(+ ul):not(.menu-list > li > button)::after {
+.menu-btn:has(+ ul)::after {
     content: url(/img/editor-icons/carat.svg);
+}
+.menu-list > li > button::after {
+    content: none;
 }
 #credit-menu {
     max-height: 200px;
