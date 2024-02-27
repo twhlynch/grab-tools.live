@@ -29,6 +29,8 @@ uniform vec3 sunColor;
 uniform vec3 sunDirection;
 uniform vec4 specularColor;
 
+uniform bool isSelected;
+
 const float gamma = 0.5;
 
 void main()
@@ -72,7 +74,9 @@ void main()
     float lightSpecular = clamp(dot(normalize(vNormal), halfVector), 0.0, 1.0);
 
     color.rgb = 0.5 * color.rgb + sunColor * clamp(sunSize * 0.7 + 0.3, 0.0, 1.0) * (color.rgb * lightFactor + pow(lightSpecular, specularColor.a) * specularColor.rgb * finalLight);
-
+    if (isSelected) {
+        color.rgb = mix(color.rgb, vec3(0.3, 1.0, 0.3), 0.05);
+    }
     gl_FragColor = LinearTosRGB(color);
 }`;
 const startFinishVS = /*glsl*/`
