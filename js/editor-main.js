@@ -2349,7 +2349,6 @@ document.getElementById('hide-btn').addEventListener('click', () => {editInputEl
 document.getElementById('highlight-btn').addEventListener('click', () => {HIGHLIGHT_TEXT = !HIGHLIGHT_TEXT;highlightTextEditor()});
 document.getElementById('performance-btn').addEventListener('click', () => {renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 )});
 document.getElementById('range-btn').addEventListener('click', () => {loadProtobuf("proto/hacked.proto")});
-document.getElementById("self-credit").addEventListener("click", (e) => {e.target.style.display = 'none'});
 editInputElement.addEventListener('keydown', (e) => {handleEditInput(e)});
 document.getElementById('start-btn').addEventListener('click', goToStart);
 document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
