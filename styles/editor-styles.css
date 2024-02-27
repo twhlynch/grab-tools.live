@@ -48,7 +48,7 @@ html {
 #stats-container {
     position: fixed;
     left: 5px;
-    font-size: 13px;
+    font-size: 12px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     bottom: 5px;
     cursor: pointer;

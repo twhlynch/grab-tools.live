@@ -1975,6 +1975,7 @@ function handleStatsClick() {
         element.style.display = "flex";
     });
     document.getElementById('stats-container').style.pointerEvents = "none";
+    document.getElementById('stats-container').style.fontSize = "10";
 }
 function unlockLevel() {
     let levelData = getLevel();
