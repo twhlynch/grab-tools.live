@@ -2336,7 +2336,6 @@ document.getElementById('timeline-pause').addEventListener('click', () => {
     playAnimations = false;
 });
 document.getElementById('timeline-reset').addEventListener('click', () => {
-    playAnimations = true;
     animationSpeed = 1;
     animationTime = 0;
 });
