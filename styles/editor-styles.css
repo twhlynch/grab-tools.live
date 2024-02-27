@@ -96,7 +96,7 @@ html {
     flex-shrink: 0;
     flex-basis: 60%;
     align-items: center;
-    place-content: center;
+    justify-content: flex-start;
     overflow: hidden;
 }
 #editing-container {
