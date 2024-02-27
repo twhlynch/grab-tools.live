@@ -2006,18 +2006,18 @@ function onPointerMove(e) {
         if (intersects.length > 0 && e.target == renderer.domElement) {
             selected = intersects[0].object;
             lastSelected = selected;
-            if (selected?.material?.uniforms?.isSelected) {
+            if (selected?.material?.uniforms?.isSelected && selected?.parent?.type == "Scene") {
                 selected.material.uniforms.isSelected.value = true;
             }
         }
     }
 }
 function onPointerDown(e) {
-    if (enableEditing) {
+    if (enableEditing && e.target == renderer.domElement) {
         if (selected || lastSelected) {
             editing = selected || lastSelected;
         }
-        if (editing) {
+        if (editing && editing?.parent?.type == "Scene") {
             transformControl.attach(editing);
             scene.add(transformControl);
         }
@@ -2036,7 +2036,8 @@ function generateLevelFromObjects() {
     applyChangesElement.style.display = "none";
 }
 function onEditingKey(event) {
-    if (enableEditing) {
+    if (enableEditing && document.activeElement.tagName == "BODY") {
+        event.preventDefault();
         switch ( event.keyCode ) {
             case 81: // Q
                 transformControl.setSpace( transformControl.space === 'local' ? 'world' : 'local' );
@@ -2061,44 +2062,33 @@ function onEditingKey(event) {
                 break;
 
             case 68: // D
-                if (editing) {
+                if (editing && editing.parent.type == "Scene" && !editing?.grabNodeData?.levelNodeGroup) {
                     editing.parent.remove(editing);
+                    objects.splice(objects.indexOf(editing), 1);
+                    if (editing.animation) {
+                        animatedObjects.splice(animatedObjects.indexOf(editing), 1);
+                    }
                     editing = null;
+                    selected = null;
+                    transformControl.detach();
                 }
                 break;
 
             case 67: // C
-                if (editing) {
+                if (editing && editing.parent.type == "Scene" && !editing?.grabNodeData?.levelNodeGroup) {
                     let clone = editing.clone();
+                    clone.grabNodeData = deepClone(editing.grabNodeData);
+                    clone.initialPosition = deepClone(editing.initialPosition);
+                    clone.initialRotation = deepClone(editing.initialRotation);
+                    if (editing.animation) {
+                        clone.animation = deepClone(editing.animation);
+                        animatedObjects.push(clone);
+                    }
                     editing.parent.add(clone);
+                    objects.push(clone);
                 }
                 break;
-            case 71: // G
-                if (editing) {
-                    let grabNodeData = editing.grabNodeData;
-                    let grouped = {
-                        "levelNodeGroup": {
-                            "position": {
-                                "x": 0,
-                                "y": 0,
-                                "z": 0
-                            },
-                            "rotation": {
-                                "w": 1.0,
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "scale": {
-                                "x": 1,
-                                "y": 1,
-                                "z": 1
-                            },
-                            "childNodes": [grabNodeData]
-                        }
-                    };
-                    editing.grabNodeData = grouped;
-                }
+            default:
                 break;
         }
     }
@@ -2124,7 +2114,7 @@ fly.rollSpeed = 0;
 fly.movementSpeed = 0.2;
 transformControl = new TransformControls( camera, renderer.domElement );
 transformControl.addEventListener( 'change', () => {
-    if (enableEditing) {
+    if (enableEditing && editing?.parent?.type == "Scene") {
         Object.values(editing.grabNodeData)[0].position = {
             "x": editing.position.x,
             "y": editing.position.y,
