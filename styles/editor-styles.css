@@ -336,6 +336,7 @@ html {
     height: 100%
 }
 #self-credit {
+    font-size: 10px;
     position: fixed;
     top: 5px;
     right: 5px;
