@@ -433,7 +433,7 @@ html.dark-mode #editing-container {
 #applyChanges {
     position: absolute;
     left: 5px;
-    top: 55px;
+    top: 75px;
     padding: 2px 5px;
     border-radius: 5px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -442,4 +442,21 @@ html.dark-mode #editing-container {
     outline: none;
     cursor: pointer;
     display: none;
+}
+#editing-menu {
+    display: none;
+    width: 100%;
+    background-color: #333;
+}
+#editing-menu button {
+    padding: 5px;
+    font-size: 10px;
+    background-color: #444;
+    color: #d9d9d9;
+}
+#editing-menu button:hover {
+    background-color: #555;
+}
+#editing-menu .menu-dropdown {
+    min-width: 0px;
 }

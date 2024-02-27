@@ -541,6 +541,76 @@
                     </svg>          
                     <input type="range" id="timeline-slider" min="0" max="0" step="0.01" value="0">           
                 </div>
+                <nav id="editing-menu" class="menu">
+                    <ul class="menu-list">
+                        <li>
+                            <button class="menu-btn">Shape</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn edit_shape" id="edit_shape-1000">cube</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_shape" id="edit_shape-1001">sphere</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_shape" id="edit_shape-1002">cylinder</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_shape" id="edit_shape-1003">pyramid</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_shape" id="edit_shape-1004">prism</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Material</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn edit_material" id="edit_material-0">default</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_material" id="edit_material-1">grab</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_material" id="edit_material-2">ice</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_material" id="edit_material-3">lava</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_material" id="edit_material-4">wood</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_material" id="edit_material-5">grapple</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_material" id="edit_material-6">lava grapple</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_material" id="edit_material-7">breakable</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_material" id="edit_material-8">colored</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_material" id="edit_material-9">bounce</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Animate</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn edit_animation" id="edit_animation-spin">spin</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn edit_animation" id="edit_animation-none">clear</button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
                 <button id="applyChanges">Apply changes</button>
             </div>
             <div id="edit-resize">&nbsp;</div>

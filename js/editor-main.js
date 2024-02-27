@@ -30,6 +30,15 @@ let animatedObjects = [];
 let animationTime = 0.0;
 let animationSpeed = 1.0;
 let playAnimations = true;
+let fileNames = [
+    "elevator", 
+    "screw", 
+    "sideways", 
+    "spin", 
+    "square", 
+    "wobble"
+];
+let animationPresets = {};
 let templates = await fetch('/level_data/templates.json').then(response => response.json());
 let PROTOBUF_DATA = await fetch('/proto/proto.proto').then(response => response.text());
 let enableEditing = false;
@@ -2094,6 +2103,110 @@ function onEditingKey(event) {
         }
     }
 }
+function remakeEditingObject(material, shape, shapeData, nodeData) {
+    console.log(material, shape, shapeData, nodeData);
+    nodeData.shape = shape;
+    nodeData.material = material;
+
+    let newObject = shapes[shape-1000].clone();
+    let newMaterial = materials[material].clone();
+    if (material == 8) {
+        newMaterial.uniforms.colors.value = new THREE.Vector3(
+            nodeData?.color?.r || 0,
+            nodeData?.color?.g || 0,
+            nodeData?.color?.b || 0
+        );
+    }
+
+    newObject.material = newMaterial;
+    newObject.grabNodeData = shapeData;
+    newObject.initialPosition = deepClone(editing.initialPosition);
+    newObject.initialRotation = deepClone(editing.initialRotation);
+    newObject.position.copy(editing.initialPosition);
+    newObject.quaternion.copy(editing.initialRotation);
+    newObject.scale.copy(editing.scale);
+    if (editing.animation) {
+        newObject.animation = deepClone(editing.animation);
+        animatedObjects.push(newObject);
+    }
+    editing.parent.add(newObject);
+    objects.push(newObject);
+    editing.parent.remove(editing);
+    objects.splice(objects.indexOf(editing), 1);
+    if (editing.animation) {
+        animatedObjects.splice(animatedObjects.indexOf(editing), 1);
+    }
+    editing = newObject;
+    selected = newObject;
+    transformControl.attach(newObject);
+    scene.add(transformControl);
+}
+function editShape(shape) {
+    if (
+        editing && editing.parent.type == "Scene"
+        && (editing.grabNodeData.levelNodeStatic || editing.grabNodeData.levelNodeCrumbling)
+    ) {
+        let shapeData = deepClone(editing.grabNodeData);
+        let nodeData = Object.values(shapeData)[0];
+        let material = nodeData.material;
+        remakeEditingObject(material, shape, shapeData, nodeData);
+        applyChangesElement.style.display = "block";
+    }
+}
+function editMaterial(material) {
+    if (
+        editing && editing.parent.type == "Scene" 
+        && (editing.grabNodeData.levelNodeStatic || editing.grabNodeData.levelNodeCrumbling)
+    ) {
+        let shapeData = deepClone(editing.grabNodeData);
+        let nodeData = Object.values(shapeData)[0];
+        let shape = nodeData.shape;
+        remakeEditingObject(material, shape, shapeData, nodeData);
+        applyChangesElement.style.display = "block";
+    }
+}
+function editAnimation(animation) {
+    if (
+        editing && editing.parent.type == "Scene"
+        && (
+            editing.grabNodeData.levelNodeStatic || 
+            editing.grabNodeData.levelNodeCrumbling ||
+            editing.grabNodeData.levelNodeGravity ||
+            editing.grabNodeData.levelNodeSign
+        )
+    ) {
+        if (animation == "none") {
+            editing.animation = null;
+            editing.grabNodeData.animations = [];
+            animatedObjects.splice(animatedObjects.indexOf(editing), 1);
+            editing.position.copy(editing.initialPosition);
+            editing.quaternion.copy(editing.initialRotation);
+        } else {
+            let hadAnimation = true;
+            if (!editing.animation) {
+                hadAnimation = false;
+            }
+            let animationData = animationPresets[animation];
+            editing.animation = animationData;
+            editing.grabNodeData.animations = [animationData];
+            if (hadAnimation) {
+                animatedObjects.push(editing);
+            }
+        }
+        console.log(editing);
+        // applyChangesElement.style.display = "block";
+        generateLevelFromObjects();
+    }
+}
+async function getAnimationPresets() {
+    let folderPath = "/level_data/animations/";
+    for (let fileName of fileNames) {
+        let file = folderPath + fileName + ".json";
+        let response = await fetch(file);
+        let data = await response.json();
+        animationPresets[fileName] = data;
+    }
+}
 
 loader = new GLTFLoader();
 scene = new THREE.Scene();
@@ -2132,6 +2245,17 @@ transformControl.addEventListener( 'change', () => {
             "y": editing.scale.y,
             "z": editing.scale.z
         };
+        Object.values(editing.grabNodeData)[0].initialPosition = {
+            "x": editing.initialPosition.x,
+            "y": editing.initialPosition.y,
+            "z": editing.initialPosition.z
+        }
+        Object.values(editing.grabNodeData)[0].initialRotation = {
+            "x": editing.initialRotation.x,
+            "y": editing.initialRotation.y,
+            "z": editing.initialRotation.z,
+            "w": editing.initialRotation.w
+        }
         applyChangesElement.style.display = "block";
     }
 });
@@ -2150,6 +2274,7 @@ addEventListener('resize', () => {
     renderer.setSize( window.innerWidth, window.innerHeight - 20 );
 });
 camera.position.set(0, 10, 10);
+getAnimationPresets();
 initAttributes();
 renderer.setAnimationLoop(animate);
 highlightTextEditor();
@@ -2339,12 +2464,31 @@ document.getElementById('timeline-reset').addEventListener('click', () => {
     animationSpeed = 1;
     animationTime = 0;
 });
+// editing menu
+document.querySelectorAll('.edit_material').forEach(element => {
+    element.addEventListener('click', () => {
+        editMaterial(parseInt(element.id.split('-')[1]));
+    });
+});
+document.querySelectorAll('.edit_shape').forEach(element => {
+    element.addEventListener('click', () => {
+        editShape(parseInt(element.id.split('-')[1]));
+    });
+});
+document.querySelectorAll('.edit_animation').forEach(element => {
+    element.addEventListener('click', () => {
+        editAnimation(element.id.split('-')[1]);
+    });
+});
 // apply
 applyChangesElement.addEventListener('click', generateLevelFromObjects);
 // stats
 document.getElementById('stats-container').addEventListener('click', handleStatsClick);
 // buttons
-document.getElementById('enableEditing-btn').addEventListener('click', () => {enableEditing = !enableEditing;});
+document.getElementById('enableEditing-btn').addEventListener('click', () => {
+    enableEditing = !enableEditing;
+    document.getElementById('editing-menu').style.display = enableEditing? 'flex' : 'none';
+});
 document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = HIDE_TEXT ? 'block' : 'none';HIDE_TEXT = !HIDE_TEXT;highlightTextEditor()});
 document.getElementById('highlight-btn').addEventListener('click', () => {HIGHLIGHT_TEXT = !HIGHLIGHT_TEXT;highlightTextEditor()});
 document.getElementById('performance-btn').addEventListener('click', () => {renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 )});
