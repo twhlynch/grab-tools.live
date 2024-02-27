@@ -9518,5 +9518,111 @@
     },
     1708924569,
     "unbeaten_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 55.4821,
+        "user_id": "2a16lrhk70q0s94hkbdwz",
+        "user_name": "BWLBuck",
+        "timestamp": "0001708274066718"
+      },
+      {
+        "position": 1,
+        "best_time": 60.8795,
+        "user_id": "2a0r12prnob1y78t7wqpn",
+        "user_name": "Dyght_light",
+        "timestamp": "0001708290366524"
+      },
+      {
+        "position": 2,
+        "best_time": 69.7554,
+        "user_id": "2a5zo82k0kqt9yx24xpm4",
+        "user_name": "tf2turret",
+        "timestamp": "0001708304897853"
+      }
+    ],
+    {
+      "identifier": "29txb67fpczg7fn4f2sim:1708211537",
+      "title": "Helpless Hellavator P1",
+      "complexity": 2989,
+      "format_version": 8,
+      "update_timestamp": 1708296259677,
+      "creation_timestamp": 1708230688385,
+      "data_key": "level_data:29txb67fpczg7fn4f2sim:1708211537:2",
+      "description": "Welcome to the Helpless hellevator! this is floor one can you make it two floor 12?",
+      "creators": [
+        "Brayboi"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "verification_time": 58.93,
+      "statistics": {
+        "total_played": 700,
+        "difficulty": 0.006462035541195477,
+        "liked": 1,
+        "time": 68.19120000000001
+      },
+      "images": {
+        "full": {
+          "key": "level_29txb67fpczg7fn4f2sim_1708211537_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_29txb67fpczg7fn4f2sim_1708211537_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "Brayboi",
+      "change": 0
+    },
+    1709014123,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "2c1ntt9qvu7pjstsn6jag:1707887867",
+      "title": "Katt's mountin climb",
+      "complexity": 977,
+      "format_version": 8,
+      "update_timestamp": 1708057584821,
+      "creation_timestamp": 1708057584821,
+      "data_key": "level_data:2c1ntt9qvu7pjstsn6jag:1707887867:1",
+      "description": ":)",
+      "creators": [
+        "wildkittens12"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "verification_time": 490.9,
+      "statistics": {
+        "total_played": 300,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_2c1ntt9qvu7pjstsn6jag_1707887867_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2c1ntt9qvu7pjstsn6jag_1707887867_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "wildkittens12",
+      "change": 0
+    },
+    1709014123,
+    "unbeaten_map"
   ]
 ]
