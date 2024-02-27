@@ -2120,6 +2120,17 @@ transformControl.addEventListener( 'change', () => {
             "y": editing.position.y,
             "z": editing.position.z
         };
+        Object.values(editing.grabNodeData)[0].rotation = {
+            "x": editing.quaternion.x,
+            "y": editing.quaternion.y,
+            "z": editing.quaternion.z,
+            "w": editing.quaternion.w
+        };
+        Object.values(editing.grabNodeData)[0].scale = {
+            "x": editing.scale.x,
+            "y": editing.scale.y,
+            "z": editing.scale.z
+        };
         applyChangesElement.style.display = "block";
     }
 });
