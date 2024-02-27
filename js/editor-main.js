@@ -4,6 +4,7 @@ import { GLTFLoader } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm/
 import { FlyControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/controls/FlyControls.js';
 import { GLTFExporter } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm//exporters/GLTFExporter.js';
 import { VRButton } from "https://cdn.jsdelivr.net/npm/three@0.145.0/examples/jsm/webxr/VRButton.min.js";
+import { TransformControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/controls/TransformControls.js';
 // import { XRControllerModelFactory } from 'https://cdn.jsdelivr.net/npm/three@0.145.0/examples/jsm/webxr/XRControllerModelFactory.js';
 import { vertexShader, fragmentShader, startFinishVS, startFinishFS } from './shaders.js';
 let webusb = null;
@@ -11,7 +12,7 @@ let adb = null;
 let shell = null;
 let sync = null;
 let decoder = new TextDecoder();
-let camera, scene, renderer, light, controls, fly, loader, sun;
+let camera, scene, renderer, light, controls, fly, loader, sun, transformControl, raycaster, mouse, lastSelected, selected, editing;
 let objects = [];
 let materials = [];
 let shapes = [];
@@ -31,8 +32,9 @@ let animationSpeed = 1.0;
 let playAnimations = true;
 let templates = await fetch('/level_data/templates.json').then(response => response.json());
 let PROTOBUF_DATA = await fetch('/proto/proto.proto').then(response => response.text());
-
+let enableEditing = false;
 // elements
+const applyChangesElement = document.getElementById('applyChanges');
 const formatWarningElement = document.getElementById('formatWarning');
 const typeWarningElement = document.getElementById('definitionWarning');
 const editInputElement = document.getElementById('edit-input');
@@ -230,7 +232,8 @@ async function initAttributes() {
                     "sunSize": { value: 0.1 },
                     "sunColor": { value: sunColor },
                     "sunDirection": { value: sunDirection },
-                    "specularColor": { value: [0.15, 0.15, 0.15, 10.0] }
+                    "specularColor": { value: [0.15, 0.15, 0.15, 10.0] },
+                    "isSelected": { value: false }
                 }
             });
 
@@ -855,6 +858,7 @@ function loadLevelNode(node, parent) {
         statistics.end += 1;
     }
     if (object !== undefined) {
+        object.grabNodeData = node;
         if(node.animations && node.animations.length > 0 && node.animations[0].frames && node.animations[0].frames.length > 0) {
             for (let frame of node.animations[0].frames) {
                 frame.position.x = frame.position.x || 0;
@@ -1981,6 +1985,124 @@ function unlockLevel() {
     }, true);
     setLevel(levelData);
 }
+function onPointerMove(e) {
+    if (enableEditing) {
+        let canvasSize = renderer.domElement.getBoundingClientRect();
+        mouse.x = ( (e.clientX - canvasSize.left) / canvasSize.width ) * 2 - 1;
+        mouse.y = - ( (e.clientY - canvasSize.top) / canvasSize.height ) * 2 + 1;
+        raycaster.setFromCamera( mouse, camera );
+        let intersects = raycaster.intersectObjects( scene.children, true );
+        if (lastSelected && lastSelected?.material?.uniforms?.isSelected) {
+            lastSelected.material.uniforms.isSelected.value = false;
+        }
+        lastSelected = null;
+        for (let i = 0; i < intersects.length; i++) {
+            if (!intersects[i].object.grabNodeData) {
+                intersects.splice(i, 1);
+                i--;
+            }
+        }
+        selected = null;
+        if (intersects.length > 0 && e.target == renderer.domElement) {
+            selected = intersects[0].object;
+            lastSelected = selected;
+            if (selected?.material?.uniforms?.isSelected) {
+                selected.material.uniforms.isSelected.value = true;
+            }
+        }
+    }
+}
+function onPointerDown(e) {
+    if (enableEditing) {
+        if (selected || lastSelected) {
+            editing = selected || lastSelected;
+        }
+        if (editing) {
+            transformControl.attach(editing);
+            scene.add(transformControl);
+        }
+    }
+}
+function generateLevelFromObjects() {
+    let levelNodes = [];
+    objects.forEach(object => {
+        if (object.parent.type == 'Scene') {
+            levelNodes.push(object.grabNodeData);
+        }
+    });
+    let curLevel = getLevel();
+    curLevel.levelNodes = levelNodes;
+    setLevel(curLevel);
+    applyChangesElement.style.display = "none";
+}
+function onEditingKey(event) {
+    if (enableEditing) {
+        switch ( event.keyCode ) {
+            case 81: // Q
+                transformControl.setSpace( transformControl.space === 'local' ? 'world' : 'local' );
+                break;
+
+            case 16: // Shift
+                transformControl.setTranslationSnap( 100 );
+                transformControl.setRotationSnap( THREE.MathUtils.degToRad( 15 ) );
+                transformControl.setScaleSnap( 0.25 );
+                break;
+
+            case 87: // W
+                transformControl.setMode( 'translate' );
+                break;
+
+            case 69: // E
+                transformControl.setMode( 'rotate' );
+                break;
+
+            case 82: // R
+                transformControl.setMode( 'scale' );
+                break;
+
+            case 68: // D
+                if (editing) {
+                    editing.parent.remove(editing);
+                    editing = null;
+                }
+                break;
+
+            case 67: // C
+                if (editing) {
+                    let clone = editing.clone();
+                    editing.parent.add(clone);
+                }
+                break;
+            case 71: // G
+                if (editing) {
+                    let grabNodeData = editing.grabNodeData;
+                    let grouped = {
+                        "levelNodeGroup": {
+                            "position": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            },
+                            "rotation": {
+                                "w": 1.0,
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "scale": {
+                                "x": 1,
+                                "y": 1,
+                                "z": 1
+                            },
+                            "childNodes": [grabNodeData]
+                        }
+                    };
+                    editing.grabNodeData = grouped;
+                }
+                break;
+        }
+    }
+}
 
 loader = new GLTFLoader();
 scene = new THREE.Scene();
@@ -2000,6 +2122,26 @@ fly.pointerdown = fly.pointerup = fly.pointermove = () => {};
 fly.dragToLook = false;
 fly.rollSpeed = 0;
 fly.movementSpeed = 0.2;
+transformControl = new TransformControls( camera, renderer.domElement );
+transformControl.addEventListener( 'change', () => {
+    if (enableEditing) {
+        Object.values(editing.grabNodeData)[0].position = {
+            "x": editing.position.x,
+            "y": editing.position.y,
+            "z": editing.position.z
+        };
+        applyChangesElement.style.display = "block";
+    }
+});
+transformControl.addEventListener( 'dragging-changed', ( event ) => {
+    controls.enabled = ! event.value;
+} );
+raycaster = new THREE.Raycaster();
+mouse = new THREE.Vector2();
+renderer.domElement.addEventListener( 'pointermove', onPointerMove, false );
+window.addEventListener( 'pointermove', onPointerMove, false );
+renderer.domElement.addEventListener( 'pointerdown', onPointerDown, false );
+window.addEventListener( 'keydown', onEditingKey, false );
 addEventListener('resize', () => {
     camera.aspect = window.innerWidth / (window.innerHeight - 20);
     camera.updateProjectionMatrix();
@@ -2196,9 +2338,12 @@ document.getElementById('timeline-reset').addEventListener('click', () => {
     animationSpeed = 1;
     animationTime = 0;
 });
+// apply
+applyChangesElement.addEventListener('click', generateLevelFromObjects);
 // stats
 document.getElementById('stats-container').addEventListener('click', handleStatsClick);
 // buttons
+document.getElementById('enableEditing-btn').addEventListener('click', () => {enableEditing = !enableEditing;});
 document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = HIDE_TEXT ? 'block' : 'none';HIDE_TEXT = !HIDE_TEXT;highlightTextEditor()});
 document.getElementById('highlight-btn').addEventListener('click', () => {HIGHLIGHT_TEXT = !HIGHLIGHT_TEXT;highlightTextEditor()});
 document.getElementById('performance-btn').addEventListener('click', () => {renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 )});
