@@ -892,6 +892,10 @@ function updateObjectAnimation(object, time) {
 	let animation = object.animation
 	const animationFrames = animation.frames
 	const relativeTime = (time * object.animation.speed) % animationFrames[animationFrames.length - 1].time;
+
+    if (!animation.currentFrameIndex) {
+        animation.currentFrameIndex = 0;
+    }
     
     if (parseInt(timelineSliderElement.max) < animationFrames[animationFrames.length - 1].time) {
 		timelineSliderElement.max = `${animationFrames[animationFrames.length - 1].time}`
@@ -2036,7 +2040,10 @@ function onPointerDown(e) {
 function generateLevelFromObjects() {
     let levelNodes = [];
     objects.forEach(object => {
-        if (object.parent.type == 'Scene') {
+        if (object.parent.type == 'Scene') { //TODO: prevent
+            if (object?.grabNodeData?.animations?.length > 0 && object.grabNodeData.animations[0].currentFrameIndex) {
+                delete object.grabNodeData.animations[0].currentFrameIndex;
+            }
             levelNodes.push(object.grabNodeData);
         }
     });
@@ -2103,7 +2110,8 @@ function onEditingKey(event) {
         }
     }
 }
-function remakeEditingObject(material, shape, shapeData, nodeData) {
+function remakeEditingObject(material, shape, shapeData) {
+    let nodeData = Object.values(shapeData)[0];
     console.log(material, shape, shapeData, nodeData);
     nodeData.shape = shape;
     nodeData.material = material;
@@ -2120,10 +2128,10 @@ function remakeEditingObject(material, shape, shapeData, nodeData) {
 
     newObject.material = newMaterial;
     newObject.grabNodeData = shapeData;
-    newObject.initialPosition = deepClone(editing.initialPosition);
-    newObject.initialRotation = deepClone(editing.initialRotation);
-    newObject.position.copy(editing.initialPosition);
-    newObject.quaternion.copy(editing.initialRotation);
+    newObject.initialPosition = nodeData.position;
+    newObject.initialRotation = nodeData.rotation;
+    newObject.position.copy(editing.position);
+    newObject.quaternion.copy(editing.quaternion);
     newObject.scale.copy(editing.scale);
     if (editing.animation) {
         newObject.animation = deepClone(editing.animation);
@@ -2140,6 +2148,7 @@ function remakeEditingObject(material, shape, shapeData, nodeData) {
     selected = newObject;
     transformControl.attach(newObject);
     scene.add(transformControl);
+    console.log(newObject);
 }
 function editShape(shape) {
     if (
@@ -2149,7 +2158,7 @@ function editShape(shape) {
         let shapeData = deepClone(editing.grabNodeData);
         let nodeData = Object.values(shapeData)[0];
         let material = nodeData.material;
-        remakeEditingObject(material, shape, shapeData, nodeData);
+        remakeEditingObject(material, shape, shapeData);
         applyChangesElement.style.display = "block";
     }
 }
@@ -2161,13 +2170,13 @@ function editMaterial(material) {
         let shapeData = deepClone(editing.grabNodeData);
         let nodeData = Object.values(shapeData)[0];
         let shape = nodeData.shape;
-        remakeEditingObject(material, shape, shapeData, nodeData);
+        remakeEditingObject(material, shape, shapeData);
         applyChangesElement.style.display = "block";
     }
 }
 function editAnimation(animation) {
     if (
-        editing && editing.parent.type == "Scene"
+        editing && editing?.parent?.type == "Scene"
         && (
             editing.grabNodeData.levelNodeStatic || 
             editing.grabNodeData.levelNodeCrumbling ||
@@ -2188,12 +2197,16 @@ function editAnimation(animation) {
             }
             let animationData = animationPresets[animation];
             editing.animation = animationData;
+            editing.animation.currentFrameIndex = 0;
             editing.grabNodeData.animations = [animationData];
+            editing.initialPosition = Object.values(editing.grabNodeData)[0].position;
+            editing.initialRotation = Object.values(editing.grabNodeData)[0].rotation;
+            editing.position.copy(editing.initialPosition);
+            editing.quaternion.copy(editing.initialRotation);
             if (hadAnimation) {
                 animatedObjects.push(editing);
             }
         }
-        console.log(editing);
         // applyChangesElement.style.display = "block";
         generateLevelFromObjects();
     }
@@ -2205,6 +2218,12 @@ async function getAnimationPresets() {
         let response = await fetch(file);
         let data = await response.json();
         animationPresets[fileName] = data;
+    }
+}
+function copyEditingJSON() {
+    if (editing) {
+        let json = JSON.stringify(editing.grabNodeData, null, 4);
+        navigator.clipboard.writeText(json);
     }
 }
 
@@ -2245,16 +2264,16 @@ transformControl.addEventListener( 'change', () => {
             "y": editing.scale.y,
             "z": editing.scale.z
         };
-        Object.values(editing.grabNodeData)[0].initialPosition = {
-            "x": editing.initialPosition.x,
-            "y": editing.initialPosition.y,
-            "z": editing.initialPosition.z
+        editing.initialPosition = {
+            "x": editing.position.x,
+            "y": editing.position.y,
+            "z": editing.position.z
         }
-        Object.values(editing.grabNodeData)[0].initialRotation = {
-            "x": editing.initialRotation.x,
-            "y": editing.initialRotation.y,
-            "z": editing.initialRotation.z,
-            "w": editing.initialRotation.w
+        editing.initialRotation = {
+            "x": editing.quaternion.x,
+            "y": editing.quaternion.y,
+            "z": editing.quaternion.z,
+            "w": editing.quaternion.w
         }
         applyChangesElement.style.display = "block";
     }
@@ -2463,6 +2482,9 @@ document.getElementById('timeline-pause').addEventListener('click', () => {
 document.getElementById('timeline-reset').addEventListener('click', () => {
     animationSpeed = 1;
     animationTime = 0;
+    animatedObjects.forEach(object => {
+        object.animation.currentFrameIndex = 0
+    });
 });
 // editing menu
 document.querySelectorAll('.edit_material').forEach(element => {
@@ -2480,6 +2502,7 @@ document.querySelectorAll('.edit_animation').forEach(element => {
         editAnimation(element.id.split('-')[1]);
     });
 });
+document.getElementById('edit_copyJSON-btn').addEventListener('click', copyEditingJSON);
 // apply
 applyChangesElement.addEventListener('click', generateLevelFromObjects);
 // stats
