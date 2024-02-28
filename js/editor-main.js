@@ -1999,6 +1999,28 @@ function unlockLevel() {
     }, true);
     setLevel(levelData);
 }
+function highlightGroup(object) {
+    if (object?.grabNodeData?.levelNodeGroup) {
+        object.children.forEach(child => {
+            highlightGroup(child);
+        });
+    } else {
+        if (object?.material?.uniforms?.isSelected) {
+            object.material.uniforms.isSelected.value = true;
+        }
+    }
+}
+function unHighlightGroup(object) {
+    if (object?.grabNodeData?.levelNodeGroup) {
+        object.children.forEach(child => {
+            unHighlightGroup(child);
+        });
+    } else {
+        if (object?.material?.uniforms?.isSelected) {
+            object.material.uniforms.isSelected.value = false;
+        }
+    }
+}
 function onPointerMove(e) {
     if (enableEditing) {
         let canvasSize = renderer.domElement.getBoundingClientRect();
@@ -2008,6 +2030,8 @@ function onPointerMove(e) {
         let intersects = raycaster.intersectObjects( scene.children, true );
         if (lastSelected && lastSelected?.material?.uniforms?.isSelected) {
             lastSelected.material.uniforms.isSelected.value = false;
+        } else if (lastSelected && lastSelected?.grabNodeData?.levelNodeGroup) {
+            unHighlightGroup(lastSelected);
         }
         lastSelected = null;
         for (let i = 0; i < intersects.length; i++) {
@@ -2020,8 +2044,18 @@ function onPointerMove(e) {
         if (intersects.length > 0 && e.target == renderer.domElement) {
             selected = intersects[0].object;
             lastSelected = selected;
-            if (selected?.material?.uniforms?.isSelected && selected?.parent?.type == "Scene") {
-                selected.material.uniforms.isSelected.value = true;
+            if (selected?.material?.uniforms?.isSelected) {
+                if (selected?.parent?.type == "Scene") {
+                    selected.material.uniforms.isSelected.value = true;
+                } else {
+                    while (selected) {
+                        if (selected?.parent?.type == "Scene") {
+                            highlightGroup(selected);
+                            break;
+                        }
+                        selected = selected.parent;
+                    }
+                }
             }
         }
     }
@@ -2105,6 +2139,7 @@ function onEditingKey(event) {
                     objects.push(clone);
                 }
                 break;
+                // TODO: G
             default:
                 break;
         }
@@ -2160,18 +2195,36 @@ function editShape(shape) {
         let material = nodeData.material;
         remakeEditingObject(material, shape, shapeData);
         applyChangesElement.style.display = "block";
+    } else if (editing && editing?.grabNodeData?.levelNodeGroup) {
+        // TODO: change children
+        // change group nodeData
+        let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
+        runOnNodes(childNodes, (node) => {
+            if (node.levelNodeStatic || node.levelNodeCrumbling) {
+                Object.values(node)[0].shape = shape;
+            }
+        }, false);
     }
 }
 function editMaterial(material) {
     if (
         editing && editing.parent.type == "Scene" 
-        && (editing.grabNodeData.levelNodeStatic || editing.grabNodeData.levelNodeCrumbling)
+        && (editing.grabNodeData.levelNodeStatic)
     ) {
         let shapeData = deepClone(editing.grabNodeData);
         let nodeData = Object.values(shapeData)[0];
         let shape = nodeData.shape;
         remakeEditingObject(material, shape, shapeData);
         applyChangesElement.style.display = "block";
+    } else if (editing && editing?.grabNodeData?.levelNodeGroup) {
+        // TODO: change children
+        // change group nodeData
+        let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
+        runOnNodes(childNodes, (node) => {
+            if (node.levelNodeStatic) {
+                node.levelNodeStatic.material = material;
+            }
+        }, false);
     }
 }
 function editAnimation(animation) {
@@ -2181,7 +2234,8 @@ function editAnimation(animation) {
             editing.grabNodeData.levelNodeStatic || 
             editing.grabNodeData.levelNodeCrumbling ||
             editing.grabNodeData.levelNodeGravity ||
-            editing.grabNodeData.levelNodeSign
+            editing.grabNodeData.levelNodeSign || 
+            editing.grabNodeData.levelNodeGroup
         )
     ) {
         if (animation == "none") {
