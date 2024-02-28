@@ -1,11 +1,12 @@
 let cursorOuter = document.getElementById("cursor-outer");
 let cursorInner = document.getElementById("cursor-inner");
 let links = document.querySelectorAll("a, button, .button");
-
-document.addEventListener("mousemove", function (e) {
-    cursorInner.style.transform =
+if (window.navigator.platform !== "MacIntel" && window.navigator.platform!== "MacPPC" && window.navigator.platform!== "Mac68K") {
+    document.addEventListener("mousemove", function (e) {
+        cursorInner.style.transform =
         cursorOuter.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-});
+    });
+}
 
 for (let i = 0; i < links.length; i++) {
     links[i].addEventListener("mouseover", () => {
