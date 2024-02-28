@@ -2475,6 +2475,8 @@ document.getElementById('timeline-fast').addEventListener('click', () => {
 });
 document.getElementById('timeline-play').addEventListener('click', () => {
     playAnimations = true;
+    enableEditing = false;
+    document.getElementById('enableEditing-btn').style.color = enableEditing? '#3f3' : '';
 });
 document.getElementById('timeline-pause').addEventListener('click', () => {
     playAnimations = false;
@@ -2510,7 +2512,15 @@ document.getElementById('stats-container').addEventListener('click', handleStats
 // buttons
 document.getElementById('enableEditing-btn').addEventListener('click', () => {
     enableEditing = !enableEditing;
-    document.getElementById('editing-menu').style.display = enableEditing? 'flex' : 'none';
+    playAnimations = !enableEditing;
+    if (enableEditing) {
+        animatedObjects.forEach(object => {
+            object.animation.currentFrameIndex = 0
+            object.position.copy(object.initialPosition);
+            object.quaternion.copy(object.initialRotation);
+        });
+    }
+    document.getElementById('enableEditing-btn').style.color = enableEditing? '#3f3' : '';
 });
 document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = HIDE_TEXT ? 'block' : 'none';HIDE_TEXT = !HIDE_TEXT;highlightTextEditor()});
 document.getElementById('highlight-btn').addEventListener('click', () => {HIGHLIGHT_TEXT = !HIGHLIGHT_TEXT;highlightTextEditor()});
