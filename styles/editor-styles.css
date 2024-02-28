@@ -444,9 +444,12 @@ html.dark-mode #editing-container {
     display: none;
 }
 #editing-menu {
-    display: none;
+    /* display: none; */
     width: 100%;
     background-color: #333;
+}
+li:has(#enableEditing-btn) {
+    margin-left: auto;
 }
 #editing-menu button {
     padding: 5px;
