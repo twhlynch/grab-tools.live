@@ -463,3 +463,39 @@ li:has(#enableEditing-btn) {
 #editing-menu .menu-dropdown {
     min-width: 0px;
 }
+#editing-menu .edit_material{
+    color: #000;
+    font-weight: bold;
+    background-size: contain;
+    background-repeat: repeat;
+}
+#edit_material-0 {
+    background-image: url("/img/textures/default.png");
+}
+#edit_material-1 {
+    background-image: url("/img/textures/grabbable.png");
+}
+#edit_material-2 {
+    background-image: url("/img/textures/ice.png");
+}
+#edit_material-3 {
+    background-image: url("/img/textures/lava.png");
+}
+#edit_material-4 {
+    background-image: url("/img/textures/wood.png");
+}
+#edit_material-5 {
+    background-image: url("/img/textures/grapplable.png");
+}
+#edit_material-6 {
+    background-image: url("/img/textures/grapplable_lava.png");
+}
+#edit_material-7 {
+    background-image: url("/img/textures/grabbable_crumbling.png");
+}
+#edit_material-8 {
+    background-image: url("/img/textures/default_colored.png");
+}
+#edit_material-9 {
+    background-image: url("/img/textures/bouncing.png");
+}
