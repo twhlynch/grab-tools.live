@@ -2475,8 +2475,11 @@ document.getElementById('timeline-fast').addEventListener('click', () => {
 });
 document.getElementById('timeline-play').addEventListener('click', () => {
     playAnimations = true;
-    enableEditing = false;
-    document.getElementById('enableEditing-btn').style.color = enableEditing? '#3f3' : '';
+    if (enableEditing) {
+        generateLevelFromObjects();
+        enableEditing = false;
+        document.getElementById('enableEditing-btn').style.color = enableEditing? '#3f3' : '';
+    }
 });
 document.getElementById('timeline-pause').addEventListener('click', () => {
     playAnimations = false;
@@ -2511,15 +2514,18 @@ applyChangesElement.addEventListener('click', generateLevelFromObjects);
 document.getElementById('stats-container').addEventListener('click', handleStatsClick);
 // buttons
 document.getElementById('enableEditing-btn').addEventListener('click', () => {
-    enableEditing = !enableEditing;
-    playAnimations = !enableEditing;
-    if (enableEditing) {
+    if (!enableEditing) {
         animatedObjects.forEach(object => {
             object.animation.currentFrameIndex = 0
             object.position.copy(object.initialPosition);
             object.quaternion.copy(object.initialRotation);
         });
     }
+    if (enableEditing) {
+        generateLevelFromObjects();
+    }
+    enableEditing = !enableEditing;
+    playAnimations = !enableEditing;
     document.getElementById('enableEditing-btn').style.color = enableEditing? '#3f3' : '';
 });
 document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = HIDE_TEXT ? 'block' : 'none';HIDE_TEXT = !HIDE_TEXT;highlightTextEditor()});
