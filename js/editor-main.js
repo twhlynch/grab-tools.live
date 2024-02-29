@@ -294,6 +294,7 @@ async function initAttributes() {
 }
 function refreshScene() {
     let levelData = getLevel();
+    document.getElementById('stats-editor').innerText = `Editor: ${JSON.stringify(levelData, null, 4).length}`;
     let levelNodes = levelData["levelNodes"];
     
     let statistics = {
@@ -2209,7 +2210,7 @@ function onEditingKey(event) {
             case 71: // G
                 groupEditingObject();
                 break;
-                
+
             default:
                 break;
         }
