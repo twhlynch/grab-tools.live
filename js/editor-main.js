@@ -2097,6 +2097,81 @@ function generateLevelFromObjects() {
     setLevel(curLevel);
     applyChangesElement.style.display = "none";
 }
+function groupEditingObject() {
+    if (editing && !editing?.grabNodeData?.levelNodeGroup) {
+        let groupData = {
+            "levelNodeGroup": {
+                "position": {
+                    "y": 0,
+                    "x": 0,
+                    "z": 0
+                },
+                "rotation": {
+                    "w": 1.0
+                },
+                "scale": {
+                    "y": 1.0,
+                    "x": 1.0,
+                    "z": 1.0
+                },
+                "childNodes": [editing.grabNodeData]
+            }
+        };
+        let groupObject = new THREE.Object3D();
+        if (showGroups) {
+            let geometry = new THREE.BoxGeometry(1, 1, 1);
+            let material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+            groupObject = new THREE.Mesh(geometry, material);
+        }
+        objects.push(groupObject);
+        groupObject.grabNodeData = groupData;
+        groupObject.initialPosition = new THREE.Vector3(0, 0, 0);
+        groupObject.initialRotation = new THREE.Quaternion(0, 0, 0, 1);
+
+        let parent = editing.parent;
+        parent.add(groupObject);
+        groupObject.add(editing);
+        parent.remove(editing);
+        editing = groupObject;
+        selected = groupObject;
+    }
+}
+function cloneEditingObject() {
+    if (editing && editing.parent.type == "Scene" && !editing?.grabNodeData?.levelNodeGroup) {
+        let clone = editing.clone();
+        clone.grabNodeData = deepClone(editing.grabNodeData);
+        clone.initialPosition = deepClone(editing.initialPosition);
+        clone.initialRotation = deepClone(editing.initialRotation);
+        if (editing.animation) {
+            clone.animation = deepClone(editing.animation);
+            animatedObjects.push(clone);
+        }
+        editing.parent.add(clone);
+        objects.push(clone);
+    }
+}
+function deleteEditingObject() {
+    if (editing && editing.parent.type == "Scene" && !editing?.grabNodeData?.levelNodeGroup) {
+        editing.parent.remove(editing);
+        objects.splice(objects.indexOf(editing), 1);
+        if (editing.animation) {
+            animatedObjects.splice(animatedObjects.indexOf(editing), 1);
+        }
+        editing = null;
+        selected = null;
+        transformControl.detach();
+    } else if (editing && editing.parent.type == "Scene") {
+        editing.parent.remove(editing);
+        objects.splice(objects.indexOf(editing), 1);
+        if (editing.animation) {
+            animatedObjects.splice(animatedObjects.indexOf(editing), 1);
+        }
+        editing = null;
+        selected = null;
+        // TODO: properly delete groups and children
+        generateLevelFromObjects();
+    }
+}
 function onEditingKey(event) {
     if (enableEditing && document.activeElement.tagName == "BODY") {
         event.preventDefault();
@@ -2124,85 +2199,17 @@ function onEditingKey(event) {
                 break;
 
             case 68: // D
-                if (editing && editing.parent.type == "Scene" && !editing?.grabNodeData?.levelNodeGroup) {
-                    editing.parent.remove(editing);
-                    objects.splice(objects.indexOf(editing), 1);
-                    if (editing.animation) {
-                        animatedObjects.splice(animatedObjects.indexOf(editing), 1);
-                    }
-                    editing = null;
-                    selected = null;
-                    transformControl.detach();
-                } else if (editing && editing.parent.type == "Scene") {
-                    editing.parent.remove(editing);
-                    objects.splice(objects.indexOf(editing), 1);
-                    if (editing.animation) {
-                        animatedObjects.splice(animatedObjects.indexOf(editing), 1);
-                    }
-                    editing = null;
-                    selected = null;
-                    // TODO: properly delete groups and children
-                    generateLevelFromObjects();
-                }
+                deleteEditingObject();
                 break;
 
             case 67: // C
-                if (editing && editing.parent.type == "Scene" && !editing?.grabNodeData?.levelNodeGroup) {
-                    let clone = editing.clone();
-                    clone.grabNodeData = deepClone(editing.grabNodeData);
-                    clone.initialPosition = deepClone(editing.initialPosition);
-                    clone.initialRotation = deepClone(editing.initialRotation);
-                    if (editing.animation) {
-                        clone.animation = deepClone(editing.animation);
-                        animatedObjects.push(clone);
-                    }
-                    editing.parent.add(clone);
-                    objects.push(clone);
-                }
+                cloneEditingObject();
                 break;
                 
             case 71: // G
-                // group
-                console.log("grouping", editing)
-                if (editing && !editing?.grabNodeData?.levelNodeGroup) {
-                    let groupData = {
-                        "levelNodeGroup": {
-                            "position": {
-                                "y": 0,
-                                "x": 0,
-                                "z": 0
-                            },
-                            "rotation": {
-                                "w": 1.0
-                            },
-                            "scale": {
-                                "y": 1.0,
-                                "x": 1.0,
-                                "z": 1.0
-                            },
-                            "childNodes": [editing.grabNodeData]
-                        }
-                    };
-                    let groupObject = new THREE.Object3D();
-                    if (showGroups) {
-                        let geometry = new THREE.BoxGeometry(1, 1, 1);
-                        let material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
-                        groupObject = new THREE.Mesh(geometry, material);
-                    }
-                    objects.push(groupObject);
-                    groupObject.grabNodeData = groupData;
-                    groupObject.initialPosition = new THREE.Vector3(0, 0, 0);
-                    groupObject.initialRotation = new THREE.Quaternion(0, 0, 0, 1);
-
-                    let parent = editing.parent;
-                    parent.add(groupObject);
-                    groupObject.add(editing);
-                    parent.remove(editing);
-                    editing = groupObject;
-                    selected = groupObject;
-                }
-
+                groupEditingObject();
                 break;
+                
             default:
                 break;
         }
@@ -2696,6 +2703,20 @@ document.querySelectorAll('.edit_animation').forEach(element => {
     });
 });
 document.getElementById('edit_copyJSON-btn').addEventListener('click', copyEditingJSON);
+
+document.getElementById("edit_rotate-btn").addEventListener('click', () => {transformControl.setMode( 'rotate' )});
+document.getElementById("edit_scale-btn").addEventListener('click', () => {transformControl.setMode( 'scale' )});
+document.getElementById("edit_translate-btn").addEventListener('click', () => {transformControl.setMode( 'translate' )});
+document.getElementById("edit_space-btn").addEventListener('click', () => {transformControl.setSpace( transformControl.space === 'local' ? 'world' : 'local' )});
+document.getElementById("edit_group-btn").addEventListener('click', groupEditingObject);
+document.getElementById("edit_clone-btn").addEventListener('click', cloneEditingObject);
+document.getElementById("edit_delete-btn").addEventListener('click', deleteEditingObject);
+document.getElementById("edit_snap-btn").addEventListener('click', () => {
+    transformControl.setTranslationSnap( 100 );
+    transformControl.setRotationSnap( THREE.MathUtils.degToRad( 15 ) );
+    transformControl.setScaleSnap( 0.25 );
+});
+
 // apply
 applyChangesElement.addEventListener('click', generateLevelFromObjects);
 // stats
