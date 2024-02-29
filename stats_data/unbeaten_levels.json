@@ -33,7 +33,7 @@
       }
     },
     "creator": "littlebeastm8",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29sgp24f1uorbc6vq8d2k:1667046337",
@@ -51,7 +51,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 51100,
+      "total_played": 51300,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -69,7 +69,7 @@
       }
     },
     "creator": ".index (NSKC7)",
-    "change": 100
+    "change": 200
   },
   {
     "identifier": "2ay9po2nzhygd2lov96uh:1685394351",
@@ -406,7 +406,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7000,
+      "total_played": 7100,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -424,7 +424,7 @@
       }
     },
     "creator": ".index",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "29nxcg0chi4uqcj7yk7f4:1700402282",
@@ -714,7 +714,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 13600,
+      "total_played": 13800,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -1267,44 +1267,6 @@
     "change": 0
   },
   {
-    "identifier": "2ce16474jni6ar0fbqt2u:1707513850",
-    "title": "megalynn3031s lava land",
-    "complexity": 2413,
-    "format_version": 8,
-    "update_timestamp": 1707782139515,
-    "creation_timestamp": 1707782139515,
-    "data_key": "level_data:2ce16474jni6ar0fbqt2u:1707513850:1",
-    "description": "LAVE OHHHHH",
-    "creators": [
-      "megalynn3031",
-      "medveds"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "verification_time": 405.64,
-    "statistics": {
-      "total_played": 200,
-      "difficulty": 0,
-      "liked": 0,
-      "time": 100
-    },
-    "images": {
-      "full": {
-        "key": "level_2ce16474jni6ar0fbqt2u_1707513850_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_2ce16474jni6ar0fbqt2u_1707513850_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "megalynn3031",
-    "change": 0
-  },
-  {
     "identifier": "2bjxfndgtanz81tc9m38c:1707186599",
     "title": "The Lava Climb",
     "complexity": 1479,
@@ -1592,7 +1554,7 @@
       }
     },
     "creator": "FruitByTheFruit and friends",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29z0xnmo2bj7t5r2xfed1:1708547136",
@@ -1610,7 +1572,7 @@
     ],
     "verification_time": 69.98,
     "statistics": {
-      "total_played": 700,
+      "total_played": 800,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -1628,6 +1590,6 @@
       }
     },
     "creator": "gman2giant",
-    "change": 200
+    "change": 100
   }
 ]

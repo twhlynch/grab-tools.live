@@ -1,38 +1,23 @@
 {
-  "identifier": "2c0vvrzpz3uv0mp3n30r5:1708480507",
-  "title": "Sukuara Parkour",
-  "complexity": 2883,
-  "format_version": 8,
-  "update_timestamp": 1708483786999,
-  "creation_timestamp": 1708483786999,
-  "data_key": "level_data:2c0vvrzpz3uv0mp3n30r5:1708480507:1",
-  "description": "P I N K",
+  "identifier": "2aqj12racvbkdg8ge3ns9:1676834339",
+  "title": "Pixel Swamp",
+  "complexity": 2910,
+  "format_version": 6,
+  "update_timestamp": 1676841059290,
+  "creation_timestamp": 1676840916064,
+  "data_key": "level_data:2aqj12racvbkdg8ge3ns9:1676834339:2",
   "creators": [
-    "AysonBoi",
-    "Dyght_light"
+    "coleaaron"
   ],
   "tags": [
     "ok"
   ],
-  "verification_time": 59.54,
   "statistics": {
-    "total_played": 200,
-    "difficulty": 0.0273224043715847,
-    "liked": 1,
-    "time": 71.84584
+    "total_played": 500,
+    "difficulty": 0.06765327695560254,
+    "liked": 0.9,
+    "time": 57.45483656249999
   },
-  "images": {
-    "full": {
-      "key": "level_2c0vvrzpz3uv0mp3n30r5_1708480507_1.png",
-      "width": 1920,
-      "height": 1080
-    },
-    "thumb": {
-      "key": "level_2c0vvrzpz3uv0mp3n30r5_1708480507_1_thumb.png",
-      "width": 512,
-      "height": 288
-    }
-  },
-  "creator": "AysonBoi",
+  "creator": "coleaaron",
   "change": 0
 }
