@@ -2082,6 +2082,13 @@ function generateLevelFromObjects() {
             if (object?.grabNodeData?.animations?.length > 0 && object.grabNodeData.animations[0].currentFrameIndex) {
                 delete object.grabNodeData.animations[0].currentFrameIndex;
             }
+            if (object?.grabNodeData?.levelNodeGroup) {
+                runOnNodes(object.grabNodeData.levelNodeGroup.childNodes, (node) => {
+                    if (node?.animations?.length > 0 && node?.animations[0]?.currentFrameIndex) {
+                        delete node.animations[0].currentFrameIndex;
+                    }
+                }, true);
+            }
             levelNodes.push(object.grabNodeData);
         }
     });
@@ -2321,7 +2328,7 @@ function editShape(shape) {
         remakeEditingObject(material, shape, shapeData);
         applyChangesElement.style.display = "block";
     } else if (editing && editing?.grabNodeData?.levelNodeGroup) {
-        // TODO: change children
+        // TODO: fix changing children
         remakeGroup(shape, false, editing)
         // change group nodeData
         let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
@@ -2343,7 +2350,7 @@ function editMaterial(material) {
         remakeEditingObject(material, shape, shapeData);
         applyChangesElement.style.display = "block";
     } else if (editing && editing?.grabNodeData?.levelNodeGroup) {
-        // TODO: change children
+        // TODO: fix changing children
         remakeGroup(false, material, editing)
         // change group nodeData
         let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
