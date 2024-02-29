@@ -2126,6 +2126,16 @@ function onEditingKey(event) {
                     editing = null;
                     selected = null;
                     transformControl.detach();
+                } else if (editing && editing.parent.type == "Scene") {
+                    editing.parent.remove(editing);
+                    objects.splice(objects.indexOf(editing), 1);
+                    if (editing.animation) {
+                        animatedObjects.splice(animatedObjects.indexOf(editing), 1);
+                    }
+                    editing = null;
+                    selected = null;
+                    // TODO: properly delete groups and children
+                    generateLevelFromObjects();
                 }
                 break;
 
