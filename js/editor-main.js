@@ -2146,6 +2146,7 @@ function onEditingKey(event) {
                 
             case 71: // G
                 // group
+                console.log("grouping", editing)
                 if (editing && !editing?.grabNodeData?.levelNodeGroup) {
                     let groupData = {
                         "levelNodeGroup": {
@@ -2177,10 +2178,11 @@ function onEditingKey(event) {
                     groupObject.initialRotation = new THREE.Quaternion(0, 0, 0, 1);
 
                     let parent = editing.parent;
-                    parent.remove(editing);
-                    groupObject.add(editing);
                     parent.add(groupObject);
+                    groupObject.add(editing);
+                    parent.remove(editing);
                     editing = groupObject;
+                    selected = groupObject;
                 }
 
                 break;
