@@ -2143,7 +2143,47 @@ function onEditingKey(event) {
                     objects.push(clone);
                 }
                 break;
-                // TODO: G
+                
+            case 71: // G
+                // group
+                if (editing && !editing?.grabNodeData?.levelNodeGroup) {
+                    let groupData = {
+                        "levelNodeGroup": {
+                            "position": {
+                                "y": 0,
+                                "x": 0,
+                                "z": 0
+                            },
+                            "rotation": {
+                                "w": 1.0
+                            },
+                            "scale": {
+                                "y": 1.0,
+                                "x": 1.0,
+                                "z": 1.0
+                            },
+                            "childNodes": [editing.grabNodeData]
+                        }
+                    };
+                    let groupObject = new THREE.Object3D();
+                    if (showGroups) {
+                        let geometry = new THREE.BoxGeometry(1, 1, 1);
+                        let material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+                        groupObject = new THREE.Mesh(geometry, material);
+                    }
+                    objects.push(groupObject);
+                    groupObject.grabNodeData = groupData;
+                    groupObject.initialPosition = new THREE.Vector3(0, 0, 0);
+                    groupObject.initialRotation = new THREE.Quaternion(0, 0, 0, 1);
+
+                    let parent = editing.parent;
+                    parent.remove(editing);
+                    groupObject.add(editing);
+                    parent.add(groupObject);
+                    editing = groupObject;
+                }
+
+                break;
             default:
                 break;
         }
@@ -2187,7 +2227,76 @@ function remakeEditingObject(material, shape, shapeData) {
     selected = newObject;
     transformControl.attach(newObject);
     scene.add(transformControl);
-    console.log(newObject);
+}
+function remakeObject(material, shape, shapeData, object) {
+    let nodeData = Object.values(shapeData)[0];
+    if (!material) {
+        material = nodeData.material || 0;
+    }
+    if (!shape) {
+        shape = nodeData.shape;
+    }
+    nodeData.shape = shape;
+    nodeData.material = material;
+    let newObject = shapes[shape-1000].clone();
+    let newMaterial = materials[material].clone();
+    if (material == 8) {
+        newMaterial.uniforms.colors.value = new THREE.Vector3(
+            nodeData?.color?.r || 0,
+            nodeData?.color?.g || 0,
+            nodeData?.color?.b || 0
+        );
+    }
+
+    newObject.material = newMaterial;
+    newObject.grabNodeData = shapeData;
+    newObject.initialPosition = nodeData.position;
+    newObject.initialRotation = nodeData.rotation;
+    newObject.position.copy(object.position);
+    newObject.quaternion.copy(object.quaternion);
+    newObject.scale.copy(object.scale);
+    if (object.animation) {
+        newObject.animation = deepClone(object.animation);
+        animatedObjects.push(newObject);
+    }
+    object.parent.add(newObject);
+    objects.push(newObject);
+    object.parent.remove(object);
+    objects.splice(objects.indexOf(object), 1);
+    if (object.animation) {
+        animatedObjects.splice(animatedObjects.indexOf(object), 1);
+    }
+    object = newObject;
+    selected = newObject;
+}
+function remakeGroup(shape, material, object) {
+    if (object.grabNodeData.levelNodeGroup) {
+        let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
+        runOnNodes(childNodes, (node) => {
+            if (material) {
+                if (node.levelNodeStatic) {
+                    node.levelNodeStatic.material = material;
+                }
+            }
+            if (shape) {
+                if (node.levelNodeStatic || node.levelNodeCrumbling) {
+                    node.levelNodeStatic.shape = shape;
+                }
+            }
+        }, false);
+        object.children.forEach(child => {
+            remakeGroup(shape, material, child);
+        });
+    } else {
+        if (shape && (object.grabNodeData.levelNodeStatic || object.grabNodeData.levelNodeCrumbling)) {
+            let shapeData = deepClone(object.grabNodeData);
+            remakeObject(material, shape, shapeData, object);
+        }
+        if (material && (object.grabNodeData.levelNodeStatic)) {
+            let shapeData = deepClone(object.grabNodeData);
+            remakeObject(material, shape, shapeData, object);
+        }
+    }
 }
 function editShape(shape) {
     if (
@@ -2196,11 +2305,12 @@ function editShape(shape) {
     ) {
         let shapeData = deepClone(editing.grabNodeData);
         let nodeData = Object.values(shapeData)[0];
-        let material = nodeData.material;
+        let material = nodeData.material || 0;
         remakeEditingObject(material, shape, shapeData);
         applyChangesElement.style.display = "block";
     } else if (editing && editing?.grabNodeData?.levelNodeGroup) {
         // TODO: change children
+        remakeGroup(shape, false, editing)
         // change group nodeData
         let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
         runOnNodes(childNodes, (node) => {
@@ -2222,6 +2332,7 @@ function editMaterial(material) {
         applyChangesElement.style.display = "block";
     } else if (editing && editing?.grabNodeData?.levelNodeGroup) {
         // TODO: change children
+        remakeGroup(false, material, editing)
         // change group nodeData
         let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
         runOnNodes(childNodes, (node) => {
