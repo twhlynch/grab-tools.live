@@ -31,11 +31,15 @@ let animationTime = 0.0;
 let animationSpeed = 1.0;
 let playAnimations = true;
 let fileNames = [
-    "elevator", 
-    "screw", 
-    "sideways", 
-    "spin", 
-    "square", 
+    "angle_slide",
+    "elevate",
+    "flip",
+    "roll",
+    "screw",
+    "shake",
+    "slide",
+    "spin",
+    "square",
     "wobble"
 ];
 let animationPresets = {};
