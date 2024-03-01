@@ -2035,9 +2035,15 @@ function onPointerMove(e) {
         let intersects = raycaster.intersectObjects( scene.children, true );
         if (lastSelected && lastSelected?.material?.uniforms?.isSelected) {
             lastSelected.material.uniforms.isSelected.value = false;
-        } else if (lastSelected && lastSelected?.grabNodeData?.levelNodeGroup) {
-            unHighlightGroup(lastSelected);
         }
+        // else if (lastSelected && lastSelected?.grabNodeData?.levelNodeGroup) {
+        //     unHighlightGroup(lastSelected);
+        // }
+        objects.forEach(object => {
+            if (object?.material?.uniforms?.isSelected) {
+                object.material.uniforms.isSelected.value = false;
+            }
+        });
         lastSelected = null;
         for (let i = 0; i < intersects.length; i++) {
             if (!intersects[i].object.grabNodeData) {
