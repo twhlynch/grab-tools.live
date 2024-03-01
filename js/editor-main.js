@@ -296,7 +296,7 @@ function refreshScene() {
     let levelData = getLevel();
     document.getElementById('stats-editor').innerText = `Editor: ${JSON.stringify(levelData, null, 4).length}`;
     let levelNodes = levelData["levelNodes"];
-    
+    console.log(objects.length, animatedObjects.length);
     let statistics = {
         // basic stats
         complexity: 0,
@@ -335,6 +335,7 @@ function refreshScene() {
         danger: false
     };
     objects = [];
+    animatedObjects = [];
     scene.clear();
     
     levelNodes.forEach((node) => {
@@ -2102,6 +2103,7 @@ function generateLevelFromObjects() {
     let curLevel = getLevel();
     curLevel.levelNodes = levelNodes;
     setLevel(curLevel);
+    transformControl.detach();
     applyChangesElement.style.display = "none";
 }
 function groupEditingObject() {
