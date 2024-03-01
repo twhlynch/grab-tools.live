@@ -622,8 +622,12 @@ function getBestOfGrab() {
                     playerCompletions[lItem.user_id] = {
                         user_name: lItem.user_name,
                         maps: 1,
+                        firsts: 0,
                         score: score
                     }
+                }
+                if (lItem.position == 0) {
+                    playerCompletions[lItem.user_id].firsts += 1;
                 }
                 list_key.forEach( lKey => {
                     if (playerCompletionsByKey[lKey][lItem.user_id]) {
@@ -632,9 +636,13 @@ function getBestOfGrab() {
                     } else {
                         playerCompletionsByKey[lKey][lItem.user_id] = {
                             user_name: lItem.user_name,
+                            firsts: 0,
                             maps: 1,
                             score: score
                         }
+                    }
+                    if (lItem.position == 0) {
+                        playerCompletionsByKey[lKey][lItem.user_id].firsts += 1;
                     }
                 });
             });
@@ -667,7 +675,12 @@ function getBestOfGrab() {
         });
 
         list_keys.forEach(key=>{
-            const sorted = Object.entries(playerCompletionsByKey[key]).sort((a, b) => b[1].maps - a[1].maps);
+            const sorted = Object.entries(playerCompletionsByKey[key]).sort((a, b) => {
+                if (b[1].maps === a[1].maps) {
+                    return b[1].score - a[1].score;
+                }
+                return b[1].maps - a[1].maps;
+            });
             const top = sorted.slice(0, 200);
             for (const [id, value] of top) {
                 const user_card = userCard(
@@ -679,6 +692,7 @@ function getBestOfGrab() {
                     `${value.maps} Maps (${value.score} Pt)`, 
                     ''
                 );
+                user_card.childNodes[1].title = value.firsts;
                 let checkUnbeatenButton = document.createElement('button');
                 checkUnbeatenButton.innerText = "Check";
                 checkUnbeatenButton.classList.add('button-super-sml');
@@ -771,7 +785,12 @@ function getBestOfGrab() {
                 document.getElementById('BestOfGrab'+key+'-out').appendChild(user_card);
             }
         });
-        const sorted = Object.entries(playerCompletions).sort((a, b) => b[1].maps - a[1].maps);
+        const sorted = Object.entries(playerCompletions).sort((a, b) => {
+            if (b[1].maps === a[1].maps) {
+                return b[1].score - a[1].score;
+            }
+            return b[1].maps - a[1].maps;
+        });
         const top = sorted.slice(0, 200);
         for (const [id, value] of top) {
             const user_card = userCard(
@@ -783,6 +802,7 @@ function getBestOfGrab() {
                 `${value.maps} Maps (${value.score} Pt)`, 
                 ''
             );
+            user_card.childNodes[1].title = value.firsts;
             let checkUnbeatenButton = document.createElement('button');
             checkUnbeatenButton.innerText = "Check";
             checkUnbeatenButton.classList.add('button-super-sml');
