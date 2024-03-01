@@ -590,12 +590,18 @@ function getBestOfGrab() {
     .then((response) => response.json())
     .then(data => {
         let list_keys = [];
+        let key_lengths = {};
         data.forEach(item => {
             let list_key = item.list_key;
             let list_key_split = list_key.split(":");
             list_key_split.forEach( key => {
                 if (list_keys.indexOf(key) == -1) {
                     list_keys.push(key);
+                }
+                if (key_lengths[key]) {
+                    key_lengths[key] += 1;
+                } else {
+                    key_lengths[key] = 1;
                 }
             } );
         });
@@ -667,7 +673,7 @@ function getBestOfGrab() {
                 const user_card = userCard(
                     id, 
                     value.user_name, 
-                    false, 
+                    value.maps == key_lengths[key] ? true : false, 
                     false, 
                     false, 
                     `${value.maps} Maps (${value.score} Pt)`, 
@@ -771,7 +777,7 @@ function getBestOfGrab() {
             const user_card = userCard(
                 id, 
                 value.user_name, 
-                false, 
+                value.maps == data.length ? true : false, 
                 false, 
                 false, 
                 `${value.maps} Maps (${value.score} Pt)`, 
