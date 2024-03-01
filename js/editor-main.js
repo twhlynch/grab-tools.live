@@ -11,25 +11,12 @@ let webusb = null;
 let adb = null;
 let shell = null;
 let sync = null;
-let decoder = new TextDecoder();
-let camera, scene, renderer, light, controls, fly, loader, sun, transformControl, raycaster, mouse, lastSelected, selected, editing;
+let camera, scene, renderer, light, controls, fly, loader, sun, transformControl, raycaster, mouse, lastSelected, selected, editing, vrButton, startMaterial, finishMaterial;
 let objects = [];
+let animatedObjects = [];
 let materials = [];
 let shapes = [];
 let exportMaterials = [];
-let altTextures = false;
-let lastRan = '';
-let HIDE_TEXT = false;
-let HIGHLIGHT_TEXT = true;
-let vrButton;
-let showGroups = false;
-let startMaterial, finishMaterial;
-let oldText = '';
-let clock = new THREE.Clock();
-let animatedObjects = [];
-let animationTime = 0.0;
-let animationSpeed = 1.0;
-let playAnimations = true;
 let fileNames = [
     "angle_slide",
     "elevate",
@@ -43,9 +30,21 @@ let fileNames = [
     "wobble"
 ];
 let animationPresets = {};
-let templates = await fetch('/level_data/templates.json').then(response => response.json());
-let PROTOBUF_DATA = await fetch('/proto/proto.proto').then(response => response.text());
+let altTextures = false;
+let hideText = false;
+let highlightText = true;
+let showGroups = false;
 let enableEditing = false;
+let playAnimations = true;
+let animationTime = 0.0;
+let animationSpeed = 1.0;
+let clock = new THREE.Clock();
+let decoder = new TextDecoder();
+let lastRan = '';
+let oldText = '';
+let templates = await fetch('/level_data/templates.json').then(response => response.json());
+let protobufData = await fetch('/proto/proto.proto').then(response => response.text());
+
 // elements
 const applyChangesElement = document.getElementById('applyChanges');
 const formatWarningElement = document.getElementById('formatWarning');
@@ -85,6 +84,31 @@ const statsCylinderElement = document.getElementById('stats-cylinder');
 const statsPyramidElement = document.getElementById('stats-pyramid');
 const statsPrismElement = document.getElementById('stats-prism');
 
+function deepClone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+function runOnObjects(objects, func, doGroups = true) {
+    objects.forEach((object) => {
+        let isGroup = node?.grabNodeData?.levelNodeGroup ? true : false;
+        if ((isGroup && doGroups) || !isGroup) {
+            func(object);
+        }
+        if (isGroup) {
+            runOnObjects(object.children, func, doGroups);
+        }
+    });
+}
+function runOnNodes(nodes, func, doGroups = true) {
+    nodes.forEach((node) => {
+        let isGroup = node.hasOwnProperty("levelNodeGroup");
+        if ((isGroup && doGroups) || !isGroup) {
+            func(node);
+        }
+        if (isGroup) {
+            runOnNodes(node.levelNodeGroup.childNodes, func, doGroups);
+        }
+    });
+}
 function getLevel() {
     return JSON.parse(editInputElement.innerText);
 }
@@ -108,11 +132,11 @@ function highlightTextEditor() {
     let textEditor = editInputElement;
     let hasChanged = oldText != textEditor.innerHTML;
 
-    if (!HIDE_TEXT && hasChanged) {
+    if (!hideText && hasChanged) {
         
         const editText = JSON.stringify(JSON.parse(textEditor.innerText), null, 4);
         
-        if (HIGHLIGHT_TEXT) {
+        if (highlightText) {
             
             let highlightedText = editText.replace(/"color":\s*{\s*("r":\s*(\d+(?:\.\d+)?),)?\s*("g":\s*(\d+(?:\.\d+)?),)?\s*("b":\s*(\d+(?:\.\d+)?),)?\s*("a":\s*\d+(?:\.\d+)?)?\s*}/, (match) => {
                 let jsonData = JSON.parse(`{${match}}`);
@@ -967,7 +991,7 @@ function readArrayBuffer(file) {
         let reader = new FileReader();
         reader.onload = function() {
             let data = reader.result;
-            let {root} = protobuf.parse(PROTOBUF_DATA, { keepCase: true });
+            let {root} = protobuf.parse(protobufData, { keepCase: true });
             console.log(root);
             let message = root.lookupType("COD.Level.Level");
             let decoded = message.decode(new Uint8Array(data));
@@ -1068,7 +1092,7 @@ function appendLevelFile(level) {
     });
 }
 function downloadProto(obj) {
-    let {root} = protobuf.parse(PROTOBUF_DATA, { keepCase: true });
+    let {root} = protobuf.parse(protobufData, { keepCase: true });
     let message = root.lookupType("COD.Level.Level");
     let errMsg = message.verify(obj);
     if(errMsg) {throw Error(errMsg)};
@@ -1179,7 +1203,7 @@ async function openQuestLevel(level) {
 }
 async function saveToQuest(name=(Date.now()).toString().slice(0, -3)) {
     let obj = getLevel();
-    let {root} = protobuf.parse(PROTOBUF_DATA, { keepCase: true });
+    let {root} = protobuf.parse(protobufData, { keepCase: true });
     let message = root.lookupType("COD.Level.Level");
     let errMsg = message.verify(obj);
     if(errMsg) {throw Error(errMsg)};
@@ -1204,17 +1228,6 @@ function setAmbience(skyZenithColor, skyHorizonColor, sunAltitude, sunAzimuth, s
     levelData.ambienceSettings.sunSize = sunSize;
     levelData.ambienceSettings.fogDDensity = fogDDensity;
     setLevel(levelData);
-}
-function runOnNodes(levelNodes, func, doGroups = true) {
-    levelNodes.forEach((node) => {
-        let isGroup = node.hasOwnProperty("levelNodeGroup");
-        if ((isGroup && doGroups) || !isGroup) {
-            func(node);
-        }
-        if (isGroup) {
-            runOnNodes(node.levelNodeGroup.childNodes, func, doGroups);
-        }
-    });
 }
 function downloadAsJSON() {
     const blob = new Blob([JSON.stringify(getLevel())], { type: 'application/json' });
@@ -1352,9 +1365,6 @@ function randomizeLevelAll() {
     randomizeLevelRotations();
     randomizeLevelScales();
     randomizeLevelShapes();
-}
-function deepClone(obj) {
-    return JSON.parse(JSON.stringify(obj));
 }
 function explodeLevel() {
     let obj = getLevel();
@@ -1611,309 +1621,6 @@ function loadProtobuf(url) {
     .then(proto_data => {
         document.getElementById('protobuf-prompt').value = proto_data;
     });
-}
-function openPointCloud(file) {
-    let reader = new FileReader();
-
-    reader.onload = function() {
-        let data = reader.result;
-        let level = getLevel();
-        let lines = data.split("\n");
-        let points = {
-            "levelNodeGroup": {
-                "position": {
-                    "y": 0, 
-                    "x": 0, 
-                    "z": 0
-                }, 
-                "rotation": {
-                    "w": 1.0
-                }, 
-                "scale": {
-                    "y": 1.0, 
-                    "x": 1.0, 
-                    "z": 1.0
-                },
-                "childNodes": []
-            }
-        };
-        for (let i = 0; i < lines.length; i++) {
-            let line = lines[i];
-            if (line.startsWith("v ")) {
-                line = line.replace("v ", "");
-                let coords = line.split(" ");
-                points.levelNodeGroup.childNodes.push({
-                    "levelNodeStatic": {
-                        "material": 8,
-                        "position": {
-                            "x": parseFloat(coords[0]),
-                            "y": parseFloat(coords[1]),
-                            "z": parseFloat(coords[2])
-                        },
-                        "color": {
-                            "r": 1,
-                            "g": 1,
-                            "b": 1,
-                            "a": 1
-                        },
-                        "rotation": {
-                            "w": 1
-                        },
-                        "scale": {
-                            "x": 1,
-                            "y": 1,
-                            "z": 1
-                        },
-                        "shape": 1001
-                    }
-                });
-            }
-        }
-        level.levelNodes.push(points);
-        setLevel(level);
-    }
-    reader.readAsText(file);
-}
-function openWireframe(file) {
-    let reader = new FileReader();
-
-    reader.onload = function() {
-        let data = reader.result;
-        let level = getLevel();
-        let lines = data.split("\n");
-        let wireframe = {
-            "levelNodeGroup": {
-                "position": {
-                    "y": 0,
-                    "x": 0,
-                    "z": 0
-                },
-                "rotation": {
-                    "w": 1.0
-                },
-                "scale": {
-                    "y": 1.0,
-                    "x": 1.0,
-                    "z": 1.0
-                },
-                "childNodes": []
-            }
-        };
-
-        let vertices = [];
-        let edges = [];
-
-        for (let i = 0; i < lines.length; i++) {
-            let line = lines[i];
-            if (line.startsWith("v ")) {
-                line = line.replace("v ", "");
-                let coords = line.trim().split(" ");
-                vertices.push({
-                    "x": parseFloat(coords[0]),
-                    "y": parseFloat(coords[1]),
-                    "z": parseFloat(coords[2])
-                });
-            } else if (line.startsWith("f ")) {
-                line = line.replace("f ", "");
-                let faceIndices = line.trim().split(" ");
-                let edgeA = parseInt(faceIndices[0].split("/")[0]) - 1;
-                let edgeB = parseInt(faceIndices[1].split("/")[0]) - 1;
-                let edgeC = parseInt(faceIndices[2].split("/")[0]) - 1;
-                edges.push({
-                    "a": edgeA,
-                    "b": edgeB
-                });
-                edges.push({
-                    "a": edgeB,
-                    "b": edgeC
-                });
-                edges.push({
-                    "a": edgeC,
-                    "b": edgeA
-                });
-            }
-        }
-
-        for (let i = 0; i < edges.length; i++) {
-            const edge = edges[i];
-            
-            let pointA = vertices[edge.a];
-            let pointB = vertices[edge.b];
-
-            let distance = Math.sqrt(
-                Math.pow(pointB.x - pointA.x, 2) +
-                Math.pow(pointB.y - pointA.y, 2) +
-                Math.pow(pointB.z - pointA.z, 2)
-            );
-
-            let midpoint = {
-                x: (pointA.x + pointB.x) / 2,
-                y: (pointA.y + pointB.y) / 2,
-                z: (pointA.z + pointB.z) / 2,
-            };
-
-            let rotation = {
-                x: 0,
-                y: 0,
-                z: 0,
-                w: 1
-            };
-
-            // rotate to cross points 
-
-            wireframe.levelNodeGroup.childNodes.push({
-                "levelNodeStatic": {
-                    "material": 8,
-                    "position": midpoint,
-                    "color": {
-                        "r": 1,
-                        "g": 1,
-                        "b": 1,
-                        "a": 1
-                    },
-                    "rotation": rotation,
-                    "scale": {
-                        "x": 1,
-                        "y": distance,
-                        "z": 1
-                    },
-                    "shape": 1002
-                }
-            });
-        }
-        
-
-        level.levelNodes.push(wireframe);
-        setLevel(level);
-    };
-
-    reader.readAsText(file);
-}
-function generatePixelArt() {
-    let quality = document.getElementById('pixel-prompt').value;
-    document.getElementById('pixel-prompt').value = '';
-    
-    if (quality == "" || quality == null || quality < 1) {
-        quality = 50;
-    }
-    let file = document.getElementById('image-btn-input').files[0];
-    let canvas = document.getElementById('pixel-canvas');
-    let ctx = canvas.getContext('2d');
-    let reader = new FileReader();
-    reader.onload = function() {
-        let data = reader.result;
-        let img = new Image();
-        img.onload = function() {
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
-            let canvas2 = document.getElementById('pixel-canvas2');
-            let ctx2 = canvas2.getContext('2d');
-            canvas2.width = quality;
-            canvas2.height = quality;
-            let rgbArray = [];
-            for (let x = 0; x < quality; x++) {
-                for (let y = 0; y < quality; y++) {
-                    let pixel = ctx.getImageData(x*(img.width/quality), y*(img.height/quality), 1, 1);
-                    ctx2.putImageData(pixel, x, y);
-                    let rgb = pixel.data;
-                    rgbArray.push([rgb[0], rgb[1], rgb[2], x, y*-1]);
-                }
-            }
-            let pixelGroup = {
-                "levelNodeGroup": {
-                    "position": {
-                        "y": 0, 
-                        "x": 0, 
-                        "z": 0
-                    }, 
-                    "rotation": {
-                        "w": 1.0
-                    }, 
-                    "childNodes": [], 
-                    "scale": {
-                        "y": 1.0, 
-                        "x": 1.0, 
-                        "z": 1.0
-                    }
-                }
-            }
-            let pixels = rgbArray;
-            for (let i = 0; i < pixels.length; i++) {
-                if (pixels[i][0] == 0) {
-                    pixels[i][0] == 1;
-                }
-                if (pixels[i][1] == 0) {
-                    pixels[i][1] == 1;
-                }
-                if (pixels[i][2] == 0) {
-                    pixels[i][2] == 1;
-                }
-                pixelGroup.levelNodeGroup.childNodes.push({
-                    "levelNodeStatic": {
-                        "material": 8,
-                        "position": {
-                            "x": pixels[i][3],
-                            "y": pixels[i][4],
-                            "z": 10.0
-                        },
-                        "color": {
-                            "r": pixels[i][0] / 255,
-                            "g": pixels[i][1] / 255,
-                            "b": pixels[i][2] / 255,
-                            "a": 1.0
-                        },
-                        "rotation": {
-                            "w": 1
-                        },
-                        "scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "shape": 1000
-                    }
-                });
-            }
-            let mainLevel = getLevel();
-            mainLevel.levelNodes.push(pixelGroup);
-            setLevel(mainLevel);
-        }
-        img.src = data;
-    }
-    reader.readAsDataURL(file);
-}
-function duplicateLevel() {
-    let levelData = getLevel();
-    levelData.levelNodes = levelData.levelNodes.concat(levelData.levelNodes);
-    setLevel(levelData);
-}
-function groupLevel() {
-    let levelData = getLevel();
-    levelData.levelNodes = [{
-        "levelNodeGroup": {
-            "position": {
-                "y": 0, 
-                "x": 0, 
-                "z": 0
-            }, 
-            "rotation": {
-                "w": 1.0
-            }, 
-            "scale": {
-                "y": 1.0, 
-                "x": 1.0, 
-                "z": 1.0
-            },
-            "childNodes": levelData.levelNodes
-        }
-    }];
-    setLevel(levelData);
-}
-function ungroupLevel() {
-    let levelData = getLevel();
-    levelData.levelNodes = levelData.levelNodes[0].levelNodeGroup.childNodes;
-    setLevel(levelData);
 }
 function clearLevelDetails() {
     let levelData = getLevel();
@@ -2555,6 +2262,312 @@ function toggleEditing() {
     playAnimations = !enableEditing;
     document.getElementById('enableEditing-btn').style.color = enableEditing? '#3f3' : '';
 }
+function groupNodes(nodes) {
+    return {
+        "levelNodeGroup": {
+            "position": {
+                "y": 0, 
+                "x": 0, 
+                "z": 0
+            }, 
+            "rotation": {
+                "w": 1.0
+            }, 
+            "scale": {
+                "y": 1.0, 
+                "x": 1.0, 
+                "z": 1.0
+            },
+            "childNodes": nodes
+        }
+    };
+}
+function groupLevel() {
+    let levelData = getLevel();
+    levelData.levelNodes = [groupNodes(levelData.levelNodes)];
+    setLevel(levelData);
+}
+function ungroupLevel() {
+    let levelData = getLevel();
+    levelData.levelNodes = levelData.levelNodes[0].levelNodeGroup.childNodes;
+    setLevel(levelData);
+}
+function openPointCloud(file) {
+    let reader = new FileReader();
+
+    reader.onload = function() {
+        let data = reader.result;
+        let level = getLevel();
+        let lines = data.split("\n");
+        let points = {
+            "levelNodeGroup": {
+                "position": {
+                    "y": 0, 
+                    "x": 0, 
+                    "z": 0
+                }, 
+                "rotation": {
+                    "w": 1.0
+                }, 
+                "scale": {
+                    "y": 1.0, 
+                    "x": 1.0, 
+                    "z": 1.0
+                },
+                "childNodes": []
+            }
+        };
+        for (let i = 0; i < lines.length; i++) {
+            let line = lines[i];
+            if (line.startsWith("v ")) {
+                line = line.replace("v ", "");
+                let coords = line.split(" ");
+                points.levelNodeGroup.childNodes.push({
+                    "levelNodeStatic": {
+                        "material": 8,
+                        "position": {
+                            "x": parseFloat(coords[0]),
+                            "y": parseFloat(coords[1]),
+                            "z": parseFloat(coords[2])
+                        },
+                        "color": {
+                            "r": 1,
+                            "g": 1,
+                            "b": 1,
+                            "a": 1
+                        },
+                        "rotation": {
+                            "w": 1
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "shape": 1001
+                    }
+                });
+            }
+        }
+        level.levelNodes.push(points);
+        setLevel(level);
+    }
+    reader.readAsText(file);
+}
+function openWireframe(file) {
+    let reader = new FileReader();
+
+    reader.onload = function() {
+        let data = reader.result;
+        let level = getLevel();
+        let lines = data.split("\n");
+        let wireframe = {
+            "levelNodeGroup": {
+                "position": {
+                    "y": 0,
+                    "x": 0,
+                    "z": 0
+                },
+                "rotation": {
+                    "w": 1.0
+                },
+                "scale": {
+                    "y": 1.0,
+                    "x": 1.0,
+                    "z": 1.0
+                },
+                "childNodes": []
+            }
+        };
+
+        let vertices = [];
+        let edges = [];
+
+        for (let i = 0; i < lines.length; i++) {
+            let line = lines[i];
+            if (line.startsWith("v ")) {
+                line = line.replace("v ", "");
+                let coords = line.trim().split(" ");
+                vertices.push({
+                    "x": parseFloat(coords[0]),
+                    "y": parseFloat(coords[1]),
+                    "z": parseFloat(coords[2])
+                });
+            } else if (line.startsWith("f ")) {
+                line = line.replace("f ", "");
+                let faceIndices = line.trim().split(" ");
+                let edgeA = parseInt(faceIndices[0].split("/")[0]) - 1;
+                let edgeB = parseInt(faceIndices[1].split("/")[0]) - 1;
+                let edgeC = parseInt(faceIndices[2].split("/")[0]) - 1;
+                edges.push({
+                    "a": edgeA,
+                    "b": edgeB
+                });
+                edges.push({
+                    "a": edgeB,
+                    "b": edgeC
+                });
+                edges.push({
+                    "a": edgeC,
+                    "b": edgeA
+                });
+            }
+        }
+
+        for (let i = 0; i < edges.length; i++) {
+            const edge = edges[i];
+            
+            let pointA = vertices[edge.a];
+            let pointB = vertices[edge.b];
+
+            let distance = Math.sqrt(
+                Math.pow(pointB.x - pointA.x, 2) +
+                Math.pow(pointB.y - pointA.y, 2) +
+                Math.pow(pointB.z - pointA.z, 2)
+            );
+
+            let midpoint = {
+                x: (pointA.x + pointB.x) / 2,
+                y: (pointA.y + pointB.y) / 2,
+                z: (pointA.z + pointB.z) / 2,
+            };
+
+            let rotation = {
+                x: 0,
+                y: 0,
+                z: 0,
+                w: 1
+            };
+
+            // rotate to cross points 
+
+            wireframe.levelNodeGroup.childNodes.push({
+                "levelNodeStatic": {
+                    "material": 8,
+                    "position": midpoint,
+                    "color": {
+                        "r": 1,
+                        "g": 1,
+                        "b": 1,
+                        "a": 1
+                    },
+                    "rotation": rotation,
+                    "scale": {
+                        "x": 1,
+                        "y": distance,
+                        "z": 1
+                    },
+                    "shape": 1002
+                }
+            });
+        }
+        
+
+        level.levelNodes.push(wireframe);
+        setLevel(level);
+    };
+
+    reader.readAsText(file);
+}
+function generatePixelArt() {
+    let quality = document.getElementById('pixel-prompt').value;
+    document.getElementById('pixel-prompt').value = '';
+    
+    if (quality == "" || quality == null || quality < 1) {
+        quality = 50;
+    }
+    let file = document.getElementById('image-btn-input').files[0];
+    let canvas = document.getElementById('pixel-canvas');
+    let ctx = canvas.getContext('2d');
+    let reader = new FileReader();
+    reader.onload = function() {
+        let data = reader.result;
+        let img = new Image();
+        img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+            let canvas2 = document.getElementById('pixel-canvas2');
+            let ctx2 = canvas2.getContext('2d');
+            canvas2.width = quality;
+            canvas2.height = quality;
+            let rgbArray = [];
+            for (let x = 0; x < quality; x++) {
+                for (let y = 0; y < quality; y++) {
+                    let pixel = ctx.getImageData(x*(img.width/quality), y*(img.height/quality), 1, 1);
+                    ctx2.putImageData(pixel, x, y);
+                    let rgb = pixel.data;
+                    rgbArray.push([rgb[0], rgb[1], rgb[2], x, y*-1]);
+                }
+            }
+            let pixelGroup = {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0, 
+                        "x": 0, 
+                        "z": 0
+                    }, 
+                    "rotation": {
+                        "w": 1.0
+                    }, 
+                    "childNodes": [], 
+                    "scale": {
+                        "y": 1.0, 
+                        "x": 1.0, 
+                        "z": 1.0
+                    }
+                }
+            }
+            let pixels = rgbArray;
+            for (let i = 0; i < pixels.length; i++) {
+                if (pixels[i][0] == 0) {
+                    pixels[i][0] == 1;
+                }
+                if (pixels[i][1] == 0) {
+                    pixels[i][1] == 1;
+                }
+                if (pixels[i][2] == 0) {
+                    pixels[i][2] == 1;
+                }
+                pixelGroup.levelNodeGroup.childNodes.push({
+                    "levelNodeStatic": {
+                        "material": 8,
+                        "position": {
+                            "x": pixels[i][3],
+                            "y": pixels[i][4],
+                            "z": 10.0
+                        },
+                        "color": {
+                            "r": pixels[i][0] / 255,
+                            "g": pixels[i][1] / 255,
+                            "b": pixels[i][2] / 255,
+                            "a": 1.0
+                        },
+                        "rotation": {
+                            "w": 1
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "shape": 1000
+                    }
+                });
+            }
+            let mainLevel = getLevel();
+            mainLevel.levelNodes.push(pixelGroup);
+            setLevel(mainLevel);
+        }
+        img.src = data;
+    }
+    reader.readAsDataURL(file);
+}
+function duplicateLevel() {
+    let levelData = getLevel();
+    levelData.levelNodes = levelData.levelNodes.concat(levelData.levelNodes);
+    setLevel(levelData);
+}
 
 initEditor();
 getAnimationPresets();
@@ -2676,17 +2689,17 @@ document.getElementById('image-btn-input').addEventListener('change', (e) => {
 document.getElementById('protobuf-btn').addEventListener('click', () => {
     promptsElement.style.display = 'grid';
     document.getElementById('prompt-protobuf').style.display = 'flex';
-    document.getElementById('protobuf-prompt').value = PROTOBUF_DATA;
+    document.getElementById('protobuf-prompt').value = protobufData;
 });
 document.querySelector('#prompt-protobuf .prompt-cancel').addEventListener('click', () => {
     promptsElement.style.display = 'none';
     document.getElementById('prompt-protobuf').style.display = 'none';
-    document.getElementById('protobuf-prompt').value = PROTOBUF_DATA;
+    document.getElementById('protobuf-prompt').value = protobufData;
 });
 document.querySelector('#prompt-protobuf .prompt-submit').addEventListener('click', () => {
     promptsElement.style.display = 'none';
     document.getElementById('prompt-protobuf').style.display = 'none';
-    PROTOBUF_DATA = document.getElementById('protobuf-prompt').value;
+    protobufData = document.getElementById('protobuf-prompt').value;
 });
 // timeline
 document.getElementById('timeline-slow').addEventListener('click', () => {
@@ -2750,8 +2763,8 @@ applyChangesElement.addEventListener('click', generateLevelFromObjects);
 document.getElementById('stats-container').addEventListener('click', handleStatsClick);
 // buttons
 document.getElementById('enableEditing-btn').addEventListener('click', toggleEditing);
-document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = HIDE_TEXT ? 'block' : 'none';HIDE_TEXT = !HIDE_TEXT;highlightTextEditor()});
-document.getElementById('highlight-btn').addEventListener('click', () => {HIGHLIGHT_TEXT = !HIGHLIGHT_TEXT;highlightTextEditor()});
+document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = hideText ? 'block' : 'none';hideText = !hideText;highlightTextEditor()});
+document.getElementById('highlight-btn').addEventListener('click', () => {highlightText = !highlightText;highlightTextEditor()});
 document.getElementById('performance-btn').addEventListener('click', () => {renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 )});
 document.getElementById('range-btn').addEventListener('click', () => {loadProtobuf("proto/hacked.proto")});
 editInputElement.addEventListener('keydown', (e) => {handleEditInput(e)});
