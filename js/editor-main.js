@@ -106,7 +106,7 @@ function setLevel(level) {
 }
 function highlightTextEditor() {
     let textEditor = editInputElement;
-    let hasChanged = oldText != textEditor.innerText;
+    let hasChanged = oldText != textEditor.innerHTML;
 
     if (!HIDE_TEXT && hasChanged) {
         
@@ -169,7 +169,7 @@ function highlightTextEditor() {
     if (hasChanged) {
         refreshScene();
     }
-    oldText = textEditor.innerText;
+    oldText = textEditor.innerHTML;
 
 }
 function loadTexture(path) {
@@ -1216,7 +1216,6 @@ function runOnNodes(levelNodes, func, doGroups = true) {
         }
     });
 }
-
 function downloadAsJSON() {
     const blob = new Blob([JSON.stringify(getLevel())], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -2430,124 +2429,143 @@ function copyEditingJSON() {
         navigator.clipboard.writeText(json);
     }
 }
-
-loader = new GLTFLoader();
-scene = new THREE.Scene();
-camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight - 20), 0.1, 10000 );
-renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-renderer.setSize( window.innerWidth , window.innerHeight - 20 );
-renderContainerElement.appendChild( renderer.domElement );
-light = new THREE.AmbientLight(0xffffff);
-scene.add(light);
-sun = new THREE.DirectionalLight( 0xffffff, 0.5 );
-scene.add( sun );
-vrButton = VRButton.createButton( renderer );
-controls = new OrbitControls( camera, renderer.domElement );
-controls.mouseButtons = {LEFT: 2, MIDDLE: 1, RIGHT: 0}
-fly = new FlyControls( camera, renderer.domElement );
-fly.pointerdown = fly.pointerup = fly.pointermove = () => {};
-fly.dragToLook = false;
-fly.rollSpeed = 0;
-fly.movementSpeed = 0.2;
-transformControl = new TransformControls( camera, renderer.domElement );
-transformControl.addEventListener( 'change', () => {
-    if (enableEditing && editing?.parent?.type == "Scene") {
-        Object.values(editing.grabNodeData)[0].position = {
-            "x": editing.position.x,
-            "y": editing.position.y,
-            "z": editing.position.z
-        };
-        Object.values(editing.grabNodeData)[0].rotation = {
-            "x": editing.quaternion.x,
-            "y": editing.quaternion.y,
-            "z": editing.quaternion.z,
-            "w": editing.quaternion.w
-        };
-        Object.values(editing.grabNodeData)[0].scale = {
-            "x": editing.scale.x,
-            "y": editing.scale.y,
-            "z": editing.scale.z
-        };
-        editing.initialPosition = {
-            "x": editing.position.x,
-            "y": editing.position.y,
-            "z": editing.position.z
+function initEditor() {
+    loader = new GLTFLoader();
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight - 20), 0.1, 10000 );
+    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize( window.innerWidth , window.innerHeight - 20 );
+    renderContainerElement.appendChild( renderer.domElement );
+    light = new THREE.AmbientLight(0xffffff);
+    scene.add(light);
+    sun = new THREE.DirectionalLight( 0xffffff, 0.5 );
+    scene.add( sun );
+    vrButton = VRButton.createButton( renderer );
+    controls = new OrbitControls( camera, renderer.domElement );
+    controls.mouseButtons = {LEFT: 2, MIDDLE: 1, RIGHT: 0}
+    fly = new FlyControls( camera, renderer.domElement );
+    fly.pointerdown = fly.pointerup = fly.pointermove = () => {};
+    fly.dragToLook = false;
+    fly.rollSpeed = 0;
+    fly.movementSpeed = 0.2;
+    transformControl = new TransformControls( camera, renderer.domElement );
+    transformControl.addEventListener( 'change', () => {
+        if (enableEditing && editing?.parent?.type == "Scene") {
+            Object.values(editing.grabNodeData)[0].position = {
+                "x": editing.position.x,
+                "y": editing.position.y,
+                "z": editing.position.z
+            };
+            Object.values(editing.grabNodeData)[0].rotation = {
+                "x": editing.quaternion.x,
+                "y": editing.quaternion.y,
+                "z": editing.quaternion.z,
+                "w": editing.quaternion.w
+            };
+            Object.values(editing.grabNodeData)[0].scale = {
+                "x": editing.scale.x,
+                "y": editing.scale.y,
+                "z": editing.scale.z
+            };
+            editing.initialPosition = {
+                "x": editing.position.x,
+                "y": editing.position.y,
+                "z": editing.position.z
+            }
+            editing.initialRotation = {
+                "x": editing.quaternion.x,
+                "y": editing.quaternion.y,
+                "z": editing.quaternion.z,
+                "w": editing.quaternion.w
+            }
+            applyChangesElement.style.display = "block";
         }
-        editing.initialRotation = {
-            "x": editing.quaternion.x,
-            "y": editing.quaternion.y,
-            "z": editing.quaternion.z,
-            "w": editing.quaternion.w
+    });
+    transformControl.addEventListener( 'dragging-changed', ( event ) => {
+        controls.enabled = ! event.value;
+    } );
+    raycaster = new THREE.Raycaster();
+    mouse = new THREE.Vector2();
+    renderer.domElement.addEventListener( 'pointermove', onPointerMove, false );
+    window.addEventListener( 'pointermove', onPointerMove, false );
+    renderer.domElement.addEventListener( 'pointerdown', onPointerDown, false );
+    window.addEventListener( 'keydown', onEditingKey, false );
+    addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / (window.innerHeight - 20);
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight - 20 );
+    });
+    camera.position.set(0, 10, 10);
+    renderer.setAnimationLoop(animate);
+}
+function initTerminal() {
+    terminalInputElement.addEventListener('keydown', (e) => {
+        if (e.which === 13 && e.shiftKey === false && e.altKey === false) {
+            e.preventDefault();
+            let input = terminalInputElement.value;
+            let level = getLevel();
+            let success = 0;
+            let fail = 0;
+            level.levelNodes.forEach(node => {
+                try {
+                    eval(input);
+                    success++;
+                } catch (e) {
+                    console.error(e)
+                    fail++;
+                }
+            });
+            terminalInputElement.placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\n${success} success | ${fail} error${fail != 0 ? "\n[ctrl]+[shift]+[i] for details" : ""}`;
+            setLevel(level);
+            lastRan = input
+            terminalInputElement.value = '';
+        } else if (e.which === 13 && e.altKey === true && e.shiftKey === false) {
+            e.preventDefault();
+            let input = terminalInputElement.value;
+            let level = getLevel();
+            try {
+                eval(input);
+                terminalInputElement.placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\nsuccess`;
+            } catch (e) {
+                console.error(e);
+                terminalInputElement.placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\nerror | [ctrl]+[shift]+[i] for details`;
+            }
+            
+            setLevel(level);
+            lastRan = input
+            terminalInputElement.value = '';
+        } else if (e.which === 38 && e.altKey === true) {
+            e.preventDefault();
+            terminalInputElement.value = lastRan;
         }
-        applyChangesElement.style.display = "block";
+    });
+}
+function toggleEditing() {
+    if (!enableEditing) {
+        animatedObjects.forEach(object => {
+            object.animation.currentFrameIndex = 0
+            object.position.copy(object.initialPosition);
+            object.quaternion.copy(object.initialRotation);
+        });
     }
-});
-transformControl.addEventListener( 'dragging-changed', ( event ) => {
-    controls.enabled = ! event.value;
-} );
-raycaster = new THREE.Raycaster();
-mouse = new THREE.Vector2();
-renderer.domElement.addEventListener( 'pointermove', onPointerMove, false );
-window.addEventListener( 'pointermove', onPointerMove, false );
-renderer.domElement.addEventListener( 'pointerdown', onPointerDown, false );
-window.addEventListener( 'keydown', onEditingKey, false );
-addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / (window.innerHeight - 20);
-    camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight - 20 );
-});
-camera.position.set(0, 10, 10);
+    if (enableEditing) {
+        generateLevelFromObjects();
+    }
+    enableEditing = !enableEditing;
+    playAnimations = !enableEditing;
+    document.getElementById('enableEditing-btn').style.color = enableEditing? '#3f3' : '';
+}
+
+initEditor();
 getAnimationPresets();
 initAttributes();
-renderer.setAnimationLoop(animate);
 highlightTextEditor();
+initTerminal();
 
 // dark mode
 if (localStorage.getItem("darkMode") === "true") {
     document.body.parentElement.classList.add("dark-mode");
 }
-
-// Terminal 
-terminalInputElement.addEventListener('keydown', (e) => {
-    if (e.which === 13 && e.shiftKey === false && e.altKey === false) {
-        e.preventDefault();
-        let input = terminalInputElement.value;
-        let level = getLevel();
-        let success = 0;
-        let fail = 0;
-        level.levelNodes.forEach(node => {
-            try {
-                eval(input);
-                success++;
-            } catch (e) {
-                console.error(e)
-                fail++;
-            }
-        });
-        terminalInputElement.placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\n${success} success | ${fail} error${fail != 0 ? "\n[ctrl]+[shift]+[i] for details" : ""}`;
-        setLevel(level);
-        lastRan = input
-        terminalInputElement.value = '';
-    } else if (e.which === 13 && e.altKey === true && e.shiftKey === false) {
-        e.preventDefault();
-        let input = terminalInputElement.value;
-        let level = getLevel();
-        try {
-            eval(input);
-            terminalInputElement.placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\nsuccess`;
-        } catch (e) {
-            console.error(e);
-            terminalInputElement.placeholder = `[Enter] to run JS code in loop\n[Alt] & [Enter] to run JS code out of loop\n[Alt] & [UpArrow] for last ran\nvar level = getLevel()\nlevel.levelNodes.forEach(node => {})\n\nerror | [ctrl]+[shift]+[i] for details`;
-        }
-        
-        setLevel(level);
-        lastRan = input
-        terminalInputElement.value = '';
-    } else if (e.which === 38 && e.altKey === true) {
-        e.preventDefault();
-        terminalInputElement.value = lastRan;
-    }
-});
 
 // prompts
 const promptsElement = document.getElementById('prompts');
@@ -2731,21 +2749,7 @@ applyChangesElement.addEventListener('click', generateLevelFromObjects);
 // stats
 document.getElementById('stats-container').addEventListener('click', handleStatsClick);
 // buttons
-document.getElementById('enableEditing-btn').addEventListener('click', () => {
-    if (!enableEditing) {
-        animatedObjects.forEach(object => {
-            object.animation.currentFrameIndex = 0
-            object.position.copy(object.initialPosition);
-            object.quaternion.copy(object.initialRotation);
-        });
-    }
-    if (enableEditing) {
-        generateLevelFromObjects();
-    }
-    enableEditing = !enableEditing;
-    playAnimations = !enableEditing;
-    document.getElementById('enableEditing-btn').style.color = enableEditing? '#3f3' : '';
-});
+document.getElementById('enableEditing-btn').addEventListener('click', toggleEditing);
 document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = HIDE_TEXT ? 'block' : 'none';HIDE_TEXT = !HIDE_TEXT;highlightTextEditor()});
 document.getElementById('highlight-btn').addEventListener('click', () => {HIGHLIGHT_TEXT = !HIGHLIGHT_TEXT;highlightTextEditor()});
 document.getElementById('performance-btn').addEventListener('click', () => {renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 )});
