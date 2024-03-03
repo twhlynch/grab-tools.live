@@ -2025,9 +2025,18 @@ function remakeGroup(shape, material, object) {
                 }
             }
         }, false);
-        object.children.forEach(child => {
-            remakeGroup(shape, material, child);
-        });
+        let objectsToRemake = [];
+        for (let i = 0; i < object.children.length; i++) {
+            let child = object.children[i];
+            if (child?.grabNodeData?.levelNodeGroup) {
+                remakeGroup(shape, material, child);
+            } else {
+                objectsToRemake.push(child);
+            }
+        }
+        for (let i = 0; i < objectsToRemake.length; i++) {
+            remakeGroup(shape, material, objectsToRemake[i]);
+        }
     } else {
         if (shape && (object.grabNodeData.levelNodeStatic || object.grabNodeData.levelNodeCrumbling)) {
             let shapeData = deepClone(object.grabNodeData);
