@@ -1,41 +1,38 @@
 {
-  "identifier": "29nxcg0chi4uqcj7yk7f4:1709429977",
-  "title": "Mission Impossible: Break out of Dash's basement",
-  "complexity": 2337,
+  "identifier": "2ajh3ta3oul1bb2sw66r5:1709443176",
+  "title": "peppermint ch.1: the concrete pit",
+  "complexity": 2239,
   "format_version": 8,
-  "update_timestamp": 1709434635830,
-  "creation_timestamp": 1709434635830,
-  "data_key": "level_data:29nxcg0chi4uqcj7yk7f4:1709429977:1",
-  "description": "You're trapped inside of Dashguyman'a basement, and you have to escape to the city.",
+  "update_timestamp": 1709609153467,
+  "creation_timestamp": 1709609153467,
+  "data_key": "level_data:2ajh3ta3oul1bb2sw66r5:1709443176:1",
+  "description": "after a long night of partying you fall aspleep on your couch, and after dreaming about a strange peppermint colored person, you wake up in a pit and now you have to find a way out.",
   "creators": [
-    "Insert.vr",
-    "Dashguyman",
-    "mojojojo927",
-    "Mufffinvr",
-    "and Molteni"
+    "freezeeduck",
+    "trippie-kidd"
   ],
   "tags": [
     "ok"
   ],
-  "verification_time": 42.39,
-  "statistics": {
-    "total_played": 200,
-    "difficulty": 0.03225806451612903,
-    "liked": 1,
-    "time": 82.90453333333333
-  },
+  "verification_time": 135.21,
   "images": {
     "full": {
-      "key": "level_29nxcg0chi4uqcj7yk7f4_1709429977_1.png",
+      "key": "level_2ajh3ta3oul1bb2sw66r5_1709443176_1.png",
       "width": 1920,
       "height": 1080
     },
     "thumb": {
-      "key": "level_29nxcg0chi4uqcj7yk7f4_1709429977_1_thumb.png",
+      "key": "level_2ajh3ta3oul1bb2sw66r5_1709443176_1_thumb.png",
       "width": 512,
       "height": 288
     }
   },
-  "creator": "Insert.vr",
-  "change": 150
+  "creator": "freezeeduck",
+  "statistics": {
+    "total_played": 0,
+    "difficulty": 1,
+    "liked": 0,
+    "time": 100
+  },
+  "change": 0
 }
