@@ -4,6 +4,7 @@ body,
 html {
     margin: 0;
     max-height: 100vh;
+    max-height: 100svh;
     max-width: 100vw;
     overflow: hidden;
 }

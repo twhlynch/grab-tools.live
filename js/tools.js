@@ -800,7 +800,9 @@ buttons.forEach((btn) => {
     let btnId = btn.id;
     btn.addEventListener('click', () => {
         document.querySelectorAll('#other-tools > div').forEach(e => {
-            e.style.display = 'none';
+            if (e.id != 'advertisement') {
+                e.style.display = 'none';
+            }
         });
         document.querySelectorAll('.tab-active').forEach(e => {
             e.classList.remove('tab-active');
