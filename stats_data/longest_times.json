@@ -75,8 +75,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 26000,
-      "difficulty": 0.00032663726931242854,
+      "total_played": 26100,
+      "difficulty": 0.00032548551589454267,
       "liked": 1,
       "time": 5048.099999999999
     },
@@ -93,7 +93,7 @@
       }
     },
     "creator": "Levi__athan",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "29v9vd6n9z45d16mi2o2n:1697678891",
@@ -326,7 +326,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29srqtwaq08zzhp3kng3u:1681147301",
@@ -473,7 +473,7 @@
       }
     },
     "creator": "FitArtist334071",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2aa73bmv50jap4z792rrz:1688709948",
@@ -766,8 +766,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 138000,
-      "difficulty": 0.0018928035982008996,
+      "total_played": 138100,
+      "difficulty": 0.0018915274552400929,
       "liked": 0.8571428571428571,
       "time": 2461.7515940594058
     },
@@ -880,7 +880,7 @@
       }
     },
     "creator": ".index",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29rkswgx13q8mej7mxdg6:1700594849",
@@ -900,8 +900,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 12200,
-      "difficulty": 0.004355189934672151,
+      "total_played": 12300,
+      "difficulty": 0.004323804948354552,
       "liked": 0.7727272727272727,
       "time": 2356.3172888888894
     },
@@ -918,7 +918,7 @@
       }
     },
     "creator": "Aft",
-    "change": 300
+    "change": 100
   },
   {
     "identifier": "29v9vd6n9z45d16mi2o2n:1689380424",
@@ -944,6 +944,44 @@
     },
     "creator": "JEFFBOB",
     "change": 0
+  },
+  {
+    "identifier": "2a7dpr68r014rdkz6927a:1708910333",
+    "title": "Rotation: Energized Spire (Animated)",
+    "complexity": 3000,
+    "format_version": 8,
+    "update_timestamp": 1709433579216,
+    "creation_timestamp": 1709433579216,
+    "data_key": "level_data:2a7dpr68r014rdkz6927a:1708910333:1",
+    "description": "WARNING! DIFFICULT LEVEL! Thanks to Slin for tester, which made this possible",
+    "creators": [
+      "Auran",
+      "TLTT"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "verification_time": 580.16,
+    "statistics": {
+      "total_played": 300,
+      "difficulty": 0.0036363636363636364,
+      "liked": 1,
+      "time": 2315.49
+    },
+    "images": {
+      "full": {
+        "key": "level_2a7dpr68r014rdkz6927a_1708910333_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_2a7dpr68r014rdkz6927a_1708910333_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "Auran",
+    "change": 100
   },
   {
     "identifier": "29ffxg2ijqxyrgxyy2vjj:1646533856",
@@ -1090,45 +1128,6 @@
     "change": 0
   },
   {
-    "identifier": "29rbyudpcet6wdy3iidd4:1698351474",
-    "title": "Grab Player = SKILLED (+)",
-    "complexity": 2930,
-    "format_version": 8,
-    "update_timestamp": 1709132971362,
-    "creation_timestamp": 1699159637101,
-    "data_key": "level_data:29rbyudpcet6wdy3iidd4:1698351474:5",
-    "description": "Welcome to the GRAB TESTING WAREHOUSE. You have to complete all GRAB INTERACTIVE TESTS to prove your ready to be a citizen of GRAB. Swing and bounce your way through all 14 levels!",
-    "creators": [
-      "TLTT",
-      "Gman2Giant",
-      "FitArtist334071"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "verification_time": 347.89,
-    "statistics": {
-      "total_played": 27700,
-      "difficulty": 0.004349326889886089,
-      "liked": 0.9117647058823529,
-      "time": 2264.5181428571427
-    },
-    "images": {
-      "full": {
-        "key": "level_29rbyudpcet6wdy3iidd4_1698351474_14.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29rbyudpcet6wdy3iidd4_1698351474_14_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "TLTT",
-    "change": 300
-  },
-  {
     "identifier": "29vhvl94jvlw4vp4b019y:1654741085",
     "title": "The 50 Levels of Purgatory",
     "complexity": 951,
@@ -1203,6 +1202,45 @@
     },
     "creator": "cjbeast006",
     "change": 0
+  },
+  {
+    "identifier": "29rbyudpcet6wdy3iidd4:1698351474",
+    "title": "Grab Player = SKILLED (+)",
+    "complexity": 2930,
+    "format_version": 8,
+    "update_timestamp": 1709132971362,
+    "creation_timestamp": 1699159637101,
+    "data_key": "level_data:29rbyudpcet6wdy3iidd4:1698351474:5",
+    "description": "Welcome to the GRAB TESTING WAREHOUSE. You have to complete all GRAB INTERACTIVE TESTS to prove your ready to be a citizen of GRAB. Swing and bounce your way through all 14 levels!",
+    "creators": [
+      "TLTT",
+      "Gman2Giant",
+      "FitArtist334071"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "verification_time": 347.89,
+    "statistics": {
+      "total_played": 28000,
+      "difficulty": 0.0043844625608001645,
+      "liked": 0.9117647058823529,
+      "time": 2245.821765625
+    },
+    "images": {
+      "full": {
+        "key": "level_29rbyudpcet6wdy3iidd4_1698351474_14.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29rbyudpcet6wdy3iidd4_1698351474_14_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "TLTT",
+    "change": 300
   },
   {
     "identifier": "29l50ea34l4s54rtclzus:1664812420",
@@ -1370,7 +1408,7 @@
       }
     },
     "creator": "xani13",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2axkwzh6f43g1regf401p:1680445764",
@@ -1658,8 +1696,8 @@
     ],
     "verification_time": 780,
     "statistics": {
-      "total_played": 600,
-      "difficulty": 0.0017889087656529517,
+      "total_played": 700,
+      "difficulty": 0.0015408320493066256,
       "time": 1985.64,
       "liked": 0
     },
@@ -1676,7 +1714,7 @@
       }
     },
     "creator": "Levi__athan",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "29ffxg2ijqxyrgxyy2vjj:1656443996",
@@ -1857,7 +1895,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29st9jdcbxxotp0t9d8en:1686615165",
@@ -2533,29 +2571,6 @@
     "change": 0
   },
   {
-    "identifier": "29v9vd6n9z45d16mi2o2n:1674000810",
-    "title": "japanese mountain climb",
-    "complexity": 2992,
-    "format_version": 6,
-    "update_timestamp": 1674524612552,
-    "creation_timestamp": 1674524612552,
-    "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1674000810:1",
-    "creators": [
-      "jeffbob"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 1500,
-      "difficulty": 0.0014925373134328358,
-      "liked": 1,
-      "time": 1769.3649999999998
-    },
-    "creator": "jeffbob",
-    "change": 0
-  },
-  {
     "identifier": "29rkswgx13q8mej7mxdg6:1687733054",
     "title": "A Climbers Tale",
     "complexity": 2980,
@@ -2626,7 +2641,7 @@
       }
     },
     "creator": "blackcat508",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29de83wbqxgo92ijwuub9:1639010130",
@@ -2741,8 +2756,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 48900,
-      "difficulty": 0.0008446738620366026,
+      "total_played": 49100,
+      "difficulty": 0.0008415147265077139,
       "liked": 0.9230769230769231,
       "time": 1715.9765000000002
     },
@@ -3015,8 +3030,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 97600,
-      "difficulty": 0.001788358901277,
+      "total_played": 97800,
+      "difficulty": 0.0017849672291172778,
       "liked": 0.9333333333333333,
       "time": 1684.7146406250004
     },
@@ -3033,7 +3048,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 100
+    "change": 200
   },
   {
     "identifier": "2ahb82qqut2dt3we3p2ok:1703732724",
@@ -3258,7 +3273,7 @@
       }
     },
     "creator": "BlackCat508",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2ak5u4cyuivrwrfb682hs:1674825261",
@@ -3361,50 +3376,41 @@
     "change": 0
   },
   {
-    "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbordfinal",
-    "title": "SMORGASBORD",
-    "complexity": 2992,
-    "format_version": 6,
-    "update_timestamp": 1664518934873,
-    "creation_timestamp": 1664510790482,
-    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:smorgasbordfinal:2",
-    "description": "SMORGASBORD IS A GROUP OF VERIFIED CREATORS THAT MAKE BI-WEEKLY MAPS FOR THE GRAB COMMUNITY. HOSTED BY BLUDUK & NSKC7(.INDEX). VERSION 1 CREATORS IN LEVEL ORDER: CONVRIST, BLUDUK, NSKC7(.INDEX), IMA_RAINBOW, GRENEK, PEECHY, CAZIGGY, NASH_HUMAN, FROSTY_CROSS, D2WHIPLASH",
+    "identifier": "29t798uon2urbra1f8w2q:1708280695",
+    "title": "Peaks - Cliff Climb",
+    "complexity": 3000,
+    "format_version": 8,
+    "update_timestamp": 1709260835308,
+    "creation_timestamp": 1709260835308,
+    "data_key": "level_data:29t798uon2urbra1f8w2q:1708280695:1",
+    "description": "Simple endurence climbing, with animations!",
     "creators": [
-      "BLUDUK",
-      "NSKC7",
-      ".INDEX",
-      "CONVRIST",
-      "IMARAINBOW",
-      "GRENEK",
-      "PEECHYY",
-      "CAZIGGY",
-      "NASH",
-      "FROSTY",
-      "D2"
+      "BlackCat508"
     ],
     "tags": [
       "ok"
     ],
+    "verification_time": 1560.96,
     "statistics": {
-      "total_played": 24600,
-      "difficulty": 0.0033529959639863396,
-      "liked": 0.9302325581395349,
-      "time": 1584.6507222222222
+      "total_played": 900,
+      "difficulty": 0.010973936899862825,
+      "liked": 1,
+      "time": 1588.5825
     },
     "images": {
       "full": {
-        "key": "level_2ag78daeo0xaz2bca9eq3_smorgasbordfinal_1.png",
+        "key": "level_29t798uon2urbra1f8w2q_1708280695_6.png",
         "width": 1920,
         "height": 1080
       },
       "thumb": {
-        "key": "level_2ag78daeo0xaz2bca9eq3_smorgasbordfinal_1_thumb.png",
+        "key": "level_29t798uon2urbra1f8w2q_1708280695_6_thumb.png",
         "width": 512,
         "height": 288
       }
     },
-    "creator": "BLUDUK",
-    "change": 0
+    "creator": "BlackCat508",
+    "change": 100
   },
   {
     "identifier": "29rnnd0ymyemrickwtpx3:1666216978",
@@ -3440,6 +3446,52 @@
     },
     "creator": "rivler",
     "change": 0
+  },
+  {
+    "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbordfinal",
+    "title": "SMORGASBORD",
+    "complexity": 2992,
+    "format_version": 6,
+    "update_timestamp": 1664518934873,
+    "creation_timestamp": 1664510790482,
+    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:smorgasbordfinal:2",
+    "description": "SMORGASBORD IS A GROUP OF VERIFIED CREATORS THAT MAKE BI-WEEKLY MAPS FOR THE GRAB COMMUNITY. HOSTED BY BLUDUK & NSKC7(.INDEX). VERSION 1 CREATORS IN LEVEL ORDER: CONVRIST, BLUDUK, NSKC7(.INDEX), IMA_RAINBOW, GRENEK, PEECHY, CAZIGGY, NASH_HUMAN, FROSTY_CROSS, D2WHIPLASH",
+    "creators": [
+      "BLUDUK",
+      "NSKC7",
+      ".INDEX",
+      "CONVRIST",
+      "IMARAINBOW",
+      "GRENEK",
+      "PEECHYY",
+      "CAZIGGY",
+      "NASH",
+      "FROSTY",
+      "D2"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 24700,
+      "difficulty": 0.0034024126198577173,
+      "liked": 0.9318181818181818,
+      "time": 1571.9396363636363
+    },
+    "images": {
+      "full": {
+        "key": "level_2ag78daeo0xaz2bca9eq3_smorgasbordfinal_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_2ag78daeo0xaz2bca9eq3_smorgasbordfinal_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "BLUDUK",
+    "change": 100
   },
   {
     "identifier": "29vhvl94jvlw4vp4b019y:1662853516",
@@ -3889,43 +3941,6 @@
     },
     "creator": "13OliviA",
     "change": 0
-  },
-  {
-    "identifier": "29t798uon2urbra1f8w2q:1708280695",
-    "title": "Peaks - Cliff Climb",
-    "complexity": 3000,
-    "format_version": 8,
-    "update_timestamp": 1709260835308,
-    "creation_timestamp": 1709260835308,
-    "data_key": "level_data:29t798uon2urbra1f8w2q:1708280695:1",
-    "description": "Simple endurence climbing, with animations!",
-    "creators": [
-      "BlackCat508"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "verification_time": 1560.96,
-    "statistics": {
-      "total_played": 800,
-      "difficulty": 0.007598784194528876,
-      "liked": 1,
-      "time": 1459.026
-    },
-    "images": {
-      "full": {
-        "key": "level_29t798uon2urbra1f8w2q_1708280695_6.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29t798uon2urbra1f8w2q_1708280695_6_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "BlackCat508",
-    "change": 100
   },
   {
     "identifier": "2a16lrhk70q0s94hkbdwz:1656895914",
@@ -4461,7 +4476,7 @@
       }
     },
     "creator": ".index",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29zu6o31ckahmycg57zfc:1669688004",
@@ -4665,8 +4680,8 @@
     ],
     "verification_time": 2284.05,
     "statistics": {
-      "total_played": 2300,
-      "difficulty": 0.00338409475465313,
+      "total_played": 2600,
+      "difficulty": 0.00303951367781155,
       "liked": 1,
       "time": 1379.9266666666665
     },
@@ -4683,7 +4698,7 @@
       }
     },
     "creator": "TLTT",
-    "change": 600
+    "change": 300
   },
   {
     "identifier": "2ay9po2nzhygd2lov96uh:1678056747",
@@ -4745,6 +4760,29 @@
     },
     "creator": "TylerVB",
     "change": 0
+  },
+  {
+    "identifier": "29v9vd6n9z45d16mi2o2n:1674000810",
+    "title": "japanese mountain climb",
+    "complexity": 2992,
+    "format_version": 6,
+    "update_timestamp": 1674524612552,
+    "creation_timestamp": 1674524612552,
+    "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1674000810:1",
+    "creators": [
+      "jeffbob"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 1600,
+      "difficulty": 0.0020876826722338203,
+      "liked": 0.5,
+      "time": 1367.6873333333333
+    },
+    "creator": "jeffbob",
+    "change": 100
   },
   {
     "identifier": "2cbes2ovz1kspih1b775x:1703626596",
@@ -5172,7 +5210,7 @@
       }
     },
     "creator": "BUCK",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2aa73bmv50jap4z792rrz:1659318657",
@@ -5250,8 +5288,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7900,
-      "difficulty": 0.0020916855499389926,
+      "total_played": 8000,
+      "difficulty": 0.002066115702479339,
       "liked": 1,
       "time": 1320.2263333333333
     },
@@ -5268,7 +5306,7 @@
       }
     },
     "creator": "AFT Studios and EBSpark",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2bvy4htc1ihhkf23hxxce:1697394345",
@@ -6022,7 +6060,7 @@
       }
     },
     "creator": "EBSpark",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2awf62f0y60gptc9cbecf:1700697046",
@@ -6299,42 +6337,6 @@
       "time": 1218.8964246575338
     },
     "creator": "bradymostadude",
-    "change": 0
-  },
-  {
-    "identifier": "29v9vd6n9z45d16mi2o2n:1700961053",
-    "title": "Slintering Winter",
-    "complexity": 2996,
-    "format_version": 7,
-    "update_timestamp": 1701047854943,
-    "creation_timestamp": 1701047854943,
-    "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1700961053:1",
-    "description": "thx to blackcat508 INANELY DIFFICULT MTN CLIMB",
-    "creators": [
-      "jeffbob"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 600,
-      "difficulty": 0.0018867924528301887,
-      "liked": 1,
-      "time": 1217.74
-    },
-    "images": {
-      "full": {
-        "key": "level_29v9vd6n9z45d16mi2o2n_1700961053_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29v9vd6n9z45d16mi2o2n_1700961053_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "jeffbob",
     "change": 0
   }
 ]
