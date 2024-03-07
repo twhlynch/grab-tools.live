@@ -15,7 +15,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 38037,
+      "total_played": 38137,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -51,7 +51,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 52400,
+      "total_played": 52600,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -368,7 +368,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 7600,
+      "total_played": 7700,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -676,7 +676,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 15000,
+      "total_played": 15200,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -694,7 +694,7 @@
       }
     },
     "creator": "LittleBeastM8",
-    "change": 100
+    "change": 200
   },
   {
     "identifier": "2a6menzbhaidlzwzsun01:1702753998",
@@ -1291,7 +1291,7 @@
       }
     },
     "creator": "TheBizz",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2bmbn2tcbm89x9wv2idh1:1704771086",
@@ -1589,6 +1589,43 @@
       }
     },
     "creator": "Sammydepammie",
+    "change": 0
+  },
+  {
+    "identifier": "29s8ukg906xmbviy554so:1708059647",
+    "title": "AGONY+",
+    "complexity": 1551,
+    "format_version": 8,
+    "update_timestamp": 1709589859569,
+    "creation_timestamp": 1709589859569,
+    "data_key": "level_data:29s8ukg906xmbviy554so:1708059647:1",
+    "description": "One Builder, Hours Of Time, And 9 Whole Levels Of Pure And Absolute Agony...",
+    "creators": [
+      "Kleptominer"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "verification_time": 1276.4,
+    "statistics": {
+      "total_played": 400,
+      "difficulty": 0,
+      "liked": 0,
+      "time": 100
+    },
+    "images": {
+      "full": {
+        "key": "level_29s8ukg906xmbviy554so_1708059647_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29s8ukg906xmbviy554so_1708059647_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "Kleptominer",
     "change": 100
   }
 ]
