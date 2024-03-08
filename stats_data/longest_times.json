@@ -252,7 +252,7 @@
       }
     },
     "creator": "Lukechungus",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29t798uon2urbra1f8w2q:1678575533",
@@ -326,7 +326,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29srqtwaq08zzhp3kng3u:1681147301",
@@ -455,8 +455,8 @@
     ],
     "verification_time": 378.39,
     "statistics": {
-      "total_played": 8400,
-      "difficulty": 0.0003053435114503817,
+      "total_played": 8500,
+      "difficulty": 0.0003022974607013301,
       "liked": 1,
       "time": 2772.5655
     },
@@ -473,7 +473,7 @@
       }
     },
     "creator": "FitArtist334071",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2aa73bmv50jap4z792rrz:1688709948",
@@ -766,8 +766,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 138200,
-      "difficulty": 0.001889757886464843,
+      "total_played": 138300,
+      "difficulty": 0.0018882034025051412,
       "liked": 0.8571428571428571,
       "time": 2461.7515940594058
     },
@@ -862,8 +862,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 6300,
-      "difficulty": 0.0002011667672500503,
+      "total_played": 6400,
+      "difficulty": 0.00019805902158843335,
       "liked": 1,
       "time": 2376.02
     },
@@ -880,45 +880,7 @@
       }
     },
     "creator": ".index",
-    "change": 0
-  },
-  {
-    "identifier": "29rkswgx13q8mej7mxdg6:1700594849",
-    "title": "Crossy road!",
-    "complexity": 2995,
-    "format_version": 7,
-    "update_timestamp": 1700874536521,
-    "creation_timestamp": 1700874536521,
-    "data_key": "level_data:29rkswgx13q8mej7mxdg6:1700594849:1",
-    "description": "watch out for the green ones..",
-    "creators": [
-      "Aft",
-      "pnut",
-      "madlord"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 12500,
-      "difficulty": 0.0042684372776855585,
-      "liked": 0.7727272727272727,
-      "time": 2356.3172888888894
-    },
-    "images": {
-      "full": {
-        "key": "level_29rkswgx13q8mej7mxdg6_1700594849_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29rkswgx13q8mej7mxdg6_1700594849_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "Aft",
-    "change": 200
+    "change": 100
   },
   {
     "identifier": "29v9vd6n9z45d16mi2o2n:1689380424",
@@ -1103,29 +1065,42 @@
     "change": 0
   },
   {
-    "identifier": "29ngj2xcdlinnuqz0vrw5:1667965708",
-    "title": "Dont Rage 2",
-    "complexity": 2905,
-    "format_version": 6,
-    "update_timestamp": 1669094153413,
-    "creation_timestamp": 1669094153413,
-    "data_key": "level_data:29ngj2xcdlinnuqz0vrw5:1667965708:1",
-    "description": "Go through 10 levels of mild pain. And also please try not to rage.",
+    "identifier": "29rkswgx13q8mej7mxdg6:1700594849",
+    "title": "Crossy road!",
+    "complexity": 2995,
+    "format_version": 7,
+    "update_timestamp": 1700874536521,
+    "creation_timestamp": 1700874536521,
+    "data_key": "level_data:29rkswgx13q8mej7mxdg6:1700594849:1",
+    "description": "watch out for the green ones..",
     "creators": [
-      "CursedPhantom(RMB)",
-      "Geybooi"
+      "Aft",
+      "pnut",
+      "madlord"
     ],
     "tags": [
       "ok"
     ],
     "statistics": {
-      "total_played": 17100,
-      "difficulty": 0.0003971090461440712,
-      "liked": 0.75,
-      "time": 2266.9744
+      "total_played": 12700,
+      "difficulty": 0.004445484323818437,
+      "liked": 0.782608695652174,
+      "time": 2262.9918000000007
     },
-    "creator": "CursedPhantom(RMB)",
-    "change": 0
+    "images": {
+      "full": {
+        "key": "level_29rkswgx13q8mej7mxdg6_1700594849_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29rkswgx13q8mej7mxdg6_1700594849_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "Aft",
+    "change": 200
   },
   {
     "identifier": "29vhvl94jvlw4vp4b019y:1654741085",
@@ -1355,8 +1330,8 @@
     ],
     "verification_time": 347.89,
     "statistics": {
-      "total_played": 28200,
-      "difficulty": 0.004500511421752472,
+      "total_played": 28500,
+      "difficulty": 0.0044618712817739315,
       "liked": 0.8888888888888888,
       "time": 2179.5345909090906
     },
@@ -1373,7 +1348,7 @@
       }
     },
     "creator": "TLTT",
-    "change": 200
+    "change": 300
   },
   {
     "identifier": "29qyifkrtj57y85tpv5i5:1701521161",
@@ -1677,7 +1652,7 @@
       "time": 1986.6117000000004
     },
     "creator": "22Joshi22",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2a7dx97v4xiepfpmj8gi4:1673121178",
@@ -1877,8 +1852,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 135000,
-      "difficulty": 0.0003860861891454626,
+      "total_played": 135100,
+      "difficulty": 0.0003857599470957787,
       "liked": 0.8275862068965517,
       "time": 1962.4479047619052
     },
@@ -1931,6 +1906,31 @@
     },
     "creator": "Mystery8281",
     "change": 0
+  },
+  {
+    "identifier": "29ngj2xcdlinnuqz0vrw5:1667965708",
+    "title": "Dont Rage 2",
+    "complexity": 2905,
+    "format_version": 6,
+    "update_timestamp": 1669094153413,
+    "creation_timestamp": 1669094153413,
+    "data_key": "level_data:29ngj2xcdlinnuqz0vrw5:1667965708:1",
+    "description": "Go through 10 levels of mild pain. And also please try not to rage.",
+    "creators": [
+      "CursedPhantom(RMB)",
+      "Geybooi"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 17200,
+      "difficulty": 0.0004737091425864519,
+      "liked": 0.75,
+      "time": 1955.5743333333332
+    },
+    "creator": "CursedPhantom(RMB)",
+    "change": 100
   },
   {
     "identifier": "2br3r3beexa8hy0yw4c6z:1700208427",
@@ -2044,7 +2044,7 @@
       }
     },
     "creator": "blackcat508",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29k763epg4asdivyctend:1660427786",
@@ -2133,7 +2133,7 @@
       }
     },
     "creator": "EBSpark",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2a1j8i8de10h4wxk4cg9d:1653318866",
@@ -2500,6 +2500,42 @@
     "change": 0
   },
   {
+    "identifier": "29t798uon2urbra1f8w2q:1698018033",
+    "title": "Peaks - Spooky climb",
+    "complexity": 2999,
+    "format_version": 7,
+    "update_timestamp": 1701542069620,
+    "creation_timestamp": 1701542069620,
+    "data_key": "level_data:29t798uon2urbra1f8w2q:1698018033:1",
+    "description": "Simple endurance climbing, NOW WITH ANIMATIONS!!!",
+    "creators": [
+      "BlackCat508"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 8000,
+      "difficulty": 0.0008366800535475234,
+      "liked": 0.8,
+      "time": 1794.4968000000001
+    },
+    "images": {
+      "full": {
+        "key": "level_29t798uon2urbra1f8w2q_1698018033_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29t798uon2urbra1f8w2q_1698018033_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "BlackCat508",
+    "change": 100
+  },
+  {
     "identifier": "29z0xnmo2bj7t5r2xfed1:1675372397",
     "title": "iced out",
     "complexity": 1500,
@@ -2692,7 +2728,7 @@
       }
     },
     "creator": "blackcat508",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2a7dx97v4xiepfpmj8gi4:1694649483",
@@ -2756,8 +2792,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 49300,
-      "difficulty": 0.0008384572386808273,
+      "total_played": 49400,
+      "difficulty": 0.0008369757277038966,
       "liked": 0.9230769230769231,
       "time": 1715.9765000000002
     },
@@ -2774,7 +2810,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 200
+    "change": 100
   },
   {
     "identifier": "2bf8hyynuelajywj9k4n7:1707088273",
@@ -3030,8 +3066,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 98000,
-      "difficulty": 0.0017807952363727427,
+      "total_played": 98200,
+      "difficulty": 0.001777086688510024,
       "liked": 0.9333333333333333,
       "time": 1684.7146406250004
     },
@@ -3231,49 +3267,13 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 1600,
-      "difficulty": 0.0027605244996549345,
+      "total_played": 1700,
+      "difficulty": 0.0025889967637540453,
       "liked": 0.6666666666666666,
       "time": 1628.594
     },
     "creator": "gman2giant",
-    "change": 0
-  },
-  {
-    "identifier": "29t798uon2urbra1f8w2q:1698018033",
-    "title": "Peaks - Spooky climb",
-    "complexity": 2999,
-    "format_version": 7,
-    "update_timestamp": 1701542069620,
-    "creation_timestamp": 1701542069620,
-    "data_key": "level_data:29t798uon2urbra1f8w2q:1698018033:1",
-    "description": "Simple endurance climbing, NOW WITH ANIMATIONS!!!",
-    "creators": [
-      "BlackCat508"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 7900,
-      "difficulty": 0.0006741951795044666,
-      "liked": 1,
-      "time": 1618.556
-    },
-    "images": {
-      "full": {
-        "key": "level_29t798uon2urbra1f8w2q_1698018033_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29t798uon2urbra1f8w2q_1698018033_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "BlackCat508",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2ak5u4cyuivrwrfb682hs:1674825261",
@@ -3290,13 +3290,13 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 15100,
-      "difficulty": 0.027193210357668657,
-      "liked": 0.8611111111111112,
-      "time": 1605.3412296178353
+      "total_played": 15200,
+      "difficulty": 0.02710143680633227,
+      "liked": 0.8617511520737328,
+      "time": 1605.0206796825407
     },
     "creator": "boohoo77",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2bjbmh0e1kp32spgtp573:1701846156",
@@ -3373,43 +3373,6 @@
       }
     },
     "creator": "Insert.vr",
-    "change": 0
-  },
-  {
-    "identifier": "29t798uon2urbra1f8w2q:1708280695",
-    "title": "Peaks - Cliff Climb",
-    "complexity": 3000,
-    "format_version": 8,
-    "update_timestamp": 1709260835308,
-    "creation_timestamp": 1709260835308,
-    "data_key": "level_data:29t798uon2urbra1f8w2q:1708280695:1",
-    "description": "Simple endurence climbing, with animations!",
-    "creators": [
-      "BlackCat508"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "verification_time": 1560.96,
-    "statistics": {
-      "total_played": 900,
-      "difficulty": 0.010973936899862825,
-      "liked": 1,
-      "time": 1588.5825
-    },
-    "images": {
-      "full": {
-        "key": "level_29t798uon2urbra1f8w2q_1708280695_6.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29t798uon2urbra1f8w2q_1708280695_6_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "BlackCat508",
     "change": 0
   },
   {
@@ -3528,7 +3491,7 @@
       }
     },
     "creator": "Astroboy9898",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29vhvl94jvlw4vp4b019y:1662853516",
@@ -3566,7 +3529,7 @@
       }
     },
     "creator": "luhmao",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29r0m9fnboxpvz4dnkwnq:1676248753",
@@ -3629,6 +3592,43 @@
     },
     "creator": "Bray.ace",
     "change": 0
+  },
+  {
+    "identifier": "29t798uon2urbra1f8w2q:1708280695",
+    "title": "Peaks - Cliff Climb",
+    "complexity": 3000,
+    "format_version": 8,
+    "update_timestamp": 1709260835308,
+    "creation_timestamp": 1709260835308,
+    "data_key": "level_data:29t798uon2urbra1f8w2q:1708280695:1",
+    "description": "Simple endurence climbing, with animations!",
+    "creators": [
+      "BlackCat508"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "verification_time": 1560.96,
+    "statistics": {
+      "total_played": 1000,
+      "difficulty": 0.011264080100125156,
+      "liked": 1,
+      "time": 1529.7677777777778
+    },
+    "images": {
+      "full": {
+        "key": "level_29t798uon2urbra1f8w2q_1708280695_6.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29t798uon2urbra1f8w2q_1708280695_6_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "BlackCat508",
+    "change": 100
   },
   {
     "identifier": "29v9vd6n9z45d16mi2o2n:1680045422",
@@ -4023,8 +4023,8 @@
     ],
     "verification_time": 2284.05,
     "statistics": {
-      "total_played": 3000,
-      "difficulty": 0.0031517334533993696,
+      "total_played": 3300,
+      "difficulty": 0.00288659793814433,
       "liked": 1,
       "time": 1454.7457142857143
     },
@@ -4041,7 +4041,7 @@
       }
     },
     "creator": "TLTT",
-    "change": 400
+    "change": 300
   },
   {
     "identifier": "29l50ea34l4s54rtclzus:1647396700",
@@ -4360,8 +4360,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 15223,
-      "difficulty": 0.0006795786612300374,
+      "total_played": 15323,
+      "difficulty": 0.0006752764412931544,
       "liked": 0.7142857142857143,
       "time": 1416.156375
     },
@@ -4378,7 +4378,7 @@
       }
     },
     "creator": "cjbeast006",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2af2v4lqxksl1ru5itxr1:1677507116",
@@ -5554,7 +5554,7 @@
       }
     },
     "creator": "yO0hooVr",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2am015n3aa6sebl0p6923:1677958275",
