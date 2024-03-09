@@ -1,38 +1,37 @@
 {
-  "identifier": "2b3cvgdtvncg0csjnpu2r:1706740636",
-  "title": "The yellow caves ",
-  "complexity": 1429,
+  "identifier": "2a0r12prnob1y78t7wqpn:1701853837",
+  "title": "The Experiment (full game)",
+  "complexity": 1237,
   "format_version": 8,
-  "update_timestamp": 1706754954287,
-  "creation_timestamp": 1706745278163,
-  "data_key": "level_data:2b3cvgdtvncg0csjnpu2r:1706740636:2",
-  "description": "Go deeper and deeper into the cave",
+  "update_timestamp": 1709955275949,
+  "creation_timestamp": 1701859476721,
+  "data_key": "level_data:2a0r12prnob1y78t7wqpn:1701853837:7",
+  "description": "this map is not longer a preview",
   "creators": [
-    "crazyfox",
-    "JeffBobDude"
+    "Dyght_light"
   ],
   "tags": [
     "ok"
   ],
-  "verification_time": 54.87,
+  "verification_time": 8.67,
   "statistics": {
-    "total_played": 500,
-    "difficulty": 0.43991416309012876,
-    "liked": 0.8590604026845637,
-    "time": 59.71936634146344
+    "total_played": 1000,
+    "difficulty": 0.23522167487684728,
+    "liked": 0.9193548387096774,
+    "time": 63.13807382198954
   },
   "images": {
     "full": {
-      "key": "level_2b3cvgdtvncg0csjnpu2r_1706740636_1.png",
+      "key": "level_2a0r12prnob1y78t7wqpn_1701853837_2.png",
       "width": 1920,
       "height": 1080
     },
     "thumb": {
-      "key": "level_2b3cvgdtvncg0csjnpu2r_1706740636_1_thumb.png",
+      "key": "level_2a0r12prnob1y78t7wqpn_1701853837_2_thumb.png",
       "width": 512,
       "height": 288
     }
   },
-  "creator": "crazyfox",
+  "creator": "Dyght_light",
   "change": 0
 }
