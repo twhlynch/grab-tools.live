@@ -2301,6 +2301,38 @@ function ungroupLevel() {
     levelData.levelNodes = levelData.levelNodes[0].levelNodeGroup.childNodes;
     setLevel(levelData);
 }
+function FPEPixelate() {
+    let levelData = getLevel();
+    levelData.levelNodes = [groupNodes(levelData.levelNodes)];
+    levelData.levelNodes[0].levelNodeGroup.position = {
+        "x": 900000,
+        "y": 900000,
+        "z": 900000
+    };
+    levelData.levelNodes[0].animations = [
+        {
+            "name": "idle",
+            "speed": 1,
+            "frames": [
+                {
+                    "time": 0.0,
+                    "position": {
+                        "x": -900000,
+                        "y": -900000,
+                        "z": -900000
+                    },
+                    "rotation": {
+                        "w": 1.0,
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    }
+                }
+            ]
+        }
+    ];
+    setLevel(levelData);
+}
 function openPointCloud(file) {
     let reader = new FileReader();
 
@@ -2789,6 +2821,7 @@ document.getElementById('connect-adb-btn').addEventListener('click', connectUsb)
 document.getElementById('cleardetails-btn').addEventListener('click', clearLevelDetails);
 document.getElementById('group-btn').addEventListener('click', groupLevel);
 document.getElementById('ungroup-btn').addEventListener('click', ungroupLevel);
+document.getElementById('FPE-pixelate-btn').addEventListener('click', FPEPixelate);
 document.getElementById('outline-btn').addEventListener('click', outlineLevel);
 document.getElementById('magic-outline-btn').addEventListener('click', magicOutline);
 document.getElementById('randomize-positions-btn').addEventListener('click', randomizeLevelPositions);
