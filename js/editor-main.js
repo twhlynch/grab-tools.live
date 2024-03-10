@@ -47,6 +47,7 @@ let protobufData = await fetch('/proto/proto.proto').then(response => response.t
 
 // elements
 const applyChangesElement = document.getElementById('applyChanges');
+const applyChangesAsFrameElement = document.getElementById('applyChangesAsFrame');
 const formatWarningElement = document.getElementById('formatWarning');
 const typeWarningElement = document.getElementById('definitionWarning');
 const editInputElement = document.getElementById('edit-input');
@@ -451,7 +452,7 @@ function refreshScene() {
     }
 
     renderContainerElement.style.backgroundImage = `linear-gradient(rgb(${sky[0][0]}, ${sky[0][1]}, ${sky[0][2]}), rgb(${sky[1][0]}, ${sky[1][1]}, ${sky[1][2]}), rgb(${sky[0][0]}, ${sky[0][1]}, ${sky[0][2]}))`;
-    console.log('Refreshed', scene, objects, animatedObjects);
+    // console.log('Refreshed', scene, objects, animatedObjects);
     renderer.render( scene, camera );
 }
 function loadLevelNode(node, parent) {
@@ -898,6 +899,7 @@ function loadLevelNode(node, parent) {
     }
     if (object !== undefined) {
         object.grabNodeData = node;
+        object.initialGrabNodeData = deepClone(node);
         if(node.animations && node.animations.length > 0 && node.animations[0].frames && node.animations[0].frames.length > 0) {
             for (let frame of node.animations[0].frames) {
                 frame.position.x = frame.position.x || 0;
@@ -1811,6 +1813,104 @@ function generateLevelFromObjects() {
     setLevel(curLevel);
     transformControl.detach();
     applyChangesElement.style.display = "none";
+    applyChangesAsFrameElement.style.display = "none";
+}
+function generateFrameLevelFromObjects() {
+    let levelNodes = [];
+    objects.forEach(object => {
+        if (object.parent.type == 'Scene') { //TODO: prevent again -.-
+            if (object?.grabNodeData?.animations?.length > 0 && object.grabNodeData.animations[0].currentFrameIndex) {
+                delete object.grabNodeData.animations[0].currentFrameIndex;
+            }
+            if (object?.grabNodeData?.levelNodeGroup) {
+                runOnNodes(object.grabNodeData.levelNodeGroup.childNodes, (node) => {
+                    if (node?.animations?.length > 0 && node?.animations[0]?.currentFrameIndex) {
+                        delete node.animations[0].currentFrameIndex;
+                    }
+                }, true);
+            }
+            let initialNode = object.initialGrabNodeData;
+            let currentNode = object.grabNodeData;
+            let initialPos = Object.values(initialNode)[0].position;
+            let currentPos = Object.values(currentNode)[0].position;
+            let initialRot = Object.values(initialNode)[0].rotation;
+            let currentRot = Object.values(currentNode)[0].rotation;
+            console.log(initialPos, initialRot, currentPos, currentRot);
+            if (initialPos != currentPos || initialRot != currentRot) {
+                if (!initialNode.animations || !initialNode.animations.length) {
+                    console.log("adding animations");
+                    initialNode.animations = [{
+                        "name": "idle",
+                        "frames": [
+                            {
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "rotation": {
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "time": 0
+                            }
+                        ],
+                        "speed": 1
+                    }];
+                }
+                if (!initialNode.animations[0]?.frames?.length) {
+                    console.log("adding frame");
+                    initialNode.animations[0].frames = [{
+                        "position": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "w": 1,
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "time": 0
+                    }];
+                }
+                let lastTime = initialNode.animations[0].frames[initialNode.animations[0].frames.length-1].time;
+                let newFrame = {
+                    "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1,
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "time": lastTime + 1
+                }
+                newFrame.position.x = currentPos.x - initialPos.x;
+                newFrame.position.y = currentPos.y - initialPos.y;
+                newFrame.position.z = currentPos.z - initialPos.z;
+                newFrame.rotation.x = currentRot.x - initialRot.x;
+                newFrame.rotation.y = currentRot.y - initialRot.y;
+                newFrame.rotation.z = currentRot.z - initialRot.z;
+                newFrame.rotation.w = currentRot.w - initialRot.w;
+                initialNode.animations[0].frames.push(newFrame);
+                console.log("adding new frame");
+            }
+            levelNodes.push(initialNode);
+        }
+    });
+    let curLevel = getLevel();
+    curLevel.levelNodes = levelNodes;
+    setLevel(curLevel);
+    transformControl.detach();
+    applyChangesElement.style.display = "none";
+    applyChangesAsFrameElement.style.display = "none";
 }
 function groupEditingObject() {
     if (editing && !editing?.grabNodeData?.levelNodeGroup) {
@@ -2058,6 +2158,7 @@ function editShape(shape) {
         let material = nodeData.material || 0;
         remakeEditingObject(material, shape, shapeData);
         applyChangesElement.style.display = "block";
+        applyChangesAsFrameElement.style.display = "block";
     } else if (editing && editing?.grabNodeData?.levelNodeGroup) {
         // TODO: fix changing children
         remakeGroup(shape, false, editing)
@@ -2080,6 +2181,7 @@ function editMaterial(material) {
         let shape = nodeData.shape;
         remakeEditingObject(material, shape, shapeData);
         applyChangesElement.style.display = "block";
+        applyChangesAsFrameElement.style.display = "block";
     } else if (editing && editing?.grabNodeData?.levelNodeGroup) {
         // TODO: fix changing children
         remakeGroup(false, material, editing)
@@ -2129,6 +2231,78 @@ function editAnimation(animation) {
         // applyChangesElement.style.display = "block";
         generateLevelFromObjects();
     }
+}
+function addFrame(frame) {
+    let object = editing;
+    let currentPosition = {
+        "x": 0,
+        "y": 0,
+        "z": 0
+    }
+    let currentTime = 0;
+    if (object.grabNodeData.animations) {
+        if (object.grabNodeData.animations
+            && object.grabNodeData.animations.length
+            && object.grabNodeData.animations[0].frames
+            && object.grabNodeData.animations[0].frames.length
+            && object.grabNodeData.animations[0].frames[0]) {
+            currentPosition = object.grabNodeData.animations[0].frames[object.grabNodeData.animations[0].frames.length - 1].position;
+            currentTime = object.grabNodeData.animations[0].frames[object.grabNodeData.animations[0].frames.length - 1].time || 0;
+        }
+    } else {
+        object.grabNodeData.animations = [{
+            "name": "idle",
+            "frames": [
+                {
+                    "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "rotation": {
+                        "w": 1,
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "time": 0
+                }
+            ],
+            "speed": 1
+        }];
+    }
+    switch (frame) {
+        case "posx":
+            currentPosition.x += 1;
+            break;
+        case "negx":
+            currentPosition.x -= 1;
+            break;
+        case "posy":
+            currentPosition.y += 1;
+            break;
+        case "negy":
+            currentPosition.y -= 1;
+            break;
+        case "posz":
+            currentPosition.z += 1;
+            break;
+        case "negz":
+            currentPosition.z -= 1;
+            break;
+        default:
+            break;
+    }
+    object.grabNodeData.animations[0].frames.push({
+        "position": currentPosition,
+        "rotation": {
+            "w": 1,
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+        "time": currentTime + 1
+    });
 }
 async function getAnimationPresets() {
     let folderPath = "/level_data/animations/";
@@ -2195,6 +2369,7 @@ function initEditor() {
                 "w": editing.quaternion.w
             }
             applyChangesElement.style.display = "block";
+            applyChangesAsFrameElement.style.display = "block";
         }
     });
     transformControl.addEventListener( 'dragging-changed', ( event ) => {
@@ -2783,6 +2958,11 @@ document.querySelectorAll('.edit_animation').forEach(element => {
         editAnimation(element.id.split('-')[1]);
     });
 });
+document.querySelectorAll('.edit_frame').forEach(element => {
+    element.addEventListener('click', () => {
+        addFrame(element.id.split('-')[1]);
+    });
+});
 document.getElementById('edit_copyJSON-btn').addEventListener('click', copyEditingJSON);
 
 document.getElementById("edit_rotate-btn").addEventListener('click', () => {transformControl.setMode( 'rotate' )});
@@ -2800,6 +2980,7 @@ document.getElementById("edit_snap-btn").addEventListener('click', () => {
 
 // apply
 applyChangesElement.addEventListener('click', generateLevelFromObjects);
+applyChangesAsFrameElement.addEventListener('click', generateFrameLevelFromObjects);
 // stats
 document.getElementById('stats-container').addEventListener('click', handleStatsClick);
 // buttons
