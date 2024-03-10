@@ -444,6 +444,19 @@ html.dark-mode #editing-container {
     cursor: pointer;
     display: none;
 }
+#applyChangesAsFrame {
+    position: absolute;
+    left: 5px;
+    top: 95px;
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #dff099;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: none;
+}
 #editing-menu {
     /* display: none; */
     width: 100%;

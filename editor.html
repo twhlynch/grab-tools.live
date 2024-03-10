@@ -603,6 +603,29 @@
                             <button class="menu-btn">Animate</button>
                             <ul class="menu-dropdown">
                                 <li>
+                                    <button class="menu-btn">Add Frame</button>
+                                    <ul class="menu-dropdown">
+                                        <li>
+                                            <button class="menu-btn edit_frame" id="edit_frame-posz">+z</button>
+                                        </li>
+                                        <li>
+                                            <button class="menu-btn edit_frame" id="edit_frame-negz">-z</button>
+                                        </li>
+                                        <li>
+                                            <button class="menu-btn edit_frame" id="edit_frame-posx">+x</button>
+                                        </li>
+                                        <li>
+                                            <button class="menu-btn edit_frame" id="edit_frame-negx">-x</button>
+                                        </li>
+                                        <li>
+                                            <button class="menu-btn edit_frame" id="edit_frame-posy">+y</button>
+                                        </li>
+                                        <li>
+                                            <button class="menu-btn edit_frame" id="edit_frame-negy">-y</button>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
                                     <button class="menu-btn edit_animation" id="edit_animation-angle_slide">angle slide</button>
                                 </li>
                                 <li>
@@ -671,10 +694,17 @@
                         </li>
                         <li>
                             <button class="menu-btn" id="enableEditing-btn">Edit</button>
+                            <!-- <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="enableAnimating-btn">Animate</button>
+                                </li>
+                            </ul> -->
                         </li>
                     </ul>
                 </nav>
                 <button id="applyChanges">Apply changes</button>
+                <!-- TODO: apply as frame -->
+                <button id="applyChangesAsFrame">Apply as frame</button>
             </div>
             <div id="edit-resize">&nbsp;</div>
             <div id="editing-container">
