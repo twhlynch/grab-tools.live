@@ -1,37 +1,38 @@
 {
-  "identifier": "2a0r12prnob1y78t7wqpn:1701853837",
-  "title": "The Experiment (full game)",
-  "complexity": 1237,
+  "identifier": "2aqj12racvbkdg8ge3ns9:1705185156",
+  "title": "BETA BOULDERING 2",
+  "complexity": 2641,
   "format_version": 8,
-  "update_timestamp": 1709955275949,
-  "creation_timestamp": 1701859476721,
-  "data_key": "level_data:2a0r12prnob1y78t7wqpn:1701853837:7",
-  "description": "this map is not longer a preview",
+  "update_timestamp": 1709332477535,
+  "creation_timestamp": 1709332477535,
+  "data_key": "level_data:2aqj12racvbkdg8ge3ns9:1705185156:1",
   "creators": [
+    "coleaaron",
+    "Convrist",
     "Dyght_light"
   ],
   "tags": [
     "ok"
   ],
-  "verification_time": 8.67,
+  "verification_time": 77.94,
   "statistics": {
-    "total_played": 1000,
-    "difficulty": 0.23522167487684728,
-    "liked": 0.9193548387096774,
-    "time": 63.13807382198954
+    "total_played": 600,
+    "difficulty": 0.0019723865877712033,
+    "time": 72.5712,
+    "liked": 0
   },
   "images": {
     "full": {
-      "key": "level_2a0r12prnob1y78t7wqpn_1701853837_2.png",
+      "key": "level_2aqj12racvbkdg8ge3ns9_1705185156_1.png",
       "width": 1920,
       "height": 1080
     },
     "thumb": {
-      "key": "level_2a0r12prnob1y78t7wqpn_1701853837_2_thumb.png",
+      "key": "level_2aqj12racvbkdg8ge3ns9_1705185156_1_thumb.png",
       "width": 512,
       "height": 288
     }
   },
-  "creator": "Dyght_light",
+  "creator": "coleaaron",
   "change": 0
 }
