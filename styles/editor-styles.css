@@ -329,11 +329,11 @@ html {
 .prompt-simple .prompt-buttons button.prompt-submit:hover {
     background: #99f099;
 }
-#prompt-protobuf {
+#prompt-protobuf, #prompt-editingJson {
     width: 80vw;
     height: 80vh;
 }
-#prompt-protobuf textarea {
+#prompt-protobuf textarea, #prompt-editingJson textarea {
     height: 100%
 }
 #self-credit {

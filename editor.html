@@ -661,7 +661,15 @@
                             </ul>
                         </li>
                         <li>
-                            <button class="menu-btn" id="edit_copyJSON-btn">Copy JSON</button>
+                            <button class="menu-btn">JSON</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="edit_copyJSON-btn">Copy JSON</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="edit_editJSON-btn">Edit JSON</button>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <button class="menu-btn">Controls</button>
@@ -763,6 +771,13 @@
         </div>
         <!-- Prompts -->
         <div id="prompts">
+            <div class="prompt-simple" id="prompt-editingJson">
+                <textarea name="editingJson" id="editingJson-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false"></textarea>
+                <div class="prompt-buttons">
+                    <button class="prompt-submit">Sumbit</button>
+                </div>
+            </div>
+
             <div class="prompt-simple" id="prompt-title">
                 <textarea name="title" id="title-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false" placeholder="Title"></textarea>
                 <div class="prompt-buttons">
