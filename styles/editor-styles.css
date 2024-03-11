@@ -513,3 +513,11 @@ li:has(#enableEditing-btn) {
 #edit_material-9 {
     background-image: url("/img/textures/bouncing.png");
 }
+#edit_color-btn-input {
+    visibility: hidden;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+}
