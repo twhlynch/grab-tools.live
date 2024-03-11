@@ -2194,6 +2194,40 @@ function editMaterial(material) {
         }, false);
     }
 }
+function editColor(e) {
+    let color = e.target.value;
+    if (editing && editing.parent.type == "Scene" && editing.grabNodeData.levelNodeStatic) {
+        let shapeData = deepClone(editing.grabNodeData);
+        let nodeData = Object.values(shapeData)[0];
+        nodeData.color = {
+            "r": parseInt(color.substring(1, 3), 16)/255,
+            "g": parseInt(color.substring(3, 5), 16)/255,
+            "b": parseInt(color.substring(5, 7), 16)/255,
+            "a": 1
+        }
+        let material = nodeData.material || 0;
+        let shape = nodeData.shape;
+        remakeEditingObject(material, shape, shapeData);
+        applyChangesElement.style.display = "block";
+        applyChangesAsFrameElement.style.display = "block";
+    } else if (editing && editing?.grabNodeData?.levelNodeGroup) {
+        // TODO: fix changing children
+        remakeGroup(false, false, editing)
+        // change group nodeData
+        let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
+        runOnNodes(childNodes, (node) => {
+            if (node.levelNodeStatic) {
+                Object.values(node)[0].color = {
+                    "r": parseInt(color.substring(1, 3), 16)/255,
+                    "g": parseInt(color.substring(3, 5), 16)/255,
+                    "b": parseInt(color.substring(5, 7), 16)/255,
+                    "a": 1
+                }
+            }
+        }, false);
+        generateLevelFromObjects();
+    }
+}
 function editAnimation(animation) {
     if (
         editing && editing?.parent?.type == "Scene"
@@ -2982,6 +3016,8 @@ document.querySelectorAll('.edit_frame').forEach(element => {
         addFrame(element.id.split('-')[1]);
     });
 });
+document.getElementById('edit_color-btn').addEventListener('click', () => {document.getElementById('edit_color-btn-input').click();});
+document.getElementById('edit_color-btn-input').addEventListener('change', editColor);
 document.getElementById('edit_copyJSON-btn').addEventListener('click', copyEditingJSON);
 
 document.getElementById("edit_rotate-btn").addEventListener('click', () => {transformControl.setMode( 'rotate' )});
