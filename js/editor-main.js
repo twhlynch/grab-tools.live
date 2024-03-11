@@ -2319,6 +2319,11 @@ function copyEditingJSON() {
         navigator.clipboard.writeText(json);
     }
 }
+function editEditingJSON(input) {
+    let newJSON = JSON.parse(input);
+    editing.grabNodeData = newJSON;
+    generateLevelFromObjects();
+}
 function initEditor() {
     loader = new GLTFLoader();
     scene = new THREE.Scene();
@@ -2798,6 +2803,20 @@ if (localStorage.getItem("darkMode") === "true") {
 
 // prompts
 const promptsElement = document.getElementById('prompts');
+
+document.getElementById('edit_editJSON-btn').addEventListener('click', () => {
+    promptsElement.style.display = 'grid';
+    document.getElementById('prompt-editingJson').style.display = 'flex';
+    document.getElementById('editingJson-prompt').value = JSON.stringify(editing.grabNodeData, null, 4);
+});
+document.querySelector('#prompt-editingJson .prompt-submit').addEventListener('click', () => {
+    promptsElement.style.display = 'none';
+    document.getElementById('prompt-editingJson').style.display = 'none';
+    let input = document.getElementById('editingJson-prompt').value;
+    editEditingJSON(input);
+    document.getElementById('editingJson-prompt').value = '';
+});
+
 document.getElementById('title-btn').addEventListener('click', () => {
     promptsElement.style.display = 'grid';
     document.getElementById('prompt-title').style.display = 'flex';
