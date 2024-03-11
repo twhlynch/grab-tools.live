@@ -703,6 +703,59 @@ div#questMultiSelect {
     justify-content: space-between;
 }
 
+.list-main {
+    width: min(800px, 90%);
+}
+.list-main #info {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.list-discord {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+.list-back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+.ghl-icon {
+    width: 24px;
+    height: 24px;
+}
+.list-main .ghl-icon {
+    width: 50px;
+    height: 50px;
+}
+.list-discord svg, .list-back svg {
+    width: 36px;
+    height: 36px;
+    color: var(--text-color-default);
+}
+.list-item {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+}
+.list-item p:first-child {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2976d4;
+    margin-bottom: 0;
+}
+.list-item p:nth-child(2) {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-right: auto
+}
+
 @media screen and (max-width: 400px) {
     nav > a.button {
         font-size: 0;
