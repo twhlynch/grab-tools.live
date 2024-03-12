@@ -2353,6 +2353,13 @@ function copyEditingJSON() {
         navigator.clipboard.writeText(json);
     }
 }
+function copyEditingChildren() {
+    if (editing && editing?.grabNodeData?.levelNodeGroup) {
+        let json = JSON.stringify(editing.grabNodeData.levelNodeGroup.childNodes, null, 4);
+        json = json.substring(1, json.length - 1);
+        navigator.clipboard.writeText(json);
+    }
+}
 function editEditingJSON(input) {
     let newJSON = JSON.parse(input);
     editing.grabNodeData = newJSON;
@@ -3019,6 +3026,7 @@ document.querySelectorAll('.edit_frame').forEach(element => {
 document.getElementById('edit_color-btn').addEventListener('click', () => {document.getElementById('edit_color-btn-input').click();});
 document.getElementById('edit_color-btn-input').addEventListener('change', editColor);
 document.getElementById('edit_copyJSON-btn').addEventListener('click', copyEditingJSON);
+document.getElementById('edit_copyChildren-btn').addEventListener('click', copyEditingChildren);
 
 document.getElementById("edit_rotate-btn").addEventListener('click', () => {transformControl.setMode( 'rotate' )});
 document.getElementById("edit_scale-btn").addEventListener('click', () => {transformControl.setMode( 'scale' )});
