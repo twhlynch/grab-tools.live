@@ -1,20 +1,37 @@
 {
-  "identifier": "2a0w4jrzxbi4w589vxnoa:1687433700",
-  "title": " The Wrong Dimension",
-  "complexity": 1015,
-  "format_version": 6,
-  "update_timestamp": 1687522845683,
-  "creation_timestamp": 1687522845683,
-  "data_key": "level_data:2a0w4jrzxbi4w589vxnoa:1687433700:1",
-  "description": "work in progress",
+  "identifier": "2ahb82qqut2dt3we3p2ok:1704122653",
+  "title": "Low Gravity Kaizo",
+  "complexity": 615,
+  "format_version": 8,
+  "update_timestamp": 1704140316722,
+  "creation_timestamp": 1704125421611,
+  "data_key": "level_data:2ahb82qqut2dt3we3p2ok:1704122653:3",
+  "description": "One of a kind map maybe??",
+  "creators": [
+    "BliixVR (helpers in map)"
+  ],
   "tags": [
     "ok"
   ],
+  "verification_time": 3.33,
   "statistics": {
-    "total_played": 400,
-    "difficulty": 0.6550802139037433,
-    "liked": 0.7704081632653061,
-    "time": 59.41742489795918
+    "total_played": 300,
+    "difficulty": 0,
+    "liked": 0,
+    "time": 100
   },
+  "images": {
+    "full": {
+      "key": "level_2ahb82qqut2dt3we3p2ok_1704122653_1.png",
+      "width": 1920,
+      "height": 1080
+    },
+    "thumb": {
+      "key": "level_2ahb82qqut2dt3we3p2ok_1704122653_1_thumb.png",
+      "width": 512,
+      "height": 288
+    }
+  },
+  "creator": "BliixVR (helpers in map)",
   "change": 0
 }
