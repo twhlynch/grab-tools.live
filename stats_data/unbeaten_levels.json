@@ -15,7 +15,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 38737,
+      "total_played": 38837,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -51,7 +51,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 53700,
+      "total_played": 53800,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -69,7 +69,7 @@
       }
     },
     "creator": ".index (NSKC7)",
-    "change": 200
+    "change": 100
   },
   {
     "identifier": "29mu59yo9pbgwqloqhthe:1687203226",
@@ -307,7 +307,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 700,
+      "total_played": 800,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -325,7 +325,7 @@
       }
     },
     "creator": "dandweswoys",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "29sgp24f1uorbc6vq8d2k:1700045225",
@@ -361,7 +361,7 @@
       }
     },
     "creator": ".index",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29nxcg0chi4uqcj7yk7f4:1700402282",
@@ -610,7 +610,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16400,
+      "total_played": 16600,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -646,7 +646,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 100,
+      "total_played": 200,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -664,7 +664,7 @@
       }
     },
     "creator": "Towersj",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2ahb82qqut2dt3we3p2ok:1704122653",
@@ -1441,6 +1441,80 @@
     "change": 0
   },
   {
+    "identifier": "29ffxg2ijqxyrgxyy2vjj:1708640613",
+    "title": "FROSTYs bats eye climb!",
+    "complexity": 1491,
+    "format_version": 8,
+    "update_timestamp": 1709583826782,
+    "creation_timestamp": 1709583826782,
+    "data_key": "level_data:29ffxg2ijqxyrgxyy2vjj:1708640613:1",
+    "description": "HEAVILY inspired by desomfam06's THE CLIMB        check that map out as well! climb through the deep dark cavern with almost no light to guide you besides the slight glow of the immense amount of illuminescent red worms. trial and error may be a good method for you here.",
+    "creators": [
+      "FROSTY_CROSS"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "verification_time": 1187.96,
+    "statistics": {
+      "total_played": 200,
+      "difficulty": 0,
+      "liked": 0,
+      "time": 100
+    },
+    "images": {
+      "full": {
+        "key": "level_29ffxg2ijqxyrgxyy2vjj_1708640613_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29ffxg2ijqxyrgxyy2vjj_1708640613_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "FROSTY_CROSS",
+    "change": 0
+  },
+  {
+    "identifier": "29uz2v9ivofbk5p6154ow:1707868371",
+    "title": "A VERY LETHAL CLIMB 2",
+    "complexity": 1462,
+    "format_version": 8,
+    "update_timestamp": 1709584599010,
+    "creation_timestamp": 1709584599010,
+    "data_key": "level_data:29uz2v9ivofbk5p6154ow:1707868371:1",
+    "description": "it WAYyyyyy more LETHAL (and maybe harder)",
+    "creators": [
+      "VrGuy11513"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "verification_time": 3105.28,
+    "statistics": {
+      "total_played": 300,
+      "difficulty": 0,
+      "liked": 0,
+      "time": 100
+    },
+    "images": {
+      "full": {
+        "key": "level_29uz2v9ivofbk5p6154ow_1707868371_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29uz2v9ivofbk5p6154ow_1707868371_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "VrGuy11513",
+    "change": 0
+  },
+  {
     "identifier": "29s8ukg906xmbviy554so:1708059647",
     "title": "AGONY+",
     "complexity": 1551,
@@ -1514,7 +1588,7 @@
       }
     },
     "creator": "Polaris8477",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2agpgweu9sg426khuau1e:1707712793",
@@ -1570,7 +1644,7 @@
     ],
     "verification_time": 81289.8,
     "statistics": {
-      "total_played": 2000,
+      "total_played": 2200,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -1663,7 +1737,7 @@
       }
     },
     "creator": "YelloducVR",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2bns26w3fm3mw3878kl5j:1710104305",
@@ -1703,6 +1777,6 @@
       }
     },
     "creator": "PurplrVr",
-    "change": 100
+    "change": 0
   }
 ]

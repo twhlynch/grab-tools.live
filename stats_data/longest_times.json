@@ -283,8 +283,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 71700,
-      "difficulty": 0.0004138273512290672,
+      "total_played": 71800,
+      "difficulty": 0.0004133028407681922,
       "liked": 0.9230769230769231,
       "time": 3093.137666666667
     },
@@ -338,7 +338,7 @@
       }
     },
     "creator": "Polaris8477...",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29srqtwaq08zzhp3kng3u:1681147301",
@@ -796,7 +796,7 @@
       }
     },
     "creator": "XXXJAKEONTOPXXX",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29s8ukg906xmbviy554so:1707793053",
@@ -852,8 +852,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 138900,
-      "difficulty": 0.001879314515378747,
+      "total_played": 139000,
+      "difficulty": 0.0018777422473414144,
       "liked": 0.8571428571428571,
       "time": 2461.7515940594058
     },
@@ -870,7 +870,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2af2v4lqxksl1ru5itxr1:1673253154",
@@ -948,8 +948,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 6700,
-      "difficulty": 0.000189000189000189,
+      "total_played": 6800,
+      "difficulty": 0.00018590816136828406,
       "liked": 1,
       "time": 2376.02
     },
@@ -996,11 +996,11 @@
   {
     "identifier": "2a7dpr68r014rdkz6927a:1708910333",
     "title": "Rotation: Energized Spire (Animated)",
-    "complexity": 3000,
+    "complexity": 2732,
     "format_version": 8,
-    "update_timestamp": 1709433579216,
+    "update_timestamp": 1710443954742,
     "creation_timestamp": 1709433579216,
-    "data_key": "level_data:2a7dpr68r014rdkz6927a:1708910333:1",
+    "data_key": "level_data:2a7dpr68r014rdkz6927a:1708910333:2",
     "description": "WARNING! DIFFICULT LEVEL! Thanks to Slin for tester, which made this possible",
     "creators": [
       "Auran",
@@ -1009,7 +1009,7 @@
     "tags": [
       "ok"
     ],
-    "verification_time": 580.16,
+    "verification_time": 999.32,
     "statistics": {
       "total_played": 300,
       "difficulty": 0.0036363636363636364,
@@ -1018,12 +1018,12 @@
     },
     "images": {
       "full": {
-        "key": "level_2a7dpr68r014rdkz6927a_1708910333_1.png",
+        "key": "level_2a7dpr68r014rdkz6927a_1708910333_4.png",
         "width": 1920,
         "height": 1080
       },
       "thumb": {
-        "key": "level_2a7dpr68r014rdkz6927a_1708910333_1_thumb.png",
+        "key": "level_2a7dpr68r014rdkz6927a_1708910333_4_thumb.png",
         "width": 512,
         "height": 288
       }
@@ -1162,7 +1162,7 @@
       }
     },
     "creator": "Aft",
-    "change": 200
+    "change": 0
   },
   {
     "identifier": "29vhvl94jvlw4vp4b019y:1654741085",
@@ -1430,7 +1430,7 @@
       }
     },
     "creator": "xani13",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2axkwzh6f43g1regf401p:1680445764",
@@ -1466,7 +1466,7 @@
       }
     },
     "creator": "OreO",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2a383jd1x27ouq4brfj6q:1665804049",
@@ -1708,10 +1708,10 @@
     ],
     "verification_time": 347.89,
     "statistics": {
-      "total_played": 30100,
-      "difficulty": 0.004733190689230371,
+      "total_played": 30400,
+      "difficulty": 0.004696345856922285,
       "liked": 0.8809523809523809,
-      "time": 2010.465397260274
+      "time": 1994.2482739726024
     },
     "images": {
       "full": {
@@ -1726,7 +1726,7 @@
       }
     },
     "creator": "TLTT",
-    "change": 200
+    "change": 300
   },
   {
     "identifier": "29r46v7djliny6t4rzvq7:1653137100",
@@ -1762,7 +1762,7 @@
       }
     },
     "creator": "22Joshi22",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2a7dx97v4xiepfpmj8gi4:1673121178",
@@ -1962,8 +1962,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 135600,
-      "difficulty": 0.00038426349496797804,
+      "total_played": 135700,
+      "difficulty": 0.0003838982121311835,
       "liked": 0.8275862068965517,
       "time": 1962.4479047619052
     },
@@ -2843,6 +2843,18 @@
       "liked": 1,
       "time": 1730.5349999999999
     },
+    "images": {
+      "full": {
+        "key": "level_2a7dx97v4xiepfpmj8gi4_1694649483_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_2a7dx97v4xiepfpmj8gi4_1694649483_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
     "change": 0
   },
   {
@@ -2887,8 +2899,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 50400,
-      "difficulty": 0.0008185538881309686,
+      "total_played": 50500,
+      "difficulty": 0.0008164746439263358,
       "liked": 0.9230769230769231,
       "time": 1714.4498333333333
     },
@@ -3160,10 +3172,10 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 99500,
-      "difficulty": 0.0017528963873901016,
+      "total_played": 99700,
+      "difficulty": 0.0017491117791746378,
       "liked": 0.9333333333333333,
-      "time": 1684.7146406250004
+      "time": 1681.2585468750005
     },
     "images": {
       "full": {
@@ -3528,8 +3540,8 @@
     ],
     "verification_time": 2284.05,
     "statistics": {
-      "total_played": 5500,
-      "difficulty": 0.0020876826722338203,
+      "total_played": 5900,
+      "difficulty": 0.0019636720667648502,
       "liked": 1,
       "time": 1583.875
     },
@@ -3546,7 +3558,7 @@
       }
     },
     "creator": "TLTT",
-    "change": 300
+    "change": 400
   },
   {
     "identifier": "29rnnd0ymyemrickwtpx3:1666216978",
@@ -4481,8 +4493,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 15323,
-      "difficulty": 0.0006752764412931544,
+      "total_played": 15423,
+      "difficulty": 0.0006703536115300822,
       "liked": 0.7142857142857143,
       "time": 1416.156375
     },
@@ -4499,7 +4511,7 @@
       }
     },
     "creator": "cjbeast006",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2af2v4lqxksl1ru5itxr1:1677507116",
@@ -4674,7 +4686,7 @@
       }
     },
     "creator": ".index",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29zu6o31ckahmycg57zfc:1669688004",
@@ -4775,7 +4787,7 @@
       }
     },
     "creator": "Mr. Madlord",
-    "change": 200
+    "change": 0
   },
   {
     "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbor444444",
