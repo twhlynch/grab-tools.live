@@ -15,7 +15,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 38937,
+      "total_played": 39037,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -51,7 +51,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 54000,
+      "total_played": 54300,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -69,7 +69,7 @@
       }
     },
     "creator": ".index (NSKC7)",
-    "change": 200
+    "change": 300
   },
   {
     "identifier": "29mu59yo9pbgwqloqhthe:1687203226",
@@ -140,7 +140,7 @@
     "creators": [
       "?"
     ],
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2b8xxpb13ie10xo6oufdc:1694910478",
@@ -258,13 +258,13 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 300,
+      "total_played": 400,
       "difficulty": 0,
       "liked": 0,
       "time": 100
     },
     "creator": "uwentpoo",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2a3gpy09xxjfr1wz03wpa:1697301409",
@@ -343,7 +343,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8300,
+      "total_played": 8400,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -610,7 +610,7 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 16700,
+      "total_played": 17000,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -628,7 +628,7 @@
       }
     },
     "creator": "LittleBeastM8",
-    "change": 100
+    "change": 300
   },
   {
     "identifier": "2a6menzbhaidlzwzsun01:1702753998",
@@ -1665,6 +1665,43 @@
     "change": 0
   },
   {
+    "identifier": "2bjk52nnj2mivd02nx0ef:1704087023",
+    "title": "ZONES",
+    "complexity": 1030,
+    "format_version": 8,
+    "update_timestamp": 1709704771299,
+    "creation_timestamp": 1709704771299,
+    "data_key": "level_data:2bjk52nnj2mivd02nx0ef:1704087023:1",
+    "description": "10 NEW zones to beat good luck",
+    "creators": [
+      "LittleSnackSnack"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "verification_time": 1472.68,
+    "statistics": {
+      "total_played": 200,
+      "difficulty": 0,
+      "liked": 0,
+      "time": 100
+    },
+    "images": {
+      "full": {
+        "key": "level_2bjk52nnj2mivd02nx0ef_1704087023_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_2bjk52nnj2mivd02nx0ef_1704087023_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "LittleSnackSnack",
+    "change": 0
+  },
+  {
     "identifier": "2agpgweu9sg426khuau1e:1707712793",
     "title": "Ready 2 Die",
     "complexity": 2170,
@@ -1718,7 +1755,7 @@
     ],
     "verification_time": 81289.8,
     "statistics": {
-      "total_played": 2400,
+      "total_played": 2800,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -1736,7 +1773,7 @@
       }
     },
     "creator": ".index",
-    "change": 200
+    "change": 400
   },
   {
     "identifier": "2bojjyjkmhegoqt73au7m:1708893111",
@@ -1774,43 +1811,6 @@
       }
     },
     "creator": "FitArtist334071",
-    "change": 100
-  },
-  {
-    "identifier": "2a6ekr378kiwrrodjri7e:1709893711",
-    "title": "The Inferno Trials",
-    "complexity": 368,
-    "format_version": 8,
-    "update_timestamp": 1709898011736,
-    "creation_timestamp": 1709898011736,
-    "data_key": "level_data:2a6ekr378kiwrrodjri7e:1709893711:1",
-    "description": "Use your skill of double grappling ice bouncing to complete 3 challenging levels.",
-    "creators": [
-      "YelloducVR"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "verification_time": 149.31,
-    "statistics": {
-      "total_played": 400,
-      "difficulty": 0,
-      "liked": 0,
-      "time": 100
-    },
-    "images": {
-      "full": {
-        "key": "level_2a6ekr378kiwrrodjri7e_1709893711_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_2a6ekr378kiwrrodjri7e_1709893711_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "YelloducVR",
     "change": 0
   },
   {
@@ -1870,7 +1870,7 @@
     ],
     "verification_time": 126.6,
     "statistics": {
-      "total_played": 500,
+      "total_played": 600,
       "difficulty": 0,
       "liked": 0,
       "time": 100
@@ -1888,6 +1888,6 @@
       }
     },
     "creator": "Chalip",
-    "change": 300
+    "change": 100
   }
 ]
