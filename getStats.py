@@ -25,6 +25,7 @@ def get_level_leaderboard(level_identifier):
     if leaderboard_request.status_code == 200:
         return leaderboard_request.json()
     else:
+        print("ERROR: INVALID RESPONSE FROM SERVER")
         return []
 
 def get_level_stats(level_identifier):
@@ -34,6 +35,7 @@ def get_level_stats(level_identifier):
     if stats_request.status_code == 200:
         return stats_request.json()
     else:
+        print("ERROR: INVALID RESPONSE FROM SERVER")
         return {
             "identifier": level_identifier,
             "title": "ERROR",
