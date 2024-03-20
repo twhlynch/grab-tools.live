@@ -605,12 +605,22 @@ function getBestOfGrab() {
                 }
             } );
         });
+        let playerFeatures = {};
         let playerCompletions = {};
         let playerCompletionsByKey = {};
         list_keys.forEach(key => {
             playerCompletionsByKey[key] = {};
         });
         data.forEach(item => {
+            if (playerFeatures[item.identifier.split(':')[0]]) {
+                playerFeatures[item.identifier.split(':')[0]].score += 1;
+                if (playerFeatures[item.identifier.split(':')[0]].user_name == "undefined") {
+                    playerFeatures[item.identifier.split(':')[0]].user_name = (""+item?.creators).split(',')[0];
+                }
+            } else {
+                playerFeatures[item.identifier.split(':')[0]] = {score: 1, user_name: (""+item?.creators).split(',')[0]}
+            }
+
             let leaderboard = item.leaderboard;
             let list_key = item.list_key.split(":");
             leaderboard.forEach( lItem => {
@@ -646,6 +656,21 @@ function getBestOfGrab() {
                     }
                 });
             });
+        });
+
+        playerFeatures = Object.entries(playerFeatures).sort((a, b) => b[1].score - a[1].score);
+        console.log(playerFeatures);
+        playerFeatures.forEach( item => {
+            const user_card = userCard(
+                item[0],
+                item[1].user_name,
+                false,
+                false,
+                false,
+                `${item[1].score} maps`,
+                ''
+            );
+            document.getElementById('Featured-out').appendChild(user_card);
         });
 
         let sortingContainer = document.getElementById('BestOfGrab-sort');
@@ -1139,7 +1164,7 @@ getWeeklyMap();
 getUnbeatenMap();
 getChallengeScores();
 getGlobalPlays();
-getAChallenge();
+// getAChallenge();
 getRecords();
 getTrendingLevels();
 getBestOfGrab();
