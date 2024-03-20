@@ -21,12 +21,49 @@ def get_user_info(user_identifier):
 def get_level_leaderboard(level_identifier):
     leaderboard_url = f"{SERVER_URL}statistics_top_leaderboard/{level_identifier.replace(':', '/')}"
     print(leaderboard_url)
-    return requests.get(leaderboard_url).json()
+    leaderboard_request = requests.get(leaderboard_url)
+    if leaderboard_request.status_code == 200:
+        return leaderboard_request.json()
+    else:
+        return []
 
 def get_level_stats(level_identifier):
     stats_url = f"{SERVER_URL}statistics/{level_identifier.replace(':', '/')}"
     print(stats_url)
-    return requests.get(stats_url).json()
+    stats_request = requests.get(stats_url)
+    if stats_request.status_code == 200:
+        return stats_request.json()
+    else:
+        return {
+            "identifier": level_identifier,
+            "title": "ERROR",
+            "complexity": 0,
+            "format_version": 0,
+            "update_timestamp": 0,
+            "creation_timestamp": 0,
+            "data_key": "level_data:"+ level_identifier +":1",
+            "description": "ERROR",
+            "creators": ["ERROR"],
+            "tags": ["ok"],
+            "statistics": {
+                "total_played": 0,
+                "difficulty": 1,
+                "liked": 1,
+                "time": 0
+            },
+            "images": {
+                "full": {
+                    "key": "level_"+ level_identifier.replace(":", "_") +"_1.png",
+                    "width": 1920,
+                    "height": 1080
+                },
+                "thumb": {
+                    "key": "level_"+ level_identifier.replace(":", "_") +"_1_thumb.png",
+                    "width": 512,
+                    "height": 288
+                }
+            }
+        }
 
 def get_level_browser():
     browser_url = f"{SERVER_URL}get_level_browser?version=1"
