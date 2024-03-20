@@ -1,0 +1,97 @@
+{
+    "levelNodeGroup": {
+        "position": {
+            "y": 0,
+            "x": 0,
+            "z": 0
+        },
+        "rotation": {
+            "w": 1
+        },
+        "scale": {
+            "y": 1,
+            "x": 1,
+            "z": 1
+        },
+        "childNodes": [
+            {
+                "levelNodeGravity": {
+                    "mode": 0,
+                    "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0,
+                        "w": 1
+                    },
+                    "direction": {
+                        "x": -1000,
+                        "y": 0,
+                        "z": 0
+                    }
+                }
+            },
+            {
+                "levelNodeGravity": {
+                    "mode": 0,
+                    "position": {
+                        "x": 2,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0,
+                        "w": 1
+                    },
+                    "direction": {
+                        "x": -100000,
+                        "y": 0,
+                        "z": 0
+                    }
+                }
+            },
+            {
+                "levelNodeGravity": {
+                    "mode": 0,
+                    "position": {
+                        "x": 4,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0,
+                        "w": 1
+                    },
+                    "direction": {
+                        "x": -1000000,
+                        "y": 0,
+                        "z": 0
+                    }
+                }
+            }
+        ]
+    }
+}

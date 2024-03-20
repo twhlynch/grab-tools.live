@@ -3132,6 +3132,7 @@ document.getElementById('nodeFinish-btn').addEventListener('click', () => {appen
 document.getElementById('nodeGravity-btn').addEventListener('click', () => {appendJSON("level_data/json_files/gravity-node.json")});
 document.getElementById('nodeInvisible-btn').addEventListener('click', () => {appendJSON("level_data/json_files/invisible-node.json")});
 // insert prefabs
+document.getElementById('HighGravity-btn').addEventListener('click', () => {appendJSON("level_data/json_files/high-gravity.json")});
 document.getElementById('Parallelograms-btn').addEventListener('click', () => {appendJSON("level_data/json_files/parallelograms.json")});
 document.getElementById('BreakTimes-btn').addEventListener('click', () => {appendJSON("level_data/json_files/break-times.json")});
 document.getElementById('FreeStartFinish-btn').addEventListener('click', () => {appendJSON("level_data/json_files/free-start-finish.json")});
