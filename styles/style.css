@@ -755,6 +755,11 @@ div#questMultiSelect {
     margin-top: 0;
     margin-right: auto
 }
+#Global-out p {
+    width: fit-content;
+    font-size: 16px;
+    margin-inline: auto;
+}
 
 @media screen and (max-width: 400px) {
     nav > a.button {

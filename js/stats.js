@@ -1,3 +1,8 @@
+function numberWithCommas(x) {
+    let parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
 function levelCard(
     identifier,
     title,
@@ -100,6 +105,8 @@ function getUnbeatenLevels() {
     fetch('/stats_data/unbeaten_levels.json')
     .then((response) => response.json())
     .then(data => {
+        document.getElementById('Global-out').innerHTML += `<p>Unbeaten maps: ${data.length}</p>`;
+
         data.forEach(item => {
             const levelDiv = levelCard(
                 item?.identifier,
@@ -346,6 +353,8 @@ function makeFeaturedButtons() {
     fetch('/stats_data/featured_creators.json')
     .then((response) => response.json())
     .then(data => {
+        document.getElementById('Global-out').innerHTML += `<p>Featured creators: ${data.length}</p>`;
+
         const output = document.getElementById('other-user-options');
         data.forEach(creator => {
             let creatorUserName = creator.title;
@@ -507,14 +516,53 @@ function getChallengeScores() {
 }
 
 function getGlobalPlays() {
+    fetch('https://api.slin.dev/grab/v1/total_level_count?type=newest')
+    .then((response) => response.json())
+    .then(data => {
+        document.getElementById('Global-out').innerHTML += `<p>Total maps: ${numberWithCommas(data)}</p>`;
+    });
     fetch('/stats_data/all_verified.json')
     .then((response) => response.json())
     .then(data => {
-        let total_global_plays = 0;
+        let globalData = {
+            "plays": 0,
+            "verified_maps": 0,
+            "todays_plays": 0,
+            "average_difficulty": 0,
+            "average_plays": 0,
+            "average_likes": 0,
+            "average_time": 0,
+            "complexity": 0,
+            "iterations": 0,
+            "average_complexity": 0,
+        };
         for (const level of data) {
-            total_global_plays += level?.statistics?.total_played;
+            globalData.plays += level?.statistics?.total_played;
+            globalData.verified_maps += 1;
+            globalData.todays_plays += level?.change;
+            globalData.average_difficulty += level?.statistics?.difficulty;
+            globalData.average_likes += level?.statistics?.liked;
+            globalData.average_time += level?.statistics?.time;
+            globalData.complexity += level?.complexity;
+            globalData.iterations += parseInt(level?.data_key?.split(':')[3]);
         }
-        document.getElementById('counter').innerHTML = `<b>Total global plays: ${total_global_plays}</b>`;
+        globalData.average_difficulty /= globalData.verified_maps;
+        globalData.average_likes /= globalData.verified_maps;
+        globalData.average_time /= globalData.verified_maps;
+        globalData.average_plays = globalData.plays / globalData.verified_maps;
+        globalData.average_complexity = globalData.complexity / globalData.verified_maps;
+
+        document.getElementById('counter').innerHTML = `<b>Total global plays: ${numberWithCommas(globalData.plays)}</b>`;
+        document.getElementById('Global-out').innerHTML += `<p>Total plays: ${numberWithCommas(globalData.plays)}</p>`;
+        document.getElementById('Global-out').innerHTML += `<p>Verified maps: ${numberWithCommas(globalData.verified_maps)}</p>`;
+        document.getElementById('Global-out').innerHTML += `<p>Todays plays: ${numberWithCommas(globalData.todays_plays)}</p>`;
+        document.getElementById('Global-out').innerHTML += `<p>Total complexity: ${numberWithCommas(globalData.complexity)}</p>`;
+        document.getElementById('Global-out').innerHTML += `<p>Iterations: ${numberWithCommas(globalData.iterations)}</p>`;
+        document.getElementById('Global-out').innerHTML += `<p>Average difficulty: ${Math.round(globalData.average_difficulty*100)}%</p>`;
+        document.getElementById('Global-out').innerHTML += `<p>Average plays: ${numberWithCommas(Math.round(globalData.average_plays*100)/100)}</p>`;
+        document.getElementById('Global-out').innerHTML += `<p>Average likes: ${Math.round(globalData.average_likes*100)}%</p>`;
+        document.getElementById('Global-out').innerHTML += `<p>Average time: ${Math.round(globalData.average_time*100)/100}s</p>`;
+        document.getElementById('Global-out').innerHTML += `<p>Average complexity: ${numberWithCommas(Math.round(globalData.average_complexity*100)/100)}</p>`;
     });
 }
 
@@ -589,6 +637,8 @@ function getBestOfGrab() {
     fetch('/stats_data/best_of_grab.json')
     .then((response) => response.json())
     .then(data => {
+        document.getElementById('Global-out').innerHTML += `<p>Featured maps: ${data.length}</p>`;
+
         let list_keys = [];
         let key_lengths = {};
         data.forEach(item => {
@@ -1136,14 +1186,14 @@ addEventListener("click", async (e) => {
                 optionElement.classList.add('button-sml');
                 document.getElementById('other-user-options').appendChild(optionElement);
             });
-            document.getElementById('plays-results').innerHTML = `<b>Total plays: ${total_plays}</b>`;
-            document.getElementById('okplays-results').innerHTML = `<b>Total verified plays: ${total_okplays}</b>`;
+            document.getElementById('plays-results').innerHTML = `<b>Total plays: ${numberWithCommas(total_plays)}</b>`;
+            document.getElementById('okplays-results').innerHTML = `<b>Total verified plays: ${numberWithCommas(total_okplays)}</b>`;
             document.getElementById('maps-results').innerHTML = `<b>Total maps: ${total_maps}</b>`;
             document.getElementById('ok-results').innerHTML = `<b>Total verified maps: ${total_ok}</b>`;
             document.getElementById('likes-results').innerHTML = `<b>Average likes: ${Math.round((average_likes * 100) / likes_count)}%</b>`;
             document.getElementById('difficulty-results').innerHTML = `<b>Average difficulty: ${Math.round(100 - ((average_difficulty * 100) / difficulty_count))}%</b>`;
             document.getElementById('time-results').innerHTML = `<b>Average time: ${Math.round(Math.round(average_time / time_count))}s</b>`;
-            document.getElementById('complexity-results').innerHTML = `<b>Total complexity: ${total_complexity}</b>`;
+            document.getElementById('complexity-results').innerHTML = `<b>Total complexity: ${numberWithCommas(total_complexity)}</b>`;
             document.getElementById('join-date').innerHTML = `<b>Join date: ${timeString}</b>`;
         } else {
             output.querySelectorAll('.leaderboard-item').forEach(e => e.remove());
@@ -1152,6 +1202,7 @@ addEventListener("click", async (e) => {
     }
 });
 
+getGlobalPlays();
 getTopPlayers();
 getUnbeatenLevels();
 getPlayedLevels();
@@ -1163,7 +1214,6 @@ getDailyMap();
 getWeeklyMap();
 getUnbeatenMap();
 getChallengeScores();
-getGlobalPlays();
 // getAChallenge();
 getRecords();
 getTrendingLevels();
