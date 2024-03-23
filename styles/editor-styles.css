@@ -521,3 +521,10 @@ li:has(#enableEditing-btn) {
     border: 0;
     outline: 0;
 }
+#prompt-convert {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#prompt-convert span {
+    font-weight: bold;
+    font-size: 10px;
+}

@@ -2830,6 +2830,39 @@ function duplicateLevel() {
     levelData.levelNodes = levelData.levelNodes.concat(levelData.levelNodes);
     setLevel(levelData);
 }
+function convertLevelNodes() {
+    const fromValue = document.getElementById("convert-from").value;
+    const toValue = document.getElementById("convert-to").value;
+
+    let level = getLevel();
+    runOnNodes(level.levelNodes, (node)=>{
+        if (fromValue == 7) {
+            if (
+                node?.levelNodeCrumbling?.material == fromValue
+            ) {
+                if (toValue >= 1000) {
+                    node.levelNodeCrumbling.shape = toValue;
+                } else {
+                    node.levelNodeCrumbling.material = toValue;
+                }
+            }
+        } else {
+            if (
+                node?.levelNodeStatic?.material == fromValue
+                || (fromValue == 0 && (node?.levelNodeStatic && !node.levelNodeStatic.hasOwnProperty('material')))
+                || node?.levelNodeStatic?.shape == fromValue
+            ) {
+                if (toValue >= 1000) {
+                    node.levelNodeStatic.shape = toValue;
+                } else {
+                    node.levelNodeStatic.material = toValue;
+                }
+            }
+        }
+
+    }, false);
+    setLevel(level);
+}
 
 initEditor();
 getAnimationPresets();
@@ -2876,6 +2909,7 @@ document.querySelector('#prompt-title .prompt-submit').addEventListener('click',
     setLevel(levelData);
     document.getElementById('title-prompt').value = '';
 });
+
 document.getElementById('description-btn').addEventListener('click', () => {
     promptsElement.style.display = 'grid';
     document.getElementById('prompt-description').style.display = 'flex';
@@ -2889,6 +2923,7 @@ document.querySelector('#prompt-levels .prompt-cancel').addEventListener('click'
     promptsElement.style.display = 'none';
     document.getElementById('prompt-levels').style.display = 'none';
 });
+
 document.getElementById('template-btn').addEventListener('click', () => {
     promptsElement.style.display = 'grid';
     document.getElementById('prompt-templates').style.display = 'flex';
@@ -2898,6 +2933,7 @@ document.querySelector('#prompt-templates .prompt-cancel').addEventListener('cli
     promptsElement.style.display = 'none';
     document.getElementById('prompt-templates').style.display = 'none';
 });
+
 document.querySelector('#prompt-description .prompt-cancel').addEventListener('click', () => {
     promptsElement.style.display = 'none';
     document.getElementById('prompt-description').style.display = 'none';
@@ -2912,6 +2948,7 @@ document.querySelector('#prompt-description .prompt-submit').addEventListener('c
     setLevel(levelData);
     document.getElementById('description-prompt').value = '';
 });
+
 document.getElementById('creators-btn').addEventListener('click', () => {
     promptsElement.style.display = 'grid';
     document.getElementById('prompt-creators').style.display = 'flex';
@@ -2930,6 +2967,7 @@ document.querySelector('#prompt-creators .prompt-submit').addEventListener('clic
     setLevel(levelData);
     document.getElementById('creators-prompt').value = '';
 });
+
 document.getElementById('checkpoints-btn').addEventListener('click', () => {
     promptsElement.style.display = 'grid';
     document.getElementById('prompt-checkpoints').style.display = 'flex';
@@ -2948,6 +2986,7 @@ document.querySelector('#prompt-checkpoints .prompt-submit').addEventListener('c
     setLevel(levelData);
     document.getElementById('checkpoints-prompt').value = '';
 });
+
 document.querySelector('#prompt-pixel .prompt-cancel').addEventListener('click', () => {
     promptsElement.style.display = 'none';
     document.getElementById('prompt-pixel').style.display = 'none';
@@ -2962,6 +3001,7 @@ document.getElementById('image-btn-input').addEventListener('change', (e) => {
     promptsElement.style.display = 'grid';
     document.getElementById('prompt-pixel').style.display = 'flex';
 });
+
 document.getElementById('protobuf-btn').addEventListener('click', () => {
     promptsElement.style.display = 'grid';
     document.getElementById('prompt-protobuf').style.display = 'flex';
@@ -2976,6 +3016,20 @@ document.querySelector('#prompt-protobuf .prompt-submit').addEventListener('clic
     promptsElement.style.display = 'none';
     document.getElementById('prompt-protobuf').style.display = 'none';
     protobufData = document.getElementById('protobuf-prompt').value;
+});
+
+document.getElementById('convert-btn').addEventListener('click', () => {
+    promptsElement.style.display = 'grid';
+    document.getElementById('prompt-convert').style.display = 'flex';
+});
+document.querySelector('#prompt-convert .prompt-cancel').addEventListener('click', () => {
+    promptsElement.style.display = 'none';
+    document.getElementById('prompt-convert').style.display = 'none';
+});
+document.querySelector('#prompt-convert .prompt-submit').addEventListener('click', () => {
+    promptsElement.style.display = 'none';
+    document.getElementById('prompt-convert').style.display = 'none';
+    convertLevelNodes();
 });
 // timeline
 document.getElementById('timeline-slow').addEventListener('click', () => {

@@ -329,6 +329,9 @@
                             </ul>
                         </li>
                         <li>
+                            <button class="menu-btn" id="convert-btn">Convert</button>
+                        </li>
+                        <li>
                             <button class="menu-btn" id="group-btn">Group</button>
                         </li>
                         <li>
@@ -781,6 +784,53 @@
         </div>
         <!-- Prompts -->
         <div id="prompts">
+            <div class="prompt-simple" id="prompt-convert">
+                <span>If an object is this:</span>
+                <select name="convert" id="convert-from">
+                    <!-- materials -->
+                    <option value="0">default (0)</option>
+                    <option value="1">grab (1)</option>
+                    <option value="2">ice (2)</option>
+                    <option value="3">lava (3)</option>
+                    <option value="4">wood (4)</option>
+                    <option value="5">grapple (5)</option>
+                    <option value="6">lava grapple (6)</option>
+                    <option value="7">breakable (7)</option>
+                    <option value="8">colored (8)</option>
+                    <option value="9">bounce (9)</option>
+                    <!-- shapes -->
+                    <option value="1000">cube (1000)</option>
+                    <option value="1001">sphere (1001)</option>
+                    <option value="1002">cylinder (1002)</option>
+                    <option value="1003">pyramid (1003)</option>
+                    <option value="1004">prism (1004)</option>
+                </select>
+                <span>Make it this:</span>
+                <select name="convert" id="convert-to">
+                    <!-- materials -->
+                    <option value="0">default (0)</option>
+                    <option value="1">grab (1)</option>
+                    <option value="2">ice (2)</option>
+                    <option value="3">lava (3)</option>
+                    <option value="4">wood (4)</option>
+                    <option value="5">grapple (5)</option>
+                    <option value="6">lava grapple (6)</option>
+                    <option value="7">breakable (7)</option>
+                    <option value="8">colored (8)</option>
+                    <option value="9">bounce (9)</option>
+                    <!-- shapes -->
+                    <option value="1000">cube (1000)</option>
+                    <option value="1001">sphere (1001)</option>
+                    <option value="1002">cylinder (1002)</option>
+                    <option value="1003">pyramid (1003)</option>
+                    <option value="1004">prism (1004)</option>
+                </select>
+                <div class="prompt-buttons">
+                    <button class="prompt-cancel">Cancel</button>
+                    <button class="prompt-submit">Sumbit</button>
+                </div>
+            </div>
+
             <div class="prompt-simple" id="prompt-editingJson">
                 <textarea name="editingJson" id="editingJson-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false"></textarea>
                 <div class="prompt-buttons">
