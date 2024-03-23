@@ -12160,5 +12160,109 @@
     },
     1711084675,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 20.8189,
+        "user_id": "29sgp24f1uorbc6vq8d2k",
+        "user_name": "dotindex",
+        "timestamp": "0001699768436633"
+      },
+      {
+        "position": 1,
+        "best_time": 29.3287,
+        "user_id": "2cacmcjjjwu3dggh0walm",
+        "user_name": "brad.601199",
+        "timestamp": "0001699837594824"
+      },
+      {
+        "position": 2,
+        "best_time": 30.1048,
+        "user_id": "29uyvcxcuqnm4ekq7z5u0",
+        "user_name": "Cybeey",
+        "timestamp": "0001699321236868"
+      }
+    ],
+    {
+      "identifier": "29v9vd6n9z45d16mi2o2n:1698964327",
+      "title": "STUMBLE PEOPLE (ANIMATED)",
+      "complexity": 272,
+      "format_version": 7,
+      "update_timestamp": 1698970506560,
+      "creation_timestamp": 1698970506560,
+      "data_key": "level_data:29v9vd6n9z45d16mi2o2n:1698964327:1",
+      "description": "AHAGA",
+      "creators": [
+        "JEFFBOBDOOD"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 800,
+        "difficulty": 0.010479041916167664,
+        "liked": 0.8,
+        "time": 31.873557142857145
+      },
+      "images": {
+        "full": {
+          "key": "level_29v9vd6n9z45d16mi2o2n_1698964327_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_29v9vd6n9z45d16mi2o2n_1698964327_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "JEFFBOBDOOD",
+      "change": 0
+    },
+    1711170959,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "2a6menzbhaidlzwzsun01:1702753998",
+      "title": "Towersj mountain of sacrifise",
+      "complexity": 3000,
+      "format_version": 7,
+      "update_timestamp": 1703402395339,
+      "creation_timestamp": 1703402395339,
+      "data_key": "level_data:2a6menzbhaidlzwzsun01:1702753998:1",
+      "description": "This mountain took me months to verify, 3000 Complexity, brutal jumps good luck",
+      "creators": [
+        "Towersj"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 200,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_2a6menzbhaidlzwzsun01_1702753998_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2a6menzbhaidlzwzsun01_1702753998_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "Towersj",
+      "change": 0
+    },
+    1711170959,
+    "unbeaten_map"
   ]
 ]
