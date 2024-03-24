@@ -511,7 +511,7 @@ async def get_challenge_scores():
             elif score_type == "unbeaten_map":
                 leaderboard[user_id][1] += 3 - i
                 days_old = timestamp_to_days(level['update_timestamp'], time * 1000)
-                leaderboard[user_id][1] += days_old // (100 - 50 * i)
+                leaderboard[user_id][1] += days_old // (100 - 50 * i) + 0.00001
 
     leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][1], reverse=True))
 
