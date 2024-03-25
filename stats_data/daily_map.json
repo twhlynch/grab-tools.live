@@ -1,23 +1,38 @@
 {
-  "identifier": "29t2r9nmhiptyesl2s9d4:1695435891",
-  "title": "THE--MUSH--OBBY",
-  "complexity": 1498,
-  "format_version": 6,
-  "update_timestamp": 1695478179583,
-  "creation_timestamp": 1695478179583,
-  "data_key": "level_data:29t2r9nmhiptyesl2s9d4:1695435891:1",
+  "identifier": "2ccgrfp562q2p3iworh00:1699769210",
+  "title": "Potatos difficulty chart",
+  "complexity": 1429,
+  "format_version": 8,
+  "update_timestamp": 1710360182234,
+  "creation_timestamp": 1699937330305,
+  "data_key": "level_data:2ccgrfp562q2p3iworh00:1699769210:2",
+  "description": "difficulty chart inspired by ducks difficult chart.",
   "creators": [
-    "jacobkai1234"
+    "potatochips11",
+    "rex1207"
   ],
   "tags": [
     "ok"
   ],
+  "verification_time": 61.34,
   "statistics": {
-    "total_played": 300,
-    "difficulty": 0.2978723404255319,
-    "liked": 0.7575757575757576,
-    "time": 69.09499880952383
+    "total_played": 600,
+    "difficulty": 0.12548262548262548,
+    "liked": 0.7619047619047619,
+    "time": 69.59473076923078
   },
-  "creator": "jacobkai1234",
+  "images": {
+    "full": {
+      "key": "level_2ccgrfp562q2p3iworh00_1699769210_1.png",
+      "width": 1920,
+      "height": 1080
+    },
+    "thumb": {
+      "key": "level_2ccgrfp562q2p3iworh00_1699769210_1_thumb.png",
+      "width": 512,
+      "height": 288
+    }
+  },
+  "creator": "potatochips11",
   "change": 0
 }
