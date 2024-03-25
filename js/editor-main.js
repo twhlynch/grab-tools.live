@@ -2365,6 +2365,13 @@ function copyEditingChildren() {
         navigator.clipboard.writeText(json);
     }
 }
+function copyEditingAnimations() {
+    if (editing && editing?.grabNodeData?.animations) {
+        let json = JSON.stringify(editing.grabNodeData.animations, null, 4);
+        json = json.substring(1, json.length - 1);
+        navigator.clipboard.writeText(json);
+    }
+}
 function editEditingJSON(input) {
     let newJSON = JSON.parse(input);
     editing.grabNodeData = newJSON;
@@ -2377,7 +2384,14 @@ function editEditingChildrenJSON(input) {
     let newJSON = JSON.parse(input);
     editing.grabNodeData.levelNodeGroup.childNodes = newJSON;
     generateLevelFromObjects();
-
+}
+function editEditingAnimationsJSON(input) {
+    if (input.charAt(0) != '[') {
+        input = '[\n' + input + '\n]';
+    }
+    let newJSON = JSON.parse(input);
+    editing.grabNodeData.animations = newJSON;
+    generateLevelFromObjects();
 }
 function initEditor() {
     loader = new GLTFLoader();
@@ -2918,6 +2932,19 @@ document.querySelector('#prompt-editingChildrenJson .prompt-submit').addEventLis
     document.getElementById('editingChildrenJson-prompt').innerHTML = '';
 });
 
+document.getElementById('edit_editAnimations-btn').addEventListener('click', () => {
+    promptsElement.style.display = 'grid';
+    document.getElementById('prompt-editingAnimationsJson').style.display = 'flex';
+    document.getElementById('editingAnimationsJson-prompt').innerHTML = JsonToHighlightedText(editing.grabNodeData.animations);
+});
+document.querySelector('#prompt-editingAnimationsJson .prompt-submit').addEventListener('click', () => {
+    promptsElement.style.display = 'none';
+    document.getElementById('prompt-editingAnimationsJson').style.display = 'none';
+    let input = document.getElementById('editingAnimationsJson-prompt').innerText;
+    editEditingAnimationsJSON(input);
+    document.getElementById('editingAnimationsJson-prompt').innerHTML = '';
+});
+
 document.getElementById('title-btn').addEventListener('click', () => {
     promptsElement.style.display = 'grid';
     document.getElementById('prompt-title').style.display = 'flex';
@@ -3108,6 +3135,7 @@ document.getElementById('edit_color-btn').addEventListener('click', () => {docum
 document.getElementById('edit_color-btn-input').addEventListener('change', editColor);
 document.getElementById('edit_copyJSON-btn').addEventListener('click', copyEditingJSON);
 document.getElementById('edit_copyChildren-btn').addEventListener('click', copyEditingChildren);
+document.getElementById('edit_copyAnimations-btn').addEventListener('click', copyEditingAnimations);
 
 document.getElementById("edit_rotate-btn").addEventListener('click', () => {transformControl.setMode( 'rotate' )});
 document.getElementById("edit_scale-btn").addEventListener('click', () => {transformControl.setMode( 'scale' )});

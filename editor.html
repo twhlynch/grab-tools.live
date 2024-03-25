@@ -674,16 +674,22 @@
                             <button class="menu-btn">JSON</button>
                             <ul class="menu-dropdown">
                                 <li>
-                                    <button class="menu-btn" id="edit_copyJSON-btn">Copy JSON</button>
+                                    <button class="menu-btn" id="edit_editJSON-btn">Edit JSON</button>
                                 </li>
                                 <li>
-                                    <button class="menu-btn" id="edit_editJSON-btn">Edit JSON</button>
+                                    <button class="menu-btn" id="edit_editChildren-btn">Edit ChildNodes</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="edit_editAnimations-btn">Edit Animations</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="edit_copyJSON-btn">Copy JSON</button>
                                 </li>
                                 <li>
                                     <button class="menu-btn" id="edit_copyChildren-btn">Copy ChildNodes</button>
                                 </li>
                                 <li>
-                                    <button class="menu-btn" id="edit_editChildren-btn">Edit ChildNodes</button>
+                                    <button class="menu-btn" id="edit_copyAnimations-btn">Copy Animations</button>
                                 </li>
                             </ul>
                         </li>
@@ -843,6 +849,13 @@
 
             <div class="prompt-simple" id="prompt-editingChildrenJson">
                 <div name="editingChildrenJson" class="json-prompt-textarea" id="editingChildrenJson-prompt" spellcheck="false" contenteditable="true" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false"></div>
+                <div class="prompt-buttons">
+                    <button class="prompt-submit">Sumbit</button>
+                </div>
+            </div>
+
+            <div class="prompt-simple" id="prompt-editingAnimationsJson">
+                <div name="editingAnimationsJson" class="json-prompt-textarea" id="editingAnimationsJson-prompt" spellcheck="false" contenteditable="true" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false"></div>
                 <div class="prompt-buttons">
                     <button class="prompt-submit">Sumbit</button>
                 </div>
