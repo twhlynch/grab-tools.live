@@ -287,12 +287,14 @@ html {
     justify-content: space-evenly;
     padding: 5px;
     background: #dddddd;
+    background: #ddddddaa;
     border-radius: 3px;
     position: fixed;
     gap: 5px;
     display: none;
 }
 .prompt-simple textarea {
+    background-color: #fff9;
     width: 100%;
     resize: none;
     height: 50px;
@@ -318,13 +320,13 @@ html {
     cursor: pointer;
 }
 .prompt-buttons button.prompt-cancel {
-    background: #d2d2d2
+    background: #d2d2d2;
 }
 .prompt-simple .prompt-buttons button.prompt-cancel:hover {
     background: #d29999;
 }
 .prompt-buttons button.prompt-cancel {
-    background: #f0f0f0
+    background: #f0f0f0;
 }
 .prompt-simple .prompt-buttons button.prompt-submit:hover {
     background: #99f099;
