@@ -2365,6 +2365,15 @@ function editEditingJSON(input) {
     editing.grabNodeData = newJSON;
     generateLevelFromObjects();
 }
+function editEditingChildrenJSON(input) {
+    if (input.charAt(0) != '[') {
+        input = '[\n' + input + '\n]';
+    }
+    let newJSON = JSON.parse(input);
+    editing.grabNodeData.levelNodeGroup.childNodes = newJSON;
+    generateLevelFromObjects();
+
+}
 function initEditor() {
     loader = new GLTFLoader();
     scene = new THREE.Scene();
@@ -2889,6 +2898,19 @@ document.querySelector('#prompt-editingJson .prompt-submit').addEventListener('c
     let input = document.getElementById('editingJson-prompt').value;
     editEditingJSON(input);
     document.getElementById('editingJson-prompt').value = '';
+});
+
+document.getElementById('edit_editChildren-btn').addEventListener('click', () => {
+    promptsElement.style.display = 'grid';
+    document.getElementById('prompt-editingChildrenJson').style.display = 'flex';
+    document.getElementById('editingChildrenJson-prompt').value = JSON.stringify(editing.grabNodeData.levelNodeGroup.childNodes, null, 4);
+});
+document.querySelector('#prompt-editingChildrenJson .prompt-submit').addEventListener('click', () => {
+    promptsElement.style.display = 'none';
+    document.getElementById('prompt-editingChildrenJson').style.display = 'none';
+    let input = document.getElementById('editingChildrenJson-prompt').value;
+    editEditingChildrenJSON(input);
+    document.getElementById('editingChildrenJson-prompt').value = '';
 });
 
 document.getElementById('title-btn').addEventListener('click', () => {
