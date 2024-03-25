@@ -129,73 +129,78 @@ function setLevel(level) {
     editInputElement.innerText = JSON.stringify(level, null, 4);
     highlightTextEditor();
 }
-function highlightTextEditor() {
-    let textEditor = editInputElement;
-    let hasChanged = oldText != textEditor.innerHTML;
 
-    if (!hideText && hasChanged) {
-        
-        const editText = JSON.stringify(JSON.parse(textEditor.innerText), null, 4);
-        
-        if (highlightText) {
-            
-            let highlightedText = editText.replace(/"color":\s*{\s*("r":\s*(\d+(?:\.\d+)?),)?\s*("g":\s*(\d+(?:\.\d+)?),)?\s*("b":\s*(\d+(?:\.\d+)?),)?\s*("a":\s*\d+(?:\.\d+)?)?\s*}/, (match) => {
-                let jsonData = JSON.parse(`{${match}}`);
-                let color = `rgba(${(jsonData.color.r || 0) * 255}, ${(jsonData.color.g || 0) * 255}, ${(jsonData.color.b || 0) * 255}, 0.3)`;
-                return `<span style='text-shadow: 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color};'>${match}</span>`
-            });
-            
-            highlightedText = highlightedText.replace(/([bruf]*)(\"""|")(?:(?!\2)(?:\\.|[^\\]))*\2:?/gs, (match) => {
-                if (match.endsWith(":")) {
-                    return `<span style="color: #dd612e">${match.slice(0,-1)}</span><span style="color: #007acc">:</span>`;
-                } else {
-                    return `<span style="color: #487e02">${match}</span>`;
-                }
-            });
-            highlightedText = highlightedText.replace(/"levelNodeFinish"/gsi, (match) => {
-                return `<span style="background: #f006;">${match}</span>`
-            });
-            highlightedText = highlightedText.replace(/"levelNodeStart"/gsi, (match) => {
-                return `<span style="background: #0f06;">${match}</span>`
-            });
-            highlightedText = highlightedText.replace(/<span style="color: #dd612e">"material"<\/span><span style="color: #007acc">:<\/span> ?[0-9]/gsi, (match) => {
-                switch (parseInt(match.split(">")[4])) {
-                    case 0:
-                        return `<span style="background-image: url(/img/textures/default.png); background-size: contain">${match}</span>`;
-                    case 1:
-                        return `<span style="background-image: url(/img/textures/grabbable.png); background-size: contain">${match}</span>`;
-                    case 2:
-                        return `<span style="background-image: url(/img/textures/ice.png); background-size: contain">${match}</span>`;
-                    case 3:
-                        return `<span style="background-image: url(/img/textures/lava.png); background-size: contain">${match}</span>`;
-                    case 4:
-                        return `<span style="background-image: url(/img/textures/wood.png); background-size: contain">${match}</span>`;
-                    case 5:
-                        return `<span style="background-image: url(/img/textures/grapplable.png); background-size: contain">${match}</span>`;
-                    case 6:
-                        return `<span style="background-image: url(/img/textures/grapplable_lava.png); background-size: contain">${match}</span>`;
-                    case 7:
-                        return `<span style="background-image: url(/img/textures/grabbable_crumbling.png); background-size: contain">${match}</span>`;
-                    case 8:
-                        return `<span style="background-image: url(/img/textures/default_colored.png); background-size: contain">${match}</span>`;
-                    case 9:
-                        return `<span style="background-image: url(/img/textures/bouncing.png); background-size: contain">${match}</span>`;
-                    default:
-                        break;
-                }
-                return match;
-            });
-            
-            textEditor.innerHTML = highlightedText;
+function JsonToHighlightedText(json) {
+    let stringified = json;
+    if (typeof json !== 'string') {
+        stringified = JSON.stringify(json, null, 4);
+    }
+    // color shadows
+    let highlightedText = stringified.replace(/"color":\s*{\s*("r":\s*(\d+(?:\.\d+)?),)?\s*("g":\s*(\d+(?:\.\d+)?),)?\s*("b":\s*(\d+(?:\.\d+)?),)?\s*("a":\s*\d+(?:\.\d+)?)?\s*}/, (match) => {
+        let jsonData = JSON.parse(`{${match}}`);
+        let color = `rgba(${(jsonData.color.r || 0) * 255}, ${(jsonData.color.g || 0) * 255}, ${(jsonData.color.b || 0) * 255}, 0.3)`;
+        return `<span style='text-shadow: 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color};'>${match}</span>`
+    });
+    // strings and attributes
+    highlightedText = highlightedText.replace(/([bruf]*)(\"""|")(?:(?!\2)(?:\\.|[^\\]))*\2:?/gs, (match) => {
+        if (match.endsWith(":")) {
+            return `<span style="color: #dd612e">${match.slice(0,-1)}</span><span style="color: #007acc">:</span>`;
         } else {
-            textEditor.innerHTML = editText;
+            return `<span style="color: #487e02">${match}</span>`;
+        }
+    });
+    // start and finish
+    highlightedText = highlightedText.replace(/"levelNodeFinish"/gsi, (match) => {
+        return `<span style="background: #f006;">${match}</span>`
+    });
+    highlightedText = highlightedText.replace(/"levelNodeStart"/gsi, (match) => {
+        return `<span style="background: #0f06;">${match}</span>`
+    });
+    // materials
+    highlightedText = highlightedText.replace(/<span style="color: #dd612e">"material"<\/span><span style="color: #007acc">:<\/span> ?[0-9]/gsi, (match) => {
+        switch (parseInt(match.split(">")[4])) {
+            case 0:
+                return `<span style="background-image: url(/img/textures/default.png); background-size: contain">${match}</span>`;
+            case 1:
+                return `<span style="background-image: url(/img/textures/grabbable.png); background-size: contain">${match}</span>`;
+            case 2:
+                return `<span style="background-image: url(/img/textures/ice.png); background-size: contain">${match}</span>`;
+            case 3:
+                return `<span style="background-image: url(/img/textures/lava.png); background-size: contain">${match}</span>`;
+            case 4:
+                return `<span style="background-image: url(/img/textures/wood.png); background-size: contain">${match}</span>`;
+            case 5:
+                return `<span style="background-image: url(/img/textures/grapplable.png); background-size: contain">${match}</span>`;
+            case 6:
+                return `<span style="background-image: url(/img/textures/grapplable_lava.png); background-size: contain">${match}</span>`;
+            case 7:
+                return `<span style="background-image: url(/img/textures/grabbable_crumbling.png); background-size: contain">${match}</span>`;
+            case 8:
+                return `<span style="background-image: url(/img/textures/default_colored.png); background-size: contain">${match}</span>`;
+            case 9:
+                return `<span style="background-image: url(/img/textures/bouncing.png); background-size: contain">${match}</span>`;
+            default:
+                break;
+        }
+        return match;
+    });
+
+    return highlightedText;
+}
+
+function highlightTextEditor() {
+    let hasChanged = oldText != editInputElement.innerHTML;
+    if (!hideText && hasChanged) {
+        if (highlightText) {
+            editInputElement.innerHTML = JsonToHighlightedText(editInputElement.innerText);
+        } else {
+            editInputElement.innerHTML = JSON.stringify(JSON.parse(editInputElement.innerText), null, 4);
         }
     }
     if (hasChanged) {
         refreshScene();
     }
-    oldText = textEditor.innerHTML;
-
+    oldText = editInputElement.innerHTML;
 }
 function loadTexture(path) {
     return new Promise((resolve) => {
@@ -2890,27 +2895,27 @@ const promptsElement = document.getElementById('prompts');
 document.getElementById('edit_editJSON-btn').addEventListener('click', () => {
     promptsElement.style.display = 'grid';
     document.getElementById('prompt-editingJson').style.display = 'flex';
-    document.getElementById('editingJson-prompt').value = JSON.stringify(editing.grabNodeData, null, 4);
+    document.getElementById('editingJson-prompt').innerHTML = JsonToHighlightedText(editing.grabNodeData);
 });
 document.querySelector('#prompt-editingJson .prompt-submit').addEventListener('click', () => {
     promptsElement.style.display = 'none';
     document.getElementById('prompt-editingJson').style.display = 'none';
-    let input = document.getElementById('editingJson-prompt').value;
+    let input = document.getElementById('editingJson-prompt').innerText;
     editEditingJSON(input);
-    document.getElementById('editingJson-prompt').value = '';
+    document.getElementById('editingJson-prompt').innerHTML = '';
 });
 
 document.getElementById('edit_editChildren-btn').addEventListener('click', () => {
     promptsElement.style.display = 'grid';
     document.getElementById('prompt-editingChildrenJson').style.display = 'flex';
-    document.getElementById('editingChildrenJson-prompt').value = JSON.stringify(editing.grabNodeData.levelNodeGroup.childNodes, null, 4);
+    document.getElementById('editingChildrenJson-prompt').innerHTML = JsonToHighlightedText(editing.grabNodeData.levelNodeGroup.childNodes);
 });
 document.querySelector('#prompt-editingChildrenJson .prompt-submit').addEventListener('click', () => {
     promptsElement.style.display = 'none';
     document.getElementById('prompt-editingChildrenJson').style.display = 'none';
-    let input = document.getElementById('editingChildrenJson-prompt').value;
+    let input = document.getElementById('editingChildrenJson-prompt').innerText;
     editEditingChildrenJSON(input);
-    document.getElementById('editingChildrenJson-prompt').value = '';
+    document.getElementById('editingChildrenJson-prompt').innerHTML = '';
 });
 
 document.getElementById('title-btn').addEventListener('click', () => {
