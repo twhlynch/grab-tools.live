@@ -293,7 +293,7 @@ html {
     gap: 5px;
     display: none;
 }
-.prompt-simple textarea {
+.prompt-simple textarea, .prompt-simple .json-prompt-textarea {
     background-color: #fff9;
     width: 100%;
     resize: none;
@@ -335,8 +335,14 @@ html {
     width: 80vw;
     height: 80vh;
 }
-#prompt-protobuf textarea, #prompt-editingJson textarea, #prompt-editingChildrenJson textarea {
+#prompt-protobuf textarea, .prompt-simple .json-prompt-textarea {
     height: 100%
+}
+.json-prompt-textarea {
+    color: #252526;
+    white-space: pre;
+    font-family: monospace;
+    overflow: scroll;
 }
 #self-credit {
     font-size: 10px;
