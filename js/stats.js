@@ -1026,7 +1026,6 @@ function getEmptyLeaderboards() {
     .then(data => {
         data = data.sort((a, b) => {return a?.creation_timestamp - b?.creation_timestamp});
         data.forEach(level => {
-            console.log(level);
             const levelDiv = levelCard(
                 level.identifier,
                 level?.title,
