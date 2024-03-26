@@ -1021,7 +1021,24 @@ function getTop100s() {
 }
 
 function getEmptyLeaderboards() {
-
+    fetch('/stats_data/empty_leaderboards.json')
+    .then((response) => response.json())
+    .then(data => {
+        data = data.sort((a, b) => {return a?.creation_timestamp - b?.creation_timestamp});
+        data.forEach(level => {
+            console.log(level);
+            const levelDiv = levelCard(
+                level.identifier,
+                level?.title,
+                level?.creators,
+                level?.images?.thumb?.key,
+                false,
+                level?.creation_timestamp,
+                ''
+            );
+            document.getElementById('Empty-out').appendChild(levelDiv);
+        });
+    });
 }
 
 let buttons = document.querySelectorAll('.stats-button');
