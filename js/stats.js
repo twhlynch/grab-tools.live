@@ -1000,6 +1000,30 @@ function getRecords() {
     });
 }
 
+function getTop100s() {
+    fetch('/stats_data/user_finishes.json')
+    .then((response) => response.json())
+    .then(data => {
+        data = Object.entries(data).sort((a, b) => {return b[1][0] - a[1][0]}).slice(0, 200);
+        for (let [key, value] of data) {
+            const user_card = userCard(
+                key, 
+                value[2], 
+                false, 
+                false, 
+                false, 
+                `${value[0]}`, 
+                ''
+            );
+            document.getElementById('Finishes-out').appendChild(user_card);
+        }
+    });
+}
+
+function getEmptyLeaderboards() {
+
+}
+
 let buttons = document.querySelectorAll('.stats-button');
 buttons.forEach((btn) => {
     let btnId = btn.id;
@@ -1219,6 +1243,8 @@ getRecords();
 getTrendingLevels();
 getBestOfGrab();
 makeFeaturedButtons();
+getTop100s()
+getEmptyLeaderboards();
 
 
 const urlParams = new URLSearchParams(window.location.search);
