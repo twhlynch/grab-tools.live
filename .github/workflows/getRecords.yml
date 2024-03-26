@@ -28,6 +28,8 @@ jobs:
           git config --global user.name "twhlynch"
           git add stats_data/sorted_leaderboard_records.json
           git add stats_data/leaderboard_levels.json
+          git add stats_data/empty_leaderboards.json
+          git add stats_data/user_finishes.json
           git commit -m "Records"
           git push
         env:
