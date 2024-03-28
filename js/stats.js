@@ -1036,6 +1036,18 @@ function getEmptyLeaderboards() {
                 ''
             );
             document.getElementById('Empty-out').appendChild(levelDiv);
+            if (location.href.includes("checkEmpty")) {
+                fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${level.identifier.split(":").join("/")}`)
+                .then((leaderboardResponse) => leaderboardResponse.json())
+                .then(leaderboardData => {
+                    if (leaderboardData.length > 0) {
+                        levelDiv.style.backgroundColor = "#ff000055";
+                        const detailElement = document.createElement('span');
+                        detailElement.innerText = leaderboardData[0].user_name;
+                        levelDiv.appendChild(detailElement);
+                    }
+                })
+            }
         });
     });
 }
