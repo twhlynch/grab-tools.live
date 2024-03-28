@@ -439,6 +439,18 @@ def get_beaten_unbeaten(levels_old):
             beaten.append([title, user, time, days, url])
     return beaten
 
+def get_empty_leaderboards():
+    empty_leaderboards = []
+    with open("get_empty_leaderboards.json") as data_file:
+        data = json.load(data_file)
+        
+    for level in data:
+        leaderboard = get_level_leaderboard(level["identifier"])
+        if len(leaderboard) == 0:
+            empty_leaderboards.append(level)
+            
+    return empty_leaderboards
+
 def get_level_data():
     with open("stats_data/log_data.json") as log_file:
         log_data = json.load(log_file)
@@ -480,6 +492,8 @@ def get_level_data():
     weekly_anc = False
     weekly = log_data["days_since_weekly"] + 1
     if weekly == 7:
+        write_json_file("stats_data/empty_leaderboards.json", get_empty_leaderboards())
+        
         get_weekly_winner()
         weekly_level = get_weekly_map(all_verified)
         weekly_anc = [weekly_level["title"], f"{VIEWER_URL}?level={weekly_level['identifier']}"]
