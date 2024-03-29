@@ -441,7 +441,7 @@ def get_beaten_unbeaten(levels_old):
 
 def get_empty_leaderboards():
     empty_leaderboards = []
-    with open("get_empty_leaderboards.json") as data_file:
+    with open("empty_leaderboards.json") as data_file:
         data = json.load(data_file)
         
     for level in data:
