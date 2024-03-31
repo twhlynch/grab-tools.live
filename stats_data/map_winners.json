@@ -13042,5 +13042,89 @@
     },
     1711775778,
     "unbeaten_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "2bf8hyynuelajywj9k4n7:1711491184",
+      "title": "Polaris' Grapple Kaizo",
+      "complexity": 1036,
+      "format_version": 8,
+      "update_timestamp": 1711566207537,
+      "creation_timestamp": 1711566207537,
+      "data_key": "level_data:2bf8hyynuelajywj9k4n7:1711491184:1",
+      "description": "Grapple kaizo, kinda like demise.",
+      "creators": [
+        "Polaris8477"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "verification_time": 286.83,
+      "statistics": {
+        "total_played": 100,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_2bf8hyynuelajywj9k4n7_1711491184_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2bf8hyynuelajywj9k4n7_1711491184_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "Polaris8477",
+      "change": 0
+    },
+    1711862066,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "2aqk2f39o44nxz0yixbas:1710608002",
+      "title": "Aerospace Rides",
+      "complexity": 2999,
+      "format_version": 8,
+      "update_timestamp": 1710694517062,
+      "creation_timestamp": 1710694198978,
+      "data_key": "level_data:2aqk2f39o44nxz0yixbas:1710608002:2",
+      "description": "7 Fun plane rides to try.",
+      "creators": [
+        "gage_rod"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "verification_time": 135.68,
+      "statistics": {
+        "total_played": 300,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_2aqk2f39o44nxz0yixbas_1710608002_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2aqk2f39o44nxz0yixbas_1710608002_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "gage_rod",
+      "change": 0
+    },
+    1711862066,
+    "unbeaten_map"
   ]
 ]
