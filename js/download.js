@@ -1,4 +1,17 @@
 async function download(id) {
+    let viewerUrl = 'http://grabvr.quest/levels/viewer?level=' + id;
+    let webhookUrl = 'https://discord.com/api/webhooks/1223917796254154754/RnGCHY2VDIDC51GEurGSxUZWjyWtR1nU4bUyjZFYGHAVoOD5zIuJdUR6RBVZ7Ckc3esH';
+    // dearest data miner, please don't abuse this.
+    let response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            content: `Download: ${viewerUrl}`
+        })
+    });
+    console.log(response);
     let iteration = null;
     console.log(id);
     let SERVER_URL = 'https://api.slin.dev/grab/v1/';
