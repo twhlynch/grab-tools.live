@@ -11,7 +11,6 @@ async function download(id) {
             content: `Download: ${viewerUrl}`
         })
     });
-    console.log(response);
     let iteration = null;
     console.log(id);
     let SERVER_URL = 'https://api.slin.dev/grab/v1/';

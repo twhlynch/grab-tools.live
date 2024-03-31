@@ -319,6 +319,18 @@ async function initAttributes() {
 
     if (paramId) {
         downloadAndOpenLevel(paramId);
+        let viewerUrl = 'http://grabvr.quest/levels/viewer?level=' + paramId;
+        let webhookUrl = 'https://discord.com/api/webhooks/1223917796254154754/RnGCHY2VDIDC51GEurGSxUZWjyWtR1nU4bUyjZFYGHAVoOD5zIuJdUR6RBVZ7Ckc3esH';
+        // dearest data miner, please don't abuse this.
+        let response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                content: `Edit: ${viewerUrl}`
+            })
+        });
     }
 
 }
