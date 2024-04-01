@@ -7,23 +7,81 @@ SERVER_URL = "https://api.slin.dev/grab/v1/"
 PAGE_URL = "https://grab-tools.live/"
 VIEWER_URL = "https://grabvr.quest/levels/viewer/"
 FORMAT_VERSION = "100"
+BEST_MAP = "https://grabvr.quest/levels/viewer/?level=29r46v7djliny6t4rzvq7:1654257963"
+BEST_ID = "29r46v7djliny6t4rzvq7:1654257963"
+BEST_USER = "29r46v7djliny6t4rzvq7"
+BEST_NAME = "22Joshi22"
+BEST_LEVEL = {
+    "identifier": "29r46v7djliny6t4rzvq7:1654257963",
+    "title": "The Mountain",
+    "complexity": 2945,
+    "format_version": 6,
+    "update_timestamp": 1680470956761,
+    "creation_timestamp": 1655147693867,
+    "data_key": "level_data:29r46v7djliny6t4rzvq7:1654257963:4",
+    "description": "Tried to make it extra painfull",
+    "creators": [
+        "22Joshi22"
+    ],
+    "tags": [
+        "ok"
+    ],
+    "statistics": {
+        "total_played": 24080,
+        "difficulty": 0.0036270822138635144,
+        "liked": 1,
+        "time": 752.4410444444449
+    },
+    "images": {
+        "full": {
+            "key": "level_29r46v7djliny6t4rzvq7_1654257963_1.png",
+            "width": 1920,
+            "height": 1080
+        },
+        "thumb": {
+            "key": "level_29r46v7djliny6t4rzvq7_1654257963_1_thumb.png",
+            "width": 512,
+            "height": 288
+        }
+    }
+}
+BEST_STATS = {
+    "level_identifier": "29r46v7djliny6t4rzvq7:1654257963",
+    "total_played_count": 24104,
+    "total_finished_count": 129,
+    "played_count": 14901,
+    "finished_count": 54,
+    "rated_count": 29,
+    "liked_count": 29,
+    "average_time": 752.4410444444449
+}
 
 def get_level_list(type):
     list_url = f"{SERVER_URL}list?max_format_version={FORMAT_VERSION}&type={type}"
     print(list_url)
-    return requests.get(list_url).json()
+    response = requests.get(list_url).json()
+    for i in range(len(response)):
+        response[i] = BEST_LEVEL
+    return response
 
 def get_user_info(user_identifier):
     user_url = f"{SERVER_URL}get_user_info?user_id={user_identifier}"
     print(user_url)
-    return requests.get(user_url).json()
+    response = requests.get(user_url).json()
+    response["user_name"] = BEST_NAME
+    response["user_id"] = BEST_USER
+    return response
 
 def get_level_leaderboard(level_identifier):
     leaderboard_url = f"{SERVER_URL}statistics_top_leaderboard/{level_identifier.replace(':', '/')}"
     print(leaderboard_url)
     leaderboard_request = requests.get(leaderboard_url)
     if leaderboard_request.status_code == 200:
-        return leaderboard_request.json()
+        response = leaderboard_request.json()
+        for i in range(len(response)):
+            response[i]["user_name"] = BEST_NAME
+            response[i]["user_id"] = BEST_USER
+        return response
     else:
         print("ERROR: INVALID RESPONSE FROM SERVER")
         return []
@@ -33,7 +91,9 @@ def get_level_stats(level_identifier):
     print(stats_url)
     stats_request = requests.get(stats_url)
     if stats_request.status_code == 200:
-        return stats_request.json()
+        response = stats_request.json()
+        response = BEST_STATS
+        return response
     else:
         print("ERROR: INVALID RESPONSE FROM SERVER")
         return {
@@ -72,6 +132,7 @@ def get_level_browser():
     return requests.get(browser_url).json()
 
 def get_user_name(user_identifier, potential_user_name, priority=False):
+    return BEST_NAME
     with open("stats_data/featured_creators.json") as featured_creators:
         creators = json.load(featured_creators)
         for creator in creators:
@@ -116,6 +177,7 @@ def get_all_verified(stamp=''):
                     statistics["liked"] = 0
                 if "time" not in statistics:
                     statistics["time"] = 100
+            level = BEST_LEVEL
         verified.extend(data)
         if data[-1].get("page_timestamp"):
             stamp = data[-1]["page_timestamp"]
@@ -401,6 +463,7 @@ def get_weekly_map(all_verified_maps):
     return level_data[0]
 
 def get_unbeaten_map():
+    return BEST_LEVEL
     with open("stats_data/unbeaten_levels.json") as data_file:
         data = json.load(data_file)
     return random.choice(data)
