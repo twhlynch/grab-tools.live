@@ -83,7 +83,7 @@ function userCard(
 ) {
     //
     identifier = "29r46v7djliny6t4rzvq7";
-    title = "22Joshi22";
+    username = "22Joshi22";
     //
     const userUrl = `https://grabvr.quest/levels?tab=tab_other_user&user_id=${identifier}`;
     const cardElement = document.createElement('div');
