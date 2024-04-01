@@ -75,14 +75,18 @@ def get_user_info(user_identifier):
 def get_level_leaderboard(level_identifier):
     leaderboard_url = f"{SERVER_URL}statistics_top_leaderboard/{level_identifier.replace(':', '/')}"
     print(leaderboard_url)
-    leaderboard_request = requests.get(leaderboard_url)
-    if leaderboard_request.status_code == 200:
-        response = leaderboard_request.json()
-        for i in range(len(response)):
-            response[i]["user_name"] = BEST_NAME
-            response[i]["user_id"] = BEST_USER
-        return response
-    else:
+    try:
+        leaderboard_request = requests.get(leaderboard_url)
+        if leaderboard_request.status_code == 200:
+            response = leaderboard_request.json()
+            for i in range(len(response)):
+                response[i]["user_name"] = BEST_NAME
+                response[i]["user_id"] = BEST_USER
+            return response
+        else:
+            print("ERROR: INVALID RESPONSE FROM SERVER")
+            return []
+    except:
         print("ERROR: INVALID RESPONSE FROM SERVER")
         return []
 
