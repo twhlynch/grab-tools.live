@@ -469,7 +469,7 @@ def get_hardest_levels_list():
         "Content-Type": "application/json"
     }
     response = requests.request("GET", url, headers=headers)
-    return json.loads(response.text())
+    return json.loads(response.text)
 
 def get_level_data():
     with open("stats_data/log_data.json") as log_file:
