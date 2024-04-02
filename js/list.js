@@ -1,23 +1,16 @@
 list = document.getElementById('list');
-
-fetch("/stats_data/list.csv")
-.then(response => response.text())
+fetch("/stats_data/hardest_levels_list.json")
+.then(response => response.json())
 .then(data => {
-
-    let rows = data.split('\n');
-    for (let i = 0; i < rows.length; i++) {
-        let row = rows[i].split(';');
-
-        let title = row[0];
-        let creator = row[1];
+    for (let i = 0; i < data.length; i++) {
+        let level = data[i];
 
         list.innerHTML += `
         <div class="leaderboard-item list-item">
             <p>${i+1}</p>
-            <p>${title}</p>
-            <p>${creator}</p>
+            <a href="https://grabvr.quest/levels/viewer?level=${level.id}">${level.title}</a>
+            <p>${level.creator}</p>
         </div>
         `;
     }
-
 });
