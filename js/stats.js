@@ -13,10 +13,10 @@ function levelCard(
     detail
 ) {
     //
-    identifier = "29r46v7djliny6t4rzvq7:1654257963";
-    title = "The Mountain";
-    creators = ["22Joshi22"];
-    imageThumb ="level_29r46v7djliny6t4rzvq7_1654257963_1_thumb.png";
+    // identifier = "29r46v7djliny6t4rzvq7:1654257963";
+    // title = "The Mountain";
+    // creators = ["22Joshi22"];
+    // imageThumb ="level_29r46v7djliny6t4rzvq7_1654257963_1_thumb.png";
     //
     const levelUrl = `https://grabvr.quest/levels/viewer/?level=${identifier}`;
     const creatorUrl = `https://grabvr.quest/levels?tab=tab_other_user&user_id=${identifier.split(':')[0]}`;
@@ -82,8 +82,8 @@ function userCard(
     extra
 ) {
     //
-    identifier = "29r46v7djliny6t4rzvq7";
-    username = "22Joshi22";
+    // identifier = "29r46v7djliny6t4rzvq7";
+    // username = "22Joshi22";
     //
     const userUrl = `https://grabvr.quest/levels?tab=tab_other_user&user_id=${identifier}`;
     const cardElement = document.createElement('div');
