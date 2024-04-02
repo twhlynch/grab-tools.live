@@ -749,11 +749,12 @@ div#questMultiSelect {
     color: #2976d4;
     margin-bottom: 0;
 }
-.list-item p:nth-child(2) {
+.list-item p:nth-child(2), .list-item a:nth-child(2) {
     font-size: 14px;
     font-weight: 400;
     margin-top: 0;
-    margin-right: auto
+    margin-right: auto;
+    color: var(--text-color-default);
 }
 #Global-out p {
     width: fit-content;
