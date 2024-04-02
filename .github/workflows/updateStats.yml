@@ -2,7 +2,7 @@ name: Update Stats
 
 on:
   schedule:
-    - cron: '0 5 * * *' # run every day at midnight UTC
+    - cron: '0 5 * * *'
   workflow_dispatch:
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run script
-        run: python getStats.py ${{ secrets.BOT_TOKEN }}
+        run: python getStats.py ${{ secrets.BOT_TOKEN }} ${{ secrets.CF_ACCOUNT_ID }} ${{ secrets.CF_TOKEN }} ${{ secrets.NAMESPACE }}
         
       - name: Commit changes
         run: |

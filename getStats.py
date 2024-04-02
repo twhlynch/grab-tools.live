@@ -459,6 +459,18 @@ def get_empty_leaderboards():
             
     return empty_leaderboards
 
+def get_hardest_levels_list():
+    CF_ID = sys.argv[2]
+    CF_TOKEN = sys.argv[3]
+    NAMESPACE = sys.argv[4]
+    url = f"https://api.cloudflare.com/client/v4/accounts/{CF_ID}/storage/kv/namespaces/{NAMESPACE}/values/list"
+    headers = {
+        "Authorization": f"Bearer {CF_TOKEN}",
+        "Content-Type": "application/json"
+    }
+    response = requests.request("GET", url, headers=headers)
+    return json.loads(response.text())
+
 def get_level_data():
     with open("stats_data/log_data.json") as log_file:
         log_data = json.load(log_file)
@@ -486,6 +498,7 @@ def get_level_data():
     write_json_file('stats_data/unbeaten_levels.json', unbeaten_levels)
     write_json_file('stats_data/most_verified.json', get_most_verified(all_verified, most_verified_old))
     write_json_file('stats_data/most_plays.json', get_most_plays(all_verified, most_plays_old))
+    write_json_file('stats_data/hardest_levels_list.json', get_hardest_levels_list())
 
     get_daily_winner()
     daily_level = get_daily_map(all_verified)
