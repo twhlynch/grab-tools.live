@@ -262,7 +262,7 @@ h1.title {
     width: 0;
     height: 0;
 }
-.listData, .listData #list {
+.listData, .listData #maps, #players {
     width: 100%;
 }
 .listData .leaderboard-item {
@@ -274,7 +274,7 @@ h1.title {
 #judges {
     margin-inline: auto;
 }
-#list {
+#maps, #players {
     display: flex;
 }
 
@@ -679,7 +679,17 @@ div#questMultiSelect {
     max-width: 90%;
     margin-inline: auto;
 }
-.stats-sorting > .button-sml {
+.list-sorting {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 90%;
+    margin-inline: auto;
+}
+.stats-sorting > .button-sml, .list-sorting > .button-sml {
     gap: 5px;
 }
 .sort-active {
