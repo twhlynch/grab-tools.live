@@ -1,38 +1,39 @@
 {
-  "identifier": "29xcsaa3ndbpl5p1yuph7:1712011171",
-  "title": "Oil Factory",
-  "complexity": 2986,
+  "identifier": "29i3f522rkvzc4houzo8k:1712360562",
+  "title": "USS Shadow (AircraftCarrier)",
+  "complexity": 2983,
   "format_version": 8,
-  "update_timestamp": 1712432834878,
-  "creation_timestamp": 1712432834878,
-  "data_key": "level_data:29xcsaa3ndbpl5p1yuph7:1712011171:1",
-  "description": "You are being nuked by the USA for your oil, escape the factory and RUN!",
+  "update_timestamp": 1712543518358,
+  "creation_timestamp": 1712429654969,
+  "data_key": "level_data:29i3f522rkvzc4houzo8k:1712360562:6",
+  "description": "This was made for the new 'Pilot Pack'",
   "creators": [
-    "UpSpotParrot",
-    "Rian_stinks2"
+    "Shadowmaker99",
+    "BWLbuck",
+    "Jeffbobdude"
   ],
   "tags": [
     "ok"
   ],
-  "verification_time": 43.76,
+  "verification_time": 72.58,
+  "statistics": {
+    "total_played": 600,
+    "difficulty": 0.088659793814433,
+    "liked": 0.9230769230769231,
+    "time": 59.26607906976742
+  },
   "images": {
     "full": {
-      "key": "level_29xcsaa3ndbpl5p1yuph7_1712011171_1.png",
+      "key": "level_29i3f522rkvzc4houzo8k_1712360562_4.png",
       "width": 1920,
       "height": 1080
     },
     "thumb": {
-      "key": "level_29xcsaa3ndbpl5p1yuph7_1712011171_1_thumb.png",
+      "key": "level_29i3f522rkvzc4houzo8k_1712360562_4_thumb.png",
       "width": 512,
       "height": 288
     }
   },
-  "creator": "UpSpotParrot",
-  "statistics": {
-    "total_played": 0,
-    "difficulty": 1,
-    "liked": 0,
-    "time": 100
-  },
-  "change": 0
+  "creator": "Shadowmaker99",
+  "change": 200
 }

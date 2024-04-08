@@ -113,8 +113,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 27200,
-      "difficulty": 0.00031259768677711783,
+      "total_played": 27300,
+      "difficulty": 0.00031151030579928355,
       "liked": 1,
       "time": 5048.099999999999
     },
@@ -131,7 +131,7 @@
       }
     },
     "creator": "Levi__athan",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "29v9vd6n9z45d16mi2o2n:1697678891",
@@ -185,8 +185,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 21224,
-      "difficulty": 0.0013476299291029473,
+      "total_played": 21324,
+      "difficulty": 0.0013404825737265416,
       "liked": 0.9285714285714286,
       "time": 3942.6097368421047
     },
@@ -203,7 +203,7 @@
       }
     },
     "creator": "Fizzn",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2a2x6ld8bmv9k29y6yusw:1705782298",
@@ -314,7 +314,7 @@
       }
     },
     "creator": "Lukechungus",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2bnvsxdrz964koyq2cftz:1711317191",
@@ -370,8 +370,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 73800,
-      "difficulty": 0.00040226340207567916,
+      "total_played": 73900,
+      "difficulty": 0.00040170322165983773,
       "liked": 0.9230769230769231,
       "time": 3093.137666666667
     },
@@ -594,8 +594,8 @@
     ],
     "verification_time": 378.39,
     "statistics": {
-      "total_played": 9600,
-      "difficulty": 0.00026928773394371884,
+      "total_played": 9700,
+      "difficulty": 0.00026670222696359517,
       "liked": 1,
       "time": 2772.5655
     },
@@ -612,7 +612,7 @@
       }
     },
     "creator": "FitArtist334071",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2aa73bmv50jap4z792rrz:1688709948",
@@ -812,7 +812,6 @@
         "height": 288
       }
     },
-    "page_timestamp": "AAAAANXw4yzUNvkMtcAalQBHVHHEODgkewP_1cu7CB_Y-20tMPp--MH2oZa5k83YgDSMC-xvIIeWXBIdJJ-yCgd5LRTN6brccZ2YvzpahkOcFkIAtJcd2JH7Paobpfu43uqti6d3jhx7iJaDVeDFeHIti5y9gJ8Ggw2v96snFCQUN9CekEwHjeRJZDMA3mp1Yr-9bDc8jFKMvRQznboKHkUQzRNG9svCuXHLcNucjRS06CeUveQPJSeyEFvcAIQil9nJ1_GxNApXMHTooGUxS_nrXgveT_xIrSOii1cDlAbheanD8JNzqDxcu4JyxiJnCWbYeisr1fW-wzgeXX56DW7cYWQMc_H20Vb33pdWZrfr0ysaGgz2sNALiqWHKvFlHliOXnbzr57gyv2AyeUZwAKqsGfQEtQ",
     "creator": "Rockyraider",
     "change": 0
   },
@@ -997,7 +996,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2af2v4lqxksl1ru5itxr1:1673253154",
@@ -1111,8 +1110,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8200,
-      "difficulty": 0.0001532567049808429,
+      "total_played": 8300,
+      "difficulty": 0.00015121729925903524,
       "liked": 1,
       "time": 2376.02
     },
@@ -1323,8 +1322,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 15000,
-      "difficulty": 0.003815261044176707,
+      "total_played": 15100,
+      "difficulty": 0.0037912800558714955,
       "liked": 0.782608695652174,
       "time": 2262.9918000000007
     },
@@ -1341,7 +1340,43 @@
       }
     },
     "creator": "Aft",
-    "change": 0
+    "change": 100
+  },
+  {
+    "identifier": "2axkwzh6f43g1regf401p:1680445764",
+    "title": "Super Jump 3 Beyond",
+    "complexity": 2966,
+    "format_version": 6,
+    "update_timestamp": 1685328006683,
+    "creation_timestamp": 1685328006683,
+    "data_key": "level_data:2axkwzh6f43g1regf401p:1680445764:1",
+    "description": "The third impossable level of the Super Jump to Beyond series. With six creators I've forged a level that no one will have fun on. Thus this level is the hardest super jump parcore known to human limmits thus 100 checkpoint creators list - ENVIOUS - Sockssuck - Coblerb1- pNUT-",
+    "creators": [
+      "OreO"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 2900,
+      "difficulty": 0.004185851820845542,
+      "liked": 1,
+      "time": 2260.7409
+    },
+    "images": {
+      "full": {
+        "key": "level_2axkwzh6f43g1regf401p_1680445764_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_2axkwzh6f43g1regf401p_1680445764_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "OreO",
+    "change": 100
   },
   {
     "identifier": "29vhvl94jvlw4vp4b019y:1654741085",
@@ -1810,42 +1845,6 @@
     "change": 0
   },
   {
-    "identifier": "2axkwzh6f43g1regf401p:1680445764",
-    "title": "Super Jump 3 Beyond",
-    "complexity": 2966,
-    "format_version": 6,
-    "update_timestamp": 1685328006683,
-    "creation_timestamp": 1685328006683,
-    "data_key": "level_data:2axkwzh6f43g1regf401p:1680445764:1",
-    "description": "The third impossable level of the Super Jump to Beyond series. With six creators I've forged a level that no one will have fun on. Thus this level is the hardest super jump parcore known to human limmits thus 100 checkpoint creators list - ENVIOUS - Sockssuck - Coblerb1- pNUT-",
-    "creators": [
-      "OreO"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 2800,
-      "difficulty": 0.0034453057708871662,
-      "liked": 1,
-      "time": 2033.7161250000004
-    },
-    "images": {
-      "full": {
-        "key": "level_2axkwzh6f43g1regf401p_1680445764_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_2axkwzh6f43g1regf401p_1680445764_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "OreO",
-    "change": 0
-  },
-  {
     "identifier": "2a7dx97v4xiepfpmj8gi4:1673121178",
     "title": "Grab Elimination Contest Museum #3: The Grand Hall",
     "complexity": 3000,
@@ -2105,10 +2104,10 @@
     ],
     "verification_time": 347.89,
     "statistics": {
-      "total_played": 36000,
-      "difficulty": 0.005135361428970137,
+      "total_played": 36300,
+      "difficulty": 0.005098365198115821,
       "liked": 0.8909090909090909,
-      "time": 1949.5508695652177
+      "time": 1947.5110978260873
     },
     "images": {
       "full": {
@@ -2123,7 +2122,7 @@
       }
     },
     "creator": "TLTT",
-    "change": 400
+    "change": 300
   },
   {
     "identifier": "29de83wbqxgo92ijwuub9:1639010130",
@@ -2148,6 +2147,42 @@
     },
     "creator": "MC1125",
     "change": 0
+  },
+  {
+    "identifier": "2a16lrhk70q0s94hkbdwz:IllegalCrumbling",
+    "title": "FROSTY And Buck's Quicker Thinker",
+    "complexity": 2097,
+    "format_version": 6,
+    "update_timestamp": 1676564540546,
+    "creation_timestamp": 1674964108683,
+    "data_key": "level_data:2a16lrhk70q0s94hkbdwz:IllegalCrumbling:2",
+    "description": "Breaking blocks credit to NSKC7. NOW WITH .1 second breaking time.",
+    "creators": [
+      "EBSpark and FROSTY_CROSS"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 1600,
+      "difficulty": 0.003536067892503536,
+      "liked": 1,
+      "time": 1920.9780000000003
+    },
+    "images": {
+      "full": {
+        "key": "level_2a16lrhk70q0s94hkbdwz_IllegalCrumbling_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_2a16lrhk70q0s94hkbdwz_IllegalCrumbling_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "EBSpark and FROSTY_CROSS",
+    "change": 100
   },
   {
     "identifier": "29qyifkrtj57y85tpv5i5:1701521161",
@@ -2185,42 +2220,6 @@
     "change": 0
   },
   {
-    "identifier": "2a16lrhk70q0s94hkbdwz:IllegalCrumbling",
-    "title": "FROSTY And Buck's Quicker Thinker",
-    "complexity": 2097,
-    "format_version": 6,
-    "update_timestamp": 1676564540546,
-    "creation_timestamp": 1674964108683,
-    "data_key": "level_data:2a16lrhk70q0s94hkbdwz:IllegalCrumbling:2",
-    "description": "Breaking blocks credit to NSKC7. NOW WITH .1 second breaking time.",
-    "creators": [
-      "EBSpark and FROSTY_CROSS"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 1500,
-      "difficulty": 0.002982848620432513,
-      "liked": 1,
-      "time": 1919.4975000000002
-    },
-    "images": {
-      "full": {
-        "key": "level_2a16lrhk70q0s94hkbdwz_IllegalCrumbling_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_2a16lrhk70q0s94hkbdwz_IllegalCrumbling_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "EBSpark and FROSTY_CROSS",
-    "change": 0
-  },
-  {
     "identifier": "2ag78daeo0xaz2bca9eq3:1663514278",
     "title": "SKILLS ONLY 5",
     "complexity": 2990,
@@ -2255,7 +2254,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2br3r3beexa8hy0yw4c6z:1700208427",
@@ -2398,8 +2397,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 38978,
-      "difficulty": 0.001735173902984499,
+      "total_played": 39078,
+      "difficulty": 0.0017314351673720662,
       "liked": 0.8285714285714286,
       "time": 1882.5282797560983
     },
@@ -2416,7 +2415,7 @@
       }
     },
     "creator": "blackcat508",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2a16lrhk70q0s94hkbdwz:1692289810",
@@ -2458,7 +2457,7 @@
       }
     },
     "creator": "EBSpark",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "2a1j8i8de10h4wxk4cg9d:1653318866",
@@ -2520,6 +2519,42 @@
     },
     "creator": "luhmao",
     "change": 0
+  },
+  {
+    "identifier": "29r46v7djliny6t4rzvq7:1653137100",
+    "title": "The Tutorial Cave",
+    "complexity": 2986,
+    "format_version": 4,
+    "update_timestamp": 1653255722499,
+    "creation_timestamp": 1653255722499,
+    "data_key": "level_data:29r46v7djliny6t4rzvq7:1653137100:1",
+    "description": "The Neckbreaker 9000",
+    "creators": [
+      "22Joshi22"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 27602,
+      "difficulty": 0.0019665683382497543,
+      "liked": 0.9512195121951219,
+      "time": 1861.5545157894735
+    },
+    "images": {
+      "full": {
+        "key": "level_29r46v7djliny6t4rzvq7_1653137100_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_29r46v7djliny6t4rzvq7_1653137100_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "22Joshi22",
+    "change": 100
   },
   {
     "identifier": "2bjpnbdr1zax8xqvdmxo4:1692531091",
@@ -2591,42 +2626,6 @@
     },
     "creator": "jckarp",
     "change": 0
-  },
-  {
-    "identifier": "29r46v7djliny6t4rzvq7:1653137100",
-    "title": "The Tutorial Cave",
-    "complexity": 2986,
-    "format_version": 4,
-    "update_timestamp": 1653255722499,
-    "creation_timestamp": 1653255722499,
-    "data_key": "level_data:29r46v7djliny6t4rzvq7:1653137100:1",
-    "description": "The Neckbreaker 9000",
-    "creators": [
-      "22Joshi22"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 27502,
-      "difficulty": 0.0019236460491269607,
-      "liked": 0.95,
-      "time": 1830.7616648648648
-    },
-    "images": {
-      "full": {
-        "key": "level_29r46v7djliny6t4rzvq7_1653137100_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_29r46v7djliny6t4rzvq7_1653137100_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "22Joshi22",
-    "change": 100
   },
   {
     "identifier": "2c7js1n5ugvyis53rqzq3:1702228512",
@@ -2858,7 +2857,7 @@
       }
     },
     "creator": "CursedPhantom(RMB)",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29ngj2xcdlinnuqz0vrw5:1677347202",
@@ -2897,7 +2896,7 @@
       }
     },
     "creator": "Cursedphantom(RMB)",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29v9vd6n9z45d16mi2o2n:1664504388",
@@ -2940,8 +2939,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 8800,
-      "difficulty": 0.0009149130832570906,
+      "total_played": 8900,
+      "difficulty": 0.0009068923821039903,
       "liked": 0.8,
       "time": 1780.0023333333336
     },
@@ -2958,7 +2957,7 @@
       }
     },
     "creator": "BlackCat508",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "29z0xnmo2bj7t5r2xfed1:1675372397",
@@ -3065,7 +3064,7 @@
       }
     },
     "creator": "AFT_Daring",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29rbyudpcet6wdy3iidd4:1696973857",
@@ -3087,8 +3086,8 @@
     ],
     "verification_time": 2284.05,
     "statistics": {
-      "total_played": 16200,
-      "difficulty": 0.0010253255408592228,
+      "total_played": 16700,
+      "difficulty": 0.001001201441730076,
       "liked": 1,
       "time": 1759.734
     },
@@ -3105,7 +3104,7 @@
       }
     },
     "creator": "TLTT",
-    "change": 400
+    "change": 500
   },
   {
     "identifier": "29t798uon2urbra1f8w2q:1650499561",
@@ -3124,8 +3123,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 38802,
-      "difficulty": 0.0036296268289916444,
+      "total_played": 38902,
+      "difficulty": 0.003622504811139202,
       "liked": 0.8852459016393442,
       "time": 1735.356526966292
     },
@@ -3142,7 +3141,7 @@
       }
     },
     "creator": "blackcat508",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2a7dx97v4xiepfpmj8gi4:1694649483",
@@ -3218,8 +3217,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 53700,
-      "difficulty": 0.0007628411595185624,
+      "total_played": 53800,
+      "difficulty": 0.0007611959233729437,
       "liked": 0.9230769230769231,
       "time": 1714.4498333333333
     },
@@ -3236,7 +3235,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 200
+    "change": 100
   },
   {
     "identifier": "2bf8hyynuelajywj9k4n7:1707088273",
@@ -3467,8 +3466,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 104000,
-      "difficulty": 0.0016714983415602393,
+      "total_played": 104200,
+      "difficulty": 0.001668361095904695,
       "liked": 0.9333333333333333,
       "time": 1681.0597031250006
     },
@@ -3485,7 +3484,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 100
+    "change": 200
   },
   {
     "identifier": "2ahb82qqut2dt3we3p2ok:1703732724",
@@ -3745,13 +3744,13 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 5366,
-      "difficulty": 0.004707464694014795,
+      "total_played": 5466,
+      "difficulty": 0.004612343509773776,
       "liked": 0.75,
       "time": 1645.6929960937496
     },
     "creator": "ZaziPogChamp",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "29l50ea34l4s54rtclzus:1664637802",
@@ -3821,8 +3820,8 @@
     ],
     "verification_time": 999.32,
     "statistics": {
-      "total_played": 800,
-      "difficulty": 0.0027624309392265192,
+      "total_played": 900,
+      "difficulty": 0.0024875621890547263,
       "liked": 1,
       "time": 1610.1104999999998
     },
@@ -3839,7 +3838,7 @@
       }
     },
     "creator": "Auran",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2bjbmh0e1kp32spgtp573:1701846156",
@@ -3911,7 +3910,7 @@
       }
     },
     "creator": "boohoo77",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29nxcg0chi4uqcj7yk7f4:1697896117",
@@ -4032,7 +4031,7 @@
       }
     },
     "creator": "BLUDUK",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29tbx96fs8kjvyn4ia2fq:1696713558",
@@ -4377,8 +4376,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 900,
-      "difficulty": 0.007389162561576354,
+      "total_played": 1000,
+      "difficulty": 0.006593406593406593,
       "liked": 1,
       "time": 1482.9278333333334
     },
@@ -4395,7 +4394,7 @@
       }
     },
     "creator": "Supermeow10",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2af2v4lqxksl1ru5itxr1:1678588446",
@@ -4627,7 +4626,7 @@
       }
     },
     "creator": "KillTheSith",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29q70oaz6jygyg58d3p91:1694807387",
@@ -4761,8 +4760,8 @@
     ],
     "verification_time": 1560.96,
     "statistics": {
-      "total_played": 2600,
-      "difficulty": 0.006082108464267613,
+      "total_played": 2700,
+      "difficulty": 0.005888125613346418,
       "liked": 1,
       "time": 1435.207583333333
     },
@@ -4803,53 +4802,6 @@
       "liked": 0
     },
     "creator": "Dandestoys",
-    "change": 0
-  },
-  {
-    "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbord-3",
-    "title": "SMORGASBORD 3",
-    "complexity": 2999,
-    "format_version": 6,
-    "update_timestamp": 1667991610809,
-    "creation_timestamp": 1667991610809,
-    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:smorgasbord-3:1",
-    "description": "SMORGASBORD IS A GROUP OF VERIFIED CREATORS THAT MAKE BI-WEEKLY MAPS FOR THE GRAB COMMUNITY. HOSTED BY BLUDUK & .INDEX (NSKC7). VERSION 3 CREATORS: ETXNIGHT, KINGBRODY1, CAZIYGGY, MR.MADLORD, AURANART, KIRBO, NASH_HUMAN, THEABYSS, JBK777JBK, GRAYTHEGAMER820",
-    "creators": [
-      "BLUDUK",
-      "INDEX",
-      "ETXNIGHT",
-      "KINGBRODY",
-      "CAZIYGGY",
-      "MADLORD",
-      "AURAN",
-      "KIRBO",
-      "NASH",
-      "ABYSS",
-      "JBK",
-      "GRAY"
-    ],
-    "tags": [
-      "ok"
-    ],
-    "statistics": {
-      "total_played": 13300,
-      "difficulty": 0.00949726437493548,
-      "liked": 0.7833333333333333,
-      "time": 1428.7185739130437
-    },
-    "images": {
-      "full": {
-        "key": "level_2ag78daeo0xaz2bca9eq3_smorgasbord-3_1.png",
-        "width": 1920,
-        "height": 1080
-      },
-      "thumb": {
-        "key": "level_2ag78daeo0xaz2bca9eq3_smorgasbord-3_1_thumb.png",
-        "width": 512,
-        "height": 288
-      }
-    },
-    "creator": "BLUDUK",
     "change": 0
   },
   {
@@ -4894,8 +4846,8 @@
       "ok"
     ],
     "statistics": {
-      "total_played": 15723,
-      "difficulty": 0.0006576783952647156,
+      "total_played": 15823,
+      "difficulty": 0.0006531678641410843,
       "liked": 0.7142857142857143,
       "time": 1416.156375
     },
@@ -4912,7 +4864,7 @@
       }
     },
     "creator": "cjbeast006",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2af2v4lqxksl1ru5itxr1:1677507116",
@@ -5026,6 +4978,53 @@
     },
     "creator": "nicole.lang.3363",
     "change": 0
+  },
+  {
+    "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbord-3",
+    "title": "SMORGASBORD 3",
+    "complexity": 2999,
+    "format_version": 6,
+    "update_timestamp": 1667991610809,
+    "creation_timestamp": 1667991610809,
+    "data_key": "level_data:2ag78daeo0xaz2bca9eq3:smorgasbord-3:1",
+    "description": "SMORGASBORD IS A GROUP OF VERIFIED CREATORS THAT MAKE BI-WEEKLY MAPS FOR THE GRAB COMMUNITY. HOSTED BY BLUDUK & .INDEX (NSKC7). VERSION 3 CREATORS: ETXNIGHT, KINGBRODY1, CAZIYGGY, MR.MADLORD, AURANART, KIRBO, NASH_HUMAN, THEABYSS, JBK777JBK, GRAYTHEGAMER820",
+    "creators": [
+      "BLUDUK",
+      "INDEX",
+      "ETXNIGHT",
+      "KINGBRODY",
+      "CAZIYGGY",
+      "MADLORD",
+      "AURAN",
+      "KIRBO",
+      "NASH",
+      "ABYSS",
+      "JBK",
+      "GRAY"
+    ],
+    "tags": [
+      "ok"
+    ],
+    "statistics": {
+      "total_played": 13400,
+      "difficulty": 0.009735601557696249,
+      "liked": 0.7903225806451613,
+      "time": 1405.4954821052634
+    },
+    "images": {
+      "full": {
+        "key": "level_2ag78daeo0xaz2bca9eq3_smorgasbord-3_1.png",
+        "width": 1920,
+        "height": 1080
+      },
+      "thumb": {
+        "key": "level_2ag78daeo0xaz2bca9eq3_smorgasbord-3_1_thumb.png",
+        "width": 512,
+        "height": 288
+      }
+    },
+    "creator": "BLUDUK",
+    "change": 100
   },
   {
     "identifier": "29ud7gez9vdk384pyn63e:1684441557",
@@ -5285,7 +5284,7 @@
       }
     },
     "creator": "coleaaron",
-    "change": 100
+    "change": 0
   },
   {
     "identifier": "29r0m9fnboxpvz4dnkwnq:1666220933",
@@ -5390,8 +5389,8 @@
     ],
     "verification_time": 73.3,
     "statistics": {
-      "total_played": 5400,
-      "difficulty": 0.0013739409205404168,
+      "total_played": 5500,
+      "difficulty": 0.0013501350135013501,
       "liked": 1,
       "time": 1372.397
     },
@@ -5408,7 +5407,7 @@
       }
     },
     "creator": ".index",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "29r0m9fnboxpvz4dnkwnq:1675536466",
@@ -6002,8 +6001,8 @@
     ],
     "verification_time": 579.22,
     "statistics": {
-      "total_played": 10000,
-      "difficulty": 0.0045223289994347085,
+      "total_played": 10100,
+      "difficulty": 0.004479283314669653,
       "liked": 0.875,
       "time": 1313.9351875000002
     },
@@ -6020,7 +6019,7 @@
       }
     },
     "creator": "yO0hooVr",
-    "change": 0
+    "change": 100
   },
   {
     "identifier": "2beyuewkkehcmzteub81e:1691445882",
