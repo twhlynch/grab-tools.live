@@ -14036,5 +14036,113 @@
     },
     1712553369,
     "unbeaten_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 17.5349,
+        "user_id": "2bl9jjc7y3wk79lt283xx",
+        "user_name": "EvildragonVR",
+        "timestamp": "0001712518332364"
+      },
+      {
+        "position": 1,
+        "best_time": 25.5078,
+        "user_id": "2arxtu6hqtj3kxplj953d",
+        "user_name": "UltimateBeastMeepper",
+        "timestamp": "0001712448505798"
+      },
+      {
+        "position": 2,
+        "best_time": 27.9759,
+        "user_id": "2d1nxc7ry88fyt9yo1qen",
+        "user_name": "friendlyfox.2024",
+        "timestamp": "0001712430284491"
+      }
+    ],
+    {
+      "identifier": "29i3f522rkvzc4houzo8k:1712360562",
+      "title": "USS Shadow (AircraftCarrier)",
+      "complexity": 2983,
+      "format_version": 8,
+      "update_timestamp": 1712543518358,
+      "creation_timestamp": 1712429654969,
+      "data_key": "level_data:29i3f522rkvzc4houzo8k:1712360562:6",
+      "description": "This was made for the new 'Pilot Pack'",
+      "creators": [
+        "Shadowmaker99",
+        "BWLbuck",
+        "Jeffbobdude"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "verification_time": 72.58,
+      "statistics": {
+        "total_played": 600,
+        "difficulty": 0.088659793814433,
+        "liked": 0.9230769230769231,
+        "time": 59.26607906976742
+      },
+      "images": {
+        "full": {
+          "key": "level_29i3f522rkvzc4houzo8k_1712360562_4.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_29i3f522rkvzc4houzo8k_1712360562_4_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "Shadowmaker99",
+      "change": 200
+    },
+    1712639722,
+    "daily_map"
+  ],
+  [
+    [],
+    {
+      "identifier": "2a6ekr378kiwrrodjri7e:1709918751",
+      "title": "TRIAL AND ERROR",
+      "complexity": 844,
+      "format_version": 8,
+      "update_timestamp": 1709981675227,
+      "creation_timestamp": 1709981675227,
+      "data_key": "level_data:2a6ekr378kiwrrodjri7e:1709918751:1",
+      "description": "Double grappling and jumpink skill.",
+      "creators": [
+        "YelloducVR"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "verification_time": 1903.12,
+      "statistics": {
+        "total_played": 300,
+        "difficulty": 0,
+        "liked": 0,
+        "time": 100
+      },
+      "images": {
+        "full": {
+          "key": "level_2a6ekr378kiwrrodjri7e_1709918751_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2a6ekr378kiwrrodjri7e_1709918751_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "YelloducVR",
+      "change": 0
+    },
+    1712639722,
+    "unbeaten_map"
   ]
 ]
