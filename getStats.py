@@ -104,12 +104,7 @@ def get_all_verified(stamp=''):
     while True:
         url = f"{SERVER_URL}list?max_format_version={FORMAT_VERSION}&type=ok&page_timestamp={stamp}"
         data = requests.get(url).json()
-        duplicate = False
         for level in data:
-            for item in verified:
-                if item["identifier"] == level["identifier"]:
-                    level["identifier"] = "DUPLICATE"
-                    duplicate = True
             if "creators" in level:
                 level["creator"] = level["creators"][0]
             if "statistics" not in level:
@@ -129,11 +124,7 @@ def get_all_verified(stamp=''):
                     statistics["liked"] = 0
                 if "time" not in statistics:
                     statistics["time"] = 100
-        for level in data:
-            if level["identifier"] != "DUPLICATE":
-                verified.append(level)
-        if duplicate:
-            break
+        verified.extend(data)
         if data[-1].get("page_timestamp"):
             stamp = data[-1]["page_timestamp"]
         else:
