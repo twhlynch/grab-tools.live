@@ -187,9 +187,8 @@ def get_creators():
     return [section for section in best_of_grab if "title" in section and section["title"] == "Featured Creators"][0]["sections"]
 
 def get_unbeaten(all_verified_maps):
-    with open("stats_data/sole_victors.json") as solesf, open("stats_data/unbeaten_levels.json") as unbeatenf:
+    with open("stats_data/sole_victors.json") as solesf:
         soles_data = json.load(solesf)
-        unbeaten_data = json.load(unbeatenf)
     unbeaten = []
     for level in all_verified_maps:
         days_old = timestamp_to_days(level["creation_timestamp"])
@@ -213,22 +212,13 @@ def get_unbeaten(all_verified_maps):
             if level["statistics"]["difficulty"] * level["statistics"]["total_played"] < 2:
                 potential_diff = True
             potential_sole = False
-            potential_unbeaten = False
             for level2 in soles_data:
                 if level2["identifier"] == level["identifier"]:
                     potential_sole = True
                     break
-            for level2 in unbeaten_data:
-                if level2["identifier"] == level["identifier"]:
-                    potential_unbeaten = True
-                    break
-            if (potential_unbeaten or potential_sole) and potential_diff:
-                print("potential sole")
-                leaderboard = get_level_leaderboard(level["identifier"])
-                if leaderboard and len(leaderboard) == 1:
-                    if leaderboard[0]["user_id"] == level["identifier"].split(":")[0]:
-                        level["sole"] = leaderboard[0]["user_id"]
-                        unbeaten.append(level)
+            if potential_sole and potential_diff:
+                level["sole"] = True
+                unbeaten.append(level)
     return unbeaten[::-1]
 
 def get_most_verified(all_verified_maps, old_data):
