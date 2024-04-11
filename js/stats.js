@@ -153,6 +153,7 @@ function getUnbeatenLevels() {
                 '',
                 `${Math.round((new Date() - new Date(item?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`
             );
+            if ("sole" in item) { levelDiv.style.borderColor = "#dd710d55" };
             document.getElementById('UnbeatenMapsUpdated-out').appendChild(levelDiv);
         });
         const sortedByCreated = data.sort((a, b) => new Date(a.creation_timestamp) - new Date(b.creation_timestamp));
@@ -166,6 +167,7 @@ function getUnbeatenLevels() {
                 '',
                 `${Math.round((new Date() - new Date(item?.creation_timestamp)) / (1000 * 60 * 60 * 24))} days`
             );
+            if ("sole" in item) { levelDiv.style.borderColor = "#dd710d55" };
             document.getElementById('UnbeatenMapsCreated-out').appendChild(levelDiv);
         });
     });
