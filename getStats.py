@@ -44,36 +44,7 @@ def get_level_stats(level_identifier):
         return response
     else:
         print("ERROR: INVALID RESPONSE FROM SERVER")
-        return {
-            "identifier": level_identifier,
-            "title": "ERROR",
-            "complexity": 0,
-            "format_version": 0,
-            "update_timestamp": 0,
-            "creation_timestamp": 0,
-            "data_key": "level_data:"+ level_identifier +":1",
-            "description": "ERROR",
-            "creators": ["ERROR"],
-            "tags": ["ok"],
-            "statistics": {
-                "total_played": 0,
-                "difficulty": 1,
-                "liked": 1,
-                "time": 0
-            },
-            "images": {
-                "full": {
-                    "key": "level_"+ level_identifier.replace(":", "_") +"_1.png",
-                    "width": 1920,
-                    "height": 1080
-                },
-                "thumb": {
-                    "key": "level_"+ level_identifier.replace(":", "_") +"_1_thumb.png",
-                    "width": 512,
-                    "height": 288
-                }
-            }
-        }
+        return {}
 
 def get_level_browser():
     browser_url = f"{SERVER_URL}get_level_browser?version=1"
