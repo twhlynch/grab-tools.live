@@ -127,6 +127,7 @@ function getUnbeatenLevels() {
                 '',
                 `${Math.round((new Date() - new Date(item?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`
             );
+            if ("sole" in item) { levelDiv.style.borderColor = "#dd710d55" };
             document.getElementById('UnbeatenMaps-out').appendChild(levelDiv);
             if (location.href.includes("checkUnbeaten")) {
                 fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${item.identifier.split(":").join("/")}`)
