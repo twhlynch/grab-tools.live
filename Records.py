@@ -5,6 +5,7 @@ with open("stats_data/all_verified.json") as file:
   
 leaderboard = {}
 empty_leaderboards = []
+sole_victors = []
 user_finishes = {}
 for i, level in enumerate(data, start=1):
     identifier = level["identifier"].replace(":", "/")
@@ -13,6 +14,8 @@ for i, level in enumerate(data, start=1):
         res_data = requests.get(url).json()
     if len(res_data) != 0:
         level["leaderboard"] = res_data
+        if len(res_data) == 1:
+            sole_victors.append(level)
         iteration = 0
         if len(res_data) > iteration:
             keyName = res_data[iteration]["user_id"] + ':' + res_data[iteration]["user_name"]
@@ -46,3 +49,6 @@ with open("stats_data/sorted_leaderboard_records.json", "w") as file:
 
 with open("stats_data/leaderboard_levels.json", "w") as file:
     json.dump(data, file, indent=4)
+
+with open("stats_data/sole_victors.json", "w") as file:
+    json.dump(sole_victors, file, indent=4)
