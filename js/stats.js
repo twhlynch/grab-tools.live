@@ -269,6 +269,25 @@ function getTopTimes() {
     });
 }
 
+function getSoleLevels() {
+    fetch('/stats_data/sole_victors.json')
+    .then((response) => response.json())
+    .then(data => {
+        data.forEach(item => {
+            const levelDiv = levelCard(
+                item?.identifier,
+                item?.title,
+                item?.creators,
+                item?.images?.thumb?.key,
+                (item?.tags ? item.tags : []).includes("ok"),
+                item?.update_timestamp,
+                ''
+            );
+            document.getElementById('SoleBeatenMaps-out').appendChild(levelDiv);
+        });
+    });
+}
+
 function getPlaysLevels() {
     fetch('/stats_data/most_plays.json')
     .then((response) => response.json())
@@ -1284,8 +1303,9 @@ getRecords();
 getTrendingLevels();
 getBestOfGrab();
 makeFeaturedButtons();
-getTop100s()
+getTop100s();
 getEmptyLeaderboards();
+getSoleLevels();
 
 
 const urlParams = new URLSearchParams(window.location.search);
