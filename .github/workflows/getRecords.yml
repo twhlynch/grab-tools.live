@@ -30,6 +30,7 @@ jobs:
           git add stats_data/leaderboard_levels.json
           git add stats_data/empty_leaderboards.json
           git add stats_data/user_finishes.json
+          git add stats_data/sole_victors.json
           git commit -m "Records"
           git push
         env:
