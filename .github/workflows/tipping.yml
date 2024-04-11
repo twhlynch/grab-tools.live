@@ -1,4 +1,4 @@
-name: Get Tipping
+name: Get statistics
 
 on:
   workflow_dispatch:
@@ -26,8 +26,8 @@ jobs:
         run: |
           git config --global user.email "twhlynch@gmail.com"
           git config --global user.name "twhlynch"
-          git add stats_data/tipping.json
-          git commit -m "Tipping"
+          git add stats_data/statistics.json
+          git commit -m "statistics"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
