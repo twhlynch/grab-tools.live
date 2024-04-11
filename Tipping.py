@@ -2,7 +2,7 @@ import json, requests, contextlib
 
 with open("stats_data/all_verified.json") as file:
     data = json.load(file)
-    
+
 def get_level_stats(level_identifier):
     stats_url = f"https://api.slin.dev/grab/v1/statistics/{level_identifier.replace(':', '/')}"
     print(stats_url)
@@ -14,12 +14,14 @@ def get_level_stats(level_identifier):
         print("ERROR: INVALID RESPONSE FROM SERVER")
         return {}
 
+statistics = {}
 for level in data:
     identifier = level["identifier"]
-    stats = get_level_stats(identifier)
-    level["stats"] = stats
-    
-tipping = sorted(data, key=lambda x: x["stats"]["tipped_amount"], reverse=True)
+    try:
+        stats = get_level_stats(identifier)
+        statistics[identifier] = stats
+    except:
+        continue
 
-with open("stats_data/tipping.json", "w") as file:
-    json.dump(tipping, file, indent=4)
+with open("stats_data/statistics.json", "w") as file:
+    json.dump(statistics, file, indent=4)
