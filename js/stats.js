@@ -273,6 +273,7 @@ function getSoleLevels() {
     fetch('/stats_data/sole_victors.json')
     .then((response) => response.json())
     .then(data => {
+        data.reverse();
         data.forEach(item => {
             const levelDiv = levelCard(
                 item?.identifier,
@@ -280,8 +281,8 @@ function getSoleLevels() {
                 item?.creators,
                 item?.images?.thumb?.key,
                 (item?.tags ? item.tags : []).includes("ok"),
-                item?.update_timestamp,
-                ''
+                '',
+                `${Math.round((new Date() - new Date(item?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`
             );
             document.getElementById('SoleBeatenMaps-out').appendChild(levelDiv);
         });
@@ -1059,13 +1060,13 @@ function getEmptyLeaderboards() {
         data = data.sort((a, b) => {return a?.creation_timestamp - b?.creation_timestamp});
         data.forEach(level => {
             const levelDiv = levelCard(
-                level.identifier,
+                level?.identifier,
                 level?.title,
                 level?.creators,
                 level?.images?.thumb?.key,
-                false,
-                level?.creation_timestamp,
-                ''
+                (level?.tags ? level.tags : []).includes("ok"),
+                '',
+                `${Math.round((new Date() - new Date(level?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`
             );
             document.getElementById('Empty-out').appendChild(levelDiv);
             if (location.href.includes("checkEmpty")) {
