@@ -70,6 +70,12 @@ def write_json_file(filename, data):
 def timestamp_to_days(timestamp_in_milliseconds, now=datetime.now().timestamp() * 1000):
     return (now - timestamp_in_milliseconds) / 1000 / 60 / 60 / 24
 
+def get_total_levels():
+    total_url = f"{SERVER_URL}total_level_count?type=newest"
+    print(total_url)
+    count = requests.get(total_url).json()["levels"]
+    return count
+
 def get_all_verified(stamp=''):
     verified = []
     while True:
@@ -187,8 +193,8 @@ def get_creators():
     return [section for section in best_of_grab if "title" in section and section["title"] == "Featured Creators"][0]["sections"]
 
 def get_unbeaten(all_verified_maps):
-    with open("stats_data/sole_victors.json") as solesf:
-        soles_data = json.load(solesf)
+    with open("stats_data/sole_victors.json") as soles_f:
+        soles_data = json.load(soles_f)
     unbeaten = []
     for level in all_verified_maps:
         days_old = timestamp_to_days(level["creation_timestamp"])
@@ -483,6 +489,7 @@ def get_level_data():
     write_json_file('stats_data/most_verified.json', get_most_verified(all_verified, most_verified_old))
     write_json_file('stats_data/most_plays.json', get_most_plays(all_verified, most_plays_old))
     write_json_file('stats_data/hardest_levels_list.json', get_hardest_levels_list())
+    write_json_file('stats_data/total_level_count.json', get_total_levels())
 
     get_daily_winner()
     daily_level = get_daily_map(all_verified)
