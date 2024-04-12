@@ -72,7 +72,12 @@ function levelCard(
                 break;
             }
         }
-        if (index <= 20 || cardElement.parentElement.id == 'LevelSearch-out') {
+        const force_load = [
+            "CheckBestOfGrab-out",
+            "CheckBestOfGrabUnbeaten-out",
+            "LevelSearch-out"
+        ];
+        if (index <= 20 || force_load.includes(cardElement.parentElement.id)) {
             this.src = imageUrl;
             this.onerror = function() {
                 this.src = "/img/thumbnail_error.png";
