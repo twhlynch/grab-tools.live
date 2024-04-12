@@ -77,7 +77,7 @@ function levelCard(
             "CheckBestOfGrabUnbeaten-out",
             "LevelSearch-out"
         ];
-        if (index <= 20 || force_load.includes(cardElement.parentElement.id)) {
+        if (index <= 20 || force_load.includes(cardElement.parentElement.id) || cardElement.parentElement.getAttribute('data-forceLoad') == 'true') {
             this.src = imageUrl;
             this.onerror = function() {
                 this.src = "/img/thumbnail_error.png";
@@ -1003,6 +1003,7 @@ function initStats() {
     }
     
     Promise.all(promises).then(() => {
+
         statistics.sole_victors.reverse();
 
         getGlobalPlays();
@@ -1262,6 +1263,11 @@ function initLocation() {
     }
     if (tab) {
         document.getElementById(tab).click();
+        let container = document.getElementById(`${tab}-out`);
+        container.querySelectorAll('[data-src]').forEach(e => {
+            e.src = e.getAttribute('data-src');
+        });
+        container.setAttribute('data-forceLoad', true);
     }
 }
 
