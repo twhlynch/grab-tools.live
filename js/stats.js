@@ -742,7 +742,6 @@ function getBestOfGrab() {
         });
 
         playerFeatures = Object.entries(playerFeatures).sort((a, b) => b[1].score - a[1].score);
-        console.log(playerFeatures);
         playerFeatures.forEach( item => {
             const user_card = userCard(
                 item[0],
@@ -1002,6 +1001,40 @@ function getBestOfGrab() {
         }
     });
 
+}
+
+function getTipping() {
+    (async () => {
+        let levels_res = await fetch('/stats_data/all_verified.json');
+        let statistics_res = await fetch('/stats_data/statistics.json');
+
+        let levels_data = await levels_res.json();
+        let statistics_data = await statistics_res.json();
+
+        for (let i = 0; i < levels_data.length; i++) {
+            let level = levels_data[i];
+            if (!(level.identifier in statistics_data)) {
+                level.tipped_amount = 0;
+                break;
+            }
+            level_stats = statistics_data[level.identifier];
+            level.tipped_amount = level_stats.tipped_amount;
+        }
+
+        const sorted_levels = levels_data.sort((a, b) => b.tipped_amount - a.tipped_amount).slice(0, 200);
+        for (let item of sorted_levels) {
+            const levelDiv = levelCard(
+                item?.identifier,
+                item?.title,
+                item?.creators,
+                item?.images?.thumb?.key,
+                (item?.tags ? item.tags : []).includes("ok"),
+                '',
+                `${item.tipped_amount}`
+            );
+            document.getElementById('Tipping-out').appendChild(levelDiv);
+        }
+    })();
 }
 
 function getRecords() {
@@ -1307,7 +1340,7 @@ makeFeaturedButtons();
 getTop100s();
 getEmptyLeaderboards();
 getSoleLevels();
-
+getTipping();
 
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get('userId');
