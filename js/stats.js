@@ -81,7 +81,7 @@ function levelCard(
             this.src = imageUrl;
             this.onerror = function() {
                 this.src = "/img/thumbnail_error.png";
-                this.onerror = null;
+                this.onload = null;
             }
         } else {
             imageElement.setAttribute('data-src', imageUrl);
@@ -90,7 +90,7 @@ function levelCard(
     }
     imageElement.onerror = function() {
         this.src = "/img/thumbnail_error.png";
-        this.onerror = null;
+        this.onload = null;
     }
 
     const infoElement = document.createElement('div');
