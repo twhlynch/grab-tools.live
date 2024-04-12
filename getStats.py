@@ -209,11 +209,11 @@ def get_unbeaten(all_verified_maps):
                 unbeaten.append(level)
         else:
             potential_diff = False
+            potential_sole = False
             if level["statistics"]["difficulty"] * level["statistics"]["total_played"] < 2:
                 potential_diff = True
-            potential_sole = False
             for level2 in soles_data:
-                if level2["identifier"] == level["identifier"]:
+                if level2["identifier"] == level["identifier"] and level["identifier"].split(":")[0] == level["leaderboard"][0]["user_id"]:
                     potential_sole = True
                     break
             if potential_sole and potential_diff:
