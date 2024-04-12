@@ -60,9 +60,32 @@ function levelCard(
     verified ? cardElement.classList.add('levelItemOk') : null;
 
     const imageElement = document.createElement('img');
-    imageElement.setAttribute('src', imageUrl);
+    imageElement.src = '/img/thumbnail_loading.png';
+    imageElement.onload = function() {
+        let index = 0;
+        for (let i in cardElement.parentNode.childNodes) {
+            const node = cardElement.parentNode.childNodes[i];
+            if (node.classList && node.classList.contains('leaderboard-item-card')) {
+                index++;
+            }
+            if (node === cardElement) {
+                break;
+            }
+        }
+        if (index <= 20 || cardElement.parentElement.id == 'LevelSearch-out') {
+            this.src = imageUrl;
+            this.onerror = function() {
+                this.src = "/img/thumbnail_error.png";
+                this.onerror = null;
+            }
+        } else {
+            imageElement.setAttribute('data-src', imageUrl);
+        }
+        this.onload = null;
+    }
     imageElement.onerror = function() {
         this.src = "/img/thumbnail_error.png";
+        this.onerror = null;
     }
 
     const infoElement = document.createElement('div');
@@ -1010,7 +1033,12 @@ function initButtons() {
             document.querySelectorAll('.tab-active').forEach(e => {
                 e.classList.remove('tab-active');
             });
-            document.getElementById(`${btnId}-out`).style.display = "flex";
+            let container = document.getElementById(`${btnId}-out`);
+            container.style.display = "flex";
+            container.querySelectorAll('[data-src]').forEach(e => {
+                e.src = e.getAttribute('data-src');
+            });
+            
             let sorter = document.getElementById(`${btnId}-sort`);
             if (sorter) {
                 sorter.style.display = "flex";
@@ -1040,7 +1068,11 @@ function initButtons() {
             document.querySelectorAll('.LeaderboardOutput').forEach(e => {
                 e.style.display = 'none';
             });
-            document.getElementById(`${btnId.replace('sort-btn', 'out')}`).style.display = "flex";
+            let container = document.getElementById(`${btnId.replace('sort-btn', 'out')}`);
+            container.style.display = "flex";
+            container.querySelectorAll('[data-src]').forEach(e => {
+                e.src = e.getAttribute('data-src');
+            });
         });
     });
 }
