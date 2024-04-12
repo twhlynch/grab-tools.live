@@ -560,7 +560,7 @@ async def get_challenge_scores():
 def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=[]):
 
     intents = discord.Intents.default()
-    bot = commands.Bot(command_prefix='!', intents=intents)
+    bot = commands.Bot(command_prefix='!', intents=intents, allowed_mentions=discord.AllowedMentions(roles=True, users=False, everyone=False))
 
     @bot.event
     async def on_ready():
