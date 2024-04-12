@@ -1023,16 +1023,18 @@ function getTipping() {
 
         const sorted_levels = levels_data.sort((a, b) => b.tipped_amount - a.tipped_amount).slice(0, 200);
         for (let item of sorted_levels) {
-            const levelDiv = levelCard(
-                item?.identifier,
-                item?.title,
-                item?.creators,
-                item?.images?.thumb?.key,
-                (item?.tags ? item.tags : []).includes("ok"),
-                '',
-                `${item.tipped_amount}`
-            );
-            document.getElementById('Tipping-out').appendChild(levelDiv);
+            if (item.tipped_amount > 0) {
+                const levelDiv = levelCard(
+                    item?.identifier,
+                    item?.title,
+                    item?.creators,
+                    item?.images?.thumb?.key,
+                    (item?.tags ? item.tags : []).includes("ok"),
+                    '',
+                    `${item.tipped_amount}`
+                );
+                document.getElementById('Tipping-out').appendChild(levelDiv);
+            }
         }
     })();
 }
