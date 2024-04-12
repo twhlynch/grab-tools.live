@@ -1011,13 +1011,27 @@ function getTipping() {
         let levels_data = await levels_res.json();
         let statistics_data = await statistics_res.json();
 
+        let user_data = {};
+
         for (let i = 0; i < levels_data.length; i++) {
             let level = levels_data[i];
             if (!(level.identifier in statistics_data)) {
                 level.tipped_amount = 0;
                 break;
             }
+            let user_id = level.identifier.split(":")[0];
+            if (!(user_id in user_data)) {
+                let creator = "";
+                if (level.creators && level.creators.length > 0) {
+                    creator = level.creators[0];
+                }
+                user_data[user_id] = {
+                    user_name: creator,
+                    tipped_amount: 0
+                };
+            }
             level_stats = statistics_data[level.identifier];
+            user_data[user_id].tipped_amount += level_stats.tipped_amount;
             level.tipped_amount = level_stats.tipped_amount;
         }
 
@@ -1034,6 +1048,24 @@ function getTipping() {
                     `${item.tipped_amount}`
                 );
                 document.getElementById('Tipping-out').appendChild(levelDiv);
+            }
+        }
+
+        const sorted_users = Object.keys(user_data).sort((a, b) => user_data[b].tipped_amount - user_data[a].tipped_amount).slice(0, 200);
+        console.log(sorted_users, user_data);
+        for (let user of sorted_users) {
+            let item = user_data[user];
+            if (item.tipped_amount > 0) {
+                const user_card = userCard(
+                    user,
+                    item.user_name,
+                    false, 
+                    false, 
+                    false, 
+                    `${item.tipped_amount}`, 
+                    ''
+                );
+                document.getElementById('TippingCreators-out').appendChild(user_card);
             }
         }
     })();
