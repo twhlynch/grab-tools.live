@@ -73,7 +73,7 @@ def timestamp_to_days(timestamp_in_milliseconds, now=datetime.now().timestamp() 
 def get_total_levels():
     total_url = f"{SERVER_URL}total_level_count?type=newest"
     print(total_url)
-    count = int(float(requests.get(total_url).text()))
+    count = int(float(requests.get(total_url).text))
     return { "levels": count }
 
 def get_all_verified(stamp=''):
