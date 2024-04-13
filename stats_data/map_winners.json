@@ -14501,5 +14501,120 @@
     },
     1712899872,
     "weekly_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 34.2289,
+        "user_id": "2d0l5n75uzhwos9jc7g7j",
+        "user_name": "Coolname73",
+        "timestamp": "0001712177705256"
+      },
+      {
+        "position": 1,
+        "best_time": 42.117,
+        "user_id": "29g6z28eiwuz64eqzdxo8",
+        "user_name": "toni.ross",
+        "timestamp": "0001712288226995"
+      },
+      {
+        "position": 2,
+        "best_time": 46.3063,
+        "user_id": "2bt4g6livt1v2na4uxwdx",
+        "user_name": "liamvr13.2024",
+        "timestamp": "0001712450707728"
+      }
+    ],
+    {
+      "identifier": "2d0l5n75uzhwos9jc7g7j:1712126097",
+      "title": "tsunami simulator (from roblox)",
+      "complexity": 1427,
+      "format_version": 8,
+      "update_timestamp": 1712879705292,
+      "creation_timestamp": 1712143960945,
+      "data_key": "level_data:2d0l5n75uzhwos9jc7g7j:1712126097:7",
+      "creators": [
+        "Coolname73"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "verification_time": 64.29,
+      "statistics": {
+        "total_played": 1100,
+        "difficulty": 0.253475935828877,
+        "liked": 0.8488372093023255,
+        "time": 96.58252025316452,
+        "difficulty_string": "medium"
+      },
+      "images": {
+        "full": {
+          "key": "level_2d0l5n75uzhwos9jc7g7j_1712126097_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2d0l5n75uzhwos9jc7g7j_1712126097_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "Coolname73",
+      "change": 0
+    },
+    1712999506,
+    "daily_map"
+  ],
+  [
+    [
+      {
+        "position": 0,
+        "best_time": 90.5529,
+        "user_id": "29wvwcyosrr43a72at6m5",
+        "user_name": "Poggggg",
+        "timestamp": "0001704334745232"
+      }
+    ],
+    {
+      "identifier": "2a3es5shglscun9b4l6ak:1659313068",
+      "title": "7 rings of hell",
+      "complexity": 1499,
+      "format_version": 6,
+      "update_timestamp": 1689550752523,
+      "creation_timestamp": 1689550752523,
+      "data_key": "level_data:2a3es5shglscun9b4l6ak:1659313068:1",
+      "description": "dont do it",
+      "creators": [
+        "wafflsssss"
+      ],
+      "tags": [
+        "ok"
+      ],
+      "statistics": {
+        "total_played": 600,
+        "difficulty": 0.0019305019305019305,
+        "time": 90.5529,
+        "difficulty_string": "veryhard",
+        "liked": 0
+      },
+      "images": {
+        "full": {
+          "key": "level_2a3es5shglscun9b4l6ak_1659313068_1.png",
+          "width": 1920,
+          "height": 1080
+        },
+        "thumb": {
+          "key": "level_2a3es5shglscun9b4l6ak_1659313068_1_thumb.png",
+          "width": 512,
+          "height": 288
+        }
+      },
+      "creator": "wafflsssss",
+      "sole": true,
+      "change": 100
+    },
+    1712999506,
+    "unbeaten_map"
   ]
 ]
