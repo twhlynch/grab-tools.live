@@ -1041,6 +1041,7 @@ function initButtons() {
             });
             let container = document.getElementById(`${btnId}-out`);
             container.style.display = "flex";
+            container.setAttribute('data-forceLoad', true);
             container.querySelectorAll('[data-src]').forEach(e => {
                 e.src = e.getAttribute('data-src');
             });
@@ -1076,6 +1077,7 @@ function initButtons() {
             });
             let container = document.getElementById(`${btnId.replace('sort-btn', 'out')}`);
             container.style.display = "flex";
+            container.setAttribute('data-forceLoad', true);
             container.querySelectorAll('[data-src]').forEach(e => {
                 e.src = e.getAttribute('data-src');
             });
