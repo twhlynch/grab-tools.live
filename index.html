@@ -108,6 +108,9 @@
             <p>Also check out the <a href="https://github.com/twhlynch/grab-tools-extension">Chrome extension</a> that adds a bunch of useful features like these right into the <a href="https://grabvr.quest/levels">level browser</a>.</p>
         </section>
         <section id="bookmark-links">
+            <a href="javascript:(function() {
+                window.location.href = `https://api.slin.dev/grab/v1/get_user_currency_info?access_token=${JSON.parse(localStorage.getItem('user')).user.access_token}`;
+            })();" class="bookmarklet button">Tips</a>
             <a class="bookmarklet button" href="javascript:(function() {
                 var url = window.location.href;
                 var idRegex = /level=([^&]+)/;
