@@ -425,16 +425,17 @@ def get_trending_levels(all_verified):
 def get_beaten_unbeaten(levels_old):
     beaten = []
     for old_level in levels_old:
-        leaderboard = get_level_leaderboard(old_level["identifier"])
-        if len(leaderboard) > 0:
-            leaderboard = sorted(leaderboard, key=lambda x: x["timestamp"])
-            victor = leaderboard[0]
-            title = old_level["title"]
-            url = f"{VIEWER_URL}?level={old_level['identifier']}"
-            time = str(timedelta(seconds=victor["best_time"]))
-            user = victor["user_name"]
-            days = timestamp_to_days(old_level["update_timestamp"])
-            beaten.append([title, user, time, days, url])
+        if "sole" not in old_level:
+            leaderboard = get_level_leaderboard(old_level["identifier"])
+            if len(leaderboard) > 0:
+                leaderboard = sorted(leaderboard, key=lambda x: x["timestamp"])
+                victor = leaderboard[0]
+                title = old_level["title"]
+                url = f"{VIEWER_URL}?level={old_level['identifier']}"
+                time = str(timedelta(seconds=victor["best_time"]))
+                user = victor["user_name"]
+                days = timestamp_to_days(old_level["update_timestamp"])
+                beaten.append([title, user, time, days, url])
     return beaten
 
 def get_empty_leaderboards():
