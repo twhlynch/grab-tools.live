@@ -56,12 +56,44 @@ const loginButton = document.getElementById('login');
 const loginText = document.getElementById('loginText');
 const confirmButton = document.getElementById('confirmLogin');
 const loginMenu = document.getElementById('loginMenu');
+const loginContainer = document.getElementById('loginContainer');
 const usernameInput = document.getElementById('username');
 const userIdInput = document.getElementById('userId');
-
+const guessLogin = document.getElementById('guessLoginId');
 if (isLoggedIn) {
     loginText.innerText = user_name ;
 }
+
+guessLogin.addEventListener('click', async () => {
+    const username = usernameInput.value;
+    const userListResponse = await fetch(`https://api.slin.dev/grab/v1/list?type=user_name&search_term=${username}`);
+    const userList = await userListResponse.json();
+    if (userList.length > 0) {
+        let foundExacts = [];
+
+        userList.forEach((item) => {
+            if (item.user_name.toLowerCase() == username.toLowerCase()) {
+                foundExacts.push(item);
+            }
+        });
+
+        if (foundExacts.length > 0) {
+            let foundCreators = [];
+
+            foundExacts.forEach((item) => {
+                if (item.is_creator) {
+                    foundCreators.push(item);
+                }
+            });
+
+            if (foundCreators.length > 0) {
+                userIdInput.value = foundCreators[0].user_id;
+            } else {
+                userIdInput.value = foundExacts[0].user_id;
+            }
+        }
+    }
+});
 
 loginButton.addEventListener('click', () => {
     if (isLoggedIn) {
@@ -73,13 +105,13 @@ loginButton.addEventListener('click', () => {
         user_name = null;
         return;
     }
-    loginMenu.style.display = 'flex';
+    loginContainer.style.display = 'grid';
     usernameInput.value = last_user_name;
     userIdInput.value = last_user_id;
 });
 
 confirmButton.addEventListener('click', () => {
-    loginMenu.style.display = 'none';
+    loginContainer.style.display = 'none';
     const username = usernameInput.value;
     const userId = userIdInput.value;
     if (username && userId) {

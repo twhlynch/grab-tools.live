@@ -623,6 +623,7 @@ html.dark-mode .leaderboard-item span:nth-last-child(2), html.dark-mode .leaderb
     gap: var(--padding-secondary);
     background-color: #5f8cc235;
     width: fit-content;
+    cursor: pointer;
 }
 
 .button-super-sml {
@@ -789,8 +790,17 @@ div#questMultiSelect {
 #PersonalStats-out > h2 {
     margin-top: var(--padding-secondary);
 }
-#loginMenu {
+#loginContainer {
+    width: 100vw;
+    height: 100svh;
+    position: fixed;
+    top: 0;
+    left: 0;
     display: none;
+    place-items: center;
+}
+#loginMenu {
+    display: flex;
     flex-direction: column;
     gap: 5px;
     align-items: center;
@@ -800,13 +810,10 @@ div#questMultiSelect {
     margin-inline: auto;
     padding-block: var(--padding-secondary);
     padding-inline: var(--padding-secondary);
-    border: solid 2px #4683ce70;
+    border: solid 2px #3f75b7f0;
     border-radius: var(--border-radius);
-    background-color: #5f8cc235;
+    background-color: #2c415bf9;
     width: fit-content;
-    position: fixed;
-    top: 50px;
-    right: 50px;
     z-index: 10000;
 }
 #loginMenu input::placeholder {
