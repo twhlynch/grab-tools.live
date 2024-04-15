@@ -923,6 +923,7 @@ function getPersonalStats() {
     let user_plays_today = 0;
     let user_records = 0;
     let user_finishes = 0;
+    let user_features = 0;
 
     for (const key in statistics.most_verified) {
         if (key == user_id) {
@@ -951,6 +952,12 @@ function getPersonalStats() {
         if (key == user_id) {
             const value = statistics.user_finishes[key];
             user_finishes += value[0];
+        }
+    }
+
+    for (const item of statistics.best_of_grab) {
+        if (item.identifier.split(":")[0] == user_id) {
+            user_features += 1;
         }
     }
 
@@ -994,10 +1001,21 @@ function getPersonalStats() {
         ''
     );
 
+    const features_card = userCard(
+        user_id, 
+        "Features", 
+        false, 
+        false,
+        false,
+        `${user_features} featured maps`,
+        ''
+    );
+
     output.appendChild(plays_card);
     output.appendChild(maps_card);
     output.appendChild(records_card);
     output.appendChild(finishes_card);
+    output.appendChild(features_card);
 
     const trendingHeader = document.createElement('h2');
     trendingHeader.innerText = 'Trending';
