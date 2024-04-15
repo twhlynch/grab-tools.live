@@ -351,6 +351,12 @@ h1.title {
     background-color: #2e5d9740;
 }
 
+#PersonalStats-out > .leaderboard-item:nth-child(1), 
+#PersonalStats-out > .leaderboard-item:nth-child(2), 
+#PersonalStats-out > .leaderboard-item:nth-child(3) {
+    background-color: #2e5d9740;
+}
+
 .challengeOutput > .leaderboard-item:nth-child(2) > :nth-child(1)::after,
 .challengeOutput > .leaderboard-item:nth-child(3) > :nth-child(1)::after,
 .challengeOutput > .leaderboard-item:nth-child(4) > :nth-child(1)::after {
@@ -770,6 +776,41 @@ div#questMultiSelect {
     width: fit-content;
     font-size: 16px;
     margin-inline: auto;
+}
+#login, #confirmLogin {
+    cursor: pointer;
+}
+#confirmLogin {
+    padding-block: calc(var(--padding-secondary) / 2);
+}
+#PersonalStats {
+    display: none;
+}
+#PersonalStats-out > h2 {
+    margin-top: var(--padding-secondary);
+}
+#loginMenu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 90%;
+    margin-inline: auto;
+    padding-block: var(--padding-secondary);
+    padding-inline: var(--padding-secondary);
+    border: solid 2px #4683ce70;
+    border-radius: var(--border-radius);
+    background-color: #5f8cc235;
+    width: fit-content;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    z-index: 10000;
+}
+#loginMenu input::placeholder {
+    color: var(--text-color-default);
 }
 
 @media screen and (max-width: 400px) {
