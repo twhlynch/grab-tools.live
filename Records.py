@@ -16,11 +16,10 @@ for i, level in enumerate(data, start=1):
         level["leaderboard"] = res_data
         if len(res_data) == 1:
             sole_victors.append(level)
-        iteration = 0
-        if len(res_data) > iteration:
-            keyName = res_data[iteration]["user_id"] + ':' + res_data[iteration]["user_name"]
+        if len(res_data) > 0:
+            keyName = res_data[0]["user_id"]
             if keyName not in leaderboard:
-                leaderboard[keyName] = [0, []]
+                leaderboard[keyName] = [0, [], res_data[0]["user_name"]]
             leaderboard[keyName][0] += 1
             leaderboard[keyName][1].append([level["title"] + "|" + level["identifier"]])
     else:
