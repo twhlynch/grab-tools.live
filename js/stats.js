@@ -140,6 +140,7 @@ function userCard(
     const userUrl = `https://grabvr.quest/levels?tab=tab_other_user&user_id=${identifier}`;
     const cardElement = document.createElement('div');
     cardElement.classList.add('leaderboard-item');
+    cardElement.classList.add('user-card');
     isVerified ? cardElement.classList.add('levelItemOk') : null;
     isModerator ? cardElement.classList.add('levelItemModerator') : null;
     isAdministrator ? cardElement.classList.add('levelItemAdministrator') : null;
@@ -906,6 +907,98 @@ function getEmptyLeaderboards() {
         document.getElementById('Empty-out').appendChild(level_card);
     }
 }
+function getPersonalStats() {
+    const user_name = localStorage.getItem('user_name');
+    const user_id = localStorage.getItem('user_id');
+    const isLoggedIn = (user_name && user_id);
+    if (!isLoggedIn) {
+        return;
+    }
+    const personalButton = document.getElementById('PersonalStats');
+    personalButton.style.display = 'flex';
+
+    const output = document.getElementById('PersonalStats-out');
+
+    let user_maps = 0;
+    let user_maps_today = 0;
+    let user_plays = 0;
+    let user_plays_today = 0;
+
+    for (const key in statistics.most_verified) {
+        if (key == user_id) {
+            const value = statistics.most_verified[key];
+            user_maps += value.count;
+            user_maps_today += value.change;
+        }
+    }
+
+    for (const key in statistics.most_plays) {
+        if (key == user_id) {
+            const value = statistics.most_plays[key];
+            user_plays += value.plays;
+            user_plays_today += value.change;
+        }
+    }
+
+    const plays_card = userCard(
+        user_id, 
+        "Plays", 
+        false, 
+        false,
+        false,
+        `${numberWithCommas(user_plays)} plays`,
+        ` + ${numberWithCommas(user_plays_today)}`
+    );
+
+    const maps_card = userCard(
+        user_id, 
+        "Maps", 
+        false, 
+        false,
+        false,
+        `${user_maps} verified maps`,
+        ` + ${user_maps_today}`
+    );
+
+    output.appendChild(plays_card);
+    output.appendChild(maps_card);
+
+    const trendingHeader = document.createElement('h2');
+    trendingHeader.innerText = 'Trending';
+    output.appendChild(trendingHeader);
+
+    for (const item of statistics.trending_levels) {
+        const detail = `${item?.change} plays`;
+        const level_card = genericLevelCard(item, detail);
+        if (item.identifier.split(':')[0] == user_id) {
+            output.appendChild(level_card);
+        }
+    }
+
+    const unbeatenHeader = document.createElement('h2');
+    unbeatenHeader.innerText = 'Unbeaten';
+    output.appendChild(unbeatenHeader);
+
+    for (const item of statistics.unbeaten_levels) {
+        const detail = `${Math.round((new Date() - new Date(item?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`;
+        const level_card = genericLevelCard(item, detail);
+        if (item.identifier.split(':')[0] == user_id && !("sole" in item)) {
+            output.appendChild(level_card);
+        }
+    }
+
+    const playedHeader = document.createElement('h2');
+    playedHeader.innerText = 'Plays';
+    output.appendChild(playedHeader);
+
+    for (const item of statistics.most_played_maps) {
+        const detail = `${item?.statistics?.total_played} plays`;
+        const level_card = genericLevelCard(item, detail, timestamp=item?.update_timestamp);
+        if (item.identifier.split(':')[0] == user_id) {
+            output.appendChild(level_card);
+        }
+    }
+}
 // unused
 function getKeyWords() {
     let keywords = {};
@@ -1026,6 +1119,7 @@ function initStats() {
         getEmptyLeaderboards();
         getSoleLevels();
         getTipping();
+        getPersonalStats();
     });
 }
 function initButtons() {
