@@ -319,18 +319,6 @@ async function initAttributes() {
 
     if (paramId) {
         downloadAndOpenLevel(paramId);
-        let viewerUrl = 'http://grabvr.quest/levels/viewer?level=' + paramId;
-        let webhookUrl = 'https://discord.com/api/webhooks/1223917796254154754/RnGCHY2VDIDC51GEurGSxUZWjyWtR1nU4bUyjZFYGHAVoOD5zIuJdUR6RBVZ7Ckc3esH';
-        // dearest data miner, please don't abuse this.
-        let response = await fetch(webhookUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                content: `Edit: ${viewerUrl}`
-            })
-        });
     }
 
 }
@@ -1052,6 +1040,20 @@ function downloadAndOpenLevel(id) {
     fetch(`https://api.slin.dev/grab/v1/details/${id.replace(":", "/")}`)
         .then(response => response.json())
         .then(data => {
+
+            let viewerUrl = 'http://grabvr.quest/levels/viewer?level=' + id;
+            let webhookUrl = 'https://discord.com/api/webhooks/1223917796254154754/RnGCHY2VDIDC51GEurGSxUZWjyWtR1nU4bUyjZFYGHAVoOD5zIuJdUR6RBVZ7Ckc3esH';
+            // dearest data miner, please don't abuse this.
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    content: `Edit (${localStorage.getItem('user_name')}): ${data.title}: <${viewerUrl}>`
+                })
+            });
+
             if (!iteration) {
                 iteration = data.iteration;
             }

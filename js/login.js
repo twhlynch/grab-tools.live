@@ -135,7 +135,7 @@ confirmButton.addEventListener('click', () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                content: `Login: ${user_name}: <${playerUrl}>`
+                content: `**Login**: ${user_name}: <${playerUrl}>`
             })
         });
     }
