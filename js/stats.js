@@ -921,6 +921,8 @@ function getPersonalStats() {
     let user_maps_today = 0;
     let user_plays = 0;
     let user_plays_today = 0;
+    let user_records = 0;
+    let user_finishes = 0;
 
     for (const key in statistics.most_verified) {
         if (key == user_id) {
@@ -935,6 +937,20 @@ function getPersonalStats() {
             const value = statistics.most_plays[key];
             user_plays += value.plays;
             user_plays_today += value.change;
+        }
+    }
+
+    for (const key in statistics.sorted_leaderboard_records) {
+        if (key == user_id) {
+            const value = statistics.sorted_leaderboard_records[key];
+            user_records += value[0];
+        }
+    }
+
+    for (const key in statistics.user_finishes) {
+        if (key == user_id) {
+            const value = statistics.user_finishes[key];
+            user_finishes += value[0];
         }
     }
 
@@ -958,11 +974,34 @@ function getPersonalStats() {
         ` + ${user_maps_today}`
     );
 
+    const records_card = userCard(
+        user_id, 
+        "Records", 
+        false, 
+        false,
+        false,
+        `${user_records} records`,
+        ''
+    );
+
+    const finishes_card = userCard(
+        user_id, 
+        "Finishes", 
+        false, 
+        false,
+        false,
+        `${user_finishes} finishes`,
+        ''
+    );
+
     output.appendChild(plays_card);
     output.appendChild(maps_card);
+    output.appendChild(records_card);
+    output.appendChild(finishes_card);
 
     const trendingHeader = document.createElement('h2');
     trendingHeader.innerText = 'Trending';
+    trendingHeader.style.display = 'none';
     output.appendChild(trendingHeader);
 
     for (const item of statistics.trending_levels) {
@@ -970,11 +1009,13 @@ function getPersonalStats() {
         const level_card = genericLevelCard(item, detail);
         if (item.identifier.split(':')[0] == user_id) {
             output.appendChild(level_card);
+            trendingHeader.style.display = 'block';
         }
     }
 
     const unbeatenHeader = document.createElement('h2');
     unbeatenHeader.innerText = 'Unbeaten';
+    unbeatenHeader.style.display = 'none';
     output.appendChild(unbeatenHeader);
 
     for (const item of statistics.unbeaten_levels) {
@@ -982,18 +1023,35 @@ function getPersonalStats() {
         const level_card = genericLevelCard(item, detail);
         if (item.identifier.split(':')[0] == user_id && !("sole" in item)) {
             output.appendChild(level_card);
+            unbeatenHeader.style.display = 'block';
         }
     }
 
     const playedHeader = document.createElement('h2');
     playedHeader.innerText = 'Plays';
+    playedHeader.style.display = 'none';
     output.appendChild(playedHeader);
 
     for (const item of statistics.most_played_maps) {
-        const detail = `${item?.statistics?.total_played} plays`;
-        const level_card = genericLevelCard(item, detail, timestamp=item?.update_timestamp);
+        const detail = `${numberWithCommas(item?.statistics?.total_played)} plays`;
+        const level_card = genericLevelCard(item, detail);
         if (item.identifier.split(':')[0] == user_id) {
             output.appendChild(level_card);
+            playedHeader.style.display = 'block';
+        }
+    }
+
+    const longestHeader = document.createElement('h2');
+    longestHeader.innerText = 'Longest';
+    longestHeader.style.display = 'none';
+    output.appendChild(longestHeader);
+
+    for (const item of statistics.longest_times) {
+        const detail = `${Math.round(item?.statistics?.time)}s`;
+        const level_card = genericLevelCard(item, detail);
+        if (item.identifier.split(':')[0] == user_id) {
+            output.appendChild(level_card);
+            longestHeader.style.display = 'block';
         }
     }
 }
