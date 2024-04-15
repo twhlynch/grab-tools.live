@@ -864,22 +864,20 @@ function getRecords() {
     let lows = 0;
     let totalLow = 0;
     for (let key in statistics.sorted_leaderboard_records) {
-        if (statistics.sorted_leaderboard_records.hasOwnProperty(key)) {
-            if (statistics.sorted_leaderboard_records[key][0] >= 10) {
-                const user_card = userCard(
-                    key.split(':')[0], 
-                    key.split(':')[1], 
-                    false, 
-                    false, 
-                    false, 
-                    `${statistics.sorted_leaderboard_records[key][0]}`, 
-                    ''
-                );
-                document.getElementById('Records-out').appendChild(user_card);
-            } else {
-                lows += 1;
-                totalLow += statistics.sorted_leaderboard_records[key][0];
-            }
+        if (statistics.sorted_leaderboard_records[key][0] >= 10) {
+            const user_card = userCard(
+                key, 
+                statistics.sorted_leaderboard_records[key][2], 
+                false, 
+                false, 
+                false, 
+                `${statistics.sorted_leaderboard_records[key][0]}`, 
+                ''
+            );
+            document.getElementById('Records-out').appendChild(user_card);
+        } else {
+            lows += 1;
+            totalLow += statistics.sorted_leaderboard_records[key][0];
         }
     }
     document.getElementById('Records-out').innerHTML += `<div class="leaderboard-item"><p>+ ${lows}</p><span>${totalLow}</span></div>`;
