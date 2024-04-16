@@ -45,7 +45,7 @@ for i, level in enumerate(data, start=1):
         if record["user_id"] not in user_finishes:
             user_finishes[record["user_id"]] = [0, [], record["user_name"]]
         user_finishes[record["user_id"]][0] += 1
-        user_finishes[record["user_id"]][1].append([level["title"] + "|" + level["identifier"]])
+        user_finishes[record["user_id"]][1].append(i)
     
     print(i)
     i += 1
