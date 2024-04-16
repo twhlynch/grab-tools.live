@@ -820,6 +820,21 @@ div#questMultiSelect {
     color: var(--text-color-default);
 }
 
+.card-personal {
+    box-shadow: inset 0 0 40px #51d677a0;
+    outline: 2px solid #40ab5ea0;
+    border-width: 0;
+}
+.dark-mode .card-personal {
+    box-shadow: inset 0 0 40px #3e8953a0;
+    outline: 2px solid #3e8953a0;
+}
+#PersonalStats-out .card-personal, #LevelSearch-out .card-personal {
+    box-shadow: none;
+    outline: none;
+    border-width: 5px;
+}
+
 @media screen and (max-width: 400px) {
     nav > a.button {
         font-size: 0;
