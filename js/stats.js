@@ -482,12 +482,16 @@ function getBestOfGrab() {
 
     let list_keys = [];
     let key_lengths = {};
-    statistics.best_of_grab.forEach(item => {
-        let list_key = item.list_key;
-        let list_key_split = list_key.split(":");
-        list_key_split.forEach( key => {
+    let playerFeatures = {};
+    let playerCompletions = {};
+    let playerCompletionsByKey = {};
+
+    // filling data structures
+    for (const item of statistics.best_of_grab) {
+        item.list_key.split(":").forEach( key => {
             if (list_keys.indexOf(key) == -1) {
                 list_keys.push(key);
+                playerCompletionsByKey[key] = {};
             }
             if (key_lengths[key]) {
                 key_lengths[key] += 1;
@@ -495,62 +499,55 @@ function getBestOfGrab() {
                 key_lengths[key] = 1;
             }
         } );
-    });
-    let playerFeatures = {};
-    let playerCompletions = {};
-    let playerCompletionsByKey = {};
-    list_keys.forEach(key => {
-        playerCompletionsByKey[key] = {};
-    });
-    statistics.best_of_grab.forEach(item => {
-        if (playerFeatures[item.identifier.split(':')[0]]) {
-            playerFeatures[item.identifier.split(':')[0]].score += 1;
-            if (playerFeatures[item.identifier.split(':')[0]].user_name == "undefined") {
-                playerFeatures[item.identifier.split(':')[0]].user_name = (""+item?.creators).split(',')[0];
-            }
-        } else {
-            playerFeatures[item.identifier.split(':')[0]] = {score: 1, user_name: (""+item?.creators).split(',')[0]}
+    }
+
+    for (const item of statistics.best_of_grab) {
+        const userId = item.identifier.split(':')[0];
+        if (!(userId in playerFeatures)) {
+            playerFeatures[userId] = {score: 0, user_name: ''};
+        }
+        playerFeatures[userId].score += 1;
+        if (!playerFeatures[userId].user_name) {
+            playerFeatures[userId].user_name = (""+item?.creators).split(',')[0];
         }
 
-        let leaderboard = item.leaderboard;
-        let list_key = item.list_key.split(":");
-        leaderboard.forEach( lItem => {
-            let score = determineScore(lItem, leaderboard.length);
-            if (playerCompletions[lItem.user_id]) {
-                playerCompletions[lItem.user_id].maps += 1;
-                playerCompletions[lItem.user_id].score += score;
-            } else {
+        for (const lItem of item.leaderboard) {
+            let score = determineScore(lItem, item.leaderboard.length);
+            
+            if (!(lItem.user_id in playerCompletions)) {
                 playerCompletions[lItem.user_id] = {
                     user_name: lItem.user_name,
-                    maps: 1,
+                    maps: 0,
                     firsts: 0,
-                    score: score
+                    score: 0
                 }
             }
+            playerCompletions[lItem.user_id].maps += 1;
+            playerCompletions[lItem.user_id].score += score;
             if (lItem.position == 0) {
                 playerCompletions[lItem.user_id].firsts += 1;
             }
-            list_key.forEach( lKey => {
-                if (playerCompletionsByKey[lKey][lItem.user_id]) {
-                    playerCompletionsByKey[lKey][lItem.user_id].maps += 1;
-                    playerCompletionsByKey[lKey][lItem.user_id].score += score;
-                } else {
+
+            for (const lKey of item.list_key.split(":")) {
+                if (!(lItem.user_id in playerCompletionsByKey[lKey])) {
                     playerCompletionsByKey[lKey][lItem.user_id] = {
                         user_name: lItem.user_name,
                         firsts: 0,
-                        maps: 1,
-                        score: score
+                        maps: 0,
+                        score: 0
                     }
                 }
+                playerCompletionsByKey[lKey][lItem.user_id].maps += 1;
+                playerCompletionsByKey[lKey][lItem.user_id].score += score;
                 if (lItem.position == 0) {
                     playerCompletionsByKey[lKey][lItem.user_id].firsts += 1;
                 }
-            });
-        });
-    });
+            }
+        }
+    }
 
     playerFeatures = Object.entries(playerFeatures).sort((a, b) => b[1].score - a[1].score);
-    playerFeatures.forEach( item => {
+    for (const item of playerFeatures) {
         const user_card = userCard(
             item[0],
             item[1].user_name,
@@ -561,11 +558,11 @@ function getBestOfGrab() {
             ''
         );
         document.getElementById('Featured-out').appendChild(user_card);
-    });
+    }
 
     let sortingContainer = document.getElementById('BestOfGrab-sort');
     let listsContainer = document.getElementById('statistics');
-    list_keys.forEach( list_key => {
+    for (const list_key of list_keys) {
         let outputElement = document.createElement('div');
         outputElement.id = 'BestOfGrab'+list_key+'-out';
         outputElement.classList.add('LeaderboardOutput');
@@ -575,7 +572,29 @@ function getBestOfGrab() {
         let buttonElement = document.createElement('button');
         buttonElement.className = 'sort-btn button-sml';
         buttonElement.id = 'BestOfGrab'+list_key+'-sort-btn';
-        buttonElement.innerText = list_key.replace("curated_", "").replaceAll("_", " ");
+        let innerText = list_key.replace("curated_", "").replaceAll("_", " ").toLowerCase();
+        switch (innerText) {
+            case "sadpillows break in":
+                innerText = "break in";
+                break;
+
+            case "jeffbobdude evade genesis":
+                innerText = "evade genesis";
+                break;
+
+            case "yoohoo difficulty charts":
+                innerText = "difficulty charts";
+                break;
+
+            case "grab adventure 1":
+                innerText = "grab adventure";
+                break;
+
+            default:
+                break;
+        }
+        innerText = innerText.charAt(0).toUpperCase() + innerText.slice(1);
+        buttonElement.innerText = innerText;
         buttonElement.addEventListener('click', () => {
             document.querySelectorAll('.sort-active').forEach(e => {
                 e.classList.remove('sort-active');
@@ -587,9 +606,9 @@ function getBestOfGrab() {
             outputElement.style.display = 'flex';
         });
         sortingContainer.appendChild(buttonElement);
-    });
+    }
 
-    list_keys.forEach(key=>{
+    for (const key of list_keys) {
         const sorted = Object.entries(playerCompletionsByKey[key]).sort((a, b) => {
             if (b[1].maps === a[1].maps) {
                 return b[1].score - a[1].score;
@@ -618,13 +637,35 @@ function getBestOfGrab() {
                 let output = document.getElementById('CheckBestOfGrab-out')
                 let unbeatenOutput = document.getElementById('CheckBestOfGrabUnbeaten-out')
                 let defaultText = document.createElement('p');
-                defaultText.innerText = `${value.user_name}'s progress on ${key.replace("curated_", "").replaceAll("_", " ")}`;
+                let innerText = key.replace("curated_", "").replaceAll("_", " ").toLowerCase();
+                switch (innerText) {
+                    case "sadpillows break in":
+                        innerText = "break in";
+                        break;
+
+                    case "jeffbobdude evade genesis":
+                        innerText = "evade genesis";
+                        break;
+
+                    case "yoohoo difficulty charts":
+                        innerText = "difficulty charts";
+                        break;
+
+                    case "grab adventure 1":
+                        innerText = "grab adventure";
+                        break;
+
+                    default:
+                        break;
+                }
+                innerText = innerText.charAt(0).toUpperCase() + innerText.slice(1);
+                defaultText.innerText = `${value.user_name}'s progress on ${innerText}`;
                 output.innerHTML = '';
                 defaultText.classList.add('default-progress-text');
                 output.appendChild(defaultText);
 
                 let defaultUnbeatenText = document.createElement('p');
-                defaultUnbeatenText.innerText = `${value.user_name}'s unbeaten of ${key.replace("curated_", "").replaceAll("_", " ")}`;
+                defaultUnbeatenText.innerText = `${value.user_name}'s unbeaten of ${innerText}`;
                 unbeatenOutput.innerHTML = '';
                 defaultUnbeatenText.classList.add('default-progress-text');
                 unbeatenOutput.appendChild(defaultUnbeatenText);
@@ -645,7 +686,7 @@ function getBestOfGrab() {
                     output.style.display = 'flex';
                     unbeatenOutput.style.display = 'none';
                 });
-                    let unbeatenCount = 0;
+                let unbeatenCount = 0;
                 statistics.best_of_grab.forEach(e => {
                     if (e.list_key.includes(key)) {
                         let found = false;
@@ -692,14 +733,17 @@ function getBestOfGrab() {
                     }
                 });
                 showUnbeatenButton.innerText = `Show unbeaten (${unbeatenCount})`;
-                defaultUnbeatenText.innerText = `${value.user_name}'s unbeaten of ${key.replace("curated_", "").replaceAll("_", " ")} (${unbeatenCount})`;
+                if (unbeatenCount == 0) {
+                    showUnbeatenButton.style.display = 'none';
+                }
+                defaultUnbeatenText.innerText = `${value.user_name}'s unbeaten of ${innerText} (${unbeatenCount})`;
                 defaultUnbeatenText.appendChild(showAllButton);
                 output.style.display = 'flex';
             });                
             user_card.insertBefore(checkUnbeatenButton, user_card.childNodes[1]);
             document.getElementById('BestOfGrab'+key+'-out').appendChild(user_card);
         }
-    });
+    }
     const sorted = Object.entries(playerCompletions).sort((a, b) => {
         if (b[1].maps === a[1].maps) {
             return b[1].score - a[1].score;
