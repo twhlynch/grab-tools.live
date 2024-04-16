@@ -1151,62 +1151,21 @@ function getDifficulties() {
         "veryhard",
         "impossible"
     ];
-    let key_lengths = {
-        "unrated": 0,
-        "easy": 0,
-        "medium": 0,
-        "hard": 0,
-        "veryhard": 0,
-        "impossible": 0
-    };
+    const key_lengths = statistics.difficulty_lengths;
     let playerCompletions = {};
-    let playerCompletionsByKey = {
-        "unrated": {},
-        "easy": {},
-        "medium": {},
-        "hard": {},
-        "veryhard": {},
-        "impossible": {}
-    };
+    let playerCompletionsByKey = statistics.difficulty_records;
 
-    for (const item of statistics.leaderboard_levels) {
-        let key = item.statistics.difficulty_string;
-        if (!key) {
-            key = "unrated";
-            item.statistics.difficulty_string = "unrated";
-        }
-        key_lengths[key] += 1;
-        if (!("leaderboard" in item)) {
-            item.leaderboard = [];
-        }
-    }
-
-    for (const item of statistics.leaderboard_levels) {
-        for (const lItem of item.leaderboard) {
-            if (!(lItem.user_id in playerCompletions)) {
-                playerCompletions[lItem.user_id] = {
-                    user_name: lItem.user_name,
+    for (const key in playerCompletionsByKey) {
+        for (const id in playerCompletionsByKey[key]) {
+            if (!(id in playerCompletions)) {
+                playerCompletions[id] = {
+                    user_name: playerCompletionsByKey[key][id].user_name,
                     maps: 0,
                     firsts: 0
                 }
             }
-            playerCompletions[lItem.user_id].maps += 1;
-            if (lItem.position == 0) {
-                playerCompletions[lItem.user_id].firsts += 1;
-            }
-
-            let key = item.statistics.difficulty_string;
-            if (!(lItem.user_id in playerCompletionsByKey[key])) {
-                playerCompletionsByKey[key][lItem.user_id] = {
-                    user_name: lItem.user_name,
-                    firsts: 0,
-                    maps: 0
-                }
-            }
-            playerCompletionsByKey[key][lItem.user_id].maps += 1;
-            if (lItem.position == 0) {
-                playerCompletionsByKey[key][lItem.user_id].firsts += 1;
-            }
+            playerCompletions[id].maps += playerCompletionsByKey[key][id].maps;
+            playerCompletions[id].firsts += playerCompletionsByKey[key][id].firsts;
         }
     }
 
@@ -1262,7 +1221,7 @@ function getDifficulties() {
     }
 
     let titleElement = document.createElement('h2');
-    titleElement.innerText = statistics.leaderboard_levels.length + " levels";
+    titleElement.innerText = key_lengths.total + " levels";
     document.getElementById('Difficulties-out').appendChild(titleElement);
 
     const sorted = Object.entries(playerCompletions).sort((a, b) => {
@@ -1273,7 +1232,7 @@ function getDifficulties() {
         const user_card = userCard(
             id, 
             value.user_name, 
-            value.maps == statistics.leaderboard_levels.length ? true : false, 
+            value.maps == key_lengths.total ? true : false, 
             false, 
             false, 
             `${value.maps} Completed`, 
@@ -1394,7 +1353,8 @@ let statistics = {
     user_finishes: undefined,
     empty_leaderboards: undefined,
     total_level_count: undefined,
-    leaderboard_levels: undefined
+    difficulty_records: undefined,
+    difficulty_lengths: undefined
 };
 
 function initStats() {

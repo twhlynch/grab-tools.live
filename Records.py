@@ -11,10 +11,20 @@ difficulty_records = {
     "veryhard": {},
     "impossible": {}
 }
+difficulty_lengths = {
+    "unrated": 0,
+    "easy": 0,
+    "medium": 0,
+    "hard": 0,
+    "veryhard": 0,
+    "impossible": 0,
+    "total": 0
+}
 leaderboard = {}
 empty_leaderboards = []
 sole_victors = []
 user_finishes = {}
+difficulty_lengths["total"] = len(data)
 for i, level in enumerate(data, start=1):
     identifier = level["identifier"].replace(":", "/")
     url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{identifier}"
@@ -34,6 +44,7 @@ for i, level in enumerate(data, start=1):
         if "statistics" in level:
             if "difficulty_string" in level["statistics"]:
                 level_diff = level["statistics"]["difficulty_string"]
+        difficulty_lengths[level_diff] += 1
         for record in res_data:
             if record["user_id"] not in difficulty_records[level_diff]:
                 difficulty_records[level_diff][record["user_id"]] = [0, record["user_name"]]
@@ -69,4 +80,7 @@ with open("stats_data/sole_victors.json", "w") as file:
     json.dump(sole_victors, file, indent=4)
     
 with open("stats_data/difficulty_records.json", "w") as file:
-    json.dump(difficulty_records, file, indent=4)
+    json.dump(difficulty_records, file)
+    
+with open("stats_data/difficulty_lengths.json", "w") as file:
+    json.dump(difficulty_lengths, file, indent=4)
