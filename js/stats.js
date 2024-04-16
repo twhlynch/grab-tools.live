@@ -1120,6 +1120,147 @@ function getPersonalStats() {
         }
     }
 }
+function getDifficulties() {
+    let difficulty_keys = [
+        "unrated",
+        "easy",
+        "medium",
+        "hard",
+        "veryhard",
+        "impossible"
+    ];
+    let key_lengths = {
+        "unrated": 0,
+        "easy": 0,
+        "medium": 0,
+        "hard": 0,
+        "veryhard": 0,
+        "impossible": 0
+    };
+    let playerCompletions = {};
+    let playerCompletionsByKey = {
+        "unrated": {},
+        "easy": {},
+        "medium": {},
+        "hard": {},
+        "veryhard": {},
+        "impossible": {}
+    };
+
+    for (const item of statistics.leaderboard_levels) {
+        let key = item.statistics.difficulty_string;
+        if (!key) {
+            key = "unrated";
+            item.statistics.difficulty_string = "unrated";
+        }
+        key_lengths[key] += 1;
+        if (!("leaderboard" in item)) {
+            item.leaderboard = [];
+        }
+    }
+
+    for (const item of statistics.leaderboard_levels) {
+        for (const lItem of item.leaderboard) {
+            if (!(lItem.user_id in playerCompletions)) {
+                playerCompletions[lItem.user_id] = {
+                    user_name: lItem.user_name,
+                    maps: 0,
+                    firsts: 0
+                }
+            }
+            playerCompletions[lItem.user_id].maps += 1;
+            if (lItem.position == 0) {
+                playerCompletions[lItem.user_id].firsts += 1;
+            }
+
+            let key = item.statistics.difficulty_string;
+            if (!(lItem.user_id in playerCompletionsByKey[key])) {
+                playerCompletionsByKey[key][lItem.user_id] = {
+                    user_name: lItem.user_name,
+                    firsts: 0,
+                    maps: 0
+                }
+            }
+            playerCompletionsByKey[key][lItem.user_id].maps += 1;
+            if (lItem.position == 0) {
+                playerCompletionsByKey[key][lItem.user_id].firsts += 1;
+            }
+        }
+    }
+
+    let sortingContainer = document.getElementById('Difficulties-sort');
+    let listsContainer = document.getElementById('statistics');
+    for (const key of difficulty_keys) {
+        let outputElement = document.createElement('div');
+        outputElement.id = 'Difficulties'+key+'-out';
+        outputElement.classList.add('LeaderboardOutput');
+        outputElement.classList.add('Difficulties-out');
+        outputElement.style.display = 'none';
+        listsContainer.appendChild(outputElement);
+
+        let titleElement = document.createElement('h2');
+        titleElement.innerText = key_lengths[key] + " " + key;
+        outputElement.appendChild(titleElement);
+
+        let buttonElement = document.createElement('button');
+        buttonElement.className = 'sort-btn button-sml';
+        buttonElement.id = 'Difficulties'+key+'-sort-btn';
+        buttonElement.innerText = key;
+        buttonElement.addEventListener('click', () => {
+            document.querySelectorAll('.sort-active').forEach(e => {
+                e.classList.remove('sort-active');
+            });
+            buttonElement.classList.add('sort-active');
+            document.querySelectorAll('.LeaderboardOutput').forEach(e => {
+                e.style.display = 'none';
+            });
+            outputElement.style.display = 'flex';
+        });
+        sortingContainer.appendChild(buttonElement);
+    }
+
+    for (const key of difficulty_keys) {
+        const sorted = Object.entries(playerCompletionsByKey[key]).sort((a, b) => {
+            return b[1].maps - a[1].maps;
+        });
+        const top = sorted.slice(0, 200);
+        for (const [id, value] of top) {
+            const user_card = userCard(
+                id, 
+                value.user_name, 
+                value.maps == key_lengths[key] ? true : false, 
+                false, 
+                false, 
+                `${value.maps} Completed`, 
+                ''
+            );
+            user_card.childNodes[1].title = value.firsts;
+            document.getElementById('Difficulties'+key+'-out').appendChild(user_card);
+        }
+    }
+
+    let titleElement = document.createElement('h2');
+    titleElement.innerText = statistics.leaderboard_levels.length + " levels";
+    document.getElementById('Difficulties-out').appendChild(titleElement);
+
+    const sorted = Object.entries(playerCompletions).sort((a, b) => {
+        return b[1].maps - a[1].maps;
+    });
+    const top = sorted.slice(0, 200);
+    for (const [id, value] of top) {
+        const user_card = userCard(
+            id, 
+            value.user_name, 
+            value.maps == statistics.leaderboard_levels.length ? true : false, 
+            false, 
+            false, 
+            `${value.maps} Completed`, 
+            ''
+        );
+        user_card.childNodes[1].title = value.firsts;
+        document.getElementById('Difficulties-out').appendChild(user_card);
+    }
+}
 // unused
 function getKeyWords() {
     let keywords = {};
@@ -1205,7 +1346,8 @@ let statistics = {
     sorted_leaderboard_records: undefined,
     user_finishes: undefined,
     empty_leaderboards: undefined,
-    total_level_count: undefined
+    total_level_count: undefined,
+    leaderboard_levels: undefined
 };
 
 function initStats() {
@@ -1244,6 +1386,7 @@ function initStats() {
         getSoleLevels();
         getTipping();
         getPersonalStats();
+        getDifficulties();
     });
 }
 function initButtons() {
