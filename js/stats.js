@@ -957,7 +957,7 @@ function getTop100s() {
     for (let [key, value] of data) {
         const user_card = userCard(
             key, 
-            value[2], 
+            value[1], 
             false, 
             false, 
             false, 

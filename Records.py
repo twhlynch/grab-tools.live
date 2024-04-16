@@ -47,16 +47,18 @@ for i, level in enumerate(data, start=1):
         difficulty_lengths[level_diff] += 1
         for record in res_data:
             if record["user_id"] not in difficulty_records[level_diff]:
-                difficulty_records[level_diff][record["user_id"]] = [0, record["user_name"]]
-            difficulty_records[level_diff][record["user_id"]][0] += 1
+                difficulty_records[level_diff][record["user_id"]] = {
+                    "maps": 0, 
+                    "user_name": record["user_name"]
+                }
+            difficulty_records[level_diff][record["user_id"]]["maps"] += 1
     else:
         empty_leaderboards.append(level)
     
     for record in res_data:
         if record["user_id"] not in user_finishes:
-            user_finishes[record["user_id"]] = [0, [], record["user_name"]]
+            user_finishes[record["user_id"]] = [0, record["user_name"]]
         user_finishes[record["user_id"]][0] += 1
-        user_finishes[record["user_id"]][1].append(i)
     
     print(i)
     i += 1
@@ -65,16 +67,16 @@ sorted_leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][0], rev
 
 
 with open("stats_data/user_finishes.json", "w") as file:
-    json.dump(user_finishes, file, indent=4)
+    json.dump(user_finishes, file)
 
 with open("stats_data/empty_leaderboards.json", "w") as file:
     json.dump(empty_leaderboards, file, indent=4)
 
 with open("stats_data/sorted_leaderboard_records.json", "w") as file:
-    json.dump(sorted_leaderboard, file, indent=4)
+    json.dump(sorted_leaderboard, file, indent=1)
 
 with open("stats_data/leaderboard_levels.json", "w") as file:
-    json.dump(data, file, indent=4)
+    json.dump(data, file)
 
 with open("stats_data/sole_victors.json", "w") as file:
     json.dump(sole_victors, file, indent=4)
