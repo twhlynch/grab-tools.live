@@ -220,21 +220,21 @@ function getTopPlayers() {
 }
 function getPlayedLevels() {
     for (const item of statistics.most_played_maps) {
-        const detail = `${item?.statistics?.total_played} plays`;
+        const detail = `${numberWithCommas(item?.statistics?.total_played)} plays`;
         const level_card = genericLevelCard(item, detail, timestamp=item?.update_timestamp);
         document.getElementById('MostPlayedMaps-out').appendChild(level_card);
     }
 }
 function getTopLikes() {
     for (const item of statistics.most_liked) {
-        const detail = `${Math.round(item?.statistics?.liked * item?.statistics?.total_played * (1 - item?.statistics?.difficulty))} (${Math.round(100 * item?.statistics?.liked)}%)`;
+        const detail = `${numberWithCommas(Math.round(item?.statistics?.liked * item?.statistics?.total_played * (1 - item?.statistics?.difficulty)))} (${Math.round(100 * item?.statistics?.liked)}%)`;
         const level_card = genericLevelCard(item, detail);
         document.getElementById('MostLikedMaps-out').appendChild(level_card);
     }
 }
 function getTopDislikes() {
     for (const item of statistics.most_disliked) {
-        const detail = `${Math.round((1 - item?.statistics?.liked) * item?.statistics?.total_played * (1 - item?.statistics?.difficulty))} (${Math.round(100 - (100 * item?.statistics?.liked))}%)`;
+        const detail = `${numberWithCommas(Math.round((numberWithCommas(1 - item?.statistics?.liked) * item?.statistics?.total_played * (1 - item?.statistics?.difficulty))))} (${Math.round(100 - (100 * item?.statistics?.liked))}%)`;
         const level_card = genericLevelCard(item, detail);
         document.getElementById('MostDislikedMaps-out').appendChild(level_card);
     }
@@ -262,7 +262,7 @@ function getPlaysLevels() {
             false, 
             false, 
             false, 
-            `${value["plays"]} (${value["count"]} maps)`, 
+            `${numberWithCommas(value["plays"])} (${value["count"]} maps)`, 
             `+${value["change"]}`
         );
         document.getElementById('MostPlays-out').appendChild(user_card);
