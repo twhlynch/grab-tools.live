@@ -2,7 +2,15 @@ import json, requests, contextlib
 
 with open("stats_data/all_verified.json") as file:
     data = json.load(file)
-  
+
+difficulty_records = {
+    "unrated": {},
+    "easy": {},
+    "medium": {},
+    "hard": {},
+    "veryhard": {},
+    "impossible": {}
+}
 leaderboard = {}
 empty_leaderboards = []
 sole_victors = []
@@ -22,6 +30,14 @@ for i, level in enumerate(data, start=1):
                 leaderboard[keyName] = [0, [], res_data[0]["user_name"]]
             leaderboard[keyName][0] += 1
             leaderboard[keyName][1].append([level["title"] + "|" + level["identifier"]])
+        level_diff = "unrated"
+        if "statistics" in level:
+            if "difficulty_string" in level["statistics"]:
+                level_diff = level["statistics"]["difficulty_string"]
+        for record in res_data:
+            if record["user_id"] not in difficulty_records[level_diff]:
+                difficulty_records[level_diff][record["user_id"]] = [0, record["user_name"]]
+            difficulty_records[level_diff][record["user_id"]][0] += 1
     else:
         empty_leaderboards.append(level)
     
@@ -51,3 +67,6 @@ with open("stats_data/leaderboard_levels.json", "w") as file:
 
 with open("stats_data/sole_victors.json", "w") as file:
     json.dump(sole_victors, file, indent=4)
+    
+with open("stats_data/difficulty_records.json", "w") as file:
+    json.dump(difficulty_records, file, indent=4)
