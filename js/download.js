@@ -37,9 +37,16 @@ async function download(id) {
 const urlParams = new URLSearchParams(window.location.search);
 const level = urlParams.get('level');
 if (level) {
-    console.log(level);
-    const levels = level.split(" ");
-    downloadAll(levels);
+    let user_id = localStorage.getItem('user_id');
+    let user_name = localStorage.getItem('user_name');
+    let isLoggedIn = (user_id && user_name);
+    if (!isLoggedIn) {
+        document.getElementById('loginRestrictionPopup').style.display = 'flex';
+    } else {
+        console.log(level);
+        const levels = level.split(" ");
+        downloadAll(levels);
+    }
 }
 
 async function downloadAll(levels) {
