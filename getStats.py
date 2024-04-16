@@ -65,7 +65,7 @@ def get_user_name(user_identifier, potential_user_name, priority=False):
 
 def write_json_file(filename, data):
     with open(filename, 'w') as file:
-        json.dump(data, file, indent=2)
+        json.dump(data, file, indent=1)
 
 def timestamp_to_days(timestamp_in_milliseconds, now=datetime.now().timestamp() * 1000):
     return (now - timestamp_in_milliseconds) / 1000 / 60 / 60 / 24
