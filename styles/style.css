@@ -872,6 +872,35 @@ div#questMultiSelect {
 .dark-mode .sort-btn.notify::after, .dark-mode .stats-button.notify::after {
     background-color: #51d677a0;
 }
+#loginRestrictionPopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    padding-bottom: 5px;
+    background-color: #6d9ed2;
+    border: 3px solid #4e7db3;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 9999;
+    width: 80%;
+    max-width: 300px;
+    display: none;
+    flex-direction: column;
+}
+#loginRestrictionPopup a {
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    border: 2px solid #4e7db3;
+    text-decoration: none;
+    width: fit-content;
+    margin-inline: auto;
+    padding-inline: 10px;
+}
 
 @media screen and (max-width: 400px) {
     .stats-button.notify::after {
