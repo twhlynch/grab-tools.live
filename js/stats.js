@@ -193,6 +193,7 @@ function getUnbeatenLevels() {
         const level_card = genericLevelCard(item, detail);
         if ("sole" in item) { level_card.style.borderColor = "#ff000055"; }
         document.getElementById('UnbeatenMaps-out').appendChild(level_card);
+        checkNotification(item.identifier, "UnbeatenMaps");
     }
     
     for (const item of sortedByUpdated) {
@@ -200,6 +201,7 @@ function getUnbeatenLevels() {
         const level_card = genericLevelCard(item, detail);
         if ("sole" in item) { level_card.style.borderColor = "#ff000055"; }
         document.getElementById('UnbeatenMapsUpdated-out').appendChild(level_card);
+        checkNotification(item.identifier, "UnbeatenMapsUpdated");
     }
 
     for (const item of sortedByCreated) {
@@ -207,6 +209,7 @@ function getUnbeatenLevels() {
         const level_card = genericLevelCard(item, detail);
         if ("sole" in item) { level_card.style.borderColor = "#ff000055"; }
         document.getElementById('UnbeatenMapsCreated-out').appendChild(level_card);
+        checkNotification(item.identifier, "UnbeatenMapsCreated");
     }
 }
 function getTopPlayers() {
@@ -222,6 +225,7 @@ function getTopPlayers() {
             `+${value["change"]}`
         );
         document.getElementById('MostVerifiedMaps-out').appendChild(user_card);
+        checkNotification(key, "MostVerifiedMaps");
     }
 }
 function getPlayedLevels() {
@@ -229,6 +233,7 @@ function getPlayedLevels() {
         const detail = `${numberWithCommas(item?.statistics?.total_played)} plays`;
         const level_card = genericLevelCard(item, detail, timestamp=item?.update_timestamp);
         document.getElementById('MostPlayedMaps-out').appendChild(level_card);
+        checkNotification(item.identifier, "MostPlayedMaps");
     }
 }
 function getTopLikes() {
@@ -236,6 +241,7 @@ function getTopLikes() {
         const detail = `${numberWithCommas(Math.round(item?.statistics?.liked * item?.statistics?.total_played * (1 - item?.statistics?.difficulty)))} (${Math.round(100 * item?.statistics?.liked)}%)`;
         const level_card = genericLevelCard(item, detail);
         document.getElementById('MostLikedMaps-out').appendChild(level_card);
+        checkNotification(item.identifier, "MostLikedMaps");
     }
 }
 function getTopDislikes() {
@@ -243,6 +249,7 @@ function getTopDislikes() {
         const detail = `${numberWithCommas(Math.round((numberWithCommas(1 - item?.statistics?.liked) * item?.statistics?.total_played * (1 - item?.statistics?.difficulty))))} (${Math.round(100 - (100 * item?.statistics?.liked))}%)`;
         const level_card = genericLevelCard(item, detail);
         document.getElementById('MostDislikedMaps-out').appendChild(level_card);
+        checkNotification(item.identifier, "MostDislikedMaps");
     }
 }
 function getTopTimes() {
@@ -250,6 +257,7 @@ function getTopTimes() {
         const detail = `${Math.round(item?.statistics?.time)}s`;
         const level_card = genericLevelCard(item, detail);
         document.getElementById('MostTimeMaps-out').appendChild(level_card);
+        checkNotification(item.identifier, "MostTimeMaps");
     }
 }
 function getSoleLevels() {
@@ -257,6 +265,7 @@ function getSoleLevels() {
         const detail = `${Math.round((new Date() - new Date(item?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`;
         const level_card = genericLevelCard(item, detail);
         document.getElementById('SoleBeatenMaps-out').appendChild(level_card);
+        checkNotification(item.identifier, "SoleBeatenMaps");
     }
 }
 function getPlaysLevels() {
@@ -272,6 +281,7 @@ function getPlaysLevels() {
             `+${value["change"]}`
         );
         document.getElementById('MostPlays-out').appendChild(user_card);
+        checkNotification(key, "MostPlays");
     }
 
     const trending = Object.entries(statistics.most_plays).sort((a, b) => b[1]["change"] - a[1]["change"]).filter(item => item[1]["change"] != 0);
@@ -287,14 +297,16 @@ function getPlaysLevels() {
             ''
         );
         document.getElementById('TodaysPlays-out').appendChild(user_card);
+        checkNotification(id, "TodaysPlays");
     }
 }
 function getTrendingLevels() {
     for (const item of statistics.trending_levels) {
         const detail = `${item?.change} plays`;
         const level_card = genericLevelCard(item, detail, timestamp=item?.creation_timestamp);
-        if (item?.identifier != "2ap647di3dc1k42jf4o2o:1682810607" && item?.identifier != "29t798uon2urbra1f8w2q:1693775768") {
+        if (item.identifier != "2ap647di3dc1k42jf4o2o:1682810607" && item.identifier != "29t798uon2urbra1f8w2q:1693775768") {
             document.getElementById('Trending-out').appendChild(level_card);
+            checkNotification(item.identifier, "Trending");
         }
     }
 }
@@ -332,6 +344,7 @@ function getDailyMap() {
                 ''
             );
             document.getElementById('DailyMap-out').appendChild(user_card);
+            checkNotification(lItem["user_id"], "DailyMap");
         });
     });
 }
@@ -351,6 +364,7 @@ function getWeeklyMap() {
                 ''
             );
             document.getElementById('WeeklyMap-out').appendChild(user_card);
+            checkNotification(lItem["user_id"], "WeeklyMap");
         });
     });
 }
@@ -370,6 +384,7 @@ function getUnbeatenMap() {
                 ''
             );
             document.getElementById('UnbeatenMap-out').appendChild(user_card);
+            checkNotification(lItem["user_id"], "UnbeatenMap");
         });
     });
 }
@@ -438,6 +453,7 @@ function getChallengeScores() {
             ''
         );
         document.getElementById('MapChallenges-out').appendChild(user_card);
+        checkNotification(value[2], "MapChallenges");
     }
 }
 function getGlobalPlays() {
@@ -564,6 +580,7 @@ function getBestOfGrab() {
             ''
         );
         document.getElementById('Featured-out').appendChild(user_card);
+        checkNotification(item[0], "Featured");
     }
 
     let sortingContainer = document.getElementById('BestOfGrab-sort');
@@ -890,6 +907,7 @@ function getTipping() {
             const detail = `${item.tipped_amount}`;
             const level_card = genericLevelCard(item, detail);
             document.getElementById('Tipping-out').appendChild(level_card);
+            checkNotification(item.identifier, "Tipping");
         }
     }
 
@@ -907,6 +925,7 @@ function getTipping() {
                 ''
             );
             document.getElementById('TippingCreators-out').appendChild(user_card);
+            checkNotification(user, "TippingCreators");
         }
     }
 }
@@ -925,6 +944,7 @@ function getRecords() {
                 ''
             );
             document.getElementById('Records-out').appendChild(user_card);
+            checkNotification(key, "Records");
         } else {
             lows += 1;
             totalLow += statistics.sorted_leaderboard_records[key][0];
@@ -945,6 +965,7 @@ function getTop100s() {
             ''
         );
         document.getElementById('Finishes-out').appendChild(user_card);
+        checkNotification(key, "Finishes");
     }
 }
 function getEmptyLeaderboards() {
@@ -953,6 +974,7 @@ function getEmptyLeaderboards() {
         const detail = `${Math.round((new Date() - new Date(level?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`;
         const level_card = genericLevelCard(level, detail);
         document.getElementById('Empty-out').appendChild(level_card);
+        checkNotification(level.identifier, "Empty");
     }
 }
 function getPersonalStats() {
@@ -1321,10 +1343,35 @@ function getAChallenge() {
     }
 }
 
+function checkNotification(item_id, element_id) {
+    if (!isLoggedIn) {
+        return;
+    }
+    if (item_id.indexOf(":") !== -1) {
+        item_id = item_id.split(":")[0];
+    }
+    if (item_id == user_id) {
+        const button = document.getElementById(element_id);
+        const sortButton = document.getElementById(element_id + "-sort-btn");
+        if (button) {
+            button.classList.add('notify');
+        } else if (sortButton) {
+            const mainButton = document.getElementById(sortButton.parentElement.id.replace("-sort-btn", ""));
+            if (mainButton) {
+                mainButton.classList.add('notify');
+            }
+        }
+        if (sortButton) {
+            sortButton.classList.add('notify');
+        }
+    }
+}
+
 // setup
 const user_name = localStorage.getItem('user_name');
 const user_id = localStorage.getItem('user_id');
 const isLoggedIn = (user_name && user_id);
+
 let statistics = {
     all_verified: undefined,
     unbeaten_levels: undefined,
