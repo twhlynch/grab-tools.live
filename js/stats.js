@@ -58,6 +58,9 @@ function levelCard(
     cardElement.classList.add('leaderboard-item');
     cardElement.classList.add('leaderboard-item-card');
     verified ? cardElement.classList.add('levelItemOk') : null;
+    if (isLoggedIn && identifier.split(":")[0] == user_id) {
+        cardElement.classList.add('card-personal');
+    }
 
     const imageElement = document.createElement('img');
     imageElement.src = '/img/thumbnail_loading.png';
@@ -144,6 +147,9 @@ function userCard(
     isVerified ? cardElement.classList.add('levelItemOk') : null;
     isModerator ? cardElement.classList.add('levelItemModerator') : null;
     isAdministrator ? cardElement.classList.add('levelItemAdministrator') : null;
+    if (isLoggedIn && identifier == user_id) {
+        cardElement.classList.add('card-personal');
+    }
 
     const userElement = document.createElement('a');
     userElement.setAttribute('href', userUrl);
@@ -950,9 +956,6 @@ function getEmptyLeaderboards() {
     }
 }
 function getPersonalStats() {
-    const user_name = localStorage.getItem('user_name');
-    const user_id = localStorage.getItem('user_id');
-    const isLoggedIn = (user_name && user_id);
     if (!isLoggedIn) {
         return;
     }
@@ -1178,6 +1181,9 @@ function getAChallenge() {
 }
 
 // setup
+const user_name = localStorage.getItem('user_name');
+const user_id = localStorage.getItem('user_id');
+const isLoggedIn = (user_name && user_id);
 let statistics = {
     all_verified: undefined,
     unbeaten_levels: undefined,
