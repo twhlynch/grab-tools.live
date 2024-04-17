@@ -44,7 +44,16 @@ def get_level_stats(level_identifier):
         return response
     else:
         print("ERROR: INVALID RESPONSE FROM SERVER")
-        return {}
+        return {
+    "level_identifier": level_identifier,
+    "total_played_count": 0,
+    "total_finished_count": 0,
+    "played_count": 100,
+    "finished_count": 1,
+    "rated_count": 0,
+    "liked_count": 0,
+    "tipped_amount": 0
+}
 
 def get_level_browser():
     browser_url = f"{SERVER_URL}get_level_browser?version=1"
