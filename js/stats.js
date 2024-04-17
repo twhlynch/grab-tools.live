@@ -1179,8 +1179,18 @@ function getDifficulties() {
         outputElement.style.display = 'none';
         listsContainer.appendChild(outputElement);
 
+        let avg_time = 0;
+        let times = 0;
+        for (const item of statistics.all_verified) {
+            if (item?.statistics?.difficulty_string == key && item?.statistics?.time) {
+                avg_time += item.statistics.time;
+                times += 1;
+            }
+        }
+        avg_time = avg_time / times;
+
         let titleElement = document.createElement('h2');
-        titleElement.innerText = key_lengths[key] + " " + key;
+        titleElement.innerText = key_lengths[key] + " " + key + " levels" + " - avg " + Math.round(avg_time) + "s";
         outputElement.appendChild(titleElement);
 
         let buttonElement = document.createElement('button');
@@ -1220,8 +1230,18 @@ function getDifficulties() {
         }
     }
 
+    let avg_time = 0;
+    let times = 0;
+    for (const item of statistics.all_verified) {
+        if (item?.statistics?.time) {
+            avg_time += item.statistics.time;
+            times += 1;
+        }
+    }
+    avg_time = avg_time / times;
+
     let titleElement = document.createElement('h2');
-    titleElement.innerText = key_lengths.total + " levels";
+    titleElement.innerText = key_lengths.total + " levels" + " - avg " + Math.round(avg_time) + "s";
     document.getElementById('Difficulties-out').appendChild(titleElement);
 
     const sorted = Object.entries(playerCompletions).sort((a, b) => {
