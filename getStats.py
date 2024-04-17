@@ -208,7 +208,8 @@ def get_unbeaten(all_verified_maps):
     for level in all_verified_maps:
         days_old = timestamp_to_days(level["creation_timestamp"])
         exceptions = [
-            "29sgp24f1uorbc6vq8d2k:lobby-temple"
+            "29sgp24f1uorbc6vq8d2k:lobby-temple",
+            "29sgp24f1uorbc6vq8d2k:1681631795"
         ]
         if level["statistics"]["difficulty"] == 0 and ((days_old > 1 and level["statistics"]["total_played"] > 300) or days_old > 10):
             stats = get_level_stats(level['identifier'])
