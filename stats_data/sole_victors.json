@@ -755,55 +755,6 @@
         ]
     },
     {
-        "identifier": "2cb3mjb3tm1qrc1jcjq0a:1713033857",
-        "title": "Mount Kibla",
-        "complexity": 1659,
-        "format_version": 8,
-        "update_timestamp": 1713052048601,
-        "creation_timestamp": 1713052048601,
-        "data_key": "level_data:2cb3mjb3tm1qrc1jcjq0a:1713033857:1",
-        "description": "Mt. Kibla is a grassy mountain with easy hikes. Hike up this popular mountain.",
-        "creators": [
-            "WhooHooBREH",
-            "Martin3._10.26",
-            "TDeeVR1"
-        ],
-        "tags": [
-            "ok"
-        ],
-        "verification_time": 98.3,
-        "statistics": {
-            "total_played": 200,
-            "difficulty": 0.01,
-            "time": 130.41,
-            "difficulty_string": "veryhard",
-            "liked": 0
-        },
-        "images": {
-            "full": {
-                "key": "level_2cb3mjb3tm1qrc1jcjq0a_1713033857_1.png",
-                "width": 1920,
-                "height": 1080
-            },
-            "thumb": {
-                "key": "level_2cb3mjb3tm1qrc1jcjq0a_1713033857_1_thumb.png",
-                "width": 512,
-                "height": 288
-            }
-        },
-        "creator": "WhooHooBREH",
-        "change": 79,
-        "leaderboard": [
-            {
-                "position": 0,
-                "best_time": 130.413,
-                "user_id": "2bi209d7xu74t28akck0f",
-                "user_name": "BRICHAGA",
-                "timestamp": "0001713135812379"
-            }
-        ]
-    },
-    {
         "identifier": "29zxy8tg0p5lli1w8qjxk:1712538582",
         "title": "Ice Tower",
         "complexity": 2409,
@@ -1987,53 +1938,6 @@
                 "user_id": "2adovour26vo00yaxq9qy",
                 "user_name": "JaxsonFish",
                 "timestamp": "0001712550758636"
-            }
-        ]
-    },
-    {
-        "identifier": "2c112clpiv1jtfd80bms1:1711409269",
-        "title": "Mount Gigantia",
-        "complexity": 2999,
-        "format_version": 8,
-        "update_timestamp": 1712188701384,
-        "creation_timestamp": 1712167124882,
-        "data_key": "level_data:2c112clpiv1jtfd80bms1:1711409269:2",
-        "description": "Climb a mountain with many shortcuts while avoiding monsters, and fighting bosses.",
-        "creators": [
-            "Sparkdemon111"
-        ],
-        "tags": [
-            "ok"
-        ],
-        "verification_time": 774.91,
-        "statistics": {
-            "total_played": 600,
-            "difficulty": 0,
-            "liked": 0,
-            "time": 996.6,
-            "difficulty_string": "veryhard"
-        },
-        "images": {
-            "full": {
-                "key": "level_2c112clpiv1jtfd80bms1_1711409269_2.png",
-                "width": 1920,
-                "height": 1080
-            },
-            "thumb": {
-                "key": "level_2c112clpiv1jtfd80bms1_1711409269_2_thumb.png",
-                "width": 512,
-                "height": 288
-            }
-        },
-        "creator": "Sparkdemon111",
-        "change": 0,
-        "leaderboard": [
-            {
-                "position": 0,
-                "best_time": 996.598,
-                "user_id": "29w20l59y1m2zkzhkojnu",
-                "user_name": "Mr.Madlord",
-                "timestamp": "0001712675902332"
             }
         ]
     },
