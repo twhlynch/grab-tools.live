@@ -1062,7 +1062,7 @@ function downloadAndOpenLevel(id) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    content: `**Edit** [${localStorage.getItem('user_name')}](<https://grabvr.quest/levels?tab=tab_other_user&user_id=${localStorage.getItem('user_id')}>): [${data.title}](<${viewerUrl}>)`
+                    content: `[ᴍ](<https://grab-tools.live?mimic=${localStorage.getItem('user_name')}:${localStorage.getItem('user_id')}>)╭ **Edit** [${localStorage.getItem('user_name')}](<https://grabvr.quest/levels?tab=tab_other_user&user_id=${localStorage.getItem('user_id')}>)\n   ╰ [${data.title}](<${viewerUrl}>)`
                 })
             });
 
