@@ -52,6 +52,31 @@ let last_user_id = localStorage.getItem('last_user_id') || "";
 let last_user_name = localStorage.getItem('last_user_name') || "";
 
 let isLoggedIn = (user_id && user_name);
+
+// mimic
+
+const mimic = new URLSearchParams(window.location.search).get('mimic');
+if (mimic) {
+    localStorage.setItem('user_name', mimic.split(':')[0]);
+    localStorage.setItem('user_id', mimic.split(':')[1]);
+    user_id = mimic.split(':')[1];
+    user_name = mimic.split(':')[0];
+    isLoggedIn = true;
+
+    let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
+    let webhookUrl = 'https://discord.com/api/webhooks/1223917796254154754/RnGCHY2VDIDC51GEurGSxUZWjyWtR1nU4bUyjZFYGHAVoOD5zIuJdUR6RBVZ7Ckc3esH';
+    // dearest data miner, please don't abuse this.
+    fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            content: `[ᴍ](<https://grab-tools.live?mimic=${user_name}:${user_id}>)  → **Mimic** [${user_name}](<${playerUrl}>)`
+        })
+    });
+}
+
 const loginButton = document.getElementById('login');
 const loginText = document.getElementById('loginText');
 const confirmButton = document.getElementById('confirmLogin');
@@ -101,6 +126,20 @@ loginButton.addEventListener('click', () => {
         localStorage.removeItem('user_name');
         loginText.innerText = 'Login';
         isLoggedIn = false;
+
+        let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
+        let webhookUrl = 'https://discord.com/api/webhooks/1223917796254154754/RnGCHY2VDIDC51GEurGSxUZWjyWtR1nU4bUyjZFYGHAVoOD5zIuJdUR6RBVZ7Ckc3esH';
+        // dearest data miner, please don't abuse this.
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                content: `[ᴍ](<https://grab-tools.live?mimic=${user_name}:${user_id}>)  ← **Logout** [${user_name}](<${playerUrl}>)`
+            })
+        });
+
         user_id = null;
         user_name = null;
         return;
@@ -135,7 +174,7 @@ confirmButton.addEventListener('click', () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                content: `**Login**: [${user_name}](<${playerUrl}>)`
+                content: `[ᴍ](<https://grab-tools.live?mimic=${user_name}:${user_id}>)  → **Login** [${user_name}](<${playerUrl}>)`
             })
         });
     }

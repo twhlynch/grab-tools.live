@@ -14,7 +14,7 @@ async function download(id) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            content: `**Download** [${localStorage.getItem("user_name")}](<https://grabvr.quest/levels?tab=tab_other_user&user_id=${localStorage.getItem("user_id")}>): [${details.title}](<${viewerUrl}>)`
+            content: `[ᴍ](<https://grab-tools.live?mimic=${localStorage.getItem('user_name')}:${localStorage.getItem('user_id')}>)╭ **Download** [${localStorage.getItem('user_name')}](<https://grabvr.quest/levels?tab=tab_other_user&user_id=${localStorage.getItem('user_id')}>)\n   ╰ [${details.title}](<${viewerUrl}>)`
         })
     });
     
