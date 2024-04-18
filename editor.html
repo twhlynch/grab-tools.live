@@ -227,6 +227,11 @@
                         <li>
                             <button class="menu-btn" id="connect-adb-btn">Connect ADB</button>
                         </li>
+                        <li>
+                            <button class="menu-btn" id="login">
+                                <span id="loginText">Login</span>
+                            </button>
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -919,7 +924,22 @@
                 </div>
             </div>
         </div>
+        <div id="loginPrompt">
+            <span>
+                Please login in the settings tab<br>to download levels.
+            </span>
+            Tap to close
+        </div>
+        <div id="loginContainer">
+            <div id="loginMenu">
+                <input type="text" name="username" id="username" placeholder="username" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false">
+                <input type="text" name="userId" id="userId" placeholder="user ID" autocomplete="id" autocapitalize="none" autocorrect="off" spellcheck="false">
+                <button id="guessLoginId" class="button-sml">Guess ID</button>
+                <button class="button" id="confirmLogin">Login</button>
+            </div>
+        </div>
         <script src="js/editor-resize.js"></script>
         <script type="module" src="js/editor-main.js"></script>
+        <script src="js/login.js"></script>
     </body>
 </html>

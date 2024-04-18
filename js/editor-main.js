@@ -318,7 +318,19 @@ async function initAttributes() {
     const paramId = urlParams.get('level');
 
     if (paramId) {
-        downloadAndOpenLevel(paramId);
+        const login_details = {
+            "user_name": localStorage.getItem('user_name'),
+            "user_id": localStorage.getItem('user_id')
+        }
+        if (login_details.user_name && login_details.user_id) {
+            downloadAndOpenLevel(paramId);
+        } else {
+            const loginPromptElement = document.getElementById('loginPrompt');
+            loginPromptElement.style.display = 'grid';
+            loginPromptElement.addEventListener('click', () => {
+                loginPromptElement.style.display = 'none';
+            });
+        }
     }
 
 }
