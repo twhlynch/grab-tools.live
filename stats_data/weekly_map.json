@@ -1,40 +1,25 @@
 {
-  "identifier": "2csu4um6mguafk7p7ik7k:1712698165",
-  "title": "LAVA MOVES (a fun minigame)",
-  "complexity": 443,
-  "format_version": 8,
-  "update_timestamp": 1712780866867,
-  "creation_timestamp": 1712780866867,
-  "data_key": "level_data:2csu4um6mguafk7p7ik7k:1712698165:1",
-  "description": "Dodge lava, having to move your body. LAVA MOVES!",
-  "creators": [
-    "GrizlGorilla",
-    "Meik123468"
-  ],
-  "tags": [
-    "minigame",
-    "ok"
-  ],
-  "verification_time": 204.71,
-  "statistics": {
-    "total_played": 600,
-    "difficulty": 0,
-    "difficulty_string": "impossible",
-    "liked": 0,
-    "time": 100
-  },
-  "images": {
-    "full": {
-      "key": "level_2csu4um6mguafk7p7ik7k_1712698165_1.png",
-      "width": 1920,
-      "height": 1080
-    },
-    "thumb": {
-      "key": "level_2csu4um6mguafk7p7ik7k_1712698165_1_thumb.png",
-      "width": 512,
-      "height": 288
-    }
-  },
-  "creator": "GrizlGorilla",
-  "change": 500
+ "identifier": "2b177hao1rzgp5hlnw0ki:1697852765",
+ "title": "HOT PARKOR",
+ "complexity": 567,
+ "format_version": 7,
+ "update_timestamp": 1697897714313,
+ "creation_timestamp": 1697897714313,
+ "data_key": "level_data:2b177hao1rzgp5hlnw0ki:1697852765:1",
+ "description": "YOU HAVE TO GET OUT NOW!",
+ "creators": [
+  "Willi_2009"
+ ],
+ "tags": [
+  "ok"
+ ],
+ "statistics": {
+  "total_played": 1000,
+  "difficulty": 0.0011668611435239206,
+  "liked": 0,
+  "time": 1229.63,
+  "difficulty_string": "veryhard"
+ },
+ "creator": "Willi_2009",
+ "change": 0
 }
