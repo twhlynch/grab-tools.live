@@ -58,7 +58,7 @@ function checkMetric(id, username) {
         for (let key in data) {
 
             const id = key;
-            const username = data[key][2];
+            const username = data[key][1];
 
             checkMetric(id, username);
 
@@ -71,7 +71,7 @@ function checkMetric(id, username) {
         for (let key in data) {
 
             const id = key.split(':')[0];
-            const username = key.split(':')[1];
+            const username = data[key][2];
 
             checkMetric(id, username);
 
