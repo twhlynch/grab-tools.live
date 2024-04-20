@@ -113,8 +113,26 @@ guessLogin.addEventListener('click', async () => {
 
             if (foundCreators.length > 0) {
                 userIdInput.value = foundCreators[0].user_id;
+                usernameInput.value = foundCreators[0].user_name;
             } else {
                 userIdInput.value = foundExacts[0].user_id;
+                usernameInput.value = foundExacts[0].user_name;
+            }
+        } else {
+            let foundCreators = [];
+
+            userList.forEach((item) => {
+                if (item.is_creator) {
+                    foundCreators.push(item);
+                }
+            });
+
+            if (foundCreators.length > 0) {
+                userIdInput.value = foundCreators[0].user_id;
+                usernameInput.value = foundCreators[0].user_name;
+            } else {
+                userIdInput.value = userList[0].user_id;
+                usernameInput.value = userList[0].user_name;
             }
         }
     }
