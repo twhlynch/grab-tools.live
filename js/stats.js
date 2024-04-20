@@ -1141,6 +1141,20 @@ function getPersonalStats() {
             longestHeader.style.display = 'block';
         }
     }
+
+    const featuredHeader = document.createElement('h2');
+    featuredHeader.innerText = 'Featured';
+    featuredHeader.style.display = 'none';
+    output.appendChild(featuredHeader);
+
+    for (const item of statistics.best_of_grab) {
+        const detail = item?.list_key.split(":").join("\n").replace("curated_", "").replaceAll("_", " ").toLowerCase();
+        const level_card = genericLevelCard(item, detail);
+        if (item.identifier.split(':')[0] == user_id) {
+            output.appendChild(level_card);
+            featuredHeader.style.display = 'block';
+        }
+    }
 }
 function getDifficulties() {
     let difficulty_keys = [
