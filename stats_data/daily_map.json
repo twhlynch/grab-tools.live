@@ -1,38 +1,26 @@
 {
- "identifier": "29z6lf2577bzy3kte8a5n:1707585756",
- "title": "BLOCK RELAY",
- "complexity": 1724,
- "format_version": 8,
- "update_timestamp": 1707593030317,
- "creation_timestamp": 1707593030317,
- "data_key": "level_data:29z6lf2577bzy3kte8a5n:1707585756:1",
- "description": "Climb up blocks and get to the end!",
+ "identifier": "29wtu55kcx5whczmidnx3:1652031912",
+ "title": "sewers",
+ "complexity": 991,
+ "format_version": 4,
+ "update_timestamp": 1652059477926,
+ "creation_timestamp": 1652056580975,
+ "data_key": "level_data:29wtu55kcx5whczmidnx3:1652031912:2",
+ "description": "go in the sewers and ecscape! but watch out there are monsters!",
  "creators": [
-  "Maxmag2011"
+  "obelizk",
+  "look-8"
  ],
  "tags": [
   "ok"
  ],
- "verification_time": 53.83,
  "statistics": {
-  "total_played": 400,
-  "difficulty": 0.03550295857988166,
-  "liked": 1,
-  "time": 76.066175,
-  "difficulty_string": "hard"
+  "total_played": 6240,
+  "difficulty": 0.683945552862204,
+  "liked": 0.7693700217233889,
+  "time": 97.63771818181834,
+  "difficulty_string": "easy"
  },
- "images": {
-  "full": {
-   "key": "level_29z6lf2577bzy3kte8a5n_1707585756_1.png",
-   "width": 1920,
-   "height": 1080
-  },
-  "thumb": {
-   "key": "level_29z6lf2577bzy3kte8a5n_1707585756_1_thumb.png",
-   "width": 512,
-   "height": 288
-  }
- },
- "creator": "Maxmag2011",
+ "creator": "obelizk",
  "change": 0
 }

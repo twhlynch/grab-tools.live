@@ -1,28 +1,38 @@
 {
- "identifier": "2a3gpy09xxjfr1wz03wpa:1696034468",
- "title": "Flinging inferno",
- "complexity": 1636,
- "format_version": 7,
- "update_timestamp": 1697070739264,
- "creation_timestamp": 1697070739264,
- "data_key": "level_data:2a3gpy09xxjfr1wz03wpa:1696034468:1",
+ "identifier": "2a6ekr378kiwrrodjri7e:1706820384",
+ "title": "Cyber-Sigilism",
+ "complexity": 2928,
+ "format_version": 8,
+ "update_timestamp": 1708883918447,
+ "creation_timestamp": 1706976930684,
+ "data_key": "level_data:2a6ekr378kiwrrodjri7e:1706820384:4",
+ "description": "Can you climb this large cyber-sigilism. Inspo from image, insanely difficult climb",
  "creators": [
-  "uwentpoo",
-  "sox",
-  "lowkeyvrpro",
-  "gman2giant",
-  "mr.piglet"
+  "YelloducVR"
  ],
  "tags": [
   "ok"
  ],
+ "verification_time": 444.28,
  "statistics": {
-  "total_played": 500,
+  "total_played": 400,
   "difficulty": 0,
   "difficulty_string": "impossible",
   "liked": 0,
   "time": 100
  },
- "creator": "uwentpoo",
+ "images": {
+  "full": {
+   "key": "level_2a6ekr378kiwrrodjri7e_1706820384_3.png",
+   "width": 1920,
+   "height": 1080
+  },
+  "thumb": {
+   "key": "level_2a6ekr378kiwrrodjri7e_1706820384_3_thumb.png",
+   "width": 512,
+   "height": 288
+  }
+ },
+ "creator": "YelloducVR",
  "change": 0
 }
