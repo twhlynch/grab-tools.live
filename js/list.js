@@ -1,6 +1,10 @@
 const maps = document.getElementById('maps');
 const players = document.getElementById('players');
 
+const user_id = localStorage.getItem('user_id');
+const user_name = localStorage.getItem('user_name');
+const isLoggedIn = (user_id && user_name);
+
 document.getElementById('sorters').addEventListener('click', (e) => {
     const id = e.target.id;
     if (id.includes('sort-btn')) {
@@ -19,7 +23,9 @@ fetch("/stats_data/hardest_levels_list.json")
         let level = data[i];
 
         maps.innerHTML += `
-        <div class="leaderboard-item list-item">
+        <div class="leaderboard-item list-item${
+            isLoggedIn && level.id.split(':')[0] === user_id ? ' card-personal' : ''
+        }">
             <p>${i+1}</p>
             <a href="https://grabvr.quest/levels/viewer?level=${level.id}" target="_blank">${level.title}</a>
             <p>${level.creator}</p>
@@ -206,19 +212,37 @@ function checkMetric(id, username) {
 
     // display
     const sorted = Object.entries(metrics).sort((a, b) => {return b[1].score - a[1].score});
-    metrics = sorted.slice(0, 100);
-    for (let i = 0; i < metrics.length; i++) {
-        const item = metrics[i];
+    top_metrics = sorted.slice(0, 100);
+
+    let isTop100 = false;
+    for (let i = 0; i < top_metrics.length; i++) {
+        const item = top_metrics[i];
         const id = item[0];
         const data = item[1];
 
         players.innerHTML += `
-        <div class="leaderboard-item list-item">
+        <div class="leaderboard-item list-item${
+            isLoggedIn && id === user_id ? ' card-personal' : ''
+        }">
             <p>${i + 1}</p>
             <a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}" target="_blank">${data.username}</a>
             <p>${Math.round(data.score*100)/100}</p>
         </div>
         `;
+        isLoggedIn && id === user_id ? isTop100 = true : null;
+    }
+
+    if (isLoggedIn && !isTop100) {
+        if (user_id in metrics) {
+            const index = sorted.findIndex((item) => item[0] === user_id);
+            players.innerHTML += `
+            <div class="leaderboard-item list-item card-personal">
+                <p>${index + 1}</p>
+                <a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${user_id}" target="_blank">${user_name}</a>
+                <p>${Math.round(metrics[user_id].score*100)/100}</p>
+            </div>
+        `;
+        }
     }
 
 })();
