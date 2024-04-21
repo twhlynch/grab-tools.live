@@ -1,26 +1,38 @@
 {
- "identifier": "29wtu55kcx5whczmidnx3:1652031912",
- "title": "sewers",
- "complexity": 991,
- "format_version": 4,
- "update_timestamp": 1652059477926,
- "creation_timestamp": 1652056580975,
- "data_key": "level_data:29wtu55kcx5whczmidnx3:1652031912:2",
- "description": "go in the sewers and ecscape! but watch out there are monsters!",
+ "identifier": "2a08opo8x86jsaz2bh0j5:1689048165",
+ "title": "monster world ch2: a hellish castle of torment",
+ "complexity": 851,
+ "format_version": 8,
+ "update_timestamp": 1713677744284,
+ "creation_timestamp": 1689832007111,
+ "data_key": "level_data:2a08opo8x86jsaz2bh0j5:1689048165:2",
+ "description": "smol chapter:D",
  "creators": [
-  "obelizk",
-  "look-8"
+  "portalboi2"
  ],
  "tags": [
   "ok"
  ],
+ "verification_time": 34.32,
  "statistics": {
-  "total_played": 6240,
-  "difficulty": 0.683945552862204,
-  "liked": 0.7693700217233889,
-  "time": 97.63771818181834,
-  "difficulty_string": "easy"
+  "total_played": 600,
+  "difficulty": 0.4,
+  "liked": 0.8,
+  "time": 87.07,
+  "difficulty_string": "medium"
  },
- "creator": "obelizk",
+ "images": {
+  "full": {
+   "key": "level_2a08opo8x86jsaz2bh0j5_1689048165_1.png",
+   "width": 1920,
+   "height": 1080
+  },
+  "thumb": {
+   "key": "level_2a08opo8x86jsaz2bh0j5_1689048165_1_thumb.png",
+   "width": 512,
+   "height": 288
+  }
+ },
+ "creator": "portalboi2",
  "change": 0
 }
