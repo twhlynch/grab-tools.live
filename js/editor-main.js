@@ -1155,8 +1155,27 @@ function saveDataAsFile(filename, data) {
 function exportLevelAsGLTF()
 {
 	const exporter = new GLTFExporter();
+    let clonedScene = scene.clone();
+
+    let objectsToRemove = [];
+
+    clonedScene.traverse((node) => {
+        if (node instanceof THREE.Object3D && node.children && node.children.length > 0) {
+            const hasParticles = node.children.some(child => child instanceof THREE.Points);
+            if (hasParticles) {
+                objectsToRemove.push(node);
+            }
+        }
+    });
+
+    for (let i = 0; i < objectsToRemove.length; i++) {
+        clonedScene.remove(objectsToRemove[i]);
+    }
+
+    console.log(clonedScene);
+
 	exporter.parse(
-	    scene,
+	    clonedScene,
 	    function ( gltf ) {
 
 	        console.log( gltf );
