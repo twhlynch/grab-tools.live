@@ -40,6 +40,7 @@ function checkMetric(id, username) {
     if (!(id in metrics)) {
         metrics[id] = {
             score: 0,
+            rank: 0,
             records: 0,
             finishes: 0,
             challengeScore: 0,
@@ -58,6 +59,7 @@ function checkMetric(id, username) {
             featuredRecords: 0,
             unbeatenMapPlays: 0,
             unbeatenMaps: 0,
+            positions: {},
             username: username
         };
     }
@@ -238,28 +240,39 @@ function checkMetric(id, username) {
     }
 
     // calculation
-    for (let key in metrics) {
-        const d = metrics[key];
-        
-        d.score = d.records // beating maps
-                + d.finishes // beating maps
 
-                + d.featuredRecords // beating popular maps
+    const usedMetrics = {
+        records: undefined, // beating maps
+        finishes: undefined, // beating maps
+        featuredRecords: undefined, // beating popular maps
+        challengeFinishes: undefined, // beating hard maps
+        challengeFirsts: undefined, // beating hard maps
+        challengeMaps: undefined, // making hard maps
+        soleVictories: undefined, // beating hard maps
+        averageVerifiedDifficulty: undefined, // making hard maps
+        verifiedVeryHardMaps: undefined, // making hard maps
+        verifiedImpossibleMaps: undefined, // making hard maps
+        unbeatenMapPlays: undefined, // making hard maps
+        unbeatenMaps: undefined // making hard maps
+    };
 
-                // + d.challengeScore // beating hard maps
-                + d.challengeFinishes // beating hard maps
-                + d.challengeFirsts // beating hard maps
-                + d.challengeMaps // making hard maps
+    const entries = Object.entries(metrics);
+    const metric_length = entries.length;
 
-                + d.soleVictories // beating hard maps
-
-                // + d.averageDifficulty // making hard maps
-                + d.averageVerifiedDifficulty; // making hard maps
-                + d.verifiedVeryHardMaps // making hard maps
-                + d.verifiedImpossibleMaps // making hard maps
-                + d.unbeatenMapPlays // making hard maps
-                + d.unbeatenMaps; // making hard maps
-
+    for (let key in usedMetrics) {
+        const sorted = entries.sort((a, b) => {return b[1][key] - a[1][key]});
+        sorted.forEach(([id], i) => {
+            metrics[id].positions[key] = i;
+        });
+    }
+    
+    for (let id in metrics) {
+        const d = metrics[id];
+        for (let key in usedMetrics) {
+            d.score += d[key];
+            d.rank += (1 - d.positions[key] / metric_length) / Object.entries(usedMetrics).length;
+        }
+        d.score += d.rank;
     }
 
     // display
