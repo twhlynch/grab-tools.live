@@ -16093,5 +16093,113 @@
   },
   1714108698,
   "weekly_map"
+ ],
+ [
+  [
+   {
+    "position": 0,
+    "best_time": 24.9089,
+    "user_id": "29gmek2pnwqqx27g565hs",
+    "user_name": "Stand.i",
+    "timestamp": "0001714073559497"
+   },
+   {
+    "position": 1,
+    "best_time": 30.8857,
+    "user_id": "2ahqab7l32dix7yki265z",
+    "user_name": "SixBrownies",
+    "timestamp": "0001714074390506"
+   },
+   {
+    "position": 2,
+    "best_time": 33.8598,
+    "user_id": "2bf8hyynuelajywj9k4n7",
+    "user_name": "Polaris8477",
+    "timestamp": "0001714071674815"
+   }
+  ],
+  {
+   "identifier": "29rqdxks1jyqbrdnw6ggs:1714058956",
+   "title": "The Kings Caverns",
+   "complexity": 682,
+   "format_version": 8,
+   "update_timestamp": 1714085507610,
+   "creation_timestamp": 1714070824607,
+   "data_key": "level_data:29rqdxks1jyqbrdnw6ggs:1714058956:2",
+   "creators": [
+    "CYDIGI3"
+   ],
+   "tags": [
+    "ok"
+   ],
+   "verification_time": 43.78,
+   "statistics": {
+    "total_played": 75,
+    "difficulty": 0.16,
+    "liked": 0.88,
+    "time": 55.7,
+    "difficulty_string": "medium"
+   },
+   "images": {
+    "full": {
+     "key": "level_29rqdxks1jyqbrdnw6ggs_1714058956_4.png",
+     "width": 1920,
+     "height": 1080
+    },
+    "thumb": {
+     "key": "level_29rqdxks1jyqbrdnw6ggs_1714058956_4_thumb.png",
+     "width": 512,
+     "height": 288
+    }
+   },
+   "creator": "CYDIGI3",
+   "change": 75
+  },
+  1714195000,
+  "daily_map"
+ ],
+ [
+  [],
+  {
+   "identifier": "2bcilwsqwgpzjka37m1pt:1711659097",
+   "title": "furious realm BOSS BATTLE",
+   "complexity": 1454,
+   "format_version": 8,
+   "update_timestamp": 1711683684222,
+   "creation_timestamp": 1711683684222,
+   "data_key": "level_data:2bcilwsqwgpzjka37m1pt:1711659097:1",
+   "creators": [
+    "BluWarren",
+    "ConcretePlatform",
+    "Jaycobisthebomb"
+   ],
+   "tags": [
+    "ok"
+   ],
+   "verification_time": 108.47,
+   "statistics": {
+    "total_played": 700,
+    "difficulty": 0,
+    "difficulty_string": "impossible",
+    "liked": 0,
+    "time": 100
+   },
+   "images": {
+    "full": {
+     "key": "level_2bcilwsqwgpzjka37m1pt_1711659097_1.png",
+     "width": 1920,
+     "height": 1080
+    },
+    "thumb": {
+     "key": "level_2bcilwsqwgpzjka37m1pt_1711659097_1_thumb.png",
+     "width": 512,
+     "height": 288
+    }
+   },
+   "creator": "BluWarren",
+   "change": 0
+  },
+  1714195000,
+  "unbeaten_map"
  ]
 ]

@@ -1,37 +1,40 @@
 {
- "identifier": "29rqdxks1jyqbrdnw6ggs:1714058956",
- "title": "The Kings Caverns",
- "complexity": 682,
+ "identifier": "2bb7ndvntrf86g47ciwxn:1708956102",
+ "title": "DisasterSurvival UPD 1.6",
+ "complexity": 2248,
  "format_version": 8,
- "update_timestamp": 1714085507610,
- "creation_timestamp": 1714070824607,
- "data_key": "level_data:29rqdxks1jyqbrdnw6ggs:1714058956:2",
+ "update_timestamp": 1713716387295,
+ "creation_timestamp": 1709586537518,
+ "data_key": "level_data:2bb7ndvntrf86g47ciwxn:1708956102:9",
+ "description": "6 diffrent maps, 5 diffrent dissasters.",
  "creators": [
-  "CYDIGI3"
+  "danny",
+  "jeffbobdude",
+  "thenothing"
  ],
  "tags": [
   "ok"
  ],
- "verification_time": 43.78,
+ "verification_time": 56.24,
  "statistics": {
-  "total_played": 75,
-  "difficulty": 0.16,
-  "liked": 0.88,
-  "time": 55.7,
+  "total_played": 5200,
+  "difficulty": 0.28,
+  "liked": 0.84,
+  "time": 62.64,
   "difficulty_string": "medium"
  },
  "images": {
   "full": {
-   "key": "level_29rqdxks1jyqbrdnw6ggs_1714058956_4.png",
+   "key": "level_2bb7ndvntrf86g47ciwxn_1708956102_17.png",
    "width": 1920,
    "height": 1080
   },
   "thumb": {
-   "key": "level_29rqdxks1jyqbrdnw6ggs_1714058956_4_thumb.png",
+   "key": "level_2bb7ndvntrf86g47ciwxn_1708956102_17_thumb.png",
    "width": 512,
    "height": 288
   }
  },
- "creator": "CYDIGI3",
- "change": 75
+ "creator": "danny",
+ "change": 100
 }

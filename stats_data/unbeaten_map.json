@@ -1,39 +1,41 @@
 {
- "identifier": "2bcilwsqwgpzjka37m1pt:1711659097",
- "title": "furious realm BOSS BATTLE",
- "complexity": 1454,
+ "identifier": "2a4u79hublovo3rg23tm5:1706492630",
+ "title": "TOWER OF HELL PT.2",
+ "complexity": 2865,
  "format_version": 8,
- "update_timestamp": 1711683684222,
- "creation_timestamp": 1711683684222,
- "data_key": "level_data:2bcilwsqwgpzjka37m1pt:1711659097:1",
+ "update_timestamp": 1706573946102,
+ "creation_timestamp": 1706573946102,
+ "data_key": "level_data:2a4u79hublovo3rg23tm5:1706492630:1",
+ "description": "2X LONGER",
  "creators": [
-  "BluWarren",
-  "ConcretePlatform",
-  "Jaycobisthebomb"
+  "GALAXY0921",
+  "ANDRE0605",
+  "PUPPYBRAXTON.2023"
  ],
  "tags": [
   "ok"
  ],
- "verification_time": 108.47,
+ "verification_time": 1105.47,
  "statistics": {
-  "total_played": 700,
-  "difficulty": 0,
-  "difficulty_string": "impossible",
-  "liked": 0,
-  "time": 100
+  "total_played": 300,
+  "difficulty": 0.0034965034965034965,
+  "liked": 1,
+  "time": 767.924,
+  "difficulty_string": "veryhard"
  },
  "images": {
   "full": {
-   "key": "level_2bcilwsqwgpzjka37m1pt_1711659097_1.png",
+   "key": "level_2a4u79hublovo3rg23tm5_1706492630_1.png",
    "width": 1920,
    "height": 1080
   },
   "thumb": {
-   "key": "level_2bcilwsqwgpzjka37m1pt_1711659097_1_thumb.png",
+   "key": "level_2a4u79hublovo3rg23tm5_1706492630_1_thumb.png",
    "width": 512,
    "height": 288
   }
  },
- "creator": "BluWarren",
+ "creator": "GALAXY0921",
+ "sole": true,
  "change": 0
 }
