@@ -64,8 +64,7 @@ if (mimic) {
     isLoggedIn = true;
 
     let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
-    let webhookUrl = 'https://discord.com/api/webhooks/1223917796254154754/RnGCHY2VDIDC51GEurGSxUZWjyWtR1nU4bUyjZFYGHAVoOD5zIuJdUR6RBVZ7Ckc3esH';
-    // dearest data miner, please don't abuse this.
+    let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
     fetch(webhookUrl, {
         method: 'POST',
         headers: {
@@ -146,7 +145,7 @@ loginButton.addEventListener('click', () => {
         isLoggedIn = false;
 
         let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
-        let webhookUrl = 'https://discord.com/api/webhooks/1223917796254154754/RnGCHY2VDIDC51GEurGSxUZWjyWtR1nU4bUyjZFYGHAVoOD5zIuJdUR6RBVZ7Ckc3esH';
+        let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
         // dearest data miner, please don't abuse this.
         fetch(webhookUrl, {
             method: 'POST',
@@ -184,7 +183,7 @@ confirmButton.addEventListener('click', () => {
         loginText.innerText = user_name;
 
         let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
-        let webhookUrl = 'https://discord.com/api/webhooks/1223917796254154754/RnGCHY2VDIDC51GEurGSxUZWjyWtR1nU4bUyjZFYGHAVoOD5zIuJdUR6RBVZ7Ckc3esH';
+        let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
         // dearest data miner, please don't abuse this.
         fetch(webhookUrl, {
             method: 'POST',

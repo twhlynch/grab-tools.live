@@ -6,8 +6,7 @@ async function download(id) {
     let details = await response.json();
 
     let viewerUrl = 'http://grabvr.quest/levels/viewer?level=' + id;
-    let webhookUrl = 'https://discord.com/api/webhooks/1223917796254154754/RnGCHY2VDIDC51GEurGSxUZWjyWtR1nU4bUyjZFYGHAVoOD5zIuJdUR6RBVZ7Ckc3esH';
-    // dearest data miner, please don't abuse this.
+    let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
     await fetch(webhookUrl, {
         method: 'POST',
         headers: {
