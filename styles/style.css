@@ -22,6 +22,10 @@
     --font-size-small: 12px;
     --font-size-big: 24px;
     --font-size-xl: 48px;
+
+    --first-color: #d4982955;
+    --second-color: #81818155;
+    --third-color: #dd710d55;
 }
 * {
     margin: 0;
@@ -303,6 +307,13 @@ h1.title {
     border-left: solid 5px transparent;
     font-size: var(--font-size-default);
 }
+.ultra-dark-mode .leaderboard-item {
+    color: #b9b9b9;
+    background: #2e5d9723;
+}
+.ultra-dark-mode .leaderboard-item a, .ultra-dark-mode .leaderboard-item span {
+    color: #1e54a0;
+}
 .leaderboard-item:not(.leaderboard-item-card) span:nth-last-child(1), .leaderboard-item-card span:nth-last-child(2) {
     margin-left: auto;
 }
@@ -313,15 +324,15 @@ h1.title {
 }
 
 .LeaderboardOutput > .leaderboard-item:nth-child(1) {
-    background-color: #d4982955;
+    background-color: var(--first-color);
     font-weight: 600;
 }
 .LeaderboardOutput > .leaderboard-item:nth-child(2) {
-    background-color: #81818155;
+    background-color: var(--second-color);
     font-weight: 600;
 }
 .LeaderboardOutput > .leaderboard-item:nth-child(3) {
-    background-color: #dd710d55;
+    background-color: var(--third-color);
     font-weight: 600;
 }
 #DailyMap-out > .leaderboard-item:nth-child(2), 
@@ -330,7 +341,7 @@ h1.title {
 #AChallengeMaps-out > .leaderboard-item:nth-child(2), 
 #UnbeatenMap-out > .leaderboard-item:nth-child(2),
 .Difficulties-out > .leaderboard-item:nth-child(2) {
-    background-color: #d4982955 !important;
+    background-color: var(--first-color) !important;
 }
 #DailyMap-out > .leaderboard-item:nth-child(3), 
 #WeeklyMap-out > .leaderboard-item:nth-child(3), 
@@ -338,7 +349,7 @@ h1.title {
 #AChallengeMaps-out > .leaderboard-item:nth-child(3), 
 #UnbeatenMap-out > .leaderboard-item:nth-child(3),
 .Difficulties-out > .leaderboard-item:nth-child(3) {
-    background-color: #81818155 !important;
+    background-color: var(--second-color) !important;
 }
 #DailyMap-out > .leaderboard-item:nth-child(4), 
 #WeeklyMap-out > .leaderboard-item:nth-child(4), 
@@ -346,7 +357,7 @@ h1.title {
 #AChallengeMaps-out > .leaderboard-item:nth-child(4), 
 #UnbeatenMap-out > .leaderboard-item:nth-child(4),
 .Difficulties-out > .leaderboard-item:nth-child(4) {
-    background-color: #dd710d55 !important;
+    background-color: var(--third-color) !important;
 }
 
 #CheckBestOfGrab-out > .leaderboard-item:nth-child(1),
@@ -359,6 +370,11 @@ h1.title {
 #PersonalStats-out > .leaderboard-item:nth-child(2), 
 #PersonalStats-out > .leaderboard-item:nth-child(3) {
     background-color: #2e5d9740;
+}
+.ultra-dark-mode #PersonalStats-out > .leaderboard-item:nth-child(1), 
+.ultra-dark-mode #PersonalStats-out > .leaderboard-item:nth-child(2), 
+.ultra-dark-mode #PersonalStats-out > .leaderboard-item:nth-child(3) {
+    background-color: #2e5d9723;
 }
 
 .challengeOutput > .leaderboard-item:nth-child(2) > :nth-child(1)::after,
@@ -402,6 +418,13 @@ h1.title {
     aspect-ratio: 512/288;
     border-radius: 3px;
 }
+.ultra-dark-mode .leaderboard-item img {
+    opacity: 0.8;
+}
+.ultra-dark-mode .leaderboard-item img[src="/img/thumbnail_error.png"],
+.ultra-dark-mode .leaderboard-item img[src="/img/thumbnail_loading.png"] {
+    opacity: 0.4;
+}
 .leaderboard-item-info {
     max-width: 50%;
 }
@@ -417,6 +440,10 @@ h1.title {
 .tab-active {
     background-color: #5f8cc235;
     border: solid 2px #4683ce70;
+}
+.ultra-dark-mode .tab-active {
+    background-color: #5f8cc223;
+    border: solid 2px #4683ce40;
 }
 /* .LeaderboardOutput#Trending-out {
     display: flex;
@@ -591,11 +618,17 @@ input, #smorg-urls, #other-tools textarea {
     background-color: transparent;
     border: none;
 }
-#darkMode.dark svg:nth-last-child(1) {
+#darkMode svg {
     display: none;
 }
-#darkMode:not(.dark) svg:nth-child(1) {
-    display: none;
+#darkMode:not(.dark):not(.ultra-dark) svg:nth-child(1) {
+    display: block;
+}
+#darkMode.dark:not(.ultra-dark) svg:nth-last-child(2) {
+    display: block;
+}
+#darkMode.ultra-dark svg:nth-child(3) {
+    display: block;
 }
 
 html.dark-mode {
@@ -611,6 +644,24 @@ html.dark-mode {
 }
 html.dark-mode .leaderboard-item span:nth-last-child(2), html.dark-mode .leaderboard-item-card span:nth-last-child(2) {
     color: #a6b8c1;
+}
+html.ultra-dark-mode {
+    --text-color-default: #eaeaea;
+    --text-color-alt: #c1c1c1;
+    --text-color-accent: #dddddd;
+    --background-color-default: #222222;
+    --background-color-alt: #363636;
+    --text-color-link: #1e54a0;
+    --border-color: #eaeaea20;
+    background-image: linear-gradient(#050505, #091421, #050505);
+    background-color: #050505;
+
+    --first-color: #d4982933;
+    --second-color: #81818133;
+    --third-color: #dd710d33;
+}
+html.ultra-dark-mode .leaderboard-item span:nth-last-child(2), html.ultra-dark-mode .leaderboard-item-card span:nth-last-child(2) {
+    color: #c1c1c1;
 }
 .button-sml {
     text-decoration: none;
@@ -647,6 +698,14 @@ html.dark-mode .leaderboard-item span:nth-last-child(2), html.dark-mode .leaderb
     gap: var(--padding-secondary);
     background-color: #5f8cc235;
     width: fit-content;
+}
+
+.ultra-dark-mode .button-sml {
+    opacity: 0.7;
+}
+
+.ultra-dark-mode .button-super-sml {
+    opacity: 0.8;
 }
 
 #other-user-options {
@@ -821,7 +880,7 @@ div#questMultiSelect {
     width: fit-content;
     z-index: 10000;
 }
-.dark-mode #loginMenu {
+.dark-mode #loginMenu, .ultra-dark-mode #loginMenu {
     background-color: #2c415bf9;
     border: solid 2px #3f75b7f0;
 }
@@ -836,6 +895,10 @@ div#questMultiSelect {
 .dark-mode .card-personal {
     box-shadow: inset 0 0 40px #3e8953a0;
     border: 2px solid #3e8953a0;
+}
+.ultra-dark-mode .card-personal {
+    box-shadow: inset 0 0 40px #306a40a0;
+    border: 2px solid #1d843aa0;
 }
 #PersonalStats-out .card-personal, #LevelSearch-out .card-personal {
     box-shadow: none;
@@ -869,7 +932,8 @@ div#questMultiSelect {
     position: absolute;
     transform: translate(-120%, -170%);
 }
-.dark-mode .sort-btn.notify::after, .dark-mode .stats-button.notify::after {
+.dark-mode .sort-btn.notify::after, .dark-mode .stats-button.notify::after,
+.ultra-dark-mode.sort-btn.notify::after, .ultra-dark-mode.stats-button.notify::after {
     background-color: #51d677a0;
 }
 #loginRestrictionPopup {
