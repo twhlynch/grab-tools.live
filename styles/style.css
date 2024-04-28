@@ -943,9 +943,13 @@ div#questMultiSelect {
     width: fit-content;
     z-index: 10000;
 }
-.dark-mode #loginMenu, .ultra-dark-mode #loginMenu {
+.dark-mode #loginMenu {
     background-color: #2c415bf9;
     border: solid 2px #3f75b7f0;
+}
+.ultra-dark-mode #loginMenu {
+    background-color: #121b25f9;
+    border: solid 2px #213d60f0;
 }
 #loginMenu input::placeholder {
     color: var(--text-color-default);

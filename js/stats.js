@@ -58,7 +58,7 @@ function levelCard(
     cardElement.classList.add('leaderboard-item');
     cardElement.classList.add('leaderboard-item-card');
     verified ? cardElement.classList.add('levelItemOk') : null;
-    if (isLoggedIn && identifier.split(":")[0] == user_id) {
+    if (session.isLoggedIn && identifier.split(":")[0] == session.user_id) {
         cardElement.classList.add('card-personal');
     }
 
@@ -147,7 +147,7 @@ function userCard(
     isVerified ? cardElement.classList.add('levelItemOk') : null;
     isModerator ? cardElement.classList.add('levelItemModerator') : null;
     isAdministrator ? cardElement.classList.add('levelItemAdministrator') : null;
-    if (isLoggedIn && identifier == user_id) {
+    if (session.isLoggedIn && identifier == session.user_id) {
         cardElement.classList.add('card-personal');
     }
 
@@ -980,7 +980,7 @@ function getEmptyLeaderboards() {
     }
 }
 function getPersonalStats() {
-    if (!isLoggedIn) {
+    if (!session.isLoggedIn) {
         return;
     }
     const personalButton = document.getElementById('PersonalStats');
@@ -1363,9 +1363,12 @@ function checkNotification(item_id, element_id) {
 }
 
 // setup
-const user_name = localStorage.getItem('user_name');
-const user_id = localStorage.getItem('user_id');
-const isLoggedIn = (user_name && user_id);
+const session = {
+    user_name: localStorage.getItem('user_name'),
+    user_id: localStorage.getItem('user_id'),
+    isLoggedIn: false
+};
+session.isLoggedIn = (session.user_name && session.user_id);
 
 let statistics = {
     all_verified: undefined,
