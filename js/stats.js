@@ -199,17 +199,19 @@ function getUnbeatenLevels() {
     for (const item of sortedByUpdated) {
         const detail = `${Math.round((new Date() - new Date(item?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`;
         const level_card = genericLevelCard(item, detail);
-        if ("sole" in item) { level_card.style.borderColor = "#ff000055"; }
-        document.getElementById('UnbeatenMapsUpdated-out').appendChild(level_card);
-        checkNotification(item.identifier, "UnbeatenMapsUpdated");
+        if (!("sole" in item)) {
+            document.getElementById('UnbeatenMapsUpdated-out').appendChild(level_card);
+            checkNotification(item.identifier, "UnbeatenMapsUpdated");
+        }
     }
 
     for (const item of sortedByCreated) {
         const detail = `${Math.round((new Date() - new Date(item?.creation_timestamp)) / (1000 * 60 * 60 * 24))} days`;
         const level_card = genericLevelCard(item, detail);
-        if ("sole" in item) { level_card.style.borderColor = "#ff000055"; }
-        document.getElementById('UnbeatenMapsCreated-out').appendChild(level_card);
-        checkNotification(item.identifier, "UnbeatenMapsCreated");
+        if (!("sole" in item)) {
+            document.getElementById('UnbeatenMapsCreated-out').appendChild(level_card);
+            checkNotification(item.identifier, "UnbeatenMapsCreated");
+        }
     }
 }
 function getTopPlayers() {
