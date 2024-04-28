@@ -185,8 +185,8 @@ function genericLevelCard(level, detail, timestamp='') {
 // stats functions
 function getUnbeatenLevels() {
     document.getElementById('Global-out').innerHTML += `<p>Unbeaten maps: ${statistics.unbeaten_levels.length}</p>`;
-    const sortedByUpdated = statistics.unbeaten_levels.sort((a, b) => a.update_timestamp - b.update_timestamp);
-    const sortedByCreated = statistics.unbeaten_levels.sort((a, b) => a.creation_timestamp - b.creation_timestamp);
+    const sortedByUpdated = [...statistics.unbeaten_levels].sort((a, b) => a.update_timestamp - b.update_timestamp);
+    const sortedByCreated = [...statistics.unbeaten_levels].sort((a, b) => a.creation_timestamp - b.creation_timestamp);
 
     for (const item of statistics.unbeaten_levels) {
         const detail = `${Math.round((new Date() - new Date(item?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`;
