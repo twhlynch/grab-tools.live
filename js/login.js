@@ -146,7 +146,6 @@ loginButton.addEventListener('click', () => {
 
         let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
         let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
-        // dearest data miner, please don't abuse this.
         fetch(webhookUrl, {
             method: 'POST',
             headers: {
@@ -184,7 +183,6 @@ confirmButton.addEventListener('click', () => {
 
         let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
         let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
-        // dearest data miner, please don't abuse this.
         fetch(webhookUrl, {
             method: 'POST',
             headers: {

@@ -529,7 +529,7 @@ function getBestOfGrab() {
             playerFeatures[userId] = {score: 0, user_name: ''};
         }
         playerFeatures[userId].score += 1;
-        if (!playerFeatures[userId].user_name) {
+        if (!playerFeatures[userId].user_name || playerFeatures[userId].user_name === 'undefined') {
             playerFeatures[userId].user_name = (""+item?.creators).split(',')[0];
         }
 
