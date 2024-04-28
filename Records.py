@@ -1,35 +1,15 @@
-import json, requests, contextlib
+import json
+import requests
+import contextlib
+from concurrent.futures import ThreadPoolExecutor
 
-with open("stats_data/all_verified.json") as file:
-    data = json.load(file)
-
-difficulty_records = {
-    "unrated": {},
-    "easy": {},
-    "medium": {},
-    "hard": {},
-    "veryhard": {},
-    "impossible": {}
-}
-difficulty_lengths = {
-    "unrated": 0,
-    "easy": 0,
-    "medium": 0,
-    "hard": 0,
-    "veryhard": 0,
-    "impossible": 0,
-    "total": 0
-}
-leaderboard = {}
-empty_leaderboards = []
-sole_victors = []
-user_finishes = {}
-difficulty_lengths["total"] = len(data)
-for i, level in enumerate(data, start=1):
+def process_level(level):
     identifier = level["identifier"].replace(":", "/")
     url = f"https://api.slin.dev/grab/v1/statistics_top_leaderboard/{identifier}"
+    res_data = []
     with contextlib.suppress(Exception):
         res_data = requests.get(url).json()
+    
     if len(res_data) != 0:
         level["leaderboard"] = res_data
         if len(res_data) == 1:
@@ -59,12 +39,41 @@ for i, level in enumerate(data, start=1):
         if record["user_id"] not in user_finishes:
             user_finishes[record["user_id"]] = [0, record["user_name"]]
         user_finishes[record["user_id"]][0] += 1
-    
-    print(i)
-    i += 1
+    print(f"Processed {level['title']}")
+
+with open("stats_data/all_verified.json") as file:
+    data = json.load(file)
+
+difficulty_records = {
+    "unrated": {},
+    "easy": {},
+    "medium": {},
+    "hard": {},
+    "veryhard": {},
+    "impossible": {}
+}
+difficulty_lengths = {
+    "unrated": 0,
+    "easy": 0,
+    "medium": 0,
+    "hard": 0,
+    "veryhard": 0,
+    "impossible": 0,
+    "total": 0
+}
+leaderboard = {}
+empty_leaderboards = []
+sole_victors = []
+user_finishes = {}
+difficulty_lengths["total"] = len(data)
+
+with ThreadPoolExecutor() as executor:
+    futures = [executor.submit(process_level, level) for level in data]
+
+    for future in futures:
+        future.result()
 
 sorted_leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][0], reverse=True))
-
 
 with open("stats_data/user_finishes.json", "w") as file:
     json.dump(user_finishes, file)
@@ -80,9 +89,9 @@ with open("stats_data/leaderboard_levels.json", "w") as file:
 
 with open("stats_data/sole_victors.json", "w") as file:
     json.dump(sole_victors, file, indent=4)
-    
+
 with open("stats_data/difficulty_records.json", "w") as file:
     json.dump(difficulty_records, file)
-    
+
 with open("stats_data/difficulty_lengths.json", "w") as file:
     json.dump(difficulty_lengths, file, indent=4)
