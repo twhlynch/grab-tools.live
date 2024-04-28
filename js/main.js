@@ -81,3 +81,9 @@ if (localStorage.getItem("darkMode") === "true") {
     document.body.parentElement.classList.add("ultra-dark-mode");
     darkModeButton.classList.add("ultra-dark");
 }
+
+const currentLocation = window.location.pathname.replace("/", "").replace(".html", "");
+const currentTab = document.getElementById("tab-" + currentLocation);
+if (currentTab) {
+    currentTab.classList.add("current");
+}

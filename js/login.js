@@ -85,7 +85,8 @@ const usernameInput = document.getElementById('username');
 const userIdInput = document.getElementById('userId');
 const guessLogin = document.getElementById('guessLoginId');
 if (isLoggedIn) {
-    loginText.innerText = user_name ;
+    loginText.innerText = user_name;
+    loginButton.classList.add('logged-in');
 }
 
 guessLogin.addEventListener('click', async () => {
@@ -142,6 +143,7 @@ loginButton.addEventListener('click', () => {
         localStorage.removeItem('user_id');
         localStorage.removeItem('user_name');
         loginText.innerText = 'Login';
+        loginButton.classList.remove('logged-in');
         isLoggedIn = false;
 
         let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
@@ -180,6 +182,7 @@ confirmButton.addEventListener('click', () => {
         localStorage.setItem('last_user_name', user_name);
         localStorage.setItem('last_user_id', user_id);
         loginText.innerText = user_name;
+        loginButton.classList.add('logged-in');
 
         let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
         let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
