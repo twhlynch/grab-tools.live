@@ -69,6 +69,62 @@ nav {
     gap: var(--padding-secondary);
     padding-block: var(--padding-secondary);
     flex-wrap: wrap;
+
+    padding-inline: 2rem;
+}
+nav a.button {
+    border: none;
+    position: relative;
+}
+nav a.button::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 3px;
+    background-color: var(--text-color-default);
+    transition: all 0.2s ease-in-out;
+    position: absolute;
+    border-radius: 5px;
+    top: 0;
+    left: calc(50% - 3px);
+    opacity: 0.2;
+}
+nav a.button:hover::before {
+    width: 50%;
+    left: 25%;
+    opacity: 1;
+}
+nav a.button.current::before {
+    opacity: 1;
+}
+#login {
+    margin-left: auto;
+    position: relative;
+}
+#login.logged-in::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 3px;
+    background-color: var(--text-color-default);
+    transition: all 0.2s ease-in-out;
+    position: absolute;
+    border-radius: 5px;
+    top: 0;
+    left: calc(50% - 3px);
+    opacity: 0.2;
+}
+@media screen and (max-width: 535px) {
+    #login {
+        font-size: 0;
+        gap: 0;
+    }
+    nav {
+        padding-inline: 1rem;
+    }
+    main {
+        width: min(800px, 90%);
+    }
 }
 section {
     padding: var(--padding-main);
@@ -81,7 +137,7 @@ section {
     fill: var(--text-color-default);
 }
 p a {
-    font-size: var(--font-size-alt);
+    font-size: var(--font-size-default);
     color: var(--text-color-link);
     text-decoration: none;
 }
@@ -144,6 +200,7 @@ h2 {
     align-items: center;
     gap: var(--padding-secondary);
     background-color: #0000;
+    cursor: pointer;
 }
 footer {
     margin-inline: auto;
@@ -477,6 +534,9 @@ h1.title {
     color: #2976d4;
     margin-bottom: 0;
 }
+#advertisement h2 {
+    color: var(--text-color-alt);
+}
 #other-tools input,
 #other-tools textarea {
     width: 100%;
@@ -617,6 +677,7 @@ input, #smorg-urls, #other-tools textarea {
     flex-wrap: wrap;
     background-color: transparent;
     border: none;
+    cursor: pointer;
 }
 #darkMode svg {
     display: none;
@@ -698,6 +759,7 @@ html.ultra-dark-mode .leaderboard-item span:nth-last-child(2), html.ultra-dark-m
     gap: var(--padding-secondary);
     background-color: #5f8cc235;
     width: fit-content;
+    cursor: pointer;
 }
 
 .ultra-dark-mode .button-sml {
@@ -965,7 +1027,16 @@ div#questMultiSelect {
     margin-inline: auto;
     padding-inline: 10px;
 }
-
+@media screen and (max-width: 470px) {
+    nav > a.button {
+        font-size: 0;
+        gap: 0;
+        border: none;
+    }
+    nav > a.button > .hidden-icon-button {
+        display: flex;
+    }
+}
 @media screen and (max-width: 400px) {
     .stats-button.notify::after {
         transform: translate(-150%, -220%);

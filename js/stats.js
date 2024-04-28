@@ -489,7 +489,7 @@ function getGlobalPlays() {
     globalData.average_plays = globalData.plays / globalData.verified_maps;
     globalData.average_complexity = globalData.complexity / globalData.verified_maps;
 
-    document.getElementById('counter').innerHTML = `<b>Total global plays: ${numberWithCommas(globalData.plays)}</b>`;
+    // document.getElementById('counter').innerHTML = `<b>Total global plays: ${numberWithCommas(globalData.plays)}</b>`;
     document.getElementById('Global-out').innerHTML += `<p>Total plays: ${numberWithCommas(globalData.plays)}</p>`;
     document.getElementById('Global-out').innerHTML += `<p>Verified maps: ${numberWithCommas(globalData.verified_maps)}</p>`;
     document.getElementById('Global-out').innerHTML += `<p>Todays plays: ${numberWithCommas(globalData.todays_plays)}</p>`;
