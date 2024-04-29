@@ -1370,6 +1370,36 @@ const session = {
 };
 session.isLoggedIn = (session.user_name && session.user_id);
 
+document.addEventListener('logout', () => {
+    session.isLoggedIn = false;
+    session.user_name = null;
+    session.user_id = null;
+    document.getElementById("PersonalStats-out").innerHTML = "";
+    document.getElementById("PersonalStats").style.display = "none";
+    document.querySelectorAll('.notify').forEach(e => {
+        e.classList.remove('notify');
+    });
+    document.querySelectorAll('.card-personal').forEach(e => {
+        e.classList.remove('card-personal');
+    });
+});
+
+document.addEventListener('login', (e) => {
+    session.isLoggedIn = true;
+    session.user_name = e.detail.user_name;
+    session.user_id = e.detail.user_id;
+    document.querySelectorAll('.LeaderboardOutput').forEach(e => {
+        if (e.id == "LevelSearch-out") {
+            document.getElementById("other-user-options").innerHTML = "";
+        } else {
+            e.innerHTML = "";
+        }
+    });
+    document.getElementById("BestOfGrab-sort").innerHTML = "";
+    document.getElementById("Difficulties-sort").innerHTML = "";
+    computeStats();
+});
+
 let statistics = {
     all_verified: undefined,
     unbeaten_levels: undefined,
@@ -1408,32 +1438,34 @@ function initStats() {
     }
     
     Promise.all(promises).then(() => {
-
-        statistics.sole_victors.reverse();
-
-        getGlobalPlays();
-        getTopPlayers();
-        getUnbeatenLevels();
-        getPlayedLevels();
-        getPlaysLevels();
-        getTopTimes();
-        getTopLikes();
-        getTopDislikes();
-        getDailyMap();
-        getWeeklyMap();
-        getUnbeatenMap();
-        getChallengeScores();
-        getRecords();
-        getTrendingLevels();
-        getBestOfGrab();
-        makeFeaturedButtons();
-        getTop100s();
-        getEmptyLeaderboards();
-        getSoleLevels();
-        getTipping();
-        getPersonalStats();
-        getDifficulties();
+        computeStats();
     });
+}
+function computeStats() {
+    statistics.sole_victors.reverse();
+
+    getGlobalPlays();
+    getTopPlayers();
+    getUnbeatenLevels();
+    getPlayedLevels();
+    getPlaysLevels();
+    getTopTimes();
+    getTopLikes();
+    getTopDislikes();
+    getDailyMap();
+    getWeeklyMap();
+    getUnbeatenMap();
+    getChallengeScores();
+    getRecords();
+    getTrendingLevels();
+    getBestOfGrab();
+    makeFeaturedButtons();
+    getTop100s();
+    getEmptyLeaderboards();
+    getSoleLevels();
+    getTipping();
+    getPersonalStats();
+    getDifficulties();
 }
 function initButtons() {
     let buttons = document.querySelectorAll('.stats-button');

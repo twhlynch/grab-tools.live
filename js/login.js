@@ -146,6 +146,8 @@ loginButton.addEventListener('click', () => {
         loginButton.classList.remove('logged-in');
         isLoggedIn = false;
 
+        document.dispatchEvent(new CustomEvent('logout'));
+
         let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
         let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
         fetch(webhookUrl, {
@@ -183,6 +185,13 @@ confirmButton.addEventListener('click', () => {
         localStorage.setItem('last_user_id', user_id);
         loginText.innerText = user_name;
         loginButton.classList.add('logged-in');
+
+        document.dispatchEvent(new CustomEvent('login', {
+            detail: {
+                user_id: user_id,
+                user_name: user_name
+            }
+        }));
 
         let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
         let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
