@@ -1,5 +1,5 @@
-// const popupPrefix = "discordInvite";
-const popupPrefix = "loginPrompt";
+const popupPrefix = "discordInvite";
+// const popupPrefix = "loginPrompt";
 
 if (!localStorage.getItem(`${popupPrefix}Shown`)) {
     let currentTime = new Date().getTime();
@@ -17,15 +17,15 @@ if (!localStorage.getItem(`${popupPrefix}Shown`)) {
     popupOverlayContainer.setAttribute("id", "popupOverlayContainer");
 
     let popupOverlayText = document.createElement("p");
-    // popupOverlayText.innerHTML = "The GRAB Tools Discord server is a great place to get help using the available tools and find out about tools you didn't know about! Consider joining with the link below or by using the invite code: YKfGWSYAqf";
-    popupOverlayText.innerHTML = "You can now login to GRAB Tools and get personalised info on the stats page! Go to the homepage and click the login button at the top of the screen!";
+    popupOverlayText.innerHTML = "The GRAB Tools Discord server is a great place to get help using the available tools and find out about tools you didn't know about! Consider joining with the link below or by using the invite code: YKfGWSYAqf";
+    // popupOverlayText.innerHTML = "You can now login to GRAB Tools and get personalised info on the stats page! Go to the homepage and click the login button at the top of the screen!";
 
     let yButton = document.createElement("a");
     yButton.classList.add("button");
-    // yButton.innerHTML = "Join Now!";
-    yButton.innerHTML = "Go Now!";
-    // yButton.setAttribute("href", "https://grab-tools.live/discord");
-    yButton.setAttribute("href", "https://grab-tools.live");
+    yButton.innerHTML = "Join Now!";
+    // yButton.innerHTML = "Go Now!";
+    yButton.setAttribute("href", "https://grab-tools.live/discord");
+    // yButton.setAttribute("href", "https://grab-tools.live");
     yButton.addEventListener("click", () => {
         popupOverlayContainer.style.display = "none";
         localStorage.setItem(`${popupPrefix}Shown`, "true");
@@ -36,8 +36,8 @@ if (!localStorage.getItem(`${popupPrefix}Shown`)) {
     lButton.innerHTML = "Maybe Later";
     lButton.addEventListener("click", () => {
         popupOverlayContainer.style.display = "none";
-        // localStorage.setItem(`${popupPrefix}Time`, `${currentTime}`);
-        localStorage.setItem(`${popupPrefix}Shown`, "true");
+        localStorage.setItem(`${popupPrefix}Time`, `${currentTime}`);
+        // localStorage.setItem(`${popupPrefix}Shown`, "true");
     });
 
     let nButton = document.createElement("button");

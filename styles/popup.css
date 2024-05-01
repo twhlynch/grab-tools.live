@@ -50,3 +50,11 @@
     background-color: #2c415bf9;
     border: 3px solid #3f75b7f0;
 }
+.ultra-dark-mode #popupOverlayContainer {
+    background-color: #1c2a3b;
+    border: 3px solid #2f4c6f;
+}
+.ultra-dark-mode #popupOverlayContainer a {
+    background-color: #2f4c6f;
+    box-shadow: #2f4c6f 0px 0px 2px 2px;
+}
