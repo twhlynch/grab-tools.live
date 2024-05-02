@@ -1404,10 +1404,10 @@ let statistics = {
     all_verified: undefined,
     unbeaten_levels: undefined,
     most_verified: undefined,
-    most_played_maps: undefined,
-    most_liked: undefined,
-    most_disliked: undefined,
-    longest_times: undefined,
+    // most_played_maps: undefined,
+    // most_liked: undefined,
+    // most_disliked: undefined,
+    // longest_times: undefined,
     sole_victors: undefined,
     most_plays: undefined,
     trending_levels: undefined,
@@ -1443,6 +1443,19 @@ function initStats() {
 }
 function computeStats() {
     statistics.sole_victors.reverse();
+
+    statistics.most_played_maps = [...statistics.all_verified].sort((a, b) => b.statistics.total_played - a.statistics.total_played).slice(0, 200);
+    statistics.longest_times = [...statistics.all_verified].sort((a, b) => b.statistics.time - a.statistics.time).slice(0, 200);
+
+    statistics.most_liked = [...statistics.all_verified]
+    .sort((a, b) => (b.statistics.liked * (1 - b.statistics.difficulty) * b.statistics.total_played) - (a.statistics.liked * (1 - a.statistics.difficulty) * a.statistics.total_played))
+    .filter(map => map.statistics.total_played > 2000 && (map.statistics.total_played * map.statistics.difficulty) > 10)
+    .slice(0, 200);
+
+    statistics.most_disliked = [...statistics.all_verified]
+    .sort((a, b) => (1 - b.statistics.liked) * (1 - b.statistics.difficulty) * b.statistics.total_played - (1 - a.statistics.liked) * (1 - a.statistics.difficulty) * a.statistics.total_played)
+    .filter(map => map.statistics.total_played > 2000 && (map.statistics.total_played * map.statistics.difficulty) > 10)
+    .slice(0, 200);
 
     getGlobalPlays();
     getTopPlayers();
