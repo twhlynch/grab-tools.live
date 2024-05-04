@@ -512,12 +512,10 @@ function loadLevelNode(node, parent) {
         danger: false
     };
     if (node.levelNodeGroup) {
-        object = new THREE.Object3D();
-        if (showGroups) {
-            let geometry = new THREE.BoxGeometry(1, 1, 1);
-            let material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
-            object = new THREE.Mesh(geometry, material);
-        }
+        object = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true, transparent: true, opacity: 0 })
+        );
         objects.push( object );
         parent.add( object );
         node.levelNodeGroup.position.x ? object.position.x = node.levelNodeGroup.position.x : object.position.x = 0;
@@ -569,6 +567,18 @@ function loadLevelNode(node, parent) {
         });
         statistics.groups += 1;
         statistics.objects -= 1;
+
+        if (showGroups) {
+            object.material.transparent = false;
+            let groupBoundingBox = new THREE.Box3().setFromObject(object);
+            let geometry = new THREE.BoxGeometry(
+                groupBoundingBox.max.z - groupBoundingBox.min.z,
+                groupBoundingBox.max.y - groupBoundingBox.min.y,
+                groupBoundingBox.max.x - groupBoundingBox.min.x
+            );
+            object.geometry = geometry;
+        }
+
     } else if (node.levelNodeGravity) {
 
         let particleGeometry = new THREE.BufferGeometry();
@@ -1982,11 +1992,19 @@ function groupEditingObject() {
                 "childNodes": [editing.grabNodeData]
             }
         };
-        let groupObject = new THREE.Object3D();
+        groupObject = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true, transparent: true, opacity: 0})
+        );
         if (showGroups) {
-            let geometry = new THREE.BoxGeometry(1, 1, 1);
-            let material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
-            groupObject = new THREE.Mesh(geometry, material);
+            groupObject.material.transparent = false;
+            let groupBoundingBox = new THREE.Box3().setFromObject(groupObject);
+            let geometry = new THREE.BoxGeometry(
+                groupBoundingBox.max.z - groupBoundingBox.min.z,
+                groupBoundingBox.max.y - groupBoundingBox.min.y,
+                groupBoundingBox.max.x - groupBoundingBox.min.x
+            );
+            groupObject.geometry = geometry;
         }
         objects.push(groupObject);
         groupObject.grabNodeData = groupData;
