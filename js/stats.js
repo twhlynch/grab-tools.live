@@ -1427,11 +1427,12 @@ let statistics = {
 };
 
 function initStats() {
+    let currentTimestamp = new Date().getTime();
     let promises = [];
 
     for (const key in statistics) {
         promises.push(
-            fetch(`/stats_data/${key}.json`)
+            fetch(`/stats_data/${key}.json?timestamp=${currentTimestamp}`)
             .then(res => res.json())
             .then(data => statistics[key] = data)
         );
