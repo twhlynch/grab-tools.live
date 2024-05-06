@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download | GRAB Tools</title>
-    <meta name="description" content="A collection of tools for modding GrabVR, stats about players and levels, resources, and more.">
+    <title>Games | GRAB Tools</title>
+    <meta name="description" content="A collection of GRAB themed games available to play online or download!">
     <meta name="keywords" content="grab mods stats tools grabvr .index index dotindex tom lynch twhlynch vr modding hacks discord programming coding website development developer github">
     <meta name="author" content="twhlynch">
-    <meta property="og:title" content="Download | GRAB Tools">
-    <meta property="og:description" content="A collection of tools for modding GrabVR, stats about players and levels, resources, and more.">
-    <meta property="og:site_name" content="Download | GRAB Tools">
+    <meta property="og:title" content="Games | GRAB Tools">
+    <meta property="og:description" content="A collection of GRAB themed games available to play online or download!">
+    <meta property="og:site_name" content="Games | GRAB Tools">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://grab-tools.live/download">
+    <meta property="og:url" content="http://grab-tools.live/games">
     <meta property="og:image" content="http://grab-tools.live/favicon.gif">
     <link rel="icon" href="favicon.gif" type="image/gif">
     <link rel="shortcut icon" href="favicon.gif" type="image/x-icon">
@@ -26,15 +26,16 @@
         gtag('config', 'G-BDS57RBQ3Q');
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2378042345376266" crossorigin="anonymous"></script>
-    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
     <link rel="stylesheet" href="styles/style.css">
     <script src="js/main.js" defer></script>
-    <script src="js/download.js" defer></script>
+    <script src="js/stats.js" defer></script>
+    <script src="js/popup.js" defer></script>
+    <script src="js/login.js" defer></script>
+    <link rel="stylesheet" href="styles/popup.css">
 </head>
 <body>
     <div id="cursor-outer"></div>
     <div id="cursor-inner"></div>
-    <!-- <h1 class="title">Grab</h1> -->
     <nav>
         <a href="/" class="button" id="tab-">Home
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hidden-icon-button">
@@ -90,95 +91,63 @@
         </button>
     </nav>
     <main>
-        <section>
-            <h2>Downloading</h2>
-            <p>Downloading the level. Not much going on here. Go check out some other pages with the nav bar at the top of the page.</p>
-            <br>
-            <h2>DON'T STEAL LEVELS!</h2>
-            <p>Uploading other people's levels can result in the map being removed and you receiving a warning or a ban! Please don't take other's levels without permission.</p>
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2378042345376266"
-                crossorigin="anonymous"></script>
-            <!-- small-resp-ad -->
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-2378042345376266"
-                data-ad-slot="5395423217"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+        <section id="info">
+            <h2>Grab Games</h2>
+            <p>A collection of GRAB themed games available to play online or download! Join the <a href="/discord">discord</a> to request a game to add.</p>
         </section>
-        <section>
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2378042345376266"
-                crossorigin="anonymous"></script>
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-format="autorelaxed"
-                data-ad-client="ca-pub-2378042345376266"
-                data-ad-slot="9043024185"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+        <section id="games">
+            <div class="game">
+                <div class="game-details">
+                    <div>
+                        <h3>GRAB - SlinDev</h3>
+                        <p>GRAB!</p>
+                        <div class="game-links">
+                            <a href="https://www.meta.com/en-gb/experiences/4104088956355944/" class="button-sml">Oculus</a>
+                            <a href="https://store.steampowered.com/app/1701130/GRAB/" class="button-sml">Steam</a>
+                            <a href="https://sidequestvr.com/app/4222/grab" class="button-sml">SideQuest</a>
+                        </div>
+                    </div>
+                    <img src="/img/game-logos/grab.png" alt="">
+                </div>
+            </div>
+            <div class="game">
+                <div class="game-details">
+                    <div>
+                        <h3>GRAB2D - BlackCat508</h3>
+                        <p>A 2D version of GRAB!</p>
+                        <div class="game-links">
+                            <a href="https://blackcat508.itch.io/grab2d" class="button-sml">Itch.io</a>
+                            <a href="https://discord.gg/PefVhprQs8" class="button-sml">Discord</a>
+                        </div>
+                    </div>
+                    <img src="/img/game-logos/grab2d.png" alt="">
+                </div>
+            </div>
+            <div class="game">
+                <div class="game-details">
+                    <div>
+                        <h3>GrabGuessr - .index</h3>
+                        <p>GeoGuesser with GRAB maps!</p>
+                        <div class="game-links">
+                            <a href="https://twhlynch.me/GrabGuessr" class="button-sml">Website</a>
+                            <a href="https://github.com/twhlynch/GrabGuessr" class="button-sml">GitHub</a>
+                        </div>
+                    </div>
+                    <img src="img/game-logos/GrabGuessr.png" alt="">
+                </div>
+            </div>
         </section>
     </main>
     <footer>
         <span>twhlynch</span><span>|</span><span>.index</span>
-        <div id="ads forceads">
-            <div id="ads-overlay-r">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2378042345376266"
-                    crossorigin="anonymous"></script>
-                <!-- basic-tall-1 -->
-                <ins class="adsbygoogle"
-                    style="margin-top:auto;display:inline-block;width:120px;height:400px"
-                    data-ad-client="ca-pub-2378042345376266"
-                    data-ad-slot="6059350775"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-            <div id="ads-overlay-l">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2378042345376266"
-                    crossorigin="anonymous"></script>
-                <!-- basic-tall-1 -->
-                <ins class="adsbygoogle"
-                    style="margin-top:auto;display:inline-block;width:120px;height:400px"
-                    data-ad-client="ca-pub-2378042345376266"
-                    data-ad-slot="6059350775"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-        </div>
-        <div id="ads">
-            <div id="ads-overlay-r">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2378042345376266"
-                    crossorigin="anonymous"></script>
-                <!-- basic-tall-1 -->
-                <ins class="adsbygoogle"
-                    style="display:inline-block;width:120px;height:400px"
-                    data-ad-client="ca-pub-2378042345376266"
-                    data-ad-slot="6059350775"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-            <div id="ads-overlay-l">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2378042345376266"
-                    crossorigin="anonymous"></script>
-                <!-- basic-tall-1 -->
-                <ins class="adsbygoogle"
-                    style="display:inline-block;width:120px;height:400px"
-                    data-ad-client="ca-pub-2378042345376266"
-                    data-ad-slot="6059350775"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-        </div>
     </footer>
-    <div id="loginRestrictionPopup">
-        You are not logged in. Please log in to download levels. Head back to the <a href="https://grab-tools.live">homepage</a> and click login.
+    <div id="loginContainer">
+        <div id="loginMenu">
+            <input type="text" name="username" id="username" placeholder="username" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false">
+            <input type="text" name="userId" id="userId" placeholder="user ID" autocomplete="id" autocapitalize="none" autocorrect="off" spellcheck="false">
+            <button id="guessLoginId" class="button-sml">Guess ID</button>
+            <button class="button" id="confirmLogin">Login</button>
+        </div>
     </div>
 </body>
 </html>
