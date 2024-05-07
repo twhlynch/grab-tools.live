@@ -37,7 +37,7 @@
    }
   },
   "creator": "OLIVER-M",
-  "change": 18
+  "change": 0
  },
  {
   "identifier": "29ffxg2ijqxyrgxyy2vjj:1685915259",
@@ -121,7 +121,7 @@
    "ok"
   ],
   "statistics": {
-   "total_played": 28400,
+   "total_played": 28500,
    "difficulty": 0,
    "liked": 1,
    "time": 5048.1,
@@ -140,7 +140,7 @@
    }
   },
   "creator": "Levi__athan",
-  "change": 0
+  "change": 100
  },
  {
   "identifier": "29v9vd6n9z45d16mi2o2n:1697678891",
@@ -345,14 +345,16 @@
    "Lukechungus"
   ],
   "tags": [
-   "ok"
+   "ok",
+   "parkour",
+   "grapple"
   ],
   "verification_time": 4067.55,
   "statistics": {
    "total_played": 1200,
-   "difficulty": 0.0030737704918032786,
+   "difficulty": 0,
    "liked": 1,
-   "time": 3369.9396666666667,
+   "time": 3369.94,
    "difficulty_string": "veryhard"
   },
   "images": {
@@ -445,7 +447,7 @@
    }
   },
   "creator": "BLUDUK",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "2bf8hyynuelajywj9k4n7:1709914573",
@@ -619,7 +621,7 @@
   ],
   "verification_time": 459.85,
   "statistics": {
-   "total_played": 10400,
+   "total_played": 10500,
    "difficulty": 0,
    "liked": 1,
    "time": 2772.57,
@@ -638,7 +640,7 @@
    }
   },
   "creator": "FitArtist334071",
-  "change": 0
+  "change": 100
  },
  {
   "identifier": "2aa73bmv50jap4z792rrz:1688709948",
@@ -928,7 +930,7 @@
    }
   },
   "creator": "OreO",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "2axkwzh6f43g1regf401p:1681259832",
@@ -1062,7 +1064,7 @@
    "ok"
   ],
   "statistics": {
-   "total_played": 143500,
+   "total_played": 143600,
    "difficulty": 0,
    "liked": 0.86,
    "time": 2455.02,
@@ -1203,7 +1205,7 @@
    "ok"
   ],
   "statistics": {
-   "total_played": 9700,
+   "total_played": 9800,
    "difficulty": 0,
    "liked": 1,
    "time": 2376.02,
@@ -1222,7 +1224,7 @@
    }
   },
   "creator": ".index",
-  "change": 0
+  "change": 100
  },
  {
   "identifier": "2bf8hyynuelajywj9k4n7:1702416560",
@@ -1609,7 +1611,7 @@
    }
   },
   "creator": "Aft",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "29id5ta7mb54j28tz6wfe:1670707197",
@@ -1844,7 +1846,7 @@
    }
   },
   "creator": "BlackCat508",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "29l50ea34l4s54rtclzus:1645246182",
@@ -2031,7 +2033,7 @@
   ],
   "verification_time": 1288.04,
   "statistics": {
-   "total_played": 4300,
+   "total_played": 4400,
    "difficulty": 0,
    "liked": 1,
    "time": 2010.58,
@@ -2050,7 +2052,7 @@
    }
   },
   "creator": "Levi__athan",
-  "change": 200
+  "change": 100
  },
  {
   "identifier": "29ffxg2ijqxyrgxyy2vjj:1644453425",
@@ -2267,42 +2269,6 @@
   "change": 0
  },
  {
-  "identifier": "29st9jdcbxxotp0t9d8en:1686615165",
-  "title": "The Crazy Tower (Special Addition) ",
-  "complexity": 2994,
-  "format_version": 6,
-  "update_timestamp": 1686674626627,
-  "creation_timestamp": 1686674626627,
-  "data_key": "level_data:29st9jdcbxxotp0t9d8en:1686615165:1",
-  "creators": [
-   "Mystery8281"
-  ],
-  "tags": [
-   "ok"
-  ],
-  "statistics": {
-   "total_played": 1200,
-   "difficulty": 0.027750247770069375,
-   "liked": 0.8888888888888888,
-   "time": 1957.6276785714283,
-   "difficulty_string": "hard"
-  },
-  "images": {
-   "full": {
-    "key": "level_29st9jdcbxxotp0t9d8en_1686615165_1.png",
-    "width": 1920,
-    "height": 1080
-   },
-   "thumb": {
-    "key": "level_29st9jdcbxxotp0t9d8en_1686615165_1_thumb.png",
-    "width": 512,
-    "height": 288
-   }
-  },
-  "creator": "Mystery8281",
-  "change": 0
- },
- {
   "identifier": "29t798uon2urbra1f8w2q:1651155984",
   "title": "peaks-mountain climb",
   "complexity": 2990,
@@ -2340,7 +2306,7 @@
    }
   },
   "creator": "blackcat508",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "29de83wbqxgo92ijwuub9:1639010130",
@@ -2418,6 +2384,42 @@
   "change": 0
  },
  {
+  "identifier": "29st9jdcbxxotp0t9d8en:1686615165",
+  "title": "The Crazy Tower (Special Addition) ",
+  "complexity": 2994,
+  "format_version": 6,
+  "update_timestamp": 1686674626627,
+  "creation_timestamp": 1686674626627,
+  "data_key": "level_data:29st9jdcbxxotp0t9d8en:1686615165:1",
+  "creators": [
+   "Mystery8281"
+  ],
+  "tags": [
+   "ok"
+  ],
+  "statistics": {
+   "total_played": 1300,
+   "difficulty": 0.03,
+   "liked": 0.89,
+   "time": 1928.28,
+   "difficulty_string": "hard"
+  },
+  "images": {
+   "full": {
+    "key": "level_29st9jdcbxxotp0t9d8en_1686615165_1.png",
+    "width": 1920,
+    "height": 1080
+   },
+   "thumb": {
+    "key": "level_29st9jdcbxxotp0t9d8en_1686615165_1_thumb.png",
+    "width": 512,
+    "height": 288
+   }
+  },
+  "creator": "Mystery8281",
+  "change": 100
+ },
+ {
   "identifier": "2ag78daeo0xaz2bca9eq3:1663514278",
   "title": "SKILLS ONLY 5",
   "complexity": 2990,
@@ -2435,7 +2437,7 @@
    "ok"
   ],
   "statistics": {
-   "total_played": 139400,
+   "total_played": 139500,
    "difficulty": 0,
    "liked": 0.83,
    "time": 1915.57,
@@ -2454,7 +2456,7 @@
    }
   },
   "creator": "BLUDUK",
-  "change": 0
+  "change": 100
  },
  {
   "identifier": "2br3r3beexa8hy0yw4c6z:1700208427",
@@ -2705,7 +2707,7 @@
    }
   },
   "creator": "AysonBoi",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "2a1j8i8de10h4wxk4cg9d:1653318866",
@@ -2815,7 +2817,7 @@
   ],
   "verification_time": 421.6,
   "statistics": {
-   "total_played": 43400,
+   "total_played": 43500,
    "difficulty": 0.01,
    "liked": 0.88,
    "time": 1840.48,
@@ -2834,7 +2836,7 @@
    }
   },
   "creator": "TLTT",
-  "change": 300
+  "change": 100
  },
  {
   "identifier": "2atgm7q6qci6b42iag71a:1668481708",
@@ -3202,7 +3204,7 @@
    }
   },
   "creator": "Cursedphantom(RMB)",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "29v9vd6n9z45d16mi2o2n:1664504388",
@@ -3535,7 +3537,7 @@
    "ok"
   ],
   "statistics": {
-   "total_played": 56500,
+   "total_played": 56600,
    "difficulty": 0,
    "liked": 0.92,
    "time": 1714.45,
@@ -3621,6 +3623,45 @@
   "change": 0
  },
  {
+  "identifier": "2b8xxpb13ie10xo6oufdc:1682743658",
+  "title": "Sox's Challenge (ABILITTY AFFAIR)",
+  "complexity": 2369,
+  "format_version": 6,
+  "update_timestamp": 1686166004823,
+  "creation_timestamp": 1686166004823,
+  "data_key": "level_data:2b8xxpb13ie10xo6oufdc:1682743658:1",
+  "description": "HARDY HAR HAR (VERY INPIRED BY INDEX'S CHALLENGE)",
+  "creators": [
+   "SOX-SUX"
+  ],
+  "tags": [
+   "ok",
+   "parkour",
+   "fangame"
+  ],
+  "statistics": {
+   "total_played": 3900,
+   "difficulty": 0,
+   "liked": 1,
+   "time": 1707.63,
+   "difficulty_string": "veryhard"
+  },
+  "images": {
+   "full": {
+    "key": "level_2b8xxpb13ie10xo6oufdc_1682743658_1.png",
+    "width": 1920,
+    "height": 1080
+   },
+   "thumb": {
+    "key": "level_2b8xxpb13ie10xo6oufdc_1682743658_1_thumb.png",
+    "width": 512,
+    "height": 288
+   }
+  },
+  "creator": "SOX-SUX",
+  "change": 100
+ },
+ {
   "identifier": "29t798uon2urbra1f8w2q:1650499561",
   "title": "Peeks-Dessert climb",
   "complexity": 2986,
@@ -3658,7 +3699,7 @@
    }
   },
   "creator": "blackcat508",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "2cmoxwv8ddfsibgefwf15:1709929214",
@@ -3836,7 +3877,7 @@
   ],
   "verification_time": 913.33,
   "statistics": {
-   "total_played": 22100,
+   "total_played": 22200,
    "difficulty": 0,
    "liked": 1,
    "time": 1684.32,
@@ -3855,7 +3896,7 @@
    }
   },
   "creator": "TLTT",
-  "change": 200
+  "change": 100
  },
  {
   "identifier": "2ag78daeo0xaz2bca9eq3:1690256050",
@@ -3875,7 +3916,7 @@
    "ok"
   ],
   "statistics": {
-   "total_played": 108100,
+   "total_played": 108300,
    "difficulty": 0,
    "liked": 0.93,
    "time": 1681.06,
@@ -3915,7 +3956,7 @@
   ],
   "verification_time": 1560.96,
   "statistics": {
-   "total_played": 4000,
+   "total_played": 4100,
    "difficulty": 0.01,
    "liked": 1,
    "time": 1679.15,
@@ -3934,7 +3975,7 @@
    }
   },
   "creator": "BlackCat508",
-  "change": 0
+  "change": 100
  },
  {
   "identifier": "2b9eo4wv9mw79xnivckk0:1710810559",
@@ -4171,6 +4212,45 @@
   },
   "creator": "ZaziPogChamp",
   "change": 0
+ },
+ {
+  "identifier": "2czbtyaqtbjo89sut7jqd:1712540065",
+  "title": "Creative Name For A Grappler Map",
+  "complexity": 1446,
+  "format_version": 8,
+  "update_timestamp": 1713136583994,
+  "creation_timestamp": 1713136583994,
+  "data_key": "level_data:2czbtyaqtbjo89sut7jqd:1712540065:1",
+  "description": "Just grapple, ezpz.",
+  "creators": [
+   "Thezra"
+  ],
+  "tags": [
+   "grapple",
+   "ok"
+  ],
+  "verification_time": 976.42,
+  "statistics": {
+   "total_played": 3200,
+   "difficulty": 0,
+   "liked": 1,
+   "time": 1643.86,
+   "difficulty_string": "veryhard"
+  },
+  "images": {
+   "full": {
+    "key": "level_2czbtyaqtbjo89sut7jqd_1712540065_2.png",
+    "width": 1920,
+    "height": 1080
+   },
+   "thumb": {
+    "key": "level_2czbtyaqtbjo89sut7jqd_1712540065_2_thumb.png",
+    "width": 512,
+    "height": 288
+   }
+  },
+  "creator": "Thezra",
+  "change": 100
  },
  {
   "identifier": "29l50ea34l4s54rtclzus:1664637802",
@@ -4759,7 +4839,7 @@
   ],
   "verification_time": 723.68,
   "statistics": {
-   "total_played": 900,
+   "total_played": 1000,
    "difficulty": 0.01,
    "liked": 0.83,
    "time": 1524.69,
@@ -4778,7 +4858,7 @@
    }
   },
   "creator": "Eternal_Z",
-  "change": 0
+  "change": 100
  },
  {
   "identifier": "2az2evnbubx4jnjc8vtxa:1695678422",
@@ -5444,7 +5524,7 @@
    }
   },
   "creator": "cjbeast006",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "2af2v4lqxksl1ru5itxr1:1677507116",
@@ -5524,7 +5604,7 @@
    }
   },
   "creator": "Mr. Madlord",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "2aiu0t8etvtgb6p0vz4me:1702752050",
@@ -5715,7 +5795,7 @@
    }
   },
   "creator": "BLUDUK",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "29iz7lwjt8f9l20uvr28b:1698519022",
@@ -5933,7 +6013,7 @@
    }
   },
   "creator": "san8102",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "29sgp24f1uorbc6vq8d2k:4",
@@ -6207,7 +6287,7 @@
    "ok"
   ],
   "statistics": {
-   "total_played": 22383,
+   "total_played": 22483,
    "difficulty": 0,
    "liked": 0.77,
    "time": 1355.2,
@@ -6226,7 +6306,7 @@
    }
   },
   "creator": "FROSTY_CROSS",
-  "change": 0
+  "change": 100
  },
  {
   "identifier": "2ag78daeo0xaz2bca9eq3:smorgasbor444444",
@@ -6402,7 +6482,7 @@
    }
   },
   "creator": "AysonBoi",
-  "change": 100
+  "change": 0
  },
  {
   "identifier": "2bjbmh0e1kp32spgtp573:1701846156",
@@ -6893,69 +6973,6 @@
    }
   },
   "creator": "8875rx",
-  "change": 0
- },
- {
-  "identifier": "29rkswgx13q8mej7mxdg6:1680365149",
-  "title": "GRAB kaizo- BOOHOO's kingdom",
-  "complexity": 2998,
-  "format_version": 6,
-  "update_timestamp": 1681061247169,
-  "creation_timestamp": 1681061247169,
-  "data_key": "level_data:29rkswgx13q8mej7mxdg6:1680365149:1",
-  "description": "travel throgh king BOOHOO's castle and defeate him once and for all. difficulty-Medium Hard",
-  "creators": [
-   "AFT Studios and EBSpark"
-  ],
-  "tags": [
-   "ok"
-  ],
-  "statistics": {
-   "total_played": 8200,
-   "difficulty": 0.0025167785234899327,
-   "liked": 1,
-   "time": 1306.0048666666667,
-   "difficulty_string": "veryhard"
-  },
-  "images": {
-   "full": {
-    "key": "level_29rkswgx13q8mej7mxdg6_1680365149_1.png",
-    "width": 1920,
-    "height": 1080
-   },
-   "thumb": {
-    "key": "level_29rkswgx13q8mej7mxdg6_1680365149_1_thumb.png",
-    "width": 512,
-    "height": 288
-   }
-  },
-  "creator": "AFT Studios and EBSpark",
-  "change": 0
- },
- {
-  "identifier": "29r0m9fnboxpvz4dnkwnq:1676248753",
-  "title": "Volcanic Disaster Remastered",
-  "complexity": 1670,
-  "format_version": 6,
-  "update_timestamp": 1676420510386,
-  "creation_timestamp": 1676420510386,
-  "data_key": "level_data:29r0m9fnboxpvz4dnkwnq:1676248753:1",
-  "description": "this was are first level in grab and it means alot to us, we made a newer and better version because are first one is goofy. with unaligned parts all over the place. this was made so yall can enjoy it and i hope yall do. and renember. dont have ur rotation snap at goofy 5 degrees like we did.",
-  "creators": [
-   "TylerVB",
-   "iamaverag8"
-  ],
-  "tags": [
-   "ok"
-  ],
-  "statistics": {
-   "total_played": 1000,
-   "difficulty": 0.007838745800671893,
-   "liked": 0.6666666666666666,
-   "time": 1299.1372857142856,
-   "difficulty_string": "veryhard"
-  },
-  "creator": "TylerVB",
   "change": 0
  }
 ]
