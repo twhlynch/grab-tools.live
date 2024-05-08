@@ -1,40 +1,37 @@
 {
- "identifier": "2bkjejfjfpk62f85u6b7o:1712429904",
- "title": "Flight Attendant (BOSS)",
- "complexity": 1260,
- "format_version": 8,
- "update_timestamp": 1712510368902,
- "creation_timestamp": 1712443983437,
- "data_key": "level_data:2bkjejfjfpk62f85u6b7o:1712429904:2",
- "description": "its kinda hard",
+ "identifier": "2a7kcrctb9fpib14lilnx:1701661475",
+ "title": "CBE INFO (AGAIN) EP 7",
+ "complexity": 2059,
+ "format_version": 7,
+ "update_timestamp": 1701759380326,
+ "creation_timestamp": 1701759380326,
+ "data_key": "level_data:2a7kcrctb9fpib14lilnx:1701661475:1",
  "creators": [
-  "lavvyvr",
-  "Jupiterjus"
+  "Felixart oculusbro53"
  ],
  "tags": [
-  "boss",
   "ok"
  ],
- "verification_time": 56.25,
  "statistics": {
-  "total_played": 1000,
-  "difficulty": 0,
-  "difficulty_string": "impossible",
-  "liked": 0,
-  "time": 100
+  "total_played": 100,
+  "difficulty": 0.01098901098901099,
+  "liked": 1,
+  "time": 276.39,
+  "difficulty_string": "hard"
  },
  "images": {
   "full": {
-   "key": "level_2bkjejfjfpk62f85u6b7o_1712429904_2.png",
+   "key": "level_2a7kcrctb9fpib14lilnx_1701661475_1.png",
    "width": 1920,
    "height": 1080
   },
   "thumb": {
-   "key": "level_2bkjejfjfpk62f85u6b7o_1712429904_2_thumb.png",
+   "key": "level_2a7kcrctb9fpib14lilnx_1701661475_1_thumb.png",
    "width": 512,
    "height": 288
   }
  },
- "creator": "lavvyvr",
- "change": 100
+ "creator": "Felixart oculusbro53",
+ "sole": true,
+ "change": 0
 }
