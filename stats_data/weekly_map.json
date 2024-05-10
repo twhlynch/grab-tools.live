@@ -1,41 +1,26 @@
 {
- "identifier": "2baxwxt6289kp0o45jkxk:1708200642",
- "title": "The Cave Of Abmyrith",
- "complexity": 2775,
- "format_version": 8,
- "update_timestamp": 1708231323496,
- "creation_timestamp": 1708231323496,
- "data_key": "level_data:2baxwxt6289kp0o45jkxk:1708200642:1",
- "description": "You will enbark on a journey through Abmyrith and locate what once was.",
+ "identifier": "2aqk2f39o44nxz0yixbas:1673745264",
+ "title": "Slides",
+ "complexity": 134,
+ "format_version": 6,
+ "update_timestamp": 1673748834640,
+ "creation_timestamp": 1673748834640,
+ "data_key": "level_data:2aqk2f39o44nxz0yixbas:1673745264:1",
+ "description": "just a easy slide",
  "creators": [
-  "iceyboxes",
-  "anbuvylax",
-  "SyphonArtz",
-  "CoolWhiten"
+  "gage_rod"
  ],
  "tags": [
-  "ok"
+  "ok",
+  "slide"
  ],
- "verification_time": 241.43,
  "statistics": {
-  "total_played": 300,
-  "difficulty": 0,
-  "liked": 1,
-  "time": 345.69,
-  "difficulty_string": "veryhard"
+  "total_played": 1400,
+  "difficulty": 0.1,
+  "liked": 0.76,
+  "time": 115.45,
+  "difficulty_string": "hard"
  },
- "images": {
-  "full": {
-   "key": "level_2baxwxt6289kp0o45jkxk_1708200642_1.png",
-   "width": 1920,
-   "height": 1080
-  },
-  "thumb": {
-   "key": "level_2baxwxt6289kp0o45jkxk_1708200642_1_thumb.png",
-   "width": 512,
-   "height": 288
-  }
- },
- "creator": "iceyboxes",
+ "creator": "gage_rod",
  "change": 0
 }
