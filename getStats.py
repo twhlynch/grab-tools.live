@@ -474,6 +474,13 @@ def get_hardest_levels_list():
     response = requests.request("GET", url, headers=headers)
     return json.loads(response.text)
 
+def get_unverified(all_verified, all_verified_old):
+    unverified = []
+    for level in all_verified_old:
+        if level not in all_verified:
+            unverified.append(level)
+    return unverified
+
 def get_level_data():
     with open("stats_data/log_data.json") as log_file:
         log_data = json.load(log_file)
@@ -481,14 +488,17 @@ def get_level_data():
         print("Not running")
         return
 
-    with open("stats_data/most_plays.json") as most_plays_file, open("stats_data/most_verified.json") as most_verified_file, open("stats_data/unbeaten_levels.json") as unbeaten_file:
+    with open("stats_data/most_plays.json") as most_plays_file, open("stats_data/most_verified.json") as most_verified_file, open("stats_data/unbeaten_levels.json") as unbeaten_file, open("stats_data/all_verified.json") as all_verified_file:
         most_plays_old = json.load(most_plays_file)
         most_verified_old = json.load(most_verified_file)
         unbeaten_levels_old = json.load(unbeaten_file)
+        all_verified_old = json.load(all_verified_file)
 
     all_verified = get_all_verified()
     unbeaten_levels = get_unbeaten(all_verified)
     beaten_unbeaten_levels = get_beaten_unbeaten(unbeaten_levels_old)
+    unverified = get_unverified(all_verified, all_verified_old)
+    write_json_file('stats_data/unverified.json', unverified)
     write_json_file('stats_data/trending_levels.json', get_trending_levels(all_verified))
     write_json_file('stats_data/all_verified.json', all_verified)
     write_json_file('stats_data/a_challenge.json', get_a_challenge())
@@ -526,7 +536,7 @@ def get_level_data():
         weekly = 0
 
     log(weekly)
-    run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels, beaten_unbeaten_levels)
+    run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels, beaten_unbeaten_levels, unverified)
 
 def log(weekly):
     log_data = {
@@ -577,7 +587,7 @@ async def get_challenge_scores():
     return embed
 
 
-def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=[]):
+def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=[], unverified=[]):
 
     intents = discord.Intents.default()
     bot = commands.Bot(command_prefix='!', intents=intents, allowed_mentions=discord.AllowedMentions(roles=True, users=False, everyone=False))
@@ -624,8 +634,16 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
             await channel.send(embed=embed)
             
         for beaten in beaten_unbeaten_levels:
-            beaten_embed  = Embed(title=beaten[0], url=beaten[4], description=f"Beaten by {beaten[1]} in {beaten[2]} after {math.floor(beaten[3])} days!", color=0xff0000)
+            beaten_embed = Embed(title=beaten[0], url=beaten[4], description=f"Beaten by {beaten[1]} in {beaten[2]} after {math.floor(beaten[3])} days!", color=0xff0000)
             await channel.send(embed=beaten_embed)
+            
+        unverified_channel = bot.get_channel(1238777601166934016)
+        for map in unverified:
+            creator = "Unknown Creator"
+            if "creators" in map and len(map["creators"]) > 0:
+                creator = map["creators"][0]
+            unverified_embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=creator, color=0xff0000)
+            await unverified_channel.send(embed=unverified_embed)
             
         await bot.close()
 
