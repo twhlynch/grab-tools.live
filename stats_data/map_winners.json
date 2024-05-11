@@ -17767,5 +17767,117 @@
   },
   1715318442,
   "weekly_map"
+ ],
+ [
+  [
+   {
+    "position": 0,
+    "best_time": 14.382,
+    "user_id": "29zjdy4q53dd5i4rl13j9",
+    "user_name": "x3swifty",
+    "timestamp": "0001715226172591"
+   },
+   {
+    "position": 1,
+    "best_time": 17.492,
+    "user_id": "29gxtryykgnblu5xvdip8",
+    "user_name": "Duckdabro",
+    "timestamp": "0001715223816482"
+   },
+   {
+    "position": 2,
+    "best_time": 18.407,
+    "user_id": "2a6ekr378kiwrrodjri7e",
+    "user_name": "YelloducVR",
+    "timestamp": "0001715369733277"
+   }
+  ],
+  {
+   "identifier": "2c2sh6edak4m3s1ufbald:1715211938",
+   "title": "SKELETON HAND",
+   "complexity": 2294,
+   "format_version": 8,
+   "update_timestamp": 1715306034897,
+   "creation_timestamp": 1715218293145,
+   "data_key": "level_data:2c2sh6edak4m3s1ufbald:1715211938:4",
+   "description": "NEW NAME",
+   "creators": [
+    "cool_BOY_SWAG"
+   ],
+   "tags": [
+    "parkour",
+    "showcase",
+    "ok"
+   ],
+   "verification_time": 98.51,
+   "statistics": {
+    "total_played": 300,
+    "difficulty": 0.22,
+    "liked": 0.9,
+    "time": 69.23,
+    "difficulty_string": "medium"
+   },
+   "images": {
+    "full": {
+     "key": "level_2c2sh6edak4m3s1ufbald_1715211938_4.png",
+     "width": 1920,
+     "height": 1080
+    },
+    "thumb": {
+     "key": "level_2c2sh6edak4m3s1ufbald_1715211938_4_thumb.png",
+     "width": 512,
+     "height": 288
+    }
+   },
+   "creator": "cool_BOY_SWAG",
+   "change": 225
+  },
+  1715404823,
+  "daily_map"
+ ],
+ [
+  [],
+  {
+   "identifier": "2csu4um6mguafk7p7ik7k:1712698165",
+   "title": "LAVA MOVES (a fun minigame)",
+   "complexity": 443,
+   "format_version": 8,
+   "update_timestamp": 1712780866867,
+   "creation_timestamp": 1712780866867,
+   "data_key": "level_data:2csu4um6mguafk7p7ik7k:1712698165:1",
+   "description": "Dodge lava, having to move your body. LAVA MOVES!",
+   "creators": [
+    "GrizlGorilla",
+    "Meik123468"
+   ],
+   "tags": [
+    "minigame",
+    "ok"
+   ],
+   "verification_time": 204.71,
+   "statistics": {
+    "total_played": 1800,
+    "difficulty": 0,
+    "difficulty_string": "impossible",
+    "liked": 0,
+    "time": 100
+   },
+   "images": {
+    "full": {
+     "key": "level_2csu4um6mguafk7p7ik7k_1712698165_1.png",
+     "width": 1920,
+     "height": 1080
+    },
+    "thumb": {
+     "key": "level_2csu4um6mguafk7p7ik7k_1712698165_1_thumb.png",
+     "width": 512,
+     "height": 288
+    }
+   },
+   "creator": "GrizlGorilla",
+   "change": 0
+  },
+  1715404823,
+  "unbeaten_map"
  ]
 ]
