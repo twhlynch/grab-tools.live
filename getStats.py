@@ -639,7 +639,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
             await channel.send(embed=beaten_embed)
             
         unverified_channel = bot.get_channel(1238777601166934016)
-        unverified_channel.send(f"{len(unverified)} unverified")
+        await unverified_channel.send(f"{len(unverified)} unverified")
         for map in unverified:
             creator = "Unknown Creator"
             if "creators" in map and len(map["creators"]) > 0:
