@@ -645,7 +645,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
             if "creators" in map and len(map["creators"]) > 0:
                 creator = map["creators"][0]
             unverified_embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=creator, color=0xff0000)
-            if "images" in map && "thumb" in map["images"] and "key" in map["images"]["thumb"]:
+            if "images" in map and "thumb" in map["images"] and "key" in map["images"]["thumb"]:
                 unverified_embed.set_thumbnail(f"https://grab-images.slin.dev/{map["images"]["thumb"]["key"]}")
             await unverified_channel.send(embed=unverified_embed)
             
