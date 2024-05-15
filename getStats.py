@@ -447,7 +447,17 @@ def get_beaten_unbeaten(levels_old):
                 time = str(timedelta(seconds=victor["best_time"]))
                 user = victor["user_name"]
                 days = timestamp_to_days(old_level["update_timestamp"])
-                beaten.append([title, user, time, days, url])
+                extra = ""
+                if old_level["update_timestamp"] != old_level["creation_timestamp"]:
+                    extra = f" ({math.floor(timestamp_to_days(old_level["creation_timestamp"]))} since creation)"
+                color = 0xffaa00
+                if timestamp_to_days(old_level["creation_timestamp"]) >= 100:
+                    color = 0xff7500
+                if timestamp_to_days(old_level["creation_timestamp"]) >= 365:
+                    color = 0xff0000
+                if timestamp_to_days(old_level["creation_timestamp"]) >= 1000:
+                    color = 0xffffff
+                beaten.append([title, user, time, days, url, extra, color])
     return beaten
 
 def get_empty_leaderboards():
@@ -635,7 +645,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
             await channel.send(embed=embed)
             
         for beaten in beaten_unbeaten_levels:
-            beaten_embed = Embed(title=beaten[0], url=beaten[4], description=f"Beaten by {beaten[1]} in {beaten[2]} after {math.floor(beaten[3])} days!", color=0xff0000)
+            beaten_embed = Embed(title=beaten[0], url=beaten[4], description=f"Beaten by {beaten[1]} in {beaten[2]} after {math.floor(beaten[3])} days!{beaten[5]}", color=beaten[6])
             await channel.send(embed=beaten_embed)
             
         unverified_channel = bot.get_channel(1238777601166934016)
