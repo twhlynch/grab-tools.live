@@ -1498,7 +1498,7 @@ function initButtons() {
     buttons.forEach((btn) => {
         let btnId = btn.id;
         btn.addEventListener('click', () => {
-            document.querySelectorAll('.LeaderboardOutput, .stats-sorting, #advertisement, #loader-container').forEach(e => {
+            document.querySelectorAll('.LeaderboardOutput, .stats-sorting, #advertisement').forEach(e => {
                 e.style.display = 'none';
             });
             document.querySelectorAll('.tab-active').forEach(e => {
