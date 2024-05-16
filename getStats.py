@@ -651,10 +651,13 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
         unverified_channel = bot.get_channel(1238777601166934016)
         await unverified_channel.send(f"{len(unverified)} unverified")
         for map in unverified:
+            color = 0x000000
             creator = "Unknown Creator"
+            if "scheduled_for_deletion" in map:
+                color = 0xff0000
             if "creators" in map and len(map["creators"]) > 0:
                 creator = map["creators"][0]
-            unverified_embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=creator, color=0xff0000)
+            unverified_embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=creator, color=color)
             if "images" in map and "thumb" in map["images"] and "key" in map["images"]["thumb"]:
                 link = map["images"]["thumb"]["key"]
                 unverified_embed.set_thumbnail(url=f"https://grab-images.slin.dev/{link}")
