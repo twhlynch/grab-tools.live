@@ -1426,19 +1426,31 @@ let statistics = {
     difficulty_lengths: undefined
 };
 
+let loading = 0;
+let stat_count = 0;
+function incrementLoader() {
+    loading += 1;
+    const progress = (loading / stat_count) * 100;
+    document.getElementById('loader').style.width = `${progress}%`;
+}
 function initStats() {
     let currentTimestamp = new Date().getTime();
     let promises = [];
 
     for (const key in statistics) {
+        stat_count++;
         promises.push(
             fetch(`/stats_data/${key}.json?timestamp=${currentTimestamp}`)
             .then(res => res.json())
-            .then(data => statistics[key] = data)
+            .then(data => {
+                statistics[key] = data;
+                incrementLoader();
+            })
         );
     }
     
     Promise.all(promises).then(() => {
+        document.getElementById('loader-container').classList.add('loaded');
         computeStats();
     });
 }
@@ -1486,7 +1498,7 @@ function initButtons() {
     buttons.forEach((btn) => {
         let btnId = btn.id;
         btn.addEventListener('click', () => {
-            document.querySelectorAll('.LeaderboardOutput, .stats-sorting, #advertisement').forEach(e => {
+            document.querySelectorAll('.LeaderboardOutput, .stats-sorting, #advertisement, #loader-container').forEach(e => {
                 e.style.display = 'none';
             });
             document.querySelectorAll('.tab-active').forEach(e => {
