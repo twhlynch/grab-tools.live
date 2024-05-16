@@ -1077,6 +1077,34 @@ div#questMultiSelect {
     gap: 1rem;
 }
 
+#loader-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 4px;
+    width: 80%;
+    border-radius: 5px;
+    margin-inline: auto;
+    margin-bottom: calc(2 * var(--padding-main));
+    background-color: var(--background-color-default);
+}
+.loaded#loader-container {
+    transition: all 0.4s;
+    height: 0;
+    margin: none;
+    padding: none;
+}
+#loader {
+    width: 10%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: var(--text-color-accent);
+    transition: width 0.2s;
+}
+.loaded > #loader {
+    width: 100%;
+}
+
 @media screen and (max-width: 512px) {
     nav > a.button {
         font-size: 0;
