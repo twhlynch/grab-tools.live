@@ -1091,8 +1091,9 @@ div#questMultiSelect {
 .loaded#loader-container {
     transition: all 0.4s;
     height: 0;
-    margin: none;
-    padding: none;
+    margin: 0;
+    padding: 0;
+    max-height: 0;
 }
 #loader {
     width: 10%;
