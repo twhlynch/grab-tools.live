@@ -1,24 +1,23 @@
 {
- "identifier": "29nxcg0chi4uqcj7yk7f4:1700402282",
- "title": "Insert's Lava Climb",
- "complexity": 2514,
- "format_version": 7,
- "update_timestamp": 1700421901700,
- "creation_timestamp": 1700421901700,
- "data_key": "level_data:29nxcg0chi4uqcj7yk7f4:1700402282:1",
- "description": "This climb map is harder then Insert's Icey Climb, so you might need to be good climber to beat this. 5 checkpoints, 5 stages of hell.Don't touch this blocks you climb on, you might die. This took 2 hours to make and 4 hours to verify. Also this level has a LOT of neck breakers. This was really fun.",
+ "identifier": "2b8xxpb13ie10xo6oufdc:1713650678",
+ "title": "Tower of Kill Joys (SPoM)",
+ "complexity": 1385,
+ "format_version": 8,
+ "update_timestamp": 1713754256883,
+ "creation_timestamp": 1713754256883,
+ "data_key": "level_data:2b8xxpb13ie10xo6oufdc:1713650678:1",
+ "description": "ToKJ is a SPoM tower that is Tier 3 (Medium), because of the weird mechanics, hard warps, and perplexing gameplay. This was really fun to make, and a playable map from me (finally lmao). GL on you completion, and of course have... don't rage :).",
  "creators": [
-  "Insert.vr",
-  "LlamaDramaBalls",
-  "Milk.and.0reos",
-  "Poggggg"
+  "sox"
  ],
  "tags": [
   "ok",
-  "climb"
+  "climb",
+  "fling"
  ],
+ "verification_time": 71.39,
  "statistics": {
-  "total_played": 1300,
+  "total_played": 800,
   "difficulty": 0,
   "difficulty_string": "impossible",
   "liked": 0,
@@ -26,16 +25,16 @@
  },
  "images": {
   "full": {
-   "key": "level_29nxcg0chi4uqcj7yk7f4_1700402282_3.png",
+   "key": "level_2b8xxpb13ie10xo6oufdc_1713650678_1.png",
    "width": 1920,
    "height": 1080
   },
   "thumb": {
-   "key": "level_29nxcg0chi4uqcj7yk7f4_1700402282_3_thumb.png",
+   "key": "level_2b8xxpb13ie10xo6oufdc_1713650678_1_thumb.png",
    "width": 512,
    "height": 288
   }
  },
- "creator": "Insert.vr",
+ "creator": "sox",
  "change": 0
 }
