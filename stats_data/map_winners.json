@@ -18600,5 +18600,102 @@
   },
   1715923462,
   "weekly_map"
+ ],
+ [
+  [
+   {
+    "position": 0,
+    "best_time": 9.68703,
+    "user_id": "2axkwzh6f43g1regf401p",
+    "user_name": "oreo_gaming",
+    "timestamp": "0001696784626427"
+   },
+   {
+    "position": 1,
+    "best_time": 10.215,
+    "user_id": "29wvwcyosrr43a72at6m5",
+    "user_name": "Poggggg",
+    "timestamp": "0001696775015955"
+   },
+   {
+    "position": 2,
+    "best_time": 11.29,
+    "user_id": "2ak0ysv35egakgfilswpy",
+    "user_name": "EBSpark",
+    "timestamp": "0001696775039272"
+   }
+  ],
+  {
+   "identifier": "2bt1kn5q0yza323ygjrri:1696714066",
+   "title": "Space parkour!",
+   "complexity": 1409,
+   "format_version": 7,
+   "update_timestamp": 1696715909862,
+   "creation_timestamp": 1696715909862,
+   "data_key": "level_data:2bt1kn5q0yza323ygjrri:1696714066:1",
+   "description": "some space parkour i made, hope you like it!",
+   "creators": [
+    "Vertigothemasked"
+   ],
+   "tags": [
+    "ok"
+   ],
+   "statistics": {
+    "total_played": 400,
+    "difficulty": 0.16042780748663102,
+    "liked": 0.8,
+    "time": 60.32649049999999,
+    "difficulty_string": "medium"
+   },
+   "creator": "Vertigothemasked",
+   "change": 0
+  },
+  1716009627,
+  "daily_map"
+ ],
+ [
+  [],
+  {
+   "identifier": "2b8xxpb13ie10xo6oufdc:1713650678",
+   "title": "Tower of Kill Joys (SPoM)",
+   "complexity": 1385,
+   "format_version": 8,
+   "update_timestamp": 1713754256883,
+   "creation_timestamp": 1713754256883,
+   "data_key": "level_data:2b8xxpb13ie10xo6oufdc:1713650678:1",
+   "description": "ToKJ is a SPoM tower that is Tier 3 (Medium), because of the weird mechanics, hard warps, and perplexing gameplay. This was really fun to make, and a playable map from me (finally lmao). GL on you completion, and of course have... don't rage :).",
+   "creators": [
+    "sox"
+   ],
+   "tags": [
+    "ok",
+    "climb",
+    "fling"
+   ],
+   "verification_time": 71.39,
+   "statistics": {
+    "total_played": 800,
+    "difficulty": 0,
+    "difficulty_string": "impossible",
+    "liked": 0,
+    "time": 100
+   },
+   "images": {
+    "full": {
+     "key": "level_2b8xxpb13ie10xo6oufdc_1713650678_1.png",
+     "width": 1920,
+     "height": 1080
+    },
+    "thumb": {
+     "key": "level_2b8xxpb13ie10xo6oufdc_1713650678_1_thumb.png",
+     "width": 512,
+     "height": 288
+    }
+   },
+   "creator": "sox",
+   "change": 0
+  },
+  1716009627,
+  "unbeaten_map"
  ]
 ]

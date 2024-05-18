@@ -1,40 +1,39 @@
 {
- "identifier": "2b8xxpb13ie10xo6oufdc:1713650678",
- "title": "Tower of Kill Joys (SPoM)",
- "complexity": 1385,
+ "identifier": "2amu8d11xqc5b0k19b9vh:1707267118",
+ "title": "sneaky rats (P4)",
+ "complexity": 1500,
  "format_version": 8,
- "update_timestamp": 1713754256883,
- "creation_timestamp": 1713754256883,
- "data_key": "level_data:2b8xxpb13ie10xo6oufdc:1713650678:1",
- "description": "ToKJ is a SPoM tower that is Tier 3 (Medium), because of the weird mechanics, hard warps, and perplexing gameplay. This was really fun to make, and a playable map from me (finally lmao). GL on you completion, and of course have... don't rage :).",
+ "update_timestamp": 1707359463874,
+ "creation_timestamp": 1707355187122,
+ "data_key": "level_data:2amu8d11xqc5b0k19b9vh:1707267118:3",
+ "description": "we finally found the rat king layer. RAT ARE IN YOUR HOME",
  "creators": [
-  "sox"
+  "logan1234VR and rtvr1"
  ],
  "tags": [
-  "ok",
-  "climb",
-  "fling"
+  "ok"
  ],
- "verification_time": 71.39,
+ "verification_time": 192.85,
  "statistics": {
-  "total_played": 800,
-  "difficulty": 0,
-  "difficulty_string": "impossible",
-  "liked": 0,
-  "time": 100
+  "total_played": 400,
+  "difficulty": 0.0028011204481792717,
+  "liked": 1,
+  "time": 140.008,
+  "difficulty_string": "veryhard"
  },
  "images": {
   "full": {
-   "key": "level_2b8xxpb13ie10xo6oufdc_1713650678_1.png",
+   "key": "level_2amu8d11xqc5b0k19b9vh_1707267118_2.png",
    "width": 1920,
    "height": 1080
   },
   "thumb": {
-   "key": "level_2b8xxpb13ie10xo6oufdc_1713650678_1_thumb.png",
+   "key": "level_2amu8d11xqc5b0k19b9vh_1707267118_2_thumb.png",
    "width": 512,
    "height": 288
   }
  },
- "creator": "sox",
+ "creator": "logan1234VR and rtvr1",
+ "sole": true,
  "change": 0
 }
