@@ -903,6 +903,22 @@ div#questMultiSelect {
     margin-right: auto;
     color: var(--text-color-default);
 }
+.metric-data {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 80%;
+    max-width: 800px;
+    background-color: var(--background-color-alt);
+    padding: var(--padding-secondary);
+    border-radius: var(--border-radius);
+}
+p:hover .metric-data {
+    display: flex;
+}
 #Global-out p {
     width: fit-content;
     font-size: 16px;
