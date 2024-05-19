@@ -291,7 +291,9 @@ function checkMetric(id, username) {
         }">
             <p>${i + 1}</p>
             <a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}" target="_blank">${data.username}</a>
-            <p>${Math.round(data.score*100)/100}</p>
+            <p>${Math.round(data.score*100)/100}
+                <span class="metric-data">${JSON.stringify(metrics[id], null, 2)}</span>
+            </p>
         </div>
         `;
         isLoggedIn && id === user_id ? isTop100 = true : null;
@@ -308,7 +310,9 @@ function checkMetric(id, username) {
             <div class="leaderboard-item list-item card-personal">
                 <p>${index + 1}</p>
                 <a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${user_id}" target="_blank">${user_name}</a>
-                <p>${Math.round(metrics[user_id].score*100)/100}</p>
+                <p>${Math.round(metrics[user_id].score*100)/100}
+                    <span class="metric-data">${JSON.stringify(metrics[user_id], null, 2)}</span>
+                </p>
             </div>
         `;
         }
