@@ -1434,7 +1434,7 @@ function incrementLoader() {
     document.getElementById('loader').style.width = `${progress}%`;
 }
 function initStats() {
-    let currentTimestamp = new Date().getTime();
+    let currentTimestamp = new Date().getTime() / 1000 / 60 / 10; // 10 minute cache interval
     let promises = [];
 
     for (const key in statistics) {
