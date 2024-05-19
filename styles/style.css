@@ -910,13 +910,14 @@ div#questMultiSelect {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 100;
-    width: 80%;
-    max-width: 800px;
     background-color: var(--background-color-alt);
     padding: var(--padding-secondary);
     border-radius: var(--border-radius);
+    white-space: pre;
+    font-size: .5rem;
 }
-p:hover .metric-data {
+p:hover .metric-data, p:active .metric-data,
+p:focus .metric-data, p:focus-within .metric-data {
     display: flex;
 }
 #Global-out p {
