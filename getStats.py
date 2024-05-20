@@ -499,11 +499,12 @@ def get_level_data():
         print("Not running")
         return
 
-    with open("stats_data/most_plays.json") as most_plays_file, open("stats_data/most_verified.json") as most_verified_file, open("stats_data/unbeaten_levels.json") as unbeaten_file, open("stats_data/all_verified.json") as all_verified_file:
+    with open("stats_data/most_plays.json") as most_plays_file, open("stats_data/most_verified.json") as most_verified_file, open("stats_data/unbeaten_levels.json") as unbeaten_file, open("stats_data/all_verified.json") as all_verified_file, open("stats_data/best_of_grab.json") as best_of_grab_file:
         most_plays_old = json.load(most_plays_file)
         most_verified_old = json.load(most_verified_file)
         unbeaten_levels_old = json.load(unbeaten_file)
         all_verified_old = json.load(all_verified_file)
+        best_of_grab_levels_old = json.load(best_of_grab_file)
 
     all_verified = get_all_verified()
     unbeaten_levels = get_unbeaten(all_verified)
@@ -513,7 +514,8 @@ def get_level_data():
     write_json_file('stats_data/trending_levels.json', get_trending_levels(all_verified))
     write_json_file('stats_data/all_verified.json', all_verified)
     write_json_file('stats_data/a_challenge.json', get_a_challenge())
-    write_json_file('stats_data/best_of_grab.json', get_best_of_grab())
+    best_of_grab_levels = get_best_of_grab()
+    write_json_file('stats_data/best_of_grab.json', best_of_grab_levels)
     write_json_file('stats_data/featured_creators.json', get_creators())
     write_json_file('stats_data/most_played_maps.json', get_most_played_maps(all_verified))
     write_json_file('stats_data/most_liked.json', get_most_liked(all_verified))
@@ -547,7 +549,7 @@ def get_level_data():
         weekly = 0
 
     log(weekly)
-    run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels, beaten_unbeaten_levels, unverified)
+    run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels)
 
 def log(weekly):
     log_data = {
@@ -598,7 +600,7 @@ async def get_challenge_scores():
     return embed
 
 
-def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=[], unverified=[]):
+def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=[], unverified=[], best_of_grab_levels_old=[], best_of_grab_levels=[]):
 
     intents = discord.Intents.default()
     bot = commands.Bot(command_prefix='!', intents=intents, allowed_mentions=discord.AllowedMentions(roles=True, users=False, everyone=False))
@@ -662,6 +664,28 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
                 link = map["images"]["thumb"]["key"]
                 unverified_embed.set_thumbnail(url=f"https://grab-images.slin.dev/{link}")
             await unverified_channel.send(embed=unverified_embed)
+            
+        # challenge maps record changes
+        challenge_records_channel = bot.get_channel(1241943979751374868)
+        for map in best_of_grab_levels:
+            for map_old in best_of_grab_levels_old:
+                if map["identifier"] == map_old["identifier"] and "curated_challenge" in map["list_key"]:
+                    old_record = None
+                    current_record = None
+                    if "leaderboard" in map_old and len(map_old["leaderboard"]) > 0:
+                        old_record = map_old["leaderboard"][0]
+                    if "leaderboard" in map and len(map["leaderboard"]) > 0:
+                        current_record = map["leaderboard"][0]
+                    if current_record is not None and old_record is not None: # and current_record["timestamp"] != old_record["timestamp"]:
+                        embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=f"New record by {current_record['user_name']}: {current_record["best_time"]}s", color=0xff0000)
+                        await challenge_records_channel.send(embed=embed)
+                    elif current_record is not None:
+                        embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=f"New record by {current_record['user_name']}: {current_record["best_time"]}s", color=0xff0000)
+                        await challenge_records_channel.send(embed=embed)
+                    elif old_record is not None:
+                        embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=f"Record removed by moderator", color=0x990000)
+                        await challenge_records_channel.send(embed=embed)
+                    break
             
         await bot.close()
 
