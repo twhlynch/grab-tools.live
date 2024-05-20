@@ -1,37 +1,39 @@
 {
- "identifier": "2a7kcrctb9fpib14lilnx:1701661475",
- "title": "CBE INFO (AGAIN) EP 7",
- "complexity": 2059,
- "format_version": 7,
- "update_timestamp": 1701759380326,
- "creation_timestamp": 1701759380326,
- "data_key": "level_data:2a7kcrctb9fpib14lilnx:1701661475:1",
+ "identifier": "2anras2bvr6wtdrk2500r:1712957350",
+ "title": "steampunk factory",
+ "complexity": 297,
+ "format_version": 8,
+ "update_timestamp": 1712974764580,
+ "creation_timestamp": 1712974764580,
+ "data_key": "level_data:2anras2bvr6wtdrk2500r:1712957350:1",
+ "description": "Go through an amazing factory with various obstacles, secrets, and rooms.",
  "creators": [
-  "Felixart oculusbro53"
+  "kmastervr"
  ],
  "tags": [
   "ok"
  ],
+ "verification_time": 46.75,
  "statistics": {
   "total_played": 100,
-  "difficulty": 0.01098901098901099,
+  "difficulty": 0.01,
   "liked": 1,
-  "time": 276.39,
+  "time": 35.42,
   "difficulty_string": "hard"
  },
  "images": {
   "full": {
-   "key": "level_2a7kcrctb9fpib14lilnx_1701661475_1.png",
+   "key": "level_2anras2bvr6wtdrk2500r_1712957350_1.png",
    "width": 1920,
    "height": 1080
   },
   "thumb": {
-   "key": "level_2a7kcrctb9fpib14lilnx_1701661475_1_thumb.png",
+   "key": "level_2anras2bvr6wtdrk2500r_1712957350_1_thumb.png",
    "width": 512,
    "height": 288
   }
  },
- "creator": "Felixart oculusbro53",
+ "creator": "kmastervr",
  "sole": true,
  "change": 0
 }
