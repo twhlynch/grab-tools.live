@@ -679,7 +679,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
                     if current_record is not None and old_record is not None and current_record["timestamp"] != old_record["timestamp"]:
                         embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=f"New record by {current_record['user_name']}: {current_record["best_time"]}s", color=0xff0000)
                         await challenge_records_channel.send(embed=embed)
-                    elif current_record is not None:
+                    elif current_record is not None and old_record is None:
                         embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=f"New record by {current_record['user_name']}: {current_record["best_time"]}s", color=0xff0000)
                         await challenge_records_channel.send(embed=embed)
                     elif old_record is not None:
