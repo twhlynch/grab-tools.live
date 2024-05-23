@@ -1066,6 +1066,7 @@ function getFirstToBeats() {
             ''
         );
         document.getElementById('FirstToBeat-out').appendChild(user_card);
+        checkNotification(key, "FirstToBeat");
     }
 }
 function getEmptyLeaderboards() {
