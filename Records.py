@@ -11,6 +11,7 @@ def process_level(level):
         res_data = requests.get(url).json()
     
     if len(res_data) != 0:
+        print(f"Parsing leaderboard of {len(res_data)} results for {level['title']}")
         level["leaderboard"] = res_data
         if len(res_data) == 1:
             sole_victors.append(level)
@@ -35,10 +36,25 @@ def process_level(level):
     else:
         empty_leaderboards.append(level)
     
+    first_record = None
+    first_timestamp = 9999999999999
     for record in res_data:
+        if int(record["timestamp"]) < first_timestamp:
+            first_timestamp = int(record["timestamp"])
+            first_record = record
         if record["user_id"] not in user_finishes:
-            user_finishes[record["user_id"]] = [0, record["user_name"]]
+            user_finishes[record["user_id"]] = [0, record["user_name"], 0]
         user_finishes[record["user_id"]][0] += 1
+        user_finishes[record["user_id"]][2] += record["best_time"]
+        
+    if first_record is not None:
+        if first_record["user_id"] not in first_to_beat:
+            first_to_beat[first_record["user_id"]] = [
+                first_record["user_name"], 
+                0
+            ]
+        first_to_beat[first_record["user_id"]][1] += 1
+    
     print(f"Processed {level['title']}")
 
 with open("stats_data/all_verified.json") as file:
@@ -65,6 +81,7 @@ leaderboard = {}
 empty_leaderboards = []
 sole_victors = []
 user_finishes = {}
+first_to_beat = {}
 difficulty_lengths["total"] = len(data)
 
 with ThreadPoolExecutor() as executor:
@@ -79,19 +96,22 @@ with open("stats_data/user_finishes.json", "w") as file:
     json.dump(user_finishes, file)
 
 with open("stats_data/empty_leaderboards.json", "w") as file:
-    json.dump(empty_leaderboards, file, indent=4)
+    json.dump(empty_leaderboards, file)
 
 with open("stats_data/sorted_leaderboard_records.json", "w") as file:
-    json.dump(sorted_leaderboard, file, indent=1)
+    json.dump(sorted_leaderboard, file)
 
 with open("stats_data/leaderboard_levels.json", "w") as file:
     json.dump(data, file)
 
 with open("stats_data/sole_victors.json", "w") as file:
-    json.dump(sole_victors, file, indent=4)
+    json.dump(sole_victors, file)
 
 with open("stats_data/difficulty_records.json", "w") as file:
     json.dump(difficulty_records, file)
 
 with open("stats_data/difficulty_lengths.json", "w") as file:
-    json.dump(difficulty_lengths, file, indent=4)
+    json.dump(difficulty_lengths, file)
+
+with open("stats_data/first_to_beat.json", "w") as file:
+    json.dump(first_to_beat, file)
