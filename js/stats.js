@@ -187,6 +187,7 @@ function getUnbeatenLevels() {
     document.getElementById('Global-out').innerHTML += `<p>Unbeaten maps: ${statistics.unbeaten_levels.length}</p>`;
     const sortedByUpdated = [...statistics.unbeaten_levels].sort((a, b) => a.update_timestamp - b.update_timestamp);
     const sortedByCreated = [...statistics.unbeaten_levels].sort((a, b) => a.creation_timestamp - b.creation_timestamp);
+    let unbeatenCreators = {};
 
     for (const item of statistics.unbeaten_levels) {
         const detail = `${Math.round((new Date() - new Date(item?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`;
@@ -194,6 +195,41 @@ function getUnbeatenLevels() {
         if ("sole" in item) { level_card.style.borderColor = "#ff000055"; }
         document.getElementById('UnbeatenMaps-out').appendChild(level_card);
         checkNotification(item.identifier, "UnbeatenMaps");
+        const user_identifier = item.identifier.split(':')[0];
+        const level_age = new Date() - new Date(item?.creation_timestamp);
+        if (user_identifier in unbeatenCreators) {
+            unbeatenCreators[user_identifier].score += 1;
+            unbeatenCreators[user_identifier].creator = item.creators ? item.creators[0].split(' ')[0] : unbeatenCreators[user_identifier].creator;
+            unbeatenCreators[user_identifier].age += level_age;
+        } else {
+            unbeatenCreators[user_identifier] = {
+                score: 1,
+                creator: item.creators ? item.creators[0].split(' ')[0] : '?',
+                age: level_age
+            }
+        }
+    }
+
+    // sort by score then age
+    unbeatenCreators = Object.fromEntries(Object.entries(unbeatenCreators).sort((a, b) => {
+        if (a[1].score == b[1].score) {
+            return b[1].age - a[1].age;
+        } else {
+            return b[1].score - a[1].score;
+        }
+    }));
+    for (const key in unbeatenCreators) {
+        const user_card = userCard(
+            key, 
+            unbeatenCreators[key].creator, 
+            false, 
+            false, 
+            false, 
+            `${unbeatenCreators[key].score} maps`, 
+            ''
+        );
+        document.getElementById('UnbeatenCreators-out').appendChild(user_card);
+        checkNotification(key, "UnbeatenCreators");
     }
     
     for (const item of sortedByUpdated) {
@@ -263,11 +299,38 @@ function getTopTimes() {
     }
 }
 function getSoleLevels() {
+    let users = {};
     for (const item of statistics.sole_victors) {
         const detail = `${Math.round((new Date() - new Date(item?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`;
         const level_card = genericLevelCard(item, detail);
         document.getElementById('SoleBeatenMaps-out').appendChild(level_card);
         checkNotification(item.identifier, "SoleBeatenMaps");
+
+        let first_identifier = item.leaderboard[0].user_id;
+        let first_name = item.leaderboard[0].user_name;
+        if (first_identifier in users) {
+            users[first_identifier].score += 1;
+        } else {
+            users[first_identifier] = {
+                score: 1,
+                user: first_name
+            }
+        }
+    }
+
+    users = Object.fromEntries(Object.entries(users).sort((a, b) => b[1].score - a[1].score));
+    for (const key in users) {
+        const user_card = userCard(
+            key, 
+            users[key].user, 
+            false, 
+            false, 
+            false, 
+            `${users[key].score} maps`, 
+            ''
+        );
+        document.getElementById('SoleBeaters-out').appendChild(user_card);
+        checkNotification(key, "SoleBeaters");
     }
 }
 function getPlaysLevels() {
@@ -969,6 +1032,41 @@ function getTop100s() {
         document.getElementById('Finishes-out').appendChild(user_card);
         checkNotification(key, "Finishes");
     }
+    // time spent in total
+    const sorted_by_time = Object.entries(statistics.user_finishes).sort((a, b) => {return b[1][2] - a[1][2]}).slice(0, 200);
+    for (let [key, value] of sorted_by_time) {
+        let minutes = Math.floor(value[2] / 60);
+        let seconds = (value[2] % 60).toFixed(2);
+        if (minutes < 10) { minutes = "0" + minutes; }
+        if (seconds < 10) { seconds = "0" + seconds; }
+        const user_card = userCard(
+            key, 
+            value[1], 
+            false, 
+            false, 
+            false, 
+            `${minutes}:${seconds}`, 
+            ''
+        );
+        document.getElementById('TimeTotal-out').appendChild(user_card);
+        checkNotification(key, "TimeTotal");
+    }
+}
+function getFirstToBeats() {
+    let sorted_ftb = Object.fromEntries(Object.entries(statistics.first_to_beat).sort((a, b) => {return b[1][1] - a[1][1]}));
+    for (let key in sorted_ftb) {
+        let value = sorted_ftb[key];
+        const user_card = userCard(
+            key, 
+            value[0], 
+            false, 
+            false, 
+            false, 
+            `${value[1]}`, 
+            ''
+        );
+        document.getElementById('FirstToBeat-out').appendChild(user_card);
+    }
 }
 function getEmptyLeaderboards() {
     const data = statistics.empty_leaderboards.sort((a, b) => {return a?.creation_timestamp - b?.creation_timestamp});
@@ -1423,7 +1521,8 @@ let statistics = {
     empty_leaderboards: undefined,
     total_level_count: undefined,
     difficulty_records: undefined,
-    difficulty_lengths: undefined
+    difficulty_lengths: undefined,
+    first_to_beat: undefined
 };
 
 let loading = 0;
@@ -1487,6 +1586,7 @@ function computeStats() {
     getBestOfGrab();
     makeFeaturedButtons();
     getTop100s();
+    getFirstToBeats();
     getEmptyLeaderboards();
     getSoleLevels();
     getTipping();
