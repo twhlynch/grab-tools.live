@@ -699,8 +699,9 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
                 for map in best_of_grab_levels:
                     if map["identifier"] == map_old["identifier"] and "curated_challenge" in map["list_key"]:
                         found = True
+                        break
                 if not found:
-                    embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=f"Map removed from a challenge", color=0x990000)
+                    embed = Embed(title=map_old["title"], url=f"{VIEWER_URL}?level={map_old['identifier']}", description=f"Map removed from a challenge", color=0x990000)
                     await challenge_records_channel.send(embed=embed)
 
         await bot.close()
