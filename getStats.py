@@ -690,17 +690,18 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
                         embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=f"Record removed by moderator", color=0x990000)
                         await challenge_records_channel.send(embed=embed)
                     break
-            if not found:
+            if not found and "curated_challenge" in map["list_key"]:
                 embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=f"Map added to a challenge", color=0x990000)
                 await challenge_records_channel.send(embed=embed)
         for map_old in best_of_grab_levels_old:
-            found = False
-            for map in best_of_grab_levels:
-                if map["identifier"] == map_old["identifier"] and "curated_challenge" in map["list_key"]:
-                    found = True
-            if not found:
-                embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=f"Map removed from a challenge", color=0x990000)
-                await challenge_records_channel.send(embed=embed)
+            if "curated_challenge" in map["list_key"]:
+                found = False
+                for map in best_of_grab_levels:
+                    if map["identifier"] == map_old["identifier"] and "curated_challenge" in map["list_key"]:
+                        found = True
+                if not found:
+                    embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=f"Map removed from a challenge", color=0x990000)
+                    await challenge_records_channel.send(embed=embed)
 
         await bot.close()
 
