@@ -213,7 +213,9 @@ function loadTexture(path) {
 function loadModel(path) {
     return new Promise((resolve) => {
         loader.load(path, function (gltf) {
-            resolve(gltf.scene.children[0]);
+            let object = gltf.scene.children[0];
+            object.geometry.scale(-1, 1, -1);
+            resolve(object);
         });
     });
 }
