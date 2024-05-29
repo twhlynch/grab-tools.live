@@ -3310,6 +3310,10 @@ function initUI() {
         transformControl.setScaleSnap( 0.25 );
     });
 
+    timelineSliderElement.addEventListener('input', () => {
+        animationTime = parseFloat(timelineSliderElement.value);
+    });
+
     // apply
     applyChangesElement.addEventListener('click', generateLevelFromObjects);
     applyChangesAsFrameElement.addEventListener('click', generateFrameLevelFromObjects);
