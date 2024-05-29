@@ -410,7 +410,7 @@ html.dark-mode #editing-container {
     appearance: none;
     background: #777;
     cursor: pointer;
-    pointer-events: none;
+    /* pointer-events: none; */
 }
 #timeline-slider::-webkit-slider-runnable-track, #timeline-slider::-moz-range-track {
     height: 2px;
