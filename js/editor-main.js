@@ -33,6 +33,7 @@ let loader = new GLTFLoader();
 // ambience
 let sunAngle, sunAltitude, horizonColor, sky;
 let editAmbienceSettings;
+let fogEnabled = 1.0;
 // paths
 let materialList = [
     '/img/textures/default.png',
@@ -2348,6 +2349,17 @@ function editColor(e) {
         generateLevelFromObjects();
     }
 }
+function toggleFog() {
+    fogEnabled = !fogEnabled;
+    for (let material of materials) {
+        material.uniforms.fogEnabled = { value: fogEnabled};
+    }
+    for (let object of objects) {
+        if (object?.material?.uniforms?.fogEnabled) {
+            object.material.uniforms.fogEnabled.value = fogEnabled;
+        }
+    }
+}
 function editAnimation(animation) {
     if (
         editing && editing?.parent?.type == "Scene"
@@ -3313,6 +3325,7 @@ function initUI() {
     document.getElementById('start-btn').addEventListener('click', goToStart);
     document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
     document.getElementById('showGroups-btn').addEventListener('click', () => {showGroups = !showGroups; refreshScene()});
+    document.getElementById('toggleFog-btn').addEventListener('click', () => {toggleFog(); refreshScene()});
     editInputElement.addEventListener('blur', highlightTextEditor);
     document.getElementById('json-btn').addEventListener('click', downloadAsJSON);
     document.getElementById('monochromify-btn').addEventListener('click', monochromify);
@@ -3420,7 +3433,7 @@ async function initAttributes() {
                 "diffuseColor": { value: [1.0, 1.0, 1.0] },
                 "worldNormalMatrix": { value: new THREE.Matrix3() },
                 "neonEnabled": { value: 0.0 },
-                "fogEnabled": { value: 1.0 },
+                "fogEnabled": { value: fogEnabled },
                 "specularColor": { value: [0.3, 0.3, 0.3, 16.0]},
                 "isSelected": { value: false }
             }
