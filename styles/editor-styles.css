@@ -11,6 +11,7 @@ html {
 *::-webkit-scrollbar {
     width: 10px;
     background-color: #d3d3d377;
+    border-radius: 5px;
 }
 *::-webkit-scrollbar:horizontal {
     height: 10px;
@@ -18,6 +19,7 @@ html {
 *::-webkit-scrollbar-thumb {
     width: 10px;
     background-color: #b6b6b677;
+    border-radius: 5px;
 }
 #editor-ad-container {
     height: 40%;
@@ -133,6 +135,9 @@ html {
     transform: translateX(-17.5px);
     border-left: 2px solid #424243;
     user-select: none;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    box-sizing: border-box;
 }
 
 /* Resize Terminal */
@@ -181,6 +186,8 @@ html {
     transform: translateX(-20.5px);
     border-left: 3px solid #424243;
     user-select: none;
+    border-bottom-left-radius: 5px;
+    box-sizing: border-box;
 }
 
 /* Menu */
@@ -203,6 +210,29 @@ html {
     padding: 8px 16px;
     border: none;
     cursor: pointer;
+}
+
+li:last-child > .menu-btn {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+li:first-child > .menu-btn {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.menu-list > li:first-child > .menu-btn, .menu-list > li:last-child > .menu-btn {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+#editing-menu > ul > li:nth-last-child(1) > .menu-btn {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+#editing-menu > ul > li:nth-last-child(2) > .menu-btn {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .menu-dropdown {
@@ -256,6 +286,7 @@ html {
     max-height: 200px;
     overflow-y: scroll;
     transform: matrix(1, 0, 0, 1, 0, -32);
+    border-radius: 5px;
 }
 .menu-btn::after {
     position: absolute;
@@ -264,7 +295,7 @@ html {
     margin-top: 3px;
 }
 
-/* prmopts */
+/* prompts */
 #prompts {
     height: 100%;
     width: 100%;
@@ -425,6 +456,7 @@ html.dark-mode #editing-container {
     background-color: #aaa;
     height: 14px;
     width: 10px; 
+    border-radius: 5px;
 }
 #timeline-slider::-moz-range-thumb {
     border: none;
@@ -432,6 +464,7 @@ html.dark-mode #editing-container {
     background-color: #aaa;
     height: 14px;
     width: 10px;
+    border-radius: 5px;
 }
 #timeline-slider:focus {
     outline: none;
