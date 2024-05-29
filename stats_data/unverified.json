@@ -1,119 +1,40 @@
 [
  {
-  "identifier": "29ezdotqfiwocl4fk4gs9:1704410624",
-  "title": "Angelz's Difficulty Chart",
-  "complexity": 1208,
+  "identifier": "2akx2bw4hs4txb2h6gsu5:1706561395",
+  "title": "floiting islands",
+  "complexity": 1261,
   "format_version": 8,
-  "update_timestamp": 1704613674010,
-  "creation_timestamp": 1704417489790,
-  "data_key": "level_data:29ezdotqfiwocl4fk4gs9:1704410624:3",
-  "description": "My Difficulty Chart (inspired by yoohoo)",
+  "update_timestamp": 1711929424611,
+  "creation_timestamp": 1706562953311,
+  "data_key": "level_data:2akx2bw4hs4txb2h6gsu5:1706561395:5",
+  "description": "floating islands",
   "creators": [
-   "Angelz"
+   "vrgamers1234"
   ],
   "tags": [
    "ok"
   ],
-  "verification_time": 114.38,
+  "verification_time": 52.64,
   "statistics": {
-   "total_played": 900,
-   "difficulty": 0.01,
-   "liked": 0.83,
-   "time": 50.45,
+   "total_played": 200,
+   "difficulty": 0.09239130434782608,
+   "liked": 0.7777777777777778,
+   "time": 41.590423529411765,
    "difficulty_string": "hard"
   },
   "images": {
    "full": {
-    "key": "level_29ezdotqfiwocl4fk4gs9_1704410624_2.png",
+    "key": "level_2akx2bw4hs4txb2h6gsu5_1706561395_1.png",
     "width": 1920,
     "height": 1080
    },
    "thumb": {
-    "key": "level_29ezdotqfiwocl4fk4gs9_1704410624_2_thumb.png",
+    "key": "level_2akx2bw4hs4txb2h6gsu5_1706561395_1_thumb.png",
     "width": 512,
     "height": 288
    }
   },
-  "creator": "Angelz",
-  "change": 900
- },
- {
-  "identifier": "2cz661q78os3m5l67blyu:1716737431",
-  "title": "SATURN HANGOUT",
-  "complexity": 1064,
-  "format_version": 8,
-  "update_timestamp": 1716740714651,
-  "creation_timestamp": 1716740714651,
-  "data_key": "level_data:2cz661q78os3m5l67blyu:1716737431:1",
-  "description": "HANGOUT TO TALK WITH PEOPLE",
-  "creators": [
-   "ROXIE7"
-  ],
-  "tags": [
-   "ok",
-   "showcase"
-  ],
-  "verification_time": 7.36,
-  "statistics": {
-   "total_played": 300,
-   "difficulty": 0.44,
-   "liked": 0.77,
-   "time": 20.3,
-   "difficulty_string": "easy"
-  },
-  "images": {
-   "full": {
-    "key": "level_2cz661q78os3m5l67blyu_1716737431_1.png",
-    "width": 1920,
-    "height": 1080
-   },
-   "thumb": {
-    "key": "level_2cz661q78os3m5l67blyu_1716737431_1_thumb.png",
-    "width": 512,
-    "height": 288
-   }
-  },
-  "creator": "ROXIE7",
-  "change": 300
- },
- {
-  "identifier": "2d8bw0kfl7sdst61fc2dt:1716086259",
-  "title": "storage escape room",
-  "complexity": 1471,
-  "format_version": 8,
-  "update_timestamp": 1716087875453,
-  "creation_timestamp": 1716087875453,
-  "data_key": "level_data:2d8bw0kfl7sdst61fc2dt:1716086259:1",
-  "description": "can you make your way out of this storage room or will you be left alone...",
-  "creators": [
-   "thatonespider"
-  ],
-  "tags": [
-   "ok",
-   "puzzle",
-   "minigame"
-  ],
-  "verification_time": 7.48,
-  "statistics": {
-   "total_played": 1200,
-   "difficulty": 0.4,
-   "liked": 0.8,
-   "time": 57.88,
-   "difficulty_string": "medium"
-  },
-  "images": {
-   "full": {
-    "key": "level_2d8bw0kfl7sdst61fc2dt_1716086259_1.png",
-    "width": 1920,
-    "height": 1080
-   },
-   "thumb": {
-    "key": "level_2d8bw0kfl7sdst61fc2dt_1716086259_1_thumb.png",
-    "width": 512,
-    "height": 288
-   }
-  },
-  "creator": "thatonespider",
-  "change": 100
+  "creator": "vrgamers1234",
+  "change": 0
  }
 ]
