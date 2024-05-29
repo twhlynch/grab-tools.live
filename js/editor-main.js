@@ -1,23 +1,61 @@
-import * as THREE from 'https://unpkg.com/three@0.145.0/build/three.module.js';
-import { OrbitControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm/loaders/GLTFLoader.js';
-import { FlyControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/controls/FlyControls.js';
-import { GLTFExporter } from 'https://cdn.skypack.dev/three@v0.132.0/examples/jsm//exporters/GLTFExporter.js';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+import { FlyControls } from 'three/addons/controls/FlyControls.js';
 import { VRButton } from "https://cdn.jsdelivr.net/npm/three@0.145.0/examples/jsm/webxr/VRButton.min.js";
-import { TransformControls } from 'https://unpkg.com/three@0.145.0/examples/jsm/controls/TransformControls.js';
-// import { XRControllerModelFactory } from 'https://cdn.jsdelivr.net/npm/three@0.145.0/examples/jsm/webxr/XRControllerModelFactory.js';
-import { vertexShader, fragmentShader, startFinishVS, startFinishFS } from './shaders.js';
-let webusb = null;
-let adb = null;
-let shell = null;
-let sync = null;
-let camera, scene, renderer, light, controls, fly, loader, sun, transformControl, raycaster, mouse, lastSelected, selected, editing, vrButton, startMaterial, finishMaterial;
+import { TransformControls } from 'three/addons/controls/TransformControls.js';
+import * as SHADERS from './shaders.js';
+let templates = await fetch('/level_data/templates.json').then(response => response.json());
+let protobufData = await fetch('/proto/proto.proto').then(response => response.text());
+let animationPresets = {};
+// editor
+let renderer, scene;
+let raycaster, mouse, lastSelected, selected, editing, vrButton;
+let decoder = new TextDecoder();
+//adb
+let webusb, adb, shell, sync = null;
+// objects
+let camera, light, sun;
+//nodes
 let objects = [];
 let animatedObjects = [];
-let materials = [];
 let shapes = [];
+// materials
+let startMaterial, finishMaterial, skyMaterial, signMaterial, neonMaterial;
+let materials = [];
+let objectMaterials = [];
 let exportMaterials = [];
-let fileNames = [
+// controls
+let controls, fly, transformControl;
+// loaders
+let loader = new GLTFLoader();
+// ambience
+let sunAngle, sunAltitude, horizonColor, sky;
+let editAmbienceSettings;
+// paths
+let materialList = [
+    '/img/textures/default.png',
+    '/img/textures/grabbable.png',
+    '/img/textures/ice.png',
+    '/img/textures/lava.png',
+    '/img/textures/wood.png',
+    '/img/textures/grapplable.png',
+    '/img/textures/grapplable_lava.png',
+    '/img/textures/grabbable_crumbling.png',
+    '/img/textures/default_colored.png',
+    '/img/textures/bouncing.png'
+];
+let shapeList = [
+    'models/editor/cube.glb',
+    'models/editor/sphere.glb',
+    'models/editor/cylinder.glb',
+    'models/editor/pyramid.glb',
+    'models/editor/prism.glb',
+    'models/editor/sign.glb',
+    'models/editor/start_end.glb'
+];
+let animationFileNames = [
     "angle_slide",
     "elevate",
     "flip",
@@ -29,21 +67,20 @@ let fileNames = [
     "square",
     "wobble"
 ];
-let animationPresets = {};
+// toggles
 let altTextures = false;
 let hideText = false;
 let highlightText = true;
 let showGroups = false;
 let enableEditing = false;
 let playAnimations = true;
+// animations
 let animationTime = 0.0;
 let animationSpeed = 1.0;
 let clock = new THREE.Clock();
-let decoder = new TextDecoder();
+// terminal
 let lastRan = '';
 let oldText = '';
-let templates = await fetch('/level_data/templates.json').then(response => response.json());
-let protobufData = await fetch('/proto/proto.proto').then(response => response.text());
 
 // elements
 const applyChangesElement = document.getElementById('applyChanges');
@@ -129,7 +166,6 @@ function setLevel(level) {
     editInputElement.innerText = JSON.stringify(level, null, 4);
     highlightTextEditor();
 }
-
 function JsonToHighlightedText(json) {
     let stringified = json;
     if (typeof json !== 'string') {
@@ -187,7 +223,6 @@ function JsonToHighlightedText(json) {
 
     return highlightedText;
 }
-
 function highlightTextEditor() {
     let hasChanged = oldText != editInputElement.innerHTML;
     if (!hideText && hasChanged) {
@@ -205,7 +240,7 @@ function highlightTextEditor() {
 function loadTexture(path) {
     return new Promise((resolve) => {
         const texture = new THREE.TextureLoader().load(path, function (texture) {
-            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            // texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
             resolve(texture);
         });
     });
@@ -219,124 +254,8 @@ function loadModel(path) {
         });
     });
 }
-async function initAttributes() {
-
-    for (const path of [
-        '/img/textures/default.png',
-        '/img/textures/grabbable.png',
-        '/img/textures/ice.png',
-        '/img/textures/lava.png',
-        '/img/textures/wood.png',
-        '/img/textures/grapplable.png',
-        '/img/textures/grapplable_lava.png',
-        '/img/textures/grabbable_crumbling.png',
-        '/img/textures/default_colored.png',
-        '/img/textures/bouncing.png'
-        ]) {
-            const texture = await loadTexture(path);
-            let material = new THREE.MeshBasicMaterial({ map: texture });
-            
-            exportMaterials.push(material);
-        }
-
-    for (const path of [
-        '/img/textures/default.png',
-        '/img/textures/grabbable.png',
-        '/img/textures/ice.png',
-        '/img/textures/lava.png',
-        '/img/textures/wood.png',
-        '/img/textures/grapplable.png',
-        '/img/textures/grapplable_lava.png',
-        '/img/textures/grabbable_crumbling.png',
-        '/img/textures/default_colored.png',
-        '/img/textures/bouncing.png'
-        ]) {
-            const texture = await loadTexture(path);
-
-            let sunAngle = new THREE.Euler(THREE.MathUtils.degToRad(45), THREE.MathUtils.degToRad(315), 0.0)
-			let sunAltitude = 45.0
-			let horizonColor = [0.916, 0.9574, 0.9574]
-            const sunDirection = new THREE.Vector3( 0, 0, 1 );
-			sunDirection.applyEuler(sunAngle);
-            let sunColorFactor = 1.0 - sunAltitude / 90.0
-			sunColorFactor *= sunColorFactor
-			sunColorFactor = 1.0 - sunColorFactor
-			sunColorFactor *= 0.8
-			sunColorFactor += 0.2
-			let sunColor = [horizonColor[0] * (1.0 - sunColorFactor) + sunColorFactor, horizonColor[1] * (1.0 - sunColorFactor) + sunColorFactor, horizonColor[2] * (1.0 - sunColorFactor) + sunColorFactor]
-
-            let material = new THREE.ShaderMaterial({
-                vertexShader: vertexShader,
-                fragmentShader: fragmentShader,
-                uniforms: {
-                    "colorTexture": { value: texture },
-                    "tileFactor": { value: 1.1 },
-                    "worldNormalMatrix": { value: new THREE.Matrix3() },
-                    "colors": { value: new THREE.Vector3(1.0, 1.0, 1.0) },
-                    "opacity": { value: 1.0 },
-                    "sunSize": { value: 0.1 },
-                    "sunColor": { value: sunColor },
-                    "sunDirection": { value: sunDirection },
-                    "specularColor": { value: [0.15, 0.15, 0.15, 10.0] },
-                    "isSelected": { value: false }
-                }
-            });
-
-            materials.push(material);
-        }
-
-    for (const path of [
-        'models/editor/cube.glb',
-        'models/editor/sphere.glb',
-        'models/editor/cylinder.glb',
-        'models/editor/pyramid.glb',
-        'models/editor/prism.glb',
-        'models/editor/sign.glb',
-        'models/editor/start_end.glb'
-    ]) {
-        const model = await loadModel(path);
-        shapes.push(model);
-    }
-
-    startMaterial = new THREE.ShaderMaterial();
-	startMaterial.vertexShader = startFinishVS;
-	startMaterial.fragmentShader = startFinishFS;
-	startMaterial.flatShading = true;
-	startMaterial.transparent = true;
-	startMaterial.depthWrite = false;
-	startMaterial.uniforms = { "diffuseColor": {value: [0.0, 1.0, 0.0, 1.0]}};
-
-	finishMaterial = new THREE.ShaderMaterial();
-	finishMaterial.vertexShader = startFinishVS;
-	finishMaterial.fragmentShader = startFinishFS;
-	finishMaterial.flatShading = true;
-	finishMaterial.transparent = true;
-	finishMaterial.depthWrite = false;
-	finishMaterial.uniforms = { "diffuseColor": {value: [1.0, 0.0, 0.0, 1.0]}};
-
-    console.log('Ready', materials, shapes);
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const paramId = urlParams.get('level');
-
-    if (paramId) {
-        const login_details = {
-            "user_name": localStorage.getItem('user_name'),
-            "user_id": localStorage.getItem('user_id')
-        }
-        if (login_details.user_name && login_details.user_id) {
-            downloadAndOpenLevel(paramId);
-        } else {
-            const loginPromptElement = document.getElementById('loginPrompt');
-            loginPromptElement.style.display = 'grid';
-            loginPromptElement.addEventListener('click', () => {
-                loginPromptElement.style.display = 'none';
-            });
-        }
-    }
-
-}
 function refreshScene() {
+    console.log('Refreshing');
     let levelData = getLevel();
     document.getElementById('stats-editor').innerText = `Editor: ${JSON.stringify(levelData, null, 4).length}`;
     let levelNodes = levelData["levelNodes"];
@@ -381,6 +300,151 @@ function refreshScene() {
     objects = [];
     animatedObjects = [];
     scene.clear();
+
+    console.log('reset scene');
+
+    let ambience = levelData.ambienceSettings;
+    // sky = [
+    //     [
+    //         0, 0, 0
+    //     ],
+    //     [
+    //         0, 0, 0
+    //     ]
+    // ];
+    // if (ambience) {
+    //     if (ambience.skyZenithColor) {
+    //         ambience.skyZenithColor.r ? sky[0][0] = ambience.skyZenithColor.r * 255 : sky[0][0] = 0;
+    //         ambience.skyZenithColor.g ? sky[0][1] = ambience.skyZenithColor.g * 255 : sky[0][1] = 0;
+    //         ambience.skyZenithColor.b ? sky[0][2] = ambience.skyZenithColor.b * 255 : sky[0][2] = 0;
+    //     }
+    //     if (ambience.skyHorizonColor) {
+    //         ambience.skyHorizonColor.r ? sky[1][0] = ambience.skyHorizonColor.r * 255 : sky[1][0] = 0;
+    //         ambience.skyHorizonColor.g ? sky[1][1] = ambience.skyHorizonColor.g * 255 : sky[1][1] = 0;
+    //         ambience.skyHorizonColor.b ? sky[1][2] = ambience.skyHorizonColor.b * 255 : sky[1][2] = 0;
+    //     }
+    // }
+    if (ambience) {
+        if (ambience.skyHorizonColor) {
+            ambience.skyHorizonColor?.r ? null : ambience.skyHorizonColor.r = 0;
+            ambience.skyHorizonColor?.g ? null : ambience.skyHorizonColor.g = 0;
+            ambience.skyHorizonColor?.b ? null : ambience.skyHorizonColor.b = 0;
+        }
+        if (ambience.skyZenithColor) {
+            ambience.skyZenithColor?.r ? null : ambience.skyZenithColor.r = 0;
+            ambience.skyZenithColor?.g ? null : ambience.skyZenithColor.g = 0;
+            ambience.skyZenithColor?.b ? null : ambience.skyZenithColor.b = 0;
+        }
+        ambience.sunAltitude ? null : ambience.sunAltitude = 0;
+        ambience.sunAzimuth ? null : ambience.sunAzimuth = 0;
+        ambience.sunSize ? null : ambience.sunSize = 0;
+        ambience.fogDDensity ? null : ambience.fogDDensity = 0;
+        console.log('subbed 0s');
+
+        if (!skyMaterial) {
+            skyMaterial = new THREE.ShaderMaterial();
+            skyMaterial.vertexShader = SHADERS.skyVS;
+            skyMaterial.fragmentShader = SHADERS.skyFS;
+            skyMaterial.flatShading = false;
+            skyMaterial.depthWrite = false;
+            skyMaterial.side = THREE.BackSide;
+        }
+
+        sunAngle = new THREE.Euler(THREE.MathUtils.degToRad(ambience.sunAltitude), THREE.MathUtils.degToRad(ambience.sunAzimuth), 0.0);
+        console.log('sun angle');
+        console.log(skyMaterial);
+        skyMaterial.uniforms["cameraFogColor0"] = { value: [ambience.skyHorizonColor.r, ambience.skyHorizonColor.g, ambience.skyHorizonColor.b] }
+        skyMaterial.uniforms["cameraFogColor1"] = { value: [ambience.skyZenithColor.r, ambience.skyZenithColor.g, ambience.skyZenithColor.b] }
+        skyMaterial.uniforms["sunSize"] = { value: ambience.sunSize }
+        console.log('sky material');
+        sunAltitude = ambience.sunAltitude
+        horizonColor = [ambience.skyHorizonColor.r, ambience.skyHorizonColor.g, ambience.skyHorizonColor.b]
+        console.log('new ambience');
+    } else {
+        skyMaterial.uniforms["cameraFogColor0"] = { value: [0.916, 0.9574, 0.9574] }
+        skyMaterial.uniforms["cameraFogColor1"] = { value: [0.28, 0.476, 0.73] }
+        skyMaterial.uniforms["sunSize"] = { value: 1.0 }
+        console.log('default ambience');
+    }
+
+    console.log('configured ambience');
+
+    const sunDirection = new THREE.Vector3( 0, 0, 1 );
+    sunDirection.applyEuler(sunAngle);
+
+    const skySunDirection = sunDirection.clone()
+    skySunDirection.x = skySunDirection.x;
+    skySunDirection.y = skySunDirection.y;
+    skySunDirection.z = skySunDirection.z;
+
+    let sunColorFactor = 1.0 - sunAltitude / 90.0
+    sunColorFactor *= sunColorFactor
+    sunColorFactor = 1.0 - sunColorFactor
+    sunColorFactor *= 0.8
+    sunColorFactor += 0.2
+    let sunColor = [horizonColor[0] * (1.0 - sunColorFactor) + sunColorFactor, horizonColor[1] * (1.0 - sunColorFactor) + sunColorFactor, horizonColor[2] * (1.0 - sunColorFactor) + sunColorFactor]
+
+    console.log(sunColor, skyMaterial, skySunDirection);
+    skyMaterial.uniforms["sunDirection"] = { value: skySunDirection }
+    skyMaterial.uniforms["sunColor"] = { value: sunColor }
+
+    console.log(shapes[1].geometry, skyMaterial);
+    sky = new THREE.Mesh(shapes[1].geometry, skyMaterial);
+    console.log(sky);
+    sky.frustumCulled = false
+    sky.renderOrder = 1000 //sky should be rendered after opaque, before transparent
+    scene.add(sky);
+    console.log(sky);
+    console.log(materials, objectMaterials);
+
+    function updateMaterial(material) {
+        let density = 0.0
+        if(ambience)
+        {
+            material.uniforms["cameraFogColor0"] = { value: [ambience.skyHorizonColor.r, ambience.skyHorizonColor.g, ambience.skyHorizonColor.b] }
+            material.uniforms["cameraFogColor1"] = { value: [ambience.skyZenithColor.r, ambience.skyZenithColor.g, ambience.skyZenithColor.b] }
+            material.uniforms["sunSize"] = { value: ambience.sunSize }
+            density = ambience.fogDDensity;
+        }
+        else
+        {
+            material.uniforms["cameraFogColor0"] = { value: [0.916, 0.9574, 0.9574] }
+            material.uniforms["cameraFogColor1"] = { value: [0.28, 0.476, 0.73] }
+            material.uniforms["sunSize"] = { value: 1.0 }
+        }
+
+        material.uniforms["sunDirection"] = { value: skySunDirection }
+        material.uniforms["sunColor"] = { value: sunColor }
+
+        let densityFactor = density * density * density * density
+        let fogDensityX = 0.5 * densityFactor + 0.000001 * (1.0 - densityFactor)
+        let fogDensityY = 1.0/(1.0 - Math.exp(-1500.0 * fogDensityX))
+
+        material.uniforms["cameraFogDistance"] = { value: [fogDensityX, fogDensityY] }
+			
+    }
+
+    for (let material of materials) {
+        updateMaterial(material);
+    }
+    for (let material of objectMaterials) {
+        updateMaterial(material);
+    }
+
+    editAmbienceSettings = {
+        skyZenithColorR: ambience.skyZenithColor.r,
+        skyZenithColorG: ambience.skyZenithColor.g,
+        skyZenithColorB: ambience.skyZenithColor.b,
+        skyHorizonColorR: ambience.skyHorizonColor.r,
+        skyHorizonColorG: ambience.skyHorizonColor.g,
+        skyHorizonColorB: ambience.skyHorizonColor.b,
+        sunAltitude: ambience.sunAltitude,
+        sunAzimuth: ambience.sunAzimuth,
+        sunSize: ambience.sunSize,
+        fogDDensity: ambience.fogDDensity,
+    };
+
+    console.log('updated materials');
     
     levelNodes.forEach((node) => {
         let nodeStatistics = loadLevelNode(node, scene);
@@ -448,30 +512,8 @@ function refreshScene() {
 
     typeWarningElement.style.display = statistics.danger ? 'block' : 'none';
 
-    let ambience = levelData.ambienceSettings;
-    let sky = [
-        [
-            0, 0, 0
-        ],
-        [
-            0, 0, 0
-        ]
-    ];
-    if (ambience) {
-        if (ambience.skyZenithColor) {
-            ambience.skyZenithColor.r ? sky[0][0] = ambience.skyZenithColor.r * 255 : sky[0][0] = 0;
-            ambience.skyZenithColor.g ? sky[0][1] = ambience.skyZenithColor.g * 255 : sky[0][1] = 0;
-            ambience.skyZenithColor.b ? sky[0][2] = ambience.skyZenithColor.b * 255 : sky[0][2] = 0;
-        }
-        if (ambience.skyHorizonColor) {
-            ambience.skyHorizonColor.r ? sky[1][0] = ambience.skyHorizonColor.r * 255 : sky[1][0] = 0;
-            ambience.skyHorizonColor.g ? sky[1][1] = ambience.skyHorizonColor.g * 255 : sky[1][1] = 0;
-            ambience.skyHorizonColor.b ? sky[1][2] = ambience.skyHorizonColor.b * 255 : sky[1][2] = 0;
-        }
-    }
-
-    renderContainerElement.style.backgroundImage = `linear-gradient(rgb(${sky[0][0]}, ${sky[0][1]}, ${sky[0][2]}), rgb(${sky[1][0]}, ${sky[1][1]}, ${sky[1][2]}), rgb(${sky[0][0]}, ${sky[0][1]}, ${sky[0][2]}))`;
-    // console.log('Refreshed', scene, objects, animatedObjects);
+    // renderContainerElement.style.backgroundImage = `linear-gradient(rgb(${sky[0][0]}, ${sky[0][1]}, ${sky[0][2]}), rgb(${sky[1][0]}, ${sky[1][1]}, ${sky[1][2]}), rgb(${sky[0][0]}, ${sky[0][1]}, ${sky[0][2]}))`;
+    console.log('Refreshed', scene, objects, animatedObjects);
     renderer.render( scene, camera );
 }
 function loadLevelNode(node, parent) {
@@ -654,7 +696,9 @@ function loadLevelNode(node, parent) {
             if (altTextures) {
                 material.color = new THREE.Color(node.levelNodeStatic.color.r, node.levelNodeStatic.color.g, node.levelNodeStatic.color.b);
             } else {
-                material.uniforms.colors.value = new THREE.Vector3(node.levelNodeStatic.color.r, node.levelNodeStatic.color.g, node.levelNodeStatic.color.b);
+                material.uniforms.diffuseColor.value = [node.levelNodeStatic.color.r, node.levelNodeStatic.color.g, node.levelNodeStatic.color.b];
+                const specularFactor = Math.sqrt(node.levelNodeStatic.color.r * node.levelNodeStatic.color.r + node.levelNodeStatic.color.g * node.levelNodeStatic.color.g + node.levelNodeStatic.color.b * node.levelNodeStatic.color.b) * 0.15
+                material.uniforms.specularColor.value = [specularFactor, specularFactor, specularFactor, 16.0]    
             }
             if (node.levelNodeStatic.isNeon) {
                 statistics.neon += 1;
@@ -2109,11 +2153,14 @@ function remakeEditingObject(material, shape, shapeData) {
     let newObject = shapes[shape-1000].clone();
     let newMaterial = materials[material].clone();
     if (material == 8) {
-        newMaterial.uniforms.colors.value = new THREE.Vector3(
-            nodeData?.color?.r || 0,
-            nodeData?.color?.g || 0,
-            nodeData?.color?.b || 0
-        );
+        // newMaterial.uniforms.colors.value = new THREE.Vector3(
+        //     nodeData?.color?.r || 0,
+        //     nodeData?.color?.g || 0,
+        //     nodeData?.color?.b || 0
+        // );
+        newMaterial.uniforms.diffuseColor.value = [nodeData?.color?.r || 0, nodeData?.color?.g || 0, nodeData?.color?.b || 0];
+        const specularFactor = Math.sqrt((nodeData?.color?.r || 0) * (nodeData?.color?.r || 0) + (nodeData?.color?.g || 0) * (nodeData?.color?.g || 0) + (nodeData?.color?.b || 0) * (nodeData?.color?.b || 0)) * 0.15
+        newMaterial.uniforms.specularColor.value = [specularFactor, specularFactor, specularFactor, 16.0]   
     }
 
     newObject.material = newMaterial;
@@ -2152,11 +2199,14 @@ function remakeObject(material, shape, shapeData, object) {
     let newObject = shapes[shape-1000].clone();
     let newMaterial = materials[material].clone();
     if (material == 8) {
-        newMaterial.uniforms.colors.value = new THREE.Vector3(
-            nodeData?.color?.r || 0,
-            nodeData?.color?.g || 0,
-            nodeData?.color?.b || 0
-        );
+        // newMaterial.uniforms.colors.value = new THREE.Vector3(
+        //     nodeData?.color?.r || 0,
+        //     nodeData?.color?.g || 0,
+        //     nodeData?.color?.b || 0
+        // );
+        newMaterial.uniforms.diffuseColor.value = [nodeData?.color?.r || 0, nodeData?.color?.g || 0, nodeData?.color?.b || 0];
+        const specularFactor = Math.sqrt((nodeData?.color?.r || 0) * (nodeData?.color?.r || 0) + (nodeData?.color?.g || 0) * (nodeData?.color?.g || 0) + (nodeData?.color?.b || 0) * (nodeData?.color?.b || 0)) * 0.15
+        newMaterial.uniforms.specularColor.value = [specularFactor, specularFactor, specularFactor, 16.0]    
     }
 
     newObject.material = newMaterial;
@@ -2410,7 +2460,7 @@ function addFrame(frame) {
 }
 async function getAnimationPresets() {
     let folderPath = "/level_data/animations/";
-    for (let fileName of fileNames) {
+    for (let fileName of animationFileNames) {
         let file = folderPath + fileName + ".json";
         let response = await fetch(file);
         let data = await response.json();
@@ -2459,11 +2509,15 @@ function editEditingAnimationsJSON(input) {
     generateLevelFromObjects();
 }
 function initEditor() {
-    loader = new GLTFLoader();
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight - 20), 0.1, 10000 );
-    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    
+    THREE.ColorManagement.enabled = true;
+    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
     renderer.setSize( window.innerWidth , window.innerHeight - 20 );
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.setPixelRatio(window.devicePixelRatio);
+
     renderContainerElement.appendChild( renderer.domElement );
     light = new THREE.AmbientLight(0xffffff);
     scene.add(light);
@@ -2956,361 +3010,502 @@ function convertLevelNodes() {
     }, false);
     setLevel(level);
 }
+function setEditAmbience() {
+    let level = getLevel();
+    level.ambienceSettings.skyHorizonColor = {
+        "r": editAmbienceSettings.skyHorizonColorR,
+        "g": editAmbienceSettings.skyHorizonColorG,
+        "b": editAmbienceSettings.skyHorizonColorB
+    };
+    level.ambienceSettings.skyZenithColor = {
+        "r": editAmbienceSettings.skyZenithColorR,
+        "g": editAmbienceSettings.skyZenithColorG,
+        "b": editAmbienceSettings.skyZenithColorB
+    };
+    level.ambienceSettings.sunSize = editAmbienceSettings.sunSize;
+    level.ambienceSettings.sunAltitude = editAmbienceSettings.sunAltitude;
+    level.ambienceSettings.sunAzimuth = editAmbienceSettings.sunAzimuth;
+    level.ambienceSettings.fogDDensity = editAmbienceSettings.fogDDensity;
+    setLevel(level);
+}
+function initUI() {
+    // dark mode
+    if (localStorage.getItem("darkMode") === "true") {
+        document.body.parentElement.classList.add("dark-mode");
+    }
 
-initEditor();
-getAnimationPresets();
-initAttributes();
-highlightTextEditor();
-initTerminal();
+    // prompts
+    const promptsElement = document.getElementById('prompts');
 
-// dark mode
-if (localStorage.getItem("darkMode") === "true") {
-    document.body.parentElement.classList.add("dark-mode");
+    document.getElementById('edit_ambienceMenu-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-ambienceMenu').style.display = 'flex';
+    });
+    document.querySelector('#prompt-ambienceMenu .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-ambienceMenu').style.display = 'none';
+    });
+    document.querySelectorAll('#prompt-ambienceMenu .ambience-editor').forEach((input) => {
+        input.addEventListener('change', () => {
+            let setting = input.getAttribute('data-setting');
+            let value = input.value;
+            editAmbienceSettings[setting] = value;
+            setEditAmbience();
+        });
+    });
+
+    document.getElementById('edit_editJSON-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-editingJson').style.display = 'flex';
+        document.getElementById('editingJson-prompt').innerHTML = JsonToHighlightedText(editing.grabNodeData);
+    });
+    document.querySelector('#prompt-editingJson .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-editingJson').style.display = 'none';
+        let input = document.getElementById('editingJson-prompt').innerText;
+        editEditingJSON(input);
+        document.getElementById('editingJson-prompt').innerHTML = '';
+    });
+
+    document.getElementById('edit_editChildren-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-editingChildrenJson').style.display = 'flex';
+        document.getElementById('editingChildrenJson-prompt').innerHTML = JsonToHighlightedText(editing.grabNodeData.levelNodeGroup.childNodes);
+    });
+    document.querySelector('#prompt-editingChildrenJson .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-editingChildrenJson').style.display = 'none';
+        let input = document.getElementById('editingChildrenJson-prompt').innerText;
+        editEditingChildrenJSON(input);
+        document.getElementById('editingChildrenJson-prompt').innerHTML = '';
+    });
+
+    document.getElementById('edit_editAnimations-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-editingAnimationsJson').style.display = 'flex';
+        document.getElementById('editingAnimationsJson-prompt').innerHTML = JsonToHighlightedText(editing.grabNodeData.animations);
+    });
+    document.querySelector('#prompt-editingAnimationsJson .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-editingAnimationsJson').style.display = 'none';
+        let input = document.getElementById('editingAnimationsJson-prompt').innerText;
+        editEditingAnimationsJSON(input);
+        document.getElementById('editingAnimationsJson-prompt').innerHTML = '';
+    });
+
+    document.getElementById('title-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-title').style.display = 'flex';
+    });
+    document.querySelector('#prompt-title .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-title').style.display = 'none';
+        document.getElementById('title-prompt').value = '';
+    });
+    document.querySelector('#prompt-title .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-title').style.display = 'none';
+        let input = document.getElementById('title-prompt').value;
+        let levelData = getLevel();
+        levelData.title = input;
+        setLevel(levelData);
+        document.getElementById('title-prompt').value = '';
+    });
+
+    document.getElementById('description-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-description').style.display = 'flex';
+    });
+    document.getElementById('quest-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-levels').style.display = 'flex';
+        listQuestLevels();
+    });
+    document.querySelector('#prompt-levels .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-levels').style.display = 'none';
+    });
+
+    document.getElementById('template-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-templates').style.display = 'flex';
+        loadTemplateButtons();
+    });
+    document.querySelector('#prompt-templates .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-templates').style.display = 'none';
+    });
+
+    document.querySelector('#prompt-description .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-description').style.display = 'none';
+        document.getElementById('description-prompt').value = '';
+    });
+    document.querySelector('#prompt-description .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-description').style.display = 'none';
+        let input = document.getElementById('description-prompt').value;
+        let levelData = getLevel();
+        levelData.description = input;
+        setLevel(levelData);
+        document.getElementById('description-prompt').value = '';
+    });
+
+    document.getElementById('creators-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-creators').style.display = 'flex';
+    });
+    document.querySelector('#prompt-creators .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-creators').style.display = 'none';
+        document.getElementById('creators-prompt').value = '';
+    });
+    document.querySelector('#prompt-creators .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-creators').style.display = 'none';
+        let input = document.getElementById('creators-prompt').value;
+        let levelData = getLevel();
+        levelData.creators = input;
+        setLevel(levelData);
+        document.getElementById('creators-prompt').value = '';
+    });
+
+    document.getElementById('checkpoints-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-checkpoints').style.display = 'flex';
+    });
+    document.querySelector('#prompt-checkpoints .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-checkpoints').style.display = 'none';
+        document.getElementById('checkpoints-prompt').value = '';
+    });
+    document.querySelector('#prompt-checkpoints .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-checkpoints').style.display = 'none';
+        let input = document.getElementById('checkpoints-prompt').value;
+        let levelData = getLevel();
+        levelData.maxCheckpointCount = parseInt(input);
+        setLevel(levelData);
+        document.getElementById('checkpoints-prompt').value = '';
+    });
+
+    document.querySelector('#prompt-pixel .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-pixel').style.display = 'none';
+        document.getElementById('pixel-prompt').value = '';
+    });
+    document.querySelector('#prompt-pixel .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-pixel').style.display = 'none';
+        generatePixelArt();
+    });
+    document.getElementById('image-btn-input').addEventListener('change', (e) => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-pixel').style.display = 'flex';
+    });
+
+    document.getElementById('protobuf-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-protobuf').style.display = 'flex';
+        document.getElementById('protobuf-prompt').value = protobufData;
+    });
+    document.querySelector('#prompt-protobuf .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-protobuf').style.display = 'none';
+        document.getElementById('protobuf-prompt').value = protobufData;
+    });
+    document.querySelector('#prompt-protobuf .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-protobuf').style.display = 'none';
+        protobufData = document.getElementById('protobuf-prompt').value;
+    });
+
+    document.getElementById('convert-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-convert').style.display = 'flex';
+    });
+    document.querySelector('#prompt-convert .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-convert').style.display = 'none';
+    });
+    document.querySelector('#prompt-convert .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-convert').style.display = 'none';
+        convertLevelNodes();
+    });
+    // timeline
+    document.getElementById('timeline-slow').addEventListener('click', () => {
+        animationSpeed -= 0.1;
+    });
+    document.getElementById('timeline-fast').addEventListener('click', () => {
+        animationSpeed += 0.1;
+    });
+    document.getElementById('timeline-play').addEventListener('click', () => {
+        playAnimations = true;
+        if (enableEditing) {
+            generateLevelFromObjects();
+            enableEditing = false;
+            document.getElementById('enableEditing-btn').style.color = enableEditing? '#3f3' : '';
+        }
+    });
+    document.getElementById('timeline-pause').addEventListener('click', () => {
+        playAnimations = false;
+    });
+    document.getElementById('timeline-reset').addEventListener('click', () => {
+        animationSpeed = 1;
+        animationTime = 0;
+        animatedObjects.forEach(object => {
+            object.animation.currentFrameIndex = 0
+        });
+    });
+    // editing menu
+    document.querySelectorAll('.edit_material').forEach(element => {
+        element.addEventListener('click', () => {
+            editMaterial(parseInt(element.id.split('-')[1]));
+        });
+    });
+    document.querySelectorAll('.edit_shape').forEach(element => {
+        element.addEventListener('click', () => {
+            editShape(parseInt(element.id.split('-')[1]));
+        });
+    });
+    document.querySelectorAll('.edit_animation').forEach(element => {
+        element.addEventListener('click', () => {
+            editAnimation(element.id.split('-')[1]);
+        });
+    });
+    document.querySelectorAll('.edit_frame').forEach(element => {
+        element.addEventListener('click', () => {
+            addFrame(element.id.split('-')[1]);
+        });
+    });
+    document.getElementById('edit_color-btn').addEventListener('click', () => {document.getElementById('edit_color-btn-input').click();});
+    document.getElementById('edit_color-btn-input').addEventListener('change', editColor);
+    document.getElementById('edit_copyJSON-btn').addEventListener('click', copyEditingJSON);
+    document.getElementById('edit_copyChildren-btn').addEventListener('click', copyEditingChildren);
+    document.getElementById('edit_copyAnimations-btn').addEventListener('click', copyEditingAnimations);
+
+    document.getElementById("edit_rotate-btn").addEventListener('click', () => {transformControl.setMode( 'rotate' )});
+    document.getElementById("edit_scale-btn").addEventListener('click', () => {transformControl.setMode( 'scale' )});
+    document.getElementById("edit_translate-btn").addEventListener('click', () => {transformControl.setMode( 'translate' )});
+    document.getElementById("edit_space-btn").addEventListener('click', () => {transformControl.setSpace( transformControl.space === 'local' ? 'world' : 'local' )});
+    document.getElementById("edit_group-btn").addEventListener('click', groupEditingObject);
+    document.getElementById("edit_clone-btn").addEventListener('click', cloneEditingObject);
+    document.getElementById("edit_delete-btn").addEventListener('click', deleteEditingObject);
+    document.getElementById("edit_snap-btn").addEventListener('click', () => {
+        transformControl.setTranslationSnap( 100 );
+        transformControl.setRotationSnap( THREE.MathUtils.degToRad( 15 ) );
+        transformControl.setScaleSnap( 0.25 );
+    });
+
+    // apply
+    applyChangesElement.addEventListener('click', generateLevelFromObjects);
+    applyChangesAsFrameElement.addEventListener('click', generateFrameLevelFromObjects);
+    // stats
+    document.getElementById('stats-container').addEventListener('click', handleStatsClick);
+    // buttons
+    document.getElementById('enableEditing-btn').addEventListener('click', toggleEditing);
+    document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = hideText ? 'block' : 'none';hideText = !hideText;highlightTextEditor()});
+    document.getElementById('highlight-btn').addEventListener('click', () => {highlightText = !highlightText;highlightTextEditor()});
+    document.getElementById('performance-btn').addEventListener('click', () => {renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 )});
+    document.getElementById('range-btn').addEventListener('click', () => {loadProtobuf("proto/hacked.proto")});
+    editInputElement.addEventListener('keydown', (e) => {handleEditInput(e)});
+    document.getElementById('start-btn').addEventListener('click', goToStart);
+    document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
+    document.getElementById('showGroups-btn').addEventListener('click', () => {showGroups = !showGroups; refreshScene()});
+    editInputElement.addEventListener('blur', highlightTextEditor);
+    document.getElementById('json-btn').addEventListener('click', downloadAsJSON);
+    document.getElementById('monochromify-btn').addEventListener('click', monochromify);
+    document.getElementById('gltf-btn').addEventListener('click', exportLevelAsGLTF);
+    document.getElementById('toquest-btn').addEventListener('click', saveToQuest);
+    document.getElementById('connect-adb-btn').addEventListener('click', connectUsb);
+    document.getElementById('cleardetails-btn').addEventListener('click', clearLevelDetails);
+    document.getElementById('group-btn').addEventListener('click', groupLevel);
+    document.getElementById('ungroup-btn').addEventListener('click', ungroupLevel);
+    document.getElementById('FPE-pixelate-btn').addEventListener('click', FPEPixelate);
+    document.getElementById('outline-btn').addEventListener('click', outlineLevel);
+    document.getElementById('magic-outline-btn').addEventListener('click', magicOutline);
+    document.getElementById('randomize-positions-btn').addEventListener('click', randomizeLevelPositions);
+    document.getElementById('randomize-materials-btn').addEventListener('click', randomizeLevelMaterials);
+    document.getElementById('randomize-colors-btn').addEventListener('click', randomizeLevelColors);
+    document.getElementById('randomize-rotations-btn').addEventListener('click', randomizeLevelRotations);
+    document.getElementById('randomize-scales-btn').addEventListener('click', randomizeLevelScales);
+    document.getElementById('randomize-shapes-btn').addEventListener('click', randomizeLevelShapes);
+    document.getElementById('randomize-all-btn').addEventListener('click', randomizeLevelAll);
+    document.getElementById('explode-btn').addEventListener('click', explodeLevel);
+    document.getElementById('duplicate-btn').addEventListener('click', duplicateLevel);
+    document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
+    document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('level_data/json_files/empty.json')});
+    document.getElementById('the-index-btn').addEventListener('click', () => {openProto('level_data/the-index.level')});
+    document.getElementById('all-objects-btn').addEventListener('click', () => {openProto('level_data/cheat-sheet-6.level')});
+    document.getElementById('mirror-x-btn').addEventListener('click', () => {mirror('x')});
+    document.getElementById('mirror-y-btn').addEventListener('click', () => {mirror('y')});
+    document.getElementById('mirror-z-btn').addEventListener('click', () => {mirror('z')});
+    document.getElementById('unlock-btn').addEventListener('click', unlockLevel);
+    document.getElementById('openvr-btn').addEventListener('click', () => {
+        renderer.xr.enabled = true;
+        renderer.setAnimationLoop( function () {
+            renderer.render( scene, camera );
+        } );
+        vrButton.click()
+    });
+    // links
+    document.getElementById('slindev-btn').addEventListener('click', () => {window.open("https://discord.slin.dev", "_blank")});
+    document.getElementById('email-btn').addEventListener('click', () => {location.href = "mailto:twhlynch.index@gmail.com"});
+    document.getElementById('discord-btn').addEventListener('click', () => {window.open("https://discordapp.com/users/649165311257608192", "_blank")});
+    document.getElementById('server-btn').addEventListener('click', () => {window.open("https://twhlynch.me/discord", "_blank")});
+    document.getElementById('cheat-btn').addEventListener('click', () => {window.open("cheat-sheet.html", "_blank")});
+    // hidden inputs
+    document.getElementById('pc-btn').addEventListener('click', () => {document.getElementById('pc-btn-input').click()});
+    document.getElementById('pcjson-btn').addEventListener('click', () => {document.getElementById('pcjson-btn-input').click()});
+    document.getElementById('insertpc-btn').addEventListener('click', () => {document.getElementById('insertpc-btn-input').click()});
+    document.getElementById('image-btn').addEventListener('click', () => {document.getElementById('image-btn-input').click()});
+    document.getElementById('pointcloud-btn').addEventListener('click', () => {document.getElementById('pointcloud-btn-input').click()});
+    document.getElementById('pointcloud-btn-input').addEventListener('change', (e) => {openPointCloud(e.target.files[0])});
+    document.getElementById('wireframe-btn').addEventListener('click', () => {document.getElementById('wireframe-btn-input').click()});
+    document.getElementById('wireframe-btn-input').addEventListener('change', (e) => {openWireframe(e.target.files[0])});
+    document.getElementById('pc-btn-input').addEventListener('change', (e) => {openLevelFile(e.target.files)});
+    document.getElementById('pcjson-btn-input').addEventListener('change', (e) => {openJSONFile(e.target.files[0])});
+    document.getElementById('insertpc-btn-input').addEventListener('change', (e) => {appendLevelFile(e.target.files)});
+    document.getElementById('editing-container').addEventListener('drop', handleDrop, false);
+
+    // set ambience
+    document.getElementById('clearambience-btn').addEventListener('click', () => {setAmbience({"r": 0,"g": 0,"b": 0,"a": 1}, {"r": 0,"g": 0,"b": 0,"a": 1},0,0,0,0)});
+    document.getElementById('maxambience-btn').addEventListener('click', () => {setAmbience({"r": 32000,"g": 32000,"b": 32000,"a": 1}, {"r": 32000,"g": 32000,"b": 32000,"a": 1},32000,32000,32000,32000)});
+    document.getElementById('minambience-btn').addEventListener('click', () => {setAmbience({"r": -32000,"g": -32000,"b": -32000,"a": 1}, {"r": -32000,"g": -32000,"b": -32000,"a": 1},-32000,-32000,-32000,-32000)});
+    document.getElementById('fireambience-btn').addEventListener('click', () => {setAmbience({"a": 1}, {"r": 999999,"g": 982082.8125,"b": 949219.75,"a": 1},88.97185516357422,315,99999,0.7152965068817139)});
+    document.getElementById('bitiambience-btn').addEventListener('click', () => {setAmbience({"g": 0.16071408987045288,"b": 0.2620195746421814,"a": 1}, {"r": 0.998467206954956,"g": 0.997838020324707,"b": 0.9967743158340454,"a": 1},35999997952,360,0.66828852891922,10)});
+    document.getElementById('oilcanambience-btn').addEventListener('click', () => {setAmbience({"r": 0.3706502318382263,"g": 0.2603767216205597,"b": 0.6742851734161377,"a": 1}, {"g": 1.0326478481292725,"b": 5,"a": 1},-270,315,1.5,0)});
+    document.getElementById('randomambience-btn').addEventListener('click', () => {setAmbience({"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1}, {"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1},Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999)});
+    document.getElementById('defaultambience-btn').addEventListener('click', () => {setAmbience({"r": 0.28,"g": 0.476,"b": 0.73,"a": 1}, {"r": 0.916,"g": 0.9574,"b": 0.9574,"a": 1}, 45, 315, 1, 0)});
+    // insert nodes
+    document.getElementById('nodeStatic-btn').addEventListener('click', () => {appendJSON("level_data/json_files/static-node.json")});
+    document.getElementById('nodeAnimated-btn').addEventListener('click', () => {appendJSON("level_data/json_files/animated-node.json")});
+    document.getElementById('nodeCrumbling-btn').addEventListener('click', () => {appendJSON("level_data/json_files/crumbling-node.json")});
+    document.getElementById('nodeColored-btn').addEventListener('click', () => {appendJSON("level_data/json_files/colored-node.json")});
+    document.getElementById('nodeSign-btn').addEventListener('click', () => {appendJSON("level_data/json_files/sign-node.json")});
+    document.getElementById('nodeStart-btn').addEventListener('click', () => {appendJSON("level_data/json_files/start-node.json")});
+    document.getElementById('nodeFinish-btn').addEventListener('click', () => {appendJSON("level_data/json_files/finish-node.json")});
+    document.getElementById('nodeGravity-btn').addEventListener('click', () => {appendJSON("level_data/json_files/gravity-node.json")});
+    document.getElementById('nodeInvisible-btn').addEventListener('click', () => {appendJSON("level_data/json_files/invisible-node.json")});
+    // insert prefabs
+    document.getElementById('HighGravity-btn').addEventListener('click', () => {appendJSON("level_data/json_files/high-gravity.json")});
+    document.getElementById('Parallelograms-btn').addEventListener('click', () => {appendJSON("level_data/json_files/parallelograms.json")});
+    document.getElementById('BreakTimes-btn').addEventListener('click', () => {appendJSON("level_data/json_files/break-times.json")});
+    document.getElementById('FreeStartFinish-btn').addEventListener('click', () => {appendJSON("level_data/json_files/free-start-finish.json")});
+    document.getElementById('TexturedSigns-btn').addEventListener('click', () => {appendJSON("level_data/json_files/textured-signs.json")});
+    document.getElementById('SpecialStones-btn').addEventListener('click', () => {appendJSON("level_data/json_files/special-stones.json")});
+    document.getElementById('NoHitbox-btn').addEventListener('click', () => {appendJSON("level_data/json_files/no-hitbox.json")});
+    document.getElementById('Inverted-btn').addEventListener('click', () => {appendJSON("level_data/json_files/inverted.json")});
+}
+async function initAttributes() {
+
+    for (const path of materialList) {
+            const texture = await loadTexture(path);
+            let material = new THREE.MeshBasicMaterial({ map: texture });
+            
+            exportMaterials.push(material);
+        }
+
+    for (const path of materialList) {
+        const texture = await loadTexture(path);
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        texture.colorSpace = THREE.SRGBColorSpace;
+        let material = new THREE.ShaderMaterial({
+            vertexShader: SHADERS.levelVS,
+            fragmentShader: SHADERS.levelFS,
+            uniforms: {
+                "colorTexture": { value: texture },
+                "tileFactor": { value: 1.1 },
+                "diffuseColor": { value: [1.0, 1.0, 1.0] },
+                "worldNormalMatrix": { value: new THREE.Matrix3() },
+                "neonEnabled": { value: 0.0 },
+                "fogEnabled": { value: 1.0 },
+                "specularColor": { value: [0.3, 0.3, 0.3, 16.0]},
+                "isSelected": { value: false }
+            }
+        });
+        materials.push(material);
+        }
+
+    for (const path of shapeList) {
+        const model = await loadModel(path);
+        shapes.push(model);
+    }
+
+    startMaterial = new THREE.ShaderMaterial();
+	startMaterial.vertexShader = SHADERS.startFinishVS;
+	startMaterial.fragmentShader = SHADERS.startFinishFS;
+	startMaterial.flatShading = true;
+	startMaterial.transparent = true;
+	startMaterial.depthWrite = false;
+	startMaterial.uniforms = { "diffuseColor": {value: [0.0, 1.0, 0.0, 1.0]}};
+	objectMaterials.push(startMaterial);
+
+	finishMaterial = new THREE.ShaderMaterial();
+	finishMaterial.vertexShader = SHADERS.startFinishVS;
+	finishMaterial.fragmentShader = SHADERS.startFinishFS;
+	finishMaterial.flatShading = true;
+	finishMaterial.transparent = true;
+	finishMaterial.depthWrite = false;
+	finishMaterial.uniforms = { "diffuseColor": {value: [1.0, 0.0, 0.0, 1.0]}};
+	objectMaterials.push(finishMaterial);
+    
+    skyMaterial = new THREE.ShaderMaterial();
+    skyMaterial.vertexShader = SHADERS.skyVS;
+    skyMaterial.fragmentShader = SHADERS.skyFS;
+    skyMaterial.flatShading = false;
+    skyMaterial.depthWrite = false;
+    skyMaterial.side = THREE.BackSide;
+
+    signMaterial = materials[4].clone();
+    signMaterial.uniforms.colorTexture = materials[4].uniforms.colorTexture;
+    signMaterial.vertexShader = SHADERS.signVS;
+    signMaterial.fragmentShader = SHADERS.signFS;
+    objectMaterials.push(signMaterial);
+    
+    neonMaterial = materials[8].clone();
+    neonMaterial.uniforms.colorTexture = materials[8].uniforms.colorTexture;
+    neonMaterial.uniforms.specularColor.value = [0.4, 0.4, 0.4, 64.0];
+    neonMaterial.uniforms.neonEnabled.value = 1.0;
+    objectMaterials.push(neonMaterial);
+
+    sunAngle = new THREE.Euler(THREE.MathUtils.degToRad(45), THREE.MathUtils.degToRad(315), 0.0)
+    sunAltitude = 45.0
+    horizonColor = [0.916, 0.9574, 0.9574]
+
+    console.log('Ready', materials, shapes);
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramId = urlParams.get('level');
+
+    if (paramId) {
+        const login_details = {
+            "user_name": localStorage.getItem('user_name'),
+            "user_id": localStorage.getItem('user_id')
+        }
+        if (login_details.user_name && login_details.user_id) {
+            downloadAndOpenLevel(paramId);
+        } else {
+            const loginPromptElement = document.getElementById('loginPrompt');
+            loginPromptElement.style.display = 'grid';
+            loginPromptElement.addEventListener('click', () => {
+                loginPromptElement.style.display = 'none';
+            });
+        }
+    }
+
 }
 
-// prompts
-const promptsElement = document.getElementById('prompts');
-
-document.getElementById('edit_editJSON-btn').addEventListener('click', () => {
-    promptsElement.style.display = 'grid';
-    document.getElementById('prompt-editingJson').style.display = 'flex';
-    document.getElementById('editingJson-prompt').innerHTML = JsonToHighlightedText(editing.grabNodeData);
-});
-document.querySelector('#prompt-editingJson .prompt-submit').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-editingJson').style.display = 'none';
-    let input = document.getElementById('editingJson-prompt').innerText;
-    editEditingJSON(input);
-    document.getElementById('editingJson-prompt').innerHTML = '';
-});
-
-document.getElementById('edit_editChildren-btn').addEventListener('click', () => {
-    promptsElement.style.display = 'grid';
-    document.getElementById('prompt-editingChildrenJson').style.display = 'flex';
-    document.getElementById('editingChildrenJson-prompt').innerHTML = JsonToHighlightedText(editing.grabNodeData.levelNodeGroup.childNodes);
-});
-document.querySelector('#prompt-editingChildrenJson .prompt-submit').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-editingChildrenJson').style.display = 'none';
-    let input = document.getElementById('editingChildrenJson-prompt').innerText;
-    editEditingChildrenJSON(input);
-    document.getElementById('editingChildrenJson-prompt').innerHTML = '';
-});
-
-document.getElementById('edit_editAnimations-btn').addEventListener('click', () => {
-    promptsElement.style.display = 'grid';
-    document.getElementById('prompt-editingAnimationsJson').style.display = 'flex';
-    document.getElementById('editingAnimationsJson-prompt').innerHTML = JsonToHighlightedText(editing.grabNodeData.animations);
-});
-document.querySelector('#prompt-editingAnimationsJson .prompt-submit').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-editingAnimationsJson').style.display = 'none';
-    let input = document.getElementById('editingAnimationsJson-prompt').innerText;
-    editEditingAnimationsJSON(input);
-    document.getElementById('editingAnimationsJson-prompt').innerHTML = '';
-});
-
-document.getElementById('title-btn').addEventListener('click', () => {
-    promptsElement.style.display = 'grid';
-    document.getElementById('prompt-title').style.display = 'flex';
-});
-document.querySelector('#prompt-title .prompt-cancel').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-title').style.display = 'none';
-    document.getElementById('title-prompt').value = '';
-});
-document.querySelector('#prompt-title .prompt-submit').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-title').style.display = 'none';
-    let input = document.getElementById('title-prompt').value;
-    let levelData = getLevel();
-    levelData.title = input;
-    setLevel(levelData);
-    document.getElementById('title-prompt').value = '';
-});
-
-document.getElementById('description-btn').addEventListener('click', () => {
-    promptsElement.style.display = 'grid';
-    document.getElementById('prompt-description').style.display = 'flex';
-});
-document.getElementById('quest-btn').addEventListener('click', () => {
-    promptsElement.style.display = 'grid';
-    document.getElementById('prompt-levels').style.display = 'flex';
-    listQuestLevels();
-});
-document.querySelector('#prompt-levels .prompt-cancel').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-levels').style.display = 'none';
-});
-
-document.getElementById('template-btn').addEventListener('click', () => {
-    promptsElement.style.display = 'grid';
-    document.getElementById('prompt-templates').style.display = 'flex';
-    loadTemplateButtons();
-});
-document.querySelector('#prompt-templates .prompt-cancel').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-templates').style.display = 'none';
-});
-
-document.querySelector('#prompt-description .prompt-cancel').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-description').style.display = 'none';
-    document.getElementById('description-prompt').value = '';
-});
-document.querySelector('#prompt-description .prompt-submit').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-description').style.display = 'none';
-    let input = document.getElementById('description-prompt').value;
-    let levelData = getLevel();
-    levelData.description = input;
-    setLevel(levelData);
-    document.getElementById('description-prompt').value = '';
-});
-
-document.getElementById('creators-btn').addEventListener('click', () => {
-    promptsElement.style.display = 'grid';
-    document.getElementById('prompt-creators').style.display = 'flex';
-});
-document.querySelector('#prompt-creators .prompt-cancel').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-creators').style.display = 'none';
-    document.getElementById('creators-prompt').value = '';
-});
-document.querySelector('#prompt-creators .prompt-submit').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-creators').style.display = 'none';
-    let input = document.getElementById('creators-prompt').value;
-    let levelData = getLevel();
-    levelData.creators = input;
-    setLevel(levelData);
-    document.getElementById('creators-prompt').value = '';
-});
-
-document.getElementById('checkpoints-btn').addEventListener('click', () => {
-    promptsElement.style.display = 'grid';
-    document.getElementById('prompt-checkpoints').style.display = 'flex';
-});
-document.querySelector('#prompt-checkpoints .prompt-cancel').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-checkpoints').style.display = 'none';
-    document.getElementById('checkpoints-prompt').value = '';
-});
-document.querySelector('#prompt-checkpoints .prompt-submit').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-checkpoints').style.display = 'none';
-    let input = document.getElementById('checkpoints-prompt').value;
-    let levelData = getLevel();
-    levelData.maxCheckpointCount = parseInt(input);
-    setLevel(levelData);
-    document.getElementById('checkpoints-prompt').value = '';
-});
-
-document.querySelector('#prompt-pixel .prompt-cancel').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-pixel').style.display = 'none';
-    document.getElementById('pixel-prompt').value = '';
-});
-document.querySelector('#prompt-pixel .prompt-submit').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-pixel').style.display = 'none';
-    generatePixelArt();
-});
-document.getElementById('image-btn-input').addEventListener('change', (e) => {
-    promptsElement.style.display = 'grid';
-    document.getElementById('prompt-pixel').style.display = 'flex';
-});
-
-document.getElementById('protobuf-btn').addEventListener('click', () => {
-    promptsElement.style.display = 'grid';
-    document.getElementById('prompt-protobuf').style.display = 'flex';
-    document.getElementById('protobuf-prompt').value = protobufData;
-});
-document.querySelector('#prompt-protobuf .prompt-cancel').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-protobuf').style.display = 'none';
-    document.getElementById('protobuf-prompt').value = protobufData;
-});
-document.querySelector('#prompt-protobuf .prompt-submit').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-protobuf').style.display = 'none';
-    protobufData = document.getElementById('protobuf-prompt').value;
-});
-
-document.getElementById('convert-btn').addEventListener('click', () => {
-    promptsElement.style.display = 'grid';
-    document.getElementById('prompt-convert').style.display = 'flex';
-});
-document.querySelector('#prompt-convert .prompt-cancel').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-convert').style.display = 'none';
-});
-document.querySelector('#prompt-convert .prompt-submit').addEventListener('click', () => {
-    promptsElement.style.display = 'none';
-    document.getElementById('prompt-convert').style.display = 'none';
-    convertLevelNodes();
-});
-// timeline
-document.getElementById('timeline-slow').addEventListener('click', () => {
-    animationSpeed -= 0.1;
-});
-document.getElementById('timeline-fast').addEventListener('click', () => {
-    animationSpeed += 0.1;
-});
-document.getElementById('timeline-play').addEventListener('click', () => {
-    playAnimations = true;
-    if (enableEditing) {
-        generateLevelFromObjects();
-        enableEditing = false;
-        document.getElementById('enableEditing-btn').style.color = enableEditing? '#3f3' : '';
-    }
-});
-document.getElementById('timeline-pause').addEventListener('click', () => {
-    playAnimations = false;
-});
-document.getElementById('timeline-reset').addEventListener('click', () => {
-    animationSpeed = 1;
-    animationTime = 0;
-    animatedObjects.forEach(object => {
-        object.animation.currentFrameIndex = 0
-    });
-});
-// editing menu
-document.querySelectorAll('.edit_material').forEach(element => {
-    element.addEventListener('click', () => {
-        editMaterial(parseInt(element.id.split('-')[1]));
-    });
-});
-document.querySelectorAll('.edit_shape').forEach(element => {
-    element.addEventListener('click', () => {
-        editShape(parseInt(element.id.split('-')[1]));
-    });
-});
-document.querySelectorAll('.edit_animation').forEach(element => {
-    element.addEventListener('click', () => {
-        editAnimation(element.id.split('-')[1]);
-    });
-});
-document.querySelectorAll('.edit_frame').forEach(element => {
-    element.addEventListener('click', () => {
-        addFrame(element.id.split('-')[1]);
-    });
-});
-document.getElementById('edit_color-btn').addEventListener('click', () => {document.getElementById('edit_color-btn-input').click();});
-document.getElementById('edit_color-btn-input').addEventListener('change', editColor);
-document.getElementById('edit_copyJSON-btn').addEventListener('click', copyEditingJSON);
-document.getElementById('edit_copyChildren-btn').addEventListener('click', copyEditingChildren);
-document.getElementById('edit_copyAnimations-btn').addEventListener('click', copyEditingAnimations);
-
-document.getElementById("edit_rotate-btn").addEventListener('click', () => {transformControl.setMode( 'rotate' )});
-document.getElementById("edit_scale-btn").addEventListener('click', () => {transformControl.setMode( 'scale' )});
-document.getElementById("edit_translate-btn").addEventListener('click', () => {transformControl.setMode( 'translate' )});
-document.getElementById("edit_space-btn").addEventListener('click', () => {transformControl.setSpace( transformControl.space === 'local' ? 'world' : 'local' )});
-document.getElementById("edit_group-btn").addEventListener('click', groupEditingObject);
-document.getElementById("edit_clone-btn").addEventListener('click', cloneEditingObject);
-document.getElementById("edit_delete-btn").addEventListener('click', deleteEditingObject);
-document.getElementById("edit_snap-btn").addEventListener('click', () => {
-    transformControl.setTranslationSnap( 100 );
-    transformControl.setRotationSnap( THREE.MathUtils.degToRad( 15 ) );
-    transformControl.setScaleSnap( 0.25 );
-});
-
-// apply
-applyChangesElement.addEventListener('click', generateLevelFromObjects);
-applyChangesAsFrameElement.addEventListener('click', generateFrameLevelFromObjects);
-// stats
-document.getElementById('stats-container').addEventListener('click', handleStatsClick);
-// buttons
-document.getElementById('enableEditing-btn').addEventListener('click', toggleEditing);
-document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = hideText ? 'block' : 'none';hideText = !hideText;highlightTextEditor()});
-document.getElementById('highlight-btn').addEventListener('click', () => {highlightText = !highlightText;highlightTextEditor()});
-document.getElementById('performance-btn').addEventListener('click', () => {renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 )});
-document.getElementById('range-btn').addEventListener('click', () => {loadProtobuf("proto/hacked.proto")});
-editInputElement.addEventListener('keydown', (e) => {handleEditInput(e)});
-document.getElementById('start-btn').addEventListener('click', goToStart);
-document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
-document.getElementById('showGroups-btn').addEventListener('click', () => {showGroups = !showGroups; refreshScene()});
-editInputElement.addEventListener('blur', highlightTextEditor);
-document.getElementById('json-btn').addEventListener('click', downloadAsJSON);
-document.getElementById('monochromify-btn').addEventListener('click', monochromify);
-document.getElementById('gltf-btn').addEventListener('click', exportLevelAsGLTF);
-document.getElementById('toquest-btn').addEventListener('click', saveToQuest);
-document.getElementById('connect-adb-btn').addEventListener('click', connectUsb);
-document.getElementById('cleardetails-btn').addEventListener('click', clearLevelDetails);
-document.getElementById('group-btn').addEventListener('click', groupLevel);
-document.getElementById('ungroup-btn').addEventListener('click', ungroupLevel);
-document.getElementById('FPE-pixelate-btn').addEventListener('click', FPEPixelate);
-document.getElementById('outline-btn').addEventListener('click', outlineLevel);
-document.getElementById('magic-outline-btn').addEventListener('click', magicOutline);
-document.getElementById('randomize-positions-btn').addEventListener('click', randomizeLevelPositions);
-document.getElementById('randomize-materials-btn').addEventListener('click', randomizeLevelMaterials);
-document.getElementById('randomize-colors-btn').addEventListener('click', randomizeLevelColors);
-document.getElementById('randomize-rotations-btn').addEventListener('click', randomizeLevelRotations);
-document.getElementById('randomize-scales-btn').addEventListener('click', randomizeLevelScales);
-document.getElementById('randomize-shapes-btn').addEventListener('click', randomizeLevelShapes);
-document.getElementById('randomize-all-btn').addEventListener('click', randomizeLevelAll);
-document.getElementById('explode-btn').addEventListener('click', explodeLevel);
-document.getElementById('duplicate-btn').addEventListener('click', duplicateLevel);
-document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
-document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('level_data/json_files/empty.json')});
-document.getElementById('the-index-btn').addEventListener('click', () => {openProto('level_data/the-index.level')});
-document.getElementById('all-objects-btn').addEventListener('click', () => {openProto('level_data/cheat-sheet-6.level')});
-document.getElementById('mirror-x-btn').addEventListener('click', () => {mirror('x')});
-document.getElementById('mirror-y-btn').addEventListener('click', () => {mirror('y')});
-document.getElementById('mirror-z-btn').addEventListener('click', () => {mirror('z')});
-document.getElementById('unlock-btn').addEventListener('click', unlockLevel);
-document.getElementById('openvr-btn').addEventListener('click', () => {
-    renderer.xr.enabled = true;
-    renderer.setAnimationLoop( function () {
-        renderer.render( scene, camera );
-    } );
-    vrButton.click()
-});
-// links
-document.getElementById('slindev-btn').addEventListener('click', () => {window.open("https://discord.slin.dev", "_blank")});
-document.getElementById('email-btn').addEventListener('click', () => {location.href = "mailto:twhlynch.index@gmail.com"});
-document.getElementById('discord-btn').addEventListener('click', () => {window.open("https://discordapp.com/users/649165311257608192", "_blank")});
-document.getElementById('server-btn').addEventListener('click', () => {window.open("https://twhlynch.me/discord", "_blank")});
-document.getElementById('cheat-btn').addEventListener('click', () => {window.open("cheat-sheet.html", "_blank")});
-// hidden inputs
-document.getElementById('pc-btn').addEventListener('click', () => {document.getElementById('pc-btn-input').click()});
-document.getElementById('pcjson-btn').addEventListener('click', () => {document.getElementById('pcjson-btn-input').click()});
-document.getElementById('insertpc-btn').addEventListener('click', () => {document.getElementById('insertpc-btn-input').click()});
-document.getElementById('image-btn').addEventListener('click', () => {document.getElementById('image-btn-input').click()});
-document.getElementById('pointcloud-btn').addEventListener('click', () => {document.getElementById('pointcloud-btn-input').click()});
-document.getElementById('pointcloud-btn-input').addEventListener('change', (e) => {openPointCloud(e.target.files[0])});
-document.getElementById('wireframe-btn').addEventListener('click', () => {document.getElementById('wireframe-btn-input').click()});
-document.getElementById('wireframe-btn-input').addEventListener('change', (e) => {openWireframe(e.target.files[0])});
-document.getElementById('pc-btn-input').addEventListener('change', (e) => {openLevelFile(e.target.files)});
-document.getElementById('pcjson-btn-input').addEventListener('change', (e) => {openJSONFile(e.target.files[0])});
-document.getElementById('insertpc-btn-input').addEventListener('change', (e) => {appendLevelFile(e.target.files)});
-document.getElementById('editing-container').addEventListener('drop', handleDrop, false);
-
-// set ambience
-document.getElementById('clearambience-btn').addEventListener('click', () => {setAmbience({"r": 0,"g": 0,"b": 0,"a": 1}, {"r": 0,"g": 0,"b": 0,"a": 1},0,0,0,0)});
-document.getElementById('maxambience-btn').addEventListener('click', () => {setAmbience({"r": 32000,"g": 32000,"b": 32000,"a": 1}, {"r": 32000,"g": 32000,"b": 32000,"a": 1},32000,32000,32000,32000)});
-document.getElementById('minambience-btn').addEventListener('click', () => {setAmbience({"r": -32000,"g": -32000,"b": -32000,"a": 1}, {"r": -32000,"g": -32000,"b": -32000,"a": 1},-32000,-32000,-32000,-32000)});
-document.getElementById('fireambience-btn').addEventListener('click', () => {setAmbience({"a": 1}, {"r": 999999,"g": 982082.8125,"b": 949219.75,"a": 1},88.97185516357422,315,99999,0.7152965068817139)});
-document.getElementById('bitiambience-btn').addEventListener('click', () => {setAmbience({"g": 0.16071408987045288,"b": 0.2620195746421814,"a": 1}, {"r": 0.998467206954956,"g": 0.997838020324707,"b": 0.9967743158340454,"a": 1},35999997952,360,0.66828852891922,10)});
-document.getElementById('oilcanambience-btn').addEventListener('click', () => {setAmbience({"r": 0.3706502318382263,"g": 0.2603767216205597,"b": 0.6742851734161377,"a": 1}, {"g": 1.0326478481292725,"b": 5,"a": 1},-270,315,1.5,0)});
-document.getElementById('randomambience-btn').addEventListener('click', () => {setAmbience({"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1}, {"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1},Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999)});
-document.getElementById('defaultambience-btn').addEventListener('click', () => {setAmbience({"r": 0.28,"g": 0.476,"b": 0.73,"a": 1}, {"r": 0.916,"g": 0.9574,"b": 0.9574,"a": 1}, 45, 315, 1, 0)});
-// insert nodes
-document.getElementById('nodeStatic-btn').addEventListener('click', () => {appendJSON("level_data/json_files/static-node.json")});
-document.getElementById('nodeAnimated-btn').addEventListener('click', () => {appendJSON("level_data/json_files/animated-node.json")});
-document.getElementById('nodeCrumbling-btn').addEventListener('click', () => {appendJSON("level_data/json_files/crumbling-node.json")});
-document.getElementById('nodeColored-btn').addEventListener('click', () => {appendJSON("level_data/json_files/colored-node.json")});
-document.getElementById('nodeSign-btn').addEventListener('click', () => {appendJSON("level_data/json_files/sign-node.json")});
-document.getElementById('nodeStart-btn').addEventListener('click', () => {appendJSON("level_data/json_files/start-node.json")});
-document.getElementById('nodeFinish-btn').addEventListener('click', () => {appendJSON("level_data/json_files/finish-node.json")});
-document.getElementById('nodeGravity-btn').addEventListener('click', () => {appendJSON("level_data/json_files/gravity-node.json")});
-document.getElementById('nodeInvisible-btn').addEventListener('click', () => {appendJSON("level_data/json_files/invisible-node.json")});
-// insert prefabs
-document.getElementById('HighGravity-btn').addEventListener('click', () => {appendJSON("level_data/json_files/high-gravity.json")});
-document.getElementById('Parallelograms-btn').addEventListener('click', () => {appendJSON("level_data/json_files/parallelograms.json")});
-document.getElementById('BreakTimes-btn').addEventListener('click', () => {appendJSON("level_data/json_files/break-times.json")});
-document.getElementById('FreeStartFinish-btn').addEventListener('click', () => {appendJSON("level_data/json_files/free-start-finish.json")});
-document.getElementById('TexturedSigns-btn').addEventListener('click', () => {appendJSON("level_data/json_files/textured-signs.json")});
-document.getElementById('SpecialStones-btn').addEventListener('click', () => {appendJSON("level_data/json_files/special-stones.json")});
-document.getElementById('NoHitbox-btn').addEventListener('click', () => {appendJSON("level_data/json_files/no-hitbox.json")});
-document.getElementById('Inverted-btn').addEventListener('click', () => {appendJSON("level_data/json_files/inverted.json")});
+await initAttributes();
+console.log('');
+initEditor();
+console.log('');
+getAnimationPresets();
+console.log('');
+highlightTextEditor();
+console.log('');
+initTerminal();
+console.log('');
+initUI();
+console.log('');

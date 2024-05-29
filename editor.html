@@ -30,7 +30,8 @@
         <script type="importmap">
             {
                 "imports": {
-                    "three": "https://unpkg.com/three@0.145.0/build/three.module.js"
+                    "three": "https://unpkg.com/three@0.157.0/build/three.module.js",
+                    "three/addons/": "https://unpkg.com/three@0.157.0/examples/jsm/"
                 }
             }
         </script>
@@ -307,6 +308,9 @@
                         <li>
                             <button class="menu-btn">Ambience</button>
                             <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="edit_ambienceMenu-btn">Sliders</button>
+                                </li>
                                 <li>
                                     <button class="menu-btn" id="maxambience-btn">Max</button>
                                 </li>
@@ -849,6 +853,22 @@
                 <div name="editingJson" class="json-prompt-textarea" id="editingJson-prompt" spellcheck="false" contenteditable="true" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false"></div>
                 <div class="prompt-buttons">
                     <button class="prompt-submit">Sumbit</button>
+                </div>
+            </div>
+            
+            <div class="prompt-simple" id="prompt-ambienceMenu">
+                <input type="range" class="ambience-editor" data-setting="skyZenithColorR" min="-1000" max="1000">
+                <input type="range" class="ambience-editor" data-setting="skyZenithColorG" min="-1000" max="1000">
+                <input type="range" class="ambience-editor" data-setting="skyZenithColorB" min="-1000" max="1000">
+                <input type="range" class="ambience-editor" data-setting="skyHorizonColorR" min="-1000" max="1000">
+                <input type="range" class="ambience-editor" data-setting="skyHorizonColorG" min="-1000" max="1000">
+                <input type="range" class="ambience-editor" data-setting="skyHorizonColorB" min="-1000" max="1000">
+                <input type="range" class="ambience-editor" data-setting="sunAltitude" min="-1000" max="1000">
+                <input type="range" class="ambience-editor" data-setting="sunAzimuth" min="-1000" max="1000">
+                <input type="range" class="ambience-editor" data-setting="sunSize" min="-1000" max="1000">
+                <input type="range" class="ambience-editor" data-setting="fogDDensity" min="-1000" max="1000">
+                <div class="prompt-buttons">
+                    <button class="prompt-cancel">close</button>
                 </div>
             </div>
 
