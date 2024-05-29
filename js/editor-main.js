@@ -3060,7 +3060,7 @@ function initUI() {
     document.querySelectorAll('#prompt-ambienceMenu .ambience-editor').forEach((input) => {
         input.addEventListener('change', () => {
             let setting = input.getAttribute('data-setting');
-            let value = input.value;
+            let value = parseFloat(input.value);
             editAmbienceSettings[setting] = value;
             setEditAmbience();
         });
