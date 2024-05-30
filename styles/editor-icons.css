@@ -101,5 +101,11 @@
 }
 
 .r {
-    background-color: #ff7777 !important;
+    /* background-color: #ff7777 !important; */
+    background-color: #512525 !important;
+}
+
+.menu-btn::after {
+    filter: invert(1);
+    -webkit-filter: invert(1);
 }
