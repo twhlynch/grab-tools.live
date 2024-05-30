@@ -1,5 +1,16 @@
 @import "editor-icons.css";
 /* Base */
+:root {
+    --text-color-default: #eaeaea;
+    --text-color-alt: #c1c1c1;
+    --text-color-accent: #dddddd;
+    --background-color-alt: #363636;
+    --text-color-link: #1e54a0;
+    --border-color: #97979797;
+    --background-color-default: #222222;
+    --main-color: #050505;
+    --second-color: #0c1a2c;
+}
 body,
 html {
     margin: 0;
@@ -122,7 +133,7 @@ html {
     cursor: col-resize;
     margin: 0 0 0 auto;
     user-select: none;
-
+    z-index: 1;
 }
 #edit-resize::before {
     content: "\00A0≡";
@@ -192,7 +203,9 @@ html {
 
 /* Menu */
 .menu {
-    background-color: #424243;
+    background-color: var(--background-color-alt);
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .menu-list {
@@ -203,24 +216,43 @@ html {
     margin: 0;
     padding: 0;
 }
-
+.menu-list > li {
+    box-sizing: border-box;
+    border: 3px solid transparent;
+}
 .menu-btn {
-    background-color: #424243;
+    background-color: var(--background-color-alt);
     color: white;
-    padding: 8px 16px;
+    padding: 6px 16px;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
+}
+.menu-dropdown .menu-btn {
+    border-radius: 0;
+}
+.menu-btn:hover, .menu-btn:has(+ .menu-dropdown:hover), #editing-menu button:has(+ .menu-dropdown:hover) {
+    background-color: var(--background-color-default);
 }
 
-li:last-child > .menu-btn {
+.menu-dropdown li > .menu-btn {
+    border-right: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+    border-bottom: 0.2px solid var(--border-color);
+    border-top: 0.2px solid var(--border-color);
+}
+.menu-dropdown li:last-child > .menu-btn {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    border-bottom: 1px solid var(--border-color);
 }
-li:first-child > .menu-btn {
+.menu-dropdown li:first-child > .menu-btn {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    border-top: 1px solid var(--border-color);
+    margin-bottom: -1px;
 }
-.menu-list > li:first-child > .menu-btn, .menu-list > li:last-child > .menu-btn {
+/* .menu-list > li:first-child > .menu-btn, .menu-list > li:last-child > .menu-btn {
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -233,22 +265,23 @@ li:first-child > .menu-btn {
 #editing-menu > ul > li:nth-last-child(2) > .menu-btn {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-}
+} */
 
 .menu-dropdown {
     display: none;
     padding: 0;
+    padding-top: 5px;
     margin: 0;
     list-style: none;
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     min-width: 160px;
     white-space: nowrap;
 }
 
 .menu-dropdown .menu-btn {
-    background-color: #f2f2f2;
-    color: black;
+    background-color: var(--background-color-default);
+    color: white;
     text-align: left;
     padding: 8px 16px;
     display: block;
@@ -258,6 +291,26 @@ li:first-child > .menu-btn {
 
 .menu-dropdown .menu-dropdown {
     margin-left: 100%;
+    padding-left: 2px;
+}
+.menu-dropdown .menu-dropdown::before {
+    content: " ";
+    position: absolute;
+    z-index: -1;
+    top: -50px; /* -30 */
+    left: -6px; /* -2 */
+    /* height: 20px; */
+    bottom: 50px;
+    border: 35px solid transparent; /* 5 */
+}
+#editing-menu .menu-dropdown .menu-dropdown::before {
+    content: " ";
+    position: absolute;
+    z-index: -1;
+    top: -30px;
+    left: -2px;
+    height: 20px;
+    border: 5px solid transparent;
 }
 
 .menu-btn:hover + .menu-dropdown,
@@ -270,11 +323,11 @@ li:first-child > .menu-btn {
 }
 
 .menu-dropdown .menu-btn:hover {
-    background-color: #ddd;
+    background-color: var(--main-color);
 }
 
 .menu-btn:not(.menu-list > li > ul > li > button):not(.menu-list > li > button):not(#credit-menu > li > button) {
-    transform: translateY(-100%);
+    transform: translateY(-100%) translateY(-4.5px) translateX(-1px);
 }
 .menu-btn:has(+ ul)::after {
     content: url(/img/editor-icons/carat.svg);
@@ -418,10 +471,11 @@ html.dark-mode #editing-container {
     justify-content: flex-start;
     padding: 2px;
     gap: 5px;
-    background-color: #252526;
+    background-color: var(--background-color-default);
     width: calc(100% - 10px);
     padding-inline: 5px;
     height: 16px;
+    z-index: 1;
 }
 #timeline-container > svg {
     width: 14px;
@@ -501,22 +555,63 @@ html.dark-mode #editing-container {
 #editing-menu {
     /* display: none; */
     width: 100%;
-    background-color: #333;
+    background-color: transparent;
+    background-image: linear-gradient(0deg, transparent, #4d4d4d49);
+    height: 0;
+    overflow: visible;
+    z-index: 0;
 }
 li:has(#enableEditing-btn) {
     margin-left: auto;
 }
+#editing-menu > ul > li {
+    border: 0;
+}
+#editing-menu > ul > li > button {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    border: 1px solid var(--border-color);
+    border-left: 0;
+    border-right: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+#editing-menu > ul > li:nth-last-child(1) > button {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 0;
+}
+#editing-menu > ul > li:first-child > button {
+    border-bottom-left-radius: 5px;
+    border-left: 1px solid var(--border-color);
+}
+#editing-menu > ul > li:nth-last-child(2) > button {
+    border-bottom-right-radius: 5px;
+    border-right: 1px solid var(--border-color);
+}
 #editing-menu button {
-    padding: 5px;
+    padding: 6px 7px;
     font-size: 10px;
-    background-color: #444;
-    color: #d9d9d9;
+    background-color: var(--background-color-alt);
+    color: white;
 }
 #editing-menu button:hover {
-    background-color: #555;
+    background-color: var(--background-color-default);
 }
 #editing-menu .menu-dropdown {
     min-width: 0px;
+    min-width: 100px;
+    padding-top: 1px;
+}
+#editing-menu .menu-dropdown .menu-dropdown {
+    margin-top: 5px;
+}
+#editing-menu .menu-dropdown button {
+    background-color: var(--background-color-default);
+}
+#editing-menu .menu-dropdown button:hover {
+    background-color: var(--main-color);
 }
 #editing-menu .edit_material{
     color: #000;
