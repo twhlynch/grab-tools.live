@@ -860,16 +860,46 @@
             </div>
             
             <div class="prompt-simple" id="prompt-ambienceMenu">
-                <input type="range" class="ambience-editor" data-setting="skyZenithColorR" min="-1000" max="1000">
-                <input type="range" class="ambience-editor" data-setting="skyZenithColorG" min="-1000" max="1000">
-                <input type="range" class="ambience-editor" data-setting="skyZenithColorB" min="-1000" max="1000">
-                <input type="range" class="ambience-editor" data-setting="skyHorizonColorR" min="-1000" max="1000">
-                <input type="range" class="ambience-editor" data-setting="skyHorizonColorG" min="-1000" max="1000">
-                <input type="range" class="ambience-editor" data-setting="skyHorizonColorB" min="-1000" max="1000">
-                <input type="range" class="ambience-editor" data-setting="sunAltitude" min="-1000" max="1000">
-                <input type="range" class="ambience-editor" data-setting="sunAzimuth" min="-1000" max="1000">
-                <input type="range" class="ambience-editor" data-setting="sunSize" min="-1000" max="1000">
-                <input type="range" class="ambience-editor" data-setting="fogDDensity" min="-1000" max="1000">
+                <div>
+                    <div class="slider-menu">
+                        <p>-1000 - 1000</p>
+                        <span>sky zenith color</span>
+                        <input type="range" class="ambience-editor" data-setting="skyZenithColorR" min="-1000" max="1000">
+                        <input type="range" class="ambience-editor" data-setting="skyZenithColorG" min="-1000" max="1000">
+                        <input type="range" class="ambience-editor" data-setting="skyZenithColorB" min="-1000" max="1000">
+                        <span>sky horizon color</span>
+                        <input type="range" class="ambience-editor" data-setting="skyHorizonColorR" min="-1000" max="1000">
+                        <input type="range" class="ambience-editor" data-setting="skyHorizonColorG" min="-1000" max="1000">
+                        <input type="range" class="ambience-editor" data-setting="skyHorizonColorB" min="-1000" max="1000">
+                        <span>sun altitude</span>
+                        <input type="range" class="ambience-editor" data-setting="sunAltitude" min="-1000" max="1000">
+                        <span>sun azimuth</span>
+                        <input type="range" class="ambience-editor" data-setting="sunAzimuth" min="-1000" max="1000">
+                        <span>sun size</span>
+                        <input type="range" class="ambience-editor" data-setting="sunSize" min="-1000" max="1000">
+                        <span>fog density</span>
+                        <input type="range" class="ambience-editor" data-setting="fogDDensity" min="-1000" max="1000">
+                    </div>
+                    <div class="slider-menu">
+                        <p>-1 - 1</p>
+                        <span>sky zenith color</span>
+                        <input type="range" class="ambience-editor" data-setting="skyZenithColorR" min="-1" max="1" step="0.001">
+                        <input type="range" class="ambience-editor" data-setting="skyZenithColorG" min="-1" max="1" step="0.001">
+                        <input type="range" class="ambience-editor" data-setting="skyZenithColorB" min="-1" max="1" step="0.001">
+                        <span>sky horizon color</span>
+                        <input type="range" class="ambience-editor" data-setting="skyHorizonColorR" min="-1" max="1" step="0.001">
+                        <input type="range" class="ambience-editor" data-setting="skyHorizonColorG" min="-1" max="1" step="0.001">
+                        <input type="range" class="ambience-editor" data-setting="skyHorizonColorB" min="-1" max="1" step="0.001">
+                        <span>sun altitude</span>
+                        <input type="range" class="ambience-editor" data-setting="sunAltitude" min="-1" max="1" step="0.001">
+                        <span>sun azimuth</span>
+                        <input type="range" class="ambience-editor" data-setting="sunAzimuth" min="-1" max="1" step="0.001">
+                        <span>sun size</span>
+                        <input type="range" class="ambience-editor" data-setting="sunSize" min="-1" max="1" step="0.001">
+                        <span>fog density</span>
+                        <input type="range" class="ambience-editor" data-setting="fogDDensity" min="-1" max="1" step="0.001">
+                    </div>
+                </div>
                 <div class="prompt-buttons">
                     <button class="prompt-cancel">close</button>
                 </div>

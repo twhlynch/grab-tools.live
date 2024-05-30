@@ -363,6 +363,7 @@ html {
     align-items: center;
     justify-items: center;
     display: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .prompt-simple {
     display: flex;
@@ -664,7 +665,26 @@ li:has(#enableEditing-btn) {
     font-weight: bold;
     font-size: 10px;
 }
-
+#prompt-ambienceMenu span {
+    font-size: 10px;
+    width: 90%;
+    margin: auto;
+    text-align: left;
+}
+#prompt-ambienceMenu p {
+    font-size: 15px;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+#prompt-ambienceMenu .slider-menu {
+    display: flex;
+    flex-direction: column;
+}
+#prompt-ambienceMenu > div:not(.prompt-buttons) {
+    display: flex;
+    flex-direction: row;
+}
 #loginMenu input, #loginMenu button {
     padding: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
