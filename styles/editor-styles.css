@@ -750,3 +750,55 @@ li:has(#enableEditing-btn) {
     border-radius: 5px;
     background-color: rgb(105, 105, 105);
 }
+
+#animate-tool {
+    display: none;
+    flex-direction: row;
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    background: var(--background-color-default);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    bottom: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    color: white;
+    padding: 10px;
+    left: 60%;
+    transform: translateX(calc(-100% - 5px));
+}
+#animate-tool-main {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+#animate-tool-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    gap: 5px;
+}
+#animate-tool-buttons button {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: var(--background-color-alt);
+    color: white;
+}
+#animate-tool-close {
+    margin-top: auto;
+}
+#animate-tool-buttons button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+#animate-tool-frames {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: scroll;
+    max-height: 200px;
+}

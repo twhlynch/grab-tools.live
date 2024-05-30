@@ -41,6 +41,10 @@ registerResize('edit-resize', (event) => {
         .getElementById('render-container')
         .style
         .flexBasis = event.clientX + "px";
+    document
+        .getElementById('animate-tool')
+        .style
+        .left = event.clientX + "px";
 });
 
 registerResize('terminal-resize', (event) => {
