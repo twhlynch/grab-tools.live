@@ -3040,6 +3040,85 @@ function setEditAmbience() {
     level.ambienceSettings.fogDDensity = editAmbienceSettings.fogDDensity;
     setLevel(level);
 }
+function animationToolSetup() {
+    let animations = (editing?.grabNodeData?.animations || []);
+    let frames = animations.length > 0 ? (animations[0]?.frames || []) : [];
+    for (let i in frames) {
+        let frame = frames[i];
+        let frameElement = document.createElement('div');
+        frameElement.classList.add('animate-tool-frame');
+        frameElement.innerHTML = `<span data-frame-iter="${i}">${parseInt(i)+1}: ${frame.time}s</span>`;
+        document.getElementById('animate-tool-frames').appendChild(frameElement);
+    }
+}
+function animationToolAdd() {
+    let initialNode = editing.initialGrabNodeData;
+    let currentNode = editing.grabNodeData;
+    let initialPos = Object.values(initialNode)[0].position;
+    let currentPos = Object.values(currentNode)[0].position;
+    let initialRot = Object.values(initialNode)[0].rotation;
+    let currentRot = Object.values(currentNode)[0].rotation;
+    let lastTime = -1;
+    if (!currentNode?.animations) {
+        currentNode.animations = [];
+    }
+    if (!currentNode?.animations[0]) {
+        currentNode.animations[0] = {
+            "frames": [],
+            "speed": 1
+        }
+    }
+    if (currentNode?.animations?.length > 0
+        && currentNode.animations[0].frames.length > 0
+        && currentNode.animations[0].frames[currentNode.animations[0].frames.length-1]?.time > 0
+    ) {
+        lastTime = currentNode.animations[0].frames[currentNode.animations[0].frames.length-1].time;
+    }
+    let newFrame = {
+        "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+        "rotation": {
+            "w": 1,
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+        "time": lastTime + 1
+    }
+    newFrame.position.x = currentPos.x - initialPos.x;
+    newFrame.position.y = currentPos.y - initialPos.y;
+    newFrame.position.z = currentPos.z - initialPos.z;
+    newFrame.rotation.x = currentRot.x - initialRot.x;
+    newFrame.rotation.y = currentRot.y - initialRot.y;
+    newFrame.rotation.z = currentRot.z - initialRot.z;
+    newFrame.rotation.w = currentRot.w - initialRot.w;
+    if (!editing?.animations) {
+        editing.animations = [];
+    }
+    if (!(editing?.animations?.length > 0)) {
+        editing.animations[0] = {
+            "frames": [],
+            "speed": 1
+        }
+    }
+    editing.animations[0].frames.push(newFrame);
+    if (!editing?.grabNodeData?.animations) {
+        editing.grabNodeData.animations = [];
+    }
+    if (!(editing?.grabNodeData?.animations?.length > 0)) {
+        editing.grabNodeData.animations[0] = {
+            "frames": [],
+            "speed": 1
+        }
+    }
+    editing.grabNodeData.animations[0].frames.push(newFrame);
+}
+function animationToolClear() {
+    editing?.grabNodeData?.animations ? editing.grabNodeData.animations = [] : null;
+}
 function initUI() {
     // dark mode
     if (localStorage.getItem("darkMode") === "true") {
@@ -3291,6 +3370,7 @@ function initUI() {
             addFrame(element.id.split('-')[1]);
         });
     });
+    
     document.getElementById('edit_color-btn').addEventListener('click', () => {document.getElementById('edit_color-btn-input').click();});
     document.getElementById('edit_color-btn-input').addEventListener('change', editColor);
     document.getElementById('edit_copyJSON-btn').addEventListener('click', copyEditingJSON);
@@ -3312,6 +3392,26 @@ function initUI() {
 
     timelineSliderElement.addEventListener('input', () => {
         animationTime = parseFloat(timelineSliderElement.value);
+    });
+    // animate tool
+    document.getElementById('edit_animate').addEventListener('click', () => {
+        if (enableEditing && editing) {
+            document.getElementById('animate-tool').style.display = 'flex';
+            animationToolSetup();
+        }
+    });
+    document.getElementById('animate-tool-close').addEventListener('click', () => {
+        document.getElementById('animate-tool-frames').innerHTML = '';
+        document.getElementById('animate-tool').style.display = 'none';
+    });
+    document.getElementById('animate-tool-add').addEventListener('click', () => {
+        animationToolAdd();
+        document.getElementById('animate-tool-frames').innerHTML = '';
+        animationToolSetup();
+    });
+    document.getElementById('animate-tool-clear').addEventListener('click', () => {
+        animationToolClear();
+        document.getElementById('animate-tool-frames').innerHTML = '';
     });
 
     // apply
