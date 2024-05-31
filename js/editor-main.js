@@ -2002,10 +2002,17 @@ function generateFrameLevelFromObjects() {
                 newFrame.position.x = currentPos.x - initialPos.x;
                 newFrame.position.y = currentPos.y - initialPos.y;
                 newFrame.position.z = currentPos.z - initialPos.z;
-                newFrame.rotation.x = currentRot.x - initialRot.x;
-                newFrame.rotation.y = currentRot.y - initialRot.y;
-                newFrame.rotation.z = currentRot.z - initialRot.z;
-                newFrame.rotation.w = currentRot.w - initialRot.w;
+                const changedRot = new THREE.Quaternion();
+                const currentQuat = new THREE.Quaternion(currentRot.x, currentRot.y, currentRot.z, currentRot.w);
+                const initialQuat = new THREE.Quaternion(initialRot.x, initialRot.y, initialRot.z, initialRot.w);
+                changedRot.multiply( 
+                    currentQuat, 
+                    initialQuat.invert() 
+                );
+                newFrame.rotation.x = changedRot.x;
+                newFrame.rotation.y = changedRot.y;
+                newFrame.rotation.z = changedRot.z;
+                newFrame.rotation.w = changedRot.w;
                 initialNode.animations[0].frames.push(newFrame);
                 console.log("adding new frame");
             }
@@ -3070,7 +3077,7 @@ function animationToolAdd() {
     }
     if (currentNode?.animations?.length > 0
         && currentNode.animations[0].frames.length > 0
-        && currentNode.animations[0].frames[currentNode.animations[0].frames.length-1]?.time > 0
+        && currentNode.animations[0].frames[currentNode.animations[0].frames.length-1]?.time >= 0
     ) {
         lastTime = currentNode.animations[0].frames[currentNode.animations[0].frames.length-1].time;
     }
@@ -3091,10 +3098,17 @@ function animationToolAdd() {
     newFrame.position.x = currentPos.x - initialPos.x;
     newFrame.position.y = currentPos.y - initialPos.y;
     newFrame.position.z = currentPos.z - initialPos.z;
-    newFrame.rotation.x = currentRot.x - initialRot.x;
-    newFrame.rotation.y = currentRot.y - initialRot.y;
-    newFrame.rotation.z = currentRot.z - initialRot.z;
-    newFrame.rotation.w = currentRot.w - initialRot.w;
+    const changedRot = new THREE.Quaternion();
+    const currentQuat = new THREE.Quaternion(currentRot.x, currentRot.y, currentRot.z, currentRot.w);
+    const initialQuat = new THREE.Quaternion(initialRot.x, initialRot.y, initialRot.z, initialRot.w);
+    changedRot.multiply( 
+        currentQuat, 
+        initialQuat.invert() 
+    );
+    newFrame.rotation.x = changedRot.x;
+    newFrame.rotation.y = changedRot.y;
+    newFrame.rotation.z = changedRot.z;
+    newFrame.rotation.w = changedRot.w;
     if (!editing?.animations) {
         editing.animations = [];
     }
