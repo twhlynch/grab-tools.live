@@ -576,40 +576,43 @@ function loadLevelNode(node, parent) {
         
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
-        
-        node.levelNodeGroup.childNodes.forEach(node => {
-            let childNodeStatistics = loadLevelNode(node, object);
-            statistics.complexity += childNodeStatistics.complexity;
-            statistics.animations += childNodeStatistics.animations;
-            statistics.groups += childNodeStatistics.groups;
-            statistics.frames += childNodeStatistics.frames;
-            statistics.characters += childNodeStatistics.characters;
-            statistics.objects += childNodeStatistics.objects;
-            statistics.static += childNodeStatistics.static;
-            statistics.crumbling += childNodeStatistics.crumbling;
-            statistics.start += childNodeStatistics.start;
-            statistics.end += childNodeStatistics.end;
-            statistics.sign += childNodeStatistics.sign;
-            statistics.gravity += childNodeStatistics.gravity;
-            statistics.neon += childNodeStatistics.neon;
-            statistics.gravityNoLegs += childNodeStatistics.gravityNoLegs;
-            statistics.default += childNodeStatistics.default;
-            statistics.grabbable += childNodeStatistics.grabbable;
-            statistics.lava += childNodeStatistics.lava;
-            statistics.grapplable += childNodeStatistics.grapplable;
-            statistics.grapplable_lava += childNodeStatistics.grapplable_lava;
-            statistics.grabbable_crumbling += childNodeStatistics.grabbable_crumbling;
-            statistics.default_colored += childNodeStatistics.default_colored;
-            statistics.bouncing += childNodeStatistics.bouncing;
-            statistics.ice += childNodeStatistics.ice;
-            statistics.wood += childNodeStatistics.wood;
-            statistics.cube += childNodeStatistics.cube;
-            statistics.sphere += childNodeStatistics.sphere;
-            statistics.cylinder += childNodeStatistics.cylinder;
-            statistics.pyramid += childNodeStatistics.pyramid;
-            statistics.prism += childNodeStatistics.prism;
-            childNodeStatistics.danger ? statistics.danger = true : null;
-        });
+
+        if (node.levelNodeGroup.childNodes) {
+            node.levelNodeGroup.childNodes.forEach(node => {
+                let childNodeStatistics = loadLevelNode(node, object);
+                statistics.complexity += childNodeStatistics.complexity;
+                statistics.animations += childNodeStatistics.animations;
+                statistics.groups += childNodeStatistics.groups;
+                statistics.frames += childNodeStatistics.frames;
+                statistics.characters += childNodeStatistics.characters;
+                statistics.objects += childNodeStatistics.objects;
+                statistics.static += childNodeStatistics.static;
+                statistics.crumbling += childNodeStatistics.crumbling;
+                statistics.start += childNodeStatistics.start;
+                statistics.end += childNodeStatistics.end;
+                statistics.sign += childNodeStatistics.sign;
+                statistics.gravity += childNodeStatistics.gravity;
+                statistics.neon += childNodeStatistics.neon;
+                statistics.gravityNoLegs += childNodeStatistics.gravityNoLegs;
+                statistics.default += childNodeStatistics.default;
+                statistics.grabbable += childNodeStatistics.grabbable;
+                statistics.lava += childNodeStatistics.lava;
+                statistics.grapplable += childNodeStatistics.grapplable;
+                statistics.grapplable_lava += childNodeStatistics.grapplable_lava;
+                statistics.grabbable_crumbling += childNodeStatistics.grabbable_crumbling;
+                statistics.default_colored += childNodeStatistics.default_colored;
+                statistics.bouncing += childNodeStatistics.bouncing;
+                statistics.ice += childNodeStatistics.ice;
+                statistics.wood += childNodeStatistics.wood;
+                statistics.cube += childNodeStatistics.cube;
+                statistics.sphere += childNodeStatistics.sphere;
+                statistics.cylinder += childNodeStatistics.cylinder;
+                statistics.pyramid += childNodeStatistics.pyramid;
+                statistics.prism += childNodeStatistics.prism;
+                childNodeStatistics.danger ? statistics.danger = true : null;
+            });
+        }
+
         statistics.groups += 1;
         statistics.objects -= 1;
 
