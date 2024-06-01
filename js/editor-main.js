@@ -73,6 +73,7 @@ let altTextures = false;
 let hideText = false;
 let highlightText = true;
 let showGroups = false;
+let showAnimations = false;
 let enableEditing = false;
 let playAnimations = true;
 // animations
@@ -974,6 +975,8 @@ function loadLevelNode(node, parent) {
         objects.push(object);
         statistics.end += 1;
     }
+    let animationPath = undefined;
+    let animationPoints = [];
     if (object !== undefined) {
         object.grabNodeData = node;
         object.initialGrabNodeData = deepClone(node);
@@ -988,6 +991,27 @@ function loadLevelNode(node, parent) {
                 frame.rotation.w = frame.rotation.w || 0;
                 frame.time = frame.time || 0;
                 statistics.frames += 1;
+                
+                if (showAnimations) {
+                    animationPoints.push( new THREE.Vector3( 
+                        frame.position.x,
+                        frame.position.y,
+                        frame.position.z
+                    ) );
+                }
+            }
+            if (showAnimations) {
+                const pathMaterial = new THREE.LineBasicMaterial({
+                    color: 0x0000ff
+                });
+                
+                const geometry = new THREE.BufferGeometry().setFromPoints( animationPoints );
+                
+                const line = new THREE.Line( geometry, pathMaterial );
+                line.rotation.copy(object.rotation);
+                line.position.copy(object.position);
+                object.animationPath = line;
+                parent.add( line );
             }
             object.animation = node.animations[0]
             object.animation.currentFrameIndex = 0
@@ -3446,6 +3470,7 @@ function initUI() {
     document.getElementById('start-btn').addEventListener('click', goToStart);
     document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
     document.getElementById('showGroups-btn').addEventListener('click', () => {showGroups = !showGroups; refreshScene()});
+    document.getElementById('showAnimations-btn').addEventListener('click', () => {showAnimations = !showAnimations; refreshScene()});
     document.getElementById('toggleFog-btn').addEventListener('click', () => {toggleFog(); refreshScene()});
     editInputElement.addEventListener('blur', highlightTextEditor);
     document.getElementById('json-btn').addEventListener('click', downloadAsJSON);
