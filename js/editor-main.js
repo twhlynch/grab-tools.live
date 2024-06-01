@@ -1024,7 +1024,7 @@ function loadLevelNode(node, parent) {
                 points.position.copy(object.position);
                 parent.add(points);
 
-                object.animationPoints = {points, line};
+                object.animationPath = {points, line};
             }
             object.animation = node.animations[0]
             object.animation.currentFrameIndex = 0
@@ -2620,6 +2620,10 @@ function initEditor() {
                 "z": editing.quaternion.z,
                 "w": editing.quaternion.w
             }
+            editing.animationPath.line.position.copy(editing.position);
+            editing.animationPath.line.quaternion.copy(editing.quaternion);
+            editing.animationPath.points.position.copy(editing.position);
+            editing.animationPath.points.quaternion.copy(editing.quaternion);
             applyChangesElement.style.display = "block";
             applyChangesAsFrameElement.style.display = "block";
         }
