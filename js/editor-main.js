@@ -1004,14 +1004,27 @@ function loadLevelNode(node, parent) {
                 const pathMaterial = new THREE.LineBasicMaterial({
                     color: 0x0000ff
                 });
+
+                const pointsMaterial = new THREE.PointsMaterial({
+                    color: 0x0000ff,
+                    size: 3,
+                    sizeAttenuation: false
+                });
                 
-                const geometry = new THREE.BufferGeometry().setFromPoints( animationPoints );
+                const lineGeometry = new THREE.BufferGeometry().setFromPoints( animationPoints );
+                const pointsGeometry = new THREE.BufferGeometry().setFromPoints(animationPoints);
                 
-                const line = new THREE.Line( geometry, pathMaterial );
+                const line = new THREE.Line( lineGeometry, pathMaterial );
                 line.rotation.copy(object.rotation);
                 line.position.copy(object.position);
-                object.animationPath = line;
                 parent.add( line );
+
+                const points = new THREE.Points(pointsGeometry, pointsMaterial);
+                points.rotation.copy(object.rotation);
+                points.position.copy(object.position);
+                parent.add(points);
+
+                object.animationPoints = {points, line};
             }
             object.animation = node.animations[0]
             object.animation.currentFrameIndex = 0
