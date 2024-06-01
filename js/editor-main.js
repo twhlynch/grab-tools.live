@@ -3634,26 +3634,40 @@ async function initAttributes() {
     horizonColor = [0.916, 0.9574, 0.9574]
 
     console.log('Ready', materials, shapes);
-    
+
+}
+function initURLParams() {
     const urlParams = new URLSearchParams(window.location.search);
     const paramId = urlParams.get('level');
 
+    console.log(paramId);
     if (paramId) {
-        const login_details = {
-            "user_name": localStorage.getItem('user_name'),
-            "user_id": localStorage.getItem('user_id')
-        }
-        if (login_details.user_name && login_details.user_id) {
-            downloadAndOpenLevel(paramId);
+        if (paramId.includes('t:')) {
+            const templateIndex = parseInt(paramId.split(':')[1]);
+            console.log(templateIndex);
+            const template = templates[templateIndex];
+            console.log(template);
+            if (template.type == 'identifier') {
+                downloadAndOpenLevel(template.link);
+            } else if (template.type == 'file') {
+                openProto(template.link);
+            }
         } else {
-            const loginPromptElement = document.getElementById('loginPrompt');
-            loginPromptElement.style.display = 'grid';
-            loginPromptElement.addEventListener('click', () => {
-                loginPromptElement.style.display = 'none';
-            });
+            const login_details = {
+                "user_name": localStorage.getItem('user_name'),
+                "user_id": localStorage.getItem('user_id')
+            }
+            if (login_details.user_name && login_details.user_id) {
+                downloadAndOpenLevel(paramId);
+            } else {
+                const loginPromptElement = document.getElementById('loginPrompt');
+                loginPromptElement.style.display = 'grid';
+                loginPromptElement.addEventListener('click', () => {
+                    loginPromptElement.style.display = 'none';
+                });
+            }
         }
     }
-
 }
 
 await initAttributes();
@@ -3668,3 +3682,4 @@ initTerminal();
 console.log('');
 initUI();
 console.log('');
+initURLParams();
