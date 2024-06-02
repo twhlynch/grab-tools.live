@@ -371,15 +371,15 @@ html {
     align-items: center;
     justify-content: space-evenly;
     padding: 5px;
-    background: #dddddd;
-    background: #ddddddaa;
-    border-radius: 3px;
-    position: fixed;
+    background: var(--background-color-default);
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    /* position: fixed; */
     gap: 5px;
     display: none;
 }
 .prompt-simple textarea, .prompt-simple .json-prompt-textarea {
-    background-color: #fff9;
+    background-color: var(--text-color-accent);
     width: 100%;
     resize: none;
     height: 50px;
@@ -403,15 +403,10 @@ html {
     outline: none;
     border-radius: 3px;
     cursor: pointer;
-}
-.prompt-buttons button.prompt-cancel {
-    background: #d2d2d2;
+    background: var(--text-color-accent);
 }
 .prompt-simple .prompt-buttons button.prompt-cancel:hover {
     background: #d29999;
-}
-.prompt-buttons button.prompt-cancel {
-    background: #f0f0f0;
 }
 .prompt-simple .prompt-buttons button.prompt-submit:hover {
     background: #99f099;
@@ -446,7 +441,7 @@ html {
 
 #levels-container, #templates-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 5px;
     width: 100%;
     overflow-y: scroll;
@@ -454,8 +449,11 @@ html {
 }
 .level, .template {
     padding: 5px;
-    background-color: #9e9e9e;
+    background-color: var(--text-color-accent);
+    border: 1px solid var(--border-color);
+    box-sizing: border-box;
     border-radius: 5px;
+    font-size: 14px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .dark-mode #edit-input {
@@ -670,12 +668,14 @@ li:has(#enableEditing-btn) {
     width: 90%;
     margin: auto;
     text-align: left;
+    color: var(--text-color-accent);
 }
 #prompt-ambienceMenu p {
     font-size: 15px;
     width: 90%;
     margin: auto;
     text-align: center;
+    color: var(--text-color-accent);
 }
 #prompt-ambienceMenu .slider-menu {
     display: flex;
@@ -714,9 +714,9 @@ li:has(#enableEditing-btn) {
     display: grid;
     place-content: center;
     padding: 10px;
-    border: 1px solid #333;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
-    background-color: #d4d4d4;
+    background-color: var(--background-color-default);
     gap: 5px;
 }
 #loginContainer {
