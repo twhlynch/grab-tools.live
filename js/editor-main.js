@@ -303,7 +303,6 @@ function refreshScene() {
     animatedObjects = [];
     scene.clear();
 
-    console.log('reset scene');
 
     let ambience = levelData.ambienceSettings;
     // sky = [
@@ -341,8 +340,7 @@ function refreshScene() {
         ambience.sunAzimuth ? null : ambience.sunAzimuth = 0;
         ambience.sunSize ? null : ambience.sunSize = 0;
         ambience.fogDDensity ? null : ambience.fogDDensity = 0;
-        console.log('subbed 0s');
-
+        
         if (!skyMaterial) {
             skyMaterial = new THREE.ShaderMaterial();
             skyMaterial.vertexShader = SHADERS.skyVS;
@@ -353,23 +351,18 @@ function refreshScene() {
         }
 
         sunAngle = new THREE.Euler(THREE.MathUtils.degToRad(ambience.sunAltitude), THREE.MathUtils.degToRad(ambience.sunAzimuth), 0.0);
-        console.log('sun angle');
-        console.log(skyMaterial);
+        
         skyMaterial.uniforms["cameraFogColor0"] = { value: [ambience.skyHorizonColor.r, ambience.skyHorizonColor.g, ambience.skyHorizonColor.b] }
         skyMaterial.uniforms["cameraFogColor1"] = { value: [ambience.skyZenithColor.r, ambience.skyZenithColor.g, ambience.skyZenithColor.b] }
         skyMaterial.uniforms["sunSize"] = { value: ambience.sunSize }
-        console.log('sky material');
+        
         sunAltitude = ambience.sunAltitude
         horizonColor = [ambience.skyHorizonColor.r, ambience.skyHorizonColor.g, ambience.skyHorizonColor.b]
-        console.log('new ambience');
     } else {
         skyMaterial.uniforms["cameraFogColor0"] = { value: [0.916, 0.9574, 0.9574] }
         skyMaterial.uniforms["cameraFogColor1"] = { value: [0.28, 0.476, 0.73] }
         skyMaterial.uniforms["sunSize"] = { value: 1.0 }
-        console.log('default ambience');
     }
-
-    console.log('configured ambience');
 
     const sunDirection = new THREE.Vector3( 0, 0, 1 );
     sunDirection.applyEuler(sunAngle);
@@ -386,18 +379,14 @@ function refreshScene() {
     sunColorFactor += 0.2
     let sunColor = [horizonColor[0] * (1.0 - sunColorFactor) + sunColorFactor, horizonColor[1] * (1.0 - sunColorFactor) + sunColorFactor, horizonColor[2] * (1.0 - sunColorFactor) + sunColorFactor]
 
-    console.log(sunColor, skyMaterial, skySunDirection);
     skyMaterial.uniforms["sunDirection"] = { value: skySunDirection }
     skyMaterial.uniforms["sunColor"] = { value: sunColor }
 
-    console.log(shapes[1].geometry, skyMaterial);
     sky = new THREE.Mesh(shapes[1].geometry, skyMaterial);
-    console.log(sky);
+    
     sky.frustumCulled = false
-    sky.renderOrder = 1000 //sky should be rendered after opaque, before transparent
+    sky.renderOrder = 1000
     scene.add(sky);
-    console.log(sky);
-    console.log(materials, objectMaterials);
 
     function updateMaterial(material) {
         let density = 0.0
@@ -445,8 +434,6 @@ function refreshScene() {
         sunSize: ambience.sunSize,
         fogDDensity: ambience.fogDDensity,
     };
-
-    console.log('updated materials');
     
     levelNodes.forEach((node) => {
         let nodeStatistics = loadLevelNode(node, scene);
@@ -695,6 +682,7 @@ function loadLevelNode(node, parent) {
             material = exportMaterials[0].clone();
         }
         if (node.levelNodeStatic.material == 8) {
+            node.levelNodeStatic.color ? {} : node.levelNodeStatic.color = {};
             node.levelNodeStatic.color.r ? null : node.levelNodeStatic.color.r = 0;
             node.levelNodeStatic.color.g ? null : node.levelNodeStatic.color.g = 0;
             node.levelNodeStatic.color.b ? null : node.levelNodeStatic.color.b = 0;
@@ -1746,7 +1734,6 @@ function outlineLevel() {
             newNodes = newNodes.concat(outlinedNode);
         }
     }
-    console.log(newNodes);
     levelData.levelNodes = levelData.levelNodes.concat(newNodes);
     setLevel(levelData);
 }
@@ -1760,7 +1747,6 @@ function magicOutline() {
             newNodes = newNodes.concat(outlinedNode);
         }
     }
-    console.log(newNodes);
     levelData.levelNodes = levelData.levelNodes.concat(newNodes);
     setLevel(levelData);
 }
@@ -1982,10 +1968,8 @@ function generateFrameLevelFromObjects() {
             let currentPos = Object.values(currentNode)[0].position;
             let initialRot = Object.values(initialNode)[0].rotation;
             let currentRot = Object.values(currentNode)[0].rotation;
-            console.log(initialPos, initialRot, currentPos, currentRot);
             if (initialPos != currentPos || initialRot != currentRot) {
                 if (!initialNode.animations || !initialNode.animations.length) {
-                    console.log("adding animations");
                     initialNode.animations = [{
                         "name": "idle",
                         "frames": [
@@ -2008,7 +1992,6 @@ function generateFrameLevelFromObjects() {
                     }];
                 }
                 if (!initialNode.animations[0]?.frames?.length) {
-                    console.log("adding frame");
                     initialNode.animations[0].frames = [{
                         "position": {
                             "x": 0,
@@ -2054,7 +2037,6 @@ function generateFrameLevelFromObjects() {
                 newFrame.rotation.z = changedRot.z;
                 newFrame.rotation.w = changedRot.w;
                 initialNode.animations[0].frames.push(newFrame);
-                console.log("adding new frame");
             }
             levelNodes.push(initialNode);
         }
@@ -3663,9 +3645,7 @@ function initURLParams() {
     if (paramId) {
         if (paramId.includes('t:')) {
             const templateIndex = parseInt(paramId.split(':')[1]);
-            console.log(templateIndex);
             const template = templates[templateIndex];
-            console.log(template);
             if (template.type == 'identifier') {
                 downloadAndOpenLevel(template.link);
             } else if (template.type == 'file') {
@@ -3690,15 +3670,9 @@ function initURLParams() {
 }
 
 await initAttributes();
-console.log('');
 initEditor();
-console.log('');
 getAnimationPresets();
-console.log('');
 highlightTextEditor();
-console.log('');
 initTerminal();
-console.log('');
 initUI();
-console.log('');
 initURLParams();
