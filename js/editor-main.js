@@ -3161,6 +3161,34 @@ function animationToolAdd() {
 function animationToolClear() {
     editing?.grabNodeData?.animations ? editing.grabNodeData.animations = [] : null;
 }
+function saveConfig() {
+    let currentConfig = {
+        showAnimations,
+        showGroups,
+        fogEnabled,
+        altTextures,
+        hideText,
+        highlightText,
+        playAnimations,
+        animationSpeed
+    };
+    console.log(currentConfig);
+    localStorage.setItem("editor-config", JSON.stringify(currentConfig));
+}
+function loadConfig() {
+    let currentConfig = JSON.parse(localStorage.getItem("editor-config"));
+    console.log(currentConfig);
+    if (currentConfig) {
+        showAnimations = currentConfig.showAnimations;
+        showGroups = currentConfig.showGroups;
+        fogEnabled = currentConfig.fogEnabled;
+        altTextures = currentConfig.altTextures;
+        hideText = currentConfig.hideText;
+        highlightText = currentConfig.highlightText;
+        playAnimations = currentConfig.playAnimations;
+        animationSpeed = currentConfig.animationSpeed;
+    }
+}
 function initUI() {
     // dark mode
     if (localStorage.getItem("darkMode") === "true") {
@@ -3462,6 +3490,7 @@ function initUI() {
     // stats
     document.getElementById('stats-container').addEventListener('click', handleStatsClick);
     // buttons
+    document.getElementById('save-config-btn').addEventListener('click', saveConfig);
     document.getElementById('enableEditing-btn').addEventListener('click', toggleEditing);
     document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = hideText ? 'block' : 'none';hideText = !hideText;highlightTextEditor()});
     document.getElementById('highlight-btn').addEventListener('click', () => {highlightText = !highlightText;highlightTextEditor()});
@@ -3676,3 +3705,4 @@ highlightTextEditor();
 initTerminal();
 initUI();
 initURLParams();
+loadConfig();
