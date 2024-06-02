@@ -525,14 +525,18 @@ html.dark-mode #editing-container {
 #timeline-slider:focus::-webkit-slider-thumb, #timeline-slider:focus::-moz-range-thumb {
     outline: none;
 }
+li:has(> #enableEditing-btn) {
+    position: relative;
+}
 #applyChanges {
     position: absolute;
-    left: 5px;
-    top: 75px;
+    right: 5px;
+    top: calc(100% + 5px);
+    width: 100px;
     padding: 2px 5px;
-    border-radius: 5px;
+    border-radius: 5px !important;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #99f099;
+    color: #99f099 !important;
     border: none;
     outline: none;
     cursor: pointer;
@@ -540,12 +544,13 @@ html.dark-mode #editing-container {
 }
 #applyChangesAsFrame {
     position: absolute;
-    left: 5px;
-    top: 95px;
+    right: 5px;
+    top: calc(100% + 30px);
+    width: 100px;
     padding: 2px 5px;
-    border-radius: 5px;
+    border-radius: 5px !important;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #dff099;
+    color: #dff099 !important;
     border: none;
     outline: none;
     cursor: pointer;
