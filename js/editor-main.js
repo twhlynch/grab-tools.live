@@ -2620,10 +2620,12 @@ function initEditor() {
                 "z": editing.quaternion.z,
                 "w": editing.quaternion.w
             }
-            editing.animationPath.line.position.copy(editing.position);
-            editing.animationPath.line.quaternion.copy(editing.quaternion);
-            editing.animationPath.points.position.copy(editing.position);
-            editing.animationPath.points.quaternion.copy(editing.quaternion);
+            if (editing.animationPath) {
+                editing.animationPath.line.position.copy(editing.position);
+                editing.animationPath.line.quaternion.copy(editing.quaternion);
+                editing.animationPath.points.position.copy(editing.position);
+                editing.animationPath.points.quaternion.copy(editing.quaternion);
+            }
             applyChangesElement.style.display = "block";
             applyChangesAsFrameElement.style.display = "block";
         }
