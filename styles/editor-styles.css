@@ -9,7 +9,10 @@
     --border-color: #97979797;
     --background-color-default: #222222;
     --main-color: #050505;
+    --main-color-o: #050505aa;
     --second-color: #0c1a2c;
+    --background-color-alt-o: #363636aa;
+    --background-color-default-o: #222222aa;
 }
 body,
 html {
@@ -280,7 +283,9 @@ html {
 }
 
 .menu-dropdown .menu-btn {
-    background-color: var(--background-color-default);
+    background-color: var(--background-color-alt-o);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     color: white;
     text-align: left;
     padding: 8px 16px;
@@ -323,7 +328,7 @@ html {
 }
 
 .menu-dropdown .menu-btn:hover {
-    background-color: var(--main-color);
+    background-color: var(--main-color-o);
 }
 
 .menu-btn:not(.menu-list > li > ul > li > button):not(.menu-list > li > button):not(#credit-menu > li > button) {
@@ -371,7 +376,9 @@ html {
     align-items: center;
     justify-content: space-evenly;
     padding: 5px;
-    background: var(--background-color-default);
+    background: var(--background-color-default-o);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border-radius: 5px;
     border: 1px solid var(--border-color);
     /* position: fixed; */
@@ -597,11 +604,11 @@ li:has(#enableEditing-btn) {
 #editing-menu button {
     padding: 6px 7px;
     font-size: 10px;
-    background-color: var(--background-color-alt);
+    background-color: var(--background-color-alt-o);
     color: white;
 }
 #editing-menu button:hover {
-    background-color: var(--background-color-default);
+    background-color: var(--background-color-default-o);
 }
 #editing-menu .menu-dropdown {
     min-width: 0px;
@@ -612,10 +619,10 @@ li:has(#enableEditing-btn) {
     margin-top: 5px;
 }
 #editing-menu .menu-dropdown button {
-    background-color: var(--background-color-default);
+    background-color: var(--background-color-default-o);
 }
 #editing-menu .menu-dropdown button:hover {
-    background-color: var(--main-color);
+    background-color: var(--main-color-o);
 }
 #editing-menu .edit_material{
     color: #000;
