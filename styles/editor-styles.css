@@ -4,6 +4,7 @@
     --text-color-default: #eaeaea;
     --text-color-alt: #c1c1c1;
     --text-color-accent: #dddddd;
+    --text-color-accent-o: #ddddddaa;
     --background-color-alt: #363636;
     --text-color-link: #1e54a0;
     --border-color: #97979797;
@@ -43,7 +44,7 @@ html {
     max-height: 40%;
 }
 #terminal-input {
-    background-color: #252526;
+    background-color: transparent;
     color: #eeeeee;
     height: 60%;
 }
@@ -125,6 +126,7 @@ html {
     flex-grow: 0;
     flex-shrink: 1;
     overflow-x: auto;
+    position: relative;
 }
 #edit-resize {
     display: flex;
@@ -166,7 +168,9 @@ html {
     overflow: scroll;
 }
 #terminal {
-    background-color: #252526;
+    background-color: #000000c2;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -174,6 +178,10 @@ html {
     flex-grow: 0;
     flex-shrink: 1;
     overflow-y: auto;
+
+    position: absolute;
+    height: 40%;
+    bottom: 0;
 }
 #terminal-resize {
     display: flex;
@@ -186,7 +194,13 @@ html {
     cursor: row-resize;
     margin: auto 0 0;
     user-select: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 
+    user-select: none;
+    -webkit-user-select: none;
+    position: absolute;
+    bottom: 40%;
 }
 #terminal-resize::before {
     content: "\00A0≡";
@@ -202,6 +216,7 @@ html {
     user-select: none;
     border-bottom-left-radius: 5px;
     box-sizing: border-box;
+    z-index: 1;
 }
 
 /* Menu */
@@ -386,7 +401,9 @@ html {
     display: none;
 }
 .prompt-simple textarea, .prompt-simple .json-prompt-textarea {
-    background-color: var(--text-color-accent);
+    background-color: var(--text-color-accent-o);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     width: 100%;
     resize: none;
     height: 50px;
@@ -456,7 +473,9 @@ html {
 }
 .level, .template {
     padding: 5px;
-    background-color: var(--text-color-accent);
+    background-color: var(--text-color-accent-o);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border: 1px solid var(--border-color);
     box-sizing: border-box;
     border-radius: 5px;
@@ -493,6 +512,43 @@ html.dark-mode #editing-container {
     color: #99f099;
     cursor: pointer;
 }
+input[type=range] {
+    height: 2px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #777;
+    cursor: pointer;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track, input[type=range]::-moz-range-track {
+    height: 2px;
+    background-color: #a3a3a3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #aaa;
+    height: 14px;
+    width: 10px; 
+    border-radius: 5px;
+}
+input[type=range]::-moz-range-thumb {
+    border: none;
+    border-radius: 0;
+    background-color: #aaa;
+    height: 14px;
+    width: 10px;
+    border-radius: 5px;
+}
+input[type=range]:focus::-webkit-slider-thumb, input[type=range]:focus::-moz-range-thumb {
+    outline: none;
+}
+
 #timeline-slider {
     width: calc(90% - 110px);
     padding-inline: 5px;
@@ -567,10 +623,10 @@ li:has(> #enableEditing-btn) {
     /* display: none; */
     width: 100%;
     background-color: transparent;
-    background-image: linear-gradient(0deg, transparent, #4d4d4d49);
     height: 0;
     overflow: visible;
     z-index: 0;
+    transform: translateY(-1px);
 }
 li:has(#enableEditing-btn) {
     margin-left: auto;
@@ -692,6 +748,7 @@ li:has(#enableEditing-btn) {
 #prompt-ambienceMenu .slider-menu {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 #prompt-ambienceMenu > div:not(.prompt-buttons) {
     display: flex;
