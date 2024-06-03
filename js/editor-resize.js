@@ -48,10 +48,12 @@ registerResize('edit-resize', (event) => {
 });
 
 registerResize('terminal-resize', (event) => {
-    document
-        .getElementById('editor')
-        .style
-        .flexBasis = event.clientY - document
-        .getElementsByClassName('menu')[0]
-        .clientHeight + "px";
+    // document
+    //     .getElementById('editor')
+    //     .style
+    //     .flexBasis = event.clientY - document
+    //     .getElementsByClassName('menu')[0]
+    //     .clientHeight + "px";
+    document.getElementById('terminal-resize').style.bottom = window.innerHeight - event.clientY + "px";
+    document.getElementById('terminal').style.height = window.innerHeight - event.clientY + "px";
 });
