@@ -3264,6 +3264,10 @@ function loadConfig() {
         animationSpeed = currentConfig.animationSpeed;
     }
 }
+function higherFar() {
+    camera.far = 1000000;
+    camera.updateProjectionMatrix();
+}
 function initUI() {
     // dark mode
     if (localStorage.getItem("darkMode") === "true") {
@@ -3576,6 +3580,7 @@ function initUI() {
     document.getElementById('finish-btn').addEventListener('click', goToFinish);
     document.getElementById('mapview-btn').addEventListener('click', mapView);
     document.getElementById('nullview-btn').addEventListener('click', nullView);
+    document.getElementById('higherFar-btn').addEventListener('click', higherFar);
     document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
     document.getElementById('showGroups-btn').addEventListener('click', () => {showGroups = !showGroups; refreshScene()});
     document.getElementById('showAnimations-btn').addEventListener('click', () => {showAnimations = !showAnimations; refreshScene()});
