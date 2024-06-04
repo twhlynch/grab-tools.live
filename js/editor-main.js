@@ -330,11 +330,15 @@ function refreshScene() {
             ambience.skyHorizonColor?.r ? null : ambience.skyHorizonColor.r = 0;
             ambience.skyHorizonColor?.g ? null : ambience.skyHorizonColor.g = 0;
             ambience.skyHorizonColor?.b ? null : ambience.skyHorizonColor.b = 0;
+        } else {
+            ambience.skyHorizonColor = { r: 0, g: 0, b: 0 };
         }
         if (ambience.skyZenithColor) {
             ambience.skyZenithColor?.r ? null : ambience.skyZenithColor.r = 0;
             ambience.skyZenithColor?.g ? null : ambience.skyZenithColor.g = 0;
             ambience.skyZenithColor?.b ? null : ambience.skyZenithColor.b = 0;
+        } else {
+            ambience.skyZenithColor = { r: 0, g: 0, b: 0 };
         }
         ambience.sunAltitude ? null : ambience.sunAltitude = 0;
         ambience.sunAzimuth ? null : ambience.sunAzimuth = 0;
@@ -350,7 +354,7 @@ function refreshScene() {
             skyMaterial.side = THREE.BackSide;
         }
 
-        sunAngle = new THREE.Euler(THREE.MathUtils.degToRad(ambience.sunAltitude), THREE.MathUtils.degToRad(ambience.sunAzimuth), 0.0);
+        sunAngle = new THREE.Euler(THREE.MathUtils.degToRad(ambience.sunAltitude), THREE.MathUtils.degToRad(ambience.sunAzimuth + 180), 0.0);
         
         skyMaterial.uniforms["cameraFogColor0"] = { value: [ambience.skyHorizonColor.r, ambience.skyHorizonColor.g, ambience.skyHorizonColor.b] }
         skyMaterial.uniforms["cameraFogColor1"] = { value: [ambience.skyZenithColor.r, ambience.skyZenithColor.g, ambience.skyZenithColor.b] }
@@ -359,6 +363,24 @@ function refreshScene() {
         sunAltitude = ambience.sunAltitude
         horizonColor = [ambience.skyHorizonColor.r, ambience.skyHorizonColor.g, ambience.skyHorizonColor.b]
     } else {
+        ambience = {
+            "skyZenithColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 1
+            },
+            "skyHorizonColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 1
+            },
+            "sunAltitude": 0,
+            "sunAzimuth": 0,
+            "sunSize": 0,
+            "fogDDensity": 0
+        }
         skyMaterial.uniforms["cameraFogColor0"] = { value: [0.916, 0.9574, 0.9574] }
         skyMaterial.uniforms["cameraFogColor1"] = { value: [0.28, 0.476, 0.73] }
         skyMaterial.uniforms["sunSize"] = { value: 1.0 }
