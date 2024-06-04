@@ -1286,12 +1286,65 @@ function goToStart() {
         }
     }, false);
     if (start) {
-        camera.position.x = start.position.x;
-        camera.position.y = start.position.y + 1;
-        camera.position.z = start.position.z + 1;
-
+        camera.position.set(start.position.x, start.position.y + 1, start.position.z + 1);
+        controls.target.set(start.position.x, start.position.y, start.position.z);
         camera.lookAt(start.position.x, start.position.y, start.position.z);
     }
+}
+function goToFinish() {
+    let obj = getLevel();
+    let finish = false;
+    runOnNodes(obj.levelNodes, (node) => {
+        if (node.hasOwnProperty("levelNodeFinish")) {
+            finish = node.levelNodeFinish;
+        }
+    }, false);
+    if (finish) {
+        camera.position.set(finish.position.x, finish.position.y + 1, finish.position.z + 1);
+        controls.target.set(finish.position.x, finish.position.y, finish.position.z);
+        camera.lookAt(finish.position.x, finish.position.y, finish.position.z);
+    }
+}
+function nullView() {
+    camera.position.set(0, 1, 1);
+    controls.target.set(0, 0, 0);
+    camera.lookAt(0, 0, 0);
+}
+function mapView() {
+    let obj = getLevel();
+    let midpoint = new THREE.Vector3();
+    let viewPosition = new THREE.Vector3();
+    let min = new THREE.Vector3(Infinity, Infinity, Infinity);
+    let max = new THREE.Vector3(-Infinity, -Infinity, -Infinity);
+    
+    runOnNodes(obj.levelNodes, (node) => {
+
+        let position = Object.values(node)[0]?.position || {x: 0, y: 0, z: 0};
+        let positionVector = new THREE.Vector3((position.x || 0), (position.y || 0), (position.z || 0));
+
+        max.max(positionVector);
+        min.min(positionVector);
+
+    }, false);
+
+    midpoint.addVectors(max, min).divideScalar(2);
+    viewPosition.addVectors(max, min).divideScalar(2);
+
+    let size = new THREE.Vector3();
+    size.subVectors(max, min);
+    
+    if (size.x > size.z) {
+        viewPosition.z += size.x;
+        viewPosition.y = size.x;
+    } else {
+        viewPosition.x += size.z;
+        viewPosition.y = size.z;
+    }
+
+    camera.position.set(viewPosition.x, viewPosition.y, viewPosition.z);
+    controls.target.set(midpoint.x, midpoint.y, midpoint.z);
+    camera.lookAt(midpoint.x, midpoint.y, midpoint.z);
+
 }
 function toggleTextures() {
     altTextures = !altTextures;
@@ -3498,6 +3551,9 @@ function initUI() {
     document.getElementById('range-btn').addEventListener('click', () => {loadProtobuf("proto/hacked.proto")});
     editInputElement.addEventListener('keydown', (e) => {handleEditInput(e)});
     document.getElementById('start-btn').addEventListener('click', goToStart);
+    document.getElementById('finish-btn').addEventListener('click', goToFinish);
+    document.getElementById('mapview-btn').addEventListener('click', mapView);
+    document.getElementById('nullview-btn').addEventListener('click', nullView);
     document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
     document.getElementById('showGroups-btn').addEventListener('click', () => {showGroups = !showGroups; refreshScene()});
     document.getElementById('showAnimations-btn').addEventListener('click', () => {showAnimations = !showAnimations; refreshScene()});
