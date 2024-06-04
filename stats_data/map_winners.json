@@ -20653,5 +20653,123 @@
   },
   1717392138,
   "unbeaten_map"
+ ],
+ [
+  [
+   {
+    "position": 0,
+    "best_time": 2.975,
+    "user_id": "2ap0yu9y9g2lcvxbc5x3g",
+    "user_name": "aIwx",
+    "timestamp": "0001716400070991"
+   },
+   {
+    "position": 1,
+    "best_time": 3.50599,
+    "user_id": "29t4nbsay09neyp02t8xs",
+    "user_name": "mace_music",
+    "timestamp": "0001716399429896"
+   },
+   {
+    "position": 2,
+    "best_time": 3.83399,
+    "user_id": "2bf8hyynuelajywj9k4n7",
+    "user_name": "Polaris8477",
+    "timestamp": "0001716407653455"
+   }
+  ],
+  {
+   "identifier": "2ap0yu9y9g2lcvxbc5x3g:1716351164",
+   "title": "Carol FNF (Showcase)",
+   "complexity": 1828,
+   "format_version": 8,
+   "update_timestamp": 1717390740590,
+   "creation_timestamp": 1716398145361,
+   "data_key": "level_data:2ap0yu9y9g2lcvxbc5x3g:1716351164:4",
+   "description": "one of my first showcaes done by myself no helped needed, if this gets 700 plays i will make another model (inspired by mufffinvr's fnf showcases)",
+   "creators": [
+    "dawn"
+   ],
+   "tags": [
+    "showcase",
+    "ok"
+   ],
+   "verification_time": 4.84,
+   "statistics": {
+    "total_played": 1300,
+    "difficulty": 0.01,
+    "liked": 0.8,
+    "time": 7.98,
+    "difficulty_string": "veryhard"
+   },
+   "images": {
+    "full": {
+     "key": "level_2ap0yu9y9g2lcvxbc5x3g_1716351164_1.png",
+     "width": 1920,
+     "height": 1080
+    },
+    "thumb": {
+     "key": "level_2ap0yu9y9g2lcvxbc5x3g_1716351164_1_thumb.png",
+     "width": 512,
+     "height": 288
+    }
+   },
+   "creator": "dawn",
+   "change": 0
+  },
+  1717478652,
+  "daily_map"
+ ],
+ [
+  [
+   {
+    "position": 0,
+    "best_time": 826.006,
+    "user_id": "2bjs393nvip2ep0o3rlp2",
+    "user_name": "kane.1800",
+    "timestamp": "0001710887214322"
+   }
+  ],
+  {
+   "identifier": "2bjs393nvip2ep0o3rlp2:1709296131",
+   "title": "rock climbing  ",
+   "complexity": 2358,
+   "format_version": 8,
+   "update_timestamp": 1710879404533,
+   "creation_timestamp": 1710879404533,
+   "data_key": "level_data:2bjs393nvip2ep0o3rlp2:1709296131:1",
+   "description": "idk",
+   "creators": [
+    "kane.1800"
+   ],
+   "tags": [
+    "ok"
+   ],
+   "verification_time": 1636.56,
+   "statistics": {
+    "total_played": 100,
+    "difficulty": 0.01,
+    "liked": 1,
+    "time": 826.01,
+    "difficulty_string": "hard"
+   },
+   "images": {
+    "full": {
+     "key": "level_2bjs393nvip2ep0o3rlp2_1709296131_1.png",
+     "width": 1920,
+     "height": 1080
+    },
+    "thumb": {
+     "key": "level_2bjs393nvip2ep0o3rlp2_1709296131_1_thumb.png",
+     "width": 512,
+     "height": 288
+    }
+   },
+   "creator": "kane.1800",
+   "sole": true,
+   "change": 0
+  },
+  1717478653,
+  "unbeaten_map"
  ]
 ]
