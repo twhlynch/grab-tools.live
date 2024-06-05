@@ -20771,5 +20771,115 @@
   },
   1717478653,
   "unbeaten_map"
+ ],
+ [
+  [
+   {
+    "position": 0,
+    "best_time": 23.1168,
+    "user_id": "2blgd8unf5ztm9e6b6e8m",
+    "user_name": "HargraveVR",
+    "timestamp": "0001717516046209"
+   },
+   {
+    "position": 1,
+    "best_time": 23.9349,
+    "user_id": "29u20iwnokliu1o7agf2k",
+    "user_name": "provr.505807",
+    "timestamp": "0001717184635645"
+   },
+   {
+    "position": 2,
+    "best_time": 28.0547,
+    "user_id": "2a4q4px3u9z6sukg6thzo",
+    "user_name": "randomvrguy_",
+    "timestamp": "0001717292239766"
+   }
+  ],
+  {
+   "identifier": "2aal9a9uy3npizz7xifbk:1717013906",
+   "title": "Dimensions",
+   "complexity": 1111,
+   "format_version": 8,
+   "update_timestamp": 1717175908158,
+   "creation_timestamp": 1717175908158,
+   "data_key": "level_data:2aal9a9uy3npizz7xifbk:1717013906:1",
+   "description": "Explore DIFFERENT DIMENSIONS in this map! Includes: Hotel, Dungeon, Earth's core...",
+   "creators": [
+    "MonkroVR"
+   ],
+   "tags": [
+    "ok",
+    "parkour",
+    "story"
+   ],
+   "verification_time": 47.01,
+   "statistics": {
+    "total_played": 300,
+    "difficulty": 0.38,
+    "liked": 0.86,
+    "time": 87.03,
+    "difficulty_string": "medium"
+   },
+   "images": {
+    "full": {
+     "key": "level_2aal9a9uy3npizz7xifbk_1717013906_1.png",
+     "width": 1920,
+     "height": 1080
+    },
+    "thumb": {
+     "key": "level_2aal9a9uy3npizz7xifbk_1717013906_1_thumb.png",
+     "width": 512,
+     "height": 288
+    }
+   },
+   "creator": "MonkroVR",
+   "change": 0
+  },
+  1717564855,
+  "daily_map"
+ ],
+ [
+  [],
+  {
+   "identifier": "2a6ekr378kiwrrodjri7e:1713883774",
+   "title": "Cyber-Sigilism 2",
+   "complexity": 1898,
+   "format_version": 8,
+   "update_timestamp": 1714504473080,
+   "creation_timestamp": 1714501512777,
+   "data_key": "level_data:2a6ekr378kiwrrodjri7e:1713883774:3",
+   "description": "Things are about to get extreme!",
+   "creators": [
+    "YelloducVR"
+   ],
+   "tags": [
+    "ok"
+   ],
+   "verification_time": 246.72,
+   "statistics": {
+    "total_played": 600,
+    "difficulty": 0,
+    "difficulty_string": "impossible",
+    "liked": 0,
+    "time": 100
+   },
+   "images": {
+    "full": {
+     "key": "level_2a6ekr378kiwrrodjri7e_1713883774_1.png",
+     "width": 1920,
+     "height": 1080
+    },
+    "thumb": {
+     "key": "level_2a6ekr378kiwrrodjri7e_1713883774_1_thumb.png",
+     "width": 512,
+     "height": 288
+    }
+   },
+   "creator": "YelloducVR",
+   "change": 0
+  },
+  1717564855,
+  "unbeaten_map"
  ]
 ]
