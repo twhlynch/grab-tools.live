@@ -20977,5 +20977,175 @@
   },
   1717651340,
   "unbeaten_map"
+ ],
+ [
+  [
+   {
+    "position": 0,
+    "best_time": 13.544,
+    "user_id": "2bgic04fd2ogqdnfskf6m",
+    "user_name": "RCD24",
+    "timestamp": "0001710013628189"
+   },
+   {
+    "position": 1,
+    "best_time": 13.805,
+    "user_id": "2bykd5cfanxodtqzkn29d",
+    "user_name": "McSamster0u0",
+    "timestamp": "0001710983193999"
+   },
+   {
+    "position": 2,
+    "best_time": 13.955,
+    "user_id": "2aqvmdar2vbta3245m8j9",
+    "user_name": "bullinachinashop108",
+    "timestamp": "0001709257244042"
+   }
+  ],
+  {
+   "identifier": "2bykd5cfanxodtqzkn29d:1702150366",
+   "title": "Samsters escape room (NEW LEVEL!)",
+   "complexity": 2969,
+   "format_version": 8,
+   "update_timestamp": 1717607898165,
+   "creation_timestamp": 1702395608188,
+   "data_key": "level_data:2bykd5cfanxodtqzkn29d:1702150366:8",
+   "description": "This is a map with 8 rooms to escape from.  This map is inspired by GalNightWatcher's Escape Room, so go check him out! ",
+   "creators": [
+    "McSamster0u0"
+   ],
+   "tags": [
+    "ok"
+   ],
+   "verification_time": 84.12,
+   "statistics": {
+    "total_played": 1000,
+    "difficulty": 0.47,
+    "liked": 0.89,
+    "time": 94.58,
+    "difficulty_string": "easy"
+   },
+   "images": {
+    "full": {
+     "key": "level_2bykd5cfanxodtqzkn29d_1702150366_1.png",
+     "width": 1920,
+     "height": 1080
+    },
+    "thumb": {
+     "key": "level_2bykd5cfanxodtqzkn29d_1702150366_1_thumb.png",
+     "width": 512,
+     "height": 288
+    }
+   },
+   "creator": "McSamster0u0",
+   "change": 100
+  },
+  1717737667,
+  "daily_map"
+ ],
+ [
+  [],
+  {
+   "identifier": "2bvy4htc1ihhkf23hxxce:1701991167",
+   "title": "HARDCORE",
+   "complexity": 294,
+   "format_version": 8,
+   "update_timestamp": 1717525004740,
+   "creation_timestamp": 1717525004740,
+   "data_key": "level_data:2bvy4htc1ihhkf23hxxce:1701991167:1",
+   "description": "''Nope.''                                                                                     -The person who invented the word nope                    Help: cookedbeans_vr",
+   "creators": [
+    "BigDum"
+   ],
+   "tags": [
+    "ok",
+    "fling",
+    "innovative"
+   ],
+   "verification_time": 45.14,
+   "statistics": {
+    "total_played": 700,
+    "difficulty": 0,
+    "difficulty_string": "impossible",
+    "liked": 0,
+    "time": 100
+   },
+   "images": {
+    "full": {
+     "key": "level_2bvy4htc1ihhkf23hxxce_1701991167_1.png",
+     "width": 1920,
+     "height": 1080
+    },
+    "thumb": {
+     "key": "level_2bvy4htc1ihhkf23hxxce_1701991167_1_thumb.png",
+     "width": 512,
+     "height": 288
+    }
+   },
+   "creator": "BigDum",
+   "change": 400
+  },
+  1717737667,
+  "unbeaten_map"
+ ],
+ [
+  [
+   {
+    "position": 0,
+    "best_time": 736.144,
+    "user_id": "2czbtyaqtbjo89sut7jqd",
+    "user_name": "Thezra325",
+    "timestamp": "0001716135196953"
+   },
+   {
+    "position": 1,
+    "best_time": 1511.43,
+    "user_id": "29y4eojl2jn5i6hbrqcp3",
+    "user_name": "Jdog725",
+    "timestamp": "0001716091378437"
+   }
+  ],
+  {
+   "identifier": "2b9dfgtcmjbl8pl8amj27:1715121124",
+   "title": "The struggle",
+   "complexity": 1034,
+   "format_version": 8,
+   "update_timestamp": 1715449754255,
+   "creation_timestamp": 1715449754255,
+   "data_key": "level_data:2b9dfgtcmjbl8pl8amj27:1715121124:1",
+   "description": "Reach the end",
+   "creators": [
+    "cheezfruit69"
+   ],
+   "tags": [
+    "ok",
+    "parkour",
+    "grapple"
+   ],
+   "verification_time": 578.65,
+   "statistics": {
+    "total_played": 700,
+    "difficulty": 0,
+    "liked": 0.5,
+    "time": 1123.79,
+    "difficulty_string": "veryhard"
+   },
+   "images": {
+    "full": {
+     "key": "level_2b9dfgtcmjbl8pl8amj27_1715121124_1.png",
+     "width": 1920,
+     "height": 1080
+    },
+    "thumb": {
+     "key": "level_2b9dfgtcmjbl8pl8amj27_1715121124_1_thumb.png",
+     "width": 512,
+     "height": 288
+    }
+   },
+   "creator": "cheezfruit69",
+   "change": 100
+  },
+  1717737713,
+  "weekly_map"
  ]
 ]

@@ -1,40 +1,41 @@
 {
- "identifier": "2b9dfgtcmjbl8pl8amj27:1715121124",
- "title": "The struggle",
- "complexity": 1034,
+ "identifier": "2cse0rwhzexnleljzk7g3:1715976744",
+ "title": "Infernal Agony",
+ "complexity": 1063,
  "format_version": 8,
- "update_timestamp": 1715449754255,
- "creation_timestamp": 1715449754255,
- "data_key": "level_data:2b9dfgtcmjbl8pl8amj27:1715121124:1",
- "description": "Reach the end",
+ "update_timestamp": 1716697707324,
+ "creation_timestamp": 1716072337516,
+ "data_key": "level_data:2cse0rwhzexnleljzk7g3:1715976744:2",
+ "description": "Can you beat all 8 levels of Agony?",
  "creators": [
-  "cheezfruit69"
+  "JiggleTets",
+  "Snowlux"
  ],
  "tags": [
   "ok",
   "parkour",
   "grapple"
  ],
- "verification_time": 578.65,
+ "verification_time": 227.65,
  "statistics": {
-  "total_played": 700,
+  "total_played": 800,
   "difficulty": 0,
-  "liked": 0.5,
-  "time": 1123.79,
+  "liked": 1,
+  "time": 265.7,
   "difficulty_string": "veryhard"
  },
  "images": {
   "full": {
-   "key": "level_2b9dfgtcmjbl8pl8amj27_1715121124_1.png",
+   "key": "level_2cse0rwhzexnleljzk7g3_1715976744_1.png",
    "width": 1920,
    "height": 1080
   },
   "thumb": {
-   "key": "level_2b9dfgtcmjbl8pl8amj27_1715121124_1_thumb.png",
+   "key": "level_2cse0rwhzexnleljzk7g3_1715976744_1_thumb.png",
    "width": 512,
    "height": 288
   }
  },
- "creator": "cheezfruit69",
- "change": 100
+ "creator": "JiggleTets",
+ "change": 0
 }
