@@ -544,7 +544,7 @@ function getGlobalPlays() {
         globalData.average_likes += level?.statistics?.liked;
         globalData.average_time += level?.statistics?.time;
         globalData.complexity += level?.complexity;
-        globalData.iterations += parseInt(level?.data_key?.split(':')[3]);
+        globalData.iterations += level.iteration || 1;
     }
     globalData.average_difficulty /= globalData.verified_maps;
     globalData.average_likes /= globalData.verified_maps;

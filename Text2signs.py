@@ -138,4 +138,4 @@ for i in range(len(level["levelNodes"])):
     })
 
 with open("text_level.json", "w") as f:
-    json.dump(level, f, indent=4)
+    json.dump(level, f)
