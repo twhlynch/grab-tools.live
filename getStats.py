@@ -22,9 +22,9 @@ def filter_level(level):
         else:
             del level["tags"]
             
-    if "statistics" in level:
-        if "difficulty_string" in level["statistics"]:
-            del level["statistics"]["difficulty_string"]
+    # if "statistics" in level:
+    #     if "difficulty_string" in level["statistics"]:
+    #         del level["statistics"]["difficulty_string"]
             
     if "images" in level:
         if "full" in level["images"]:
