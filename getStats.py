@@ -8,10 +8,69 @@ PAGE_URL = "https://grab-tools.live/"
 VIEWER_URL = "https://grabvr.quest/levels/viewer/"
 FORMAT_VERSION = "100"
 
+def filter_level(level):
+    
+    if "verification_time" in level:
+        del level["verification_time"]
+        
+    if "format_version" in level:
+        del level["format_version"]
+        
+    if "tags" in level:
+        if "ok" in level["tags"]:
+            level["tags"] = ["ok"]
+        else:
+            del level["tags"]
+            
+    if "statistics" in level:
+        if "difficulty_string" in level["statistics"]:
+            del level["statistics"]["difficulty_string"]
+            
+    if "images" in level:
+        if "full" in level["images"]:
+            del level["images"]["full"]
+        if "thumb" in level["images"]:
+            if "width" in level["images"]["thumb"]:
+                del level["images"]["thumb"]["width"]
+            if "height" in level["images"]["thumb"]:
+                del level["images"]["thumb"]["height"]
+    
+    if "data_key" in level:
+        iteration = int(level["data_key"].split(":")[3])
+        if iteration > 1:
+            level["iteration"] = iteration
+        del level["data_key"]
+        
+    if "statistics" not in level:
+        level["statistics"] = {
+            "total_played": 0,
+            "difficulty": 1,
+            "liked": 0,
+            "time": 100
+        }
+    else:
+        statistics = level["statistics"]
+        if "total_played" not in statistics:
+            statistics["total_played"] = 0
+        if "difficulty" not in statistics:
+            statistics["difficulty"] = 1
+        if "liked" not in statistics:
+            statistics["liked"] = 0
+        if "time" not in statistics:
+            statistics["time"] = 100
+    
+    return level
+
+def filter_level_list(level_list):
+    for level in level_list:
+        level = filter_level(level)
+    return level_list
+
 def get_level_list(type):
     list_url = f"{SERVER_URL}list?max_format_version={FORMAT_VERSION}&type={type}"
     print(list_url)
     response = requests.get(list_url).json()
+    response = filter_level_list(response)
     return response
 
 def get_user_info(user_identifier):
@@ -74,7 +133,7 @@ def get_user_name(user_identifier, potential_user_name, priority=False):
 
 def write_json_file(filename, data):
     with open(filename, 'w') as file:
-        json.dump(data, file, indent=1)
+        json.dump(data, file)
 
 def timestamp_to_days(timestamp_in_milliseconds, now=datetime.now().timestamp() * 1000):
     return (now - timestamp_in_milliseconds) / 1000 / 60 / 60 / 24
@@ -90,31 +149,12 @@ def get_all_verified(stamp=''):
     while True:
         url = f"{SERVER_URL}list?max_format_version={FORMAT_VERSION}&type=ok&page_timestamp={stamp}"
         data = requests.get(url).json()
-        for level in data:
-            if "creators" in level:
-                level["creator"] = level["creators"][0]
-            if "statistics" not in level:
-                level["statistics"] = {
-                    "total_played": 0,
-                    "difficulty": 1,
-                    "liked": 0,
-                    "time": 100
-                }
-            else:
-                statistics = level["statistics"]
-                if "total_played" not in statistics:
-                    statistics["total_played"] = 0
-                if "difficulty" not in statistics:
-                    statistics["difficulty"] = 1
-                if "liked" not in statistics:
-                    statistics["liked"] = 0
-                if "time" not in statistics:
-                    statistics["time"] = 100
         verified.extend(data)
         if data[-1].get("page_timestamp"):
             stamp = data[-1]["page_timestamp"]
         else:
             break
+    verified = filter_level_list(verified)
     return verified
 
 def get_a_challenge():

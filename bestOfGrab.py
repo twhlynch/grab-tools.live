@@ -61,7 +61,7 @@ def update_best_of_grab():
 
 def write_json_file(filename, data):
     with open(filename, 'w') as file:
-        json.dump(data, file, indent=2)
+        json.dump(data, file)
 
 if __name__ == "__main__":
     update_best_of_grab()

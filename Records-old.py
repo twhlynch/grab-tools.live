@@ -70,19 +70,19 @@ with open("stats_data/user_finishes.json", "w") as file:
     json.dump(user_finishes, file)
 
 with open("stats_data/empty_leaderboards.json", "w") as file:
-    json.dump(empty_leaderboards, file, indent=4)
+    json.dump(empty_leaderboards, file)
 
 with open("stats_data/sorted_leaderboard_records.json", "w") as file:
-    json.dump(sorted_leaderboard, file, indent=1)
+    json.dump(sorted_leaderboard, file)
 
 with open("stats_data/leaderboard_levels.json", "w") as file:
     json.dump(data, file)
 
 with open("stats_data/sole_victors.json", "w") as file:
-    json.dump(sole_victors, file, indent=4)
+    json.dump(sole_victors, file)
     
 with open("stats_data/difficulty_records.json", "w") as file:
     json.dump(difficulty_records, file)
     
 with open("stats_data/difficulty_lengths.json", "w") as file:
-    json.dump(difficulty_lengths, file, indent=4)
+    json.dump(difficulty_lengths, file)

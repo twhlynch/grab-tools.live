@@ -24,4 +24,4 @@ for level in data:
         continue
 
 with open("stats_data/statistics.json", "w") as file:
-    json.dump(statistics, file, indent=4)
+    json.dump(statistics, file)

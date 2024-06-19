@@ -28,7 +28,7 @@ fetch("/stats_data/hardest_levels_list.json")
         }">
             <p>${i+1}</p>
             <a href="https://grabvr.quest/levels/viewer?level=${level.id}" target="_blank">${level.title}</a>
-            <p>${level.creator}</p>
+            <p>${level?.creators ? level.creators[0] : "?"}</p>
         </div>
         `;
     }
