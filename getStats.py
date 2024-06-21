@@ -21,6 +21,9 @@ def filter_level(level):
             level["tags"] = ["ok"]
         else:
             del level["tags"]
+    
+    if "description" in level:
+        del level["description"]
             
     # if "statistics" in level:
     #     if "difficulty_string" in level["statistics"]:
