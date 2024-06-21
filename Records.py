@@ -89,29 +89,44 @@ with ThreadPoolExecutor() as executor:
 
     for future in futures:
         future.result()
+        
+leaderboard = {user: scores for user, scores in leaderboard.items() if scores[0] >= 10}
+print("clean leaderboard main")
 
 sorted_leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][0], reverse=True))
+print("sorted leaderboard main")
 
-with open("stats_data/user_finishes.json", "w") as file:
-    json.dump(user_finishes, file)
+for difficulty in difficulty_records:
+    difficulty_records[difficulty] = {user_key: records for user_key, records in difficulty_records[difficulty].items() if records["maps"] >= 10}
+    print("clean leaderboard " + difficulty)
+    
+    difficulty_records[difficulty] = dict(sorted(difficulty_records[difficulty].items(), key=lambda x: x[1]["maps"], reverse=True)[:200])
+    print("sorted leaderboard " + difficulty)
 
-with open("stats_data/empty_leaderboards.json", "w") as file:
-    json.dump(empty_leaderboards, file)
+user_finishes = {key: finishes for key, finishes in user_finishes.items() if finishes[0] >= 10}
+print("clean leaderboard finishes")
 
-with open("stats_data/sorted_leaderboard_records.json", "w") as file:
-    json.dump(sorted_leaderboard, file)
+user_finishes = dict(sorted(user_finishes.items(), key=lambda x: x[1][0], reverse=True)[:200])
+print("sorted leaderboard finishes")
 
-with open("stats_data/leaderboard_levels.json", "w") as file:
-    json.dump(data, file)
+first_to_beat = {key: beats for key, beats in first_to_beat.items() if beats[1] >= 10}
+print("clean leaderboard first to beat")
 
-with open("stats_data/sole_victors.json", "w") as file:
-    json.dump(sole_victors, file)
+first_to_beat = dict(sorted(first_to_beat.items(), key=lambda x: x[1][1], reverse=True)[:200])
 
-with open("stats_data/difficulty_records.json", "w") as file:
-    json.dump(difficulty_records, file)
+output_files = {
+    "stats_data/user_finishes.json": user_finishes,
+    "stats_data/empty_leaderboards.json": empty_leaderboards,
+    "stats_data/sorted_leaderboard_records.json": sorted_leaderboard,
+    "stats_data/leaderboard_levels.json": data,
+    "stats_data/sole_victors.json": sole_victors,
+    "stats_data/difficulty_records.json": difficulty_records,
+    "stats_data/difficulty_lengths.json": difficulty_lengths,
+    "stats_data/first_to_beat.json": first_to_beat,
+}
 
-with open("stats_data/difficulty_lengths.json", "w") as file:
-    json.dump(difficulty_lengths, file)
+for filepath, content in output_files.items():
+    with open(filepath, "w") as file:
+        json.dump(content, file)
 
-with open("stats_data/first_to_beat.json", "w") as file:
-    json.dump(first_to_beat, file)
+print("All data saved successfully")
