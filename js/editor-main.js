@@ -3094,6 +3094,107 @@ function generatePixelArt() {
     }
     reader.readAsDataURL(file);
 }
+function generatePixelSphere() {
+    let radius = document.getElementById('pixel-sphere-prompt').value;
+    document.getElementById('pixel-sphere-prompt').value = '';
+    
+    if (radius == "" || radius == null || radius < 1) {
+        radius = 10;
+    }
+    let file = document.getElementById('image-sphere-btn-input').files[0];
+    let imageCanvas = document.getElementById('pixel-sphere-canvas');
+    let imageContext = imageCanvas.getContext('2d');
+
+    let pixels = [];
+    for (let x = 0 - radius; x <= 0 + radius; x++) {
+        for (let y = 0 - radius; y <= 0 + radius; y++) {
+            for (let z = 0 - radius; z <= 0 + radius; z++) {
+                let distance = Math.sqrt(
+                    (x) ** 2 +
+                    (y) ** 2 +
+                    (z) ** 2
+                );
+                if (distance > radius - 0.5 && distance < radius + 0.5) {
+                    let object = {
+                        levelNodeStatic: {
+                            shape: 1000,
+                            material: 8,
+                            position: {
+                                x: x,
+                                y: y,
+                                z: z
+                            },
+                            scale: {
+                                x: 1,
+                                y: 1,
+                                z: 1
+                            },
+                            rotation: {
+                                w: 1,
+                                x: 0,
+                                y: 0,
+                                z: 0
+                            },
+                            color: {
+                                r: 1,
+                                g: 1,
+                                b: 1,
+                                a: 1
+                            },
+                            isNeon: true
+                        }
+                    };
+                    pixels.push(object);
+                }
+            }
+        }
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+            imageCanvas.width = img.width;
+            imageCanvas.height = img.height;
+            imageContext.drawImage(img, 0, 0);
+
+            const imageData = imageContext.getImageData(0, 0, imageCanvas.width, imageCanvas.height).data;
+            const imageWidth = imageCanvas.width;
+            const imageHeight = imageCanvas.height;
+
+            let mainLevel = getLevel();
+            pixels.forEach(object => {
+                const phi = Math.atan2(object.levelNodeStatic.position.z, object.levelNodeStatic.position.x);
+                const theta = Math.acos(object.levelNodeStatic.position.y / radius);
+
+                const u = (phi + radius) / (2 * Math.PI);
+                const v =  theta / Math.PI;
+
+                const x = Math.floor(u * imageWidth);
+                const y = Math.floor(v * imageHeight);
+
+                const index = (y * imageWidth + x) * 4;
+                const r = imageData[index] / 255;
+                const g = imageData[index + 1] / 255;
+                const b = imageData[index + 2] / 255;
+
+                object.levelNodeStatic.color = gammaToLinear(r, g, b);
+
+                mainLevel.levelNodes.push(object);
+            });
+            setLevel(mainLevel);
+
+        };
+        img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+function gammaToLinear(r, g, b) {
+    r = (r <= 0.04045) ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
+    g = (g <= 0.04045) ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
+    b = (b <= 0.04045) ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
+    return {r, g, b, a:1};
+}
 function duplicateLevel() {
     let levelData = getLevel();
     levelData.levelNodes = levelData.levelNodes.concat(levelData.levelNodes);
@@ -3444,6 +3545,21 @@ function initUI() {
         document.getElementById('prompt-pixel').style.display = 'flex';
     });
 
+    document.querySelector('#prompt-pixel-sphere .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-pixel-sphere').style.display = 'none';
+        document.getElementById('pixel-sphere-prompt').value = '';
+    });
+    document.querySelector('#prompt-pixel-sphere .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-pixel-sphere').style.display = 'none';
+        generatePixelSphere();
+    });
+    document.getElementById('image-sphere-btn-input').addEventListener('change', (e) => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-pixel-sphere').style.display = 'flex';
+    });
+
     document.getElementById('protobuf-btn').addEventListener('click', () => {
         promptsElement.style.display = 'grid';
         document.getElementById('prompt-protobuf').style.display = 'flex';
@@ -3632,6 +3748,7 @@ function initUI() {
     document.getElementById('pcjson-btn').addEventListener('click', () => {document.getElementById('pcjson-btn-input').click()});
     document.getElementById('insertpc-btn').addEventListener('click', () => {document.getElementById('insertpc-btn-input').click()});
     document.getElementById('image-btn').addEventListener('click', () => {document.getElementById('image-btn-input').click()});
+    document.getElementById('image-sphere-btn').addEventListener('click', () => {document.getElementById('image-sphere-btn-input').click()});
     document.getElementById('pointcloud-btn').addEventListener('click', () => {document.getElementById('pointcloud-btn-input').click()});
     document.getElementById('pointcloud-btn-input').addEventListener('change', (e) => {openPointCloud(e.target.files[0])});
     document.getElementById('wireframe-btn').addEventListener('click', () => {document.getElementById('wireframe-btn-input').click()});
