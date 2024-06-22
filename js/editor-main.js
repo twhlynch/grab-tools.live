@@ -3167,8 +3167,8 @@ function generatePixelSphere() {
                 const phi = Math.atan2(object.levelNodeStatic.position.z, object.levelNodeStatic.position.x);
                 const theta = Math.acos(object.levelNodeStatic.position.y / radius);
 
-                const u = (phi + radius) / (2 * Math.PI);
-                const v =  theta / Math.PI;
+                const u = - (phi + radius) / (2 * Math.PI);
+                const v = theta / Math.PI;
 
                 const x = Math.floor(u * imageWidth);
                 const y = Math.floor(v * imageHeight);
