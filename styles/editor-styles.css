@@ -402,15 +402,18 @@ html {
 }
 .prompt-simple textarea, .prompt-simple .json-prompt-textarea {
     background-color: var(--text-color-accent-o);
+    border: 1px solid var(--border-color);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     width: 100%;
     resize: none;
     height: 50px;
     padding: 5px;
-    border: none;
     outline: none;
     border-radius: 3px
+}
+.prompt-simple textarea::placeholder, .prompt-simple .json-prompt-textarea::placeholder {
+    color: var(--background-color-alt);
 }
 .prompt-simple .prompt-buttons {
     width: 100%;

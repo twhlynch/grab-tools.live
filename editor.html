@@ -166,9 +166,10 @@
                                     <button class="menu-btn" id="image-btn">Image</button>
                                     <input type="file" id="image-btn-input" style="display:none" multiple>
                                 </li>
-                                <!-- <li>
-                                    <button class="menu-btn r" id="video-btn">Video</button>
-                                </li> -->
+                                <li>
+                                    <button class="menu-btn" id="image-sphere-btn">Image sphere</button>
+                                    <input type="file" id="image-sphere-btn-input" style="display:none" multiple>
+                                </li>
                                 <li>
                                     <button class="menu-btn" id="pointcloud-btn">Point Cloud (.obj)</button>
                                     <input type="file" id="pointcloud-btn-input" style="display:none">
@@ -1002,6 +1003,15 @@
                 <textarea name="pixel" id="pixel-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false" placeholder="Quality, Default: 50"></textarea>
                 <canvas id="pixel-canvas" style="display: none;"></canvas>
                 <canvas id="pixel-canvas2" style="display: none;"></canvas>
+                <div class="prompt-buttons">
+                    <button class="prompt-cancel">Cancel</button>
+                    <button class="prompt-submit">Sumbit</button>
+                </div>
+            </div>
+            <div class="prompt-simple" id="prompt-pixel-sphere">
+                <textarea name="pixel-sphere" id="pixel-sphere-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false" placeholder="Radius, Default: 10"></textarea>
+                <canvas id="pixel-sphere-canvas" style="display: none;"></canvas>
+                <canvas id="pixel-sphere-canvas2" style="display: none;"></canvas>
                 <div class="prompt-buttons">
                     <button class="prompt-cancel">Cancel</button>
                     <button class="prompt-submit">Sumbit</button>
