@@ -1505,7 +1505,6 @@ let statistics = {
     most_verified: undefined,
     sole_victors: undefined,
     most_plays: undefined,
-    trending_levels: undefined,
     featured_creators: undefined,
     daily_map: undefined,
     weekly_map: undefined,
@@ -1564,6 +1563,10 @@ function computeStats() {
     statistics.most_disliked = [...statistics.all_verified]
     .sort((a, b) => (1 - b.statistics.liked) * (1 - b.statistics.difficulty) * b.statistics.total_played - (1 - a.statistics.liked) * (1 - a.statistics.difficulty) * a.statistics.total_played)
     .filter(map => map.statistics.total_played > 2000 && (map.statistics.total_played * map.statistics.difficulty) > 10)
+    .slice(0, 200);
+
+    statistics.trending_levels = [...statistics.all_verified]
+    .sort((a, b) => b.change - a.change)
     .slice(0, 200);
 
     getGlobalPlays();
