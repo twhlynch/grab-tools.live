@@ -1529,13 +1529,21 @@ function incrementLoader() {
     document.getElementById('loader').style.width = `${progress}%`;
 }
 function initStats() {
-    let currentTimestamp = new Date().getTime() / 1000 / 60 / 10; // 10 minute cache interval
+    const updateTime = 5;
+    const now = Date.now();
+    const currentDate = new Date(now);
+    const daysSinceEpoch = Math.floor(now / (24 * 60 * 60 * 1000));
+    const currentHours = currentDate.getUTCHours();
+    const currentMinutes = currentDate.getUTCMinutes();
+    const isPast = (currentHours > updateTime) || (currentHours === updateTime && currentMinutes > 0);
+    const cacheInterval = isPast ? daysSinceEpoch + 1 : daysSinceEpoch;
+        
     let promises = [];
 
     for (const key in statistics) {
         stat_count++;
         promises.push(
-            fetch(`/stats_data/${key}.json?timestamp=${currentTimestamp}`)
+            fetch(`/stats_data/${key}.json?cache=${cacheInterval}`)
             .then(res => res.json())
             .then(data => {
                 statistics[key] = data;
