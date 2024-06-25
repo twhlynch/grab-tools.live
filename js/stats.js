@@ -276,7 +276,7 @@ function getPlayedLevels() {
 }
 function getTopLikes() {
     for (const item of statistics.most_liked) {
-        const detail = `${numberWithCommas(Math.round(item?.statistics?.liked * item?.statistics?.total_played * (1 - item?.statistics?.difficulty)))} (${Math.round(100 * item?.statistics?.liked)}%)`;
+        const detail = `${numberWithCommas(Math.round(item?.statistics?.liked * item?.statistics?.total_played * item?.statistics?.difficulty))} (${Math.round(100 * item?.statistics?.liked)}%)`;
         const level_card = genericLevelCard(item, detail);
         document.getElementById('MostLikedMaps-out').appendChild(level_card);
         checkNotification(item.identifier, "MostLikedMaps");
@@ -284,7 +284,7 @@ function getTopLikes() {
 }
 function getTopDislikes() {
     for (const item of statistics.most_disliked) {
-        const detail = `${numberWithCommas(Math.round((numberWithCommas(1 - item?.statistics?.liked) * item?.statistics?.total_played * (1 - item?.statistics?.difficulty))))} (${Math.round(100 - (100 * item?.statistics?.liked))}%)`;
+        const detail = `${numberWithCommas(Math.round((numberWithCommas(1 - item?.statistics?.liked) * item?.statistics?.total_played * item?.statistics?.difficulty)))} (${Math.round(100 - (100 * item?.statistics?.liked))}%)`;
         const level_card = genericLevelCard(item, detail);
         document.getElementById('MostDislikedMaps-out').appendChild(level_card);
         checkNotification(item.identifier, "MostDislikedMaps");
@@ -1564,12 +1564,12 @@ function computeStats() {
     statistics.longest_times = [...statistics.all_verified].sort((a, b) => b.statistics.time - a.statistics.time).slice(0, 200);
 
     statistics.most_liked = [...statistics.all_verified]
-    .sort((a, b) => (b.statistics.liked * (1 - b.statistics.difficulty) * b.statistics.total_played) - (a.statistics.liked * (1 - a.statistics.difficulty) * a.statistics.total_played))
-    .filter(map => map.statistics.total_played > 2000 && (map.statistics.total_played * map.statistics.difficulty) > 10)
+    .sort((a, b) => (b.statistics.liked * b.statistics.difficulty * b.statistics.total_played) - (a.statistics.liked * a.statistics.difficulty * a.statistics.total_played))
+    .filter(map => map.statistics.total_played > 2000 && map.statistics.total_played * map.statistics.difficulty > 10)
     .slice(0, 200);
 
     statistics.most_disliked = [...statistics.all_verified]
-    .sort((a, b) => (1 - b.statistics.liked) * (1 - b.statistics.difficulty) * b.statistics.total_played - (1 - a.statistics.liked) * (1 - a.statistics.difficulty) * a.statistics.total_played)
+    .sort((a, b) => (1 - b.statistics.liked) * b.statistics.difficulty * b.statistics.total_played - (1 - a.statistics.liked) * a.statistics.difficulty * a.statistics.total_played)
     .filter(map => map.statistics.total_played > 2000 && (map.statistics.total_played * map.statistics.difficulty) > 10)
     .slice(0, 200);
 
@@ -1771,7 +1771,9 @@ function initSearch() {
                     item?.statistics?.time ? average_time += item?.statistics?.time : null;
                     item?.statistics?.time ? time_count += 1 : null;
                     item?.complexity ? total_complexity += item?.complexity : null;
+                });
 
+                levels.forEach(item => {
                     const levelDiv = levelCard(
                         item?.identifier,
                         item?.title,
@@ -1779,7 +1781,7 @@ function initSearch() {
                         item?.images?.thumb?.key,
                         (item?.tags ? item.tags : []).includes("ok"),
                         item?.update_timestamp,
-                        `${item?.statistics?.total_played} plays`
+                        `${item?.statistics?.total_played} plays (${Math.round(item?.statistics?.total_played / total_plays * 100)}%)`
                     );
                     fragment.appendChild(levelDiv);
                 });
