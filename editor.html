@@ -171,6 +171,10 @@
                                     <input type="file" id="image-sphere-btn-input" style="display:none" multiple>
                                 </li>
                                 <li>
+                                    <button class="menu-btn" id="image-apply-btn">Apply image</button>
+                                    <input type="file" id="image-apply-btn-input" style="display:none" multiple>
+                                </li>
+                                <li>
                                     <button class="menu-btn" id="pointcloud-btn">Point Cloud (.obj)</button>
                                     <input type="file" id="pointcloud-btn-input" style="display:none">
                                 </li>
@@ -1016,6 +1020,10 @@
                     <button class="prompt-cancel">Cancel</button>
                     <button class="prompt-submit">Sumbit</button>
                 </div>
+            </div>
+            <div class="prompt-simple" id="prompt-pixel-apply">
+                <canvas id="pixel-apply-canvas" style="display: none;"></canvas>
+                <canvas id="pixel-apply-canvas2" style="display: none;"></canvas>
             </div>
             <div class="prompt-simple" id="prompt-levels">
                 <div id="levels-container"></div>

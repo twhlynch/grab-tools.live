@@ -3189,6 +3189,56 @@ function generatePixelSphere() {
     };
     reader.readAsDataURL(file);
 }
+function applyImage() {
+    let file = document.getElementById('image-apply-btn-input').files[0];
+    let imageCanvas = document.getElementById('pixel-apply-canvas');
+    let imageContext = imageCanvas.getContext('2d');
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+            imageCanvas.width = img.width;
+            imageCanvas.height = img.height;
+            imageContext.drawImage(img, 0, 0);
+
+            const imageData = imageContext.getImageData(0, 0, imageCanvas.width, imageCanvas.height).data;
+            const imageWidth = imageCanvas.width;
+            const imageHeight = imageCanvas.height;
+
+            let mainLevel = getLevel();
+            runOnNodes(mainLevel.levelNodes, (object) => {
+                if (object?.levelNodeStatic?.material == 8) {
+                    const distance = Math.sqrt(
+                        (object.levelNodeStatic?.position?.x || 0) ** 2 +
+                        (object.levelNodeStatic?.position?.y || 0) ** 2 +
+                        (object.levelNodeStatic?.position?.z || 0) ** 2
+                    );
+
+                    const phi = Math.atan2((object.levelNodeStatic?.position?.z || 0), (object.levelNodeStatic?.position?.x || 0));
+                    const theta = Math.acos((object.levelNodeStatic?.position?.y || 0) / distance);
+    
+                    const u = - (phi + distance) / (2 * Math.PI);
+                    const v = theta / Math.PI;
+    
+                    const x = Math.floor(u * imageWidth);
+                    const y = Math.floor(v * imageHeight);
+    
+                    const index = (y * imageWidth + x) * 4;
+                    const r = imageData[index] / 255;
+                    const g = imageData[index + 1] / 255;
+                    const b = imageData[index + 2] / 255;
+    
+                    object.levelNodeStatic.color = gammaToLinear(r, g, b);
+                }
+            }, false);
+            setLevel(mainLevel);
+
+        };
+        img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+}
 function gammaToLinear(r, g, b) {
     r = (r <= 0.04045) ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
     g = (g <= 0.04045) ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
@@ -3559,6 +3609,10 @@ function initUI() {
         promptsElement.style.display = 'grid';
         document.getElementById('prompt-pixel-sphere').style.display = 'flex';
     });
+    
+    document.getElementById('image-apply-btn-input').addEventListener('change', (e) => {
+        applyImage();
+    });
 
     document.getElementById('protobuf-btn').addEventListener('click', () => {
         promptsElement.style.display = 'grid';
@@ -3749,6 +3803,7 @@ function initUI() {
     document.getElementById('insertpc-btn').addEventListener('click', () => {document.getElementById('insertpc-btn-input').click()});
     document.getElementById('image-btn').addEventListener('click', () => {document.getElementById('image-btn-input').click()});
     document.getElementById('image-sphere-btn').addEventListener('click', () => {document.getElementById('image-sphere-btn-input').click()});
+    document.getElementById('image-apply-btn').addEventListener('click', () => {document.getElementById('image-apply-btn-input').click()});
     document.getElementById('pointcloud-btn').addEventListener('click', () => {document.getElementById('pointcloud-btn-input').click()});
     document.getElementById('pointcloud-btn-input').addEventListener('change', (e) => {openPointCloud(e.target.files[0])});
     document.getElementById('wireframe-btn').addEventListener('click', () => {document.getElementById('wireframe-btn-input').click()});
