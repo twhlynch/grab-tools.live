@@ -3259,7 +3259,19 @@ function generateAnimatedTextToSigns() {
         if (last_10.length > appearance_time / interval) {
             last_10.pop(0)
         }
-
+        // set
+        levelNodes[sign_iter].animations[0].frames.push({
+            "position": {
+                "z": 1 * foreward_pos - 0.01,
+                "y": height * char_width * -2,
+                "x": 1 * active_position * char_width
+            },
+            "rotation": {
+                "w": 1.0
+            },
+            "time": count * interval - 0.001
+        })
+        // appear
         levelNodes[sign_iter].animations[0].frames.push({
             "position": {
                 "z": 1 * foreward_pos,
@@ -3271,7 +3283,7 @@ function generateAnimatedTextToSigns() {
             },
             "time": count * interval
         })
-    
+        // disappear
         levelNodes[sign_iter].animations[0].frames.push({
             "position": {
                 "z": 1 * foreward_pos,
