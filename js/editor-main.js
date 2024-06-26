@@ -5,6 +5,8 @@ import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { FlyControls } from 'three/addons/controls/FlyControls.js';
 import { VRButton } from "https://cdn.jsdelivr.net/npm/three@0.145.0/examples/jsm/webxr/VRButton.min.js";
 import { TransformControls } from 'three/addons/controls/TransformControls.js';
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 import * as SHADERS from './shaders.js';
 let templates = await fetch('/level_data/templates.json').then(response => response.json());
 let protobufData = await fetch('/proto/proto.proto').then(response => response.text());
@@ -26,6 +28,10 @@ let startMaterial, finishMaterial, skyMaterial, signMaterial, neonMaterial;
 let materials = [];
 let objectMaterials = [];
 let exportMaterials = [];
+//text
+let textMaterial = new THREE.MeshBasicMaterial({color: 0xffffff});
+const fontLoader = new FontLoader();
+let font;
 // controls
 let controls, fly, transformControl;
 // loaders
@@ -943,6 +949,36 @@ function loadLevelNode(node, parent) {
         object.initialRotation = object.quaternion.clone();
         
         objects.push(object);
+
+        const signText = node.levelNodeSign.text || "";
+        const words = signText.split(" ");
+        let text = "";
+        for (let i = 0; i < words.length; i++) {
+            if ((i + 1) % 3 == 0) {
+                text += words[i] + "\n";
+            } else {
+                text += words[i] + " ";
+            }
+        }
+
+        let textGeo = new TextGeometry(text, {
+            font: font,
+            size: 1,
+            depth: -1,
+            curveSegments: 4,
+            bevelThickness: 0,
+            bevelSize: 0,
+            bevelEnabled: false
+        });
+
+        textGeo.scale(0.05, 0.05, 0.0000001);
+        textGeo.computeBoundingBox();
+        const centerOffsetX = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
+        const centerOffsetY = 0.5 * ( textGeo.boundingBox.max.y - textGeo.boundingBox.min.y );
+        textGeo.translate( centerOffsetX, centerOffsetY, 0.03 );
+        const textMesh = new THREE.Mesh( textGeo, textMaterial );
+
+        object.add(textMesh);
 
         let characters = node.levelNodeSign?.text?.length || 0;
 
@@ -2885,121 +2921,6 @@ function openPointCloud(file) {
     }
     reader.readAsText(file);
 }
-function openWireframe(file) {
-    let reader = new FileReader();
-
-    reader.onload = function() {
-        let data = reader.result;
-        let level = getLevel();
-        let lines = data.split("\n");
-        let wireframe = {
-            "levelNodeGroup": {
-                "position": {
-                    "y": 0,
-                    "x": 0,
-                    "z": 0
-                },
-                "rotation": {
-                    "w": 1.0
-                },
-                "scale": {
-                    "y": 1.0,
-                    "x": 1.0,
-                    "z": 1.0
-                },
-                "childNodes": []
-            }
-        };
-
-        let vertices = [];
-        let edges = [];
-
-        for (let i = 0; i < lines.length; i++) {
-            let line = lines[i];
-            if (line.startsWith("v ")) {
-                line = line.replace("v ", "");
-                let coords = line.trim().split(" ");
-                vertices.push({
-                    "x": parseFloat(coords[0]),
-                    "y": parseFloat(coords[1]),
-                    "z": parseFloat(coords[2])
-                });
-            } else if (line.startsWith("f ")) {
-                line = line.replace("f ", "");
-                let faceIndices = line.trim().split(" ");
-                let edgeA = parseInt(faceIndices[0].split("/")[0]) - 1;
-                let edgeB = parseInt(faceIndices[1].split("/")[0]) - 1;
-                let edgeC = parseInt(faceIndices[2].split("/")[0]) - 1;
-                edges.push({
-                    "a": edgeA,
-                    "b": edgeB
-                });
-                edges.push({
-                    "a": edgeB,
-                    "b": edgeC
-                });
-                edges.push({
-                    "a": edgeC,
-                    "b": edgeA
-                });
-            }
-        }
-
-        for (let i = 0; i < edges.length; i++) {
-            const edge = edges[i];
-            
-            let pointA = vertices[edge.a];
-            let pointB = vertices[edge.b];
-
-            let distance = Math.sqrt(
-                Math.pow(pointB.x - pointA.x, 2) +
-                Math.pow(pointB.y - pointA.y, 2) +
-                Math.pow(pointB.z - pointA.z, 2)
-            );
-
-            let midpoint = {
-                x: (pointA.x + pointB.x) / 2,
-                y: (pointA.y + pointB.y) / 2,
-                z: (pointA.z + pointB.z) / 2,
-            };
-
-            let rotation = {
-                x: 0,
-                y: 0,
-                z: 0,
-                w: 1
-            };
-
-            // rotate to cross points 
-
-            wireframe.levelNodeGroup.childNodes.push({
-                "levelNodeStatic": {
-                    "material": 8,
-                    "position": midpoint,
-                    "color": {
-                        "r": 1,
-                        "g": 1,
-                        "b": 1,
-                        "a": 1
-                    },
-                    "rotation": rotation,
-                    "scale": {
-                        "x": 1,
-                        "y": distance,
-                        "z": 1
-                    },
-                    "shape": 1002
-                }
-            });
-        }
-        
-
-        level.levelNodes.push(wireframe);
-        setLevel(level);
-    };
-
-    reader.readAsText(file);
-}
 function generatePixelArt() {
     let quality = document.getElementById('pixel-prompt').value;
     document.getElementById('pixel-prompt').value = '';
@@ -3996,8 +3917,6 @@ function initUI() {
     document.getElementById('image-apply-btn').addEventListener('click', () => {document.getElementById('image-apply-btn-input').click()});
     document.getElementById('pointcloud-btn').addEventListener('click', () => {document.getElementById('pointcloud-btn-input').click()});
     document.getElementById('pointcloud-btn-input').addEventListener('change', (e) => {openPointCloud(e.target.files[0])});
-    document.getElementById('wireframe-btn').addEventListener('click', () => {document.getElementById('wireframe-btn-input').click()});
-    document.getElementById('wireframe-btn-input').addEventListener('change', (e) => {openWireframe(e.target.files[0])});
     document.getElementById('pc-btn-input').addEventListener('change', (e) => {openLevelFile(e.target.files)});
     document.getElementById('pcjson-btn-input').addEventListener('change', (e) => {openJSONFile(e.target.files[0])});
     document.getElementById('insertpc-btn-input').addEventListener('change', (e) => {appendLevelFile(e.target.files)});
@@ -4108,6 +4027,10 @@ async function initAttributes() {
     sunAltitude = 45.0
     horizonColor = [0.916, 0.9574, 0.9574]
 
+    fontLoader.load('/font/font.typeface.json', (response) => {
+        font = response;
+    });
+
     console.log('Ready', materials, shapes);
 
 }
@@ -4144,10 +4067,18 @@ function initURLParams() {
 }
 
 await initAttributes();
+console.log("Loading editor...");
 initEditor();
+console.log("Loading editor...");
 getAnimationPresets();
+console.log("Loading editor...");
 highlightTextEditor();
+console.log("Loading editor...");
 initTerminal();
+console.log("Loading editor...");
 initUI();
+console.log("Loading editor...");
 initURLParams();
+console.log("Loading editor...");
 loadConfig();
+console.log("Loading editor...");
