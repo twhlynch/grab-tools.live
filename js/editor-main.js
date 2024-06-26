@@ -3245,6 +3245,164 @@ function gammaToLinear(r, g, b) {
     b = (b <= 0.04045) ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
     return {r, g, b, a:1};
 }
+function generateTextToSigns() {
+    const text = document.getElementById('bulk-text-prompt').value;
+    let wordsper = parseInt(document.getElementById('bulk-text-words').value);
+    let direction = document.getElementById('bulk-text-direction').value;
+
+    let words = text.split(' ');
+
+    let splitStrings = [];
+    for (let i = 0; i < words.length; i += wordsper) {
+        let chunk = words.slice(i, i + wordsper);
+        splitStrings.push(chunk.join(' '));
+    }
+    
+    let level = getLevel();
+    splitStrings.forEach((str, i) => {
+        let sign = {levelNodeSign: {position: {x: 0,y: 0,z: 0},rotation: {w: 1.0},text:str}};
+        if (direction == 'horizontal') {
+            sign.levelNodeSign.position.x = i;
+        } else {
+            sign.levelNodeSign.position.y = -i;
+        }
+        level.levelNodes.push(sign);
+    });
+    setLevel(level);
+}
+function find_char(char, last_10, levelNodes) {
+    for (let i = 0; i < levelNodes.length; i++) {
+        if (levelNodes[i].levelNodeSign.text == char && !last_10.includes(i)) {
+            return i
+        }
+    }
+    return false
+}
+function generateAnimatedTextToSigns() {
+    const text = document.getElementById('bulk-text-animated-prompt').value;
+
+    // config
+    let count = 0;
+    let char_width = 0.05;
+    let appearance_time = 2;
+    let interval = 0.1;
+    let active_position = 0;
+    let visible_length = 40 ;
+    let foreward_pos = 1;
+    let height = 0;
+
+    let levelNodes = [];
+
+    let last_10 = [];
+
+    let wants_return = false;
+
+    for (let i = 0; i < text.split("").length; i++) {
+        count++;
+        let char = text.charAt(i);
+        if (char == "\n") {
+            wants_return = true;
+        }
+        let sign_iter = find_char(char, last_10, levelNodes);
+        if (!sign_iter) {
+            levelNodes.push({
+                "levelNodeSign": {
+                    "position": {
+                    },
+                    "rotation": {
+                        "w": 1.0
+                    },
+                    "text": char
+                },
+                "animations": [
+                    {
+                        "frames": [
+                            {
+                                "position": {
+                                },
+                                "rotation": {
+                                    "w": 1.0
+                                }
+                            }
+                        ],
+                        "name": "idle",
+                        "speed": 1
+                    }
+                ]
+            })
+        }
+
+        sign_iter = find_char(char, last_10, levelNodes)
+        last_10.push(sign_iter)
+
+        if (last_10.length > appearance_time / interval) {
+            last_10.pop(0)
+        }
+
+        levelNodes[sign_iter].animations[0].frames.push({
+            "position": {
+                "z": 1 * foreward_pos,
+                "y": height * char_width * -2,
+                "x": 1 * active_position * char_width
+            },
+            "rotation": {
+                "w": 1.0
+            },
+            "time": count * interval
+        })
+    
+        levelNodes[sign_iter].animations[0].frames.push({
+            "position": {
+                "z": 1 * foreward_pos,
+                "y": height * char_width * -2,
+                "x": 1 * active_position * char_width
+            },
+            "rotation": {
+                "w": 1.0
+            },
+            "time": count * interval + appearance_time
+        })
+    
+        levelNodes[sign_iter].animations[0].frames.push({
+            "position": {
+            },
+            "rotation": {
+                "w": 1.0
+            },
+            "time": count * interval + appearance_time
+        })
+
+        active_position += 1;
+        if (active_position > visible_length) {
+            wants_return = true;
+        }
+        if (wants_return && char == " ") {
+            active_position = 0;
+            height += 1;
+            wants_return = false;
+        }
+    }
+
+    for (let i = 0; i < levelNodes.length; i++) {
+        levelNodes[i].animations[0].frames.push({
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "rotation": {
+                "w": 1.0
+            },
+            "time": count * interval + appearance_time + 1
+        })
+    }
+
+    let level = getLevel();
+    levelNodes.forEach(node => {
+        level.levelNodes.push(node);
+    });
+    setLevel(level);
+}
 function duplicateLevel() {
     let levelData = getLevel();
     levelData.levelNodes = levelData.levelNodes.concat(levelData.levelNodes);
@@ -3540,6 +3698,38 @@ function initUI() {
         levelData.description = input;
         setLevel(levelData);
         document.getElementById('description-prompt').value = '';
+    });
+
+    document.getElementById('bulk-text-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-bulk-text').style.display = 'flex';
+    });
+    document.querySelector('#prompt-bulk-text .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-bulk-text').style.display = 'none';
+        document.getElementById('bulk-text-prompt').value = '';
+    });
+    document.querySelector('#prompt-bulk-text .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-bulk-text').style.display = 'none';
+        generateTextToSigns();
+        document.getElementById('bulk-text-prompt').value = '';
+    });
+
+    document.getElementById('bulk-text-animated-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-bulk-text-animated').style.display = 'flex';
+    });
+    document.querySelector('#prompt-bulk-text-animated .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-bulk-text-animated').style.display = 'none';
+        document.getElementById('bulk-text-animated-prompt').value = '';
+    });
+    document.querySelector('#prompt-bulk-text-animated .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-bulk-text-animated').style.display = 'none';
+        generateAnimatedTextToSigns();
+        document.getElementById('bulk-text-animated-prompt').value = '';
     });
 
     document.getElementById('creators-btn').addEventListener('click', () => {
