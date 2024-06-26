@@ -9,8 +9,7 @@ visible_length = 40
 foreward_pos = 1
 height = 0
 
-with open("text.txt") as f:
-    text = f.read()
+text = input("Enter text: ")
 
 level = {
     "formatVersion": 6,

@@ -179,8 +179,10 @@
                                     <input type="file" id="pointcloud-btn-input" style="display:none">
                                 </li>
                                 <li>
-                                    <button class="menu-btn r" id="wireframe-btn">Wireframe (.obj)</button>
-                                    <input type="file" id="wireframe-btn-input" style="display:none">
+                                    <button class="menu-btn" id="bulk-text-btn">Text</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="bulk-text-animated-btn">Animated Text</button>
                                 </li>
                             </ul>
                         </li>
@@ -215,9 +217,6 @@
                                     <button class="menu-btn" id="nodeInvisible-btn">Invisible</button>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
-                            <button class="menu-btn r" id="text-btn">Bulk Text</button>
                         </li>
                     </ul>
                 </li>
@@ -1035,6 +1034,28 @@
                 <div id="templates-container"></div>
                 <div class="prompt-buttons">
                     <button class="prompt-cancel">Close</button>
+                </div>
+            </div>
+
+            <div class="prompt-simple" id="prompt-bulk-text">
+                <textarea name="bulk-text" id="bulk-text-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false" placeholder="Text"></textarea>
+                <select name="bulk-text-direction" id="bulk-text-direction">
+                    <option value="horizontal">direction (Horizontal)</option>
+                    <option value="horizontal">Horizontal</option>
+                    <option value="vertical">Vertical</option>
+                </select>
+                <label for="bulk-text-words">Words per sign</label>
+                <input type="number" name="bulk-text-words" id="bulk-text-words" value="16">
+                <div class="prompt-buttons">
+                    <button class="prompt-cancel">Cancel</button>
+                    <button class="prompt-submit">Sumbit</button>
+                </div>
+            </div>
+            <div class="prompt-simple" id="prompt-bulk-text-animated">
+                <textarea name="bulk-text-animated" id="bulk-text-animated-prompt" cols="30" rows="10" spellcheck="false" autocapitalize="false" placeholder="Text"></textarea>
+                <div class="prompt-buttons">
+                    <button class="prompt-cancel">Cancel</button>
+                    <button class="prompt-submit">Sumbit</button>
                 </div>
             </div>
         </div>
