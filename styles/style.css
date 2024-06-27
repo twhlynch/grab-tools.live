@@ -1125,6 +1125,70 @@ p:focus .metric-data, p:focus-within .metric-data {
     width: 100%;
 }
 
+/* notifications */
+.notification {
+    color: #cfe0ea;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    transform: translateX(200%);
+    z-index: 999999;
+    width: max(fit-content, 300px);
+    max-width: min(80svw, 400px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.5s;
+    padding: 5px;
+    background: #222222aa;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 5px;
+    border: 1px solid #97979797;
+    gap: 5px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    cursor: pointer;
+}
+.notification img {
+    height: 90px;
+    width: 90px;
+    border-radius: 3px;
+    margin-left: auto;
+}
+.notification span {
+    margin-top: auto;
+    opacity: 0.8;
+    font-size: 12px;
+}
+.notification-timeline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 5px;
+    background-color: #b9b9b948;
+    border-radius: 5px;
+    animation: notificationTimer 10s linear;
+}
+.notification-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 90px;
+}
+@keyframes notificationTimer {
+    to {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 512px) {
     nav > a.button {
         font-size: 0;
@@ -1133,6 +1197,17 @@ p:focus .metric-data, p:focus-within .metric-data {
     }
     nav > a.button > .hidden-icon-button {
         display: flex;
+    }
+
+    .notification {
+        font-size: 14px;
+    }
+    .notification img {
+        height: 60px;
+        width: 60px;
+    }
+    .notification-details {
+        min-height: 60px;
     }
 }
 @media screen and (max-width: 400px) {
