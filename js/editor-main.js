@@ -3208,24 +3208,24 @@ function generateAnimatedTextToSigns() {
     let appearance_time = 2;
     let interval = 0.1;
     let active_position = 0;
-    let visible_length = 40 ;
+    let visible_length = 40;
     let foreward_pos = 1;
     let height = 0;
 
     let levelNodes = [];
-
     let last_10 = [];
-
     let wants_return = false;
 
-    for (let i = 0; i < text.split("").length; i++) {
-        count++;
+    for (let i = 0; i < text.length; i++) {
         let char = text.charAt(i);
+        count++;
+
         if (char == "\n") {
             wants_return = true;
         }
+
         let sign_iter = find_char(char, last_10, levelNodes);
-        if (!sign_iter) {
+        if (sign_iter === false) {
             levelNodes.push({
                 "levelNodeSign": {
                     "position": {
@@ -3250,27 +3250,16 @@ function generateAnimatedTextToSigns() {
                         "speed": 1
                     }
                 ]
-            })
+            });
+            sign_iter = levelNodes.length - 1;
         }
 
-        sign_iter = find_char(char, last_10, levelNodes)
-        last_10.push(sign_iter)
+        // sign_iter = find_char(char, last_10, levelNodes);
+        last_10.push(sign_iter);
 
         if (last_10.length > appearance_time / interval) {
-            last_10.pop(0)
+            last_10.shift();
         }
-        // set
-        levelNodes[sign_iter].animations[0].frames.push({
-            "position": {
-                "z": 1 * foreward_pos - 0.01,
-                "y": height * char_width * -2,
-                "x": 1 * active_position * char_width
-            },
-            "rotation": {
-                "w": 1.0
-            },
-            "time": count * interval - 0.001
-        })
         // appear
         levelNodes[sign_iter].animations[0].frames.push({
             "position": {
@@ -3282,7 +3271,7 @@ function generateAnimatedTextToSigns() {
                 "w": 1.0
             },
             "time": count * interval
-        })
+        });
         // disappear
         levelNodes[sign_iter].animations[0].frames.push({
             "position": {
@@ -3294,7 +3283,7 @@ function generateAnimatedTextToSigns() {
                 "w": 1.0
             },
             "time": count * interval + appearance_time
-        })
+        });
     
         levelNodes[sign_iter].animations[0].frames.push({
             "position": {
@@ -3303,15 +3292,15 @@ function generateAnimatedTextToSigns() {
                 "w": 1.0
             },
             "time": count * interval + appearance_time
-        })
+        });
 
-        active_position += 1;
+        active_position++;
         if (active_position > visible_length) {
             wants_return = true;
         }
         if (wants_return && char == " ") {
             active_position = 0;
-            height += 1;
+            height++;
             wants_return = false;
         }
     }
@@ -3327,7 +3316,7 @@ function generateAnimatedTextToSigns() {
                 "w": 1.0
             },
             "time": count * interval + appearance_time + 1
-        })
+        });
     }
 
     let level = getLevel();
