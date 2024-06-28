@@ -49,6 +49,13 @@ let adOptions = [
         "link": "https://www.kiwidesign.com/collections/link-cable/products/link-cable-compatible-with-quest-3?ref=uyilprxj",
         "image": "https://goaffpro-product-images.b-cdn.net/aHR0cHM6Ly93d3cua2l3aWRlc2lnbi5jb20vY2RuL3Nob3AvZmlsZXMvS0lXSWRlc2lnbl8xNkZUX2NhYmxlbGlua18wLmpwZw==?optimiser=image",
         "source": "KIWI Design"
+    },
+    {
+        "title": "Getting a new headset?",
+        "body": "Consider using my referral :)",
+        "link": "https://www.meta.com/referrals/link/dotindex",
+        "image": "img/ad/quest3.webp",
+        "source": "Meta"
     }
 ];
 
@@ -60,7 +67,7 @@ function createAd() {
 }
 
 // 5% chance on load
-if (Math.random() < 0.05) {
+if (Math.random() < 10.05) {
     createAd();
 }
 
