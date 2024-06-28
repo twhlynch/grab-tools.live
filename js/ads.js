@@ -67,7 +67,7 @@ function createAd() {
 }
 
 // 5% chance on load
-if (Math.random() < 10.05) {
+if (Math.random() < 0.05) {
     createAd();
 }
 
