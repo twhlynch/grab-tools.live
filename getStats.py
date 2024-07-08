@@ -727,5 +727,6 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
         await bot.close()
 
     bot.run(sys.argv[1])
+    print("success")
 
 get_level_data()
