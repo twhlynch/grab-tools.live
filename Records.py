@@ -118,7 +118,7 @@ output_files = {
     "stats_data/user_finishes.json": user_finishes,
     "stats_data/empty_leaderboards.json": empty_leaderboards,
     "stats_data/sorted_leaderboard_records.json": sorted_leaderboard,
-    "stats_data/leaderboard_levels.json": data,
+    # "stats_data/leaderboard_levels.json": data,
     "stats_data/sole_victors.json": sole_victors,
     "stats_data/difficulty_records.json": difficulty_records,
     "stats_data/difficulty_lengths.json": difficulty_lengths,
