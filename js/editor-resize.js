@@ -56,4 +56,5 @@ registerResize('terminal-resize', (event) => {
     //     .clientHeight + "px";
     document.getElementById('terminal-resize').style.bottom = window.innerHeight - event.clientY + "px";
     document.getElementById('terminal').style.height = window.innerHeight - event.clientY + "px";
+    document.getElementById('edit-input').style.marginBottom = window.innerHeight - event.clientY + "px";
 });
