@@ -1652,6 +1652,7 @@ function explodeLevel() {
     setLevel(obj);
 }
 function outlineNode(node) {
+    let size = document.getElementById('outline-prompt').value;
     let nodes = [];
     if (node.levelNodeGroup) {
         let newGroup = deepClone(node);
@@ -1685,6 +1686,7 @@ function outlineNode(node) {
         if (count > 1) {
             outlineSize = 0.1;
         }
+        outlineSize *= parseFloat(size);
         nodes.push({
             "levelNodeStatic": {
                 "shape": nodeData.shape,
@@ -3742,6 +3744,20 @@ function initUI() {
         protobufData = document.getElementById('protobuf-prompt').value;
     });
 
+    document.getElementById('outline-btn').addEventListener('click', () => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-outline').style.display = 'flex';
+    });
+    document.querySelector('#prompt-outline .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-outline').style.display = 'none';
+    });
+    document.querySelector('#prompt-outline .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-outline').style.display = 'none';
+        outlineLevel();
+    });
+
     document.getElementById('convert-btn').addEventListener('click', () => {
         promptsElement.style.display = 'grid';
         document.getElementById('prompt-convert').style.display = 'flex';
@@ -3877,7 +3893,7 @@ function initUI() {
     document.getElementById('group-btn').addEventListener('click', groupLevel);
     document.getElementById('ungroup-btn').addEventListener('click', ungroupLevel);
     document.getElementById('FPE-pixelate-btn').addEventListener('click', FPEPixelate);
-    document.getElementById('outline-btn').addEventListener('click', outlineLevel);
+    // document.getElementById('outline-btn').addEventListener('click', outlineLevel);
     document.getElementById('magic-outline-btn').addEventListener('click', magicOutline);
     document.getElementById('randomize-positions-btn').addEventListener('click', randomizeLevelPositions);
     document.getElementById('randomize-materials-btn').addEventListener('click', randomizeLevelMaterials);
