@@ -54,7 +54,12 @@ function readArrayBuffer(file) {
         reader.readAsArrayBuffer(file);
     });
 }
+
+function deepClone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
 function outlineNode(node) {
+    let size = document.getElementById('outline-size').value;
     let nodes = [];
     if (node.levelNodeGroup) {
         let newGroup = deepClone(node);
@@ -88,6 +93,7 @@ function outlineNode(node) {
         if (count > 1) {
             outlineSize = 0.1;
         }
+        outlineSize *= parseFloat(size);
         nodes.push({
             "levelNodeStatic": {
                 "shape": nodeData.shape,
