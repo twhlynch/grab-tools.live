@@ -26,13 +26,7 @@ jobs:
         run: |
           git config --global user.email "twhlynch@gmail.com"
           git config --global user.name "twhlynch"
-          git add stats_data/sorted_leaderboard_records.json
-          git add stats_data/leaderboard_levels.json
-          git add stats_data/empty_leaderboards.json
-          git add stats_data/user_finishes.json
-          git add stats_data/sole_victors.json
-          git add stats_data/difficulty_records.json
-          git add stats_data/difficulty_lengths.json
+          git add .
           git commit -m "Records"
           git push
         env:
