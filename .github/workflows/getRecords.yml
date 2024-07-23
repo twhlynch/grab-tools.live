@@ -26,7 +26,7 @@ jobs:
         run: |
           git config --global user.email "twhlynch@gmail.com"
           git config --global user.name "twhlynch"
-          git add .
+          git add stats_data/*
           git commit -m "Records"
           git push
         env:
