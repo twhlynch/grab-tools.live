@@ -376,7 +376,7 @@ function getTrendingLevels() {
     }
 
     for (const item of statistics.weekly_trending_levels) {
-        const detail = `${(item.trend || []).reduce((a, b) => a + b, 0)} plays`;
+        const detail = `${item.statistics.total_played} plays`;
         const level_card = genericLevelCard(item, detail, timestamp=item?.creation_timestamp);
         if (item.identifier != "2ap647di3dc1k42jf4o2o:1682810607" && item.identifier != "29t798uon2urbra1f8w2q:1693775768") {
             document.getElementById('WeeklyPlays-out').appendChild(level_card);
@@ -1587,7 +1587,7 @@ function computeStats() {
     .slice(0, 200);
     
     statistics.weekly_trending_levels = [...statistics.all_verified]
-    .sort((a, b) => (b.trend || []).reduce((c, d) => c + d, 0) - (a.trend || []).reduce((c, d) => c + d, 0))
+    .sort((a, b) => (b.statistics.total_played - a.statistics.total_played))
     .filter(map => (new Date() - new Date(map.creation_timestamp)) < 7 * 24 * 60 * 60 * 1000)
     .slice(0, 200);
 

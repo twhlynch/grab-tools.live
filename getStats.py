@@ -454,20 +454,20 @@ def get_trending_info(all_verified):
             if level["identifier"] == old_level_i["identifier"]:
                 old_level = old_level_i
                 
-        trending_array = []
+        # trending_array = []
         
         if old_level:
             level["change"] = level["statistics"]["total_played"] - old_level["statistics"]["total_played"]
-            if "trend" in old_level:
-                trending_array = old_level["trend"]
+            # if "trend" in old_level:
+            #     trending_array = old_level["trend"]
         else:
             level["change"] = level["statistics"]["total_played"]
         
-        if len(trending_array) == 7:
-            trending_array.pop(0)
-        trending_array.append(level["change"])
+        # if len(trending_array) == 7:
+        #     trending_array.pop(0)
+        # trending_array.append(level["change"])
         
-        level["trend"] = trending_array
+        # level["trend"] = trending_array
 
 def get_beaten_unbeaten(levels_old):
     beaten = []
