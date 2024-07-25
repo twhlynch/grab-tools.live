@@ -374,6 +374,15 @@ function getTrendingLevels() {
             checkNotification(item.identifier, "Trending");
         }
     }
+
+    for (const item of statistics.weekly_trending_levels) {
+        const detail = `${(item.trend || []).reduce((a, b) => a + b, 0)} plays`;
+        const level_card = genericLevelCard(item, detail, timestamp=item?.creation_timestamp);
+        if (item.identifier != "2ap647di3dc1k42jf4o2o:1682810607" && item.identifier != "29t798uon2urbra1f8w2q:1693775768") {
+            document.getElementById('WeeklyPlays-out').appendChild(level_card);
+            checkNotification(item.identifier, "WeeklyPlays");
+        }
+    }
 }
 function makeFeaturedButtons() {
     document.getElementById('Global-out').innerHTML += `<p>Featured creators: ${statistics.featured_creators.length}</p>`;
@@ -1575,6 +1584,11 @@ function computeStats() {
 
     statistics.trending_levels = [...statistics.all_verified]
     .sort((a, b) => b.change - a.change)
+    .slice(0, 200);
+    
+    statistics.weekly_trending_levels = [...statistics.all_verified]
+    .sort((a, b) => (b.trend || []).reduce((c, d) => c + d, 0) - (a.trend || []).reduce((c, d) => c + d, 0))
+    .filter(map => (new Date() - new Date(map.creation_timestamp)) < 7 * 24 * 60 * 60 * 1000)
     .slice(0, 200);
 
     getGlobalPlays();
