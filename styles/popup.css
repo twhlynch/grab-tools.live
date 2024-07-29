@@ -11,7 +11,7 @@
     text-align: center;
     z-index: 9999;
     width: 80%;
-    max-width: 300px;
+    max-width: 400px;
 }
 
 #popupOverlayContainer button {
@@ -40,6 +40,12 @@
 #popupOverlayContainer p {
     font-size: 18px;
     font-weight: 700
+}
+#popupOverlayContainer strong {
+    font-size: 18px;
+    font-weight: 900;
+    color: #ffffff;
+    text-decoration: underline;
 }
 
 #popupOverlayContainer a:hover {
