@@ -3206,11 +3206,11 @@ function generateAnimatedTextToSigns() {
 
     // config
     let count = 0;
-    let char_width = 0.05;
-    let appearance_time = 2;
-    let interval = 0.1;
+    let char_width = parseInt(document.getElementById('bulk-text-animated-char_width')?.value) || 0.05;
+    let appearance_time = parseInt(document.getElementById('bulk-text-animated-appearance_time')?.value) || 2;
+    let interval = parseInt(document.getElementById('bulk-text-animated-interval')?.value) || 0.1;
     let active_position = 0;
-    let visible_length = 40;
+    let visible_length = parseInt(document.getElementById('bulk-text-animated-visible_length')?.value) || 40;
     let foreward_pos = 1;
     let height = 0;
 
