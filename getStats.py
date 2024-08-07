@@ -360,8 +360,9 @@ def get_most_plays(all_verified_maps, old_data):
     return most_plays
 
 def get_daily_winner():
-    with open("stats_data/map_winners.json") as winners, open("stats_data/daily_map.json") as map, open("stats_data/user_blacklist.json") as blacklist:
-        map_json = json.load(map)
+    with open("stats_data/map_winners.json") as winners, open("stats_data/daily.json") as daily_data, open("stats_data/user_blacklist.json") as blacklist:
+        daily_json = json.load(daily_data)
+        map_json = daily_json["daily"]
         blacklist_data = json.load(blacklist)
         winners_json = json.load(winners)
 
@@ -377,8 +378,9 @@ def get_daily_winner():
     write_json_file('stats_data/map_winners.json', winners_json)
 
 def get_weekly_winner():
-    with open("stats_data/map_winners.json") as winners, open("stats_data/weekly_map.json") as map, open("stats_data/user_blacklist.json") as blacklist:
-        map_json = json.load(map)
+    with open("stats_data/map_winners.json") as winners, open("stats_data/daily.json") as daily_data, open("stats_data/user_blacklist.json") as blacklist:
+        daily_json = json.load(daily_data)
+        map_json = daily_json["weekly"]
         blacklist_data = json.load(blacklist)
         winners_json = json.load(winners)
 
@@ -394,8 +396,9 @@ def get_weekly_winner():
     write_json_file('stats_data/map_winners.json', winners_json)
 
 def get_unbeaten_winner():
-    with open("stats_data/map_winners.json") as winners, open("stats_data/unbeaten_map.json") as map, open("stats_data/user_blacklist.json") as blacklist:
-        map_json = json.load(map)
+    with open("stats_data/map_winners.json") as winners, open("stats_data/daily.json") as daily_data, open("stats_data/user_blacklist.json") as blacklist:
+        daily_json = json.load(daily_data)
+        map_json = daily_json["unbeaten"]
         blacklist_data = json.load(blacklist)
         winners_json = json.load(winners)
 
@@ -557,15 +560,19 @@ def get_level_data():
     write_json_file('stats_data/hardest_levels_list.json', get_hardest_levels_list())
     write_json_file('stats_data/total_level_count.json', get_total_levels())
 
+    daily_data = {}
+    with open("stats_data/daily.json") as file:
+            daily_data = json.load(file)
+
     get_daily_winner()
     daily_level = get_daily_map(all_verified)
     daily_anc = [daily_level["title"], f"{VIEWER_URL}?level={daily_level['identifier']}"]
-    write_json_file('stats_data/daily_map.json', daily_level)
+    daily_data["daily"] = daily_level
 
     get_unbeaten_winner()
     unbeaten_level = get_unbeaten_map()
     unbeaten_anc = [unbeaten_level["title"], f"{VIEWER_URL}?level={unbeaten_level['identifier']}"]
-    write_json_file('stats_data/unbeaten_map.json', unbeaten_level)
+    daily_data["unbeaten"] = unbeaten_level
 
     weekly_anc = False
     weekly = log_data["days_since_weekly"] + 1
@@ -575,10 +582,13 @@ def get_level_data():
         get_weekly_winner()
         weekly_level = get_weekly_map(all_verified)
         weekly_anc = [weekly_level["title"], f"{VIEWER_URL}?level={weekly_level['identifier']}"]
-        write_json_file('stats_data/weekly_map.json', weekly_level)
+        daily_data["weekly"] = weekly_level
         weekly = 0
 
     log(weekly)
+
+    write_json_file('stats_data/daily.json', daily_data)
+
     run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels)
 
 def log(weekly):

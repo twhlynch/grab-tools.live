@@ -1515,9 +1515,6 @@ let statistics = {
     sole_victors: undefined,
     most_plays: undefined,
     featured_creators: undefined,
-    daily_map: undefined,
-    weekly_map: undefined,
-    unbeaten_map: undefined,
     map_winners: undefined,
     best_of_grab: undefined,
     statistics: undefined,
@@ -1527,7 +1524,8 @@ let statistics = {
     total_level_count: undefined,
     difficulty_records: undefined,
     difficulty_lengths: undefined,
-    first_to_beat: undefined
+    first_to_beat: undefined,
+    daily: undefined
 };
 
 let loading = 0;
@@ -1590,6 +1588,10 @@ function computeStats() {
     .sort((a, b) => (b.statistics.total_played - a.statistics.total_played))
     .filter(map => (new Date() - new Date(map.creation_timestamp)) < 7 * 24 * 60 * 60 * 1000)
     .slice(0, 200);
+
+    statistics.daily_map = statistics.daily.daily;
+    statistics.weekly_map = statistics.daily.weekly;
+    statistics.unbeaten_map = statistics.daily.unbeaten;
 
     getGlobalPlays();
     getTopPlayers();
