@@ -1,6 +1,23 @@
-const popupPrefix = "launchPrep";
+const popupPrefix = "launchCountdown";
+// const popupPrefix = "launchPrep";
 // const popupPrefix = "discordInvite";
 // const popupPrefix = "loginPrompt";
+const releaseTime = 1723075200000;
+function timeTillRelease() {
+    let currentTime = new Date().getTime();
+    let remainingTime = releaseTime - currentTime;
+
+    if (remainingTime > 0) {
+        let days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+        return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    } else {
+        return "ITS OUT!";
+    }
+}
 
 function launchLog(t) {
     user_id = localStorage.getItem('user_id') || localStorage.getItem('last_user_id') || '';
@@ -19,7 +36,7 @@ function launchLog(t) {
     });
 }
 
-if (!localStorage.getItem(`${popupPrefix}Shown`)) {
+if (!localStorage.getItem(`${popupPrefix}Shown`) || (true && location.pathname == '/')) {
     let currentTime = new Date().getTime();
     let previousTime = parseInt(localStorage.getItem(`${popupPrefix}Time`))
     let willRun = true;
@@ -29,13 +46,17 @@ if (!localStorage.getItem(`${popupPrefix}Shown`)) {
             willRun = false;
         }
     }
+    location.pathname == '/' ? willRun = true : null;
     
     if (willRun) {
     let popupOverlayContainer = document.createElement("div");
     popupOverlayContainer.setAttribute("id", "popupOverlayContainer");
 
     let popupOverlayText = document.createElement("p");
-    popupOverlayText.innerHTML = "GRAB is leaving Early Access with an OFFICIAL LAUNCH on <strong>August 8th</strong>, alongside one of the biggest updates yet! <br/><br/> There will be a FREE limited edition badge for playing in the first 24 hours";
+    popupOverlayText.innerHTML = "GRAB Launches on <strong>August 8th</strong>! There will be a FREE badge for playing in the first 24 hours!";
+    setInterval(()=>{
+        popupOverlayText.innerHTML = `GRAB Launches on <strong>August 8th</strong>! There will be a FREE badge for playing in the first 24 hours!<br/><br/>${timeTillRelease()} `;
+    }, 100);
     // popupOverlayText.innerHTML = "The GRAB Tools Discord server is a great place to get help using the available tools and find out about tools you didn't know about! Consider joining with the link below or by using the invite code: YKfGWSYAqf";
     // popupOverlayText.innerHTML = "You can now login to GRAB Tools and get personalised info on the stats page! Go to the homepage and click the login button at the top of the screen!";
 
@@ -84,7 +105,8 @@ if (!localStorage.getItem(`${popupPrefix}Shown`)) {
 
     let nButton = document.createElement("button");
     nButton.classList.add("button");
-    nButton.innerHTML = "No Thanks";
+    // nButton.innerHTML = "No Thanks";
+    nButton.innerHTML = "Dismiss";
     nButton.addEventListener("click", () => {
         popupOverlayContainer.style.display = "none";
         localStorage.setItem(`${popupPrefix}Shown`, "true");
@@ -95,7 +117,7 @@ if (!localStorage.getItem(`${popupPrefix}Shown`)) {
     popupOverlayContainer.appendChild(yButton);
     popupOverlayContainer.appendChild(yButton2);
     popupOverlayContainer.appendChild(yButton3);
-    popupOverlayContainer.appendChild(lButton);
+    // popupOverlayContainer.appendChild(lButton);
     popupOverlayContainer.appendChild(nButton);
     }
 }
