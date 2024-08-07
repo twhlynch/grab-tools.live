@@ -2,7 +2,7 @@ const popupPrefix = "launchCountdown";
 // const popupPrefix = "launchPrep";
 // const popupPrefix = "discordInvite";
 // const popupPrefix = "loginPrompt";
-const releaseTime = 1723075200000;
+const releaseTime = 1723136400000;
 function timeTillRelease() {
     let currentTime = new Date().getTime();
     let remainingTime = releaseTime - currentTime;
