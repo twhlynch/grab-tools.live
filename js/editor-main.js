@@ -734,6 +734,10 @@ function loadLevelNode(node, parent) {
             }
             if (node.levelNodeStatic.isNeon) {
                 statistics.neon += 1;
+                material.uniforms.neonEnabled.value = 1.0;
+            }
+            if (node.levelNodeStatic.isTransparent) {
+                material.uniforms.isTransparent.value = 1.0;
             }
         }
         object.material = material;
@@ -4032,12 +4036,14 @@ async function initAttributes() {
         let material = new THREE.ShaderMaterial({
             vertexShader: SHADERS.levelVS,
             fragmentShader: SHADERS.levelFS,
+            transparent: path == '/img/textures/default_colored.png' ? true : false,
             uniforms: {
                 "colorTexture": { value: texture },
                 "tileFactor": { value: 1.1 },
                 "diffuseColor": { value: [1.0, 1.0, 1.0] },
                 "worldNormalMatrix": { value: new THREE.Matrix3() },
                 "neonEnabled": { value: 0.0 },
+                "isTransparent": { value: 0.0 },
                 "fogEnabled": { value: fogEnabled },
                 "specularColor": { value: [0.3, 0.3, 0.3, 16.0]},
                 "isSelected": { value: false }
