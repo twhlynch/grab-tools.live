@@ -730,14 +730,20 @@ function loadLevelNode(node, parent) {
             } else {
                 material.uniforms.diffuseColor.value = [node.levelNodeStatic.color1.r, node.levelNodeStatic.color1.g, node.levelNodeStatic.color1.b];
                 const specularFactor = Math.sqrt(node.levelNodeStatic.color1.r * node.levelNodeStatic.color1.r + node.levelNodeStatic.color1.g * node.levelNodeStatic.color1.g + node.levelNodeStatic.color1.b * node.levelNodeStatic.color1.b) * 0.15
-                material.uniforms.specularColor.value = [specularFactor, specularFactor, specularFactor, 16.0]    
+                material.uniforms.specularColor.value = [specularFactor, specularFactor, specularFactor, 16.0]
+
+                if (node.levelNodeStatic.color2) {
+                    let spec = node.levelNodeStatic.color2;
+                    // material.uniforms.specularColor.value = [spec.r, spec.g, spec.b, spec.a]
+                }
             }
             if (node.levelNodeStatic.isNeon) {
                 statistics.neon += 1;
                 material.uniforms.neonEnabled.value = 1.0;
             }
             if (node.levelNodeStatic.isTransparent) {
-                material.uniforms.isTransparent.value = 1.0;
+                material.uniforms.isTransparent.value = 1.0
+                material.transparent = true;
             }
         }
         object.material = material;
@@ -4036,7 +4042,6 @@ async function initAttributes() {
         let material = new THREE.ShaderMaterial({
             vertexShader: SHADERS.levelVS,
             fragmentShader: SHADERS.levelFS,
-            transparent: path == '/img/textures/default_colored.png' ? true : false,
             uniforms: {
                 "colorTexture": { value: texture },
                 "tileFactor": { value: 1.1 },
