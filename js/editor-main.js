@@ -59,6 +59,7 @@ let shapeList = [
     'models/editor/cylinder.glb',
     'models/editor/pyramid.glb',
     'models/editor/prism.glb',
+    'models/editor/cone.glb',
     'models/editor/sign.glb',
     'models/editor/start_end.glb'
 ];
@@ -125,6 +126,7 @@ const statsBouncingElement = document.getElementById('stats-bouncing');
 const statsIceElement = document.getElementById('stats-ice');
 const statsWoodElement = document.getElementById('stats-wood');
 const statsCubeElement = document.getElementById('stats-cube');
+const statsConeElement = document.getElementById('stats-cone');
 const statsSphereElement = document.getElementById('stats-sphere');
 const statsCylinderElement = document.getElementById('stats-cylinder');
 const statsPyramidElement = document.getElementById('stats-pyramid');
@@ -164,12 +166,16 @@ function setLevel(level) {
     level.levelNodes ? {} : level.levelNodes = [];
     level.levelNodes.forEach(node => {
         if (node?.levelNodeStatic && node.levelNodeStatic.material == 8) {
-            node.levelNodeStatic.color ? {} : node.levelNodeStatic.color = {};
-            node.levelNodeStatic.color.r ? {} : node.levelNodeStatic.color.r = 0;
-            node.levelNodeStatic.color.g ? {} : node.levelNodeStatic.color.g = 0;
-            node.levelNodeStatic.color.b ? {} : node.levelNodeStatic.color.b = 0;
+            node.levelNodeStatic.color1 ? {} : node.levelNodeStatic.color1 = {};
+            node.levelNodeStatic.color1.r ? {} : node.levelNodeStatic.color1.r = 0;
+            node.levelNodeStatic.color1.g ? {} : node.levelNodeStatic.color1.g = 0;
+            node.levelNodeStatic.color1.b ? {} : node.levelNodeStatic.color1.b = 0;
         }
     });
+
+    let tempNodes = level.levelNodes;
+    delete level.levelNodes;
+    level.levelNodes = tempNodes;
 
     editInputElement.innerText = JSON.stringify(level, null, 4);
     highlightTextEditor();
@@ -182,7 +188,7 @@ function JsonToHighlightedText(json) {
     // color shadows
     let highlightedText = stringified.replace(/"color":\s*{\s*("r":\s*(\d+(?:\.\d+)?),)?\s*("g":\s*(\d+(?:\.\d+)?),)?\s*("b":\s*(\d+(?:\.\d+)?),)?\s*("a":\s*\d+(?:\.\d+)?)?\s*}/, (match) => {
         let jsonData = JSON.parse(`{${match}}`);
-        let color = `rgba(${(jsonData.color.r || 0) * 255}, ${(jsonData.color.g || 0) * 255}, ${(jsonData.color.b || 0) * 255}, 0.3)`;
+        let color = `rgba(${(jsonData.color1.r || 0) * 255}, ${(jsonData.color1.g || 0) * 255}, ${(jsonData.color1.b || 0) * 255}, 0.3)`;
         return `<span style='text-shadow: 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color};'>${match}</span>`
     });
     // strings and attributes
@@ -303,6 +309,7 @@ function refreshScene() {
         cylinder: 0,
         pyramid: 0,
         prism: 0,
+        cone: 0,
         danger: false
     };
     objects = [];
@@ -349,7 +356,7 @@ function refreshScene() {
         ambience.sunAltitude ? null : ambience.sunAltitude = 0;
         ambience.sunAzimuth ? null : ambience.sunAzimuth = 0;
         ambience.sunSize ? null : ambience.sunSize = 0;
-        ambience.fogDDensity ? null : ambience.fogDDensity = 0;
+        ambience.fogDensity ? null : ambience.fogDensity = 0;
         
         if (!skyMaterial) {
             skyMaterial = new THREE.ShaderMaterial();
@@ -385,7 +392,7 @@ function refreshScene() {
             "sunAltitude": 0,
             "sunAzimuth": 0,
             "sunSize": 0,
-            "fogDDensity": 0
+            "fogDensity": 0
         }
         skyMaterial.uniforms["cameraFogColor0"] = { value: [0.916, 0.9574, 0.9574] }
         skyMaterial.uniforms["cameraFogColor1"] = { value: [0.28, 0.476, 0.73] }
@@ -423,7 +430,7 @@ function refreshScene() {
             material.uniforms["cameraFogColor0"] = { value: [ambience.skyHorizonColor.r, ambience.skyHorizonColor.g, ambience.skyHorizonColor.b] }
             material.uniforms["cameraFogColor1"] = { value: [ambience.skyZenithColor.r, ambience.skyZenithColor.g, ambience.skyZenithColor.b] }
             material.uniforms["sunSize"] = { value: ambience.sunSize }
-            density = ambience.fogDDensity;
+            density = ambience.fogDensity;
         }
         else
         {
@@ -460,7 +467,7 @@ function refreshScene() {
         sunAltitude: ambience.sunAltitude,
         sunAzimuth: ambience.sunAzimuth,
         sunSize: ambience.sunSize,
-        fogDDensity: ambience.fogDDensity,
+        fogDensity: ambience.fogDensity,
     };
     
     levelNodes.forEach((node) => {
@@ -494,6 +501,7 @@ function refreshScene() {
         statistics.cylinder += nodeStatistics.cylinder;
         statistics.pyramid += nodeStatistics.pyramid;
         statistics.prism += nodeStatistics.prism;
+        statistics.cone += nodeStatistics.cone;
         nodeStatistics.danger ? statistics.danger = true : null;
     });
     
@@ -526,6 +534,7 @@ function refreshScene() {
     statsCylinderElement.innerText = `Cylinder: ${statistics.cylinder}`;
     statsPyramidElement.innerText = `Pyramid: ${statistics.pyramid}`;
     statsPrismElement.innerText = `Prism: ${statistics.prism}`;
+    statsConeElement.innerText = `Cone: ${statistics.cone}`;
 
     typeWarningElement.style.display = statistics.danger ? 'block' : 'none';
 
@@ -570,6 +579,7 @@ function loadLevelNode(node, parent) {
         cylinder: 0,
         pyramid: 0,
         prism: 0,
+        cone: 0,
         danger: false
     };
     if (node.levelNodeGroup) {
@@ -625,6 +635,7 @@ function loadLevelNode(node, parent) {
                 statistics.cylinder += childNodeStatistics.cylinder;
                 statistics.pyramid += childNodeStatistics.pyramid;
                 statistics.prism += childNodeStatistics.prism;
+                statistics.cone += childNodeStatistics.cone;
                 childNodeStatistics.danger ? statistics.danger = true : null;
             });
         }
@@ -710,15 +721,15 @@ function loadLevelNode(node, parent) {
             material = exportMaterials[0].clone();
         }
         if (node.levelNodeStatic.material == 8) {
-            node.levelNodeStatic.color ? {} : node.levelNodeStatic.color = {};
-            node.levelNodeStatic.color.r ? null : node.levelNodeStatic.color.r = 0;
-            node.levelNodeStatic.color.g ? null : node.levelNodeStatic.color.g = 0;
-            node.levelNodeStatic.color.b ? null : node.levelNodeStatic.color.b = 0;
+            node.levelNodeStatic.color1 ? {} : node.levelNodeStatic.color1 = {};
+            node.levelNodeStatic.color1.r ? null : node.levelNodeStatic.color1.r = 0;
+            node.levelNodeStatic.color1.g ? null : node.levelNodeStatic.color1.g = 0;
+            node.levelNodeStatic.color1.b ? null : node.levelNodeStatic.color1.b = 0;
             if (altTextures) {
-                material.color = new THREE.Color(node.levelNodeStatic.color.r, node.levelNodeStatic.color.g, node.levelNodeStatic.color.b);
+                material.color1 = new THREE.Color(node.levelNodeStatic.color1.r, node.levelNodeStatic.color1.g, node.levelNodeStatic.color1.b);
             } else {
-                material.uniforms.diffuseColor.value = [node.levelNodeStatic.color.r, node.levelNodeStatic.color.g, node.levelNodeStatic.color.b];
-                const specularFactor = Math.sqrt(node.levelNodeStatic.color.r * node.levelNodeStatic.color.r + node.levelNodeStatic.color.g * node.levelNodeStatic.color.g + node.levelNodeStatic.color.b * node.levelNodeStatic.color.b) * 0.15
+                material.uniforms.diffuseColor.value = [node.levelNodeStatic.color1.r, node.levelNodeStatic.color1.g, node.levelNodeStatic.color1.b];
+                const specularFactor = Math.sqrt(node.levelNodeStatic.color1.r * node.levelNodeStatic.color1.r + node.levelNodeStatic.color1.g * node.levelNodeStatic.color1.g + node.levelNodeStatic.color1.b * node.levelNodeStatic.color1.b) * 0.15
                 material.uniforms.specularColor.value = [specularFactor, specularFactor, specularFactor, 16.0]    
             }
             if (node.levelNodeStatic.isNeon) {
@@ -776,6 +787,9 @@ function loadLevelNode(node, parent) {
                 break;
             case 1004:
                 statistics.prism += 1;
+                break;
+            case 1005:
+                statistics.cone += 1;
                 break;
             default:
                 statistics.danger = true;
@@ -887,6 +901,9 @@ function loadLevelNode(node, parent) {
             case 1004:
                 statistics.prism += 1;
                 break;
+            case 1005:
+                statistics.cone += 1;
+                break;
             default:
                 statistics.danger = true;
                 break;
@@ -930,7 +947,7 @@ function loadLevelNode(node, parent) {
                 break;
         }
     } else if (node.levelNodeSign) {
-        object = shapes[5].clone();
+        object = shapes[shapes.length - 2].clone();
         if (altTextures) {
             object.material = exportMaterials[4];
         } else {
@@ -986,7 +1003,7 @@ function loadLevelNode(node, parent) {
         statistics.characters = characters;
         statistics.sign += 1;
     } else if (node.levelNodeStart) {
-        object = shapes[6].clone();
+        object = shapes[shapes.length - 1].clone();
         object.material = startMaterial;
         parent.add(object);
         node.levelNodeStart.position.x ? object.position.x = node.levelNodeStart.position.x : object.position.x = 0;
@@ -1006,7 +1023,7 @@ function loadLevelNode(node, parent) {
 
         statistics.start += 1;
     } else if (node.levelNodeFinish) {
-        object = shapes[6].clone();
+        object = shapes[shapes.length - 1].clone();
         object.material = finishMaterial;
         parent.add(object);
         node.levelNodeFinish.position.x ? object.position.x = node.levelNodeFinish.position.x : object.position.x = 0;
@@ -1318,21 +1335,21 @@ function exportLevelAsGLTF()
     console.log(clonedScene);
 
 	exporter.parse(
-	    clonedScene,
-	    function ( gltf ) {
+        clonedScene,
+        function ( gltf ) {
 
-	        console.log( gltf );
+            console.log( gltf );
             let data = getLevel();
             let title = data.title.replace(/([^a-z0-9]+)/gi, '-');
-	        saveDataAsFile( `${title}.gltf`, JSON.stringify(gltf) );
+            saveDataAsFile( `${title}.gltf`, JSON.stringify(gltf) );
 
-	    },
-	    function ( error ) {
+        },
+        function ( error ) {
 
-	        console.log( 'An error happened' );
+            console.log( 'An error happened' );
 
-	    },
-	    {}
+        },
+        {}
 	);
 }
 function goToStart() {
@@ -1467,14 +1484,14 @@ async function saveToQuest(name=(Date.now()).toString().slice(0, -3)) {
     sync = null;
     alert("Success!");
 }
-function setAmbience(skyZenithColor, skyHorizonColor, sunAltitude, sunAzimuth, sunSize, fogDDensity) {
+function setAmbience(skyZenithColor, skyHorizonColor, sunAltitude, sunAzimuth, sunSize, fogDensity) {
     let levelData = getLevel();
     levelData.ambienceSettings.skyZenithColor = skyZenithColor;
     levelData.ambienceSettings.skyHorizonColor = skyHorizonColor;
     levelData.ambienceSettings.sunAltitude = sunAltitude;
     levelData.ambienceSettings.sunAzimuth = sunAzimuth;
     levelData.ambienceSettings.sunSize = sunSize;
-    levelData.ambienceSettings.fogDDensity = fogDDensity;
+    levelData.ambienceSettings.fogDensity = fogDensity;
     setLevel(levelData);
 }
 function downloadAsJSON() {
@@ -1491,7 +1508,7 @@ function monochromify() {
     let levelData = getLevel();
     runOnNodes(levelData.levelNodes, (node) => {
         if (node.levelNodeStatic && node.levelNodeStatic.material == 8) {
-            let color = node.levelNodeStatic.color;
+            let color = node.levelNodeStatic.color1;
             let average = (color.r + color.g + color.b) / 3;
             color.r = average;
             color.g = average;
@@ -1563,7 +1580,7 @@ function randomizeLevelColors() {
     let obj = getLevel();
     runOnNodes(obj.levelNodes, (node) => {
         if (node.levelNodeStatic && node.levelNodeStatic.material == 8) {
-            Object.values(node)[0].color = {
+            Object.values(node)[0].color1 = {
                 "r": Math.random(),
                 "g": Math.random(),
                 "b": Math.random(),
@@ -1698,7 +1715,7 @@ function outlineNode(node) {
                     "z": (nodeData.scale.z + outlineSize)*-1
                 },
                 "rotation": nodeData.rotation,
-                "color": {
+                "color1": {
                     "r": 0,
                     "g": 0,
                     "a": 1,
@@ -1829,7 +1846,7 @@ function magicOutlineNode(node) {
                     "z": (nodeData.scale.z + outlineSize)*-1
                 },
                 "rotation": nodeData.rotation,
-                "color": color || nodeData.color
+                "color1": color || nodeData.color1
             }
         });
         return nodes;
@@ -2296,13 +2313,8 @@ function remakeEditingObject(material, shape, shapeData) {
     let newObject = shapes[shape-1000].clone();
     let newMaterial = materials[material].clone();
     if (material == 8) {
-        // newMaterial.uniforms.colors.value = new THREE.Vector3(
-        //     nodeData?.color?.r || 0,
-        //     nodeData?.color?.g || 0,
-        //     nodeData?.color?.b || 0
-        // );
-        newMaterial.uniforms.diffuseColor.value = [nodeData?.color?.r || 0, nodeData?.color?.g || 0, nodeData?.color?.b || 0];
-        const specularFactor = Math.sqrt((nodeData?.color?.r || 0) * (nodeData?.color?.r || 0) + (nodeData?.color?.g || 0) * (nodeData?.color?.g || 0) + (nodeData?.color?.b || 0) * (nodeData?.color?.b || 0)) * 0.15
+        newMaterial.uniforms.diffuseColor.value = [nodeData?.color1?.r || 0, nodeData?.color1?.g || 0, nodeData?.color1?.b || 0];
+        const specularFactor = Math.sqrt((nodeData?.color1?.r || 0) * (nodeData?.color1?.r || 0) + (nodeData?.color1?.g || 0) * (nodeData?.color1?.g || 0) + (nodeData?.color1?.b || 0) * (nodeData?.color1?.b || 0)) * 0.15
         newMaterial.uniforms.specularColor.value = [specularFactor, specularFactor, specularFactor, 16.0]   
     }
 
@@ -2342,13 +2354,8 @@ function remakeObject(material, shape, shapeData, object) {
     let newObject = shapes[shape-1000].clone();
     let newMaterial = materials[material].clone();
     if (material == 8) {
-        // newMaterial.uniforms.colors.value = new THREE.Vector3(
-        //     nodeData?.color?.r || 0,
-        //     nodeData?.color?.g || 0,
-        //     nodeData?.color?.b || 0
-        // );
-        newMaterial.uniforms.diffuseColor.value = [nodeData?.color?.r || 0, nodeData?.color?.g || 0, nodeData?.color?.b || 0];
-        const specularFactor = Math.sqrt((nodeData?.color?.r || 0) * (nodeData?.color?.r || 0) + (nodeData?.color?.g || 0) * (nodeData?.color?.g || 0) + (nodeData?.color?.b || 0) * (nodeData?.color?.b || 0)) * 0.15
+        newMaterial.uniforms.diffuseColor.value = [nodeData?.color1?.r || 0, nodeData?.color1?.g || 0, nodeData?.color1?.b || 0];
+        const specularFactor = Math.sqrt((nodeData?.color1?.r || 0) * (nodeData?.color1?.r || 0) + (nodeData?.color1?.g || 0) * (nodeData?.color1?.g || 0) + (nodeData?.color1?.b || 0) * (nodeData?.color1?.b || 0)) * 0.15
         newMaterial.uniforms.specularColor.value = [specularFactor, specularFactor, specularFactor, 16.0]    
     }
 
@@ -2462,7 +2469,7 @@ function editColor(e) {
     if (editing && editing.parent.type == "Scene" && editing.grabNodeData.levelNodeStatic) {
         let shapeData = deepClone(editing.grabNodeData);
         let nodeData = Object.values(shapeData)[0];
-        nodeData.color = {
+        nodeData.color1 = {
             "r": parseInt(color.substring(1, 3), 16)/255,
             "g": parseInt(color.substring(3, 5), 16)/255,
             "b": parseInt(color.substring(5, 7), 16)/255,
@@ -2480,7 +2487,7 @@ function editColor(e) {
         let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
         runOnNodes(childNodes, (node) => {
             if (node.levelNodeStatic) {
-                Object.values(node)[0].color = {
+                Object.values(node)[0].color1 = {
                     "r": parseInt(color.substring(1, 3), 16)/255,
                     "g": parseInt(color.substring(3, 5), 16)/255,
                     "b": parseInt(color.substring(5, 7), 16)/255,
@@ -2899,7 +2906,7 @@ function openPointCloud(file) {
                             "y": parseFloat(coords[1]),
                             "z": parseFloat(coords[2])
                         },
-                        "color": {
+                        "color1": {
                             "r": 1,
                             "g": 1,
                             "b": 1,
@@ -2991,7 +2998,7 @@ function generatePixelArt() {
                             "y": pixels[i][4],
                             "z": 10.0
                         },
-                        "color": {
+                        "color1": {
                             "r": pixels[i][0] / 255,
                             "g": pixels[i][1] / 255,
                             "b": pixels[i][2] / 255,
@@ -3058,7 +3065,7 @@ function generatePixelSphere() {
                                 y: 0,
                                 z: 0
                             },
-                            color: {
+                            color1: {
                                 r: 1,
                                 g: 1,
                                 b: 1,
@@ -3101,7 +3108,7 @@ function generatePixelSphere() {
                 const g = imageData[index + 1] / 255;
                 const b = imageData[index + 2] / 255;
 
-                object.levelNodeStatic.color = gammaToLinear(r, g, b);
+                object.levelNodeStatic.color1 = gammaToLinear(r, g, b);
 
                 mainLevel.levelNodes.push(object);
             });
@@ -3152,7 +3159,7 @@ function applyImage() {
                     const g = imageData[index + 1] / 255;
                     const b = imageData[index + 2] / 255;
     
-                    object.levelNodeStatic.color = gammaToLinear(r, g, b);
+                    object.levelNodeStatic.color1 = gammaToLinear(r, g, b);
                 }
             }, false);
             setLevel(mainLevel);
@@ -3380,7 +3387,7 @@ function setEditAmbience() {
     level.ambienceSettings.sunSize = editAmbienceSettings.sunSize;
     level.ambienceSettings.sunAltitude = editAmbienceSettings.sunAltitude;
     level.ambienceSettings.sunAzimuth = editAmbienceSettings.sunAzimuth;
-    level.ambienceSettings.fogDDensity = editAmbienceSettings.fogDDensity;
+    level.ambienceSettings.fogDensity = editAmbienceSettings.fogDensity;
     setLevel(level);
 }
 function animationToolSetup() {
@@ -3468,6 +3475,47 @@ function animationToolAdd() {
 }
 function animationToolClear() {
     editing?.grabNodeData?.animations ? editing.grabNodeData.animations = [] : null;
+}
+function loadModdedProtobuf() {
+    let moddedShapes = "";
+    let moddedMaterials = "";
+
+    for (let i = -100; i < 0; i++) {
+        moddedShapes += `NS${-i}=${i};`;
+        moddedMaterials += `NM${-i}=${i};`;
+    }
+    
+    let {root} = protobuf.parse(protobufData, { keepCase: true });
+    let currentMaterials = Object.values(root.COD.Level.LevelNodeMaterial);
+    let currentShapes = Object.values(root.COD.Level.LevelNodeShape);
+
+    for (let i = 0; i < 200; i++) {
+        if (!currentMaterials.includes(i)) {
+            moddedMaterials += `M${i}=${i};`;
+        }
+        if (!currentShapes.includes(i)) {
+            moddedShapes += `S${i}=${i};`;
+        }
+    }
+
+    for (let i = 900; i < 1100; i++) {
+        if (!currentMaterials.includes(i)) {
+            moddedMaterials += `M${i}=${i};`;
+        }
+        if (!currentShapes.includes(i)) {
+            moddedShapes += `S${i}=${i};`;
+        }
+    }
+
+    let protobuf_chunks = protobufData.split("enum LevelNodeShape");
+    protobuf_chunks[1] = protobuf_chunks[1].replace("{", `{\n//Modded types\n${moddedShapes}\n\n`);
+    let newProtobuf = protobuf_chunks.join("enum LevelNodeShape");
+
+    protobuf_chunks = newProtobuf.split("enum LevelNodeMaterial");
+    protobuf_chunks[1] = protobuf_chunks[1].replace("{", `{\n//Modded types\n${moddedMaterials}\n\n`);
+    newProtobuf = protobuf_chunks.join("enum LevelNodeMaterial");
+
+    document.getElementById('protobuf-prompt').value = newProtobuf;
 }
 function saveConfig() {
     let currentConfig = {
@@ -3872,7 +3920,7 @@ function initUI() {
     document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = hideText ? 'block' : 'none';hideText = !hideText;highlightTextEditor()});
     document.getElementById('highlight-btn').addEventListener('click', () => {highlightText = !highlightText;highlightTextEditor()});
     document.getElementById('performance-btn').addEventListener('click', () => {renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 )});
-    document.getElementById('range-btn').addEventListener('click', () => {loadProtobuf("proto/hacked.proto")});
+    document.getElementById('range-btn').addEventListener('click', () => {loadModdedProtobuf()});
     editInputElement.addEventListener('keydown', (e) => {handleEditInput(e)});
     document.getElementById('start-btn').addEventListener('click', goToStart);
     document.getElementById('finish-btn').addEventListener('click', goToFinish);

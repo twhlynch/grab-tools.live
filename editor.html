@@ -569,6 +569,7 @@
                     <div class="stats-shape" id="stats-cylinder">Cylinder: 0</div>
                     <div class="stats-shape" id="stats-pyramid">Pyramid: 0</div>
                     <div class="stats-shape" id="stats-prism">Prism: 0</div>
+                    <div class="stats-shape" id="stats-cone">Cone: 0</div>
                     
                     <div class="stats-extra" id="stats-neon">Neon: 0</div>
                     <div class="stats-extra" id="stats-gravityNoLegs">Gravity No Legs: 0</div>
@@ -801,10 +802,11 @@
                     <div class="warning" id="formatWarning">formatVersion is under 6. Some features may not work.</div>
                     <div class="warning" id="definitionWarning">Some objects in this level are modded and may change over time.</div>
                     <div name="edit-input" id="edit-input" spellcheck="false" contenteditable="true" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false">{
-    "formatVersion": 6,
+    "formatVersion": 9,
     "title": "New Level",
     "creators": ".index-editor",
     "description": ".index modding - grab-tools.live",
+    "tags": [],
     "maxCheckpointCount": 10,
     "ambienceSettings": {
         "skyZenithColor": {
@@ -822,7 +824,7 @@
         "sunAltitude": 45,
         "sunAzimuth": 315,
         "sunSize": 1,
-        "fogDDensity": 0
+        "fogDensity": 0
     },
     "levelNodes": []
 }</div>
@@ -872,6 +874,7 @@
                     <option value="1002">cylinder (1002)</option>
                     <option value="1003">pyramid (1003)</option>
                     <option value="1004">prism (1004)</option>
+                    <option value="1005">cone (1005)</option>
                 </select>
                 <span>Make it this:</span>
                 <select name="convert" id="convert-to">
@@ -892,6 +895,7 @@
                     <option value="1002">cylinder (1002)</option>
                     <option value="1003">pyramid (1003)</option>
                     <option value="1004">prism (1004)</option>
+                    <option value="1005">cone (1005)</option>
                 </select>
                 <div class="prompt-buttons">
                     <button class="prompt-cancel">Cancel</button>
@@ -925,7 +929,7 @@
                         <span>sun size</span>
                         <input type="range" class="ambience-editor" data-setting="sunSize" min="-1000" max="1000">
                         <span>fog density</span>
-                        <input type="range" class="ambience-editor" data-setting="fogDDensity" min="-1000" max="1000">
+                        <input type="range" class="ambience-editor" data-setting="fogDensity" min="-1000" max="1000">
                     </div>
                     <div class="slider-menu">
                         <p>-1 - 1</p>
@@ -944,7 +948,7 @@
                         <span>sun size</span>
                         <input type="range" class="ambience-editor" data-setting="sunSize" min="-1" max="1" step="0.001">
                         <span>fog density</span>
-                        <input type="range" class="ambience-editor" data-setting="fogDDensity" min="-1" max="1" step="0.001">
+                        <input type="range" class="ambience-editor" data-setting="fogDensity" min="-1" max="1" step="0.001">
                     </div>
                 </div>
                 <div class="prompt-buttons">

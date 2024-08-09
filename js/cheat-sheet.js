@@ -1,9 +1,10 @@
 let levelJson = {
-    "formatVersion": 6,
+    "formatVersion": 9,
     "title": "New Level",
     "creators": ".index-cheat-sheet",
     "description": ".index modding - grab-tools.live",
     "levelNodes": [],
+    "tags": [],
     "maxCheckpointCount": 10,
     "ambienceSettings": {
         "skyZenithColor": {
@@ -150,7 +151,7 @@ fetch(`stats_data/cheat-sheetv${version}.json`).then((response) => response.json
                     "rotation": {
                         "w": 1
                     },
-                    "color": {
+                    "color1": {
                         "r": 0.00001,
                         "g": 0.00001,
                         "b": 0.00001,
@@ -191,7 +192,7 @@ fetch(`stats_data/cheat-sheetv${version}.json`).then((response) => response.json
                             "rotation": {
                                 "w": 1
                             },
-                            "color": {
+                            "color1": {
                                 "r": 0.00001,
                                 "g": 0.00001,
                                 "b": 0.00001,
@@ -215,7 +216,7 @@ fetch(`stats_data/cheat-sheetv${version}.json`).then((response) => response.json
                             "rotation": {
                                 "w": 1
                             },
-                            "color": {
+                            "color1": {
                                 "r": 0.00001,
                                 "g": 0.00001,
                                 "b": 0.00001,
@@ -227,19 +228,61 @@ fetch(`stats_data/cheat-sheetv${version}.json`).then((response) => response.json
             }
             levelJson.levelNodes.push(group);
         }
-        protobuf.load("proto/hacked.proto", function(err, root) {
-            console.log(levelJson);
-            if(err) {throw err};
+
+        fetch("proto/proto.proto").then(r => {return r.text();}).then(protobufData => {
+
+            let moddedShapes = "";
+            let moddedMaterials = "";
+
+            for (let i = -100; i < 0; i++) {
+                moddedShapes += `NS${-i}=${i};`;
+                moddedMaterials += `NM${-i}=${i};`;
+            }
+            
+            let pb = protobuf.parse(protobufData, { keepCase: true });
+            let currentMaterials = Object.values(pb.root.COD.Level.LevelNodeMaterial);
+            let currentShapes = Object.values(pb.root.COD.Level.LevelNodeShape);
+
+            for (let i = 0; i < 200; i++) {
+                if (!currentMaterials.includes(i)) {
+                    moddedMaterials += `M${i}=${i};`;
+                }
+                if (!currentShapes.includes(i)) {
+                    moddedShapes += `S${i}=${i};`;
+                }
+            }
+
+            for (let i = 900; i < 1100; i++) {
+                if (!currentMaterials.includes(i)) {
+                    moddedMaterials += `M${i}=${i};`;
+                }
+                if (!currentShapes.includes(i)) {
+                    moddedShapes += `S${i}=${i};`;
+                }
+            }
+
+            let protobuf_chunks = protobufData.split("enum LevelNodeShape");
+            protobuf_chunks[1] = protobuf_chunks[1].replace("{", `{\n//Modded types\n${moddedShapes}\n\n`);
+            let newProtobuf = protobuf_chunks.join("enum LevelNodeShape");
+
+            protobuf_chunks = newProtobuf.split("enum LevelNodeMaterial");
+            protobuf_chunks[1] = protobuf_chunks[1].replace("{", `{\n//Modded types\n${moddedMaterials}\n\n`);
+            newProtobuf = protobuf_chunks.join("enum LevelNodeMaterial");
+
+            let {root} = protobuf.parse(newProtobuf, { keepCase: true });
             let message = root.lookupType("COD.Level.Level");
             let errMsg = message.verify(levelJson);
             if(errMsg) {throw Error(errMsg)};
             let buffer = message.encode(message.fromObject(levelJson)).finish();
+            
             let blob = new Blob([buffer], {type: "application/octet-stream"});
+    
             let link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
             link.download = (Date.now()).toString().slice(0, -3)+".level";
             link.click();
         });
+
     });
 });
 

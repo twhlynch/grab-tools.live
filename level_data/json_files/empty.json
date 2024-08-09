@@ -1,8 +1,9 @@
 {
-    "formatVersion": 6,
+    "formatVersion": 9,
     "title": "New Level",
     "creators": ".index-editor",
     "description": ".index modding - grab-tools.live",
+    "tags": [],
     "maxCheckpointCount": 10,
     "ambienceSettings": {
         "skyZenithColor": {
@@ -20,7 +21,7 @@
         "sunAltitude": 45,
         "sunAzimuth": 315,
         "sunSize": 1,
-        "fogDDensity": 0
+        "fogDensity": 0
     },
     "levelNodes": []
 }
