@@ -3,7 +3,7 @@ function readArrayBufferGroup(file) {
         let reader = new FileReader();
         reader.onload = function() {
             let data = reader.result;
-            protobuf.load("proto/level.proto", function(err, root) {
+            protobuf.load("proto/proto.proto", function(err, root) {
                 if(err) {throw err};
                 let message = root.lookupType("COD.Level.Level");
                 let decoded = message.decode(new Uint8Array(data));
@@ -40,7 +40,7 @@ function readArrayBuffer(file) {
         let reader = new FileReader();
         reader.onload = function() {
             let data = reader.result;
-            protobuf.load("proto/level.proto", function(err, root) {
+            protobuf.load("proto/proto.proto", function(err, root) {
                 if(err) {throw err};
                 let message = root.lookupType("COD.Level.Level");
                 let decoded = message.decode(new Uint8Array(data));
@@ -134,7 +134,7 @@ function outlineLevel() {
         console.log(newNodes);
         levelData.levelNodes = levelData.levelNodes.concat(newNodes);
 
-        protobuf.load("proto/level.proto", function(err, root) {
+        protobuf.load("proto/proto.proto", function(err, root) {
             if(err) {throw err};
 
             let message = root.lookupType("COD.Level.Level");
@@ -306,7 +306,7 @@ function scripture() {
         })
     }    
     
-    protobuf.load("proto/level.proto", function(err, root) {
+    protobuf.load("proto/proto.proto", function(err, root) {
         if(err) {throw err};
 
         let message = root.lookupType("COD.Level.Level");
@@ -376,7 +376,7 @@ function TextToSigns() {
     }
     
     
-    protobuf.load("proto/level.proto", function(err, root) {
+    protobuf.load("proto/proto.proto", function(err, root) {
         if(err) {throw err};
 
         let message = root.lookupType("COD.Level.Level");
@@ -458,7 +458,7 @@ function compile(qms=false) {
             "title": title
         }
         
-        protobuf.load("proto/level.proto", function(err, root) {
+        protobuf.load("proto/proto.proto", function(err, root) {
             if(err) {throw err};
 
             let message = root.lookupType("COD.Level.Level");
@@ -575,7 +575,7 @@ function pixelate() {
                 "maxCheckpointCount": 10,
                 "title": title
             }
-            protobuf.load("proto/level.proto", function(err, root) {
+            protobuf.load("proto/proto.proto", function(err, root) {
                 if(err) {throw err};
   
                 let message = root.lookupType("COD.Level.Level");
@@ -601,7 +601,7 @@ function convertJSON() {
         reader.onload = function() {
             let data = reader.result;
             let obj = JSON.parse(data);
-            protobuf.load("proto/level.proto", function(err, root) {
+            protobuf.load("proto/proto.proto", function(err, root) {
                 if(err) {throw err};
 
                 let message = root.lookupType("COD.Level.Level");
@@ -713,7 +713,7 @@ function generatePointCloud() {
         }
         level.levelNodes.push(points);
 
-        protobuf.load("proto/level.proto", function(err, root) {
+        protobuf.load("proto/proto.proto", function(err, root) {
             if(err) {throw err};
 
             let message = root.lookupType("COD.Level.Level");
@@ -783,7 +783,7 @@ function explodeLevel() {
 
         level.title += " Exploded"
 
-        protobuf.load("proto/level.proto", function(err, root) {
+        protobuf.load("proto/proto.proto", function(err, root) {
             if(err) {throw err};
 
             let message = root.lookupType("COD.Level.Level");
