@@ -82,25 +82,26 @@ export const levelFS = `
     void main()
     {
         vec4 color = vec4(0.0, 0.0, 0.0, 1.0);
+		vec4 texColor = vec4(0.0, 0.0, 0.0, 1.0);
 
         vec3 blendNormals = abs(vNormal);
         if(blendNormals.x > blendNormals.y && blendNormals.x > blendNormals.z)
         {
-            color.rgb = texture2D(colorTexture, vWorldPosition.zy * tileFactor).rgb;
+            texColor.rgb = texture2D(colorTexture, vWorldPosition.zy * tileFactor).rgb;
         }
         else if(blendNormals.y > blendNormals.z)
         {
-            color.rgb = texture2D(colorTexture, vWorldPosition.xz * tileFactor).rgb;
+            texColor.rgb = texture2D(colorTexture, vWorldPosition.xz * tileFactor).rgb;
         }
         else
         {
-            color.rgb = texture2D(colorTexture, vWorldPosition.xy * tileFactor).rgb;
+            texColor.rgb = texture2D(colorTexture, vWorldPosition.xy * tileFactor).rgb;
         }
 
-		color.rgb *= diffuseColor;
+		color.rgb = texColor.rgb * diffuseColor;
 
 		if (isColoredLava > 0.5) {
-			vec3 blendValues = vec3(color.b);
+			vec3 blendValues = vec3(texColor.b);
 			color.rgb = mix(diffuseColor.rgb, specularColor.rgb, blendValues.b);
 			color.rgb += blendValues.g * 0.1 - (1.0 - blendValues.r) * 0.2;
 		} else if (isLava > 0.5) {
