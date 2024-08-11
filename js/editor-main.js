@@ -750,6 +750,25 @@ function loadLevelNode(node, parent) {
                 material.uniforms.isTransparent.value = 1.0
                 material.transparent = true;
             }
+        } else if (node.levelNodeStatic.material == 3) {
+            if (!altTextures) {
+                material.uniforms.isLava.value = 1.0;
+                if (node.levelNodeStatic.color1 && node.levelNodeStatic.color2) {
+                    material.uniforms.diffuseColor.value = [node.levelNodeStatic.color1?.r || 0, node.levelNodeStatic.color1?.g || 0, node.levelNodeStatic.color1?.b || 0]
+                    let specularFactor = Math.sqrt(node.levelNodeStatic.color1?.r || 0 * node.levelNodeStatic.color1?.r || 0 + node.levelNodeStatic.color1?.g || 0 * node.levelNodeStatic.color1?.g || 0 + node.levelNodeStatic.color1?.b || 0 * node.levelNodeStatic.color1?.b || 0) * 0.15;
+                    let specularColor = [specularFactor, specularFactor, specularFactor, 16.0];
+                    if (node.levelNodeStatic.color2) {
+                        specularColor = [
+                            node.levelNodeStatic.color2.r, 
+                            node.levelNodeStatic.color2.g, 
+                            node.levelNodeStatic.color2.b, 
+                            node.levelNodeStatic.color2.a
+                        ];
+                        material.uniforms.isColoredLava.value = 1.0;
+                    }
+                    material.uniforms.specularColor.value = specularColor;
+                }
+            }
         }
         object.material = material;
         parent.add(object);
@@ -4057,7 +4076,9 @@ async function initAttributes() {
                 "isTransparent": { value: 0.0 },
                 "fogEnabled": { value: fogEnabled },
                 "specularColor": { value: [0.3, 0.3, 0.3, 16.0]},
-                "isSelected": { value: false }
+                "isSelected": { value: false },
+                "isLava": { value: 0.0 },
+                "isColoredLava": { value: 0.0 }
             }
         });
         materials.push(material);
