@@ -726,16 +726,21 @@ function loadLevelNode(node, parent) {
             node.levelNodeStatic.color1.g ? null : node.levelNodeStatic.color1.g = 0;
             node.levelNodeStatic.color1.b ? null : node.levelNodeStatic.color1.b = 0;
             if (altTextures) {
-                material.color1 = new THREE.Color(node.levelNodeStatic.color1.r, node.levelNodeStatic.color1.g, node.levelNodeStatic.color1.b);
+                material.color = new THREE.Color(node.levelNodeStatic.color1.r, node.levelNodeStatic.color1.g, node.levelNodeStatic.color1.b);
             } else {
                 material.uniforms.diffuseColor.value = [node.levelNodeStatic.color1.r, node.levelNodeStatic.color1.g, node.levelNodeStatic.color1.b];
-                const specularFactor = Math.sqrt(node.levelNodeStatic.color1.r * node.levelNodeStatic.color1.r + node.levelNodeStatic.color1.g * node.levelNodeStatic.color1.g + node.levelNodeStatic.color1.b * node.levelNodeStatic.color1.b) * 0.15
-                material.uniforms.specularColor.value = [specularFactor, specularFactor, specularFactor, 16.0]
-
+                
+                let specularFactor = Math.sqrt(node.levelNodeStatic.color1.r * node.levelNodeStatic.color1.r + node.levelNodeStatic.color1.g * node.levelNodeStatic.color1.g + node.levelNodeStatic.color1.b * node.levelNodeStatic.color1.b) * 0.15;
+                let specularColor = [specularFactor, specularFactor, specularFactor, 16.0];
                 if (node.levelNodeStatic.color2) {
-                    let spec = node.levelNodeStatic.color2;
-                    // material.uniforms.specularColor.value = [spec.r, spec.g, spec.b, spec.a]
+                    specularColor = [
+                        node.levelNodeStatic.color2.r || specularFactor, 
+                        node.levelNodeStatic.color2.g || specularFactor, 
+                        node.levelNodeStatic.color2.b || specularFactor, 
+                        node.levelNodeStatic.color2.a
+                    ];
                 }
+                material.uniforms.specularColor.value = specularColor;
             }
             if (node.levelNodeStatic.isNeon) {
                 statistics.neon += 1;
@@ -2060,6 +2065,7 @@ function onPointerDown(e) {
         }
         if (editing && editing?.parent?.type == "Scene") {
             transformControl.attach(editing);
+            console.log(editing);
             scene.add(transformControl);
         }
     }
