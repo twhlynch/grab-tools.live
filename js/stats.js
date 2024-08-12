@@ -1417,34 +1417,6 @@ function getKeyWords() {
         document.getElementById('KeyWords-out').innerHTML += `<div class="leaderboard-item"><div>${top[i][0]}</div><span>${top[i][1]}</span></div>`;
     }
 }
-function getAChallenge() {
-    for (const item of statistics.a_challenge) {
-        const user_card = userCard(
-            item[0], 
-            item[1][1], 
-            false, 
-            false, 
-            false, 
-            `${item[1][0]} Pt (${item[1][2]} maps)`, 
-            ''
-        );
-        document.getElementById('AChallenge-out').appendChild(user_card);
-    }
-    
-    const sorted = data.sort((a, b) => b[1][2] - a[1][2]);
-    for (const item of sorted) {
-        const user_card = userCard(
-            item[0], 
-            item[1][1], 
-            false, 
-            false, 
-            false, 
-            `${item[1][2]} Maps`, 
-            ''
-        );
-        document.getElementById('AChallengeMaps-out').appendChild(user_card);
-    }
-}
 
 function checkNotification(item_id, element_id) {
     if (!isLoggedIn) {
