@@ -1268,12 +1268,12 @@ function getPersonalStats() {
 }
 function getDifficulties() {
     let difficulty_keys = [
-        "unrated",
+        // "unrated",
         "easy",
         "medium",
         "hard",
-        "veryhard",
-        "impossible"
+        "veryhard"
+        // "impossible"
     ];
     const key_lengths = statistics.difficulty_lengths;
     let playerCompletions = {};
