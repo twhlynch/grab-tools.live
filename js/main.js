@@ -60,3 +60,17 @@ const currentTab = document.getElementById("tab-" + currentLocation);
 if (currentTab) {
     currentTab.classList.add("current");
 }
+
+// dev
+if (location.href.includes("localhost") || location.href.includes("127.0.0.1")) {
+    // highlight ad containers
+    const adverts = document.querySelectorAll("#ads-overlay-r, #ads-overlay-l, #advertisement");
+    adverts.forEach((advert) => {
+        advert.style.outline = "solid 1px #0f0";
+    });
+
+    // live server sucks
+    if (location.href.endsWith("/stats") || location.href.endsWith("/tools")) {
+        location.href = location.href + ".html";
+    }
+}
