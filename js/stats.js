@@ -1387,6 +1387,29 @@ function getDifficulties() {
     }
 }
 
+function showListCounts() {
+    const allLeaderboards = document.getElementsByClassName("LeaderboardOutput");
+    for (let i = 0; i < allLeaderboards.length; i++) {
+        const leaderboard = allLeaderboards[i];
+        const id = leaderboard.id;
+        const count = leaderboard.getElementsByClassName("leaderboard-item").length;
+        if ([
+            "PersonalStats-out",
+            "Global-out",
+            "LevelSearch-out",
+            "DailyMap-out",
+            "WeeklyMap-out",
+            "UnbeatenMap-out"
+        ].includes(id) || count == 0) {
+            continue;
+        }
+        const countElement = document.createElement("span");
+        countElement.innerText = `(${count} shown)`;
+        countElement.classList.add("leaderboard-count");
+        leaderboard.appendChild(countElement);
+    }
+}
+
 function checkNotification(item_id, element_id) {
     if (!isLoggedIn) {
         return;
@@ -1557,6 +1580,8 @@ function computeStats() {
     getTipping();
     getPersonalStats();
     getDifficulties();
+
+    showListCounts();
 }
 function initButtons() {
     let buttons = document.querySelectorAll('.stats-button');

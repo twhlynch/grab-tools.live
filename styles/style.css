@@ -341,6 +341,7 @@ h1.title {
     max-height: 800px;
     overflow-y: scroll;
     overflow-x: hidden;
+    position: relative;
 }
 .leaderboard-item {
     color: #cfe0ea;
@@ -1168,6 +1169,14 @@ p:focus .metric-data, p:focus-within .metric-data {
     align-items: flex-start;
     justify-content: flex-start;
     min-height: 90px;
+}
+
+.leaderboard-count {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    color: #fff6;
+    font-size: 8px;
 }
 @keyframes notificationTimer {
     to {
