@@ -1386,37 +1386,6 @@ function getDifficulties() {
         document.getElementById('Difficulties-out').appendChild(user_card);
     }
 }
-// unused
-function getKeyWords() {
-    let keywords = {};
-    for (const item of statistics.all_verified) {
-        all = [];
-        if (item.hasOwnProperty('title')) {
-            title = item.title.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').split(" ").filter(word => word.length > 2);
-            all = all.concat(title);
-        }
-        if (item.hasOwnProperty('creators')) {
-            creators = item.creators.join(" ").toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').split(" ").filter(word => word.length > 2);
-            all = all.concat(creators);
-        }
-        if (item.hasOwnProperty('description')) {
-            description = item.description.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').split(" ").filter(word => word.length > 2);
-            all = all.concat(description);
-        }
-        all.forEach(word => {
-            if (keywords[word]) {
-                keywords[word] += 1;
-            } else {
-                keywords[word] = 1;
-            }
-        });
-    }
-    const sorted = Object.entries(keywords).sort((a, b) => b[1] - a[1]);
-    let top = sorted.slice(0, 100);
-    for (let i = 0; i < top.length; i++) {
-        document.getElementById('KeyWords-out').innerHTML += `<div class="leaderboard-item"><div>${top[i][0]}</div><span>${top[i][1]}</span></div>`;
-    }
-}
 
 function checkNotification(item_id, element_id) {
     if (!isLoggedIn) {
