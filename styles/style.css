@@ -858,13 +858,15 @@ div#questMultiSelect {
     top: 20px;
     left: 20px;
 }
-.ghl-icon {
-    width: 24px;
-    height: 24px;
+.ghl-icon, #tools .ghl-icon {
+    width: 21px;
+    height: 21px;
+    fill: #ffdf5b;
 }
 .list-main .ghl-icon {
     width: 50px;
     height: 50px;
+    margin-inline-end: 10px;
 }
 .list-discord svg, .list-back svg {
     width: 36px;
