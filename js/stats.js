@@ -403,64 +403,121 @@ function makeFeaturedButtons() {
     }
 }
 function getDailyMap() {
-    document.getElementById('DailyMap-out').innerHTML += `<h1><a target="_blank" href="https://grabvr.quest/levels/viewer/?level=${statistics.daily_map["identifier"]}">${statistics.daily_map["title"]}</a><br>by <span title="${statistics.daily_map["creators"]}">${(statistics.daily_map.creators || [""])[0]}</span></h1>`;
-    fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${statistics.daily_map['identifier'].replace(':', '/')}`)
-    .then((response2) => response2.json())
-    .then(leaderboard => {
-        leaderboard.forEach( lItem => {
-            const user_card = userCard(
-                lItem["user_id"], 
-                lItem["user_name"], 
-                false, 
-                false, 
-                false, 
-                `${lItem["best_time"]}s`, 
-                ''
-            );
-            document.getElementById('DailyMap-out').appendChild(user_card);
-            checkNotification(lItem["user_id"], "DailyMap");
+    const output = document.getElementById('DailyMap-out');
+    output.innerHTML += `<h1><a target="_blank" href="https://grabvr.quest/levels/viewer/?level=${statistics.daily_map["identifier"]}">${statistics.daily_map["title"]}</a><br>by <span title="${statistics.daily_map["creators"]}">${(statistics.daily_map.creators || [""])[0]}</span></h1>`;
+    
+    let loadingElement = document.createElement('span');
+    loadingElement.innerText = "Loading leaderboard...";
+    output.appendChild(loadingElement);
+
+    let loadedDaily = false;
+
+    function loadDailyLeaderboard() {
+        if (loadedDaily) {
+            return;
+        }
+    
+        fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${statistics.daily_map['identifier'].replace(':', '/')}`)
+        .then((response2) => response2.json())
+        .then(leaderboard => {
+            output.removeChild(loadingElement);
+            leaderboard.forEach( lItem => {
+                const user_card = userCard(
+                    lItem["user_id"], 
+                    lItem["user_name"], 
+                    false, 
+                    false, 
+                    false, 
+                    `${lItem["best_time"]}s`, 
+                    ''
+                );
+                output.appendChild(user_card);
+                checkNotification(lItem["user_id"], "DailyMap");
+                loadedDaily = true;
+            });
         });
-    });
+    }
+
+    document.getElementById('DailyMap').addEventListener('click', loadDailyLeaderboard);
+    if (document.getElementById('DailyMap-sort-btn').classList.contains('sort-active')) {
+        loadDailyLeaderboard();
+    }
 }
 function getWeeklyMap() {
-    document.getElementById('WeeklyMap-out').innerHTML += `<h1><a target="_blank" href="https://grabvr.quest/levels/viewer/?level=${statistics.weekly_map["identifier"]}">${statistics.weekly_map["title"]}</a><br>by <span title="${statistics.weekly_map["creators"]}">${(statistics.weekly_map.creators || [""])[0]}</span></h1>`;
-    fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${statistics.weekly_map['identifier'].replace(':', '/')}`)
-    .then((response2) => response2.json())
-    .then(leaderboard => {
-        leaderboard.forEach( lItem => {
-            const user_card = userCard(
-                lItem["user_id"], 
-                lItem["user_name"], 
-                false, 
-                false, 
-                false, 
-                `${lItem["best_time"]}s`, 
-                ''
-            );
-            document.getElementById('WeeklyMap-out').appendChild(user_card);
-            checkNotification(lItem["user_id"], "WeeklyMap");
+    const output = document.getElementById('WeeklyMap-out');
+    output.innerHTML += `<h1><a target="_blank" href="https://grabvr.quest/levels/viewer/?level=${statistics.weekly_map["identifier"]}">${statistics.weekly_map["title"]}</a><br>by <span title="${statistics.weekly_map["creators"]}">${(statistics.weekly_map.creators || [""])[0]}</span></h1>`;
+
+    let loadingElement = document.createElement('span');
+    loadingElement.innerText = "Loading leaderboard...";
+    output.appendChild(loadingElement);
+
+    let loadedWeekly = false;
+
+    function loadWeeklyLeaderboard() {
+        if (loadedWeekly) {
+            return;
+        }
+
+        fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${statistics.weekly_map['identifier'].replace(':', '/')}`)
+        .then((response2) => response2.json())
+        .then(leaderboard => {
+            output.removeChild(loadingElement);
+            leaderboard.forEach( lItem => {
+                const user_card = userCard(
+                    lItem["user_id"], 
+                    lItem["user_name"], 
+                    false, 
+                    false, 
+                    false, 
+                    `${lItem["best_time"]}s`, 
+                    ''
+                );
+                output.appendChild(user_card);
+                checkNotification(lItem["user_id"], "WeeklyMap");
+                loadedWeekly = true;
+            });
         });
-    });
+    }
+
+    document.getElementById('WeeklyMap-sort-btn').addEventListener('click', loadWeeklyLeaderboard);
 }
 function getUnbeatenMap() {
-    document.getElementById('UnbeatenMap-out').innerHTML += `<h1><a target="_blank" href="https://grabvr.quest/levels/viewer/?level=${statistics.unbeaten_map["identifier"]}">${statistics.unbeaten_map["title"]}</a><br>by <span title="${statistics.unbeaten_map["creators"]}">${(statistics.unbeaten_map.creators || [""])[0]}</span></h1>`;
-    fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${statistics.unbeaten_map['identifier'].replaceAll(':', '/')}`)
-    .then((response2) => response2.json())
-    .then(leaderboard => {
-        leaderboard.forEach( lItem => {
-            const user_card = userCard(
-                lItem["user_id"], 
-                lItem["user_name"], 
-                false, 
-                false, 
-                false, 
-                `${lItem["best_time"]}s`, 
-                ''
-            );
-            document.getElementById('UnbeatenMap-out').appendChild(user_card);
-            checkNotification(lItem["user_id"], "UnbeatenMap");
+    const output = document.getElementById('UnbeatenMap-out');
+    output.innerHTML += `<h1><a target="_blank" href="https://grabvr.quest/levels/viewer/?level=${statistics.unbeaten_map["identifier"]}">${statistics.unbeaten_map["title"]}</a><br>by <span title="${statistics.unbeaten_map["creators"]}">${(statistics.unbeaten_map.creators || [""])[0]}</span></h1>`;
+
+    let loadingElement = document.createElement('span');
+    loadingElement.innerText = "Loading leaderboard...";
+    output.appendChild(loadingElement);
+
+    let loadedUnbeaten = false;
+
+    function loadUnbeatenLeaderboard() {
+        if (loadedUnbeaten) {
+            return;
+        }
+
+        fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${statistics.unbeaten_map['identifier'].replaceAll(':', '/')}`)
+        .then((response2) => response2.json())
+        .then(leaderboard => {
+            output.removeChild(loadingElement);
+            leaderboard.forEach( lItem => {
+                const user_card = userCard(
+                    lItem["user_id"], 
+                    lItem["user_name"], 
+                    false, 
+                    false, 
+                    false, 
+                    `${lItem["best_time"]}s`, 
+                    ''
+                );
+                output.appendChild(user_card);
+                checkNotification(lItem["user_id"], "UnbeatenMap");
+                loadedUnbeaten = true;
+            });
         });
-    });
+    }
+
+    document.getElementById('UnbeatenMap-sort-btn').addEventListener('click', loadUnbeatenLeaderboard);
 }
 function getChallengeScores() {
     leaderboard = {};
