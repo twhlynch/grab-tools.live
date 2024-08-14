@@ -1,30 +1,3 @@
-let cursorOuter = document.getElementById("cursor-outer");
-let cursorInner = document.getElementById("cursor-inner");
-let links = document.querySelectorAll("a, button, .button");
-if (window.navigator.platform !== "MacIntel" && window.navigator.platform!== "MacPPC" && window.navigator.platform!== "Mac68K") {
-    document.addEventListener("mousemove", function (e) {
-        cursorInner.style.transform =
-        cursorOuter.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
-}
-
-for (let i = 0; i < links.length; i++) {
-    links[i].addEventListener("mouseover", () => {
-        cursorOuter.classList.add("cursor-outer-hover");
-        cursorInner.classList.add("cursor-inner-hover");
-    });
-    links[i].addEventListener("mouseout", () => {
-        cursorOuter.classList.remove("cursor-outer-hover");
-        cursorInner.classList.remove("cursor-inner-hover");
-    });
-    if (links[i].classList.contains("bookmarklet")) {
-        links[i].addEventListener("click", (e) => {
-            e.preventDefault();
-            navigator.clipboard.writeText(links[i].href);
-        });
-    }
-}
-
 if (document.title === "GRAB Tools") {
     const currentTime = document.getElementById("currentTime");
     const currentState = document.getElementById("currentState");
