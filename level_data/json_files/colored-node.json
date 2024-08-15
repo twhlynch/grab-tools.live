@@ -24,6 +24,13 @@
             "b": 1,
             "a": 1
         },
-        "isNeon": false
+        "color2": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 1
+        },
+        "isNeon": false,
+        "isTransparent": false
     }
 }

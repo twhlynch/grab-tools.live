@@ -8,7 +8,9 @@ import { TransformControls } from 'three/addons/controls/TransformControls.js';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 import * as SHADERS from './shaders.js';
-let templates = await fetch('/level_data/templates.json').then(response => response.json());
+let templatesFile = await fetch('/level_data/templates.json').then(response => response.json());
+let templates = await templatesFile.templates;
+let inserts = templatesFile.inserts;
 let protobufData = await fetch('/proto/proto.proto').then(response => response.text());
 let animationPresets = {};
 // editor
@@ -1959,6 +1961,14 @@ function handleEditInput(e) {
         selection.collapseToEnd();
     }
 }
+function appendJSONNode(obj) {
+    let level = getLevel();
+    level.levelNodes.push(obj);
+    setLevel(level);
+}
+function appendInsert(identifier) {
+    appendJSONNode(inserts[identifier]);
+}
 function loadTemplateButtons() {
     templatesContainerElement.innerHTML = '';
     templates.forEach(template => {
@@ -3511,34 +3521,96 @@ function animationToolAdd() {
 function animationToolClear() {
     editing?.grabNodeData?.animations ? editing.grabNodeData.animations = [] : null;
 }
+function generateCheatSheet(advanced=false) {
+    let level = getLevel();
+    level.title = `${advanced ? 'Advanced ' : ''}Cheat Sheet`;
+    level.description = "All objects are neon and transparent by default.";
+    let moddedShapes = [
+        null,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        1005,
+    ];
+    let moddedMaterials = [
+        null
+    ]
+    for (let i = -10; i <= 9; i++) {
+        moddedMaterials.push(i);
+    }
+    if (advanced) {
+        for (let i = 10; i <= 60; i++) {
+            moddedMaterials.push(i);
+        }
+    }
+    for (let i = 0; i < moddedShapes.length; i++) {
+        for (let j = 0; j < moddedMaterials.length; j++) {
+            level.levelNodes.push({
+                "levelNodeStatic": {
+                    "shape": moddedShapes[i],
+                    "material": moddedMaterials[j],
+                    "position": {
+                        "x": i,
+                        "y": 0,
+                        "z": j
+                    },
+                    "scale": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                    },
+                    "rotation": {
+                        "w": 1,
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "color1": {
+                        "r": 1,
+                        "g": 1,
+                        "b": 1,
+                        "a": 1
+                    },
+                    "color2": {
+                        "r": 1,
+                        "g": 1,
+                        "b": 1,
+                        "a": 1
+                    },
+                    "isNeon": true,
+                    "isTransparent": true
+                }
+            });
+        }
+    }
+    setLevel(level);
+}
 function loadModdedProtobuf() {
     let moddedShapes = "";
     let moddedMaterials = "";
 
-    for (let i = -100; i < 0; i++) {
-        moddedShapes += `NS${-i}=${i};`;
-        moddedMaterials += `NM${-i}=${i};`;
-    }
-    
     let {root} = protobuf.parse(protobufData, { keepCase: true });
     let currentMaterials = Object.values(root.COD.Level.LevelNodeMaterial);
     let currentShapes = Object.values(root.COD.Level.LevelNodeShape);
 
-    for (let i = 0; i < 200; i++) {
+    for (let i = -2000; i < 2000; i++) {
         if (!currentMaterials.includes(i)) {
-            moddedMaterials += `M${i}=${i};`;
+            moddedMaterials += `M${i}=${i};`.replace("-", "N");
         }
         if (!currentShapes.includes(i)) {
-            moddedShapes += `S${i}=${i};`;
-        }
-    }
-
-    for (let i = 900; i < 1100; i++) {
-        if (!currentMaterials.includes(i)) {
-            moddedMaterials += `M${i}=${i};`;
-        }
-        if (!currentShapes.includes(i)) {
-            moddedShapes += `S${i}=${i};`;
+            moddedShapes += `S${i}=${i};`.replace("-", "N");
         }
     }
 
@@ -3989,8 +4061,9 @@ function initUI() {
     document.getElementById('duplicate-btn').addEventListener('click', duplicateLevel);
     document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
     document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('level_data/json_files/empty.json')});
-    document.getElementById('the-index-btn').addEventListener('click', () => {openProto('level_data/the-index.level')});
-    document.getElementById('all-objects-btn').addEventListener('click', () => {openProto('level_data/cheat-sheet-6.level')});
+    // document.getElementById('the-index-btn').addEventListener('click', () => {openProto('level_data/the-index.level')});
+    document.getElementById('basic-cheatsheet-btn').addEventListener('click', () => {generateCheatSheet()});
+    document.getElementById('advanced-cheatsheet-btn').addEventListener('click', () => {generateCheatSheet(advanced=true)});
     document.getElementById('mirror-x-btn').addEventListener('click', () => {mirror('x')});
     document.getElementById('mirror-y-btn').addEventListener('click', () => {mirror('y')});
     document.getElementById('mirror-z-btn').addEventListener('click', () => {mirror('z')});
@@ -4031,25 +4104,30 @@ function initUI() {
     document.getElementById('oilcanambience-btn').addEventListener('click', () => {setAmbience({"r": 0.3706502318382263,"g": 0.2603767216205597,"b": 0.6742851734161377,"a": 1}, {"g": 1.0326478481292725,"b": 5,"a": 1},-270,315,1.5,0)});
     document.getElementById('randomambience-btn').addEventListener('click', () => {setAmbience({"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1}, {"r": Math.floor(Math.random() * 19999999999) - 9999999999,"g": Math.floor(Math.random() * 19999999999) - 9999999999,"b": Math.floor(Math.random() * 19999999999) - 9999999999,"a": 1},Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999,Math.floor(Math.random() * 19999999999) - 9999999999)});
     document.getElementById('defaultambience-btn').addEventListener('click', () => {setAmbience({"r": 0.28,"g": 0.476,"b": 0.73,"a": 1}, {"r": 0.916,"g": 0.9574,"b": 0.9574,"a": 1}, 45, 315, 1, 0)});
+    
     // insert nodes
-    document.getElementById('nodeStatic-btn').addEventListener('click', () => {appendJSON("level_data/json_files/static-node.json")});
-    document.getElementById('nodeAnimated-btn').addEventListener('click', () => {appendJSON("level_data/json_files/animated-node.json")});
-    document.getElementById('nodeCrumbling-btn').addEventListener('click', () => {appendJSON("level_data/json_files/crumbling-node.json")});
-    document.getElementById('nodeColored-btn').addEventListener('click', () => {appendJSON("level_data/json_files/colored-node.json")});
-    document.getElementById('nodeSign-btn').addEventListener('click', () => {appendJSON("level_data/json_files/sign-node.json")});
-    document.getElementById('nodeStart-btn').addEventListener('click', () => {appendJSON("level_data/json_files/start-node.json")});
-    document.getElementById('nodeFinish-btn').addEventListener('click', () => {appendJSON("level_data/json_files/finish-node.json")});
-    document.getElementById('nodeGravity-btn').addEventListener('click', () => {appendJSON("level_data/json_files/gravity-node.json")});
-    document.getElementById('nodeInvisible-btn').addEventListener('click', () => {appendJSON("level_data/json_files/invisible-node.json")});
-    // insert prefabs
-    document.getElementById('HighGravity-btn').addEventListener('click', () => {appendJSON("level_data/json_files/high-gravity.json")});
-    document.getElementById('Parallelograms-btn').addEventListener('click', () => {appendJSON("level_data/json_files/parallelograms.json")});
-    document.getElementById('BreakTimes-btn').addEventListener('click', () => {appendJSON("level_data/json_files/break-times.json")});
-    document.getElementById('FreeStartFinish-btn').addEventListener('click', () => {appendJSON("level_data/json_files/free-start-finish.json")});
-    document.getElementById('TexturedSigns-btn').addEventListener('click', () => {appendJSON("level_data/json_files/textured-signs.json")});
-    document.getElementById('SpecialStones-btn').addEventListener('click', () => {appendJSON("level_data/json_files/special-stones.json")});
-    document.getElementById('NoHitbox-btn').addEventListener('click', () => {appendJSON("level_data/json_files/no-hitbox.json")});
-    document.getElementById('Inverted-btn').addEventListener('click', () => {appendJSON("level_data/json_files/inverted.json")});
+    // intentional node types
+    document.getElementById('nodeStatic-btn').addEventListener('click', () => {appendInsert("nodeStatic")});
+    document.getElementById('nodeAnimated-btn').addEventListener('click', () => {appendInsert("nodeAnimated")});
+    document.getElementById('nodeColored-btn').addEventListener('click', () => {appendInsert("nodeColored")});
+    document.getElementById('nodeCrumbling-btn').addEventListener('click', () => {appendInsert("nodeCrumbling")});
+    document.getElementById('nodeSign-btn').addEventListener('click', () => {appendInsert("nodeSign")});
+    document.getElementById('nodeStart-btn').addEventListener('click', () => {appendInsert("nodeStart")});
+    document.getElementById('nodeFinish-btn').addEventListener('click', () => {appendInsert("nodeFinish")});
+    document.getElementById('nodeGravity-btn').addEventListener('click', () => {appendInsert("nodeGravity")});
+    document.getElementById('nodeColoredLava-btn').addEventListener('click', () => {appendInsert("nodeColoredLava")});
+    // insert modded nodes
+    // not actually modded, but cool node presets
+    document.getElementById('NeonTransparentNode-btn').addEventListener('click', () => {appendInsert("NeonTransparentNode")});
+    document.getElementById('InvertedNode-btn').addEventListener('click', () => {appendInsert("InvertedNode")});
+    document.getElementById('ScalableStartNode-btn').addEventListener('click', () => {appendInsert("ScalableStartNode")});
+    document.getElementById('ScalableFinishNode-btn').addEventListener('click', () => {appendInsert("ScalableFinishNode")});
+    document.getElementById('ScalableSignNode-btn').addEventListener('click', () => {appendInsert("ScalableSignNode")});
+    document.getElementById('Parallelogram-btn').addEventListener('click', () => {appendInsert("Parallelogram")});
+    // insert presets
+    // groups of pre-made objects
+    document.getElementById('HighGravity-btn').addEventListener('click', () => {appendInsert("HighGravity")});
+    document.getElementById('BreakTimes-btn').addEventListener('click', () => {appendInsert("BreakTimes")});
 }
 async function initAttributes() {
 

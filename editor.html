@@ -71,11 +71,14 @@
                                 <li>
                                     <button class="menu-btn" id="quest-btn">From Quest</button>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <button class="menu-btn" id="the-index-btn">The INDEX</button>
+                                </li> -->
+                                <li>
+                                    <button class="menu-btn" id="basic-cheatsheet-btn">Basic Cheat Sheet</button>
                                 </li>
                                 <li>
-                                    <button class="menu-btn" id="all-objects-btn">All V6 Objects</button>
+                                    <button class="menu-btn" id="advanced-cheatsheet-btn">Advanced Cheat Sheet</button>
                                 </li>
                             </ul>
                         </li>
@@ -125,38 +128,6 @@
                                 <!-- <li>
                                     <button class="menu-btn r">From Quest</button>
                                 </li> -->
-                            </ul>
-                        </li>
-                        <li>
-                            <button class="menu-btn">Prefab</button>
-                            <ul class="menu-dropdown">
-                                <!-- <li>
-                                    <button class="menu-btn r" id="prefabs-btn">Prefabs Menu</button>
-                                </li> -->
-                                <li>
-                                    <button class="menu-btn" id="Parallelograms-btn">Parallelograms</button>
-                                </li>
-                                <li>
-                                    <button class="menu-btn" id="HighGravity-btn">High Gravity</button>
-                                </li>
-                                <li>
-                                    <button class="menu-btn" id="BreakTimes-btn">Break Times</button>
-                                </li>
-                                <li>
-                                    <button class="menu-btn" id="FreeStartFinish-btn">Free Start/Finish</button>
-                                </li>
-                                <li>
-                                    <button class="menu-btn" id="TexturedSigns-btn">Textured Signs</button>
-                                </li>
-                                <li>
-                                    <button class="menu-btn" id="SpecialStones-btn">Special Stones</button>
-                                </li>
-                                <li>
-                                    <button class="menu-btn" id="NoHitbox-btn">No Hitbox</button>
-                                </li>
-                                <li>
-                                    <button class="menu-btn" id="Inverted-btn">Inverted</button>
-                                </li>
                             </ul>
                         </li>
                         <li>
@@ -214,7 +185,41 @@
                                     <button class="menu-btn" id="nodeGravity-btn">Gravity</button>
                                 </li>
                                 <li>
-                                    <button class="menu-btn" id="nodeInvisible-btn">Invisible</button>
+                                    <button class="menu-btn" id="nodeColoredLava-btn">Colored Lava</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Modded Node</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="NeonTransparentNode-btn">Colored Neon & Transparent</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="InvertedNode-btn">Inverted</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="ScalableStartNode-btn">Scalable Start</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="ScalableFinishNode-btn">Scalable Finish</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="ScalableSignNode-btn">Scalable Sign</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="Parallelogram-btn">Parallelogram</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="menu-btn">Presets</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="HighGravity-btn">High Gravity</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="BreakTimes-btn">Break Times</button>
                                 </li>
                             </ul>
                         </li>
@@ -803,7 +808,7 @@
             <div id="editing-container">
                 <div id="editor">
                     <div class="warning" id="formatWarning">formatVersion is under 6. Some features may not work.</div>
-                    <div class="warning" id="definitionWarning">Some objects in this level are modded and may change over time.</div>
+                    <div class="warning" id="definitionWarning">Some objects in this level are modded and may change over time. <br/>Settings > Edit Protobuf > Allow Modded</div>
                     <div name="edit-input" id="edit-input" spellcheck="false" contenteditable="true" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false">{
     "formatVersion": 9,
     "title": "New Level",
@@ -1006,7 +1011,7 @@
                 <div class="prompt-buttons">
                     <button class="prompt-cancel">Cancel</button>
                     <button class="prompt-submit">Sumbit</button>
-                    <button id="range-btn">range+</button>
+                    <button id="range-btn">Allow Modded</button>
                 </div>
             </div>
             <div class="prompt-simple" id="prompt-outline">
