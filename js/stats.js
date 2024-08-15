@@ -535,6 +535,38 @@ function getChallengeScores() {
         document.getElementById('MapChallenges-out').appendChild(user_card);
         checkNotification(value.user_id, "MapChallenges");
     }
+    if (leaderboard.length == 0) {
+        document.getElementById('MapChallenges-out').innerHTML += "<br/><br/><center>Reset was today! No scores yet.</center>";
+    }
+    for (i = 1; i < current_version; i++) {
+        const sortButton = document.createElement("button");
+        sortButton.innerText = `v${i}`;
+        sortButton.classList.add('sort-btn', 'button-sml');
+        sortButton.id = `MapChallengesV${i}-sort-btn`;
+        sortButton.addEventListener("click", () => {
+            buttonEvent(sortButton);
+        });
+        document.getElementById('DailyMap-sort').appendChild(sortButton);
+
+        const output = document.createElement("div");
+        output.classList.add("LeaderboardOutput");
+        output.id = `MapChallengesV${i}-out`;
+        document.getElementById('statistics').appendChild(output);
+
+        for (const value of statistics.challenge_scores[`v${i}`]) {
+            const user_card = userCard(
+                value.user_id, 
+                value.user_name, 
+                false, 
+                false, 
+                false, 
+                `${value.score} Pt`, 
+                ''
+            );
+            document.getElementById(`MapChallengesV${i}-out`).appendChild(user_card);
+            checkNotification(value.user_id, `MapChallengesV${i}`);
+        }
+    }
 }
 function getGlobalPlays() {
     document.getElementById('Global-out').innerHTML += `<p>Total maps: ${numberWithCommas(statistics.total_level_count.levels)}</p>`;
@@ -699,14 +731,7 @@ function getBestOfGrab() {
         innerText = innerText.charAt(0).toUpperCase() + innerText.slice(1);
         buttonElement.innerText = innerText;
         buttonElement.addEventListener('click', () => {
-            document.querySelectorAll('.sort-active').forEach(e => {
-                e.classList.remove('sort-active');
-            });
-            buttonElement.classList.add('sort-active');
-            document.querySelectorAll('.LeaderboardOutput').forEach(e => {
-                e.style.display = 'none';
-            });
-            outputElement.style.display = 'flex';
+            buttonEvent(buttonElement);
         });
         sortingContainer.appendChild(buttonElement);
     }
@@ -1328,14 +1353,7 @@ function getDifficulties() {
         buttonElement.id = 'Difficulties'+key+'-sort-btn';
         buttonElement.innerText = key;
         buttonElement.addEventListener('click', () => {
-            document.querySelectorAll('.sort-active').forEach(e => {
-                e.classList.remove('sort-active');
-            });
-            buttonElement.classList.add('sort-active');
-            document.querySelectorAll('.LeaderboardOutput').forEach(e => {
-                e.style.display = 'none';
-            });
-            outputElement.style.display = 'flex';
+            buttonEvent(buttonElement);
         });
         sortingContainer.appendChild(buttonElement);
     }
@@ -1589,59 +1607,60 @@ function computeStats() {
 
     showListCounts();
 }
-function initButtons() {
-    let buttons = document.querySelectorAll('.stats-button');
-    buttons.forEach((btn) => {
-        let btnId = btn.id;
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.LeaderboardOutput, .stats-sorting, #advertisement').forEach(e => {
-                e.style.display = 'none';
-            });
-            document.querySelectorAll('.tab-active').forEach(e => {
-                e.classList.remove('tab-active');
-            });
-            let container = document.getElementById(`${btnId}-out`);
-            container.style.display = "flex";
-            container.setAttribute('data-forceLoad', true);
-            container.querySelectorAll('[data-src]').forEach(e => {
-                e.src = e.getAttribute('data-src');
-            });
-            
-            let sorter = document.getElementById(`${btnId}-sort`);
-            if (sorter) {
-                sorter.style.display = "flex";
-            }
-            document.querySelectorAll('.sort-active').forEach(e => {
-                e.classList.remove('sort-active');
-            });
-            let sortBtn = document.getElementById(`${btnId}-sort-btn`);
-            if (sortBtn) {
-                sortBtn.classList.add('sort-active');
-            }
-            btn.classList.add('tab-active');
-
-            const urlParams = new URLSearchParams(window.location.search);
-            urlParams.set('tab', btnId);
-            window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+function buttonEvent(btn) {
+    const btnId = btn.id;
+    if (btn.classList.contains("stats-button")) {
+        document.querySelectorAll('.LeaderboardOutput, .stats-sorting, #advertisement').forEach(e => {
+            e.style.display = 'none';
         });
-    });
-    let sort_buttons = document.querySelectorAll('.sort-btn');
-    sort_buttons.forEach((btn) => {
-        let btnId = btn.id;
+        document.querySelectorAll('.tab-active').forEach(e => {
+            e.classList.remove('tab-active');
+        });
+        let container = document.getElementById(`${btnId}-out`);
+        container.style.display = "flex";
+        container.setAttribute('data-forceLoad', true);
+        container.querySelectorAll('[data-src]').forEach(e => {
+            e.src = e.getAttribute('data-src');
+        });
+        
+        let sorter = document.getElementById(`${btnId}-sort`);
+        if (sorter) {
+            sorter.style.display = "flex";
+        }
+        document.querySelectorAll('.sort-active').forEach(e => {
+            e.classList.remove('sort-active');
+        });
+        let sortBtn = document.getElementById(`${btnId}-sort-btn`);
+        if (sortBtn) {
+            sortBtn.classList.add('sort-active');
+        }
+        btn.classList.add('tab-active');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('tab', btnId);
+        window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+    }
+    if (btn.classList.contains("sort-btn")) {
+        document.querySelectorAll('.sort-active').forEach(e => {
+            e.classList.remove('sort-active');
+        });
+        btn.classList.add('sort-active');
+        document.querySelectorAll('.LeaderboardOutput').forEach(e => {
+            e.style.display = 'none';
+        });
+        let container = document.getElementById(`${btnId.replace('sort-btn', 'out')}`);
+        container.style.display = "flex";
+        container.setAttribute('data-forceLoad', true);
+        container.querySelectorAll('[data-src]').forEach(e => {
+            e.src = e.getAttribute('data-src');
+        });
+    }
+}
+function initButtons() {
+    let buttons = document.querySelectorAll('.stats-button, .sort-btn');
+    buttons.forEach((btn) => {
         btn.addEventListener('click', () => {
-            document.querySelectorAll('.sort-active').forEach(e => {
-                e.classList.remove('sort-active');
-            });
-            btn.classList.add('sort-active');
-            document.querySelectorAll('.LeaderboardOutput').forEach(e => {
-                e.style.display = 'none';
-            });
-            let container = document.getElementById(`${btnId.replace('sort-btn', 'out')}`);
-            container.style.display = "flex";
-            container.setAttribute('data-forceLoad', true);
-            container.querySelectorAll('[data-src]').forEach(e => {
-                e.src = e.getAttribute('data-src');
-            });
+            buttonEvent(btn);
         });
     });
 }
