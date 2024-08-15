@@ -367,9 +367,9 @@ function getPlaysLevels() {
 }
 function getTrendingLevels() {
     for (const item of statistics.trending_levels) {
-        const detail = `${item?.change} plays`;
-        const level_card = genericLevelCard(item, detail, timestamp=item?.creation_timestamp);
         if (item.identifier != "2ap647di3dc1k42jf4o2o:1682810607" && item.identifier != "29t798uon2urbra1f8w2q:1693775768") {
+            const detail = `${item?.change} plays`;
+            const level_card = genericLevelCard(item, detail, timestamp=item?.creation_timestamp);
             document.getElementById('Trending-out').appendChild(level_card);
             checkNotification(item.identifier, "Trending");
         }
@@ -1233,9 +1233,9 @@ function getPersonalStats() {
     output.appendChild(trendingHeader);
 
     for (const item of statistics.trending_levels) {
-        const detail = `${item?.change} plays`;
-        const level_card = genericLevelCard(item, detail);
         if (item.identifier.split(':')[0] == user_id) {
+            const detail = `${item?.change} plays`;
+            const level_card = genericLevelCard(item, detail);
             output.appendChild(level_card);
             trendingHeader.style.display = 'block';
         }
@@ -1247,9 +1247,9 @@ function getPersonalStats() {
     output.appendChild(unbeatenHeader);
 
     for (const item of statistics.unbeaten_levels) {
-        const detail = `${Math.round((new Date() - new Date(item?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`;
-        const level_card = genericLevelCard(item, detail);
         if (item.identifier.split(':')[0] == user_id && !("sole" in item)) {
+            const detail = `${Math.round((new Date() - new Date(item?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`;
+            const level_card = genericLevelCard(item, detail);
             output.appendChild(level_card);
             unbeatenHeader.style.display = 'block';
         }
@@ -1261,9 +1261,9 @@ function getPersonalStats() {
     output.appendChild(playedHeader);
 
     for (const item of statistics.most_played_maps) {
-        const detail = `${numberWithCommas(item?.statistics?.total_played)} plays`;
-        const level_card = genericLevelCard(item, detail);
         if (item.identifier.split(':')[0] == user_id) {
+            const detail = `${numberWithCommas(item?.statistics?.total_played)} plays`;
+            const level_card = genericLevelCard(item, detail);
             output.appendChild(level_card);
             playedHeader.style.display = 'block';
         }
@@ -1275,9 +1275,9 @@ function getPersonalStats() {
     output.appendChild(longestHeader);
 
     for (const item of statistics.longest_times) {
-        const detail = `${Math.round(item?.statistics?.time)}s`;
-        const level_card = genericLevelCard(item, detail);
         if (item.identifier.split(':')[0] == user_id) {
+            const detail = `${Math.round(item?.statistics?.time)}s`;
+            const level_card = genericLevelCard(item, detail);
             output.appendChild(level_card);
             longestHeader.style.display = 'block';
         }
@@ -1289,9 +1289,9 @@ function getPersonalStats() {
     output.appendChild(featuredHeader);
 
     for (const item of statistics.best_of_grab) {
-        const detail = item?.list_key.split(":").join("\n").replace("curated_", "").replaceAll("_", " ").toLowerCase();
-        const level_card = genericLevelCard(item, detail);
         if (item.identifier.split(':')[0] == user_id) {
+            const detail = item?.list_key.split(":").join("\n").replace("curated_", "").replaceAll("_", " ").toLowerCase();
+            const level_card = genericLevelCard(item, detail);
             output.appendChild(level_card);
             featuredHeader.style.display = 'block';
         }
