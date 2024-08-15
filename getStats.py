@@ -359,59 +359,52 @@ def get_most_plays(all_verified_maps, old_data):
             most_plays[user_identifier]["change"] = 0
     return most_plays
 
-def get_daily_winner():
-    with open("stats_data/map_winners.json") as winners, open("stats_data/daily.json") as daily_data, open("stats_data/user_blacklist.json") as blacklist:
+def score_challenge(type, position, days_old):
+    if type == "daily":
+        return 3 - position
+    elif type == "weekly":
+        return 10 - position * 3
+    elif type == "unbeaten":
+        return max(days_old // 100 - 50 * position, 0)
+    
+def add_score_by_id(identifier, score, username):
+    with open("stats_data/challenge_scores.json") as scores:
+        scores_data = json.load(scores)
+        current_version = scores_data["current_version"]
+        
+        found = False
+        for i in range(len(scores_data[f"v{current_version}"])):
+            if scores_data[f"v{current_version}"][i]["user_id"] == identifier:
+                scores_data[f"v{current_version}"][i]["score"] += score
+                found = True
+                break
+        
+        if not found:
+            scores_data[f"v{current_version}"].append({"user_id": identifier, "score": score, "user_name": username})
+            
+        # sort by score
+        scores_data[f"v{current_version}"].sort(key=lambda x: x["score"], reverse=True)
+        
+        with open("stats_data/challenge_scores.json", "w") as scores:
+            json.dump(scores_data, scores)
+
+def get_challenge_winner(type):
+    with open("stats_data/daily.json") as daily_data, open("stats_data/user_blacklist.json") as blacklist:
         daily_json = json.load(daily_data)
-        map_json = daily_json["daily"]
+        map_json = daily_json[type]
         blacklist_data = json.load(blacklist)
-        winners_json = json.load(winners)
 
         winner_list = get_level_leaderboard(map_json["identifier"])
-        print(winner_list)
         offset = 0
         for i in range(min(len(winner_list), 3)):
             if winner_list[i - offset]["user_name"] in blacklist_data:
                 winner_list.pop(i - offset)
                 offset += 1
-        winner = winner_list[:3]
-        winners_json.append([winner, map_json, int(datetime.now().timestamp()), "daily_map"])
-    write_json_file('stats_data/map_winners.json', winners_json)
 
-def get_weekly_winner():
-    with open("stats_data/map_winners.json") as winners, open("stats_data/daily.json") as daily_data, open("stats_data/user_blacklist.json") as blacklist:
-        daily_json = json.load(daily_data)
-        map_json = daily_json["weekly"]
-        blacklist_data = json.load(blacklist)
-        winners_json = json.load(winners)
-
-        winner_list = get_level_leaderboard(map_json["identifier"])
-        offset = 0
-        for i in range(len(winner_list)):
-            print(i)
-            if winner_list[i - offset]["user_name"] in blacklist_data:
-                winner_list.pop(i - offset)
-                offset += 1
-        winner = winner_list[:3]
-        winners_json.append([winner, map_json, int(datetime.now().timestamp()), "weekly_map"])
-    write_json_file('stats_data/map_winners.json', winners_json)
-
-def get_unbeaten_winner():
-    with open("stats_data/map_winners.json") as winners, open("stats_data/daily.json") as daily_data, open("stats_data/user_blacklist.json") as blacklist:
-        daily_json = json.load(daily_data)
-        map_json = daily_json["unbeaten"]
-        blacklist_data = json.load(blacklist)
-        winners_json = json.load(winners)
-
-        winner_list = get_level_leaderboard(map_json["identifier"])
-        offset = 0
-        for i in range(len(winner_list)):
-            print(i)
-            if winner_list[i - offset]["user_name"] in blacklist_data:
-                winner_list.pop(i - offset)
-                i += 1
-        winner = winner_list[:3]
-        winners_json.append([winner, map_json, int(datetime.now().timestamp()), "unbeaten_map"])
-    write_json_file('stats_data/map_winners.json', winners_json)
+        days_old = timestamp_to_days(map_json['update_timestamp'], int(datetime.now().timestamp()) * 1000)
+        for i in range(len(winner_list[:3])):
+            score = score_challenge(type, i, days_old)
+            add_score_by_id(winner_list[i]["user_id"], score, winner_list[i]["user_name"])
 
 def get_daily_map(all_verified_maps):
     with open("stats_data/next_up.json") as data_file:
@@ -564,74 +557,65 @@ def get_level_data():
     with open("stats_data/daily.json") as file:
             daily_data = json.load(file)
 
-    get_daily_winner()
+    get_challenge_winner("daily")
     daily_level = get_daily_map(all_verified)
     daily_anc = [daily_level["title"], f"{VIEWER_URL}?level={daily_level['identifier']}"]
     daily_data["daily"] = daily_level
 
-    get_unbeaten_winner()
+    get_challenge_winner("unbeaten")
     unbeaten_level = get_unbeaten_map()
     unbeaten_anc = [unbeaten_level["title"], f"{VIEWER_URL}?level={unbeaten_level['identifier']}"]
     daily_data["unbeaten"] = unbeaten_level
 
     weekly_anc = False
     weekly = log_data["days_since_weekly"] + 1
+    reset = log_data["weeks_since_reset"]
     if weekly == 7:
+        reset += 1
+                
         write_json_file("stats_data/empty_leaderboards.json", get_empty_leaderboards())
         
-        get_weekly_winner()
+        get_challenge_winner("weekly")
         weekly_level = get_weekly_map(all_verified)
         weekly_anc = [weekly_level["title"], f"{VIEWER_URL}?level={weekly_level['identifier']}"]
         daily_data["weekly"] = weekly_level
+        
+        if reset == 8:
+            reset = 0
+            with open("stats_data/challenge_scores.json") as scores:
+                scores_data = json.load(scores)
+                scores_data["current_version"] = scores_data["current_version"] + 1
+                scores_data[f"v{scores_data["current_version"]}"] = []
+                write_json_file("stats_data/challenge_scores.json", scores_data)
+                
         weekly = 0
 
-    log(weekly)
+    log(weekly, reset)
 
     write_json_file('stats_data/daily.json', daily_data)
 
     run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels)
 
-def log(weekly):
+def log(weekly, reset):
     log_data = {
         "days_since_weekly": weekly,
-        "last_ran": datetime.now().timestamp()
+        "last_ran": datetime.now().timestamp(),
+        "weeks_since_reset": reset,
     }
-    write_json_file('stats_data/log_data.json', log_data)
+    write_json_file('stats_data/log_data.json', reset)
 
 async def get_challenge_scores():
-    with open('stats_data/map_winners.json') as file_data:
-        items = json.load(file_data)
-
-    leaderboard = {}
-
-    for item in items:
-        top_three = item[0]
-        level = item[1]
-        time = item[2]
-        score_type = item[3]
-        for i in range(len(top_three)):
-            user_name = top_three[i]["user_name"]
-            user_id = top_three[i]["user_id"]
-
-            if user_id not in leaderboard:
-                leaderboard[user_id] = [user_name, 0, user_id]
-            
-            if score_type == "daily_map":
-                leaderboard[user_id][1] += 3 - i
-            elif score_type == "weekly_map":
-                leaderboard[user_id][1] += 10 - i * 3
-            elif score_type == "unbeaten_map":
-                leaderboard[user_id][1] += 3 - i
-                days_old = timestamp_to_days(level['update_timestamp'], time * 1000)
-                leaderboard[user_id][1] += max(days_old // 100 - 50 * i, 0)
-
-    leaderboard = dict(sorted(leaderboard.items(), key=lambda x: x[1][1], reverse=True))
+    with open('stats_data/challenge_scores.json') as file_data:
+        all_leaderboards = json.load(file_data)
+        current_version = all_leaderboards["current_version"]
+        leaderboard = all_leaderboards[f"v{current_version}"]
 
     embed = discord.Embed(title='Map Challenges Leaderboard', url=f"{PAGE_URL}stats?tab=MapChallenges", description=str(date.today()), color=0x00ffff)
     embed_values = []
     count = 0
-    for value in leaderboard.values():
-        embed_values.append(f'{value[0]}: {int(value[1])} Pt')
+    for i in range(len(leaderboard)):
+        value = leaderboard[i]
+        embed_values.append(f'{value["user_name"]}: {int(value["score"])} Pt')
         if count >= 10:
             break
         count += 1
