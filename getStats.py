@@ -584,6 +584,7 @@ def get_level_data():
             reset = 0
             with open("stats_data/challenge_scores.json") as scores:
                 scores_data = json.load(scores)
+                scores_data[f"v{scores_data["current_version"]}"] = scores_data[f"v{scores_data["current_version"]}"][:10]
                 scores_data["current_version"] = scores_data["current_version"] + 1
                 scores_data[f"v{scores_data["current_version"]}"] = []
                 write_json_file("stats_data/challenge_scores.json", scores_data)
