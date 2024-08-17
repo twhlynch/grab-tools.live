@@ -603,7 +603,7 @@ def log(weekly, reset):
         "last_ran": datetime.now().timestamp(),
         "weeks_since_reset": reset,
     }
-    write_json_file('stats_data/log_data.json', reset)
+    write_json_file('stats_data/log_data.json', log_data)
 
 async def get_challenge_scores():
     with open('stats_data/challenge_scores.json') as file_data:
