@@ -1006,7 +1006,7 @@ function getTipping() {
         level.tipped_amount = level_stats.tipped_amount;
     }
 
-    const sorted_levels = levels_data.sort((a, b) => b.tipped_amount - a.tipped_amount).slice(0, 200);
+    const sorted_levels = levels_data.sort((a, b) => (b.tipped_amount || 0) - (a.tipped_amount || 0)).slice(0, 200);
     for (const item of sorted_levels) {
         if (item.tipped_amount > 0) {
             const detail = `${item.tipped_amount}`;
