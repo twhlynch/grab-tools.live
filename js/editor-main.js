@@ -770,6 +770,10 @@ function loadLevelNode(node, parent) {
                     }
                     material.uniforms.specularColor.value = specularColor;
                 }
+                if (node.levelNodeStatic.isTransparent) {
+                    material.uniforms.isTransparent.value = 1.0
+                    material.transparent = true;
+                }
             }
         }
         object.material = material;
