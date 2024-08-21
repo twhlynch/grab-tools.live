@@ -1991,10 +1991,12 @@ function loadTemplateButtons() {
     });
 }
 function handleDrop(e) {
-    e.preventDefault();
     e.stopPropagation();
     const dt = e.dataTransfer;
     const files = dt.files;
+    if (files.length) {
+        e.preventDefault();
+    }
     for (let i = 0; i < files.length; i++) {
         const file = files[i];
         if (file.name.endsWith('.level')) {
@@ -2005,6 +2007,28 @@ function handleDrop(e) {
             let imageInput = document.getElementById('image-btn-input');
             imageInput.files = files;
             generatePixelArt();
+        }
+    }
+
+    const text = dt.getData('text/plain');
+    if (text && text.startsWith("https://grabvr.quest/levels")) {
+        e.preventDefault();
+
+        const urlParams = new URLSearchParams(text.split("?")[1]);
+        const levelID = urlParams.get('level').replace('/', ':');
+
+        const login_details = {
+            "user_name": localStorage.getItem('user_name'),
+            "user_id": localStorage.getItem('user_id')
+        }
+        if (login_details.user_name && login_details.user_id) {
+            downloadAndOpenLevel(levelID);
+        } else {
+            const loginPromptElement = document.getElementById('loginPrompt');
+            loginPromptElement.style.display = 'grid';
+            loginPromptElement.addEventListener('click', () => {
+                loginPromptElement.style.display = 'none';
+            });
         }
     }
 }
