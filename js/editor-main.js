@@ -3996,6 +3996,10 @@ function initUI() {
         transformControl.setScaleSnap( 0.25 );
     });
 
+    document.getElementById('edit_exportJSON-btn').addEventListener('click', () => {
+        saveDataAsFile(`${(Date.now()).toString().slice(0, -3)}.node.json`, JSON.stringify(editing.grabNodeData, 2));
+    });
+
     timelineSliderElement.addEventListener('input', () => {
         animationTime = parseFloat(timelineSliderElement.value);
     });
