@@ -761,10 +761,10 @@ function loadLevelNode(node, parent) {
                     let specularColor = [specularFactor, specularFactor, specularFactor, 16.0];
                     if (node.levelNodeStatic.color2) {
                         specularColor = [
-                            node.levelNodeStatic.color2.r, 
-                            node.levelNodeStatic.color2.g, 
-                            node.levelNodeStatic.color2.b, 
-                            node.levelNodeStatic.color2.a
+                            node.levelNodeStatic.color2.r || 0,
+                            node.levelNodeStatic.color2.g || 0, 
+                            node.levelNodeStatic.color2.b || 0, 
+                            node.levelNodeStatic.color2.a || 0
                         ];
                         material.uniforms.isColoredLava.value = 1.0;
                     }
