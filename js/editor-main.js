@@ -1708,6 +1708,68 @@ function explodeLevel() {
     }, false);
     setLevel(obj);
 }
+function unGroup(group) {
+    let ungrouped = [];
+    if (!group.levelNodeGroup) { return false; }
+    for (let child of group.levelNodeGroup.childNodes) {
+        let type = Object.keys(child)[0];
+        if (child[type].position) {
+            child[type].position.x = (child[type].position.x || 0) + (group.levelNodeGroup?.position?.x || 0);
+            child[type].position.y = (child[type].position.y || 0) + (group.levelNodeGroup?.position?.y || 0);
+            child[type].position.z = (child[type].position.z || 0) + (group.levelNodeGroup?.position?.z || 0);
+        }
+        if (child[type].rotation) {
+            child[type].rotation.x = (child[type].rotation.x || 0) * (group.levelNodeGroup?.rotation?.x || 0);
+            child[type].rotation.y = (child[type].rotation.y || 0) * (group.levelNodeGroup?.rotation?.y || 0);
+            child[type].rotation.z = (child[type].rotation.z || 0) * (group.levelNodeGroup?.rotation?.z || 0);
+            child[type].rotation.w = (child[type].rotation.w || 0) * (group.levelNodeGroup?.rotation?.w || 0);
+        }
+        if (child[type].scale) {
+            child[type].scale.x = (child[type].scale.x || 0) * (group.levelNodeGroup?.scale?.x || 0);
+            child[type].scale.y = (child[type].scale.y || 0) * (group.levelNodeGroup?.scale?.y || 0);
+            child[type].scale.z = (child[type].scale.z || 0) * (group.levelNodeGroup?.scale?.z || 0);
+        }
+        if (child[type].radius) {
+            child[type].radius = (child[type].radius || 0) * (group.levelNodeGroup?.scale?.x || 0);
+        }
+        ungrouped.push(deepClone(child));
+    }
+    return ungrouped;
+}
+function unGroupLevel() {
+    let level = getLevel();
+    if (level.levelNodes[0]?.levelNodeGroup) {
+        let ungrouped = unGroup(level.levelNodes[0]);
+        level.levelNodes = [...ungrouped];
+    }
+    setLevel(level);
+}
+function recursiveUnGroup(nodes) {
+    let ungrouped = [...nodes];
+    let done = [];
+    let temps = [];
+    while (true) {
+        for (let node of ungrouped) {
+            if (node.levelNodeGroup) {
+                let ungroup = unGroup(node);
+                for (let child of ungroup) {
+                    temps.push(child);
+                }
+            } else {
+                done.push(node);
+            }
+        }
+        if (temps.length === 0) {
+            break;
+        }
+        ungrouped = [...temps];
+        temps = [];
+    }
+    return done;
+}
+function downgrade() {
+ // TODO:
+}
 function outlineNode(node) {
     let size = document.getElementById('outline-prompt').value;
     let nodes = [];
@@ -2904,11 +2966,6 @@ function groupLevel() {
     levelData.levelNodes = [groupNodes(levelData.levelNodes)];
     setLevel(levelData);
 }
-function ungroupLevel() {
-    let levelData = getLevel();
-    levelData.levelNodes = levelData.levelNodes[0].levelNodeGroup.childNodes;
-    setLevel(levelData);
-}
 function FPEPixelate() {
     let levelData = getLevel();
     levelData.levelNodes = [groupNodes(levelData.levelNodes)];
@@ -4078,7 +4135,7 @@ function initUI() {
     document.getElementById('connect-adb-btn').addEventListener('click', connectUsb);
     document.getElementById('cleardetails-btn').addEventListener('click', clearLevelDetails);
     document.getElementById('group-btn').addEventListener('click', groupLevel);
-    document.getElementById('ungroup-btn').addEventListener('click', ungroupLevel);
+    document.getElementById('ungroup-btn').addEventListener('click', unGroupLevel);
     document.getElementById('FPE-pixelate-btn').addEventListener('click', FPEPixelate);
     // document.getElementById('outline-btn').addEventListener('click', outlineLevel);
     document.getElementById('magic-outline-btn').addEventListener('click', magicOutline);
@@ -4091,6 +4148,7 @@ function initUI() {
     document.getElementById('randomize-all-btn').addEventListener('click', randomizeLevelAll);
     document.getElementById('explode-btn').addEventListener('click', explodeLevel);
     document.getElementById('duplicate-btn').addEventListener('click', duplicateLevel);
+    document.getElementById('ungroup-all-btn').addEventListener('click', () => {let level = getLevel(); level.levelNodes = recursiveUnGroup(level.levelNodes); setLevel(level)});
     document.getElementById('topc-btn').addEventListener('click', () => {downloadProto(getLevel())});
     document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('level_data/json_files/empty.json')});
     // document.getElementById('the-index-btn').addEventListener('click', () => {openProto('level_data/the-index.level')});
