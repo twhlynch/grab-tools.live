@@ -139,7 +139,7 @@ function deepClone(obj) {
 }
 function runOnObjects(objects, func, doGroups = true) {
     objects.forEach((object) => {
-        let isGroup = node?.grabNodeData?.levelNodeGroup ? true : false;
+        let isGroup = node?.userData?.grabNodeData?.levelNodeGroup ? true : false;
         if ((isGroup && doGroups) || !isGroup) {
             func(object);
         }
@@ -1041,8 +1041,8 @@ function loadLevelNode(node, parent) {
     let animationPath = undefined;
     let animationPoints = [];
     if (object !== undefined) {
-        object.grabNodeData = node;
-        object.initialGrabNodeData = deepClone(node);
+        object.userData.grabNodeData = node;
+        object.userData.initialGrabNodeData = deepClone(node);
         if(node.animations && node.animations.length > 0 && node.animations[0].frames && node.animations[0].frames.length > 0) {
             for (let frame of node.animations[0].frames) {
                 frame.position.x = frame.position.x || 0;
@@ -1312,10 +1312,40 @@ function saveDataAsFile(filename, data) {
         document.body.removeChild(elem);
     }
 }
+function setExportMaterials(scene) {
+    scene.traverse((node) => {
+        if (node instanceof THREE.Mesh) {
+            console.log(node);
+            const grabNodeData = node.userData.grabNodeData;
+            if (grabNodeData && (grabNodeData.levelNodeStatic || grabNodeData.levelNodeCrumbling)) {
+                let type = Object.keys(grabNodeData)[0];
+                let newMaterial = exportMaterials[Math.max(0, Math.min(grabNodeData[type].material || 0, exportMaterials.length - 1))].clone();
+
+                let scale = Math.round(((node.scale?.x || 0) + (node.scale?.y || 0) + (node.scale?.z || 0)) / 3)
+                newMaterial.map.wrapS = THREE.RepeatWrapping;
+                newMaterial.map.wrapT = THREE.RepeatWrapping;
+                newMaterial.map.repeat.set(scale, scale);
+
+                if (grabNodeData[type].material == 8 || grabNodeData[type].material == 3) {
+                    let color = new THREE.Color(
+                        grabNodeData[type].color1?.r || 0,
+                        grabNodeData[type].color1?.g || 0,
+                        grabNodeData[type].color1?.b || 0
+                    );
+                    newMaterial.color = color;
+                }
+
+                node.material = newMaterial;
+            }
+        }
+    });
+}
 function exportLevelAsGLTF()
 {
 	const exporter = new GLTFExporter();
-    let clonedScene = scene.clone();
+    let clonedScene = scene.clone(true);
+
+    setExportMaterials(clonedScene);
 
     let objectsToRemove = [];
 
@@ -1347,6 +1377,7 @@ function exportLevelAsGLTF()
         function ( error ) {
 
             console.log( 'An error happened' );
+            console.log( error );
 
         },
         {}
@@ -2067,7 +2098,7 @@ function unlockLevel() {
     setLevel(levelData);
 }
 function highlightGroup(object) {
-    if (object?.grabNodeData?.levelNodeGroup) {
+    if (object?.userData?.grabNodeData?.levelNodeGroup) {
         object.children.forEach(child => {
             highlightGroup(child);
         });
@@ -2078,7 +2109,7 @@ function highlightGroup(object) {
     }
 }
 function unHighlightGroup(object) {
-    if (object?.grabNodeData?.levelNodeGroup) {
+    if (object?.userData?.grabNodeData?.levelNodeGroup) {
         object.children.forEach(child => {
             unHighlightGroup(child);
         });
@@ -2108,7 +2139,7 @@ function onPointerMove(e) {
         });
         lastSelected = null;
         for (let i = 0; i < intersects.length; i++) {
-            if (!intersects[i].object.grabNodeData) {
+            if (!intersects[i].object.userData.grabNodeData) {
                 intersects.splice(i, 1);
                 i--;
             }
@@ -2149,17 +2180,17 @@ function generateLevelFromObjects() {
     let levelNodes = [];
     objects.forEach(object => {
         if (object.parent.type == 'Scene') { //TODO: prevent
-            if (object?.grabNodeData?.animations?.length > 0 && object.grabNodeData.animations[0].currentFrameIndex) {
-                delete object.grabNodeData.animations[0].currentFrameIndex;
+            if (object?.userData?.grabNodeData?.animations?.length > 0 && object.userData.grabNodeData.animations[0].currentFrameIndex) {
+                delete object.userData.grabNodeData.animations[0].currentFrameIndex;
             }
-            if (object?.grabNodeData?.levelNodeGroup) {
-                runOnNodes(object.grabNodeData.levelNodeGroup.childNodes, (node) => {
+            if (object?.userData?.grabNodeData?.levelNodeGroup) {
+                runOnNodes(object.userData.grabNodeData.levelNodeGroup.childNodes, (node) => {
                     if (node?.animations?.length > 0 && node?.animations[0]?.currentFrameIndex) {
                         delete node.animations[0].currentFrameIndex;
                     }
                 }, true);
             }
-            levelNodes.push(object.grabNodeData);
+            levelNodes.push(object.userData.grabNodeData);
         }
     });
     let curLevel = getLevel();
@@ -2173,18 +2204,18 @@ function generateFrameLevelFromObjects() {
     let levelNodes = [];
     objects.forEach(object => {
         if (object.parent.type == 'Scene') { //TODO: prevent again -.-
-            if (object?.grabNodeData?.animations?.length > 0 && object.grabNodeData.animations[0].currentFrameIndex) {
-                delete object.grabNodeData.animations[0].currentFrameIndex;
+            if (object?.userData?.grabNodeData?.animations?.length > 0 && object.userData.grabNodeData.animations[0].currentFrameIndex) {
+                delete object.userData.grabNodeData.animations[0].currentFrameIndex;
             }
-            if (object?.grabNodeData?.levelNodeGroup) {
-                runOnNodes(object.grabNodeData.levelNodeGroup.childNodes, (node) => {
+            if (object?.userData?.grabNodeData?.levelNodeGroup) {
+                runOnNodes(object.userData.grabNodeData.levelNodeGroup.childNodes, (node) => {
                     if (node?.animations?.length > 0 && node?.animations[0]?.currentFrameIndex) {
                         delete node.animations[0].currentFrameIndex;
                     }
                 }, true);
             }
-            let initialNode = object.initialGrabNodeData;
-            let currentNode = object.grabNodeData;
+            let initialNode = object.userData.initialGrabNodeData;
+            let currentNode = object.userData.grabNodeData;
             let initialPos = Object.values(initialNode)[0].position;
             let currentPos = Object.values(currentNode)[0].position;
             let initialRot = Object.values(initialNode)[0].rotation;
@@ -2270,7 +2301,7 @@ function generateFrameLevelFromObjects() {
     applyChangesAsFrameElement.style.display = "none";
 }
 function groupEditingObject() {
-    if (editing && !editing?.grabNodeData?.levelNodeGroup) {
+    if (editing && !editing?.userData?.grabNodeData?.levelNodeGroup) {
         let groupData = {
             "levelNodeGroup": {
                 "position": {
@@ -2286,7 +2317,7 @@ function groupEditingObject() {
                     "x": 1.0,
                     "z": 1.0
                 },
-                "childNodes": [editing.grabNodeData]
+                "childNodes": [editing.userData.grabNodeData]
             }
         };
         groupObject = new THREE.Mesh(
@@ -2304,7 +2335,7 @@ function groupEditingObject() {
             groupObject.geometry = geometry;
         }
         objects.push(groupObject);
-        groupObject.grabNodeData = groupData;
+        groupObject.userData.grabNodeData = groupData;
         groupObject.initialPosition = new THREE.Vector3(0, 0, 0);
         groupObject.initialRotation = new THREE.Quaternion(0, 0, 0, 1);
 
@@ -2317,9 +2348,9 @@ function groupEditingObject() {
     }
 }
 function cloneEditingObject() {
-    if (editing && editing.parent.type == "Scene" && !editing?.grabNodeData?.levelNodeGroup) {
+    if (editing && editing.parent.type == "Scene" && !editing?.userData?.grabNodeData?.levelNodeGroup) {
         let clone = editing.clone();
-        clone.grabNodeData = deepClone(editing.grabNodeData);
+        clone.userData.grabNodeData = deepClone(editing.userData.grabNodeData);
         clone.initialPosition = deepClone(editing.initialPosition);
         clone.initialRotation = deepClone(editing.initialRotation);
         if (editing.animation) {
@@ -2331,7 +2362,7 @@ function cloneEditingObject() {
     }
 }
 function deleteEditingObject() {
-    if (editing && editing.parent.type == "Scene" && !editing?.grabNodeData?.levelNodeGroup) {
+    if (editing && editing.parent.type == "Scene" && !editing?.userData?.grabNodeData?.levelNodeGroup) {
         editing.parent.remove(editing);
         objects.splice(objects.indexOf(editing), 1);
         if (editing.animation) {
@@ -2410,7 +2441,7 @@ function remakeEditingObject(material, shape, shapeData) {
     }
 
     newObject.material = newMaterial;
-    newObject.grabNodeData = shapeData;
+    newObject.userData.grabNodeData = shapeData;
     newObject.initialPosition = nodeData.position;
     newObject.initialRotation = nodeData.rotation;
     newObject.position.copy(editing.position);
@@ -2451,7 +2482,7 @@ function remakeObject(material, shape, shapeData, object) {
     }
 
     newObject.material = newMaterial;
-    newObject.grabNodeData = shapeData;
+    newObject.userData.grabNodeData = shapeData;
     newObject.initialPosition = nodeData.position;
     newObject.initialRotation = nodeData.rotation;
     newObject.position.copy(object.position);
@@ -2472,8 +2503,8 @@ function remakeObject(material, shape, shapeData, object) {
     selected = newObject;
 }
 function remakeGroup(shape, material, object) {
-    if (object.grabNodeData.levelNodeGroup) {
-        let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
+    if (object.userData.grabNodeData.levelNodeGroup) {
+        let childNodes = editing.userData.grabNodeData.levelNodeGroup.childNodes;
         runOnNodes(childNodes, (node) => {
             if (material) {
                 if (node.levelNodeStatic) {
@@ -2489,7 +2520,7 @@ function remakeGroup(shape, material, object) {
         let objectsToRemake = [];
         for (let i = 0; i < object.children.length; i++) {
             let child = object.children[i];
-            if (child?.grabNodeData?.levelNodeGroup) {
+            if (child?.userData?.grabNodeData?.levelNodeGroup) {
                 remakeGroup(shape, material, child);
             } else {
                 objectsToRemake.push(child);
@@ -2499,12 +2530,12 @@ function remakeGroup(shape, material, object) {
             remakeGroup(shape, material, objectsToRemake[i]);
         }
     } else {
-        if (shape && (object.grabNodeData.levelNodeStatic || object.grabNodeData.levelNodeCrumbling)) {
-            let shapeData = deepClone(object.grabNodeData);
+        if (shape && (object.userData.grabNodeData.levelNodeStatic || object.userData.grabNodeData.levelNodeCrumbling)) {
+            let shapeData = deepClone(object.userData.grabNodeData);
             remakeObject(material, shape, shapeData, object);
         }
-        if (material && (object.grabNodeData.levelNodeStatic)) {
-            let shapeData = deepClone(object.grabNodeData);
+        if (material && (object.userData.grabNodeData.levelNodeStatic)) {
+            let shapeData = deepClone(object.userData.grabNodeData);
             remakeObject(material, shape, shapeData, object);
         }
     }
@@ -2512,19 +2543,19 @@ function remakeGroup(shape, material, object) {
 function editShape(shape) {
     if (
         editing && editing.parent.type == "Scene"
-        && (editing.grabNodeData.levelNodeStatic || editing.grabNodeData.levelNodeCrumbling)
+        && (editing.userDatagrabNodeData.levelNodeStatic || editing.userData.grabNodeData.levelNodeCrumbling)
     ) {
-        let shapeData = deepClone(editing.grabNodeData);
+        let shapeData = deepClone(editing.userData.grabNodeData);
         let nodeData = Object.values(shapeData)[0];
         let material = nodeData.material || 0;
         remakeEditingObject(material, shape, shapeData);
         applyChangesElement.style.display = "block";
         applyChangesAsFrameElement.style.display = "block";
-    } else if (editing && editing?.grabNodeData?.levelNodeGroup) {
+    } else if (editing && editing?.userData?.grabNodeData?.levelNodeGroup) {
         // TODO: fix changing children
         remakeGroup(shape, false, editing)
         // change group nodeData
-        let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
+        let childNodes = editing.userData.grabNodeData.levelNodeGroup.childNodes;
         runOnNodes(childNodes, (node) => {
             if (node.levelNodeStatic || node.levelNodeCrumbling) {
                 Object.values(node)[0].shape = shape;
@@ -2535,19 +2566,19 @@ function editShape(shape) {
 function editMaterial(material) {
     if (
         editing && editing.parent.type == "Scene" 
-        && (editing.grabNodeData.levelNodeStatic)
+        && (editing.userData.grabNodeData.levelNodeStatic)
     ) {
-        let shapeData = deepClone(editing.grabNodeData);
+        let shapeData = deepClone(editing.userData.grabNodeData);
         let nodeData = Object.values(shapeData)[0];
         let shape = nodeData.shape;
         remakeEditingObject(material, shape, shapeData);
         applyChangesElement.style.display = "block";
         applyChangesAsFrameElement.style.display = "block";
-    } else if (editing && editing?.grabNodeData?.levelNodeGroup) {
+    } else if (editing && editing?.userData?.grabNodeData?.levelNodeGroup) {
         // TODO: fix changing children
         remakeGroup(false, material, editing)
         // change group nodeData
-        let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
+        let childNodes = editing.userData.grabNodeData.levelNodeGroup.childNodes;
         runOnNodes(childNodes, (node) => {
             if (node.levelNodeStatic) {
                 node.levelNodeStatic.material = material;
@@ -2557,8 +2588,8 @@ function editMaterial(material) {
 }
 function editColor(e) {
     let color = e.target.value;
-    if (editing && editing.parent.type == "Scene" && editing.grabNodeData.levelNodeStatic) {
-        let shapeData = deepClone(editing.grabNodeData);
+    if (editing && editing.parent.type == "Scene" && editing.userData.grabNodeData.levelNodeStatic) {
+        let shapeData = deepClone(editing.userData.grabNodeData);
         let nodeData = Object.values(shapeData)[0];
         nodeData.color1 = {
             "r": parseInt(color.substring(1, 3), 16)/255,
@@ -2571,11 +2602,11 @@ function editColor(e) {
         remakeEditingObject(material, shape, shapeData);
         applyChangesElement.style.display = "block";
         applyChangesAsFrameElement.style.display = "block";
-    } else if (editing && editing?.grabNodeData?.levelNodeGroup) {
+    } else if (editing && editing?.userData?.grabNodeData?.levelNodeGroup) {
         // TODO: fix changing children
         remakeGroup(false, false, editing)
         // change group nodeData
-        let childNodes = editing.grabNodeData.levelNodeGroup.childNodes;
+        let childNodes = editing.userData.grabNodeData.levelNodeGroup.childNodes;
         runOnNodes(childNodes, (node) => {
             if (node.levelNodeStatic) {
                 Object.values(node)[0].color1 = {
@@ -2604,16 +2635,16 @@ function editAnimation(animation) {
     if (
         editing && editing?.parent?.type == "Scene"
         && (
-            editing.grabNodeData.levelNodeStatic || 
-            editing.grabNodeData.levelNodeCrumbling ||
-            editing.grabNodeData.levelNodeGravity ||
-            editing.grabNodeData.levelNodeSign || 
-            editing.grabNodeData.levelNodeGroup
+            editing.userData.grabNodeData.levelNodeStatic || 
+            editing.userData.grabNodeData.levelNodeCrumbling ||
+            editing.userData.grabNodeData.levelNodeGravity ||
+            editing.userData.grabNodeData.levelNodeSign || 
+            editing.userData.grabNodeData.levelNodeGroup
         )
     ) {
         if (animation == "none") {
             editing.animation = null;
-            editing.grabNodeData.animations = [];
+            editing.userData.grabNodeData.animations = [];
             animatedObjects.splice(animatedObjects.indexOf(editing), 1);
             editing.position.copy(editing.initialPosition);
             editing.quaternion.copy(editing.initialRotation);
@@ -2625,9 +2656,9 @@ function editAnimation(animation) {
             let animationData = animationPresets[animation];
             editing.animation = animationData;
             editing.animation.currentFrameIndex = 0;
-            editing.grabNodeData.animations = [animationData];
-            editing.initialPosition = Object.values(editing.grabNodeData)[0].position;
-            editing.initialRotation = Object.values(editing.grabNodeData)[0].rotation;
+            editing.userData.grabNodeData.animations = [animationData];
+            editing.initialPosition = Object.values(editing.userData.grabNodeData)[0].position;
+            editing.initialRotation = Object.values(editing.userData.grabNodeData)[0].rotation;
             editing.position.copy(editing.initialPosition);
             editing.quaternion.copy(editing.initialRotation);
             if (hadAnimation) {
@@ -2646,17 +2677,17 @@ function addFrame(frame) {
         "z": 0
     }
     let currentTime = 0;
-    if (object.grabNodeData.animations) {
-        if (object.grabNodeData.animations
-            && object.grabNodeData.animations.length
-            && object.grabNodeData.animations[0].frames
-            && object.grabNodeData.animations[0].frames.length
-            && object.grabNodeData.animations[0].frames[0]) {
-            currentPosition = object.grabNodeData.animations[0].frames[object.grabNodeData.animations[0].frames.length - 1].position;
-            currentTime = object.grabNodeData.animations[0].frames[object.grabNodeData.animations[0].frames.length - 1].time || 0;
+    if (object.userData.grabNodeData.animations) {
+        if (object.userData.grabNodeData.animations
+            && object.userData.grabNodeData.animations.length
+            && object.userData.grabNodeData.animations[0].frames
+            && object.userData.grabNodeData.animations[0].frames.length
+            && object.userData.grabNodeData.animations[0].frames[0]) {
+            currentPosition = object.userData.grabNodeData.animations[0].frames[object.userData.grabNodeData.animations[0].frames.length - 1].position;
+            currentTime = object.userData.grabNodeData.animations[0].frames[object.userData.grabNodeData.animations[0].frames.length - 1].time || 0;
         }
     } else {
-        object.grabNodeData.animations = [{
+        object.userData.grabNodeData.animations = [{
             "name": "idle",
             "frames": [
                 {
@@ -2699,7 +2730,7 @@ function addFrame(frame) {
         default:
             break;
     }
-    object.grabNodeData.animations[0].frames.push({
+    object.userData.grabNodeData.animations[0].frames.push({
         "position": currentPosition,
         "rotation": {
             "w": 1,
@@ -2721,27 +2752,27 @@ async function getAnimationPresets() {
 }
 function copyEditingJSON() {
     if (editing) {
-        let json = JSON.stringify(editing.grabNodeData, null, 4);
+        let json = JSON.stringify(editing.userData.grabNodeData, null, 4);
         navigator.clipboard.writeText(json);
     }
 }
 function copyEditingChildren() {
-    if (editing && editing?.grabNodeData?.levelNodeGroup) {
-        let json = JSON.stringify(editing.grabNodeData.levelNodeGroup.childNodes, null, 4);
+    if (editing && editing?.userData?.grabNodeData?.levelNodeGroup) {
+        let json = JSON.stringify(editing.userData.grabNodeData.levelNodeGroup.childNodes, null, 4);
         json = json.substring(1, json.length - 1);
         navigator.clipboard.writeText(json);
     }
 }
 function copyEditingAnimations() {
-    if (editing && editing?.grabNodeData?.animations) {
-        let json = JSON.stringify(editing.grabNodeData.animations, null, 4);
+    if (editing && editing?.userData?.grabNodeData?.animations) {
+        let json = JSON.stringify(editing.userData.grabNodeData.animations, null, 4);
         json = json.substring(1, json.length - 1);
         navigator.clipboard.writeText(json);
     }
 }
 function editEditingJSON(input) {
     let newJSON = JSON.parse(input);
-    editing.grabNodeData = newJSON;
+    editing.userData.grabNodeData = newJSON;
     generateLevelFromObjects();
 }
 function editEditingChildrenJSON(input) {
@@ -2749,7 +2780,7 @@ function editEditingChildrenJSON(input) {
         input = '[\n' + input + '\n]';
     }
     let newJSON = JSON.parse(input);
-    editing.grabNodeData.levelNodeGroup.childNodes = newJSON;
+    editing.userData.grabNodeData.levelNodeGroup.childNodes = newJSON;
     generateLevelFromObjects();
 }
 function editEditingAnimationsJSON(input) {
@@ -2757,7 +2788,7 @@ function editEditingAnimationsJSON(input) {
         input = '[\n' + input + '\n]';
     }
     let newJSON = JSON.parse(input);
-    editing.grabNodeData.animations = newJSON;
+    editing.userData.grabNodeData.animations = newJSON;
     generateLevelFromObjects();
 }
 function initEditor() {
@@ -2786,18 +2817,18 @@ function initEditor() {
     transformControl = new TransformControls( camera, renderer.domElement );
     transformControl.addEventListener( 'change', () => {
         if (enableEditing && editing?.parent?.type == "Scene") {
-            Object.values(editing.grabNodeData)[0].position = {
+            Object.values(editing.userData.grabNodeData)[0].position = {
                 "x": editing.position.x,
                 "y": editing.position.y,
                 "z": editing.position.z
             };
-            Object.values(editing.grabNodeData)[0].rotation = {
+            Object.values(editing.userData.grabNodeData)[0].rotation = {
                 "x": editing.quaternion.x,
                 "y": editing.quaternion.y,
                 "z": editing.quaternion.z,
                 "w": editing.quaternion.w
             };
-            Object.values(editing.grabNodeData)[0].scale = {
+            Object.values(editing.userData.grabNodeData)[0].scale = {
                 "x": editing.scale.x,
                 "y": editing.scale.y,
                 "z": editing.scale.z
@@ -3477,7 +3508,7 @@ function setEditAmbience() {
     setLevel(level);
 }
 function animationToolSetup() {
-    let animations = (editing?.grabNodeData?.animations || []);
+    let animations = (editing?.userData?.grabNodeData?.animations || []);
     let frames = animations.length > 0 ? (animations[0]?.frames || []) : [];
     for (let i in frames) {
         let frame = frames[i];
@@ -3488,8 +3519,8 @@ function animationToolSetup() {
     }
 }
 function animationToolAdd() {
-    let initialNode = editing.initialGrabNodeData;
-    let currentNode = editing.grabNodeData;
+    let initialNode = editing.userData.initialGrabNodeData;
+    let currentNode = editing.userData.grabNodeData;
     let initialPos = Object.values(initialNode)[0].position;
     let currentPos = Object.values(currentNode)[0].position;
     let initialRot = Object.values(initialNode)[0].rotation;
@@ -3548,19 +3579,19 @@ function animationToolAdd() {
         }
     }
     editing.animations[0].frames.push(newFrame);
-    if (!editing?.grabNodeData?.animations) {
-        editing.grabNodeData.animations = [];
+    if (!editing?.userData?.grabNodeData?.animations) {
+        editing.userData.grabNodeData.animations = [];
     }
-    if (!(editing?.grabNodeData?.animations?.length > 0)) {
-        editing.grabNodeData.animations[0] = {
+    if (!(editing?.userData?.grabNodeData?.animations?.length > 0)) {
+        editing.userData.grabNodeData.animations[0] = {
             "frames": [],
             "speed": 1
         }
     }
-    editing.grabNodeData.animations[0].frames.push(newFrame);
+    editing.userData.grabNodeData.animations[0].frames.push(newFrame);
 }
 function animationToolClear() {
-    editing?.grabNodeData?.animations ? editing.grabNodeData.animations = [] : null;
+    editing?.userData?.grabNodeData?.animations ? editing.userData.grabNodeData.animations = [] : null;
 }
 function generateCheatSheet(advanced=false) {
     let level = getLevel();
@@ -3724,7 +3755,7 @@ function initUI() {
     document.getElementById('edit_editJSON-btn').addEventListener('click', () => {
         promptsElement.style.display = 'grid';
         document.getElementById('prompt-editingJson').style.display = 'flex';
-        document.getElementById('editingJson-prompt').innerHTML = JsonToHighlightedText(editing.grabNodeData);
+        document.getElementById('editingJson-prompt').innerHTML = JsonToHighlightedText(editing.userData.grabNodeData);
     });
     document.querySelector('#prompt-editingJson .prompt-submit').addEventListener('click', () => {
         promptsElement.style.display = 'none';
@@ -3737,7 +3768,7 @@ function initUI() {
     document.getElementById('edit_editChildren-btn').addEventListener('click', () => {
         promptsElement.style.display = 'grid';
         document.getElementById('prompt-editingChildrenJson').style.display = 'flex';
-        document.getElementById('editingChildrenJson-prompt').innerHTML = JsonToHighlightedText(editing.grabNodeData.levelNodeGroup.childNodes);
+        document.getElementById('editingChildrenJson-prompt').innerHTML = JsonToHighlightedText(editing.userData.grabNodeData.levelNodeGroup.childNodes);
     });
     document.querySelector('#prompt-editingChildrenJson .prompt-submit').addEventListener('click', () => {
         promptsElement.style.display = 'none';
@@ -3750,7 +3781,7 @@ function initUI() {
     document.getElementById('edit_editAnimations-btn').addEventListener('click', () => {
         promptsElement.style.display = 'grid';
         document.getElementById('prompt-editingAnimationsJson').style.display = 'flex';
-        document.getElementById('editingAnimationsJson-prompt').innerHTML = JsonToHighlightedText(editing.grabNodeData.animations);
+        document.getElementById('editingAnimationsJson-prompt').innerHTML = JsonToHighlightedText(editing.userData.grabNodeData.animations);
     });
     document.querySelector('#prompt-editingAnimationsJson .prompt-submit').addEventListener('click', () => {
         promptsElement.style.display = 'none';
@@ -4032,7 +4063,7 @@ function initUI() {
     });
 
     document.getElementById('edit_exportJSON-btn').addEventListener('click', () => {
-        saveDataAsFile(`${(Date.now()).toString().slice(0, -3)}.node.json`, JSON.stringify(editing.grabNodeData, 2));
+        saveDataAsFile(`${(Date.now()).toString().slice(0, -3)}.node.json`, JSON.stringify(editing.userData.grabNodeData, 2));
     });
 
     timelineSliderElement.addEventListener('input', () => {
