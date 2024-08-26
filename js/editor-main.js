@@ -53,7 +53,8 @@ let materialList = [
     '/img/textures/grapplable_lava.png',
     '/img/textures/grabbable_crumbling.png',
     '/img/textures/default_colored.png',
-    '/img/textures/bouncing.png'
+    '/img/textures/bouncing.png',
+    '/img/textures/default.png'
 ];
 let shapeList = [
     'models/editor/cube.glb',
@@ -78,7 +79,6 @@ let animationFileNames = [
     "wobble"
 ];
 // toggles
-let altTextures = false;
 let hideText = false;
 let highlightText = true;
 let showGroups = false;
@@ -704,46 +704,29 @@ function loadLevelNode(node, parent) {
 
         statistics.complexity = 10;
         statistics.gravity += 1;
-    } else if (node.levelNodeStatic) { 
-        if (node.levelNodeStatic.shape-1000 >= 0 && node.levelNodeStatic.shape-1000 < shapes.length) {
-            object = shapes[node.levelNodeStatic.shape-1000].clone();
-        } else {
-            object = shapes[0].clone();
-        }
-        let material;
-        if (node.levelNodeStatic.material >= 0 && node.levelNodeStatic.material < materials.length) {
-            if (altTextures) {
-                node.levelNodeStatic.material ? material = exportMaterials[node.levelNodeStatic.material].clone() : material = exportMaterials[0].clone();    
-            } else {
-                node.levelNodeStatic.material ? material = materials[node.levelNodeStatic.material].clone() : material = materials[0].clone();    
-            }
-        } else if (!altTextures) {
-            material = materials[0].clone();
-        } else {
-            material = exportMaterials[0].clone();
-        }
+    } else if (node.levelNodeStatic) {
+        object = shapes[Math.max(0, Math.min((node.levelNodeStatic.shape || 1000) - 1000, shapes.length - 1))].clone();
+        let material = materials[Math.max(0, Math.min(node.levelNodeStatic.material || 0, materials.length - 1))].clone();
         if (node.levelNodeStatic.material == 8) {
             node.levelNodeStatic.color1 ? {} : node.levelNodeStatic.color1 = {};
             node.levelNodeStatic.color1.r ? null : node.levelNodeStatic.color1.r = 0;
             node.levelNodeStatic.color1.g ? null : node.levelNodeStatic.color1.g = 0;
             node.levelNodeStatic.color1.b ? null : node.levelNodeStatic.color1.b = 0;
-            if (altTextures) {
-                material.color = new THREE.Color(node.levelNodeStatic.color1.r, node.levelNodeStatic.color1.g, node.levelNodeStatic.color1.b);
-            } else {
-                material.uniforms.diffuseColor.value = [node.levelNodeStatic.color1.r, node.levelNodeStatic.color1.g, node.levelNodeStatic.color1.b];
-                
-                let specularFactor = Math.sqrt(node.levelNodeStatic.color1.r * node.levelNodeStatic.color1.r + node.levelNodeStatic.color1.g * node.levelNodeStatic.color1.g + node.levelNodeStatic.color1.b * node.levelNodeStatic.color1.b) * 0.15;
-                let specularColor = [specularFactor, specularFactor, specularFactor, 16.0];
-                if (node.levelNodeStatic.color2) {
-                    specularColor = [
-                        node.levelNodeStatic.color2.r || specularFactor, 
-                        node.levelNodeStatic.color2.g || specularFactor, 
-                        node.levelNodeStatic.color2.b || specularFactor, 
-                        node.levelNodeStatic.color2.a
-                    ];
-                }
-                material.uniforms.specularColor.value = specularColor;
+            
+            material.uniforms.diffuseColor.value = [node.levelNodeStatic.color1.r, node.levelNodeStatic.color1.g, node.levelNodeStatic.color1.b];
+            
+            let specularFactor = Math.sqrt(node.levelNodeStatic.color1.r * node.levelNodeStatic.color1.r + node.levelNodeStatic.color1.g * node.levelNodeStatic.color1.g + node.levelNodeStatic.color1.b * node.levelNodeStatic.color1.b) * 0.15;
+            let specularColor = [specularFactor, specularFactor, specularFactor, 16.0];
+            if (node.levelNodeStatic.color2) {
+                specularColor = [
+                    node.levelNodeStatic.color2.r || specularFactor, 
+                    node.levelNodeStatic.color2.g || specularFactor, 
+                    node.levelNodeStatic.color2.b || specularFactor, 
+                    node.levelNodeStatic.color2.a
+                ];
             }
+            material.uniforms.specularColor.value = specularColor;
+            
             if (node.levelNodeStatic.isNeon) {
                 statistics.neon += 1;
                 material.uniforms.neonEnabled.value = 1.0;
@@ -753,28 +736,28 @@ function loadLevelNode(node, parent) {
                 material.transparent = true;
             }
         } else if (node.levelNodeStatic.material == 3) {
-            if (!altTextures) {
-                material.uniforms.isLava.value = 1.0;
-                if (node.levelNodeStatic.color1 && node.levelNodeStatic.color2) {
-                    material.uniforms.diffuseColor.value = [node.levelNodeStatic.color1?.r || 0, node.levelNodeStatic.color1?.g || 0, node.levelNodeStatic.color1?.b || 0]
-                    let specularFactor = Math.sqrt(node.levelNodeStatic.color1?.r || 0 * node.levelNodeStatic.color1?.r || 0 + node.levelNodeStatic.color1?.g || 0 * node.levelNodeStatic.color1?.g || 0 + node.levelNodeStatic.color1?.b || 0 * node.levelNodeStatic.color1?.b || 0) * 0.15;
-                    let specularColor = [specularFactor, specularFactor, specularFactor, 16.0];
-                    if (node.levelNodeStatic.color2) {
-                        specularColor = [
-                            node.levelNodeStatic.color2.r || 0,
-                            node.levelNodeStatic.color2.g || 0, 
-                            node.levelNodeStatic.color2.b || 0, 
-                            node.levelNodeStatic.color2.a || 0
-                        ];
-                        material.uniforms.isColoredLava.value = 1.0;
-                    }
-                    material.uniforms.specularColor.value = specularColor;
+            
+            material.uniforms.isLava.value = 1.0;
+            if (node.levelNodeStatic.color1 && node.levelNodeStatic.color2) {
+                material.uniforms.diffuseColor.value = [node.levelNodeStatic.color1?.r || 0, node.levelNodeStatic.color1?.g || 0, node.levelNodeStatic.color1?.b || 0]
+                let specularFactor = Math.sqrt(node.levelNodeStatic.color1?.r || 0 * node.levelNodeStatic.color1?.r || 0 + node.levelNodeStatic.color1?.g || 0 * node.levelNodeStatic.color1?.g || 0 + node.levelNodeStatic.color1?.b || 0 * node.levelNodeStatic.color1?.b || 0) * 0.15;
+                let specularColor = [specularFactor, specularFactor, specularFactor, 16.0];
+                if (node.levelNodeStatic.color2) {
+                    specularColor = [
+                        node.levelNodeStatic.color2.r || 0,
+                        node.levelNodeStatic.color2.g || 0, 
+                        node.levelNodeStatic.color2.b || 0, 
+                        node.levelNodeStatic.color2.a || 0
+                    ];
+                    material.uniforms.isColoredLava.value = 1.0;
                 }
-                if (node.levelNodeStatic.isTransparent) {
-                    material.uniforms.isTransparent.value = 1.0
-                    material.transparent = true;
-                }
+                material.uniforms.specularColor.value = specularColor;
             }
+            if (node.levelNodeStatic.isTransparent) {
+                material.uniforms.isTransparent.value = 1.0
+                material.transparent = true;
+            }
+            
         }
         object.material = material;
         parent.add(object);
@@ -792,21 +775,19 @@ function loadLevelNode(node, parent) {
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
 
-        if (!altTextures) {
-            // console.log(material);
-            let targetVector = new THREE.Vector3();
-            let targetQuaternion = new THREE.Quaternion();
-            let worldMatrix = new THREE.Matrix4();
-            worldMatrix.compose(
-                object.getWorldPosition(targetVector), 
-                object.getWorldQuaternion(targetQuaternion), 
-                object.getWorldScale(targetVector)
-            );
+        // console.log(material);
+        let targetVector = new THREE.Vector3();
+        let targetQuaternion = new THREE.Quaternion();
+        let worldMatrix = new THREE.Matrix4();
+        worldMatrix.compose(
+            object.getWorldPosition(targetVector), 
+            object.getWorldQuaternion(targetQuaternion), 
+            object.getWorldScale(targetVector)
+        );
 
-            let normalMatrix = new THREE.Matrix3();
-            normalMatrix.getNormalMatrix(worldMatrix);
-            material.uniforms.worldNormalMatrix.value = normalMatrix;
-        }
+        let normalMatrix = new THREE.Matrix3();
+        normalMatrix.getNormalMatrix(worldMatrix);
+        material.uniforms.worldNormalMatrix.value = normalMatrix;
 
         objects.push(object);
         statistics.complexity = 2;
@@ -874,23 +855,8 @@ function loadLevelNode(node, parent) {
                 break;
         }
     } else if (node.levelNodeCrumbling) {
-        let material;
-        if (node.levelNodeCrumbling.shape-1000 >= 0 && node.levelNodeCrumbling.shape-1000 < shapes.length) {
-            object = shapes[node.levelNodeCrumbling.shape-1000].clone();
-        } else {
-            object = shapes[0].clone();
-        }
-        if (node.levelNodeCrumbling.material >= 0 && node.levelNodeCrumbling.material < materials.length) {
-            if (altTextures) {
-                node.levelNodeCrumbling.material ? material = exportMaterials[node.levelNodeCrumbling.material] : material = exportMaterials[0];
-            } else {
-                node.levelNodeCrumbling.material ? material = materials[node.levelNodeCrumbling.material] : material = materials[0];
-            }
-        } else if (!altTextures) {
-            material = exportMaterials[0];
-        } else {
-            material = materials[0];
-        }
+        object = shapes[Math.max(0, Math.min((node.levelNodeCrumbling.shape || 1000) - 1000, shapes.length - 1))].clone();
+        let material = materials[7].clone();
         object.material = material;
         parent.add(object);
         node.levelNodeCrumbling.position.x ? object.position.x = node.levelNodeCrumbling.position.x : object.position.x = 0;
@@ -907,20 +873,18 @@ function loadLevelNode(node, parent) {
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
 
-        if (!altTextures) {
-            let targetVector = new THREE.Vector3();
-            let targetQuaternion = new THREE.Quaternion();
-            let worldMatrix = new THREE.Matrix4();
-            worldMatrix.compose(
-                object.getWorldPosition(targetVector), 
-                object.getWorldQuaternion(targetQuaternion), 
-                object.getWorldScale(targetVector)
-            );
+        let targetVector = new THREE.Vector3();
+        let targetQuaternion = new THREE.Quaternion();
+        let worldMatrix = new THREE.Matrix4();
+        worldMatrix.compose(
+            object.getWorldPosition(targetVector), 
+            object.getWorldQuaternion(targetQuaternion), 
+            object.getWorldScale(targetVector)
+        );
 
-            let normalMatrix = new THREE.Matrix3();
-            normalMatrix.getNormalMatrix(worldMatrix);
-            material.uniforms.worldNormalMatrix.value = normalMatrix;
-        }
+        let normalMatrix = new THREE.Matrix3();
+        normalMatrix.getNormalMatrix(worldMatrix);
+        material.uniforms.worldNormalMatrix.value = normalMatrix;
 
         objects.push(object);
         statistics.complexity = 3;
@@ -988,11 +952,7 @@ function loadLevelNode(node, parent) {
         }
     } else if (node.levelNodeSign) {
         object = shapes[shapes.length - 2].clone();
-        if (altTextures) {
-            object.material = exportMaterials[4];
-        } else {
-            object.material = materials[4];
-        }
+        object.material = materials[4];
         parent.add(object);
         node.levelNodeSign.position.x ? object.position.x = node.levelNodeSign.position.x : object.position.x = 0;
         node.levelNodeSign.position.y ? object.position.y = node.levelNodeSign.position.y : object.position.y = 0;
@@ -1460,10 +1420,6 @@ function mapView() {
     controls.target.set(midpoint.x, midpoint.y, midpoint.z);
     camera.lookAt(midpoint.x, midpoint.y, midpoint.z);
 
-}
-function toggleTextures() {
-    altTextures = !altTextures;
-    refreshScene();
 }
 async function connectUsb() {
     try {
@@ -3714,7 +3670,6 @@ function saveConfig() {
         showAnimations,
         showGroups,
         fogEnabled,
-        altTextures,
         hideText,
         highlightText,
         playAnimations,
@@ -3730,7 +3685,6 @@ function loadConfig() {
         showAnimations = currentConfig.showAnimations;
         showGroups = currentConfig.showGroups;
         fogEnabled = currentConfig.fogEnabled;
-        altTextures = currentConfig.altTextures;
         hideText = currentConfig.hideText;
         highlightText = currentConfig.highlightText;
         playAnimations = currentConfig.playAnimations;
@@ -4123,7 +4077,6 @@ function initUI() {
     document.getElementById('mapview-btn').addEventListener('click', mapView);
     document.getElementById('nullview-btn').addEventListener('click', nullView);
     document.getElementById('higherFar-btn').addEventListener('click', higherFar);
-    document.getElementById('altTextures-btn').addEventListener('click', toggleTextures);
     document.getElementById('showGroups-btn').addEventListener('click', () => {showGroups = !showGroups; refreshScene()});
     document.getElementById('showAnimations-btn').addEventListener('click', () => {showAnimations = !showAnimations; refreshScene()});
     document.getElementById('toggleFog-btn').addEventListener('click', () => {toggleFog(); refreshScene()});
