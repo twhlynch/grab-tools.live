@@ -180,7 +180,7 @@ function JsonToHighlightedText(json) {
         stringified = JSON.stringify(json, null, 4);
     }
     // color shadows
-    let highlightedText = stringified.replace(/"color":\s*{\s*("r":\s*(\d+(?:\.\d+)?),)?\s*("g":\s*(\d+(?:\.\d+)?),)?\s*("b":\s*(\d+(?:\.\d+)?),)?\s*("a":\s*\d+(?:\.\d+)?)?\s*}/, (match) => {
+    let highlightedText = stringified.replace(/"color(1|2)":\s*{\s*("r":\s*(\d+(?:\.\d+)?),)?\s*("g":\s*(\d+(?:\.\d+)?),)?\s*("b":\s*(\d+(?:\.\d+)?),)?\s*("a":\s*\d+(?:\.\d+)?)?\s*}/, (match) => {
         let jsonData = JSON.parse(`{${match}}`);
         let color = `rgba(${(jsonData.color1.r || 0) * 255}, ${(jsonData.color1.g || 0) * 255}, ${(jsonData.color1.b || 0) * 255}, 0.3)`;
         return `<span style='text-shadow: 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color}, 0 0 10px ${color};'>${match}</span>`
@@ -249,7 +249,6 @@ function highlightTextEditor() {
 function loadTexture(path) {
     return new Promise((resolve) => {
         const texture = new THREE.TextureLoader().load(path, function (texture) {
-            // texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
             resolve(texture);
         });
     });
