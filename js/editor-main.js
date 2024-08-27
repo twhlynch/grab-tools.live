@@ -1678,11 +1678,24 @@ function unGroup(group) {
             child[type].position.y = (child[type].position.y || 0) + (group.levelNodeGroup?.position?.y || 0);
             child[type].position.z = (child[type].position.z || 0) + (group.levelNodeGroup?.position?.z || 0);
         }
+        let quaternion = new THREE.Quaternion();
+        let groupQuaternion = new THREE.Quaternion();
         if (child[type].rotation) {
-            child[type].rotation.x = (child[type].rotation.x || 0) * (group.levelNodeGroup?.rotation?.x || 0);
-            child[type].rotation.y = (child[type].rotation.y || 0) * (group.levelNodeGroup?.rotation?.y || 0);
-            child[type].rotation.z = (child[type].rotation.z || 0) * (group.levelNodeGroup?.rotation?.z || 0);
-            child[type].rotation.w = (child[type].rotation.w || 0) * (group.levelNodeGroup?.rotation?.w || 0);
+            quaternion.x = (child[type].rotation.x || 0);
+            quaternion.y = (child[type].rotation.y || 0);
+            quaternion.z = (child[type].rotation.z || 0);
+            quaternion.w = (child[type].rotation.w || 0);
+            groupQuaternion.x = (group.levelNodeGroup?.rotation?.x || 0);
+            groupQuaternion.y = (group.levelNodeGroup?.rotation?.y || 0);
+            groupQuaternion.z = (group.levelNodeGroup?.rotation?.z || 0);
+            groupQuaternion.w = (group.levelNodeGroup?.rotation?.w || 0);
+        }
+        quaternion.multiplyQuaternions(quaternion, groupQuaternion);
+        child[type].rotation = {
+            x: quaternion.x,
+            y: quaternion.y,
+            z: quaternion.z,
+            w: quaternion.w
         }
         if (child[type].scale) {
             child[type].scale.x = (child[type].scale.x || 0) * (group.levelNodeGroup?.scale?.x || 0);
