@@ -252,6 +252,7 @@ function highlightTextEditor() {
         refreshScene();
     }
     oldText = editInputElement.innerHTML;
+    incrementLoader(10);
 }
 function loadTexture(path) {
     return new Promise((resolve) => {
@@ -320,26 +321,6 @@ function refreshScene() {
 
 
     let ambience = levelData.ambienceSettings;
-    // sky = [
-    //     [
-    //         0, 0, 0
-    //     ],
-    //     [
-    //         0, 0, 0
-    //     ]
-    // ];
-    // if (ambience) {
-    //     if (ambience.skyZenithColor) {
-    //         ambience.skyZenithColor.r ? sky[0][0] = ambience.skyZenithColor.r * 255 : sky[0][0] = 0;
-    //         ambience.skyZenithColor.g ? sky[0][1] = ambience.skyZenithColor.g * 255 : sky[0][1] = 0;
-    //         ambience.skyZenithColor.b ? sky[0][2] = ambience.skyZenithColor.b * 255 : sky[0][2] = 0;
-    //     }
-    //     if (ambience.skyHorizonColor) {
-    //         ambience.skyHorizonColor.r ? sky[1][0] = ambience.skyHorizonColor.r * 255 : sky[1][0] = 0;
-    //         ambience.skyHorizonColor.g ? sky[1][1] = ambience.skyHorizonColor.g * 255 : sky[1][1] = 0;
-    //         ambience.skyHorizonColor.b ? sky[1][2] = ambience.skyHorizonColor.b * 255 : sky[1][2] = 0;
-    //     }
-    // }
     if (ambience) {
         if (ambience.skyHorizonColor) {
             ambience.skyHorizonColor?.r ? null : ambience.skyHorizonColor.r = 0;
@@ -591,16 +572,16 @@ function loadLevelNode(node, parent) {
         );
         objects.push( object );
         parent.add( object );
-        node.levelNodeGroup.position.x ? object.position.x = node.levelNodeGroup.position.x : object.position.x = 0;
-        node.levelNodeGroup.position.y ? object.position.y = node.levelNodeGroup.position.y : object.position.y = 0;
-        node.levelNodeGroup.position.z ? object.position.z = node.levelNodeGroup.position.z : object.position.z = 0;
-        node.levelNodeGroup.scale.x ? object.scale.x = node.levelNodeGroup.scale.x : object.scale.x = 0;
-        node.levelNodeGroup.scale.y ? object.scale.y = node.levelNodeGroup.scale.y : object.scale.y = 0;
-        node.levelNodeGroup.scale.z ? object.scale.z = node.levelNodeGroup.scale.z : object.scale.z = 0;
-        node.levelNodeGroup.rotation.x ? object.quaternion.x = node.levelNodeGroup.rotation.x : object.quaternion.x = 0;
-        node.levelNodeGroup.rotation.y ? object.quaternion.y = node.levelNodeGroup.rotation.y : object.quaternion.y = 0;
-        node.levelNodeGroup.rotation.z ? object.quaternion.z = node.levelNodeGroup.rotation.z : object.quaternion.z = 0;
-        node.levelNodeGroup.rotation.w ? object.quaternion.w = node.levelNodeGroup.rotation.w : object.quaternion.w = 0;
+        object.position.x = node.levelNodeGroup.position.x || 0;
+        object.position.y = node.levelNodeGroup.position.y || 0;
+        object.position.z = node.levelNodeGroup.position.z || 0;
+        object.scale.x = node.levelNodeGroup.scale.x || 0;
+        object.scale.y = node.levelNodeGroup.scale.y || 0;
+        object.scale.z = node.levelNodeGroup.scale.z || 0;
+        object.quaternion.x = node.levelNodeGroup.rotation.x || 0;
+        object.quaternion.y = node.levelNodeGroup.rotation.y || 0;
+        object.quaternion.z = node.levelNodeGroup.rotation.z || 0;
+        object.quaternion.w = node.levelNodeGroup.rotation.w || 0;
         
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
@@ -761,16 +742,16 @@ function loadLevelNode(node, parent) {
         }
         object.material = material;
         parent.add(object);
-        node.levelNodeStatic.position.x ? object.position.x = node.levelNodeStatic.position.x : object.position.x = 0;
-        node.levelNodeStatic.position.y ? object.position.y = node.levelNodeStatic.position.y : object.position.y = 0;
-        node.levelNodeStatic.position.z ? object.position.z = node.levelNodeStatic.position.z : object.position.z = 0;
-        node.levelNodeStatic.rotation.w ? object.quaternion.w = node.levelNodeStatic.rotation.w : object.quaternion.w = 0;
-        node.levelNodeStatic.rotation.x ? object.quaternion.x = node.levelNodeStatic.rotation.x : object.quaternion.x = 0;
-        node.levelNodeStatic.rotation.y ? object.quaternion.y = node.levelNodeStatic.rotation.y : object.quaternion.y = 0;
-        node.levelNodeStatic.rotation.z ? object.quaternion.z = node.levelNodeStatic.rotation.z : object.quaternion.z = 0;
-        node.levelNodeStatic.scale.x ? object.scale.x = node.levelNodeStatic.scale.x : object.scale.x = 0;
-        node.levelNodeStatic.scale.y ? object.scale.y = node.levelNodeStatic.scale.y : object.scale.y = 0;
-        node.levelNodeStatic.scale.z ? object.scale.z = node.levelNodeStatic.scale.z : object.scale.z = 0;
+        object.position.x = node.levelNodeStatic.position.x || 0;
+        object.position.y = node.levelNodeStatic.position.y || 0;
+        object.position.z = node.levelNodeStatic.position.z || 0;
+        object.quaternion.w = node.levelNodeStatic.rotation.w || 0;
+        object.quaternion.x = node.levelNodeStatic.rotation.x || 0;
+        object.quaternion.y = node.levelNodeStatic.rotation.y || 0;
+        object.quaternion.z = node.levelNodeStatic.rotation.z || 0;
+        object.scale.x = node.levelNodeStatic.scale.x || 0;
+        object.scale.y = node.levelNodeStatic.scale.y || 0;
+        object.scale.z = node.levelNodeStatic.scale.z || 0;
 
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
@@ -859,16 +840,16 @@ function loadLevelNode(node, parent) {
         let material = materials[7].clone();
         object.material = material;
         parent.add(object);
-        node.levelNodeCrumbling.position.x ? object.position.x = node.levelNodeCrumbling.position.x : object.position.x = 0;
-        node.levelNodeCrumbling.position.y ? object.position.y = node.levelNodeCrumbling.position.y : object.position.y = 0;
-        node.levelNodeCrumbling.position.z ? object.position.z = node.levelNodeCrumbling.position.z : object.position.z = 0;
-        node.levelNodeCrumbling.rotation.w ? object.quaternion.w = node.levelNodeCrumbling.rotation.w : object.quaternion.w = 0;
-        node.levelNodeCrumbling.rotation.x ? object.quaternion.x = node.levelNodeCrumbling.rotation.x : object.quaternion.x = 0;
-        node.levelNodeCrumbling.rotation.y ? object.quaternion.y = node.levelNodeCrumbling.rotation.y : object.quaternion.y = 0;
-        node.levelNodeCrumbling.rotation.z ? object.quaternion.z = node.levelNodeCrumbling.rotation.z : object.quaternion.z = 0;
-        node.levelNodeCrumbling.scale.x ? object.scale.x = node.levelNodeCrumbling.scale.x : object.scale.x = 0;
-        node.levelNodeCrumbling.scale.y ? object.scale.y = node.levelNodeCrumbling.scale.y : object.scale.y = 0;
-        node.levelNodeCrumbling.scale.z ? object.scale.z = node.levelNodeCrumbling.scale.z : object.scale.z = 0;
+        object.position.x = node.levelNodeCrumbling.position.x || 0;
+        object.position.y = node.levelNodeCrumbling.position.y || 0;
+        object.position.z = node.levelNodeCrumbling.position.z || 0;
+        object.quaternion.w = node.levelNodeCrumbling.rotation.w || 0;
+        object.quaternion.x = node.levelNodeCrumbling.rotation.x || 0;
+        object.quaternion.y = node.levelNodeCrumbling.rotation.y || 0;
+        object.quaternion.z = node.levelNodeCrumbling.rotation.z || 0;
+        object.scale.x = node.levelNodeCrumbling.scale.x || 0;
+        object.scale.y = node.levelNodeCrumbling.scale.y || 0;
+        object.scale.z = node.levelNodeCrumbling.scale.z || 0;
 
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
@@ -954,13 +935,13 @@ function loadLevelNode(node, parent) {
         object = shapes[shapes.length - 2].clone();
         object.material = materials[4];
         parent.add(object);
-        node.levelNodeSign.position.x ? object.position.x = node.levelNodeSign.position.x : object.position.x = 0;
-        node.levelNodeSign.position.y ? object.position.y = node.levelNodeSign.position.y : object.position.y = 0;
-        node.levelNodeSign.position.z ? object.position.z = node.levelNodeSign.position.z : object.position.z = 0;
-        node.levelNodeSign.rotation.w ? object.quaternion.w = node.levelNodeSign.rotation.w : object.quaternion.w = 0;
-        node.levelNodeSign.rotation.x ? object.quaternion.x = node.levelNodeSign.rotation.x : object.quaternion.x = 0;
-        node.levelNodeSign.rotation.y ? object.quaternion.y = node.levelNodeSign.rotation.y : object.quaternion.y = 0;
-        node.levelNodeSign.rotation.z ? object.quaternion.z = node.levelNodeSign.rotation.z : object.quaternion.z = 0;
+        object.position.x = node.levelNodeSign.position.x || 0;
+        object.position.y = node.levelNodeSign.position.y || 0;
+        object.position.z = node.levelNodeSign.position.z || 0;
+        object.quaternion.w = node.levelNodeSign.rotation.w || 0;
+        object.quaternion.x = node.levelNodeSign.rotation.x || 0;
+        object.quaternion.y = node.levelNodeSign.rotation.y || 0;
+        object.quaternion.z = node.levelNodeSign.rotation.z || 0;
         
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
@@ -1006,15 +987,15 @@ function loadLevelNode(node, parent) {
         object = shapes[shapes.length - 1].clone();
         object.material = startMaterial;
         parent.add(object);
-        node.levelNodeStart.position.x ? object.position.x = node.levelNodeStart.position.x : object.position.x = 0;
-        node.levelNodeStart.position.y ? object.position.y = node.levelNodeStart.position.y : object.position.y = 0;
-        node.levelNodeStart.position.z ? object.position.z = node.levelNodeStart.position.z : object.position.z = 0;
-        node.levelNodeStart.rotation.w ? object.quaternion.w = node.levelNodeStart.rotation.w : object.quaternion.w = 0;
-        node.levelNodeStart.rotation.x ? object.quaternion.x = node.levelNodeStart.rotation.x : object.quaternion.x = 0;
-        node.levelNodeStart.rotation.y ? object.quaternion.y = node.levelNodeStart.rotation.y : object.quaternion.y = 0;
-        node.levelNodeStart.rotation.z ? object.quaternion.z = node.levelNodeStart.rotation.z : object.quaternion.z = 0;
-        node.levelNodeStart.radius ? object.scale.x = node.levelNodeStart.radius : object.scale.x = 0;
-        node.levelNodeStart.radius ? object.scale.z = node.levelNodeStart.radius : object.scale.z = 0;
+        object.position.x = node.levelNodeStart.position.x || 0;
+        object.position.y = node.levelNodeStart.position.y || 0;
+        object.position.z = node.levelNodeStart.position.z || 0;
+        object.quaternion.w = node.levelNodeStart.rotation.w || 0;
+        object.quaternion.x = node.levelNodeStart.rotation.x || 0;
+        object.quaternion.y = node.levelNodeStart.rotation.y || 0;
+        object.quaternion.z = node.levelNodeStart.rotation.z || 0;
+        object.scale.x = node.levelNodeStart.radius || 0;
+        object.scale.z = node.levelNodeStart.radius || 0;
 
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
@@ -1026,11 +1007,11 @@ function loadLevelNode(node, parent) {
         object = shapes[shapes.length - 1].clone();
         object.material = finishMaterial;
         parent.add(object);
-        node.levelNodeFinish.position.x ? object.position.x = node.levelNodeFinish.position.x : object.position.x = 0;
-        node.levelNodeFinish.position.y ? object.position.y = node.levelNodeFinish.position.y : object.position.y = 0;
-        node.levelNodeFinish.position.z ? object.position.z = node.levelNodeFinish.position.z : object.position.z = 0;
-        node.levelNodeFinish.radius ? object.scale.x = node.levelNodeFinish.radius : object.scale.x = 0;
-        node.levelNodeFinish.radius ? object.scale.z = node.levelNodeFinish.radius : object.scale.z = 0;
+        object.position.x = node.levelNodeFinish.position.x || 0;
+        object.position.y = node.levelNodeFinish.position.y || 0;
+        object.position.z = node.levelNodeFinish.position.z || 0;
+        object.scale.x = node.levelNodeFinish.radius || 0;
+        object.scale.z = node.levelNodeFinish.radius || 0;
 
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
@@ -2749,6 +2730,7 @@ async function getAnimationPresets() {
         let data = await response.json();
         animationPresets[fileName] = data;
     }
+    incrementLoader(10);
 }
 function copyEditingJSON() {
     if (editing) {
@@ -2870,6 +2852,7 @@ function initEditor() {
     });
     camera.position.set(0, 10, 10);
     renderer.setAnimationLoop(animate);
+    incrementLoader(10);
 }
 function initTerminal() {
     terminalInputElement.addEventListener('keydown', (e) => {
@@ -2912,6 +2895,7 @@ function initTerminal() {
             terminalInputElement.value = lastRan;
         }
     });
+    incrementLoader(10);
 }
 function toggleEditing() {
     if (!enableEditing) {
@@ -3721,6 +3705,7 @@ function loadConfig() {
         playAnimations = currentConfig.playAnimations;
         animationSpeed = currentConfig.animationSpeed;
     }
+    incrementLoader(10);
 }
 function higherFar() {
     camera.far = 1000000;
@@ -4202,6 +4187,7 @@ function initUI() {
     // groups of pre-made objects
     document.getElementById('HighGravity-btn').addEventListener('click', () => {appendInsert("HighGravity")});
     document.getElementById('BreakTimes-btn').addEventListener('click', () => {appendInsert("BreakTimes")});
+    incrementLoader(10);
 }
 async function initAttributes() {
 
@@ -4287,7 +4273,7 @@ async function initAttributes() {
     });
 
     console.log('Ready', materials, shapes);
-
+    incrementLoader(30);
 }
 function initURLParams() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -4319,21 +4305,26 @@ function initURLParams() {
             }
         }
     }
+    incrementLoader(10);
+}
+
+const loaderText = document.getElementById('loader-text');
+const loaderContainer = document.getElementById('loader');
+let loadedPercentage = 0;
+function incrementLoader(percent) {
+    loadedPercentage += percent;
+    if (loadedPercentage >= 100) {
+        loadedPercentage = 100;
+        loaderContainer.style.display = 'none';
+    }
+    loaderText.innerText = `${loadedPercentage}%`;
 }
 
 await initAttributes();
-console.log("Loading editor...");
 initEditor();
-console.log("Loading editor...");
 getAnimationPresets();
-console.log("Loading editor...");
 highlightTextEditor();
-console.log("Loading editor...");
 initTerminal();
-console.log("Loading editor...");
 initUI();
-console.log("Loading editor...");
 initURLParams();
-console.log("Loading editor...");
 loadConfig();
-console.log("Loading editor...");
