@@ -12,7 +12,7 @@ let templatesFile = await fetch('/level_data/templates.json').then(response => r
 let templates = await templatesFile.templates;
 let inserts = templatesFile.inserts;
 let protobufData = await fetch('/proto/proto.proto').then(response => response.text());
-let animationPresets = {};
+let animationPresets = templates.animations;
 // editor
 let renderer, scene;
 let raycaster, mouse, lastSelected, selected, editing, vrButton;
@@ -38,6 +38,7 @@ let font;
 let controls, fly, transformControl;
 // loaders
 let loader = new GLTFLoader();
+let loadedPercentage = 0;
 // ambience
 let sunAngle, sunAltitude, horizonColor, sky;
 let editAmbienceSettings;
@@ -65,18 +66,6 @@ let shapeList = [
     'models/editor/cone.glb',
     'models/editor/sign.glb',
     'models/editor/start_end.glb'
-];
-let animationFileNames = [
-    "angle_slide",
-    "elevate",
-    "flip",
-    "roll",
-    "screw",
-    "shake",
-    "slide",
-    "spin",
-    "square",
-    "wobble"
 ];
 // toggles
 let hideText = false;
@@ -133,6 +122,9 @@ const statsSphereElement = document.getElementById('stats-sphere');
 const statsCylinderElement = document.getElementById('stats-cylinder');
 const statsPyramidElement = document.getElementById('stats-pyramid');
 const statsPrismElement = document.getElementById('stats-prism');
+const loaderText = document.getElementById('loader-text');
+const loaderContainer = document.getElementById('loader');
+incrementLoader(10);
 
 function deepClone(obj) {
     return JSON.parse(JSON.stringify(obj));
@@ -2722,16 +2714,6 @@ function addFrame(frame) {
         "time": currentTime + 1
     });
 }
-async function getAnimationPresets() {
-    let folderPath = "/level_data/animations/";
-    for (let fileName of animationFileNames) {
-        let file = folderPath + fileName + ".json";
-        let response = await fetch(file);
-        let data = await response.json();
-        animationPresets[fileName] = data;
-        incrementLoader(10 / animationFileNames.length);
-    }
-}
 function copyEditingJSON() {
     if (editing) {
         let json = JSON.stringify(editing.userData.grabNodeData, null, 4);
@@ -4304,21 +4286,17 @@ function initURLParams() {
     incrementLoader(10);
 }
 
-const loaderText = document.getElementById('loader-text');
-const loaderContainer = document.getElementById('loader');
-let loadedPercentage = 0;
 function incrementLoader(percent) {
     loadedPercentage += percent;
     if (loadedPercentage >= 100) {
         loadedPercentage = 100;
         loaderContainer.style.display = 'none';
     }
-    loaderText.innerText = `${Math.round(loadedPercentage * 100) / 100}%`;
+    loaderText.innerText = `${Math.round(loadedPercentage * 10) / 10}%`;
 }
 
 await initAttributes();
 initEditor();
-getAnimationPresets();
 highlightTextEditor();
 initTerminal();
 initUI();
