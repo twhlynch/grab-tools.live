@@ -2729,8 +2729,8 @@ async function getAnimationPresets() {
         let response = await fetch(file);
         let data = await response.json();
         animationPresets[fileName] = data;
+        incrementLoader(10 / animationFileNames.length);
     }
-    incrementLoader(10);
 }
 function copyEditingJSON() {
     if (editing) {
@@ -4190,14 +4190,6 @@ function initUI() {
     incrementLoader(10);
 }
 async function initAttributes() {
-
-    for (const path of materialList) {
-            const texture = await loadTexture(path);
-            let material = new THREE.MeshBasicMaterial({ map: texture });
-            
-            exportMaterials.push(material);
-        }
-
     for (const path of materialList) {
         const texture = await loadTexture(path);
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -4219,12 +4211,16 @@ async function initAttributes() {
                 "isColoredLava": { value: 0.0 }
             }
         });
+        let exportMaterial = new THREE.MeshBasicMaterial({ map: texture });
         materials.push(material);
-        }
+        exportMaterials.push(material);
+        incrementLoader(10 / materialList.length);
+    }
 
     for (const path of shapeList) {
         const model = await loadModel(path);
         shapes.push(model);
+        incrementLoader(10 / shapeList.length);
     }
 
     startMaterial = new THREE.ShaderMaterial();
@@ -4273,7 +4269,7 @@ async function initAttributes() {
     });
 
     console.log('Ready', materials, shapes);
-    incrementLoader(30);
+    incrementLoader(10);
 }
 function initURLParams() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -4317,7 +4313,7 @@ function incrementLoader(percent) {
         loadedPercentage = 100;
         loaderContainer.style.display = 'none';
     }
-    loaderText.innerText = `${loadedPercentage}%`;
+    loaderText.innerText = `${Math.round(loadedPercentage * 100) / 100}%`;
 }
 
 await initAttributes();
