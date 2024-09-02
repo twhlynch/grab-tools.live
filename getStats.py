@@ -239,14 +239,14 @@ def get_best_of_grab():
                     levels.append(level)
     return levels
 
-def get_creators():
-    level_browser = get_level_browser()["sections"]
-    best_of_grab = [section for section in level_browser if "title" in section and section["title"] == "Best of GRAB"][0]["sections"]
-    featured_creators = [section for section in best_of_grab if "title" in section and section["title"] == "Featured Creators"]
-    if len(featured_creators) > 0:
-        return featured_creators[0]["sections"]
-    else:
-        return []
+# def get_creators():
+#     level_browser = get_level_browser()["sections"]
+#     best_of_grab = [section for section in level_browser if "title" in section and section["title"] == "Best of GRAB"][0]["sections"]
+#     featured_creators = [section for section in best_of_grab if "title" in section and section["title"] == "Featured Creators"]
+#     if len(featured_creators) > 0:
+#         return featured_creators[0]["sections"]
+#     else:
+#         return []
 
 def get_unbeaten(all_verified_maps):
     with open("stats_data/sole_victors.json") as soles_f:
@@ -550,7 +550,7 @@ def get_level_data():
     write_json_file('stats_data/a_challenge.json', get_a_challenge())
     best_of_grab_levels = get_best_of_grab()
     write_json_file('stats_data/best_of_grab.json', best_of_grab_levels)
-    write_json_file('stats_data/featured_creators.json', get_creators())
+    # write_json_file('stats_data/featured_creators.json', get_creators())
     write_json_file('stats_data/unbeaten_levels.json', unbeaten_levels)
     write_json_file('stats_data/most_verified.json', get_most_verified(all_verified, most_verified_old))
     write_json_file('stats_data/most_plays.json', get_most_plays(all_verified, most_plays_old))
