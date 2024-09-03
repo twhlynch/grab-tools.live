@@ -105,7 +105,7 @@ function outlineNode(node) {
                     "z": (nodeData.scale.z + outlineSize)*-1
                 },
                 "rotation": nodeData.rotation,
-                "color": {
+                "color1": {
                     "r": 0,
                     "g": 0,
                     "a": 1,
@@ -527,7 +527,7 @@ function pixelate() {
                             "y": pixels[i][4],
                             "z": 10.0
                         },
-                        "color": {
+                        "color1": {
                             "r": pixels[i][0] / 255,
                             "g": pixels[i][1] / 255,
                             "b": pixels[i][2] / 255,
