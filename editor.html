@@ -353,6 +353,17 @@
                             </ul>
                         </li>
                         <li>
+                            <button class="menu-btn">Dev</button>
+                            <ul class="menu-dropdown">
+                                <li>
+                                    <button class="menu-btn" id="dev_placeLobbyMenu-btn">Position Menu</button>
+                                </li>
+                                <li>
+                                    <button class="menu-btn" id="dev_placeCollectible-btn">Place Collectible</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             <button class="menu-btn" id="convert-btn">Convert</button>
                         </li>
                         <li>
@@ -445,6 +456,9 @@
                         </li>
                         <li>
                             <button class="menu-btn" id="toggleFog-btn">toggle fog</button>
+                        </li>
+                        <li>
+                            <button class="menu-btn" id="copyCamera-btn">copy camera state</button>
                         </li>
                     </ul>
                 </li>
@@ -812,6 +826,11 @@
                         <button id="animate-tool-close">Close</button>
                     </div>
                 </div>
+                <div id="dev-tools">
+                    <button id="dev-tools-lobby-flip">flip</button>
+                    <button id="dev-tools-lobby-copy">copy</button>
+                    <button id="dev-tools-lobby-done">done</button>
+                </div>
             </div>
             <div id="edit-resize">&nbsp;</div>
             <div id="editing-container">
@@ -870,6 +889,11 @@
             </div>
         </div>
         <!-- Prompts -->
+        <div id="dev-tools-lobby-copy-popup">
+            <span id=dev-tools-lobby-copy-popup-text></span>
+            <button id=dev-tools-lobby-copy-popup-close>hide</button>
+        </div>
+
         <div id="prompts">
             <div class="prompt-simple" id="prompt-convert">
                 <span>If an object is this:</span>

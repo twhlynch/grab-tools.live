@@ -45,6 +45,10 @@ registerResize('edit-resize', (event) => {
         .getElementById('animate-tool')
         .style
         .left = event.clientX + "px";
+    document
+        .getElementById('dev-tools')
+        .style
+        .left = event.clientX + "px";
 });
 
 registerResize('terminal-resize', (event) => {
