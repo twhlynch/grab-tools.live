@@ -4298,9 +4298,7 @@ function initUI() {
     });
 
     document.getElementById('dev-tools-lobby-flip').addEventListener('click', () => {
-        devModes.objects.forEach(object => {
-            object.rotation.y += Math.PI;
-        });
+        devModes.active.rotation.y += Math.PI;
     });
     document.getElementById('dev-tools-lobby-copy').addEventListener('click', () => {
         document.getElementById('dev-tools-lobby-copy-popup').style.display = 'flex';
