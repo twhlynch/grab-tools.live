@@ -36,6 +36,14 @@ const fontLoader = new FontLoader();
 let font;
 // controls
 let controls, fly, transformControl;
+// development modes
+let devModes = {
+    objects: [],
+    active: undefined,
+    placeLobbyMenu: false,
+    placeCollectible: false,
+};
+let devRaycaster, devTransform;
 // loaders
 let loader = new GLTFLoader();
 let loadedPercentage = 0;
@@ -2110,7 +2118,10 @@ function onPointerMove(e) {
         mouse.x = ( (e.clientX - canvasSize.left) / canvasSize.width ) * 2 - 1;
         mouse.y = - ( (e.clientY - canvasSize.top) / canvasSize.height ) * 2 + 1;
         raycaster.setFromCamera( mouse, camera );
-        let intersects = raycaster.intersectObjects( scene.children, true );
+        let individualObjects = objects.filter(object=>{
+            return object.userData.grabNodeData && !object.userData.grabNodeData.levelNodeGroup;
+        });
+        let intersects = raycaster.intersectObjects( individualObjects, true );
         if (lastSelected && lastSelected?.material?.uniforms?.isSelected) {
             lastSelected.material.uniforms.isSelected.value = false;
         }
@@ -2158,6 +2169,79 @@ function onPointerDown(e) {
             transformControl.attach(editing);
             console.log(editing);
             scene.add(transformControl);
+        }
+    }
+    if (devModes.placeLobbyMenu) {
+        if (e.which == 1) {
+            let canvasSize = renderer.domElement.getBoundingClientRect();
+            mouse.x = ( (e.clientX - canvasSize.left) / canvasSize.width ) * 2 - 1;
+            mouse.y = - ( (e.clientY - canvasSize.top) / canvasSize.height ) * 2 + 1;
+            devRaycaster.setFromCamera( mouse, camera );
+            let individualObjects = objects.filter(object=>{
+                return object.userData.grabNodeData && !object.userData.grabNodeData.levelNodeGroup;
+            }).concat( devModes.objects );
+            let intersects = devRaycaster.intersectObjects( individualObjects, true );
+            if (intersects.length > 0) {
+                let intersect = intersects[0];
+                console.log(intersect);
+
+                if (intersect.object.userData.isDevMode) {
+                    devModes.active = intersect.object;
+                    devTransform.attach( intersect.object );
+                    scene.add(devTransform);
+                    controls.enabled = false;
+                } else {
+                    let planeGeometry = new THREE.PlaneGeometry( 2.0, 2.0 );
+                    let planeMaterial = new THREE.MeshBasicMaterial( { color: 0x719ec7 } );
+                    let plane = new THREE.Mesh( planeGeometry, planeMaterial );
+                    plane.userData.isDevMode = true;
+
+                    let normal = intersect.face.normal;
+                    let point = intersect.point;
+                    let object = intersect.object;
+
+                    plane.rotation.copy(object.rotation);
+                    plane.position.copy(point).add( normal.multiplyScalar(0.01) );  
+                    
+                    plane.rotation.set(0, plane.rotation.y, 0);
+
+                    scene.add( plane );
+                    devModes.objects.push( plane );
+                }
+            }
+        } else if (e.which == 3) {
+            controls.enabled = true;
+            devTransform.detach();
+            devModes.active = undefined;
+        }
+    } else if (devModes.placeCollectible) {
+        if (e.which == 1 && e.altKey) {
+            let canvasSize = renderer.domElement.getBoundingClientRect();
+            mouse.x = ( (e.clientX - canvasSize.left) / canvasSize.width ) * 2 - 1;
+            mouse.y = - ( (e.clientY - canvasSize.top) / canvasSize.height ) * 2 + 1;
+            devRaycaster.setFromCamera( mouse, camera );
+            let individualObjects = objects.filter(object=>{
+                return object.userData.grabNodeData && !object.userData.grabNodeData.levelNodeGroup;
+            })
+            let intersects = devRaycaster.intersectObjects( individualObjects, true );
+            if (intersects.length > 0) {
+                let intersect = intersects[0];
+                console.log(intersect);
+
+                let boxGeometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+                let boxMaterial = new THREE.MeshBasicMaterial( { color: 0xff7000 } );
+                let box = new THREE.Mesh( boxGeometry, boxMaterial );
+                box.userData.isDevMode = true;
+
+                let point = intersect.point;
+                point.y += 0.1;
+
+                box.position.copy(point)
+
+                scene.add( box );
+                devModes.objects.push( box );
+            
+            }
         }
     }
 }
@@ -2784,6 +2868,7 @@ function initEditor() {
     scene.add( sun );
     vrButton = VRButton.createButton( renderer );
     controls = new OrbitControls( camera, renderer.domElement );
+    console.log(controls, "controls created");
     controls.mouseButtons = {LEFT: 2, MIDDLE: 1, RIGHT: 0}
     fly = new FlyControls( camera, renderer.domElement );
     fly.pointerdown = fly.pointerup = fly.pointermove = () => {};
@@ -2830,10 +2915,20 @@ function initEditor() {
             applyChangesAsFrameElement.style.display = "block";
         }
     });
+    devTransform = new TransformControls( camera, renderer.domElement );
+    devTransform.setSpace('local');
+    devTransform.addEventListener( 'change', (e) => {
+        if (devModes.active) {
+            devModes.objects.forEach(object=>{
+                object.position.setY(devModes.active.position.y);
+            });
+        }
+    });
     transformControl.addEventListener( 'dragging-changed', ( event ) => {
         controls.enabled = ! event.value;
     } );
     raycaster = new THREE.Raycaster();
+    devRaycaster = new THREE.Raycaster();
     mouse = new THREE.Vector2();
     renderer.domElement.addEventListener( 'pointermove', onPointerMove, false );
     window.addEventListener( 'pointermove', onPointerMove, false );
@@ -3571,6 +3666,16 @@ function animationToolAdd() {
 function animationToolClear() {
     editing?.userData?.grabNodeData?.animations ? editing.userData.grabNodeData.animations = [] : null;
 }
+function copyCameraState() {
+    let cameraState = `&camera_position=`;
+    cameraState += `${camera.position.x},${camera.position.y},${camera.position.z}`;
+    cameraState += `&camera_rotation=`;
+    cameraState += `${camera.rotation.x},${camera.rotation.y},${camera.rotation.z}`;
+    cameraState += `&control_target=`;
+    cameraState += `${controls.target.x},${controls.target.y},${controls.target.z}`;
+
+    navigator.clipboard.writeText(cameraState);
+}
 function generateCheatSheet(advanced=false) {
     let level = getLevel();
     level.title = `${advanced ? 'Advanced ' : ''}Cheat Sheet`;
@@ -4076,6 +4181,7 @@ function initUI() {
     document.getElementById('stats-container').addEventListener('click', handleStatsClick);
     // buttons
     document.getElementById('save-config-btn').addEventListener('click', saveConfig);
+    document.getElementById('copyCamera-btn').addEventListener('click', copyCameraState);
     document.getElementById('enableEditing-btn').addEventListener('click', toggleEditing);
     document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = hideText ? 'block' : 'none';hideText = !hideText;highlightTextEditor()});
     document.getElementById('highlight-btn').addEventListener('click', () => {highlightText = !highlightText;highlightTextEditor()});
@@ -4181,6 +4287,69 @@ function initUI() {
     // groups of pre-made objects
     document.getElementById('HighGravity-btn').addEventListener('click', () => {appendInsert("HighGravity")});
     document.getElementById('BreakTimes-btn').addEventListener('click', () => {appendInsert("BreakTimes")});
+    
+    document.getElementById('dev_placeLobbyMenu-btn').addEventListener('click', () => {
+        devModes.placeLobbyMenu = true;
+        document.getElementById('dev-tools').style.display = 'flex';
+    });
+    document.getElementById('dev_placeCollectible-btn').addEventListener('click', () => {
+        devModes.placeCollectible = true;
+        document.getElementById('dev-tools').style.display = 'flex';
+    });
+
+    document.getElementById('dev-tools-lobby-flip').addEventListener('click', () => {
+        devModes.objects.forEach(object => {
+            object.rotation.y += Math.PI;
+        });
+    });
+    document.getElementById('dev-tools-lobby-copy').addEventListener('click', () => {
+        document.getElementById('dev-tools-lobby-copy-popup').style.display = 'flex';
+        if (devModes.placeLobbyMenu) {
+            document.getElementById('dev-tools-lobby-copy-popup-text').innerText = `Menu position: (${
+                    devModes.active.position.x
+                }f, ${
+                    devModes.active.position.y
+                }f, ${
+                    devModes.active.position.z
+                }f)\n
+                Menu rotation: (${
+                    devModes.active.rotation.x
+                }f, ${
+                    devModes.active.rotation.y
+                }f, ${
+                    devModes.active.rotation.z
+                }f)
+            `;
+        } else if (devModes.placeCollectible) {
+            let message = '';
+            devModes.objects.forEach(object => {
+                message += `Collectible position: (${
+                    object.position.x
+                }f, ${
+                    object.position.y
+                }f, ${
+                    object.position.z
+                }f)\n`;
+            });
+            document.getElementById('dev-tools-lobby-copy-popup-text').innerText = message;
+        }
+    });
+    document.getElementById('dev-tools-lobby-copy-popup-close').addEventListener('click', () => {
+        document.getElementById('dev-tools-lobby-copy-popup').style.display = 'none';
+        document.getElementById('dev-tools-lobby-copy-popup-text').innerText = '';
+    });
+    document.getElementById('dev-tools-lobby-done').addEventListener('click', () => {
+        controls.enabled = true;
+        devModes.objects.forEach(object => {
+            scene.remove(object);
+        });
+        devModes.placeLobbyMenu = false;
+        devModes.objects = [];
+        devTransform.detach();
+        devModes.active = undefined;
+        document.getElementById('dev-tools').style.display = 'none';
+    });
+
     incrementLoader(10);
 }
 async function initAttributes() {
@@ -4295,6 +4464,41 @@ function initURLParams() {
             }
         }
     }
+
+    const paramCameraPosition = urlParams.get('camera_position');
+    const paramCameraRotation = urlParams.get('camera_rotation');
+    const paramControlTarget = urlParams.get('control_target');
+    if (paramCameraPosition) {
+        const position = paramCameraPosition.split(',').map(pos=>parseFloat(pos));
+        camera.position.set(
+            position[0],
+            position[1],
+            position[2]
+        );
+    }
+    if (paramCameraRotation) {
+        const rotation = paramCameraRotation.split(',').map(rot=>parseFloat(rot));
+        camera.rotation.set(
+            rotation[0],
+            rotation[1],
+            rotation[2]
+        );
+    }
+    if (paramControlTarget) {
+        const target = paramControlTarget.split(',').map(pos=>parseFloat(pos));
+        controls.target.set(
+            target[0],
+            target[1],
+            target[2]
+        );
+        camera.lookAt(
+            target[0],
+            target[1],
+            target[2]
+        );
+    }
+    
+    console.log(camera, controls);
     incrementLoader(10);
 }
 
