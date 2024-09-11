@@ -30,143 +30,188 @@
         "type": "identifier"
     },
     {
-        "name": "Pirate Lobby",
+        "name": "Lobby fantasy 2024",
+        "link": "level_data/lobbies/lobby-fantasy-2024.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby pirate 2024",
         "link": "level_data/lobbies/lobby-pirate-2024.level",
         "type": "file"
     },
     {
-        "name": "Adventure Lobby",
+        "name": "Lobby deepsea 2024",
+        "link": "level_data/lobbies/lobby-deepsea-2024.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby adventure 2024",
         "link": "level_data/lobbies/lobby-adventure-2024.level",
         "type": "file"
     },
     {
-        "name": "Abstract Lobby",
+        "name": "Lobby abstract 2024",
         "link": "level_data/lobbies/lobby-abstract-2024.level",
         "type": "file"
     },
     {
-        "name": "Themepark Lobby",
-        "link": "level_data/lobbies/lobby-themepark.level",
+        "name": "Lobby amusement park 2024",
+        "link": "level_data/lobbies/lobby-amusement-park-2024.level",
         "type": "file"
     },
     {
-        "name": "Wild West Lobby",
-        "link": "level_data/lobbies/lobby-wild-west.level",
+        "name": "Lobby wild west 2024",
+        "link": "level_data/lobbies/lobby-wild-west-2024.level",
         "type": "file"
     },
     {
-        "name": "Steampunk Lobby 2024",
-        "link": "level_data/lobbies/lobby-steampunk-2024-animated.level",
+        "name": "Lobby steampunk (animated) 2024",
+        "link": "level_data/lobbies/lobby-steampunk-animated-2024.level",
         "type": "file"
     },
     {
-        "name": "Space Lobby 2024",
+        "name": "Lobby steampunk 2024",
+        "link": "level_data/lobbies/lobby-steampunk-2024.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby space 2024",
         "link": "level_data/lobbies/lobby-space-2024.level",
         "type": "file"
     },
     {
-        "name": "Christmas Lobby 2023",
-        "link": "level_data/lobbies/lobby-christmas-2023.level",
-        "type": "file"
-    },
-    {
-        "name": "New Years 2024 Lobby",
+        "name": "Lobby new year 2024",
         "link": "level_data/lobbies/lobby-new-year-2024.level",
         "type": "file"
     },
     {
-        "name": "Best Of Grab Lobby",
+        "name": "Lobby christmas (animated) 2023",
+        "link": "level_data/lobbies/lobby-christmas-animated-2023.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby christmas 2023",
+        "link": "level_data/lobbies/lobby-christmas-2023.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby best of grab 2023",
         "link": "level_data/lobbies/lobby-best-of-grab-2023.level",
         "type": "file"
     },
     {
-        "name": "Halloween Lobby 2023",
+        "name": "Lobby halloween (animated) 2023",
+        "link": "level_data/lobbies/lobby-halloween-animated-2023.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby halloween 2023",
         "link": "level_data/lobbies/lobby-halloween-2023.level",
         "type": "file"
     },
     {
-        "name": "Lobby",
-        "link": "level_data/lobbies/lobby.level",
+        "name": "Lobby castle (animated) 2023",
+        "link": "level_data/lobbies/lobby-castle-animated-2023.level",
         "type": "file"
     },
     {
-        "name": "Treehouse Lobby",
-        "link": "level_data/lobbies/lobby-treehouse.level",
-        "type": "file"
-    },
-    {
-        "name": "Temple Lobby",
-        "link": "level_data/lobbies/lobby-temple.level",
-        "type": "file"
-    },
-    {
-        "name": "Dojo Lobby",
-        "link": "level_data/lobbies/lobby-dojo.level",
-        "type": "file"
-    },
-    {
-        "name": "Christmas Lobby",
-        "link": "level_data/lobbies/lobby-christmas.level",
-        "type": "file"
-    },
-    {
-        "name": "Cave Lobby",
-        "link": "level_data/lobbies/lobby-cave.level",
-        "type": "file"
-    },
-    {
-        "name": "Beach Lobby",
-        "link": "level_data/lobbies/lobby-beach.level",
-        "type": "file"
-    },
-    {
-        "name": "Castle Lobby 2023",
+        "name": "Lobby castle 2023",
         "link": "level_data/lobbies/lobby-castle-2023.level",
         "type": "file"
     },
     {
-        "name": "Christmas Lobby 2022",
-        "link": "level_data/lobbies/lobby-christmas-2022.level",
+        "name": "Lobby summer (animated) 2023",
+        "link": "level_data/lobbies/lobby-summer-animated-2023.level",
         "type": "file"
     },
     {
-        "name": "Easter GTF Lobby 2023",
-        "link": "level_data/lobbies/lobby-easter-2023.level",
-        "type": "file"
-    },
-    {
-        "name": "Summer Lobby 2023",
+        "name": "Lobby summer 2023",
         "link": "level_data/lobbies/lobby-summer-2023.level",
         "type": "file"
     },
     {
-        "name": "Space Lobby",
-        "link": "level_data/lobbies/lobby-space.level",
-        "type": "file"
-    },
-    {
-        "name": "Restaurant Lobby",
-        "link": "level_data/lobbies/lobby-restaurant.level",
-        "type": "file"
-    },
-    {
-        "name": "Halloween Lobby",
-        "link": "level_data/lobbies/lobby-halloween.level",
-        "type": "file"
-    },
-    {
-        "name": "Forest Lobby",
-        "link": "level_data/lobbies/lobby-forest.level",
-        "type": "file"
-    },
-    {
-        "name": "Floating Islands Lobby 2023",
+        "name": "Lobby floating islands 2023",
         "link": "level_data/lobbies/lobby-floating-islands-2023.level",
         "type": "file"
     },
     {
-        "name": "Winter Lobby 2023",
+        "name": "Lobby space 2023",
+        "link": "level_data/lobbies/lobby-space-2023.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby easter (animated) 2023",
+        "link": "level_data/lobbies/lobby-easter-animated-2023.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby easter 2023",
+        "link": "level_data/lobbies/lobby-easter-2023.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby forest (animated) 2023",
+        "link": "level_data/lobbies/lobby-forest-animated-2023.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby winter 2023",
         "link": "level_data/lobbies/lobby-winter-2023.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby christmas (animated) 2022",
+        "link": "level_data/lobbies/lobby-christmas-animated-2022.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby christmas 2022",
+        "link": "level_data/lobbies/lobby-christmas-2022.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby restaurant 2022",
+        "link": "level_data/lobbies/lobby-restaurant-2022.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby halloween 2022",
+        "link": "level_data/lobbies/lobby-halloween-2022.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby dojo 2022",
+        "link": "level_data/lobbies/lobby-dojo-2022.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby beach 2022",
+        "link": "level_data/lobbies/lobby-beach-2022.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby temple 2022",
+        "link": "level_data/lobbies/lobby-temple-2022.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby cave 2022",
+        "link": "level_data/lobbies/lobby-cave-2022.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby treehouse 2022",
+        "link": "level_data/lobbies/lobby-treehouse-2022.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby christmas 2021",
+        "link": "level_data/lobbies/lobby-christmas-2021.level",
+        "type": "file"
+    },
+    {
+        "name": "Lobby original 2021",
+        "link": "level_data/lobbies/lobby-original-2021.level",
         "type": "file"
     },
     {
