@@ -56,13 +56,6 @@ let adOptions = [
         "link": "https://www.meta.com/referrals/link/dotindex",
         "image": "img/ad/quest3.webp",
         "source": "Meta"
-    },
-    {
-        "title": "GRAB GIVEAWAY!",
-        "body": "Merch, Coins, and a Quest 3!",
-        "link": "https://wn.nr/Y24cmkV",
-        "image": "img/ad/giveaway.png",
-        "source": "Official"
     }
 ];
 
