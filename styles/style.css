@@ -893,6 +893,14 @@ div#questMultiSelect {
     margin-right: auto;
     color: var(--text-color-default);
 }
+#list-credit {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-color-alt);
+}
 .metric-data {
     display: none;
     position: fixed;
