@@ -17,23 +17,6 @@ document.getElementById('sorters').addEventListener('click', (e) => {
     }
 });
 
-fetch("/stats_data/hardest_levels_list.json")
-.then(r => r.json()).then(data => {
-    for (let i = 0; i < data.length; i++) {
-        let level = data[i];
-
-        maps.innerHTML += `
-        <div class="leaderboard-item list-item${
-            isLoggedIn && level.id.split(':')[0] === user_id ? ' card-personal' : ''
-        }">
-            <p>${i+1}</p>
-            <a href="https://grabvr.quest/levels/viewer?level=${level.id}" target="_blank">${level.title}</a>
-            <p>${level.creator}</p>
-        </div>
-        `;
-    }
-});
-
 let metrics = {};
 
 function checkMetric(id, username) {
@@ -59,13 +42,44 @@ function checkMetric(id, username) {
             featuredRecords: 0,
             unbeatenMapPlays: 0,
             unbeatenMaps: 0,
+            hardestMaps: 0,
             positions: {},
             username: username
         };
     }
 }
 
+function GetSuffix(number) {
+    const suffixes = ['th','st','nd','rd'];
+    const lastDigit = Math.abs(number) % 10;
+    return suffixes[lastDigit < 4? lastDigit : 0];
+}
+
 (async () => {
+
+    await fetch("/stats_data/hardest_levels_list.json")
+    .then(r => r.json()).then(data => {
+        for (let i = 0; i < data.length; i++) {
+            let level = data[i];
+
+            maps.innerHTML += `
+            <div class="leaderboard-item list-item${
+                isLoggedIn && level.id.split(':')[0] === user_id ? ' card-personal' : ''
+            }">
+                <p>${i+1}</p>
+                <a href="https://grabvr.quest/levels/viewer?level=${level.id}" target="_blank">${level.title}</a>
+                <p>${level.creator}</p>
+            </div>
+            `;
+
+            const id = level.id.split(':')[0]
+            const username = level.creator || 'Unknown';
+
+            checkMetric(id, username);
+
+            metrics[id].hardestMaps += 1;
+        }
+    });
 
     await fetch('/stats_data/user_finishes.json')
     .then(r => r.json()).then(data => {
@@ -218,7 +232,8 @@ function checkMetric(id, username) {
         soleVictories: 1,
         featuredRecords: 1,
         unbeatenMapPlays: 1,
-        unbeatenMaps: 1
+        unbeatenMaps: 1,
+        hardestMaps: 1,
     }
 
     for (let key in adjustmentMetrics) {
@@ -244,16 +259,32 @@ function checkMetric(id, username) {
     const usedMetrics = {
         records: undefined, // beating maps
         finishes: undefined, // beating maps
-        featuredRecords: undefined, // beating popular maps
         challengeFinishes: undefined, // beating hard maps
         challengeFirsts: undefined, // beating hard maps
-        challengeMaps: undefined, // making hard maps
+        featuredRecords: undefined, // beating popular maps
         soleVictories: undefined, // beating hard maps
-        averageVerifiedDifficulty: undefined, // making hard maps
+        challengeMaps: undefined, // making hard maps
+        unbeatenMaps: undefined, // making hard maps
+        hardestMaps: undefined, // making hard maps
         verifiedVeryHardMaps: undefined, // making hard maps
-        verifiedImpossibleMaps: undefined, // making hard maps
         unbeatenMapPlays: undefined, // making hard maps
-        unbeatenMaps: undefined // making hard maps
+        // averageVerifiedDifficulty: undefined // making hard maps
+        // verifiedImpossibleMaps: undefined, // making hard maps
+    };
+    const labels = {
+        records: "Records",
+        finishes: "Finishes",
+        featuredRecords: "BOG Records",
+        challengeFinishes: "Challenge Finishes",
+        challengeFirsts: "Challenge Records",
+        challengeMaps: "Challenge Maps",
+        soleVictories: "Sole Finishes",
+        averageVerifiedDifficulty: "AVG Maps Difficulty",
+        verifiedVeryHardMaps: "Very Hard Maps",
+        unbeatenMapPlays: "Unbeaten Maps Plays",
+        unbeatenMaps: "Unbeaten Maps",
+        hardestMaps: "Hardest Maps",
+        // verifiedImpossibleMaps: "Impossible Maps"
     };
 
     const entries = Object.entries(metrics);
@@ -291,7 +322,21 @@ function checkMetric(id, username) {
         }">
             <p>${i + 1}</p>
             <a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}" target="_blank">${data.username}</a>
-            <p>${Math.round(data.score*100)/100}
+            <div class="list-chart">
+                ${
+                    (()=>{
+                        let bars = '';
+                        for (let key in metrics[id].positions) {
+                            bars += `<div class="metric-bar">
+                                <div class="metric-bar-fill${metrics[id].positions[key] == 0 ? ' metric-bar-first' : ''}" style="height: ${100 - Math.pow(metrics[id].positions[key], 1.5)}%"></div>
+                                <span class="metric-bar-label">${labels[key]}<br>${metrics[id].positions[key]+1}${GetSuffix(metrics[id].positions[key]+1)}</span>
+                            </div>`;
+                        }
+                        return bars;
+                    })()
+                }
+            </div>
+            <p>${(Math.round(data.score*100)/100).toString().padEnd(2, '.').padEnd(4, '0')}
                 <span class="metric-data">${JSON.stringify(metrics[id], null, 2)}</span>
             </p>
         </div>
