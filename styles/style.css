@@ -880,6 +880,10 @@ div#questMultiSelect {
     align-items: center;
     justify-content: space-between;
 }
+.list-item p:last-child {
+    min-width: 50px;
+    text-align: end;
+}
 .list-item p:first-child {
     font-size: 18px;
     font-weight: 600;
@@ -914,10 +918,10 @@ div#questMultiSelect {
     white-space: pre;
     font-size: .5rem;
 }
-p:hover .metric-data, p:active .metric-data,
+/* p:hover .metric-data, p:active .metric-data,
 p:focus .metric-data, p:focus-within .metric-data {
     display: flex;
-}
+} */
 #Global-out p {
     width: fit-content;
     font-size: 16px;
@@ -1188,6 +1192,52 @@ p:focus .metric-data, p:focus-within .metric-data {
     color: #fff6;
     font-size: 8px;
 }
+
+.list-chart {
+    width: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    height: 20px;
+}
+.metric-bar {
+    height: 100%;
+    width: 5px;
+    background-color: #d65151a0;
+    border-radius: 5px;
+    /* overflow: hidden; */
+    display: flex;
+    align-items: flex-end;
+}
+.metric-bar-fill {
+    border-radius: 5px;
+    width: 100%;
+    background-color: #51d677a0;
+}
+.metric-bar-label {
+    display: none;
+    position: absolute;
+    height: 100%;
+    right: 100%;
+    transform: translateX(-10px);
+    white-space: nowrap;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    color: var(--text-color-default) !important;
+}
+.metric-bar:hover .metric-bar-label {
+    display: flex;
+}
+.metric-bar-first {
+    box-shadow: 0 0 4px #ff07;
+}
+
 @keyframes notificationTimer {
     to {
         width: 100%;
