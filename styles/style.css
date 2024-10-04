@@ -1201,6 +1201,19 @@ p:focus .metric-data, p:focus-within .metric-data {
     gap: 6px;
     height: 20px;
 }
+.list-item-expanded-content .list-chart {
+    height: fit-content;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 2fr;
+    gap: 6px;
+    align-items: center;
+}
+@media screen and (max-width: 730px) {
+    .list-item-expanded-content .list-chart {
+        grid-template-columns: 1fr 2fr;
+    }
+}
 .metric-bar {
     height: 100%;
     width: 5px;
@@ -1210,10 +1223,24 @@ p:focus .metric-data, p:focus-within .metric-data {
     display: flex;
     align-items: flex-end;
 }
+.list-item-expanded-content .metric-bar {
+    position: relative;
+    width: 100%;
+    min-height: 5px;
+    height: 8px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
 .metric-bar-fill {
     border-radius: 5px;
     width: 100%;
     background-color: #51d677a0;
+}
+.list-item-expanded-content .metric-bar-fill {
+    height: 100%;
 }
 .metric-bar-label {
     display: none;
@@ -1231,11 +1258,38 @@ p:focus .metric-data, p:focus-within .metric-data {
     border-radius: 10px;
     color: var(--text-color-default) !important;
 }
+.list-item-expanded-content .metric-bar-label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    position: static;
+    text-align: right;
+    width: 100%;
+    transform: none;
+    font-size: 10px !important;
+}
 .metric-bar:hover .metric-bar-label {
     display: flex;
 }
 .metric-bar-first {
     box-shadow: 0 0 4px #ff07;
+}
+.list-item-expanded {
+    flex-wrap: wrap;
+}
+.list-item-expanded-content {
+    display: none;
+
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    flex-basis: 100%;
+}
+.list-item-expanded .list-item-expanded-content {
+    display: flex;
 }
 
 @keyframes notificationTimer {
