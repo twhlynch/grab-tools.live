@@ -49,10 +49,10 @@ if (darkModeButton) {
 
 if (localStorage.getItem("darkMode") === "true") {
     document.body.parentElement.classList.add("dark-mode");
-    darkModeButton.classList.add("dark");
+    if (darkModeButton) darkModeButton.classList.add("dark");
 } else if (localStorage.getItem("darkMode") === "ultra") {
     document.body.parentElement.classList.add("ultra-dark-mode");
-    darkModeButton.classList.add("ultra-dark");
+    if (darkModeButton) darkModeButton.classList.add("ultra-dark");
 }
 
 const currentLocation = window.location.pathname.replace("/", "").replace(".html", "");

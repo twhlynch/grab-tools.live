@@ -55,6 +55,13 @@ function GetSuffix(number) {
     return suffixes[lastDigit < 4? lastDigit : 0];
 }
 
+function expand(element) {
+    document.querySelectorAll('.list-item-expanded').forEach((e)=>{
+        e.classList.remove('list-item-expanded');
+    });
+    element.classList.add('list-item-expanded');
+}
+
 (async () => {
 
     await fetch("/stats_data/hardest_levels_list.json")
@@ -266,7 +273,7 @@ function GetSuffix(number) {
         challengeMaps: undefined, // making hard maps
         unbeatenMaps: undefined, // making hard maps
         hardestMaps: undefined, // making hard maps
-        verifiedVeryHardMaps: undefined, // making hard maps
+        // verifiedVeryHardMaps: undefined, // making hard maps
         unbeatenMapPlays: undefined, // making hard maps
         // averageVerifiedDifficulty: undefined // making hard maps
         // verifiedImpossibleMaps: undefined, // making hard maps
@@ -319,7 +326,7 @@ function GetSuffix(number) {
         players.innerHTML += `
         <div class="leaderboard-item list-item${
             isLoggedIn && id === user_id ? ' card-personal' : ''
-        }">
+        }" onclick="expand(this)">
             <p>${i + 1}</p>
             <a href="https://grabvr.quest/levels?tab=tab_other_user&user_id=${id}" target="_blank">${data.username}</a>
             <div class="list-chart">
@@ -328,8 +335,8 @@ function GetSuffix(number) {
                         let bars = '';
                         for (let key in metrics[id].positions) {
                             bars += `<div class="metric-bar">
-                                <div class="metric-bar-fill${metrics[id].positions[key] == 0 ? ' metric-bar-first' : ''}" style="height: ${100 - Math.pow(metrics[id].positions[key], 1.5)}%"></div>
-                                <span class="metric-bar-label">${labels[key]}<br>${metrics[id].positions[key]+1}${GetSuffix(metrics[id].positions[key]+1)}</span>
+                                <div class="metric-bar-fill${metrics[id].positions[key] == 0 ? ' metric-bar-first' : ''}" style="height: ${Math.max(100 - Math.pow(metrics[id].positions[key], 1.5), 0) * (metrics[id][key] == 0 ? 0 : 1)}%"></div>
+                                <span class="metric-bar-label">${labels[key]}<br>${metrics[id][key] == 0 ? "N/a" : metrics[id].positions[key]+1}${metrics[id][key] == 0 ? "" : GetSuffix(metrics[id].positions[key]+1)}</span>
                             </div>`;
                         }
                         return bars;
@@ -339,6 +346,22 @@ function GetSuffix(number) {
             <p>${(Math.round(data.score*100)/100).toString().padEnd(2, '.').padEnd(4, '0')}
                 <span class="metric-data">${JSON.stringify(metrics[id], null, 2)}</span>
             </p>
+            <div class="list-item-expanded-content">
+                <div class="list-chart">
+                ${
+                    (()=>{
+                        let bars = '';
+                        for (let key in metrics[id].positions) {
+                            bars += `<span class="metric-bar-label">${labels[key]}: ${metrics[id][key] == 0 ? "N/a" : metrics[id].positions[key]+1}${metrics[id][key] == 0 ? "" : GetSuffix(metrics[id].positions[key]+1)} [${"+"+(Math.round(metrics[id][key]*100)/100).toString().padEnd(2, '.').padEnd(4, '0')}] ${metrics[id][key] == 0 ? "" : ("("+(Math.round(metrics[id][key] * adjustmentMetrics[key]*100)/100).toString()+")")}</span>`;
+                            bars += `<div class="metric-bar">
+                                <div class="metric-bar-fill${metrics[id].positions[key] == 0 ? ' metric-bar-first' : ''}" style="width: ${Math.max(100 - Math.pow(metrics[id].positions[key], 1.5), 0) * (metrics[id][key] == 0 ? 0 : 1)}%"></div>
+                            </div>`;
+                        }
+                        return bars;
+                    })()
+                }
+            </div>
+            </div>
         </div>
         `;
         isLoggedIn && id === user_id ? isTop100 = true : null;
