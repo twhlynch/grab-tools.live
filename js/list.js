@@ -335,7 +335,7 @@ function expand(element) {
                         let bars = '';
                         for (let key in metrics[id].positions) {
                             bars += `<div class="metric-bar">
-                                <div class="metric-bar-fill${metrics[id].positions[key] == 0 ? ' metric-bar-first' : ''}" style="height: ${Math.max(100 - Math.pow(metrics[id].positions[key], 1.5), 0) * (metrics[id][key] == 0 ? 0 : 1)}%"></div>
+                                <div class="metric-bar-fill${metrics[id].positions[key] == 0 ? ' metric-bar-first' : ''}" style="height: ${100 * metrics[id][key]}%"></div>
                                 <span class="metric-bar-label">${labels[key]}<br>${metrics[id][key] == 0 ? "N/a" : metrics[id].positions[key]+1}${metrics[id][key] == 0 ? "" : GetSuffix(metrics[id].positions[key]+1)}</span>
                             </div>`;
                         }
@@ -354,7 +354,7 @@ function expand(element) {
                         for (let key in metrics[id].positions) {
                             bars += `<span class="metric-bar-label">${labels[key]}: ${metrics[id][key] == 0 ? "N/a" : metrics[id].positions[key]+1}${metrics[id][key] == 0 ? "" : GetSuffix(metrics[id].positions[key]+1)} [${"+"+(Math.round(metrics[id][key]*100)/100).toString().padEnd(2, '.').padEnd(4, '0')}] ${metrics[id][key] == 0 ? "" : ("("+(Math.round(metrics[id][key] * adjustmentMetrics[key]*100)/100).toString()+")")}</span>`;
                             bars += `<div class="metric-bar">
-                                <div class="metric-bar-fill${metrics[id].positions[key] == 0 ? ' metric-bar-first' : ''}" style="width: ${Math.max(100 - Math.pow(metrics[id].positions[key], 1.5), 0) * (metrics[id][key] == 0 ? 0 : 1)}%"></div>
+                                <div class="metric-bar-fill${metrics[id].positions[key] == 0 ? ' metric-bar-first' : ''}" style="width: ${100 * metrics[id][key]}%"></div>
                             </div>`;
                         }
                         return bars;
