@@ -880,8 +880,8 @@ div#questMultiSelect {
     align-items: center;
     justify-content: space-between;
 }
-.list-item p:last-child {
-    min-width: 50px;
+.list-item p:nth-last-child(2) {
+    min-width: 40px;
     text-align: end;
 }
 .list-item p:first-child {
