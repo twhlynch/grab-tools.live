@@ -36,6 +36,14 @@ function getSuffix(number) {
             return 'th';
     }
 }
+function getFeaturedName(id) {
+    for (let featured_creator of statistics.featured_creators || []) {
+        if (featured_creator.list_key.split(":")[1] == id) {
+            return featured_creator.title;
+        }
+    }
+    return undefined;
+}
 
 // card functions
 function levelCard(
@@ -50,7 +58,7 @@ function levelCard(
     const levelUrl = `https://grabvr.quest/levels/viewer/?level=${identifier}`;
     const creatorUrl = `https://grabvr.quest/levels?tab=tab_other_user&user_id=${identifier.split(':')[0]}`;
     const creatorsString = creators? creators.join(', ') : '';
-    const creator = creators ? creators[0] : '?';
+    const creator = getFeaturedName(identifier) || creators ? creators[0] : '?';
     let daysOld = Math.round((new Date() - new Date(updatedTimestamp)) / (1000 * 60 * 60 * 24));
     const imageUrl = `https://grab-images.slin.dev/${imageThumb}`;
 
@@ -150,6 +158,7 @@ function userCard(
     if (session.isLoggedIn && identifier == session.user_id) {
         cardElement.classList.add('card-personal');
     }
+    username = getFeaturedName(identifier) || username;
 
     const userElement = document.createElement('a');
     userElement.setAttribute('href', userUrl);
