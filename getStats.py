@@ -208,7 +208,7 @@ def find_list_keys(data):
     if isinstance(data, dict):
         if "list_key" in data:
             list_keys.append(data["list_key"])
-        if data["title"] == "Past Competitions":
+        if "title" in data and data["title"] == "Past Competitions":
             return []
         for key, value in data.items():
             list_keys.extend(find_list_keys(value))
