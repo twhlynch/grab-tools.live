@@ -17,9 +17,16 @@ document.getElementById('sorters').addEventListener('click', (e) => {
     }
 });
 
+let featured_creators = [];
+
 let metrics = {};
 
 function checkMetric(id, username) {
+    for (let featured_creator of featured_creators) {
+        if (featured_creator.list_key.split(":")[1] == id) {
+            username = featured_creator.title;
+        }
+    }
     if (!(id in metrics)) {
         metrics[id] = {
             score: 0,
@@ -63,6 +70,11 @@ function expand(element) {
 }
 
 (async () => {
+
+    await fetch('/stats_data/featured_creators.json')
+    .then(r => r.json()).then(data => {
+        featured_creators = data;
+    });
 
     await fetch("/stats_data/hardest_levels_list.json")
     .then(r => r.json()).then(data => {
