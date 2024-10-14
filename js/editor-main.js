@@ -4222,7 +4222,7 @@ function initUI() {
     document.getElementById('empty-btn').addEventListener( 'click', () => {openJSON('level_data/json_files/empty.json')});
     // document.getElementById('the-index-btn').addEventListener('click', () => {openProto('level_data/the-index.level')});
     document.getElementById('basic-cheatsheet-btn').addEventListener('click', () => {generateCheatSheet()});
-    document.getElementById('advanced-cheatsheet-btn').addEventListener('click', () => {generateCheatSheet(advanced=true)});
+    document.getElementById('advanced-cheatsheet-btn').addEventListener('click', () => {generateCheatSheet(true)});
     document.getElementById('mirror-x-btn').addEventListener('click', () => {mirror('x')});
     document.getElementById('mirror-y-btn').addEventListener('click', () => {mirror('y')});
     document.getElementById('mirror-z-btn').addEventListener('click', () => {mirror('z')});
