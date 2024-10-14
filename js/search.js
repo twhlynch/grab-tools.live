@@ -20,8 +20,15 @@ const asOutput = document.getElementById("advanced-search-output");
 const asPageControls = document.getElementById("advanced-search-page");
 
 const currentPageElement = document.getElementById("as-current-page");
+const totalCountElement = document.getElementById("as-results-count");
 const previousPageElement = document.getElementById("as-previous-page");
 const nextPageElement = document.getElementById("as-next-page");
+
+function numberWithCommas(x) {
+    let parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
 
 function generateResult(level) {
     const levelUrl = `https://grabvr.quest/levels/viewer/?level=${level.identifier}`;
@@ -54,6 +61,7 @@ let page = 0;
 function updatePageControls() {
     const totalPages = Math.ceil(resultData.length / 100);
     currentPageElement.innerText = `Page ${page + 1} of ${totalPages}`;
+    totalCountElement.innerText = `(${numberWithCommas(resultData.length)} results)`;
 
     previousPageElement.disabled = page == 0;
     nextPageElement.disabled = page == totalPages - 1;

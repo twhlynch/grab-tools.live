@@ -1349,6 +1349,13 @@ p:focus .metric-data, p:focus-within .metric-data {
     align-items: center;
     justify-content: center;
 }
+#advanced-search-page > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
 
 @keyframes notificationTimer {
     to {
