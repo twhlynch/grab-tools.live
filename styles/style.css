@@ -1291,6 +1291,64 @@ p:focus .metric-data, p:focus-within .metric-data {
 .list-item-expanded .list-item-expanded-content {
     display: flex;
 }
+#advanced-search-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+#advanced-search-inputs input[type="text"] {
+    width: 100%;
+    font-size: 16px;
+}
+#advanced-search-inputs input[type="checkbox"] {
+    border-radius: 5px;
+    background-color: var(--text-color-alt);
+    color: var(--text-color-accent);
+    font-size: 16px;
+    cursor: pointer;
+}
+#advanced-search-inputs div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+#advanced-search-output {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+.as-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.as-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.as-card a {
+    color: var(--text-color-link);
+    text-decoration: none;
+}
+.as-card span, .as-card a {
+    line-break: anywhere;
+}
+#advanced-search-page {
+    display: none;
+    flex-direction: row;
+    gap: 10px;
+    margin-inline: auto;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+}
 
 @keyframes notificationTimer {
     to {
