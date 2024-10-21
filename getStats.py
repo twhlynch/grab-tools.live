@@ -531,7 +531,7 @@ def get_unverified(all_verified, all_verified_old):
 def get_level_data():
     with open("stats_data/log_data.json") as log_file:
         log_data = json.load(log_file)
-    if datetime.now().timestamp() - log_data["last_ran"] < 60*60*20:
+    if datetime.now().timestamp() - log_data["last_ran"] < 60*60*14:
         print("Not running")
         return
 
