@@ -194,6 +194,10 @@ h2 {
     gap: var(--padding-secondary);
     background-color: #0000;
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+.button:hover:not(nav .button) {
+    background-color: #5f8cc213;
 }
 footer {
     margin-inline: auto;
