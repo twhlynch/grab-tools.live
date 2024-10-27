@@ -1,24 +1,3 @@
-if (document.title === "GRAB Tools") {
-    const currentTime = document.getElementById("currentTime");
-    const currentState = document.getElementById("currentState");
-    const time = new Date();
-
-    const options = { timeZone: 'Australia/Melbourne' };
-    const localTime = time.toLocaleString('en-US', options);
-
-    let hour = new Date(localTime).getHours();
-
-    if (hour >= 17 && hour < 24) {
-        currentState.innerHTML = "awake";
-    } else if (hour >= 9 && hour < 17) {
-        currentState.innerHTML = "working";
-    } else {
-        currentState.innerHTML = "sleeping";
-    }
-    let minutes = new Date(localTime).getMinutes();
-    currentTime.innerHTML = `${hour < 12 ? hour : hour - 12}:${minutes < 10 ? '0' + minutes : minutes} ${hour >= 12 ? "PM" : "AM"}`;
-}
-
 let darkModeButton = document.getElementById("darkMode");
 let latestTime = performance.now();
 if (darkModeButton) {
