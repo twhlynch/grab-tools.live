@@ -144,21 +144,6 @@ function expand(element) {
         }
     });
 
-    await fetch('/stats_data/a_challenge.json')
-    .then(r => r.json()).then(data => {
-        for (let item of data) {
-
-            const id = item[0];
-            const username = item[1][1];
-
-            checkMetric(id, username);
-
-            metrics[id].challengeScore = item[1][0];
-            metrics[id].challengeFinishes = item[1][2];
-            
-        }
-    });
-
     await fetch('/stats_data/unbeaten_levels.json')
     .then(r => r.json()).then(data => {
         for (let level of data) {
@@ -180,6 +165,9 @@ function expand(element) {
         for (let level of data) {
 
             const leaderboard = level.leaderboard;
+            const id = level.identifier.split(':')[0]
+            const username = level?.creators?.length ? level.creators[0] : 'Unknown';
+
             if (leaderboard.length > 0) {
                 const item = leaderboard[0];
                 checkMetric(item.user_id, item.user_name);
@@ -190,13 +178,24 @@ function expand(element) {
                 metrics[item.user_id].featuredRecords += 1;
             }
 
-            const id = level.identifier.split(':')[0]
-            const username = level?.creators?.length ? level.creators[0] : 'Unknown';
-
             checkMetric(id, username);
 
             if (level.list_key.includes("curated_challenge")) {
                 metrics[id].challengeMaps += 1;
+
+                let creatorFinished = false;
+                for (let i = 0; i < leaderboard.length; i++) {
+                    const item = leaderboard[i];
+                    if (item.user_id === id) {
+                        creatorFinished = true;
+                    }
+
+                    checkMetric(item.user_id, item.user_name);
+                    metrics[item.user_id].challengeFinishes += 1;
+                }
+                if (!creatorFinished) {
+                    metrics[id].challengeFinishes += 1;
+                }
             }
 
         }

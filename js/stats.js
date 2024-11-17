@@ -654,7 +654,11 @@ function getBestOfGrab() {
             playerFeatures[userId].user_name = (""+item?.creators).split(',')[0];
         }
 
+        let creatorFinished = false;
         for (const lItem of item.leaderboard) {
+            if (lItem.user_id == userId) {
+                creatorFinished = true;
+            }
             let score = determineScore(lItem, item.leaderboard.length);
             
             if (!(lItem.user_id in playerCompletions)) {
@@ -685,6 +689,29 @@ function getBestOfGrab() {
                 if (lItem.position == 0) {
                     playerCompletionsByKey[lKey][lItem.user_id].firsts += 1;
                 }
+            }
+        }
+        if (!creatorFinished) {
+            if (!(userId in playerCompletions)) {
+                playerCompletions[userId] = {
+                    user_name: (""+item?.creators).split(',')[0],
+                    maps: 0,
+                    firsts: 0,
+                    score: 0
+                }
+            }
+            playerCompletions[userId].maps += 1;
+
+            for (const lKey of item.list_key.split(":")) {
+                if (!(userId in playerCompletionsByKey[lKey])) {
+                    playerCompletionsByKey[lKey][userId] = {
+                        user_name: (""+item?.creators).split(',')[0],
+                        firsts: 0,
+                        maps: 0,
+                        score: 0
+                    }
+                }
+                playerCompletionsByKey[lKey][userId].maps += 1;
             }
         }
     }
