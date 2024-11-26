@@ -4374,7 +4374,7 @@ async function initAttributes() {
         });
         let exportMaterial = new THREE.MeshBasicMaterial({ map: texture });
         materials.push(material);
-        exportMaterials.push(material);
+        exportMaterials.push(exportMaterial);
         incrementLoader(10 / materialList.length);
     }
 
