@@ -177,7 +177,7 @@ function scripture() {
     let height = 0;
 
     let level = {
-        "formatVersion": 6,
+        "formatVersion": 10,
         "title": title,
         "creators": creators+", .index",
         "description": desc+"  grab-tools.live",
@@ -369,7 +369,7 @@ function TextToSigns() {
         "complexity": 0,
         "creators": creators,
         "description": desc+` - grab-tools.live`,
-        "formatVersion": 6,
+        "formatVersion": 10,
         "levelNodes": signs,
         "maxCheckpointCount": 10,
         "title": title
@@ -452,7 +452,7 @@ function compile(qms=false) {
             "complexity": 0,
             "creators": creators,
             "description": description,
-            "formatVersion": 6,
+            "formatVersion": 10,
             "levelNodes": finalNodes,
             "maxCheckpointCount": parseInt(checkpoints),
             "title": title
@@ -570,7 +570,7 @@ function pixelate() {
                 "complexity": q**2,
                 "creators": creators,
                 "description": desc,
-                "formatVersion": 6,
+                "formatVersion": 10,
                 "levelNodes": pixelNodes,
                 "maxCheckpointCount": 10,
                 "title": title
@@ -655,7 +655,7 @@ function generatePointCloud() {
             },
             "creators": "",
             "description": "model by grab-tools.live",
-            "formatVersion": 6,
+            "formatVersion": 10,
             "levelNodes": [],
             "maxCheckpointCount": 10,
             "title": "pointcloud"

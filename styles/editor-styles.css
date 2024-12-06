@@ -720,6 +720,9 @@ li:has(#enableEditing-btn) {
 #edit_material-9 {
     background-image: url("/img/textures/bouncing.png");
 }
+#edit_material-10 {
+    background-image: url("/img/textures/snow.png");
+}
 #edit_color-btn-input {
     visibility: hidden;
     position: absolute;
