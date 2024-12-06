@@ -63,6 +63,7 @@ let materialList = [
     '/img/textures/grabbable_crumbling.png',
     '/img/textures/default_colored.png',
     '/img/textures/bouncing.png',
+    '/img/textures/snow.png',
     '/img/textures/default.png'
 ];
 let shapeList = [
@@ -122,6 +123,7 @@ const statsGrapplable_lavaElement = document.getElementById('stats-grapplable_la
 const statsGrabbable_crumblingElement = document.getElementById('stats-grabbable_crumbling');
 const statsDefault_coloredElement = document.getElementById('stats-default_colored');
 const statsBouncingElement = document.getElementById('stats-bouncing');
+const statsSnowElement = document.getElementById('stats-snow');
 const statsIceElement = document.getElementById('stats-ice');
 const statsWoodElement = document.getElementById('stats-wood');
 const statsCubeElement = document.getElementById('stats-cube');
@@ -231,6 +233,8 @@ function JsonToHighlightedText(json) {
                 return `<span style="background-image: url(/img/textures/default_colored.png); background-size: contain">${match}</span>`;
             case 9:
                 return `<span style="background-image: url(/img/textures/bouncing.png); background-size: contain">${match}</span>`;
+            case 10:
+                return `<span style="background-image: url(/img/textures/snow.png); background-size: contain">${match}</span>`;
             default:
                 break;
         }
@@ -300,6 +304,7 @@ function refreshScene() {
         grabbable_crumbling: 0,
         default_colored: 0,
         bouncing: 0,
+        snow: 0,
         ice: 0,
         wood: 0,
         // special attributes
@@ -476,6 +481,7 @@ function refreshScene() {
         statistics.grabbable_crumbling += nodeStatistics.grabbable_crumbling;
         statistics.default_colored += nodeStatistics.default_colored;
         statistics.bouncing += nodeStatistics.bouncing;
+        statistics.snow += nodeStatistics.snow;
         statistics.ice += nodeStatistics.ice;
         statistics.wood += nodeStatistics.wood;
         statistics.cube += nodeStatistics.cube;
@@ -509,6 +515,7 @@ function refreshScene() {
     statsGrabbable_crumblingElement.innerText = `Grabbable Crumbling: ${statistics.grabbable_crumbling}`;
     statsDefault_coloredElement.innerText = `Default Colored: ${statistics.default_colored}`;
     statsBouncingElement.innerText = `Bouncing: ${statistics.bouncing}`;
+    statsSnowElement.innerText = `Snow: ${statistics.snow}`;
     statsIceElement.innerText = `Ice: ${statistics.ice}`;
     statsWoodElement.innerText = `Wood: ${statistics.wood}`;
     statsCubeElement.innerText = `Cube: ${statistics.cube}`;
@@ -552,6 +559,7 @@ function loadLevelNode(node, parent) {
         bouncing: 0,
         ice: 0,
         wood: 0,
+        snow: 0,
         // special attributes
         neon: 0,
         gravityNoLegs: 0,
@@ -610,6 +618,7 @@ function loadLevelNode(node, parent) {
                 statistics.grabbable_crumbling += childNodeStatistics.grabbable_crumbling;
                 statistics.default_colored += childNodeStatistics.default_colored;
                 statistics.bouncing += childNodeStatistics.bouncing;
+                statistics.snow += childNodeStatistics.snow;
                 statistics.ice += childNodeStatistics.ice;
                 statistics.wood += childNodeStatistics.wood;
                 statistics.cube += childNodeStatistics.cube;
@@ -830,6 +839,9 @@ function loadLevelNode(node, parent) {
             case 9:
                 statistics.bouncing += 1;
                 break;
+            case 10:
+                statistics.snow += 1;
+                break;
             default:
                 statistics.danger = true;
                 break;
@@ -925,6 +937,9 @@ function loadLevelNode(node, parent) {
                 break;
             case 9:
                 statistics.bouncing += 1;
+                break;
+            case 10:
+                statistics.snow += 1;
                 break;
             default:
                 statistics.danger = true;
@@ -3692,6 +3707,7 @@ function generateCheatSheet(advanced=false) {
         7,
         8,
         9,
+        10,
         1000,
         1001,
         1002,

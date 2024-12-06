@@ -60,8 +60,9 @@ enum LevelNodeShape
   FINISH = 1;
   SIGN = 2;
   GRAVITY = 3;
+  LOBBYTERMINAL = 4;
 
-  __END_OF_SPECIAL_PARTS__ = 4;
+  __END_OF_SPECIAL_PARTS__ = 5;
 
   CUBE = 1000;
   SPHERE = 1001;
@@ -84,6 +85,7 @@ enum LevelNodeMaterial
   GRABBABLE_CRUMBLING= 7;
   DEFAULT_COLORED = 8;
   BOUNCING = 9;
+  SNOW = 10;
 }
 
 message LevelNodeGroup
@@ -166,6 +168,12 @@ message LevelNodeGravity
   Vector direction = 5;
 }
 
+message LevelNodeLobbyTerminal
+{
+	Vector position = 2;
+	Quaternion rotation = 4;
+}
+
 message AnimationFrame
 {
   float time = 1;
@@ -200,6 +208,7 @@ message LevelNode
     LevelNodeCrumbling levelNodeCrumbling = 5;
     LevelNodeGroup levelNodeGroup = 7;
     LevelNodeGravity levelNodeGravity = 8;
+    LevelNodeLobbyTerminal levelNodeLobbyTerminal = 9;
   }
 
   //A level node can have any number (might limit it in the UI) of named animations, if groups are involved every block that is part of the same animation should have an animation with the same name
