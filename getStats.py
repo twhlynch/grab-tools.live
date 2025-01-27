@@ -697,6 +697,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
             await unverified_channel.send(embed=unverified_embed)
             
         # challenge maps record changes
+        new_records = []
         challenge_records_channel = bot.get_channel(1241943979751374868)
         for map in best_of_grab_levels:
             found = False
@@ -724,6 +725,26 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
             if not found and "curated_challenge" in map["list_key"]:
                 embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=f"Map added to a challenge", color=0x990000)
                 await challenge_records_channel.send(embed=embed)
+
+            for i in range(len(map["leaderboard"])):
+                identifier = map["leaderboard"][i]["identifier"]
+                for map_old in best_of_grab_levels_old:
+                    if map["identifier"] == map_old["identifier"]:
+                        for j in range(len(map_old["leaderboard"])):
+                            if map_old["leaderboard"][j]["identifier"] == identifier:
+                                if map["leaderboard"][i]["timestamp"] != map_old["leaderboard"][j]["timestamp"]:
+                                    new_records.append({
+                                        "identifier": map["identifier"],
+                                        "title": map["title"],
+                                        "record": map["leaderboard"][i]
+                                    })
+
+        records_log_channel = bot.get_channel(1333319489726713877)
+        for entry in new_records:
+            embed = Embed(title=entry["title"], url=f"{VIEWER_URL}?level={entry['identifier']}", color=0x990000)
+            embed.add_field(name=entry["record"]["user_name"], value=f"{entry["record"]["position"] + ': ' + entry["record"]['best_time']}s", inline=False)
+            await records_log_channel.send(embed=embed)
+
         for map_old in best_of_grab_levels_old:
             if "curated_challenge" in map_old["list_key"]:
                 found = False
