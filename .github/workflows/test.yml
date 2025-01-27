@@ -1,0 +1,28 @@
+name: Get statistics
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-diff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: create
+        run: touch test.txt
+
+      - name: content
+        run: echo "Hello, World!" > test.txt
+
+      - name: Commit changes
+        run: |
+          git config --global user.email "twhlynch.index@gmail.com"
+          git config --global user.name "twhlynch"
+          git add test.txt
+          git commit -m "test"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
