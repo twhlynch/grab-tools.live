@@ -24,7 +24,7 @@ jobs:
         
       - name: Commit changes
         run: |
-          git config --global user.email "twhlynch@gmail.com"
+          git config --global user.email "twhlynch.index@gmail.com"
           git config --global user.name "twhlynch"
           git add stats_data/statistics.json
           git commit -m "statistics"
