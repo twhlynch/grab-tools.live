@@ -681,7 +681,8 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
             await channel.send(embed=beaten_embed)
             
         unverified_channel = bot.get_channel(1238777601166934016)
-        await unverified_channel.send(f"{len(unverified)} unverified")
+        if len(unverified) > 0:
+            await unverified_channel.send(f"{len(unverified)} unverified")
         for map in unverified:
             color = 0x000000
             creator = "Unknown Creator"
