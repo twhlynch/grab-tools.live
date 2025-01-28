@@ -9,13 +9,13 @@ while IFS= read -r commit_hash; do
 		current_author=$(git show -s --format='%an' "$commit_hash")
 
 		git checkout "$commit_hash"
-		git commit --amend --author="$current_author <$new_author_email>" --no-edit
+		git commit --amend --author="$current_author <$new_email>" --no-edit
 
-		echo "Updated commit $commit_hash with new email: $new_author_email"
+		echo "Updated commit $commit_hash with new email: $new_email"
 	else
 		echo "Commit $commit_hash does not exist."
 	fi
-done < "$commit_hash_file"
+done < "$hash_file"
 
 git checkout -
 
