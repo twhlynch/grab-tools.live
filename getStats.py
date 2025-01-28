@@ -727,11 +727,11 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
                 await challenge_records_channel.send(embed=embed)
 
             for i in range(len(map["leaderboard"])):
-                identifier = map["leaderboard"][i]["identifier"]
+                identifier = map["leaderboard"][i]["user_id"]
                 for map_old in best_of_grab_levels_old:
                     if map["identifier"] == map_old["identifier"]:
                         for j in range(len(map_old["leaderboard"])):
-                            if map_old["leaderboard"][j]["identifier"] == identifier:
+                            if map_old["leaderboard"][j]["user_id"] == identifier:
                                 if map["leaderboard"][i]["timestamp"] != map_old["leaderboard"][j]["timestamp"]:
                                     new_records.append({
                                         "identifier": map["identifier"],
