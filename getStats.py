@@ -730,14 +730,22 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
                 identifier = map["leaderboard"][i]["user_id"]
                 for map_old in best_of_grab_levels_old:
                     if map["identifier"] == map_old["identifier"]:
+                        found = False
                         for j in range(len(map_old["leaderboard"])):
                             if map_old["leaderboard"][j]["user_id"] == identifier:
+                                found = True
                                 if map["leaderboard"][i]["timestamp"] != map_old["leaderboard"][j]["timestamp"]:
                                     new_records.append({
                                         "identifier": map["identifier"],
                                         "title": map["title"],
                                         "record": map["leaderboard"][i]
                                     })
+                        if not found:
+                            new_records.append({
+                                "identifier": map["identifier"],
+                                "title": map["title"],
+                                "record": map["leaderboard"][i]
+                            })
 
         records_log_channel = bot.get_channel(1333319489726713877)
         for entry in new_records:
