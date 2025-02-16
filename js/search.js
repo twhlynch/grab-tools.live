@@ -5,6 +5,7 @@ const asAny = document.getElementById("as-any");
 const asNone = document.getElementById("as-none");
 const asSubmit = document.getElementById("as-submit");
 const asCreators = document.getElementById("as-creators");
+const asExcludeCreators = document.getElementById("as-exclude-id");
 const asAfter = document.getElementById("as-after");
 const asBefore = document.getElementById("as-before");
 const asHasImage = document.getElementById("as-hasImage");
@@ -15,8 +16,10 @@ const asAllCase = document.getElementById("as-all-case");
 const asAnyCase = document.getElementById("as-any-case");
 const asNoneCase = document.getElementById("as-none-case");
 const asCreatorsCase = document.getElementById("as-creators-case");
+const asExcludeCreatorsCase = document.getElementById("as-exclude-id-case");
 
 const asOutput = document.getElementById("advanced-search-output");
+const asStats = document.getElementById("advanced-search-stats");
 const asPageControls = document.getElementById("advanced-search-page");
 
 const currentPageElement = document.getElementById("as-current-page");
@@ -80,6 +83,16 @@ function loadPage() {
     }
 }
 
+function loadStats() {
+    const stats = {
+        plays: 0
+    }
+    for (const level of resultData) {
+        stats.plays += level.statistics?.total_played || 0;
+    }
+    asStats.innerText = `Total plays: ${numberWithCommas(stats.plays)}`;
+}
+
 function search() {
     let exactValue = asExact.value;
     let startsValue = asStarts.value;
@@ -87,6 +100,7 @@ function search() {
     let anyValue = asAny.value;
     let noneValue = asNone.value;
     let creatorsValue = asCreators.value;
+    let excludeCreatorsValue = asExcludeCreators.value;
     const hasImageValue = asHasImage.checked;
     const afterValue = asAfter.value;
     const beforeValue = asBefore.value;
@@ -97,6 +111,7 @@ function search() {
     const AnyCase = !asAnyCase.checked;
     const NoneCase = !asNoneCase.checked;
     const CreatorsCase = !asCreatorsCase.checked;
+    const ExcludeCreatorsCase = !asExcludeCreatorsCase.checked;
 
     if (ExactCase) exactValue = exactValue.toLowerCase();
     if (StartsCase) startsValue = startsValue.toLowerCase();
@@ -104,6 +119,12 @@ function search() {
     if (AnyCase) anyValue = anyValue.toLowerCase();
     if (NoneCase) noneValue = noneValue.toLowerCase();
     if (CreatorsCase) creatorsValue = creatorsValue.toLowerCase();
+    if (ExcludeCreatorsCase) excludeCreatorsValue = excludeCreatorsValue.toLowerCase();
+
+    excludeCreatorsValue = excludeCreatorsValue.split(',').map(i => i.trim());
+
+    let multipleCreators = creatorsValue.includes(',');
+    if (multipleCreators) creatorsValue = creatorsValue.split(',').map(c => c.trim());
 
     let filteredData = [];
 
@@ -136,9 +157,19 @@ function search() {
             if (noneValue.split(' ').some(w => (NoneCase ? title.toLowerCase() : title).includes(w))) match = false;
         }
         // creators must include creatorsValue
-        if (creatorsValue && creatorsValue != '') {
-            if (!(CreatorsCase ? creators.toLowerCase() : creators).includes(creatorsValue)) match = false;
+        if (multipleCreators) {
+            let includesACreator = false;
+            for (const creator of creatorsValue) {
+                if ((CreatorsCase ? (level?.creators || []).map(c => c.toLowerCase()) : (level?.creators || [])).includes(creator)) includesACreator = true;
+            }
+            if (!includesACreator) match = false;
+        } else {
+            if (creatorsValue && creatorsValue != '') {
+                if (!(CreatorsCase ? creators.toLowerCase() : creators).includes(creatorsValue)) match = false;
+            }
         }
+        // Exclude creator ids
+        if (excludeCreatorsValue.includes(level.identifier.split(':')[0])) match = false;
         // must have an image if hasImageValue is set
         if (hasImageValue) {
             if (!hasImage) match = false;
@@ -158,6 +189,7 @@ function search() {
     resultData = filteredData;
     page = 0;
     loadPage();
+    loadStats();
 }
 
 async function getLevels() {
