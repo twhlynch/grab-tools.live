@@ -443,6 +443,30 @@ def get_weekly_map(all_verified_maps):
 def get_unbeaten_map():
     with open("stats_data/unbeaten_levels.json") as data_file:
         data = json.load(data_file)
+    if len(data) == 0: # fallback to impossible
+        return {
+        "identifier": "29mu59yo9pbgwqloqhthe:1690745443",
+        "title": "Impossible",
+        "complexity": 229,
+        "update_timestamp": 1722546072852,
+        "creation_timestamp": 1690755852015,
+        "tags": ["ok"],
+        "statistics": {
+            "total_played": 39000,
+            "difficulty": 0,
+            "difficulty_string": "impossible",
+            "liked": 0,
+            "time": 100
+        },
+        "images": {
+            "thumb": {
+                "key": "level_29mu59yo9pbgwqloqhthe_1690745443_1_thumb.png"
+            }
+        },
+        "iteration": 3,
+        "creators": ["?"],
+        "change": 0
+    }
     return random.choice(data)
 
 def get_trending_info(all_verified):
@@ -671,7 +695,8 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
             if over_100:
                 embed.add_field(name="Over 100 Days", value=("\n".join([f"{level['title']}" for level in over_100]))[:900], inline=False)
 
-            embed.add_field(name="Newest", value=unbeaten_levels[-1]["title"], inline=False)
+            if len(unbeaten_levels) > 0:
+                embed.add_field(name="Newest", value=unbeaten_levels[-1]["title"], inline=False)
 
             await channel.send(f"||{role.mention}||")
             await channel.send(embed=embed)
