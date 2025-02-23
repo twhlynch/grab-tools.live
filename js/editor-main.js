@@ -3136,11 +3136,16 @@ function openPointCloud(file) {
     reader.readAsText(file);
 }
 function generatePixelArt() {
-    let quality = document.getElementById('pixel-prompt').value;
-    document.getElementById('pixel-prompt').value = '';
+    let rows = document.getElementById('pixel-prompt-rows').value;
+    let cols = document.getElementById('pixel-prompt-cols').value;
+    document.getElementById('pixel-prompt-rows').value = '';
+    document.getElementById('pixel-prompt-cols').value = '';
     
-    if (quality == "" || quality == null || quality < 1) {
-        quality = 50;
+    if (rows == "" || rows == null || rows < 1) {
+        rows = parseInt(document.getElementById('pixel-prompt-rows').getAttribute('data-default')) || 50;
+    }
+    if (cols == "" || cols == null || cols < 1) {
+        cols = parseInt(document.getElementById('pixel-prompt-cols').getAttribute('data-default')) || 50;
     }
     let file = document.getElementById('image-btn-input').files[0];
     let canvas = document.getElementById('pixel-canvas');
@@ -3155,12 +3160,12 @@ function generatePixelArt() {
             ctx.drawImage(img, 0, 0);
             let canvas2 = document.getElementById('pixel-canvas2');
             let ctx2 = canvas2.getContext('2d');
-            canvas2.width = quality;
-            canvas2.height = quality;
+            canvas2.width = cols;
+            canvas2.height = rows;
             let rgbArray = [];
-            for (let x = 0; x < quality; x++) {
-                for (let y = 0; y < quality; y++) {
-                    let pixel = ctx.getImageData(x*(img.width/quality), y*(img.height/quality), 1, 1);
+            for (let x = 0; x < cols; x++) {
+                for (let y = 0; y < rows; y++) {
+                    let pixel = ctx.getImageData(x*(img.width/cols), y*(img.height/rows), 1, 1);
                     ctx2.putImageData(pixel, x, y);
                     let rgb = pixel.data;
                     rgbArray.push([rgb[0], rgb[1], rgb[2], x, y*-1]);
@@ -4032,6 +4037,20 @@ function initUI() {
     document.getElementById('image-btn-input').addEventListener('change', (e) => {
         promptsElement.style.display = 'grid';
         document.getElementById('prompt-pixel').style.display = 'flex';
+
+        let file = document.getElementById('image-btn-input').files[0];
+        let reader = new FileReader();
+        reader.onload = function() {
+            let data = reader.result;
+            let img = new Image();
+            img.onload = function() {
+                const ratio = Math.floor(50 / (img.width / img.height));
+                document.getElementById('pixel-prompt-rows').setAttribute('data-default', ratio);
+                document.getElementById('pixel-prompt-rows').setAttribute('placeholder', `Height, Default: ${ratio}`);
+            }
+            img.src = data;
+        }
+        reader.readAsDataURL(file);
     });
 
     document.querySelector('#prompt-pixel-sphere .prompt-cancel').addEventListener('click', () => {
