@@ -258,21 +258,21 @@ def get_unbeaten(all_verified_maps):
         exceptions = [
         ] # check anyway
         hacked = [
-            '29mu59yo9pbgwqloqhthe:1690745443'
-            '29mu59yo9pbgwqloqhthe:1700955740'
-            '2czbtyaqtbjo89sut7jqd:1713407280'
-            '2czbtyaqtbjo89sut7jqd:1722927329'
-            '2bt1j9owykx3qrnr8ilbv:1725107404'
-            '2czbtyaqtbjo89sut7jqd:1729545367'
-            '2bojjyjkmhegoqt73au7m:1729546021'
-            '2czbtyaqtbjo89sut7jqd:1722208096'
-            '2ap647di3dc1k42jf4o2o:1730644461'
-            '29wytcje12nmxfatcofke:1732846628'
-            '2cse0rwhzexnleljzk7g3:1734246173'
-            '29wytcje12nmxfatcofke:1734653251'
-            '2bojjyjkmhegoqt73au7m:1647420823'
-            '2bvy4htc1ihhkf23hxxce:1725154139'
-            '2bojjyjkmhegoqt73au7m:1735859839'
+            "29mu59yo9pbgwqloqhthe:1690745443",
+            "29mu59yo9pbgwqloqhthe:1700955740",
+            "2czbtyaqtbjo89sut7jqd:1713407280",
+            "2czbtyaqtbjo89sut7jqd:1722927329",
+            "2bt1j9owykx3qrnr8ilbv:1725107404",
+            "2czbtyaqtbjo89sut7jqd:1729545367",
+            "2bojjyjkmhegoqt73au7m:1729546021",
+            "2czbtyaqtbjo89sut7jqd:1722208096",
+            "2ap647di3dc1k42jf4o2o:1730644461",
+            "29wytcje12nmxfatcofke:1732846628",
+            "2cse0rwhzexnleljzk7g3:1734246173",
+            "29wytcje12nmxfatcofke:1734653251",
+            "2bojjyjkmhegoqt73au7m:1647420823",
+            "2bvy4htc1ihhkf23hxxce:1725154139",
+            "2bojjyjkmhegoqt73au7m:1735859839"
         ]
         if level["statistics"]["difficulty"] == 0 and ((days_old > 1 and level["statistics"]["total_played"] > 300) or days_old > 10):
             stats = get_level_stats(level['identifier'])
