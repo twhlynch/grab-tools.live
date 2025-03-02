@@ -28,10 +28,7 @@ def process_level(level):
         difficulty_lengths[level_diff] += 1
         for record in res_data:
             if "timestamp" in record:
-                timestamps_data.append([
-                    record["user_id"] if "user_id" in record else "",
-                    int(record["timestamp"])
-                ])
+                timestamps_data.append(f"{record["user_id"] if "user_id" in record else ""}:{int(record["timestamp"] / 100)}")
             if record["user_id"] not in difficulty_records[level_diff]:
                 difficulty_records[level_diff][record["user_id"]] = {
                     "maps": 0, 
