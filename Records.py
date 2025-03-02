@@ -50,7 +50,7 @@ def process_level(level):
         if record["user_id"] not in user_finishes:
             user_finishes[record["user_id"]] = [0, record["user_name"], 0]
         user_finishes[record["user_id"]][0] += 1
-        user_finishes[record["user_id"]][2] += record["best_time"]
+        user_finishes[record["user_id"]][2] += record["best_time"] if "best_time" in record else 0
         
     if first_record is not None:
         if first_record["user_id"] not in first_to_beat:
