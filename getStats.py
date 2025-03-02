@@ -280,15 +280,15 @@ def get_unbeaten(all_verified_maps):
                 if "creators" not in level:
                     level["creators"] = ["?"]
                 unbeaten.append(level)
+            elif level["identifier"] in hacked:
+                leaderboard = get_level_leaderboard(level['identifier'])
+                if len(leaderboard) == 0:
+                    if "creators" not in level:
+                        level["creators"] = ["?"]
+                    unbeaten.append(level)
         elif level["identifier"] in exceptions:
             stats = get_level_stats(level['identifier'])
             if stats["finished_count"] == 0:
-                if "creators" not in level:
-                    level["creators"] = ["?"]
-                unbeaten.append(level)
-        elif level["identifier"] in hacked:
-            leaderboard = get_level_leaderboard(level['identifier'])
-            if len(leaderboard) == 0:
                 if "creators" not in level:
                     level["creators"] = ["?"]
                 unbeaten.append(level)
