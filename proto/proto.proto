@@ -82,10 +82,12 @@ enum LevelNodeMaterial
   GRAPPLABLE = 5;
   GRAPPLABLE_LAVA = 6;
 
-  GRABBABLE_CRUMBLING= 7;
+  GRABBABLE_CRUMBLING = 7;
   DEFAULT_COLORED = 8;
   BOUNCING = 9;
   SNOW = 10;
+
+  TRIGGER = 11;
 }
 
 message LevelNodeGroup
@@ -94,10 +96,6 @@ message LevelNodeGroup
   Vector scale = 2;
   Quaternion rotation = 3;
 
-  //This is where level nodes that are part of the group are stored when saving to file / loading
-  //It is ok to be empty when networking a groups transform
-  //There is an additional message for networking grouping and ungrouping (LevelNodeGroupRequest, LevelNodeGroupResponse)
-  //When sending the full level on a new player joining the editor, first the level nodes are sent on their own and then a group response to group them
   repeated LevelNode childNodes = 4;
 }
 
@@ -116,15 +114,15 @@ message LevelNodeFinish
 
 message LevelNodeStatic
 {
-  LevelNodeShape shape = 1; //Must be one of CUBE, SPHERE, CYLINDER, PYRAMID, PRISM
-  LevelNodeMaterial material = 2; //Can not be GRABBABLE_CRUMBLING
+  LevelNodeShape shape = 1;
+  LevelNodeMaterial material = 2;
 
   Vector position = 3;
   Vector scale = 4;
   Quaternion rotation = 5;
 
   Color color1 = 6;
-  Color color2 = 9; //Used for colored lava blocks, blending between the two colors, but also used for specularity on colored default blocks!
+  Color color2 = 9;
 
   bool isNeon = 7;
   bool isTransparent = 8;
@@ -132,8 +130,8 @@ message LevelNodeStatic
 
 message LevelNodeCrumbling
 {
-  LevelNodeShape shape = 1; //Must be one of CUBE, SPHERE, CYLINDER, PYRAMID, PRISM
-  LevelNodeMaterial material = 2; //Must be GRABBABLE_CRUMBLING
+  LevelNodeShape shape = 1;
+  LevelNodeMaterial material = 2;
 
   Vector position = 3;
   Vector scale = 4;
@@ -156,7 +154,7 @@ message LevelNodeGravity
   enum Mode
   {
     DEFAULT = 0;
-    NOLEGS = 1; //gtag like movement with the head on the ground, also no leg collisions with lava
+    NOLEGS = 1;
   }
 
   Mode mode = 1;
@@ -170,8 +168,73 @@ message LevelNodeGravity
 
 message LevelNodeLobbyTerminal
 {
-	Vector position = 2;
-	Quaternion rotation = 4;
+  Vector position = 2;
+  Quaternion rotation = 4;
+}
+
+message TriggerSourceBasic
+{
+  enum Type
+  {
+    HAND = 0;
+    HEAD = 1;
+    GRAPPLE = 2;
+    FEET = 3;
+    BLOCK = 4;
+  }
+
+  Type type = 1;
+}
+
+message TriggerSource
+{
+  oneof content
+  {
+    TriggerSourceBasic triggerSourceBasic = 1;
+  }
+}
+
+message TriggerTargetAnimation
+{
+  enum Mode
+  {
+    STOP = 0;
+    START = 1;
+    TOGGLE = 2;
+    TOGGLE_REVERSE = 3;
+    RESTART = 4;
+    RESET = 5;
+  }
+
+  uint64 objectID = 1;
+  string animationName = 2;
+  
+  bool loop = 3;
+  bool reverse = 4;
+
+  Mode mode = 10;
+}
+
+message TriggerTarget
+{
+  oneof content
+  {
+    TriggerTargetAnimation triggerTargetAnimation = 1;
+  }
+}
+
+message LevelNodeTrigger
+{
+  LevelNodeShape shape = 1;
+
+  Vector position = 2;
+  Vector scale = 3;
+  Quaternion rotation = 4;
+
+  bool isShared = 5;
+
+  repeated TriggerSource triggerSources = 6;
+  repeated TriggerTarget triggerTargets = 7;
 }
 
 message AnimationFrame
@@ -185,8 +248,8 @@ message Animation
 {
   enum Direction
   {
-    RESTART = 0; //After the last frame, jump back to the first frame
-    PINGPONG = 1; //After the last frame, play the animation backwards
+    RESTART = 0;
+    PINGPONG = 1;
   }
 
   string name = 1;
@@ -209,8 +272,9 @@ message LevelNode
     LevelNodeGroup levelNodeGroup = 7;
     LevelNodeGravity levelNodeGravity = 8;
     LevelNodeLobbyTerminal levelNodeLobbyTerminal = 9;
+    LevelNodeTrigger levelNodeTrigger = 10;
   }
 
-  //A level node can have any number (might limit it in the UI) of named animations, if groups are involved every block that is part of the same animation should have an animation with the same name
   repeated Animation animations = 15;
+  int32 activeAnimation = 16;
 }

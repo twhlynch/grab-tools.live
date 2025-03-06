@@ -26,7 +26,7 @@ let objects = [];
 let animatedObjects = [];
 let shapes = [];
 // materials
-let startMaterial, finishMaterial, skyMaterial, signMaterial, neonMaterial;
+let startMaterial, finishMaterial, skyMaterial, signMaterial, neonMaterial, triggerMaterial;
 let materials = [];
 let objectMaterials = [];
 let exportMaterials = [];
@@ -81,6 +81,7 @@ let hideText = false;
 let highlightText = true;
 let showGroups = false;
 let showAnimations = false;
+let showTriggerPaths = false;
 let enableEditing = false;
 let playAnimations = true;
 // animations
@@ -492,6 +493,10 @@ function refreshScene() {
         statistics.cone += nodeStatistics.cone;
         nodeStatistics.danger ? statistics.danger = true : null;
     });
+
+    if (showTriggerPaths) {
+        addTriggerPaths();
+    }
     
     statsComplexityElement.innerText = `Complexity: ${statistics.complexity}`;
     statsAnimationsElement.innerText = `Animations: ${statistics.animations}`;
@@ -1032,7 +1037,106 @@ function loadLevelNode(node, parent) {
 
         objects.push(object);
         statistics.end += 1;
-    }
+    } else if (node.levelNodeTrigger) {
+        object = shapes[Math.max(0, Math.min((node.levelNodeTrigger.shape || 1000) - 1000, shapes.length - 1))].clone();
+        let material = triggerMaterial.clone();
+        object.material = material;
+        parent.add(object);
+        object.position.x = node.levelNodeTrigger.position.x || 0;
+        object.position.y = node.levelNodeTrigger.position.y || 0;
+        object.position.z = node.levelNodeTrigger.position.z || 0;
+        object.quaternion.w = node.levelNodeTrigger.rotation.w || 0;
+        object.quaternion.x = node.levelNodeTrigger.rotation.x || 0;
+        object.quaternion.y = node.levelNodeTrigger.rotation.y || 0;
+        object.quaternion.z = node.levelNodeTrigger.rotation.z || 0;
+        object.scale.x = node.levelNodeTrigger.scale.x || 0;
+        object.scale.y = node.levelNodeTrigger.scale.y || 0;
+        object.scale.z = node.levelNodeTrigger.scale.z || 0;
+
+        object.initialPosition = object.position.clone();
+        object.initialRotation = object.quaternion.clone();
+
+        let targetVector = new THREE.Vector3();
+        let targetQuaternion = new THREE.Quaternion();
+        let worldMatrix = new THREE.Matrix4();
+        worldMatrix.compose(
+            object.getWorldPosition(targetVector), 
+            object.getWorldQuaternion(targetQuaternion), 
+            object.getWorldScale(targetVector)
+        );
+
+        let normalMatrix = new THREE.Matrix3();
+        normalMatrix.getNormalMatrix(worldMatrix);
+        material.uniforms.worldNormalMatrix.value = normalMatrix;
+
+        objects.push(object);
+        statistics.complexity = 3;
+        statistics.crumbling += 1;
+        switch (node.levelNodeTrigger.shape) {
+            case 1000:
+                statistics.cube += 1;
+                break;
+            case 1001:
+                statistics.sphere += 1;
+                break;
+            case 1002:
+                statistics.cylinder += 1;
+                break;
+            case 1003:
+                statistics.pyramid += 1;
+                break;
+            case 1004:
+                statistics.prism += 1;
+                break;
+            case 1005:
+                statistics.cone += 1;
+                break;
+            default:
+                statistics.danger = true;
+                break;
+        }
+        switch (node.levelNodeTrigger?.material) {
+            case undefined:
+                statistics.default += 1;
+                break;
+            case 0:
+                statistics.default += 1;
+                break;
+            case 1:
+                statistics.grabbable += 1;
+                break;
+            case 2:
+                statistics.ice += 1;
+                break;
+            case 3:
+                statistics.lava += 1;
+                break;
+            case 4:
+                statistics.wood += 1;
+                break;
+            case 5:
+                statistics.grapplable += 1;
+                break;
+            case 6:
+                statistics.grapplable_lava += 1;
+                break;
+            case 7:
+                statistics.grabbable_crumbling += 1;
+                break;
+            case 8:
+                statistics.default_colored += 1;
+                break;
+            case 9:
+                statistics.bouncing += 1;
+                break;
+            case 10:
+                statistics.snow += 1;
+                break;
+            default:
+                statistics.danger = true;
+                break;
+        }
+    } 
     let animationPath = undefined;
     let animationPoints = [];
     if (object !== undefined) {
@@ -1091,6 +1195,36 @@ function loadLevelNode(node, parent) {
         }
     }
     return statistics;
+}
+function addTriggerPaths() {
+    for (const object of objects) {
+        const objectData = object.userData?.grabNodeData;
+        if (objectData?.levelNodeTrigger) {
+            object.userData.triggerPaths = [];
+            for (let target of objectData.levelNodeTrigger.triggerTargets || []) {
+                let targetObject = objects[target.triggerTargetAnimation?.objectID || 0];
+                let objectPosition = new THREE.Vector3();
+                let targetPosition = new THREE.Vector3();
+                object.getWorldPosition(objectPosition);
+                targetObject.getWorldPosition(targetPosition);
+                const triggerPoints = [
+                    objectPosition,
+                    targetPosition
+                ];
+
+                const pathMaterial = new THREE.LineBasicMaterial({
+                    color: 0xff8800
+                });
+
+                const lineGeometry = new THREE.BufferGeometry().setFromPoints( triggerPoints );
+
+                const line = new THREE.Line( lineGeometry, pathMaterial );
+                scene.add( line );
+
+                object.userData.triggerPaths.push(line);
+            }
+        }
+    }
 }
 function updateObjectAnimation(object, time) {
 	let animation = object.animation
@@ -3808,7 +3942,8 @@ function saveConfig() {
         hideText,
         highlightText,
         playAnimations,
-        animationSpeed
+        animationSpeed,
+        showTriggerPaths
     };
     console.log(currentConfig);
     localStorage.setItem("editor-config", JSON.stringify(currentConfig));
@@ -3824,6 +3959,7 @@ function loadConfig() {
         highlightText = currentConfig.highlightText;
         playAnimations = currentConfig.playAnimations;
         animationSpeed = currentConfig.animationSpeed;
+        showTriggerPaths = currentConfig.showTriggerPaths;
     }
     incrementLoader(10);
 }
@@ -4229,6 +4365,7 @@ function initUI() {
     document.getElementById('nullview-btn').addEventListener('click', nullView);
     document.getElementById('higherFar-btn').addEventListener('click', higherFar);
     document.getElementById('showGroups-btn').addEventListener('click', () => {showGroups = !showGroups; refreshScene()});
+    document.getElementById('showTriggerPaths-btn').addEventListener('click', () => {showTriggerPaths = !showTriggerPaths; refreshScene()});
     document.getElementById('showAnimations-btn').addEventListener('click', () => {showAnimations = !showAnimations; refreshScene()});
     document.getElementById('toggleFog-btn').addEventListener('click', () => {toggleFog(); refreshScene()});
     editInputElement.addEventListener('blur', highlightTextEditor);
@@ -4455,6 +4592,14 @@ async function initAttributes() {
     neonMaterial.uniforms.specularColor.value = [0.4, 0.4, 0.4, 64.0];
     neonMaterial.uniforms.neonEnabled.value = 1.0;
     objectMaterials.push(neonMaterial);
+    
+    triggerMaterial = materials[8].clone();
+    triggerMaterial.uniforms.colorTexture = materials[8].uniforms.colorTexture;
+    triggerMaterial.uniforms.isTransparent.value = 1.0;
+    triggerMaterial.uniforms.diffuseColor.value = [1, 0.5, 0];
+    triggerMaterial.transparent = true;
+    triggerMaterial.opacity = 0;
+    objectMaterials.push(triggerMaterial);
 
     sunAngle = new THREE.Euler(THREE.MathUtils.degToRad(45), THREE.MathUtils.degToRad(315), 0.0)
     sunAltitude = 45.0
