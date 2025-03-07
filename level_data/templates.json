@@ -20,11 +20,6 @@
         "type": "identifier"
     },
     {
-        "name": "Trees",
-        "link": "level_data/trees.level",
-        "type": "file"
-    },
-    {
         "name": "The Mountain",
         "link": "29r46v7djliny6t4rzvq7:1654257963",
         "type": "identifier"
@@ -322,6 +317,11 @@
     {
         "name": "BFL",
         "link": "level_data/official/40-BFL-1.level",
+        "type": "file"
+    },
+    {
+        "name": "Trees",
+        "link": "level_data/trees.level",
         "type": "file"
     },
     {
