@@ -80,8 +80,8 @@ let shapeList = [
 let hideText = false;
 let highlightText = true;
 let showGroups = false;
-let showAnimations = false;
-let showTriggerPaths = false;
+let showAnimations = true;
+let showTriggerPaths = true;
 let enableEditing = false;
 let playAnimations = true;
 // animations
