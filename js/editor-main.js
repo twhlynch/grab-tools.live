@@ -3684,8 +3684,8 @@ function duplicateLevel() {
     setLevel(levelData);
 }
 function convertLevelNodes() {
-    const fromValue = document.getElementById("convert-from").value;
-    const toValue = document.getElementById("convert-to").value;
+    const fromValue = parseInt(document.getElementById("convert-from").value);
+    const toValue = parseInt(document.getElementById("convert-to").value);
 
     let level = getLevel();
     runOnNodes(level.levelNodes, (node)=>{
