@@ -42,9 +42,11 @@ if (level) {
     if (!isLoggedIn) {
         document.getElementById('loginRestrictionPopup').style.display = 'flex';
     } else {
-        console.log(level);
-        const levels = level.split(" ");
-        downloadAll(levels);
+        if (!localStorage.getItem('isBlocked')) {
+            console.log(level);
+            const levels = level.split(" ");
+            downloadAll(levels);
+        }
     }
 }
 

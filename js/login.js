@@ -89,6 +89,21 @@ if (isLoggedIn) {
     loginButton.classList.add('logged-in');
 }
 
+async function checkBlocked() {
+    let blockedList;
+    if (!localStorage.getItem('blockedList') || (localStorage.getItem('blockedListCache') && Date.now() - parseInt(localStorage.getItem('blockedListCache')) > 24 * 60 * 60 * 1000)) {
+        const blockedResponse = await fetch('/stats_data/blocked.json');
+        blockedList = await blockedResponse.json();
+        localStorage.setItem('blockedList', JSON.stringify(blockedList));
+        localStorage.setItem('blockedListCache', Date.now());
+    }
+    blockedList = JSON.parse(localStorage.getItem('blockedList'));
+    if (blockedList.includes(user_id)) {
+        localStorage.setItem('isBlocked', true);
+    }
+}
+checkBlocked();
+
 guessLogin.addEventListener('click', async () => {
     const username = usernameInput.value;
     const userListResponse = await fetch(`https://api.slin.dev/grab/v1/list?type=user_name&search_term=${username}`);
@@ -167,6 +182,7 @@ loginButton.addEventListener('click', () => {
     loginContainer.style.display = 'grid';
     usernameInput.value = last_user_name;
     userIdInput.value = last_user_id;
+    checkBlocked();
 });
 
 confirmButton.addEventListener('click', () => {

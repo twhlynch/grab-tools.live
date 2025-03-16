@@ -2173,7 +2173,9 @@ function loadTemplateButtons() {
         templateElement.addEventListener('click', () => {
             document.querySelector('#prompt-templates .prompt-cancel').click();
             if (template.type == 'identifier') {
-                downloadAndOpenLevel(template.link);
+                if (!localStorage.getItem('isBlocked')) {
+                    downloadAndOpenLevel(template.link);
+                }
             } else if (template.type == 'file') {
                 openProto(template.link);
             }
@@ -2213,7 +2215,9 @@ function handleDrop(e) {
             "user_id": localStorage.getItem('user_id')
         }
         if (login_details.user_name && login_details.user_id) {
-            downloadAndOpenLevel(levelID);
+            if (!localStorage.getItem('isBlocked')) {
+                downloadAndOpenLevel(levelID);
+            }
         } else {
             const loginPromptElement = document.getElementById('loginPrompt');
             loginPromptElement.style.display = 'grid';
@@ -4622,7 +4626,9 @@ function initURLParams() {
             const templateIndex = parseInt(paramId.split(':')[1]);
             const template = templates[templateIndex];
             if (template.type == 'identifier') {
-                downloadAndOpenLevel(template.link);
+                if (!localStorage.getItem('isBlocked')) {
+                    downloadAndOpenLevel(template.link);
+                }
             } else if (template.type == 'file') {
                 openProto(template.link);
             }
@@ -4632,7 +4638,9 @@ function initURLParams() {
                 "user_id": localStorage.getItem('user_id')
             }
             if (login_details.user_name && login_details.user_id) {
-                downloadAndOpenLevel(paramId);
+                if (!localStorage.getItem('isBlocked')) {
+                    downloadAndOpenLevel(paramId);
+                }
             } else {
                 const loginPromptElement = document.getElementById('loginPrompt');
                 loginPromptElement.style.display = 'grid';
