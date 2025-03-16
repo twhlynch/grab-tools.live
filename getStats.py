@@ -563,6 +563,18 @@ def get_hardest_levels_list():
     response = requests.request("GET", url, headers=headers)
     return json.loads(response.text)
 
+def get_blocked_ids():
+    CF_ID = sys.argv[2]
+    CF_TOKEN = sys.argv[3]
+    NAMESPACE = sys.argv[4]
+    url = f"https://api.cloudflare.com/client/v4/accounts/{CF_ID}/storage/kv/namespaces/{NAMESPACE}/values/blocked"
+    headers = {
+        "Authorization": f"Bearer {CF_TOKEN}",
+        "Content-Type": "application/json"
+    }
+    response = requests.request("GET", url, headers=headers)
+    return json.loads(response.text)
+
 def get_unverified(all_verified, all_verified_old):
     unverified = []
     verified_ids = [l["identifier"] for l in all_verified]
@@ -599,6 +611,7 @@ def get_level_data():
     write_json_file('stats_data/most_verified.json', get_most_verified(all_verified, most_verified_old))
     write_json_file('stats_data/most_plays.json', get_most_plays(all_verified, most_plays_old))
     write_json_file('stats_data/hardest_levels_list.json', get_hardest_levels_list())
+    write_json_file('stats_data/blocked.json', get_blocked_ids())
     write_json_file('stats_data/total_level_count.json', get_total_levels())
 
     daily_data = {}
