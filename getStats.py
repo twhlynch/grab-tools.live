@@ -206,7 +206,7 @@ def find_list_keys(data):
     list_keys = []
     
     if isinstance(data, dict):
-        if "list_key" in data and data["list_key"] != "curated_gab_halloween_2024":
+        if "list_key" in data and data["list_key"] != "curated_gab3_triggers_2025":
             list_keys.append(data["list_key"])
         if "title" in data and (data["title"] == "Past Competitions" or data["title"] == "Weekly Spotlight"):
             return []
