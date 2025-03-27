@@ -806,7 +806,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
 
         records_log_channel = bot.get_channel(1333319489726713877)
         for entry in new_records:
-            embed = Embed(title=entry["title"], url=f"{VIEWER_URL}?level={entry['identifier']}", color=0x990000)
+            embed = Embed(title=entry["title"], url=f"{VIEWER_URL}?level={entry['identifier']}", color=0xff0000 if int(entry["record"]["position"]) == 0 else 0x990000)
             embed.add_field(name=entry["record"]["user_name"], value=f"{entry["record"]["position"]}: {entry["record"]['best_time']}s", inline=False)
             await records_log_channel.send(embed=embed)
 
