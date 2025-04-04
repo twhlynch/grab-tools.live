@@ -25,8 +25,10 @@ let camera, light, sun;
 let objects = [];
 let animatedObjects = [];
 let shapes = [];
+let defaultSpawnPointID;
+let startCount = 0;
 // materials
-let startMaterial, finishMaterial, skyMaterial, signMaterial, neonMaterial, triggerMaterial;
+let startMaterial, finishMaterial, skyMaterial, signMaterial, neonMaterial, triggerMaterial, particlesMaterial, altStartMaterial;
 let materials = [];
 let objectMaterials = [];
 let exportMaterials = [];
@@ -279,6 +281,8 @@ function refreshScene() {
     console.log('Refreshing');
     let levelData = getLevel();
     document.getElementById('stats-editor').innerText = `Editor: ${JSON.stringify(levelData, null, 4).length}`;
+    defaultSpawnPointID = levelData.defaultSpawnPointID;
+    startCount = 0;
     let levelNodes = levelData["levelNodes"];
     console.log(objects.length, animatedObjects.length);
     let statistics = {
@@ -651,16 +655,6 @@ function loadLevelNode(node, parent) {
         }
 
     } else if (node.levelNodeGravity) {
-
-        let particleGeometry = new THREE.BufferGeometry();
-
-        let particleColor = new THREE.Color(1.0, 1.0, 1.0);
-        if (node.levelNodeGravity?.mode == 1) {
-            particleColor = new THREE.Color(1.0, 0.6, 0.6);
-            statistics.gravityNoLegs += 1;
-        }
-        let particleMaterial = new THREE.PointsMaterial({ color: particleColor, size: 0.05 });
-
         object = new THREE.Object3D()
         parent.add(object);
         object.position.x = node.levelNodeGravity.position.x
@@ -679,25 +673,113 @@ function loadLevelNode(node, parent) {
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
 
-        let particleCount = Math.floor(object.scale.x * object.scale.y * object.scale.z)
+        let particleGeometry = new THREE.BufferGeometry();
+
+        let particleColor = new THREE.Color(1.0, 1.0, 1.0);
+        if(node.levelNodeGravity?.mode == 1)
+        {
+            particleColor = new THREE.Color(1.0, 0.6, 0.6);
+            statistics.gravityNoLegs += 1;
+        }
+        let particleCount = Math.floor(object.scale.x * object.scale.y * object.scale.z * 10)
         particleCount = Math.min(particleCount, 2000);
-        let particlePositions = [];
 
-        for (let i = 0; i < particleCount; i++) {
-            let x = (Math.random() - 0.5) * object.scale.x;
-            let y = (Math.random() - 0.5) * object.scale.y;
-            let z = (Math.random() - 0.5) * object.scale.z;
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
 
-            particlePositions.push(x, y, z);
+        for(let i = 0; i < particleCount; i++)
+        {
+            let x = (Math.random() - 0.5);
+            let y = (Math.random() - 0.5);
+            let z = (Math.random() - 0.5);
+            positions[i * 3] = x;
+            positions[i * 3 + 1] = y;
+            positions[i * 3 + 2] = z;
+
+            colors[i * 3] = particleColor.r;
+            colors[i * 3 + 1] = particleColor.g;
+            colors[i * 3 + 2] = particleColor.b;
         }
 
-        particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(particlePositions, 3));
-        let particles = new THREE.Points(particleGeometry, particleMaterial);
-        object.add(particles);
+        particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        particleGeometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+        let particleMaterial = particlesMaterial.clone();
+        particleMaterial.uniforms.scale.value = 0.2;
+
+        let particlePoints = new THREE.Points(particleGeometry, particleMaterial);
+
+        object.add(particlePoints);
         objects.push(object);
 
         statistics.complexity = 10;
         statistics.gravity += 1;
+    } else if (node.levelNodeParticleEmitter) {
+        object = new THREE.Object3D()
+        parent.add(object);
+        object.position.x = node.levelNodeParticleEmitter.position.x
+        object.position.y = node.levelNodeParticleEmitter.position.y
+        object.position.z = node.levelNodeParticleEmitter.position.z
+
+        object.scale.x = node.levelNodeParticleEmitter.scale.x
+        object.scale.y = node.levelNodeParticleEmitter.scale.y
+        object.scale.z = node.levelNodeParticleEmitter.scale.z
+
+        object.quaternion.x = node.levelNodeParticleEmitter.rotation.x
+        object.quaternion.y = node.levelNodeParticleEmitter.rotation.y
+        object.quaternion.z = node.levelNodeParticleEmitter.rotation.z
+        object.quaternion.w = node.levelNodeParticleEmitter.rotation.w
+
+        object.initialPosition = object.position.clone();
+        object.initialRotation = object.quaternion.clone();
+
+        let particleGeometry = new THREE.BufferGeometry();
+
+        let startColor = new THREE.Color(node.levelNodeParticleEmitter.startColor.r, node.levelNodeParticleEmitter.startColor.g, node.levelNodeParticleEmitter.startColor.b);
+        let endColor = new THREE.Color(node.levelNodeParticleEmitter.endColor.r, node.levelNodeParticleEmitter.endColor.g, node.levelNodeParticleEmitter.endColor.b);
+        let scale = Math.max(
+            node.levelNodeParticleEmitter.startSize.x,
+            node.levelNodeParticleEmitter.startSize.y,
+            node.levelNodeParticleEmitter.endSize.x,
+            node.levelNodeParticleEmitter.endSize.y
+        );
+        let particleCount = Math.floor(node.levelNodeParticleEmitter.particlesPerSecond * 2);
+        particleCount = Math.min(particleCount, 1000);
+
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+
+        for(let i = 0; i < particleCount; i++)
+        {
+            let x = (Math.random() - 0.5);
+            let y = (Math.random() - 0.5);
+            let z = (Math.random() - 0.5);
+            positions[i * 3] = x;
+            positions[i * 3 + 1] = y;
+            positions[i * 3 + 2] = z;
+
+            const color = new THREE.Color();
+            let factor = Math.random();
+            color.r = THREE.MathUtils.lerp(startColor.r, endColor.r, factor);
+            color.g = THREE.MathUtils.lerp(startColor.g, endColor.g, factor);
+            color.b = THREE.MathUtils.lerp(startColor.b, endColor.b, factor);
+            colors[i * 3] = color.r;
+            colors[i * 3 + 1] = color.g;
+            colors[i * 3 + 2] = color.b;
+        }
+
+        particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        particleGeometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+        let particleMaterial = particlesMaterial.clone();
+        particleMaterial.uniforms.scale.value = scale;
+
+        let particlePoints = new THREE.Points(particleGeometry, particleMaterial);
+
+        object.add(particlePoints);
+        objects.push(object);
+
+        statistics.complexity = 5;
     } else if (node.levelNodeStatic) {
         object = shapes[Math.max(0, Math.min((node.levelNodeStatic.shape || 1000) - 1000, shapes.length - 1))].clone();
         let material = materials[Math.max(0, Math.min(node.levelNodeStatic.material || 0, materials.length - 1))].clone();
@@ -1003,8 +1085,18 @@ function loadLevelNode(node, parent) {
         statistics.characters = characters;
         statistics.sign += 1;
     } else if (node.levelNodeStart) {
+        const isDefaultSpawn = (
+            ((!defaultSpawnPointID || defaultSpawnPointID == 0) && startCount == 0) || 
+            defaultSpawnPointID - 1 == objects.length
+        );
+
         object = shapes[shapes.length - 1].clone();
-        object.material = startMaterial;
+        if (isDefaultSpawn) {
+            object.material = startMaterial;
+            object.isDefaultSpawn = true;
+        } else {
+            object.material = altStartMaterial;
+        }
         parent.add(object);
         object.position.x = node.levelNodeStart.position.x || 0;
         object.position.y = node.levelNodeStart.position.y || 0;
@@ -1020,7 +1112,7 @@ function loadLevelNode(node, parent) {
         object.initialRotation = object.quaternion.clone();
 
         objects.push(object);
-
+        startCount++;
         statistics.start += 1;
     } else if (node.levelNodeFinish) {
         object = shapes[shapes.length - 1].clone();
@@ -1202,6 +1294,7 @@ function addTriggerPaths() {
         if (objectData?.levelNodeTrigger) {
             object.userData.triggerPaths = [];
             for (let target of objectData.levelNodeTrigger.triggerTargets || []) {
+                if (!target.triggerTargetAnimation) continue;
                 let targetObject = objects[target.triggerTargetAnimation?.objectID || 0];
                 let objectPosition = new THREE.Vector3();
                 let targetPosition = new THREE.Vector3();
@@ -4577,7 +4670,16 @@ async function initAttributes() {
 	finishMaterial.depthWrite = false;
 	finishMaterial.uniforms = { "diffuseColor": {value: [1.0, 0.0, 0.0, 1.0]}};
 	objectMaterials.push(finishMaterial);
-    
+
+	altStartMaterial = new THREE.ShaderMaterial();
+	altStartMaterial.vertexShader = SHADERS.startFinishVS;
+	altStartMaterial.fragmentShader = SHADERS.startFinishFS;
+	altStartMaterial.flatShading = true;
+	altStartMaterial.transparent = true;
+	altStartMaterial.depthWrite = false;
+	altStartMaterial.uniforms = { "diffuseColor": {value: [1.0, 1.0, 0.0, 1.0]}};
+	objectMaterials.push(altStartMaterial);
+
     skyMaterial = new THREE.ShaderMaterial();
     skyMaterial.vertexShader = SHADERS.skyVS;
     skyMaterial.fragmentShader = SHADERS.skyFS;
@@ -4604,6 +4706,16 @@ async function initAttributes() {
     triggerMaterial.transparent = true;
     triggerMaterial.opacity = 0;
     objectMaterials.push(triggerMaterial);
+
+    particlesMaterial = new THREE.ShaderMaterial();
+	particlesMaterial.vertexShader = SHADERS.particleVS;
+	particlesMaterial.fragmentShader = SHADERS.particleFS;
+	particlesMaterial.flatShading = true;
+	particlesMaterial.uniforms = {
+		"fogEnabled": { value: 1.0 },
+		"scale": { value: 1.0 },
+	};
+	objectMaterials.push(particlesMaterial);
 
     sunAngle = new THREE.Euler(THREE.MathUtils.degToRad(45), THREE.MathUtils.degToRad(315), 0.0)
     sunAltitude = 45.0
