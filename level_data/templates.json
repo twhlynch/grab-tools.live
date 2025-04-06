@@ -569,6 +569,68 @@
             }
         }
     },
+    "nodeParticles": {
+        "levelNodeParticleEmitter": {
+            "position": {},
+            "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "rotation": {
+                "w": 1
+            },
+            "particlesPerSecond": 999,
+            "lifeSpan": {
+                "x": 5,
+                "y": 5
+            },
+            "startColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 1
+            },
+            "endColor": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+            },
+            "startSize": {
+                "x": 0.001,
+                "y": 0.001
+            },
+            "endSize": {
+                "x": 1,
+                "y": 1
+            },
+            "velocity": {
+                "x": 1,
+                "y": 1
+            },
+            "velocityMin": {
+                "x": 5,
+                "y": 5,
+                "z": 5
+            },
+            "velocityMax": {
+                "x": 5,
+                "y": 5,
+                "z": 5
+            },
+            "accelerationMin": {
+                "x": 5,
+                "y": 5,
+                "z": 5
+            },
+            "accelerationMax": {
+                "x": 5,
+                "y": 5,
+                "z": 5
+            }
+        }
+    },
     "nodeColoredLava": {
         "levelNodeStatic": {
             "shape": 1000,

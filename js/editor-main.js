@@ -657,18 +657,18 @@ function loadLevelNode(node, parent) {
     } else if (node.levelNodeGravity) {
         object = new THREE.Object3D()
         parent.add(object);
-        object.position.x = node.levelNodeGravity.position.x
-        object.position.y = node.levelNodeGravity.position.y
-        object.position.z = node.levelNodeGravity.position.z
+        object.position.x = node.levelNodeGravity.position.x || 0;
+        object.position.y = node.levelNodeGravity.position.y || 0;
+        object.position.z = node.levelNodeGravity.position.z || 0;
 
-        object.scale.x = node.levelNodeGravity.scale.x
-        object.scale.y = node.levelNodeGravity.scale.y
-        object.scale.z = node.levelNodeGravity.scale.z
+        object.scale.x = node.levelNodeGravity.scale.x || 0;
+        object.scale.y = node.levelNodeGravity.scale.y || 0;
+        object.scale.z = node.levelNodeGravity.scale.z || 0;
 
-        object.quaternion.x = node.levelNodeGravity.rotation.x
-        object.quaternion.y = node.levelNodeGravity.rotation.y
-        object.quaternion.z = node.levelNodeGravity.rotation.z
-        object.quaternion.w = node.levelNodeGravity.rotation.w
+        object.quaternion.x = node.levelNodeGravity.rotation.x || 0;
+        object.quaternion.y = node.levelNodeGravity.rotation.y || 0;
+        object.quaternion.z = node.levelNodeGravity.rotation.z || 0;
+        object.quaternion.w = node.levelNodeGravity.rotation.w || 0;
 
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
@@ -717,33 +717,33 @@ function loadLevelNode(node, parent) {
     } else if (node.levelNodeParticleEmitter) {
         object = new THREE.Object3D()
         parent.add(object);
-        object.position.x = node.levelNodeParticleEmitter.position.x
-        object.position.y = node.levelNodeParticleEmitter.position.y
-        object.position.z = node.levelNodeParticleEmitter.position.z
+        object.position.x = node.levelNodeParticleEmitter.position.x || 0;
+        object.position.y = node.levelNodeParticleEmitter.position.y || 0;
+        object.position.z = node.levelNodeParticleEmitter.position.z || 0;
 
-        object.scale.x = node.levelNodeParticleEmitter.scale.x
-        object.scale.y = node.levelNodeParticleEmitter.scale.y
-        object.scale.z = node.levelNodeParticleEmitter.scale.z
+        object.scale.x = node.levelNodeParticleEmitter.scale.x || 0;
+        object.scale.y = node.levelNodeParticleEmitter.scale.y || 0;
+        object.scale.z = node.levelNodeParticleEmitter.scale.z || 0;
 
-        object.quaternion.x = node.levelNodeParticleEmitter.rotation.x
-        object.quaternion.y = node.levelNodeParticleEmitter.rotation.y
-        object.quaternion.z = node.levelNodeParticleEmitter.rotation.z
-        object.quaternion.w = node.levelNodeParticleEmitter.rotation.w
+        object.quaternion.x = node.levelNodeParticleEmitter.rotation.x || 0;
+        object.quaternion.y = node.levelNodeParticleEmitter.rotation.y || 0;
+        object.quaternion.z = node.levelNodeParticleEmitter.rotation.z || 0;
+        object.quaternion.w = node.levelNodeParticleEmitter.rotation.w || 0;
 
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
 
         let particleGeometry = new THREE.BufferGeometry();
 
-        let startColor = new THREE.Color(node.levelNodeParticleEmitter.startColor.r, node.levelNodeParticleEmitter.startColor.g, node.levelNodeParticleEmitter.startColor.b);
-        let endColor = new THREE.Color(node.levelNodeParticleEmitter.endColor.r, node.levelNodeParticleEmitter.endColor.g, node.levelNodeParticleEmitter.endColor.b);
+        let startColor = new THREE.Color(node.levelNodeParticleEmitter.startColor.r || 0, node.levelNodeParticleEmitter.startColor.g || 0, node.levelNodeParticleEmitter.startColor.b || 0);
+        let endColor = new THREE.Color(node.levelNodeParticleEmitter.endColor.r || 0, node.levelNodeParticleEmitter.endColor.g || 0, node.levelNodeParticleEmitter.endColor.b || 0);
         let scale = Math.max(
-            node.levelNodeParticleEmitter.startSize.x,
-            node.levelNodeParticleEmitter.startSize.y,
-            node.levelNodeParticleEmitter.endSize.x,
-            node.levelNodeParticleEmitter.endSize.y
+            node.levelNodeParticleEmitter.startSize.x || 0,
+            node.levelNodeParticleEmitter.startSize.y || 0,
+            node.levelNodeParticleEmitter.endSize.x || 0,
+            node.levelNodeParticleEmitter.endSize.y || 0
         );
-        let particleCount = Math.floor(node.levelNodeParticleEmitter.particlesPerSecond * 2);
+        let particleCount = Math.floor((node.levelNodeParticleEmitter.particlesPerSecond || 0) * 2);
         particleCount = Math.min(particleCount, 1000);
 
         const positions = new Float32Array(particleCount * 3);
@@ -4543,6 +4543,7 @@ function initUI() {
     document.getElementById('nodeStart-btn').addEventListener('click', () => {appendInsert("nodeStart")});
     document.getElementById('nodeFinish-btn').addEventListener('click', () => {appendInsert("nodeFinish")});
     document.getElementById('nodeGravity-btn').addEventListener('click', () => {appendInsert("nodeGravity")});
+    document.getElementById('nodeParticles-btn').addEventListener('click', () => {appendInsert("nodeParticles")});
     document.getElementById('nodeColoredLava-btn').addEventListener('click', () => {appendInsert("nodeColoredLava")});
     // insert modded nodes
     // not actually modded, but cool node presets
