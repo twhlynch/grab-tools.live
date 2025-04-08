@@ -153,7 +153,7 @@ def get_all_verified(stamp=''):
         url = f"{SERVER_URL}list?max_format_version={FORMAT_VERSION}&type=ok&page_timestamp={stamp}"
         data = requests.get(url).json()
         verified.extend(data)
-        if data[-1].get("page_timestamp"):
+        if len(data) > 0 and data[-1].get("page_timestamp"):
             stamp = data[-1]["page_timestamp"]
         else:
             break
