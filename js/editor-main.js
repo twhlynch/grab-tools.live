@@ -66,6 +66,7 @@ let materialList = [
     '/img/textures/default_colored.png',
     '/img/textures/bouncing.png',
     '/img/textures/snow.png',
+    '/img/textures/trigger.png',
     '/img/textures/default.png'
 ];
 let shapeList = [
@@ -4701,8 +4702,8 @@ async function initAttributes() {
     neonMaterial.uniforms.neonEnabled.value = 1.0;
     objectMaterials.push(neonMaterial);
     
-    triggerMaterial = materials[8].clone();
-    triggerMaterial.uniforms.colorTexture = materials[8].uniforms.colorTexture;
+    triggerMaterial = materials[11].clone();
+    triggerMaterial.uniforms.colorTexture = materials[11].uniforms.colorTexture;
     triggerMaterial.uniforms.isTransparent.value = 1.0;
     triggerMaterial.uniforms.diffuseColor.value = [1, 0.5, 0];
     triggerMaterial.transparent = true;
