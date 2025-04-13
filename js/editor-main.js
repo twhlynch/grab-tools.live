@@ -4544,6 +4544,7 @@ function initUI() {
     document.getElementById('nodeFinish-btn').addEventListener('click', () => {appendInsert("nodeFinish")});
     document.getElementById('nodeGravity-btn').addEventListener('click', () => {appendInsert("nodeGravity")});
     document.getElementById('nodeParticles-btn').addEventListener('click', () => {appendInsert("nodeParticles")});
+    document.getElementById('nodeTrigger-btn').addEventListener('click', () => {appendInsert("nodeTrigger")});
     document.getElementById('nodeColoredLava-btn').addEventListener('click', () => {appendInsert("nodeColoredLava")});
     // insert modded nodes
     // not actually modded, but cool node presets

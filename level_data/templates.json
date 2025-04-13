@@ -340,6 +340,11 @@
         "type": "identifier"
     },
     {
+        "name": "Tic-Tac-Toe",
+        "link": "29sgp24f1uorbc6vq8d2k:1740776204",
+        "type": "identifier"
+    },
+    {
         "name": "BAD APPLE!!",
         "link": "29sgp24f1uorbc6vq8d2k:1696497038",
         "type": "identifier"
@@ -634,6 +639,42 @@
                 "y": 5,
                 "z": 5
             }
+        }
+    },
+    "nodeTrigger": {
+        "levelNodeTrigger": {
+            "shape": 0,
+            "position": {},
+            "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "rotation": {
+                "w": 1
+            },
+            "isShared": true,
+            "triggerSources": [
+                {
+                    "triggerSourceBasic": {
+                        "type": 1
+                    }
+                }
+            ],
+            "triggerTargets": [
+                {
+                    "triggerTargetSubLevel": {
+                        "levelIdentifier": "community:29sgp24f1uorbc6vq8d2k:1740776204"
+                    }
+                },
+                {
+                    "triggerTargetAnimation": {
+                        "objectID": 0,
+                        "animationName": "idle",
+                        "mode": 3
+                    }
+                }
+            ]
         }
     },
     "nodeColoredLava": {
