@@ -1,3 +1,11 @@
+// Dearest traveler,
+// This file contains over 4,000 lines of messy,
+// buggy, inconsistent, and downright shamefully
+// bad code.
+// If you are here to read into how the editor 
+// works, give up.
+// I lost track of this nightmare a long time ago.
+
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
