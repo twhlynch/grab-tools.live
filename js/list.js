@@ -321,7 +321,7 @@ function expand(element) {
             d.score += d[key];
             d.rank += (1 - d.positions[key] / metric_length) / Object.entries(usedMetrics).length;
         }
-        d.score += d.rank;
+        //d.score += d.rank;
     }
 
     // display
