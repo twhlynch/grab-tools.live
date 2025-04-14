@@ -3313,43 +3313,136 @@ function FPEPixelate() {
     ];
     setLevel(levelData);
 }
-function openPointCloud(file) {
+function positionsFromOBJ(data) {
+    let positions = [];
+    let currentMaterial = [];
+
+    let lines = data.split("\n");
+    for (let i = 0; i < lines.length; i++) {
+        let line = lines[i];
+
+        if (line.startsWith("v ")) {
+            line = line.replace("v ", "");
+            let coords = line.split(" ").map(parseFloat);
+            currentMaterial.push(coords);
+        } else if (line.startsWith("usemtl ") || line.startsWith("o ")) {
+            if (currentMaterial.length) {
+                positions.push(currentMaterial);
+                currentMaterial = [];
+            }
+        }
+    }
+    if (currentMaterial.length) positions.push(currentMaterial);
+
+    return positions;
+}
+function openPointCloud(file, particles = false) {
     let reader = new FileReader();
 
     reader.onload = function() {
-        let data = reader.result;
+        const data = reader.result;
+        const positions = positionsFromOBJ(data);
+
         let level = getLevel();
-        let lines = data.split("\n");
-        let points = {
-            "levelNodeGroup": {
-                "position": {
-                    "y": 0, 
-                    "x": 0, 
-                    "z": 0
-                }, 
-                "rotation": {
-                    "w": 1.0
-                }, 
-                "scale": {
-                    "y": 1.0, 
-                    "x": 1.0, 
-                    "z": 1.0
-                },
-                "childNodes": []
+        if (particles) {
+            for (let i = 0; i < positions.length; i++) {
+                const rgb = [
+                    Math.random(),
+                    Math.random(),
+                    Math.random()
+                ];
+                let particlesNode = {
+                    "levelNodeParticleEmitter": {
+                        "position": {},
+                        "scale": {
+                            "x": 0.01,
+                            "y": 0.01,
+                            "z": 0.01
+                        },
+                        "rotation": {
+                            "w": 1
+                        },
+                        "particlesPerSecond": 999,
+                        "lifeSpan": {
+                            "x": 5,
+                            "y": 5
+                        },
+                        "startColor": {
+                            "r": rgb[0],
+                            "g": rgb[1],
+                            "b": rgb[2],
+                            "a": 1
+                        },
+                        "endColor": {
+                            "r": rgb[0],
+                            "g": rgb[1],
+                            "b": rgb[2],
+                            "a": 1
+                        },
+                        "startSize": {
+                            "x": 0.1,
+                            "y": 0.1
+                        },
+                        "endSize": {
+                            "x": 0.1,
+                            "y": 0.1
+                        },
+                        "velocity": {},
+                        "velocityMin": {},
+                        "velocityMax": {},
+                        "accelerationMin": {},
+                        "accelerationMax": {}
+                    },
+                    "animations": [
+                        {
+                            "name": "idle",
+                            "frames": positions[i].map((p, j) => {
+                                return {
+                                    "time": j * (1/positions[i].length),
+                                    "position": {
+                                        "x": p[0],
+                                        "y": p[1],
+                                        "z": p[2]
+                                    },
+                                    "rotation": {
+                                        "w": 1
+                                    }
+                                };
+                            }),
+                            "speed": 1
+                        }
+                    ]
+                };
+                level.levelNodes.push(particlesNode);
             }
-        };
-        for (let i = 0; i < lines.length; i++) {
-            let line = lines[i];
-            if (line.startsWith("v ")) {
-                line = line.replace("v ", "");
-                let coords = line.split(" ");
+        } else {
+            let points = {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0, 
+                        "x": 0, 
+                        "z": 0
+                    }, 
+                    "rotation": {
+                        "w": 1.0
+                    }, 
+                    "scale": {
+                        "y": 1.0, 
+                        "x": 1.0, 
+                        "z": 1.0
+                    },
+                    "childNodes": []
+                }
+            };
+            const flat = positions.flat();
+            for (let i = 0; i < flat.length; i++) {
                 points.levelNodeGroup.childNodes.push({
                     "levelNodeStatic": {
                         "material": 8,
                         "position": {
-                            "x": parseFloat(coords[0]),
-                            "y": parseFloat(coords[1]),
-                            "z": parseFloat(coords[2])
+                            "x": flat[i][0],
+                            "y": flat[i][1],
+                            "z": flat[i][2]
                         },
                         "color1": {
                             "r": 1,
@@ -3369,8 +3462,8 @@ function openPointCloud(file) {
                     }
                 });
             }
+            level.levelNodes.push(points);
         }
-        level.levelNodes.push(points);
         setLevel(level);
     }
     reader.readAsText(file);
@@ -4527,6 +4620,8 @@ function initUI() {
     document.getElementById('image-apply-btn').addEventListener('click', () => {document.getElementById('image-apply-btn-input').click()});
     document.getElementById('pointcloud-btn').addEventListener('click', () => {document.getElementById('pointcloud-btn-input').click()});
     document.getElementById('pointcloud-btn-input').addEventListener('change', (e) => {openPointCloud(e.target.files[0])});
+    document.getElementById('particlemodel-btn').addEventListener('click', () => {document.getElementById('particlemodel-btn-input').click()});
+    document.getElementById('particlemodel-btn-input').addEventListener('change', (e) => {openPointCloud(e.target.files[0], true)});
     document.getElementById('pc-btn-input').addEventListener('change', (e) => {openLevelFile(e.target.files)});
     document.getElementById('pcjson-btn-input').addEventListener('change', (e) => {openJSONFile(e.target.files[0])});
     document.getElementById('insertpc-btn-input').addEventListener('change', (e) => {appendLevelFile(e.target.files)});
