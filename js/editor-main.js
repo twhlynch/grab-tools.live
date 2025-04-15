@@ -3468,6 +3468,182 @@ function openPointCloud(file, particles = false) {
     }
     reader.readAsText(file);
 }
+function generateParticlePixelArt() {
+    let rows = document.getElementById('pixel-particles-prompt-rows').value;
+    let cols = document.getElementById('pixel-particles-prompt-cols').value;
+    document.getElementById('pixel-particles-prompt-rows').value = '';
+    document.getElementById('pixel-particles-prompt-cols').value = '';
+    
+    if (rows == "" || rows == null || rows < 1) {
+        rows = parseInt(document.getElementById('pixel-particles-prompt-rows').getAttribute('data-default')) || 50;
+    }
+    if (cols == "" || cols == null || cols < 1) {
+        cols = parseInt(document.getElementById('pixel-particles-prompt-cols').getAttribute('data-default')) || 50;
+    }
+    let file = document.getElementById('image-particles-btn-input').files[0];
+    let canvas = document.getElementById('pixel-particles-canvas');
+    let ctx = canvas.getContext('2d');
+    let reader = new FileReader();
+    reader.onload = function() {
+        let data = reader.result;
+        let img = new Image();
+        img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+            let canvas2 = document.getElementById('pixel-particles-canvas2');
+            let ctx2 = canvas2.getContext('2d');
+            canvas2.width = cols;
+            canvas2.height = rows;
+            let rgbArray = [];
+            for (let x = 0; x < cols; x++) {
+                for (let y = 0; y < rows; y++) {
+                    let pixel = ctx.getImageData(x*(img.width/cols), y*(img.height/rows), 1, 1);
+                    ctx2.putImageData(pixel, x, y);
+                    let rgb = pixel.data;
+                    rgbArray.push([rgb[0], rgb[1], rgb[2], x, y*-1]);
+                }
+            }
+            let pixelGroup = {
+                "levelNodeGroup": {
+                    "position": {
+                        "y": 0, 
+                        "x": 0, 
+                        "z": 0
+                    }, 
+                    "rotation": {
+                        "w": 1.0
+                    }, 
+                    "childNodes": [], 
+                    "scale": {
+                        "y": 1.0, 
+                        "x": 1.0, 
+                        "z": 1.0
+                    }
+                }
+            }
+            let pixels = rgbArray;
+            let colors = [];
+            let colorsMap = [];
+            for (let i = 0; i < pixels.length; i++) {
+                let color = [
+                    Math.floor(pixels[i][0]/25)*25,
+                    Math.floor(pixels[i][1]/25)*25,
+                    Math.floor(pixels[i][2]/25)*25
+                ]
+
+                let index = null;
+                for (let c = 0; c < colorsMap.length; c++) {
+                    if (
+                        colorsMap[c][0] == color[0] &&
+                        colorsMap[c][1] == color[1] &&
+                        colorsMap[c][2] == color[2]
+                    ) {
+                        index = c;
+                    }
+                }
+
+                if (index == null) {
+                    index = colorsMap.length;
+                    colorsMap.push(color);
+                    colors.push([]);
+                }
+
+                colors[index].push(pixels[i]);
+            }
+            for (let j = 0; j < colors.length; j++) {
+                if (colorsMap[j][0] == 0) {
+                    colorsMap[j][0] == 1;
+                }
+                if (colorsMap[j][1] == 0) {
+                    colorsMap[j][1] == 1;
+                }
+                if (colorsMap[j][2] == 0) {
+                    colorsMap[j][2] == 1;
+                }
+                let particlesNode = {
+                    "levelNodeParticleEmitter": {
+                        "position": {},
+                        "scale": {
+                            "x": 0.01,
+                            "y": 0.01,
+                            "z": 0.01
+                        },
+                        "rotation": {
+                            "w": 1
+                        },
+                        "particlesPerSecond": colors[j].length,
+                        "lifeSpan": {
+                            "x": 5,
+                            "y": 5
+                        },
+                        "startColor": {
+                            "r": colorsMap[j][0] / 255,
+                            "g": colorsMap[j][1] / 255,
+                            "b": colorsMap[j][2] / 255,
+                            "a": 1
+                        },
+                        "endColor": {
+                            "r": colorsMap[j][0] / 255,
+                            "g": colorsMap[j][1] / 255,
+                            "b": colorsMap[j][2] / 255,
+                            "a": 1
+                        },
+                        "startSize": {
+                            "x": 0.1,
+                            "y": 0.1
+                        },
+                        "endSize": {
+                            "x": 0.08,
+                            "y": 0.08
+                        },
+                        "velocity": {},
+                        "velocityMin": {},
+                        "velocityMax": {},
+                        "accelerationMin": {},
+                        "accelerationMax": {}
+                    },
+                    "animations": [
+                        {
+                            "name": "idle",
+                            "frames": colors[j].flatMap((p, i) => {
+                                return [
+                                    {
+                                        "time": i * (1/colors[j].length),
+                                        "position": {
+                                            "x": p[3] * 0.1,
+                                            "y": p[4] * 0.1
+                                        },
+                                        "rotation": {
+                                            "w": 1
+                                        }
+                                    },
+                                    {
+                                        "time": (i+1) * (1/colors[j].length),
+                                        "position": {
+                                            "x": p[3] * 0.1,
+                                            "y": p[4] * 0.1
+                                        },
+                                        "rotation": {
+                                            "w": 1
+                                        }
+                                    }
+                                ];
+                            }),
+                            "speed": 1
+                        }
+                    ]
+                };
+                pixelGroup.levelNodeGroup.childNodes.push(particlesNode);
+            }
+            let mainLevel = getLevel();
+            mainLevel.levelNodes.push(pixelGroup);
+            setLevel(mainLevel);
+        }
+        img.src = data;
+    }
+    reader.readAsDataURL(file);
+}
 function generatePixelArt() {
     let rows = document.getElementById('pixel-prompt-rows').value;
     let cols = document.getElementById('pixel-prompt-cols').value;
@@ -4388,6 +4564,35 @@ function initUI() {
         reader.readAsDataURL(file);
     });
 
+    document.querySelector('#prompt-pixel-particles .prompt-cancel').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-pixel-particles').style.display = 'none';
+        document.getElementById('pixel-particles-prompt').value = '';
+    });
+    document.querySelector('#prompt-pixel-particles .prompt-submit').addEventListener('click', () => {
+        promptsElement.style.display = 'none';
+        document.getElementById('prompt-pixel-particles').style.display = 'none';
+        generateParticlePixelArt();
+    });
+    document.getElementById('image-particles-btn-input').addEventListener('change', (e) => {
+        promptsElement.style.display = 'grid';
+        document.getElementById('prompt-pixel-particles').style.display = 'flex';
+
+        let file = document.getElementById('image-particles-btn-input').files[0];
+        let reader = new FileReader();
+        reader.onload = function() {
+            let data = reader.result;
+            let img = new Image();
+            img.onload = function() {
+                const ratio = Math.floor(50 / (img.width / img.height));
+                document.getElementById('pixel-particles-prompt-rows').setAttribute('data-default', ratio);
+                document.getElementById('pixel-particles-prompt-rows').setAttribute('placeholder', `Height, Default: ${ratio}`);
+            }
+            img.src = data;
+        }
+        reader.readAsDataURL(file);
+    });
+
     document.querySelector('#prompt-pixel-sphere .prompt-cancel').addEventListener('click', () => {
         promptsElement.style.display = 'none';
         document.getElementById('prompt-pixel-sphere').style.display = 'none';
@@ -4616,6 +4821,7 @@ function initUI() {
     document.getElementById('pcjson-btn').addEventListener('click', () => {document.getElementById('pcjson-btn-input').click()});
     document.getElementById('insertpc-btn').addEventListener('click', () => {document.getElementById('insertpc-btn-input').click()});
     document.getElementById('image-btn').addEventListener('click', () => {document.getElementById('image-btn-input').click()});
+    document.getElementById('image-particles-btn').addEventListener('click', () => {document.getElementById('image-particles-btn-input').click()});
     document.getElementById('image-sphere-btn').addEventListener('click', () => {document.getElementById('image-sphere-btn-input').click()});
     document.getElementById('image-apply-btn').addEventListener('click', () => {document.getElementById('image-apply-btn-input').click()});
     document.getElementById('pointcloud-btn').addEventListener('click', () => {document.getElementById('pointcloud-btn-input').click()});
