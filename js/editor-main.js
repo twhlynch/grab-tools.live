@@ -20,7 +20,7 @@ let templatesFile = await fetch('/level_data/templates.json').then(response => r
 let templates = await templatesFile.templates;
 let inserts = templatesFile.inserts;
 let protobufData = await fetch('/proto/proto.proto').then(response => response.text());
-let animationPresets = templates.animations;
+let animationPresets = templatesFile.animations;
 // editor
 let renderer, scene;
 let raycaster, mouse, lastSelected, selected, editing, vrButton;
