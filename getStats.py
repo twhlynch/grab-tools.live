@@ -573,6 +573,9 @@ def get_hardest_levels_changes():
         "Content-Type": "application/json"
     }
     response = requests.request("GET", url, headers=headers)
+    
+    requests.put(url, headers=headers, data='[]')
+    
     return json.loads(response.text)
 
 def get_blocked_ids():
