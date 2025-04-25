@@ -723,7 +723,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
         if weekly:
             embed.add_field(name="Weekly", value=f"[{weekly[0]}]({weekly[1]})")
 
-        await channel.send(f"||{role.mention}||")
+        await channel.send(f"||{role.mention}||", allowed_mentions=discord.AllowedMentions(roles=True))
         await channel.send(embed=embed)
         scores_embed = await get_challenge_scores()
         await channel.send(embed=scores_embed)
@@ -754,7 +754,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
             if len(unbeaten_levels) > 0:
                 embed.add_field(name="Newest", value=unbeaten_levels[-1]["title"], inline=False)
 
-            await channel.send(f"||{role.mention}||")
+            await channel.send(f"||{role.mention}||", allowed_mentions=discord.AllowedMentions(roles=True))
             await channel.send(embed=embed)
             
         for beaten in beaten_unbeaten_levels:
