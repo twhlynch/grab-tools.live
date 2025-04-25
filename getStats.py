@@ -563,6 +563,18 @@ def get_hardest_levels_list():
     response = requests.request("GET", url, headers=headers)
     return json.loads(response.text)
 
+def get_hardest_levels_changes():
+    CF_ID = sys.argv[2]
+    CF_TOKEN = sys.argv[3]
+    NAMESPACE = sys.argv[4]
+    url = f"https://api.cloudflare.com/client/v4/accounts/{CF_ID}/storage/kv/namespaces/{NAMESPACE}/values/list_changes"
+    headers = {
+        "Authorization": f"Bearer {CF_TOKEN}",
+        "Content-Type": "application/json"
+    }
+    response = requests.request("GET", url, headers=headers)
+    return json.loads(response.text)
+
 def get_blocked_ids():
     CF_ID = sys.argv[2]
     CF_TOKEN = sys.argv[3]
@@ -601,6 +613,8 @@ def get_level_data():
     unbeaten_levels = get_unbeaten(all_verified)
     beaten_unbeaten_levels = get_beaten_unbeaten(unbeaten_levels_old)
     unverified = get_unverified(all_verified, all_verified_old)
+    hardest_levels_list = get_hardest_levels_list()
+    hardest_levels_changes = get_hardest_levels_changes()
     get_trending_info(all_verified)
     write_json_file('stats_data/all_verified.json', all_verified)
     write_json_file('stats_data/a_challenge.json', get_a_challenge())
@@ -610,7 +624,7 @@ def get_level_data():
     write_json_file('stats_data/unbeaten_levels.json', unbeaten_levels)
     write_json_file('stats_data/most_verified.json', get_most_verified(all_verified, most_verified_old))
     write_json_file('stats_data/most_plays.json', get_most_plays(all_verified, most_plays_old))
-    write_json_file('stats_data/hardest_levels_list.json', get_hardest_levels_list())
+    write_json_file('stats_data/hardest_levels_list.json', hardest_levels_list)
     write_json_file('stats_data/blocked.json', get_blocked_ids())
     write_json_file('stats_data/total_level_count.json', get_total_levels())
 
@@ -656,7 +670,7 @@ def get_level_data():
 
     write_json_file('stats_data/daily.json', daily_data)
 
-    run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels)
+    run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels, hardest_levels_changes)
 
 def log(weekly, reset):
     log_data = {
@@ -686,7 +700,7 @@ async def get_challenge_scores():
     return embed
 
 
-def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=[], unverified=[], best_of_grab_levels_old=[], best_of_grab_levels=[]):
+def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=[], unverified=[], best_of_grab_levels_old=[], best_of_grab_levels=[], hardest_levels_changes=[]):
 
     intents = discord.Intents.default()
     bot = commands.Bot(command_prefix='!', intents=intents, allowed_mentions=discord.AllowedMentions(roles=True, users=False, everyone=False))
@@ -709,6 +723,12 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
         await channel.send(embed=embed)
         scores_embed = await get_challenge_scores()
         await channel.send(embed=scores_embed)
+
+        # hardest list
+        hardest_levels_channel = bot.get_channel(1365172578242531379)
+        for change in hardest_levels_changes:
+            embed = Embed(title=change["title"], url=f"{VIEWER_URL}?level={change['id']}", description=f"{change['title']} by {change['creator']}\n{change["description"]} {change["i"]}", color=0xffffff if change["i"] == 0 else 0xff0000)
+            await hardest_levels_channel.send(embed=embed)
 
         # Unbeaten
         if unbeaten_levels:
