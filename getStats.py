@@ -727,7 +727,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
         # hardest list
         hardest_levels_channel = bot.get_channel(1365172578242531379)
         for change in hardest_levels_changes:
-            embed = Embed(title=change["title"], url=f"{VIEWER_URL}?level={change['id']}", description=f"{change['title']} by {change['creator']}\n{change["description"]} {change["i"]}", color=0xffffff if change["i"] == 0 else 0xff0000)
+            embed = Embed(title=change["title"], url=f"{VIEWER_URL}?level={change['id']}", description=f"{change['title']} by {change['creator']}\n{change["description"]} {change["i"] + 1}", color=0xffffff if change["i"] == 0 else 0xff0000)
             await hardest_levels_channel.send(embed=embed)
 
         # Unbeaten
