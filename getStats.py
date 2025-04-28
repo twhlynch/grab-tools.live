@@ -574,7 +574,7 @@ def get_hardest_levels_changes():
     }
     response = requests.request("GET", url, headers=headers)
     
-    requests.put(url, headers=headers, data='[]')
+    requests.put(url, headers=headers, data='{"value": "[]"}')
     print('CHANGES', response.text)
     
     return json.loads(response.text)
