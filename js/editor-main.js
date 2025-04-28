@@ -56,6 +56,7 @@ let devModes = {
 let devRaycaster, devTransform;
 // loaders
 let loader = new GLTFLoader();
+const objectLoader = new THREE.ObjectLoader();
 let loadedPercentage = 0;
 // ambience
 let sunAngle, sunAltitude, horizonColor, sky;
@@ -270,21 +271,58 @@ function highlightTextEditor() {
     oldText = editInputElement.innerHTML;
     incrementLoader(10);
 }
+function clearCaches() {
+    localStorage.clear();
+    location.reload();
+}
+function imageToB64(img) {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    return canvas.toDataURL();
+}
 function loadTexture(path) {
-    return new Promise((resolve) => {
-        const texture = new THREE.TextureLoader().load(path, function (texture) {
-            resolve(texture);
+    const key = "texture-cache-" + path.split('/').pop().replace('.png', '');
+    if (localStorage.getItem(key)) {
+        return new Promise((resolve) => {
+            const b64Data = localStorage.getItem(key);
+
+            const texture = new THREE.TextureLoader().load(b64Data, function (texture) {
+                resolve(texture);
+            });
         });
-    });
+    } else {
+        return new Promise((resolve) => {
+            const texture = new THREE.TextureLoader().load(path, function (texture) {
+                localStorage.setItem(key, imageToB64(texture.source.data));
+                resolve(texture);
+            });
+        });
+    }
 }
 function loadModel(path) {
-    return new Promise((resolve) => {
-        loader.load(path, function (gltf) {
-            let object = gltf.scene.children[0];
-            object.geometry.scale(-1, 1, -1);
-            resolve(object);
+    const key = "model-cache-" + path.split('/').pop().replace('.glb', '');
+    if (localStorage.getItem(key)) {
+        return new Promise((resolve) => {
+            const objectData = JSON.parse(localStorage.getItem(key));
+
+            objectLoader.parse(objectData, (object) => {
+                resolve(object);
+            });
         });
-    });
+    } else {
+        return new Promise((resolve) => {
+            loader.load(path, function (gltf) {
+                let object = gltf.scene.children[0];
+                object.geometry.scale(-1, 1, -1);
+
+                localStorage.setItem(key, JSON.stringify(object.toJSON()));
+                resolve(object);
+            });
+        });
+    }
 }
 function refreshScene() {
     console.log('Refreshing');
@@ -4755,6 +4793,7 @@ function initUI() {
     // stats
     document.getElementById('stats-container').addEventListener('click', handleStatsClick);
     // buttons
+    document.getElementById('clearCaches-btn').addEventListener('click', clearCaches);
     document.getElementById('save-config-btn').addEventListener('click', saveConfig);
     document.getElementById('copyCamera-btn').addEventListener('click', copyCameraState);
     document.getElementById('enableEditing-btn').addEventListener('click', toggleEditing);
