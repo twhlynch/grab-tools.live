@@ -807,12 +807,13 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=
                 embed = Embed(title=map["title"], url=f"{VIEWER_URL}?level={map['identifier']}", description=f"Map added to a challenge", color=0x990000)
                 await challenge_records_channel.send(embed=embed)
 
-            for i in range(len(map["leaderboard"])):
+            limit = 100 if "curated_challenge" in map["list_key"] else 10
+            for i in min(range(len(map["leaderboard"])), limit):
                 identifier = map["leaderboard"][i]["user_id"]
                 for map_old in best_of_grab_levels_old:
                     if map["identifier"] == map_old["identifier"]:
                         found = False
-                        for j in range(len(map_old["leaderboard"])):
+                        for j in min(range(len(map_old["leaderboard"])), limit):
                             if map_old["leaderboard"][j]["user_id"] == identifier:
                                 found = True
                                 if map["leaderboard"][i]["timestamp"] != map_old["leaderboard"][j]["timestamp"]:
