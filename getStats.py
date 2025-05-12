@@ -568,13 +568,12 @@ def get_hardest_levels_changes():
     CF_TOKEN = sys.argv[3]
     NAMESPACE = sys.argv[4]
     url = f"https://api.cloudflare.com/client/v4/accounts/{CF_ID}/storage/kv/namespaces/{NAMESPACE}/values/list_changes"
-    headers = {
+    response = requests.request("GET", url, headers={
         "Authorization": f"Bearer {CF_TOKEN}",
         "Content-Type": "application/json"
-    }
-    response = requests.request("GET", url, headers=headers)
+    })
     
-    requests.put(url, headers=headers, data='{"value": "[]"}')
+    requests.put(url, headers={"Authorization": f"Bearer {CF_TOKEN}"}, data='[]')
     print('CHANGES', response.text)
     
     return json.loads(response.text)
