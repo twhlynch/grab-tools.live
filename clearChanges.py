@@ -8,9 +8,14 @@ headers = {
 	"Authorization": f"Bearer {CF_TOKEN}",
 }
 
-requests.put(f"https://api.cloudflare.com/client/v4/accounts/{CF_ID}/storage/kv/namespaces/{NAMESPACE}/values/list_changes", 
+res1 = requests.put(f"https://api.cloudflare.com/client/v4/accounts/{CF_ID}/storage/kv/namespaces/{NAMESPACE}/values/list_changes", 
 headers=headers, data='{"value": "[1]"}'
 )
-requests.put(f"https://api.cloudflare.com/client/v4/accounts/{CF_ID}/storage/kv/namespaces/{NAMESPACE}/values/list_changes", 
+res2 = requests.put(f"https://api.cloudflare.com/client/v4/accounts/{CF_ID}/storage/kv/namespaces/{NAMESPACE}/values/list_changes", 
 headers=headers, data="[2]"
 )
+
+print(
+    res1.status_code,
+    res2.status_code
+    )
