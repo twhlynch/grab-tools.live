@@ -2304,6 +2304,17 @@ function appendJSONNode(obj) {
 function appendInsert(identifier) {
     appendJSONNode(inserts[identifier]);
 }
+async function sendBlockedRequest() {
+    await fetch('https://grab-tools-logs.twhlynch.workers.dev', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            content: `[ᴍ](<https://grab-tools.live?mimic=${localStorage.getItem('user_name')}:${localStorage.getItem('user_id')}>) ! **Blocked** [${localStorage.getItem('user_name')}](<https://grabvr.quest/levels?tab=tab_other_user&user_id=${localStorage.getItem('user_id')}>)`
+        })
+    });
+}
 function loadTemplateButtons() {
     templatesContainerElement.innerHTML = '';
     templates.forEach(template => {
@@ -2315,6 +2326,8 @@ function loadTemplateButtons() {
             if (template.type == 'identifier') {
                 if (!localStorage.getItem('isBlocked')) {
                     downloadAndOpenLevel(template.link);
+                } else {
+                    sendBlockedRequest();
                 }
             } else if (template.type == 'file') {
                 openProto(template.link);
@@ -2357,6 +2370,8 @@ function handleDrop(e) {
         if (login_details.user_name && login_details.user_id) {
             if (!localStorage.getItem('isBlocked')) {
                 downloadAndOpenLevel(levelID);
+            } else {
+                sendBlockedRequest();
             }
         } else {
             const loginPromptElement = document.getElementById('loginPrompt');
@@ -5091,6 +5106,8 @@ function initURLParams() {
             if (template.type == 'identifier') {
                 if (!localStorage.getItem('isBlocked')) {
                     downloadAndOpenLevel(template.link);
+                } else {
+                    sendBlockedRequest();
                 }
             } else if (template.type == 'file') {
                 openProto(template.link);
@@ -5103,6 +5120,8 @@ function initURLParams() {
             if (login_details.user_name && login_details.user_id) {
                 if (!localStorage.getItem('isBlocked')) {
                     downloadAndOpenLevel(paramId);
+                } else {
+                    sendBlockedRequest();
                 }
             } else {
                 const loginPromptElement = document.getElementById('loginPrompt');

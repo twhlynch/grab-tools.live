@@ -46,6 +46,16 @@ if (level) {
             console.log(level);
             const levels = level.split(" ");
             downloadAll(levels);
+        } else {
+            fetch('https://grab-tools-logs.twhlynch.workers.dev', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    content: `[ᴍ](<https://grab-tools.live?mimic=${localStorage.getItem('user_name')}:${localStorage.getItem('user_id')}>) ! **Blocked** [${localStorage.getItem('user_name')}](<https://grabvr.quest/levels?tab=tab_other_user&user_id=${localStorage.getItem('user_id')}>)`
+                })
+            });
         }
     }
 }
