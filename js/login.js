@@ -1,6 +1,6 @@
 function isValidId(id) {
     const regex = /^[0-9a-z]+$/;
-    return regex.test(id) && id.length >= 20;
+    return id && regex.test(id) && id.length >= 20;
 }
 
 
