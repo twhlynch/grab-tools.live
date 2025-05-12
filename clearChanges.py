@@ -6,7 +6,6 @@ NAMESPACE = sys.argv[4]
 
 headers = {
 	"Authorization": f"Bearer {CF_TOKEN}",
-	"Content-Type": "application/json"
 }
 
 requests.put(f"https://api.cloudflare.com/client/v4/accounts/{CF_ID}/storage/kv/namespaces/{NAMESPACE}/values/list_changes", 
