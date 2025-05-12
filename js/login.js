@@ -45,7 +45,21 @@
 
 // login();
 
+function isValidId(id) {
+    const regex = /^[0-9a-z]+$/;
+    return regex.test(id);
+}
+
+
 let user_id = localStorage.getItem('user_id');
+if (!isValidId(user_id)) {
+    user_id = undefined;
+    localStorage.removeItem('user_name');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('last_user_name');
+    localStorage.removeItem('last_user_id');
+}
+
 let user_name = localStorage.getItem('user_name');
 
 let last_user_id = localStorage.getItem('last_user_id') || "";
@@ -186,9 +200,13 @@ loginButton.addEventListener('click', () => {
 });
 
 confirmButton.addEventListener('click', () => {
-    loginContainer.style.display = 'none';
     const username = usernameInput.value;
     const userId = userIdInput.value;
+    if (!userId || !isValidId(userId)) {
+        alert("User id must be a valid GRAB user id. If you are unsure, use the 'guess id' button.");
+        return;
+    }
+    loginContainer.style.display = 'none';
     if (username && userId) {
         user_id = userId;
         user_name = username;
