@@ -51,7 +51,7 @@ function checkMetric(id, username) {
             unbeatenMaps: 0,
             hardestMaps: 0,
             positions: {},
-            username: username
+            username: username.split(" ")[0]
         };
     }
 }
