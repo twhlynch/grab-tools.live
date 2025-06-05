@@ -109,7 +109,7 @@ for difficulty in difficulty_records:
     difficulty_records[difficulty] = dict(sorted(difficulty_records[difficulty].items(), key=lambda x: x[1]["maps"], reverse=True)[:200])
     print("sorted leaderboard " + difficulty)
 
-user_finishes = {key: finishes for key, finishes in user_finishes.items() if finishes[0] >= 10}
+user_finishes = {key: [finishes[0], finishes[1], round(finishes[2], 2)] for key, finishes in user_finishes.items() if finishes[0] >= 10}
 print("clean leaderboard finishes")
 
 user_finishes = dict(sorted(user_finishes.items(), key=lambda x: x[1][0], reverse=True)[:200])
