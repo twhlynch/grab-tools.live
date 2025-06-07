@@ -18,7 +18,7 @@ function readArrayBufferGroup(file) {
                         "rotation": {
                             "w": 1.0
                         }, 
-                        "childNodes": object.levelNodes.filter(n => !(n.levelNodeStart)),
+                        "childNodes": object.levelNodes.filter(n => !(n.levelNodeStart) && !(n.levelNodeFinish)),
                         "scale": {
                             "y": 1.0, 
                             "x": 1.0, 
