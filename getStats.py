@@ -8,6 +8,28 @@ PAGE_URL = "https://grab-tools.live/"
 VIEWER_URL = "https://grabvr.quest/levels/viewer/"
 FORMAT_VERSION = "100"
 
+def safe_get(url):
+    print("Request:", url)
+    error_count = 0
+
+    while True:
+        try:
+            response = requests.get(url)
+            if response.status_code == 200:
+                return response
+            else:
+                print("Issue: Invalid response from server", response.status_code, response.raw)
+                error_count += 1
+                if error_count >= 3:
+                    return None
+                else:
+                    continue
+        except Exception as e:
+            print("Caught error:", e)
+            error_count += 1
+            if error_count >= 3:
+                return None
+
 def filter_level(level):
     
     if "verification_time" in level:
@@ -71,55 +93,52 @@ def filter_level_list(level_list):
 
 def get_level_list(type):
     list_url = f"{SERVER_URL}list?max_format_version={FORMAT_VERSION}&type={type}"
-    print(list_url)
-    response = requests.get(list_url).json()
+    request = safe_get(list_url)
+    if request == None:
+        return []
+    response = request.json()
     response = filter_level_list(response)
     return response
 
 def get_user_info(user_identifier):
     user_url = f"{SERVER_URL}get_user_info?user_id={user_identifier}"
-    print(user_url)
-    response = requests.get(user_url).json()
+    request = safe_get(user_url)
+    if request == None:
+        return {}
+    response = request.json()
     return response
 
 def get_level_leaderboard(level_identifier):
     leaderboard_url = f"{SERVER_URL}statistics_top_leaderboard/{level_identifier.replace(':', '/')}"
-    print(leaderboard_url)
-    try:
-        leaderboard_request = requests.get(leaderboard_url)
-        if leaderboard_request.status_code == 200:
-            response = leaderboard_request.json()
-            return response
-        else:
-            print("ERROR: INVALID RESPONSE FROM SERVER")
-            return []
-    except:
-        print("ERROR: INVALID RESPONSE FROM SERVER")
+    request = safe_get(leaderboard_url)
+    if request == None:
         return []
+    response = request.json()
+    return response
 
 def get_level_stats(level_identifier):
     stats_url = f"{SERVER_URL}statistics/{level_identifier.replace(':', '/')}"
-    print(stats_url)
-    stats_request = requests.get(stats_url)
-    if stats_request.status_code == 200:
-        response = stats_request.json()
-        return response
-    else:
-        print("ERROR: INVALID RESPONSE FROM SERVER")
+    request = safe_get(stats_url)
+    if request == None:
         return {
-    "level_identifier": level_identifier,
-    "total_played_count": 0,
-    "total_finished_count": 0,
-    "played_count": 100,
-    "finished_count": 1,
-    "rated_count": 0,
-    "liked_count": 0,
-    "tipped_amount": 0
-}
+            "level_identifier": level_identifier,
+            "total_played_count": 0,
+            "total_finished_count": 0,
+            "played_count": 100,
+            "finished_count": 1,
+            "rated_count": 0,
+            "liked_count": 0,
+            "tipped_amount": 0
+        }
+    response = request.json()
+    return response
 
 def get_level_browser():
     browser_url = f"{SERVER_URL}get_level_browser?version=1"
-    return requests.get(browser_url).json()
+    request = safe_get(browser_url)
+    if request == None:
+        sys.exit(0) # required
+    return request.json()
 
 def get_user_name(user_identifier, potential_user_name, priority=False):
     with open("stats_data/featured_creators.json") as featured_creators:
@@ -143,15 +162,20 @@ def timestamp_to_days(timestamp_in_milliseconds, now=datetime.now().timestamp() 
 
 def get_total_levels():
     total_url = f"{SERVER_URL}total_level_count?type=newest"
-    print(total_url)
-    count = int(float(requests.get(total_url).text))
+    request = safe_get(total_url)
+    if request == None:
+        return { "levels": 0 } # probably fine
+    count = int(float(request.text))
     return { "levels": count }
 
 def get_all_verified(stamp=''):
     verified = []
     while True:
         url = f"{SERVER_URL}list?max_format_version={FORMAT_VERSION}&type=ok&page_timestamp={stamp}"
-        data = requests.get(url).json()
+        request = safe_get(url)
+        if request == None:
+            sys.exit(0) # required
+        data = request.json()
         verified.extend(data)
         if len(data) > 0 and data[-1].get("page_timestamp"):
             stamp = data[-1]["page_timestamp"]
