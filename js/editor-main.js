@@ -2880,7 +2880,7 @@ function remakeObject(material, shape, shapeData, object) {
     selected = newObject;
 }
 function remakeGroup(shape, material, object) {
-    if (object.userData.grabNodeData.levelNodeGroup) {
+    if (object.userData.grabNodeData?.levelNodeGroup) {
         let childNodes = editing.userData.grabNodeData.levelNodeGroup.childNodes;
         runOnNodes(childNodes, (node) => {
             if (material) {
@@ -2907,11 +2907,11 @@ function remakeGroup(shape, material, object) {
             remakeGroup(shape, material, objectsToRemake[i]);
         }
     } else {
-        if (shape && (object.userData.grabNodeData.levelNodeStatic || object.userData.grabNodeData.levelNodeCrumbling)) {
+        if (shape && (object.userData.grabNodeData?.levelNodeStatic || object.userData.grabNodeData?.levelNodeCrumbling)) {
             let shapeData = deepClone(object.userData.grabNodeData);
             remakeObject(material, shape, shapeData, object);
         }
-        if (material && (object.userData.grabNodeData.levelNodeStatic)) {
+        if (material && (object.userData.grabNodeData?.levelNodeStatic)) {
             let shapeData = deepClone(object.userData.grabNodeData);
             remakeObject(material, shape, shapeData, object);
         }
@@ -2920,7 +2920,7 @@ function remakeGroup(shape, material, object) {
 function editShape(shape) {
     if (
         editing && editing.parent.type == "Scene"
-        && (editing.userDatagrabNodeData.levelNodeStatic || editing.userData.grabNodeData.levelNodeCrumbling)
+        && (editing.userData.grabNodeData?.levelNodeStatic || editing.userData.grabNodeData?.levelNodeCrumbling)
     ) {
         let shapeData = deepClone(editing.userData.grabNodeData);
         let nodeData = Object.values(shapeData)[0];
@@ -2943,7 +2943,7 @@ function editShape(shape) {
 function editMaterial(material) {
     if (
         editing && editing.parent.type == "Scene" 
-        && (editing.userData.grabNodeData.levelNodeStatic)
+        && (editing.userData.grabNodeData?.levelNodeStatic)
     ) {
         let shapeData = deepClone(editing.userData.grabNodeData);
         let nodeData = Object.values(shapeData)[0];
@@ -2965,7 +2965,7 @@ function editMaterial(material) {
 }
 function editColor(e) {
     let color = e.target.value;
-    if (editing && editing.parent.type == "Scene" && editing.userData.grabNodeData.levelNodeStatic) {
+    if (editing && editing.parent.type == "Scene" && editing.userData.grabNodeData?.levelNodeStatic) {
         let shapeData = deepClone(editing.userData.grabNodeData);
         let nodeData = Object.values(shapeData)[0];
         nodeData.color1 = {
@@ -3012,11 +3012,11 @@ function editAnimation(animation) {
     if (
         editing && editing?.parent?.type == "Scene"
         && (
-            editing.userData.grabNodeData.levelNodeStatic || 
-            editing.userData.grabNodeData.levelNodeCrumbling ||
-            editing.userData.grabNodeData.levelNodeGravity ||
-            editing.userData.grabNodeData.levelNodeSign || 
-            editing.userData.grabNodeData.levelNodeGroup
+            editing.userData.grabNodeData?.levelNodeStatic || 
+            editing.userData.grabNodeData?.levelNodeCrumbling ||
+            editing.userData.grabNodeData?.levelNodeGravity ||
+            editing.userData.grabNodeData?.levelNodeSign || 
+            editing.userData.grabNodeData?.levelNodeGroup
         )
     ) {
         if (animation == "none") {
@@ -3054,7 +3054,7 @@ function addFrame(frame) {
         "z": 0
     }
     let currentTime = 0;
-    if (object.userData.grabNodeData.animations) {
+    if (object.userData.grabNodeData?.animations) {
         if (object.userData.grabNodeData.animations
             && object.userData.grabNodeData.animations.length
             && object.userData.grabNodeData.animations[0].frames
