@@ -1343,6 +1343,10 @@ function addTriggerPaths() {
             for (let target of objectData.levelNodeTrigger.triggerTargets || []) {
                 if (!target.triggerTargetAnimation) continue;
                 let targetObject = objects[target.triggerTargetAnimation?.objectID || 0];
+                if (!targetObject) {
+                    console.log(`removed target of ${target.triggerTargetAnimation?.objectID || 0}`);
+                    continue;
+                }
                 let objectPosition = new THREE.Vector3();
                 let targetPosition = new THREE.Vector3();
                 object.getWorldPosition(objectPosition);
