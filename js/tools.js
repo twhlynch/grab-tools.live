@@ -18,7 +18,7 @@ function readArrayBufferGroup(file) {
                         "rotation": {
                             "w": 1.0
                         }, 
-                        "childNodes": object.levelNodes.filter(n => !(n.levelNodeStart) && !(n.levelNodeFinish)),
+                        "childNodes": object.levelNodes,
                         "scale": {
                             "y": 1.0, 
                             "x": 1.0, 
@@ -422,15 +422,80 @@ function compile(qms=false) {
         readers.push(readArrayBufferGroup(files[i]));
     }
 
+    function traverseNode(node, func, parent = null) {
+        func(node, parent);
+
+        if (node.levelNodeGroup?.childNodes) {
+            node.levelNodeGroup.childNodes.forEach((child) => {
+                traverseNode(child, func, node);
+            });
+        }
+    }
     Promise.all(readers).then((values) => {
         let finalNodes = [];
-        for (let i = 0; i < values.length; i++) {
-            finalNodes = finalNodes.concat(values[i]);
+        let offset = 0;
+        for (let group of values) {
+
+            // starts and finishes
+            let startIds = [];
+            let id = 0;
+            traverseNode(group, (node, parent) => {
+                if ((node.levelNodeStart || node.levelNodeFinish) && parent == group) { // only top level
+                    startIds.push(id - 1); // -1 for the group
+                }
+                id++;
+            });
+            group.levelNodeGroup.childNodes = group.levelNodeGroup.childNodes.filter(n => !(n.levelNodeStart) && !(n.levelNodeFinish));
+
+            console.log('id:'+id);
+
+            // deleted target trigger targets
+            traverseNode(group, (node, _) => {
+                if (node.levelNodeTrigger?.triggerTargets) {
+                    let deletedTargets = [];
+                    for (let i = 0; i < node.levelNodeTrigger.triggerTargets.length; i++) {
+                        let target = node.levelNodeTrigger.triggerTargets[i];
+                        if (target.triggerTargetAnimation) {
+                            const originalId = target.triggerTargetAnimation.objectID || 0;
+                            if (originalId >= id - 1) {
+                                deletedTargets.push(i);
+                            }
+                        }
+                    }
+                    for (let i = deletedTargets.length - 1; i >= 0; i--) {
+                        node.levelNodeTrigger.triggerTargets.splice(deletedTargets[i], 1);
+                    }
+                }
+            });
+
+            // update target ids
+            let count = 0;
+            traverseNode(group, (node, _) => {
+                if (node.levelNodeTrigger?.triggerTargets) {
+                    for (let target of node.levelNodeTrigger.triggerTargets) {
+                        if (target.triggerTargetAnimation) {
+                            if (!target.triggerTargetAnimation.objectID) {
+                                target.triggerTargetAnimation.objectID = 0;
+                            }
+                            const originalId = target.triggerTargetAnimation.objectID;
+                            for (let sID of startIds) {
+                                if (originalId >= sID) {
+                                    target.triggerTargetAnimation.objectID--;
+                                }
+                            }
+                            target.triggerTargetAnimation.objectID += offset + 1; // +1 for group
+                        }
+                    }
+                }
+                count++;
+            });
+            offset += count;
+            finalNodes.push(group);
         }
-        let creators = document.getElementById('compile-creators').value;
+        let creators = document.getElementById('compile-creators').value || "";
         let description = document.getElementById('compile-description').value + " grab-tools.live";
-        let title = document.getElementById('compile-title').value;
-        let checkpoints = document.getElementById('compile-checkpoints').value;
+        let title = document.getElementById('compile-title').value || "";
+        let checkpoints = document.getElementById('compile-checkpoints').value || "0";
         let obj = {
             "ambienceSettings": {
                 "skyHorizonColor": {
