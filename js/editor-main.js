@@ -90,6 +90,7 @@ let shapeList = [
 ];
 // toggles
 let hideText = false;
+let hideTerminal = false;
 let highlightText = true;
 let showGroups = false;
 let showAnimations = true;
@@ -112,6 +113,8 @@ const typeWarningElement = document.getElementById('definitionWarning');
 const editInputElement = document.getElementById('edit-input');
 const renderContainerElement = document.getElementById('render-container');
 const terminalInputElement = document.getElementById('terminal-input');
+const terminalElement = document.getElementById('terminal');
+const terminalResizeElement = document.getElementById('terminal-resize');
 const templatesContainerElement = document.getElementById('templates-container');
 const timelineSliderElement = document.getElementById('timeline-slider');
 const statsComplexityElement = document.getElementById('stats-complexity');
@@ -4817,6 +4820,7 @@ function initUI() {
     document.getElementById('copyCamera-btn').addEventListener('click', copyCameraState);
     document.getElementById('enableEditing-btn').addEventListener('click', toggleEditing);
     document.getElementById('hide-btn').addEventListener('click', () => {editInputElement.style.display = hideText ? 'block' : 'none';hideText = !hideText;highlightTextEditor()});
+    document.getElementById('toggleTerminal-btn').addEventListener('click', () => {terminalElement.style.display = hideTerminal ? 'flex' : 'none';terminalResizeElement.style.display = hideTerminal ? 'flex' : 'none';hideTerminal = !hideTerminal;});
     document.getElementById('highlight-btn').addEventListener('click', () => {highlightText = !highlightText;highlightTextEditor()});
     document.getElementById('performance-btn').addEventListener('click', () => {renderer.getPixelRatio() == 1 ? renderer.setPixelRatio( window.devicePixelRatio / 10 ) : renderer.setPixelRatio( 1 )});
     document.getElementById('range-btn').addEventListener('click', () => {loadModdedProtobuf()});
