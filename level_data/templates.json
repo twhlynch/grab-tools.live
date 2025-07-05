@@ -255,8 +255,13 @@
         "type": "file"
     },
     {
-        "name": "Lobby original 2021",
+        "name": "Lobby by rad 2021",
         "link": "level_data/lobbies/lobby-original-2021.level",
+        "type": "file"
+    },
+    {
+        "name": "First 'lobby'",
+        "link": "level_data/lobbies/first-lobby.level",
         "type": "file"
     },
     {
@@ -337,6 +342,11 @@
     {
         "name": "BFL",
         "link": "level_data/official/40-BFL-1.level",
+        "type": "file"
+    },
+    {
+        "name": "first test level",
+        "link": "level_data/official/100-test.level",
         "type": "file"
     },
     {
