@@ -85,6 +85,7 @@ let shapeList = [
     'models/editor/pyramid.glb',
     'models/editor/prism.glb',
     'models/editor/cone.glb',
+    'models/editor/pyramid4.glb',
     'models/editor/sign.glb',
     'models/editor/start_end.glb'
 ];
@@ -147,6 +148,7 @@ const statsConeElement = document.getElementById('stats-cone');
 const statsSphereElement = document.getElementById('stats-sphere');
 const statsCylinderElement = document.getElementById('stats-cylinder');
 const statsPyramidElement = document.getElementById('stats-pyramid');
+const statsSquarePyramidElement = document.getElementById('stats-squarePyramid');
 const statsPrismElement = document.getElementById('stats-prism');
 const loaderText = document.getElementById('loader-text');
 const loaderContainer = document.getElementById('loader');
@@ -372,6 +374,7 @@ function refreshScene() {
         pyramid: 0,
         prism: 0,
         cone: 0,
+        squarePyramid: 0,
         danger: false
     };
     objects = [];
@@ -545,6 +548,7 @@ function refreshScene() {
         statistics.pyramid += nodeStatistics.pyramid;
         statistics.prism += nodeStatistics.prism;
         statistics.cone += nodeStatistics.cone;
+        statistics.squarePyramid += nodeStatistics.squarePyramid;
         nodeStatistics.danger ? statistics.danger = true : null;
     });
 
@@ -583,6 +587,7 @@ function refreshScene() {
     statsPyramidElement.innerText = `Pyramid: ${statistics.pyramid}`;
     statsPrismElement.innerText = `Prism: ${statistics.prism}`;
     statsConeElement.innerText = `Cone: ${statistics.cone}`;
+    statsSquarePyramidElement.innerText = `Square Pyramid: ${statistics.squarePyramid}`;
 
     typeWarningElement.style.display = statistics.danger ? 'block' : 'none';
 
@@ -629,6 +634,7 @@ function loadLevelNode(node, parent) {
         pyramid: 0,
         prism: 0,
         cone: 0,
+        squarePyramid: 0,
         danger: false
     };
     if (node.levelNodeGroup) {
@@ -686,6 +692,7 @@ function loadLevelNode(node, parent) {
                 statistics.pyramid += childNodeStatistics.pyramid;
                 statistics.prism += childNodeStatistics.prism;
                 statistics.cone += childNodeStatistics.cone;
+                statistics.squarePyramid += childNodeStatistics.squarePyramid;
                 childNodeStatistics.danger ? statistics.danger = true : null;
             });
         }
@@ -938,6 +945,9 @@ function loadLevelNode(node, parent) {
             case 1005:
                 statistics.cone += 1;
                 break;
+            case 1006:
+                statistics.squarePyramid += 1;
+                break;
             default:
                 statistics.danger = true;
                 break;
@@ -1036,6 +1046,9 @@ function loadLevelNode(node, parent) {
                 break;
             case 1005:
                 statistics.cone += 1;
+                break;
+            case 1006:
+                statistics.squarePyramid += 1;
                 break;
             default:
                 statistics.danger = true;
@@ -1232,6 +1245,9 @@ function loadLevelNode(node, parent) {
                 break;
             case 1005:
                 statistics.cone += 1;
+                break;
+            case 1006:
+                statistics.squarePyramid += 1;
                 break;
             default:
                 statistics.danger = true;
@@ -4288,6 +4304,7 @@ function generateCheatSheet(advanced=false) {
         1003,
         1004,
         1005,
+        1006,
     ];
     let moddedMaterials = [
         null

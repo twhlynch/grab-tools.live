@@ -79,6 +79,7 @@ enum LevelNodeShape
   PYRAMID = 1003;
   PRISM = 1004;
   CONE = 1005;
+  PYRAMIDSQUARE = 1006;
 }
 
 enum LevelNodeMaterial
