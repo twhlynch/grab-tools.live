@@ -713,7 +713,7 @@ async def get_challenge_scores():
     return embed
 
 
-def run_bot(daily, unbeaten, weekly, unbeaten_levels=[], beaten_unbeaten_levels=[], unverified=[], best_of_grab_levels_old=[], best_of_grab_levels=[], hardest_levels_changes=[], beaten_empty_leaderboards=[]):
+def run_bot(daily, unbeaten, weekly, unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels, hardest_levels_changes, beaten_empty_leaderboards):
 
     intents = discord.Intents.default()
     bot = commands.Bot(command_prefix='!', intents=intents, allowed_mentions=discord.AllowedMentions(roles=True, users=False, everyone=False))
