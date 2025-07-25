@@ -40,7 +40,7 @@ if (level) {
     let user_name = localStorage.getItem('user_name');
     let isLoggedIn = (user_id && user_name);
     if (!isLoggedIn) {
-        document.getElementById('loginRestrictionPopup').style.display = 'flex';
+        document.getElementById('login').click();
     } else {
         if (!localStorage.getItem('isBlocked')) {
             console.log(level);

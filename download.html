@@ -29,9 +29,12 @@
     <!-- <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script> -->
     <link rel="stylesheet" href="styles/style.css">
     <script src="js/main.js" defer></script>
-    <script src="js/download.js" defer></script>
+    <script src="js/popup.js" defer></script>
+    <script src="js/login.js" defer></script>
     <script src="js/notifications.js" defer></script>
+    <script src="js/download.js" defer></script>
     <!-- <script src="js/ads.js" defer></script> -->
+    <link rel="stylesheet" href="styles/popup.css">
 </head>
 <body>
     <nav>
@@ -176,8 +179,14 @@
             </div>
         </div> -->
     </footer>
-    <div id="loginRestrictionPopup">
-        You are not logged in. Please log in to download levels. Head back to the <a href="https://grab-tools.live">homepage</a> and click login.
+    <div id="loginContainer">
+        <div id="loginMenu">
+            <span>Login is required for downloads</span>
+            <input type="text" name="username" id="username" placeholder="username" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false">
+            <input type="text" name="userId" id="userId" placeholder="user ID" autocomplete="id" autocapitalize="none" autocorrect="off" spellcheck="false">
+            <button id="guessLoginId" class="button-sml">Guess ID</button>
+            <button class="button" id="confirmLogin">Login</button>
+        </div>
     </div>
 </body>
 </html>
