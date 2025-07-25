@@ -57,6 +57,10 @@ if (isLoggedIn) {
 }
 
 async function checkBlocked() {
+    if (!window.location.pathname.includes('download')) {
+        return;
+    }
+
     let blockedList;
     if (!localStorage.getItem('blockedList') || (localStorage.getItem('blockedListCache') && Date.now() - parseInt(localStorage.getItem('blockedListCache')) > 24 * 60 * 60 * 1000)) {
         const blockedResponse = await fetch('/stats_data/blocked.json');
