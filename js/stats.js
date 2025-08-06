@@ -1592,7 +1592,7 @@ function computeStats() {
     statistics.sole_victors.reverse();
 
     statistics.most_played_maps = [...statistics.all_verified].sort((a, b) => b.statistics.total_played - a.statistics.total_played).slice(0, 200);
-    statistics.longest_times = [...statistics.all_verified].sort((a, b) => b.statistics.time - a.statistics.time).slice(0, 200);
+    statistics.longest_times = [...statistics.all_verified].sort((a, b) => b.statistics.time - a.statistics.time).filter(m => m.identifier !== '2c2jxd1bl88kk3c9d407z:1717100734').slice(0, 200);
 
     statistics.most_liked = [...statistics.all_verified]
     .sort((a, b) => (b.statistics.liked * b.statistics.difficulty * b.statistics.total_played) - (a.statistics.liked * a.statistics.difficulty * a.statistics.total_played))
