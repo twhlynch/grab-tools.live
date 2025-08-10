@@ -259,7 +259,25 @@ message TriggerTarget
   {
     TriggerTargetAnimation triggerTargetAnimation = 1;
     TriggerTargetSubLevel triggerTargetSubLevel = 2;
+    TriggerTargetSound triggerTargetSound = 3;
   }
+}
+
+message TriggerTargetSound
+{
+  enum Mode
+  {
+    STOP = 0;
+    START = 1;
+    TOGGLE = 2;
+    RESTART = 3;
+    RESET = 4;
+  }
+
+  uint64 objectID = 1;
+
+  Mode mode = 2;
+  bool repeat = 3;
 }
 
 message LevelNodeTrigger
@@ -297,6 +315,64 @@ message Animation
   float speed = 4;
 }
 
+message SoundGeneratorParameters
+{
+  enum WaveType
+  {
+    Square = 0;
+    Sawtooth = 1;
+    Sine = 2;
+    Noise = 3;
+  }
+
+  float volume = 1;
+
+  WaveType waveType = 2;
+
+  float envelopeAttack = 3;
+  float envelopeSustain = 4;
+  float envelopeRelease = 5;
+  float envelopePunch = 6;
+
+  float frequencyBase = 7;
+  float frequencyLimit = 8;
+  float frequencyRamp = 9;
+  float frequencyDeltaRamp = 10;
+
+  float vibratoStrength = 11;
+  float vibratoSpeed = 12;
+
+  float pitchJumpMod = 13;
+  float pitchJumpSpeed = 14;
+
+  float dutyCycle = 15;
+  float dutyCycleRamp = 16;
+
+  float repeatSpeed = 17;
+
+  float flangerFrequency = 18;
+  float flangerDepth = 19;
+
+  float lowPassFilterFrequency = 20;
+  float highPassFilterFrequency = 21;
+  
+  float reverbDelay = 22;
+  float reverbDecayFactor = 23;
+}
+
+message LevelNodeSound
+{
+  Vector position = 1;
+  Quaternion rotation = 7;
+
+  SoundGeneratorParameters parameters = 2;
+  string name = 3;
+  bool repeat = 4;
+  float volume = 5;
+  bool startActive = 6;
+  float maxRangeFactor = 8;
+}
+
 message LevelNode
 {
   bool isLocked = 6;
@@ -313,6 +389,7 @@ message LevelNode
     LevelNodeLobbyTerminal levelNodeLobbyTerminal = 9;
     LevelNodeTrigger levelNodeTrigger = 10;
     LevelNodeParticleEmitter levelNodeParticleEmitter = 11;
+    LevelNodeSound levelNodeSound = 12;
   }
 
   repeated Animation animations = 15;
