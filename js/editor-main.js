@@ -36,7 +36,7 @@ let shapes = [];
 let defaultSpawnPointID;
 let startCount = 0;
 // materials
-let startMaterial, finishMaterial, skyMaterial, signMaterial, neonMaterial, triggerMaterial, particlesMaterial, altStartMaterial;
+let startMaterial, finishMaterial, skyMaterial, signMaterial, neonMaterial, triggerMaterial, soundMaterial, particlesMaterial, altStartMaterial;
 let materials = [];
 let objectMaterials = [];
 let exportMaterials = [];
@@ -76,6 +76,7 @@ let materialList = [
     '/img/textures/bouncing.png',
     '/img/textures/snow.png',
     '/img/textures/trigger.png',
+    '/img/textures/sound.png',
     '/img/textures/default.png'
 ];
 let shapeList = [
@@ -1294,7 +1295,21 @@ function loadLevelNode(node, parent) {
                 statistics.danger = true;
                 break;
         }
-    } 
+    } else if (node.levelNodeSound) {
+        object = shapes[1].clone(); // sphere
+        let material = soundMaterial.clone();
+        object.material = material;
+        parent.add(object);
+        object.position.x = node.levelNodeSound.position.x || 0;
+        object.position.y = node.levelNodeSound.position.y || 0;
+        object.position.z = node.levelNodeSound.position.z || 0;
+
+        object.initialPosition = object.position.clone();
+        object.initialRotation = object.quaternion.clone();
+
+        objects.push(object);
+        statistics.complexity = 5;
+	}
     let animationPath = undefined;
     let animationPoints = [];
     if (object !== undefined) {
@@ -5097,6 +5112,14 @@ async function initAttributes() {
     triggerMaterial.transparent = true;
     triggerMaterial.opacity = 0;
     objectMaterials.push(triggerMaterial);
+
+    soundMaterial = materials[12].clone();
+    soundMaterial.uniforms.colorTexture = materials[12].uniforms.colorTexture;
+    soundMaterial.uniforms.specularColor.value = [0,0,0];
+    soundMaterial.uniforms.isTransparent.value = 1.0;
+    soundMaterial.transparent = true;
+    soundMaterial.opacity = 0;
+    objectMaterials.push(soundMaterial);
 
     particlesMaterial = new THREE.ShaderMaterial();
 	particlesMaterial.vertexShader = SHADERS.particleVS;
