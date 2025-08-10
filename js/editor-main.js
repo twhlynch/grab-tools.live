@@ -1304,6 +1304,10 @@ function loadLevelNode(node, parent) {
         object.position.y = node.levelNodeSound.position.y || 0;
         object.position.z = node.levelNodeSound.position.z || 0;
 
+        object.scale.x = 1;
+        object.scale.y = 1;
+        object.scale.z = 1;
+
         object.initialPosition = object.position.clone();
         object.initialRotation = object.quaternion.clone();
 
@@ -4949,6 +4953,7 @@ function initUI() {
     document.getElementById('nodeGravity-btn').addEventListener('click', () => {appendInsert("nodeGravity")});
     document.getElementById('nodeParticles-btn').addEventListener('click', () => {appendInsert("nodeParticles")});
     document.getElementById('nodeTrigger-btn').addEventListener('click', () => {appendInsert("nodeTrigger")});
+    document.getElementById('nodeSound-btn').addEventListener('click', () => {appendInsert("nodeSound")});
     document.getElementById('nodeColoredLava-btn').addEventListener('click', () => {appendInsert("nodeColoredLava")});
     // insert modded nodes
     // not actually modded, but cool node presets

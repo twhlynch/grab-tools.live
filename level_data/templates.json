@@ -697,6 +697,38 @@
             ]
         }
     },
+    "nodeSound": {
+        "levelNodeSound": {
+            "position": {},
+            "parameters": {
+                "waveType": 2,
+                "envelopeAttack": 0,
+                "envelopeSustain": 0,
+                "envelopeRelease": 0,
+                "envelopePunch": 0,
+                "frequencyBase": 440,
+                "frequencyLimit": 440,
+                "frequencyRamp": 0,
+                "frequencyDeltaRamp": 0,
+                "vibratoStrength": 0,
+                "vibratoSpeed": 0,
+                "pitchJumpMod": 1,
+                "pitchJumpSpeed": 0,
+                "dutyCycle": 0,
+                "dutyCycleRamp": 0,
+                "repeatSpeed": 0,
+                "flangerFrequency": 0,
+                "flangerDepth": 0,
+                "lowPassFilterFrequency": 0,
+                "highPassFilterFrequency": 0,
+                "reverbDelay": 0,
+                "reverbDecayFactor": 0
+            },
+            "name": "sound",
+            "volume": 1,
+            "maxRangeFactor": 500
+        }
+    },
     "nodeColoredLava": {
         "levelNodeStatic": {
             "shape": 1000,
