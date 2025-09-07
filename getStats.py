@@ -114,6 +114,7 @@ def get_level_leaderboard(level_identifier):
     if request == None:
         return []
     response = request.json()
+    response = [entry for entry in response if "is_verification" not in entry]
     return response
 
 def get_level_stats(level_identifier):
