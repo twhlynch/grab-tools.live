@@ -1145,15 +1145,6 @@ function getFirstToBeats() {
         checkNotification(key, "FirstToBeat");
     }
 }
-function getEmptyLeaderboards() {
-    const data = statistics.empty_leaderboards.sort((a, b) => {return a?.creation_timestamp - b?.creation_timestamp});
-    for (const level of data) {
-        const detail = `${Math.round((new Date() - new Date(level?.update_timestamp)) / (1000 * 60 * 60 * 24))} days`;
-        const level_card = genericLevelCard(level, detail);
-        document.getElementById('Empty-out').appendChild(level_card);
-        checkNotification(level.identifier, "Empty");
-    }
-}
 function getPersonalStats() {
     if (!session.isLoggedIn) {
         return;
@@ -1544,7 +1535,6 @@ let statistics = {
     statistics: undefined,
     sorted_leaderboard_records: undefined,
     user_finishes: undefined,
-    empty_leaderboards: undefined,
     total_level_count: undefined,
     difficulty_records: undefined,
     difficulty_lengths: undefined,
@@ -1635,7 +1625,6 @@ function computeStats() {
     makeFeaturedButtons();
     getTop100s();
     getFirstToBeats();
-    getEmptyLeaderboards();
     getSoleLevels();
     getTipping();
     getPersonalStats();

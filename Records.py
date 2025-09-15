@@ -35,8 +35,6 @@ def process_level(level):
                     "user_name": record["user_name"]
                 }
             difficulty_records[level_diff][record["user_id"]]["maps"] += 1
-    else:
-        empty_leaderboards.append(level)
     
     first_record = None
     first_timestamp = 9999999999999
@@ -83,7 +81,6 @@ difficulty_lengths = {
     "total": 0
 }
 leaderboard = {}
-empty_leaderboards = []
 sole_victors = []
 user_finishes = {}
 first_to_beat = {}
@@ -122,7 +119,6 @@ first_to_beat = dict(sorted(first_to_beat.items(), key=lambda x: x[1][1], revers
 
 output_files = {
     "stats_data/user_finishes.json": user_finishes,
-    "stats_data/empty_leaderboards.json": empty_leaderboards,
     "stats_data/sorted_leaderboard_records.json": sorted_leaderboard,
     # "stats_data/leaderboard_levels.json": data,
     "stats_data/sole_victors.json": sole_victors,

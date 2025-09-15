@@ -547,21 +547,6 @@ def get_beaten_unbeaten(levels_old):
                 beaten.append([title, user, time, days, url, extra, color])
     return beaten
 
-def get_empty_leaderboards():
-    empty_leaderboards = []
-    beaten_empty_leaderboards = []
-    with open("stats_data/empty_leaderboards.json") as data_file:
-        data = json.load(data_file)
-        
-    for level in data:
-        leaderboard = get_level_leaderboard(level["identifier"])
-        if len(leaderboard) == 0:
-            empty_leaderboards.append(level)
-        else:
-            beaten_empty_leaderboards.append([level, leaderboard])
-            
-    return empty_leaderboards, beaten_empty_leaderboards
-
 def get_hardest_levels_list():
     CF_ID = sys.argv[2]
     CF_TOKEN = sys.argv[3]
@@ -641,8 +626,6 @@ def get_level_data():
     write_json_file('stats_data/hardest_levels_list.json', hardest_levels_list)
     write_json_file('stats_data/blocked.json', get_blocked_ids())
     write_json_file('stats_data/total_level_count.json', get_total_levels())
-    empty_leaderboards, beaten_empty_leaderboards = get_empty_leaderboards()
-    write_json_file("stats_data/empty_leaderboards.json", empty_leaderboards)
 
     daily_data = {}
     with open("stats_data/daily.json") as file:
@@ -684,7 +667,7 @@ def get_level_data():
 
     write_json_file('stats_data/daily.json', daily_data)
 
-    run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels, hardest_levels_changes, beaten_empty_leaderboards)
+    run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels, hardest_levels_changes)
 
 def log(weekly, reset):
     log_data = {
@@ -714,7 +697,7 @@ async def get_challenge_scores():
     return embed
 
 
-def run_bot(daily, unbeaten, weekly, unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels, hardest_levels_changes, beaten_empty_leaderboards):
+def run_bot(daily, unbeaten, weekly, unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels, hardest_levels_changes):
 
     intents = discord.Intents.default()
     bot = commands.Bot(command_prefix='!', intents=intents, allowed_mentions=discord.AllowedMentions(roles=True, users=False, everyone=False))
@@ -766,13 +749,6 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels, beaten_unbeaten_levels, un
 
             await channel.send(f"||{role.mention}||", allowed_mentions=discord.AllowedMentions(roles=True))
             await channel.send(embed=embed)
-
-        try:
-            for [beaten_level, beaten_leaderboard] in beaten_empty_leaderboards:
-                beaten_embed = Embed(title=beaten_level["title"], url=f"{VIEWER_URL}?level={beaten_level["identifier"]}", description=f"Beaten by {beaten_leaderboard[0]["user_name"]} in {beaten_leaderboard[0]["best_time"]}s", color=0xff0000)
-                await channel.send(embed=beaten_embed)
-        except Exception as e:
-            print(f"Error sending beaten empty leaderboards: {e}")
 
         for beaten in beaten_unbeaten_levels:
             beaten_embed = Embed(title=beaten[0], url=beaten[4], description=f"Beaten by {beaten[1]} in {beaten[2]} after {math.floor(beaten[3])} days!{beaten[5]}", color=beaten[6])
