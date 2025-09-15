@@ -14,9 +14,6 @@
 .menu-btn#prefabs-btn::after, .menu-btn#prefab-btn::after {
     content: url(/img/editor-icons/cube.svg);
 }
-.menu-btn#empty-btn::after, .menu-btn#template-btn::after {
-    content: url(/img/editor-icons/blank.svg);
-}
 .menu-btn#controls-btn::after {
     content: url(/img/editor-icons/controls.svg);
 }
