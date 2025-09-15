@@ -1,4 +1,4 @@
-name: Get statistics
+name: Update statistics
 
 on:
   workflow_dispatch:
@@ -20,14 +20,14 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run script
-        run: python statistics.py
+        run: python scripts/statistics.py
 
       - name: Commit changes
         run: |
           git config --global user.email "twhlynch.index@gmail.com"
           git config --global user.name "twhlynch"
           git add stats_data/statistics.json
-          git commit -m "statistics"
+          git commit -m "Update Statistics"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,8 +1,8 @@
-name: Get Records
+name: Main update
 
 on:
   schedule:
-    - cron: '0 17 1 * *'
+    - cron: '0 5 * * *'
   workflow_dispatch:
 
 jobs:
@@ -12,24 +12,24 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.12.x'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Run script
-        run: python Records.py
-        
+        run: python scripts/update.py ${{ secrets.BOT_TOKEN }} ${{ secrets.CF_ACCOUNT_ID }} ${{ secrets.CF_TOKEN }} ${{ secrets.NAMESPACE }}
+
       - name: Commit changes
         run: |
           git config --global user.email "twhlynch.index@gmail.com"
           git config --global user.name "twhlynch"
           git add stats_data/*
-          git commit -m "Records"
+          git commit -m "Update Stats"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
