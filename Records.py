@@ -11,6 +11,7 @@ def process_level(level):
         res_data = requests.get(url).json()
     
     if len(res_data) != 0:
+        res_data = [entry for entry in res_data if "is_verification" not in entry]
         print(f"Parsing leaderboard of {len(res_data)} results for {level['title']}")
         level["leaderboard"] = res_data
         if len(res_data) == 1:
