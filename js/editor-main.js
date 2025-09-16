@@ -1312,7 +1312,7 @@ function loadLevelNode(node, parent) {
         object.initialRotation = object.quaternion.clone();
 
         objects.push(object);
-        statistics.complexity = 5;
+        statistics.complexity = 8;
 	}
     let animationPath = undefined;
     let animationPoints = [];
