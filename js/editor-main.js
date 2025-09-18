@@ -1523,23 +1523,10 @@ function downloadAndOpenLevel(id) {
     fetch(`https://api.slin.dev/grab/v1/details/${id.replace(":", "/")}`)
         .then(response => response.json())
         .then(data => {
-
-            let viewerUrl = 'http://grabvr.quest/levels/viewer?level=' + id;
-            let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
-            // dearest data miner, please don't abuse this.
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    content: `[ᴍ](<https://grab-tools.live?mimic=${localStorage.getItem('user_name')}:${localStorage.getItem('user_id')}>)╭ **Edit** [${localStorage.getItem('user_name')}](<https://grabvr.quest/levels?tab=tab_other_user&user_id=${localStorage.getItem('user_id')}>)\n   ╰ [${data.title}](<${viewerUrl}>)`
-                })
-            });
-
             if (!iteration) {
-                iteration = data.iteration;
+                iteration = data.iteration || 1;
             }
+            log("EDIT", `${id}:${iteration}`);
             let link = `https://api.slin.dev/grab/v1/download/${id.replace(":", "/") + '/' + iteration}`;
             openProto(link);
         });
@@ -2346,17 +2333,6 @@ function appendJSONNode(obj) {
 function appendInsert(identifier) {
     appendJSONNode(inserts[identifier]);
 }
-async function sendBlockedRequest() {
-    await fetch('https://grab-tools-logs.twhlynch.workers.dev', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            content: `[ᴍ](<https://grab-tools.live?mimic=${localStorage.getItem('user_name')}:${localStorage.getItem('user_id')}>) ! **Blocked** [${localStorage.getItem('user_name')}](<https://grabvr.quest/levels?tab=tab_other_user&user_id=${localStorage.getItem('user_id')}>)`
-        })
-    });
-}
 function loadTemplateButtons() {
     templatesContainerElement.innerHTML = '';
     templates.forEach(template => {
@@ -2369,7 +2345,7 @@ function loadTemplateButtons() {
                 if (!localStorage.getItem('isBlocked')) {
                     downloadAndOpenLevel(template.link);
                 } else {
-                    sendBlockedRequest();
+                    log("BLOCKED", template.link);
                 }
             } else if (template.type == 'file') {
                 openProto(template.link);
@@ -2413,7 +2389,7 @@ function handleDrop(e) {
             if (!localStorage.getItem('isBlocked')) {
                 downloadAndOpenLevel(levelID);
             } else {
-                sendBlockedRequest();
+                log("BLOCKED", levelID);
             }
         } else {
             const loginPromptElement = document.getElementById('loginPrompt');
@@ -5160,7 +5136,7 @@ function initURLParams() {
                 if (!localStorage.getItem('isBlocked')) {
                     downloadAndOpenLevel(template.link);
                 } else {
-                    sendBlockedRequest();
+                    log("BLOCKED", template.link);
                 }
             } else if (template.type == 'file') {
                 openProto(template.link);
@@ -5174,7 +5150,7 @@ function initURLParams() {
                 if (!localStorage.getItem('isBlocked')) {
                     downloadAndOpenLevel(paramId);
                 } else {
-                    sendBlockedRequest();
+                    log("BLOCKED", paramId);
                 }
             } else {
                 const loginPromptElement = document.getElementById('loginPrompt');

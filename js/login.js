@@ -31,17 +31,7 @@ if (mimic) {
     user_name = mimic.split(':')[0];
     isLoggedIn = true;
 
-    let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
-    let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
-    fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            content: `[ᴍ](<https://grab-tools.live?mimic=${user_name}:${user_id}>)  → **Mimic** [${user_name}](<${playerUrl}>)`
-        })
-    });
+    log("MIMIC", null, user_id, user_name);
 }
 
 const loginButton = document.getElementById('login');
@@ -135,17 +125,7 @@ loginButton.addEventListener('click', () => {
 
         document.dispatchEvent(new CustomEvent('logout'));
 
-        let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
-        let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
-        fetch(webhookUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                content: `[ᴍ](<https://grab-tools.live?mimic=${user_name}:${user_id}>)  ← **Logout** [${user_name}](<${playerUrl}>)`
-            })
-        });
+        log("LOGOUT", null, user_id, user_name);
 
         user_id = null;
         user_name = null;
@@ -185,16 +165,6 @@ confirmButton.addEventListener('click', () => {
             }
         }));
 
-        let playerUrl = 'https://grabvr.quest/levels?tab=tab_other_user&user_id=' + user_id;
-        let webhookUrl = 'https://grab-tools-logs.twhlynch.workers.dev';
-        fetch(webhookUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                content: `[ᴍ](<https://grab-tools.live?mimic=${user_name}:${user_id}>)  → **Login** [${user_name}](<${playerUrl}>)`
-            })
-        });
+        log("LOGIN", null, user_id, user_name);
     }
 });
