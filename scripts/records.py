@@ -27,7 +27,7 @@ leaderboard = {}
 sole_victors = []
 user_finishes = {}
 first_to_beat = {}
-timestamps_data = []
+timestamps_data = {}
 
 
 def get_leaderboard(identifier):
@@ -106,7 +106,10 @@ def process_level(level):
             # timestamp data
             if timestamp is not None:
                 timestamp_id = int(int(timestamp) / 100)
-                timestamps_data.append(f"{user_id}:{timestamp_id}")
+                if user_id not in timestamps_data:
+                    timestamps_data[user_id] = [timestamp_id]
+                else:
+                    timestamps_data[user_id].append(timestamp_id)
 
             # difficulty records
             diff_records = difficulty_records[difficulty_string]
@@ -119,7 +122,7 @@ def process_level(level):
 
     # first person to complete (in top 100)
     first_record = None
-    first_timestamp = float('inf') # wtf is this syntax
+    first_timestamp = float("inf")  # wtf is this syntax
 
     # all user stats
     for record in leaderboard_data:
@@ -139,7 +142,7 @@ def process_level(level):
             user_finishes[user_id][2] += (
                 record["best_time"] if "best_time" in record else 0
             )
-        except TypeError: # FIXME: what caused this?
+        except TypeError:  # FIXME: what caused this?
             print(user_finishes[user_id])
 
     # first person to complete
@@ -187,6 +190,21 @@ for difficulty in difficulty_records:
         )[:200]
     )
 
+
+timestamps_data_counts = [
+    (len(timestamps), key) for key, timestamps in timestamps_data.items()
+]
+timestamps_data_counts.sort(key=lambda x: x[0], reverse=True)
+timestamps_data_keys = [key for _count, key in timestamps_data_counts[:1000]]
+timestamps_data_result = []
+
+for key in timestamps_data_keys:
+    timestamps = timestamps_data[key]
+    if timestamps:
+        highest = max(timestamps)
+        lowest = min(timestamps)
+        timestamps_data_result.append(f"{key}:{highest}:{lowest}")
+
 user_finishes = {
     key: [finishes[0], finishes[1], round(finishes[2], 2)]
     for key, finishes in user_finishes.items()
@@ -207,4 +225,4 @@ save("sole_victors", sole_victors)
 save("difficulty_records", difficulty_records)
 save("difficulty_lengths", difficulty_lengths)
 save("first_to_beat", first_to_beat)
-save("timestamps_data", timestamps_data)
+save("timestamps_data", timestamps_data_result)
