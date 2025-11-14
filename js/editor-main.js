@@ -1379,10 +1379,10 @@ function addTriggerPaths() {
         if (objectData?.levelNodeTrigger) {
             object.userData.triggerPaths = [];
             for (let target of objectData.levelNodeTrigger.triggerTargets || []) {
-                if (!target.triggerTargetAnimation) continue;
-                let targetObject = objects[target.triggerTargetAnimation?.objectID || 0];
+                if (!target.triggerTargetAnimation?.objectID) continue;
+                let targetObject = objects[target.triggerTargetAnimation?.objectID - 1];
                 if (!targetObject) {
-                    console.log(`removed target of ${target.triggerTargetAnimation?.objectID || 0}`);
+                    console.log(`removed target of ${target.triggerTargetAnimation?.objectID}`);
                     continue;
                 }
                 let objectPosition = new THREE.Vector3();
