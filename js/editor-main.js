@@ -2387,7 +2387,7 @@ function handleDrop(e) {
         }
         if (login_details.user_name && login_details.user_id) {
             if (!localStorage.getItem('isBlocked')) {
-                downloadAndOpenLevel(levelID);
+                alert("Use https://grabvr.tools for downloading");
             } else {
                 log("BLOCKED", levelID);
             }
@@ -5148,7 +5148,7 @@ function initURLParams() {
             }
             if (login_details.user_name && login_details.user_id) {
                 if (!localStorage.getItem('isBlocked')) {
-                    downloadAndOpenLevel(paramId);
+                    alert("Use https://grabvr.tools for downloading");
                 } else {
                     log("BLOCKED", paramId);
                 }
