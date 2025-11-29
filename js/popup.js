@@ -1,5 +1,5 @@
 
-const popupPrefix = "discordInvite"; // loginPrompt"; "launchPrep"; "launchCountdown";
+const popupPrefix = "newWebsite"; // "discordInvite"; "loginPrompt"; "launchPrep"; "launchCountdown";
 
 if (!localStorage.getItem(`${popupPrefix}Shown`)) {
     let currentTime = new Date().getTime();
@@ -17,12 +17,12 @@ if (!localStorage.getItem(`${popupPrefix}Shown`)) {
         popupOverlayContainer.setAttribute("id", "popupOverlayContainer");
 
         let popupOverlayText = document.createElement("p");
-        popupOverlayText.innerHTML = "The GRAB Modding Discord server is a great place to get help using the available tools and find out about tools you didn't know about! Consider joining with the link below or by using the invite code: YKfGWSYAqf";
+        popupOverlayText.innerHTML = "I am currently remaking this website! Most features except the stats page are done. Go check it out and bookmark it at grabvr.tools";
 
         let yButton = document.createElement("a");
         yButton.classList.add("button");
-        yButton.innerHTML = "Join Discord!";
-        yButton.setAttribute("href", "https://grab-tools.live/discord");
+        yButton.innerHTML = "grabvr.tools";
+        yButton.setAttribute("href", "https://grabvr.tools");
         yButton.addEventListener("click", () => {
             popupOverlayContainer.style.display = "none";
             localStorage.setItem(`${popupPrefix}Shown`, "true");
