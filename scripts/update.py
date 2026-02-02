@@ -392,111 +392,6 @@ def get_most_plays(all_verified_maps, old_data):
             most_plays[user_identifier]["change"] = 0
     return most_plays
 
-def score_challenge(type, position, days_old):
-    if type == "daily":
-        return 3 - position
-    elif type == "weekly":
-        return 10 - position * 3
-    elif type == "unbeaten":
-        return max(days_old // 100 - 50 * position, 0)
-    
-def add_score_by_id(identifier, score, username):
-    with open("stats_data/challenge_scores.json") as scores:
-        scores_data = json.load(scores)
-        current_version = scores_data["current_version"]
-        
-        found = False
-        for i in range(len(scores_data[f"v{current_version}"])):
-            if scores_data[f"v{current_version}"][i]["user_id"] == identifier:
-                scores_data[f"v{current_version}"][i]["score"] += score
-                found = True
-                break
-        
-        if not found:
-            scores_data[f"v{current_version}"].append({"user_id": identifier, "score": score, "user_name": username})
-            
-        # sort by score
-        scores_data[f"v{current_version}"].sort(key=lambda x: x["score"], reverse=True)
-        
-        with open("stats_data/challenge_scores.json", "w") as scores:
-            json.dump(scores_data, scores)
-
-def get_challenge_winner(type):
-    with open("stats_data/daily.json") as daily_data, open("stats_data/user_blacklist.json") as blacklist:
-        daily_json = json.load(daily_data)
-        map_json = daily_json[type]
-        blacklist_data = json.load(blacklist)
-
-        winner_list = get_level_leaderboard(map_json["identifier"])
-        offset = 0
-        for i in range(min(len(winner_list), 3)):
-            if winner_list[i - offset]["user_name"] in blacklist_data:
-                winner_list.pop(i - offset)
-                offset += 1
-
-        days_old = timestamp_to_days(map_json['update_timestamp'], int(datetime.now().timestamp()) * 1000)
-        for i in range(len(winner_list[:3])):
-            score = score_challenge(type, i, days_old)
-            add_score_by_id(winner_list[i]["user_id"], score, winner_list[i]["user_name"])
-
-def get_daily_map(all_verified_maps):
-    with open("stats_data/next_up.json") as data_file:
-        data = json.load(data_file)
-    if data["daily"] != False:
-        with open("stats_data/next_up.json", "w") as data_file:
-            new_data = data.copy()
-            new_data["daily"] = False
-            json.dump(new_data, data_file)
-        return data["daily"]
-    maps = sorted(all_verified_maps, key=lambda x: x["update_timestamp"], reverse=True)
-    filtered_maps = [e for e in maps if (e["statistics"]["time"] <= 100 and e["statistics"]["time"] >= 3)]
-    weights = [filtered_maps[i]["update_timestamp"]/(i+1) for i in range(len(filtered_maps))]
-    level_data = random.choices(filtered_maps, weights, k=1)
-    return level_data[0]
-
-def get_weekly_map(all_verified_maps):
-    with open("stats_data/next_up.json") as data_file:
-        data = json.load(data_file)
-    if data["weekly"] != False:
-        with open("stats_data/next_up.json", "w") as data_file:
-            new_data = data.copy()
-            new_data["weekly"] = False
-            json.dump(new_data, data_file)
-        return data["weekly"]
-    maps = sorted(all_verified_maps, key=lambda x: x["statistics"]["difficulty"])
-    weights = [(1 - maps[i]["statistics"]["difficulty"])/(i+1) for i in range(len(maps))]
-    level_data = random.choices(maps, weights, k=1)
-    return level_data[0]
-
-def get_unbeaten_map():
-    with open("stats_data/unbeaten_levels.json") as data_file:
-        data = json.load(data_file)
-    if len(data) == 0: # fallback to impossible
-        return {
-        "identifier": "29mu59yo9pbgwqloqhthe:1690745443",
-        "title": "Impossible",
-        "complexity": 229,
-        "update_timestamp": 1722546072852,
-        "creation_timestamp": 1690755852015,
-        "tags": ["ok"],
-        "statistics": {
-            "total_played": 39000,
-            "difficulty": 0,
-            "difficulty_string": "impossible",
-            "liked": 0,
-            "time": 100
-        },
-        "images": {
-            "thumb": {
-                "key": "level_29mu59yo9pbgwqloqhthe_1690745443_1_thumb.png"
-            }
-        },
-        "iteration": 3,
-        "creators": ["?"],
-        "change": 0
-    }
-    return random.choice(data)
-
 def get_trending_info(all_verified):
     with open("stats_data/all_verified.json") as old_data_file:
         old_data = json.load(old_data_file)
@@ -596,12 +491,6 @@ def get_unverified(all_verified, all_verified_old):
     return unverified
 
 def get_level_data():
-    with open("stats_data/log_data.json") as log_file:
-        log_data = json.load(log_file)
-    if datetime.now().timestamp() - log_data["last_ran"] < 60*60*14:
-        print("Not running")
-        return
-
     with open("stats_data/most_plays.json") as most_plays_file, open("stats_data/most_verified.json") as most_verified_file, open("stats_data/unbeaten_levels.json") as unbeaten_file, open("stats_data/all_verified.json") as all_verified_file, open("stats_data/best_of_grab.json") as best_of_grab_file:
         most_plays_old = json.load(most_plays_file)
         most_verified_old = json.load(most_verified_file)
@@ -628,55 +517,7 @@ def get_level_data():
     write_json_file('stats_data/blocked.json', get_blocked_ids())
     write_json_file('stats_data/total_level_count.json', get_total_levels())
 
-    daily_data = {}
-    with open("stats_data/daily.json") as file:
-            daily_data = json.load(file)
-
-    get_challenge_winner("daily")
-    daily_level = get_daily_map(all_verified)
-    daily_anc = [daily_level["title"], f"{VIEWER_URL}?level={daily_level['identifier']}"]
-    daily_data["daily"] = daily_level
-
-    get_challenge_winner("unbeaten")
-    unbeaten_level = get_unbeaten_map()
-    unbeaten_anc = [unbeaten_level["title"], f"{VIEWER_URL}?level={unbeaten_level['identifier']}"]
-    daily_data["unbeaten"] = unbeaten_level
-
-    weekly_anc = False
-    weekly = log_data["days_since_weekly"] + 1
-    reset = log_data["weeks_since_reset"]
-    if weekly == 7:
-        reset += 1
-        
-        get_challenge_winner("weekly")
-        weekly_level = get_weekly_map(all_verified)
-        weekly_anc = [weekly_level["title"], f"{VIEWER_URL}?level={weekly_level['identifier']}"]
-        daily_data["weekly"] = weekly_level
-        
-        if reset == 8:
-            reset = 0
-            with open("stats_data/challenge_scores.json") as scores:
-                scores_data = json.load(scores)
-                scores_data[f"v{scores_data["current_version"]}"] = scores_data[f"v{scores_data["current_version"]}"][:10]
-                scores_data["current_version"] = scores_data["current_version"] + 1
-                scores_data[f"v{scores_data["current_version"]}"] = []
-                write_json_file("stats_data/challenge_scores.json", scores_data)
-                
-        weekly = 0
-
-    log(weekly, reset)
-
-    write_json_file('stats_data/daily.json', daily_data)
-
-    run_bot(daily_anc, unbeaten_anc, weekly_anc, unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels, hardest_levels_changes)
-
-def log(weekly, reset):
-    log_data = {
-        "days_since_weekly": weekly,
-        "last_ran": datetime.now().timestamp(),
-        "weeks_since_reset": reset,
-    }
-    write_json_file('stats_data/log_data.json', log_data)
+    run_bot(unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels, hardest_levels_changes)
 
 async def get_challenge_scores():
     with open('stats_data/challenge_scores.json') as file_data:
@@ -698,7 +539,7 @@ async def get_challenge_scores():
     return embed
 
 
-def run_bot(daily, unbeaten, weekly, unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels, hardest_levels_changes):
+def run_bot(unbeaten_levels, beaten_unbeaten_levels, unverified, best_of_grab_levels_old, best_of_grab_levels, hardest_levels_changes):
 
     intents = discord.Intents.default()
     bot = commands.Bot(command_prefix='!', intents=intents, allowed_mentions=discord.AllowedMentions(roles=True, users=False, everyone=False))
@@ -707,20 +548,7 @@ def run_bot(daily, unbeaten, weekly, unbeaten_levels, beaten_unbeaten_levels, un
     async def on_ready():
         # Challenges
         print(f'Bot connected as {bot.user.name}')
-        channel = bot.get_channel(1110435431750828132)
         guild = bot.get_guild(1048213818775437394)
-        role = guild.get_role(1110735575083929622)
-
-        embed = Embed(title="Daily/Weekly Maps Update", url=f"{PAGE_URL}stats?tab=DailyMap", description="Daily Update", color=0x00ffff)
-        embed.add_field(name="Daily", value=f"[{daily[0]}]({daily[1]})")
-        embed.add_field(name="Unbeaten", value=f"[{unbeaten[0]}]({unbeaten[1]})")
-        if weekly:
-            embed.add_field(name="Weekly", value=f"[{weekly[0]}]({weekly[1]})")
-
-        await channel.send(f"||{role.mention}||", allowed_mentions=discord.AllowedMentions(roles=True))
-        await channel.send(embed=embed)
-        scores_embed = await get_challenge_scores()
-        await channel.send(embed=scores_embed)
 
         # hardest list
         hardest_levels_channel = bot.get_channel(1365172578242531379)
