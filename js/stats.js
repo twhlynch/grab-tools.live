@@ -411,172 +411,6 @@ function makeFeaturedButtons() {
         output.appendChild(optionElement);
     }
 }
-function getDailyMap() {
-    const output = document.getElementById('DailyMap-out');
-    output.innerHTML += `<h1><a target="_blank" href="https://grabvr.quest/levels/viewer/?level=${statistics.daily_map["identifier"]}">${statistics.daily_map["title"]}</a><br>by <span title="${statistics.daily_map["creators"]}">${(statistics.daily_map.creators || [""])[0]}</span></h1>`;
-    
-    let loadingElement = document.createElement('span');
-    loadingElement.innerText = "Loading leaderboard...";
-    output.appendChild(loadingElement);
-
-    let loadedDaily = false;
-
-    function loadDailyLeaderboard() {
-        if (loadedDaily) {
-            return;
-        }
-    
-        fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${statistics.daily_map['identifier'].replace(':', '/')}`)
-        .then((response2) => response2.json())
-        .then(leaderboard => {
-            output.removeChild(loadingElement);
-            leaderboard.forEach( lItem => {
-                const user_card = userCard(
-                    lItem["user_id"], 
-                    lItem["user_name"], 
-                    false, 
-                    false, 
-                    false, 
-                    `${lItem["best_time"]}s`, 
-                    ''
-                );
-                output.appendChild(user_card);
-                checkNotification(lItem["user_id"], "DailyMap");
-                loadedDaily = true;
-            });
-        });
-    }
-
-    document.getElementById('DailyMap').addEventListener('click', loadDailyLeaderboard);
-    if (document.getElementById('DailyMap-sort-btn').classList.contains('sort-active')) {
-        loadDailyLeaderboard();
-    }
-}
-function getWeeklyMap() {
-    const output = document.getElementById('WeeklyMap-out');
-    output.innerHTML += `<h1><a target="_blank" href="https://grabvr.quest/levels/viewer/?level=${statistics.weekly_map["identifier"]}">${statistics.weekly_map["title"]}</a><br>by <span title="${statistics.weekly_map["creators"]}">${(statistics.weekly_map.creators || [""])[0]}</span></h1>`;
-
-    let loadingElement = document.createElement('span');
-    loadingElement.innerText = "Loading leaderboard...";
-    output.appendChild(loadingElement);
-
-    let loadedWeekly = false;
-
-    function loadWeeklyLeaderboard() {
-        if (loadedWeekly) {
-            return;
-        }
-
-        fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${statistics.weekly_map['identifier'].replace(':', '/')}`)
-        .then((response2) => response2.json())
-        .then(leaderboard => {
-            output.removeChild(loadingElement);
-            leaderboard.forEach( lItem => {
-                const user_card = userCard(
-                    lItem["user_id"], 
-                    lItem["user_name"], 
-                    false, 
-                    false, 
-                    false, 
-                    `${lItem["best_time"]}s`, 
-                    ''
-                );
-                output.appendChild(user_card);
-                checkNotification(lItem["user_id"], "WeeklyMap");
-                loadedWeekly = true;
-            });
-        });
-    }
-
-    document.getElementById('WeeklyMap-sort-btn').addEventListener('click', loadWeeklyLeaderboard);
-}
-function getUnbeatenMap() {
-    const output = document.getElementById('UnbeatenMap-out');
-    output.innerHTML += `<h1><a target="_blank" href="https://grabvr.quest/levels/viewer/?level=${statistics.unbeaten_map["identifier"]}">${statistics.unbeaten_map["title"]}</a><br>by <span title="${statistics.unbeaten_map["creators"]}">${(statistics.unbeaten_map.creators || [""])[0]}</span></h1>`;
-
-    let loadingElement = document.createElement('span');
-    loadingElement.innerText = "Loading leaderboard...";
-    output.appendChild(loadingElement);
-
-    let loadedUnbeaten = false;
-
-    function loadUnbeatenLeaderboard() {
-        if (loadedUnbeaten) {
-            return;
-        }
-
-        fetch(`https://api.slin.dev/grab/v1/statistics_top_leaderboard/${statistics.unbeaten_map['identifier'].replaceAll(':', '/')}`)
-        .then((response2) => response2.json())
-        .then(leaderboard => {
-            output.removeChild(loadingElement);
-            leaderboard.forEach( lItem => {
-                const user_card = userCard(
-                    lItem["user_id"], 
-                    lItem["user_name"], 
-                    false, 
-                    false, 
-                    false, 
-                    `${lItem["best_time"]}s`, 
-                    ''
-                );
-                output.appendChild(user_card);
-                checkNotification(lItem["user_id"], "UnbeatenMap");
-                loadedUnbeaten = true;
-            });
-        });
-    }
-
-    document.getElementById('UnbeatenMap-sort-btn').addEventListener('click', loadUnbeatenLeaderboard);
-}
-function getChallengeScores() {
-    const current_version = statistics.challenge_scores.current_version;
-    const leaderboard = statistics.challenge_scores[`v${current_version}`];
-    for (const value of leaderboard) {
-        const user_card = userCard(
-            value.user_id, 
-            value.user_name, 
-            false, 
-            false, 
-            false, 
-            `${value.score} Pt`, 
-            ''
-        );
-        document.getElementById('MapChallenges-out').appendChild(user_card);
-        checkNotification(value.user_id, "MapChallenges");
-    }
-    if (leaderboard.length == 0) {
-        document.getElementById('MapChallenges-out').innerHTML += "<br/><br/><center>Reset was today! No scores yet.</center>";
-    }
-    for (i = 1; i < current_version; i++) {
-        const sortButton = document.createElement("button");
-        sortButton.innerText = `v${i}`;
-        sortButton.classList.add('sort-btn', 'button-sml');
-        sortButton.id = `MapChallengesV${i}-sort-btn`;
-        sortButton.addEventListener("click", () => {
-            buttonEvent(sortButton);
-        });
-        document.getElementById('DailyMap-sort').appendChild(sortButton);
-
-        const output = document.createElement("div");
-        output.classList.add("LeaderboardOutput");
-        output.id = `MapChallengesV${i}-out`;
-        document.getElementById('statistics').appendChild(output);
-
-        for (const value of statistics.challenge_scores[`v${i}`]) {
-            const user_card = userCard(
-                value.user_id, 
-                value.user_name, 
-                false, 
-                false, 
-                false, 
-                `${value.score} Pt`, 
-                ''
-            );
-            document.getElementById(`MapChallengesV${i}-out`).appendChild(user_card);
-            checkNotification(value.user_id, `MapChallengesV${i}`);
-        }
-    }
-}
 function getGlobalPlays() {
     document.getElementById('Global-out').innerHTML += `<p>Total maps: ${numberWithCommas(statistics.total_level_count.levels)}</p>`;
     
@@ -1448,9 +1282,6 @@ function showListCounts() {
             "PersonalStats-out",
             "Global-out",
             "LevelSearch-out",
-            "DailyMap-out",
-            "WeeklyMap-out",
-            "UnbeatenMap-out"
         ].includes(id) || count == 0) {
             continue;
         }
@@ -1530,7 +1361,6 @@ let statistics = {
     sole_victors: undefined,
     most_plays: undefined,
     featured_creators: undefined,
-    challenge_scores: undefined,
     best_of_grab: undefined,
     statistics: undefined,
     sorted_leaderboard_records: undefined,
@@ -1539,7 +1369,6 @@ let statistics = {
     difficulty_records: undefined,
     difficulty_lengths: undefined,
     first_to_beat: undefined,
-    daily: undefined
 };
 
 let loading = 0;
@@ -1603,10 +1432,6 @@ function computeStats() {
     .filter(map => (new Date() - new Date(map.creation_timestamp)) < 7 * 24 * 60 * 60 * 1000)
     .slice(0, 200);
 
-    statistics.daily_map = statistics.daily.daily;
-    statistics.weekly_map = statistics.daily.weekly;
-    statistics.unbeaten_map = statistics.daily.unbeaten;
-
     getGlobalPlays();
     getTopPlayers();
     getUnbeatenLevels();
@@ -1615,10 +1440,6 @@ function computeStats() {
     getTopTimes();
     getTopLikes();
     getTopDislikes();
-    getDailyMap();
-    getWeeklyMap();
-    getUnbeatenMap();
-    getChallengeScores();
     getRecords();
     getTrendingLevels();
     getBestOfGrab();
