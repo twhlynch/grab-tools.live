@@ -20,7 +20,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run script
-        run: python scripts/statistics.py
+        run: python scripts/statistics.py ${{ secrets.SERVER_TOKEN_HEADERS }}
 
       - name: Commit changes
         run: |
