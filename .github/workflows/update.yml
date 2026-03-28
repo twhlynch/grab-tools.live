@@ -22,7 +22,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run script
-        run: python scripts/update.py ${{ secrets.BOT_TOKEN }} ${{ secrets.CF_ACCOUNT_ID }} ${{ secrets.CF_TOKEN }} ${{ secrets.NAMESPACE }}
+        run: python scripts/update.py ${{ secrets.BOT_TOKEN }} ${{ secrets.CF_ACCOUNT_ID }} ${{ secrets.CF_TOKEN }} ${{ secrets.NAMESPACE }} ${{ secrets.SERVER_TOKEN_HEADERS }}
 
       - name: Commit changes
         run: |

@@ -1,3 +1,4 @@
+import sys
 import json
 import requests
 import contextlib
@@ -5,6 +6,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 API = "https://api.slin.dev/grab/v1/"
+
+server_token_headers = json.loads(sys.argv[1])
 
 difficulty_records = {
     "unrated": {},
@@ -37,7 +40,7 @@ def get_leaderboard(identifier):
 
     leaderboard = []
     with contextlib.suppress(Exception):
-        leaderboard = requests.get(url).json()
+        leaderboard = requests.get(url, headers=server_token_headers).json()
 
     filtered_leaderboard = [
         entry for entry in leaderboard if "is_verification" not in entry
